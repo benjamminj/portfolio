@@ -3,5 +3,114 @@
 @import 'colors';
 @import 'layout';
 @import 'base';
-@import 'header';
 @import 'banner';
+
+body {
+  position: relative;
+}
+
+header {
+  background-color: rgba(#fff, 0.8);
+  border-bottom: 1px solid rgba(#000, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  left: 0;
+  position: fixed;
+  right: 0;
+  height: $header-height;
+  z-index: map-get($zi, top);
+
+  .title, .menu {
+    color: rgba(#000, 0.8);
+    margin: 0;
+    padding: 5px;
+  }
+}
+
+#banner {
+  // background: map-get($base, teal);
+  background: #fff;
+  align-items: center;  
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  color: rgba(#000, 0.8);
+  // color: map-get($base, indigo);
+
+  .next-pane-btn {
+    position: absolute;
+    bottom: $lh-base;
+    border-radius: 50%;
+    background: rgba(#000, 0.2);
+    padding: 0;
+
+    .down-arrow {
+      // fill: map-get($base, teal);
+      fill: rgba(#fff, 0.8);
+    }
+  }
+}
+
+.section-heading {
+  text-align: center;
+}
+
+#work {
+  background: #fff;
+  padding: $header-height 0 0;
+  height: auto;
+  
+  h2 {
+    line-height: (2 * $lh-base);
+  }
+
+
+  .thumbnail {
+    object-position: cover;
+    width: 100%;
+  }
+}
+
+.content {
+  max-width: 80%;
+}
+
+#about {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: $header-height 0;
+  // background: map-get($base, blue);
+
+  h2 {
+    color: rgba(#000, 0.8);
+  }
+
+  .content {
+    height: calc(100vh - $header-height)
+  }
+
+  button {
+    background: map-get($base, indigo);
+    width: 50%;
+    height: 1.5 * $lh-base;
+    border-radius: 2px;
+
+    a {
+      text-decoration: none;
+      color: rgba(#fff, 1);
+      line-height: $lh-base;
+    }
+  }
+}
+
+footer {
+  position: absolute;
+  bottom: 0;
+  height: 2 * $header-height;
+  background: rgba(#000, 0.3);
+  left: 0;
+  right: 0;
+}
