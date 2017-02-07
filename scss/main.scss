@@ -3,7 +3,6 @@
 @import 'colors';
 @import 'layout';
 @import 'base';
-@import 'banner';
 
 body {
   position: relative;
@@ -88,18 +87,37 @@ header {
     color: rgba(#000, 0.8);
   }
 
-  .content {
-    height: calc(100vh - $header-height)
-  }
+  .bio {
+    width: 80%;
 
-  button {
-    background: map-get($base, indigo);
-    width: 50%;
-    height: 1.5 * $lh-base;
-    border-radius: 2px;
+    img {
+      $img-margin: 10px;
+      $img-dimension: (3 * $lh-base) - $img-margin;
+
+      border-radius: 50%;
+      height: $img-dimension;
+      width: $img-dimension;
+      margin: 0 $img-margin $img-margin 0;
+      float: left;
+    }
+
+    p {
+      margin-top: 0;
+    }
 
     a {
-      text-decoration: none;
+      color: lighten(map-get($base, indigo), 15%);
+    }
+  }
+
+  .contact-btn {
+    background: map-get($base, indigo);
+    width: 50%;
+    height: 2 * $lh-base;
+    border-radius: 2px;
+    margin: $lh-base 0;
+
+    a {
       color: rgba(#fff, 1);
       line-height: $lh-base;
     }
@@ -109,7 +127,7 @@ header {
 footer {
   position: absolute;
   bottom: 0;
-  height: 2 * $header-height;
+  height: 1.5 * $header-height;
   background: rgba(#000, 0.3);
   left: 0;
   right: 0;
