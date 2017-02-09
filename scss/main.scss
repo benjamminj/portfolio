@@ -9,15 +9,16 @@ body {
 }
 
 header {
+  align-items: center;
   background-color: rgba(#fff, 0.8);
   border-bottom: 1px solid rgba(#000, 0.1);
   display: flex;
-  align-items: center;
+  height: $header-height;
   justify-content: space-between;
   left: 0;
   position: fixed;
+  padding: 0 (0.5 * $fs-base);
   right: 0;
-  height: $header-height;
   z-index: map-get($zi, top);
 
   .title, .menu {
@@ -79,6 +80,7 @@ header {
   flex-direction: column;
   align-items: center;
   padding: $header-height 0 $footer-height;
+  min-height: auto;
 
   h2 {
     color: rgba(#000, 0.8);
@@ -134,4 +136,19 @@ footer {
   left: 0;
   position: absolute;
   right: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  .media-icon {
+    fill: rgba(#000, 0.5);
+  }
+
+  p {
+    text-align: center;
+    font-size: 0.5 * $fs-base;
+    margin: 0;
+    color: rgba(#000, 0.8);
+  }
 }
