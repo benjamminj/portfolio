@@ -5,11 +5,23 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Benjamin Johnson</title>
   <link rel="stylesheet" href="css/main.css">
+
+  <svg hidden>
+    <symbol>
+      <svg viewBox="0 0 24 24" id="icon-menu">
+        <path fill="#000000" d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z" />
+      </svg>
+    </symbol>
+  </svg>
 </head>
 <body>
-  <header>
+  <header class="header">
     <h5 class="title">benjamin johnson</h5>
-    <h5 class="menu">menu</h5>
+    <h5 class="menu">
+      <svg>
+        <use xlink:href="#icon-menu" />
+      </svg>
+    </h5>
   </header>
 
   <main>
@@ -30,14 +42,20 @@
     <section id="work">
       <h2 class="section-heading">recent work</h2>
       <div class="projects">
-        <img class="thumbnail" src="https://api.fnkr.net/testimg/500x500/03a9f4/FFF/?text=img+placeholder">
-        <img class="thumbnail" src="https://api.fnkr.net/testimg/500x500/4caf50/FFF/?text=img+placeholder">
+        <div class="project">
+          <img class="thumbnail" src="https://api.fnkr.net/testimg/500x500/03a9f4/FFF/?text=img+placeholder">
+          <h3 class="title">title</h3>
+        </div>
+        <div class="project">
+          <img class="thumbnail" src="https://api.fnkr.net/testimg/500x500/4caf50/FFF/?text=img+placeholder">
+          <h3 class="title">title</h3>
+        </div>
       </div>
     </section>
     <section id="about">
       <h2 class="section-heading">about me</h2>
         <div class="bio">
-          <img src="https://api.fnkr.net/testimg/100x100/00CED1/FFF/?text=img+placeholder">
+          <img src="img/benjamin_johnson.jpg">
           <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quo, voluptatum, pariatur. Inventore quasi, veritatis quo animi voluptates quae architecto veniam eveniet iste, itaque ea magni commodi</p>
           <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam in voluptatibus laborum odio fugit <a href="/">molestias?</a></p>
         </div>
