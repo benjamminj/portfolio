@@ -1,5 +1,6 @@
 html {
   font-size: 18px;
+  color: $black;
 }
 
 body {
@@ -12,12 +13,27 @@ h3,
 h4,
 h5,
 h6 {
-  margin: 0.25rem;
+  padding: 0.25rem;
+  margin: 0;
   line-height: 1.25;
+  font-family: 'Open Sans';
 }
 
 p {
+  font-weight: 300;
+}
 
+a {
+  text-decoration: none;
+  color: $accent;
+
+  &:visited {
+    color: $accent-dark;
+  }
+}
+
+img {
+  max-width: 100%;
 }
 
 svg {

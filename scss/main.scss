@@ -1,14 +1,231 @@
 @import 'sanitize';
-@import 'theme';
+@import 'mixins';
+@import 'fonts';
+@import 'vars';
 @import 'base';
 
-.header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0.25rem $padding-default-horizontal;
+// Menu buttons
+.menu-close, .menu-open {
+  transition: opacity $transition-default;
+}
 
-  .menu {
+.menu-close {
+  opacity: 0;
+  display: none;
+}
+
+// Menu shown
+#menu-toggle:checked {
+  & + #header .menu-toggler-label {
+    .menu-open {
+      opacity: 0;
+      display: none;
+    }
+
+    .menu-close {
+      opacity: 1;
+      display: inline;
+    }
+  }
+
+  & ~ .menu {
+    opacity: 1; // Shows the menu
+  }
+}
+
+// Menu
+.menu {
+  background-color: $white;
+  height: 100vh;
+  position: fixed;
+  text-align: center;
+  width: 100%;
+  z-index: $z-middle;
+  padding: $header-height $padding-default 0;
+  opacity: 0; // Hides the menu
+  transition: opacity $transition-default; // Menu fades in
+
+  @include flex-column();
+}
+
+.menu-items {
+  padding: 0;
+  margin: 0;
+  color: $black;
+  font-size: 1.15rem;
+  font-weight: 300;
+
+  .menu-item {
+    margin: 0.75rem 0;
+  }
+
+  a {
+    color: inherit;
+  }
+}
+
+#header {
+  align-items: center;
+  background-color: rgba($white, 0.9);
+  display: flex;
+  height: $header-height;
+  justify-content: space-between;
+  left: 0;
+  padding: 0 $padding-default;
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: $z-highest;
+  color: $black;
+
+  .title, .menu-btn {
     margin: 0;
+    padding: 0;
+  }
+
+  .title a {
+    color: inherit;
+  }
+}
+
+.section-heading {
+  font-family: $sans-serif-secondary;
+  margin: 0.75rem;
+  text-align: center;
+}
+
+#banner {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  justify-content: center;
+  padding: $header-height $padding-default 0;
+  position: relative;
+
+  .content-heading {
+    font-family: $sans-serif-secondary;
+  }
+
+  .next-pane-btn {
+    bottom: 0;
+    left: 0;
+    padding-bottom: $padding-default;
+    position: absolute;
+    width: 100%;
+  }
+
+  .down-arrow {
+    $icon-size: 1.75rem;
+    $icon-color: rgba($black, 0.5);
+    $icon-color-hover: rgba($black, 0.9);
+
+    // background-color: rgba($black, 0.2);
+    border-radius: 50%;
+    border: 1px solid $icon-color;
+    color: $icon-color;
+    height: $icon-size;
+    width: $icon-size;
+    transition: all $transition-default;
+
+    &:hover {
+      border: 1px solid $icon-color-hover;
+      color: $icon-color-hover;
+    }
+  }
+}
+
+#work {
+  padding-top: $header-height;
+
+  .thumbnail {
+    height: 300px;
+    width: 100%;
+  }
+
+  .title {
+    color: $white;
+    font-family: $sans-serif-secondary;
+    font-size: 1.5rem;
+    margin: 0;
+    padding: 150px 0;
+    text-align: center;
+    width: 100%;
+
+    &.horizon {
+      background: url('../img/sunset.png');
+      background-position: bottom;
+    }
+
+    &.adze {
+      background: url('../img/adze.png');
+      background-position: center;
+    }
+
+    &.minutes {
+      background: url('../img/clock-bg.jpeg');
+      background-size: cover;
+    }
+  }
+}
+
+#about {
+  padding: 0 $padding-default;
+
+  .about-img {
+    $img-size: (1.5rem * 4);
+
+    border-radius: 50%;
+    display: block;
+    height: $img-size;
+    margin: 1.25rem auto;
+    width: $img-size;
+  }
+
+  .contact-btn {
+    $btn-color: rgba($white, 0.9);
+    $btn-color-hover: $white;
+
+    border-radius: 1px;
+    color: $btn-color;
+    background-color: $accent;
+    display: block;
+    margin: 1rem auto;
+    padding: 0.5rem;
+    transition: color $transition-default, background-color $transition-default;
+
+    &:hover {
+      color: $btn-color-hover;
+      background-color: $accent-dark;
+    }
+
+    a {
+      color: inherit;
+    }
+  }
+}
+
+#footer {
+  padding: 0 $padding-default;
+  font-size: 0.5rem;
+  border-top: 1px solid rgba($black, 0.1);
+  text-align: center;
+
+  .media {
+    margin: 0.5rem;
+  }
+
+  .media-link {
+    display: inline-block;
+    width: 1.5rem;
+    color: rgba($black, 0.8);
+    transition: color $transition-default;
+
+    &:hover {
+      color: $black;
+    }
+  }
+
+  .contact-info, .copyright {
+    margin: 0 auto;
   }
 }

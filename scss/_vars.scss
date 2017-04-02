@@ -1,0 +1,22 @@
+// Holds theme variables, layout, etc.
+
+// Overall Layout
+$padding-default: 0.5rem;
+$z-highest: 999;
+$z-middle: 777;
+
+// Colors
+$black: #222;
+$white: #fefefe;
+$accent: #2196f3; // blue
+$accent-dark: darken($accent, 5%);
+
+// Fonts
+$sans-serif-default: 'Open Sans', 'Helvetica', sans-serif;
+$sans-serif-secondary: 'Source Sans Pro', 'Helvetica', sans-serif;
+
+// Transitions
+$transition-default: 0.25s linear;
+
+// Header variables
+$header-height: 1rem + (0.25rem * 2);
