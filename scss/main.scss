@@ -30,6 +30,7 @@
 
   & ~ .menu {
     opacity: 1; // Shows the menu
+    z-index: $z-middle;
   }
 }
 
@@ -40,7 +41,7 @@
   position: fixed;
   text-align: center;
   width: 100%;
-  z-index: $z-middle;
+  z-index: $z-bottom;
   padding: $header-height $padding-default 0;
   opacity: 0; // Hides the menu
   transition: opacity $transition-default; // Menu fades in
@@ -102,6 +103,11 @@
   padding: $header-height $padding-default 0;
   position: relative;
 
+  .content {
+    max-width: $max-width-default;
+    margin: 0 auto;
+  }
+
   .content-heading {
     font-family: $sans-serif-secondary;
   }
@@ -142,7 +148,7 @@
     width: 100%;
   }
 
-  .title {
+  .thumbnail-bg {
     color: $white;
     font-family: $sans-serif-secondary;
     font-size: 1.5rem;
@@ -164,6 +170,44 @@
     &.minutes {
       background: url('../img/clock-bg.jpeg');
       background-size: cover;
+    }
+  }
+
+  .content {
+    padding: 1rem $padding-default;
+    position: relative;
+  }
+
+  .links {
+    $link-height: 1.5rem;
+
+    position: absolute;
+    text-align: right;
+    top: -(($link-height * 2) + $padding-default);
+    right: 0;
+    padding: 0 $padding-default;
+
+    .link {
+      display: block;
+      color: rgba($white, 0.7);
+    }
+  }
+
+  .description {
+    margin: 0.5rem 0;
+  }
+
+  .tech-used {
+    font-size: 0.75rem;
+    color: rgba($black, 0.6);
+    display: flex;
+
+    svg {
+      $svg-size: 1rem;
+
+      height: $svg-size;
+      width: $svg-size;
+      margin-right: 0.5rem;
     }
   }
 }
