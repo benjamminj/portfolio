@@ -10,21 +10,21 @@
 }
 
 .menu-close {
-  opacity: 0;
   display: none;
+  opacity: 0;
 }
 
 // Menu shown
 #menu-toggle:checked {
   & + #header .menu-toggler-label {
     .menu-open {
-      opacity: 0;
       display: none;
+      opacity: 0;
     }
 
     .menu-close {
-      opacity: 1;
       display: inline;
+      opacity: 1;
     }
   }
 
@@ -38,23 +38,23 @@
 .menu {
   background-color: $white;
   height: 100vh;
+  opacity: 0; // Hides the menu
+  padding: $header-height $padding-default 0;
   position: fixed;
   text-align: center;
+  transition: opacity $transition-default; // Menu fades in
   width: 100%;
   z-index: $z-bottom;
-  padding: $header-height $padding-default 0;
-  opacity: 0; // Hides the menu
-  transition: opacity $transition-default; // Menu fades in
 
   @include flex-column();
 }
 
 .menu-items {
-  padding: 0;
-  margin: 0;
   color: $black;
   font-size: 1.15rem;
   font-weight: 300;
+  margin: 0;
+  padding: 0;
 
   .menu-item {
     margin: 0.75rem 0;
@@ -68,6 +68,7 @@
 #header {
   align-items: center;
   background-color: rgba($white, 0.9);
+  color: $black;
   display: flex;
   height: $header-height;
   justify-content: space-between;
@@ -77,7 +78,6 @@
   right: 0;
   top: 0;
   z-index: $z-highest;
-  color: $black;
 
   .title, .menu-btn {
     margin: 0;
@@ -129,8 +129,8 @@
     border: 1px solid $icon-color;
     color: $icon-color;
     height: $icon-size;
-    width: $icon-size;
     transition: all $transition-default;
+    width: $icon-size;
 
     &:hover {
       border: 1px solid $icon-color-hover;
@@ -175,13 +175,13 @@
   }
 
   .title {
+    color: $white;
     height: $project-title-height;
     position: absolute;
+    text-align: center;
+    text-shadow: 0 0 5px rgba($black, 0.4);
     top: $thumbnail-padding-vert;
     width: 100%;
-    text-align: center;
-    color: $white;
-    text-shadow: 0 0 5px rgba($black, 0.4);
   }
 
   .content {
@@ -192,15 +192,15 @@
   .links {
     $link-height: 1.5rem;
 
+    padding: 0 $padding-default;
     position: absolute;
+    right: 0;
     text-align: right;
     top: -(($link-height * 2) + $padding-default);
-    right: 0;
-    padding: 0 $padding-default;
 
     .link {
-      display: block;
       color: rgba($white, 0.7);
+      display: block;
     }
   }
 
@@ -209,16 +209,16 @@
   }
 
   .tech-used {
-    font-size: 0.75rem;
     color: rgba($black, 0.6);
     display: flex;
+    font-size: 0.75rem;
 
     svg {
       $svg-size: 1rem;
 
       height: $svg-size;
-      width: $svg-size;
       margin-right: 0.5rem;
+      width: $svg-size;
     }
   }
 }
@@ -240,17 +240,17 @@
     $btn-color: rgba($white, 0.9);
     $btn-color-hover: $white;
 
+    background-color: $accent;
     border-radius: 1px;
     color: $btn-color;
-    background-color: $accent;
     display: block;
     margin: 1rem auto;
     padding: 0.5rem;
     transition: color $transition-default, background-color $transition-default;
 
     &:hover {
-      color: $btn-color-hover;
       background-color: $accent-dark;
+      color: $btn-color-hover;
     }
 
     a {
@@ -260,9 +260,9 @@
 }
 
 #footer {
-  padding: 0 $padding-default;
-  font-size: 0.5rem;
   border-top: 1px solid rgba($black, 0.1);
+  font-size: 0.5rem;
+  padding: 0 $padding-default;
   text-align: center;
 
   .media {
@@ -270,10 +270,10 @@
   }
 
   .media-link {
-    display: inline-block;
-    width: 1.5rem;
     color: rgba($black, 0.8);
+    display: inline-block;
     transition: color $transition-default;
+    width: 1.5rem;
 
     &:hover {
       color: $black;
