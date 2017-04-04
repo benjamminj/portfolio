@@ -1,0 +1,43 @@
+#banner {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  justify-content: center;
+  padding: $header-height $padding-default 0;
+  position: relative;
+
+  .content {
+    max-width: $max-width-default;
+    margin: 0 auto;
+  }
+
+  .content-heading {
+    font-family: $sans-serif-secondary;
+  }
+
+  .next-pane-btn {
+    bottom: 0;
+    left: 0;
+    padding-bottom: $padding-default;
+    position: absolute;
+    width: 100%;
+  }
+
+  .down-arrow {
+    $icon-size: 1.75rem;
+    $icon-color: rgba($black, 0.5);
+    $icon-color-hover: rgba($black, 0.9);
+
+    border-radius: 50%;
+    border: 1px solid $icon-color;
+    color: $icon-color;
+    height: $icon-size;
+    transition: all $transition-default;
+    width: $icon-size;
+
+    &:hover {
+      border: 1px solid $icon-color-hover;
+      color: $icon-color-hover;
+    }
+  }
+}

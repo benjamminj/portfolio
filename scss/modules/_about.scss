@@ -1,0 +1,38 @@
+
+#about {
+  margin: 0 auto;
+  max-width: $bp-medium;
+  padding: 0 $padding-default;
+
+  .about-img {
+    $img-size: (1.5rem * 4);
+
+    border-radius: 50%;
+    display: block;
+    height: $img-size;
+    margin: 1.25rem auto;
+    width: $img-size;
+  }
+
+  .contact-btn {
+    $btn-color: rgba($white, 0.9);
+    $btn-color-hover: $white;
+
+    background-color: $accent;
+    border-radius: 1px;
+    color: $btn-color;
+    display: block;
+    margin: 1rem auto;
+    padding: 0.5rem;
+    transition: color $transition-default, background-color $transition-default;
+
+    &:hover {
+      background-color: $accent-dark;
+      color: $btn-color-hover;
+    }
+
+    a {
+      color: inherit;
+    }
+  }
+}

@@ -1,0 +1,27 @@
+#footer {
+  // border-top: 1px solid rgba($black, 0.1);
+  font-size: 0.5rem;
+  padding: $padding-default;
+  text-align: center;
+  background-color: rgba($black, 0.03);
+  margin: 0 auto;
+
+  .media {
+    margin: 0.5rem;
+  }
+
+  .media-link {
+    color: rgba($black, 0.8);
+    display: inline-block;
+    transition: color $transition-default;
+    width: 1.5rem;
+
+    &:hover {
+      color: $black;
+    }
+  }
+
+  .contact-info, .copyright {
+    margin: 0 auto;
+  }
+}

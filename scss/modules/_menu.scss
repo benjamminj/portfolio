@@ -1,0 +1,60 @@
+// Menu buttons
+.menu-close, .menu-open {
+  transition: opacity $transition-default;
+}
+
+.menu-close {
+  display: none;
+  opacity: 0;
+}
+
+// Menu shown
+#menu-toggle:checked {
+  & + #header .menu-toggler-label {
+    .menu-open {
+      display: none;
+      opacity: 0;
+    }
+
+    .menu-close {
+      display: inline;
+      opacity: 1;
+    }
+  }
+
+  & ~ .menu {
+    opacity: 1; // Shows the menu
+    z-index: $z-middle;
+  }
+}
+
+// Menu
+.menu {
+  background-color: $white;
+  height: 100vh;
+  opacity: 0; // Hides the menu
+  padding: $header-height $padding-default 0;
+  position: fixed;
+  text-align: center;
+  transition: opacity $transition-default; // Menu fades in
+  width: 100%;
+  z-index: $z-bottom;
+
+  @include flex-column();
+}
+
+.menu-items {
+  color: $black;
+  font-size: 1.15rem;
+  font-weight: 300;
+  margin: 0;
+  padding: 0;
+
+  .menu-item {
+    margin: 0.75rem 0;
+  }
+
+  a {
+    color: inherit;
+  }
+}
