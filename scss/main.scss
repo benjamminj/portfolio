@@ -125,7 +125,6 @@
     $icon-color: rgba($black, 0.5);
     $icon-color-hover: rgba($black, 0.9);
 
-    // background-color: rgba($black, 0.2);
     border-radius: 50%;
     border: 1px solid $icon-color;
     color: $icon-color;
@@ -141,11 +140,13 @@
 }
 
 #work {
+  $project-title-height: 2rem;
+  $thumbnail-padding-vert: 5rem;
+
   padding-top: $header-height;
 
-  .thumbnail {
-    height: 300px;
-    width: 100%;
+  .project {
+    position: relative;
   }
 
   .thumbnail-bg {
@@ -153,7 +154,7 @@
     font-family: $sans-serif-secondary;
     font-size: 1.5rem;
     margin: 0;
-    padding: 150px 0;
+    padding: ((0.5 * $project-title-height) +  $thumbnail-padding-vert) 0;
     text-align: center;
     width: 100%;
 
@@ -171,6 +172,16 @@
       background: url('../img/clock-bg.jpeg');
       background-size: cover;
     }
+  }
+
+  .title {
+    height: $project-title-height;
+    position: absolute;
+    top: $thumbnail-padding-vert;
+    width: 100%;
+    text-align: center;
+    color: $white;
+    text-shadow: 0 0 5px rgba($black, 0.4);
   }
 
   .content {
