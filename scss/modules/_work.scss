@@ -7,12 +7,8 @@
   padding-top: $header-height;
 
   .projects {
-    max-width: $bp-medium;
+    max-width: $bp-xlarge;
     margin: 0 auto;
-
-    @media (min-width: $bp-large) {
-      max-width: none;
-    }
   }
 
   .project {
