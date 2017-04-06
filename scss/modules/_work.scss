@@ -7,12 +7,16 @@
   padding-top: $header-height;
 
   .projects {
-    max-width: $bp-xxlarge;
+    max-width: $bp-medium;
     margin: 0 auto;
+
+    @media (min-width: $bp-large) {
+      max-width: none;
+    }
   }
 
   .project {
-    @media (min-width: $bp-medium) {
+    @media (min-width: $bp-large) {
       display: flex;
       margin: 5rem 0;
     }
@@ -42,8 +46,12 @@
     }
 
     @media (min-width: $bp-medium) {
-      width: 50%;
       box-shadow: 0 0 3rem rgba($black, 0.2);
+    }
+
+    @media (min-width: $bp-large) {
+      max-width: auto;
+      width: 50%;
       margin: 1rem 3rem 1rem 1rem;
     }
   }
@@ -51,7 +59,7 @@
   .content {
     padding: $padding-default;
 
-    @media (min-width: $bp-medium) {
+    @media (min-width: $bp-large) {
       width: 50%;
     }
   }
@@ -61,7 +69,6 @@
     height: $project-title-height;
     text-align: center;
     border-bottom: 1px solid $black;
-    // top: $thumbnail-padding-half;
     width: 100%;
   }
 
@@ -72,14 +79,11 @@
   }
 
   .links {
-    $link-height: 1.5rem;
-
     .link {
-      color: rgba($black, 0.7);
       display: block;
       text-align: center;
-      padding: 0.75rem;
-      border: 1px solid $black;
+
+      @include button-outline(rgba($black, 0.8), $black);
     }
 
     // Second link
@@ -87,7 +91,7 @@
       margin-top: 0.5rem;
     }
 
-    @media (min-width: $bp-medium) {
+    @media (min-width: $bp-large) {
       display: flex;
 
       .link {
