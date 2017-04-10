@@ -480,7 +480,7 @@ textarea,
   clip: auto; }
 
 html {
-  font-size: 20px;
+  font-size: 18px;
   color: #222; }
 
 main {
@@ -698,7 +698,7 @@ svg {
     border-bottom: 1px solid #5C6BC0;
     width: 100%; }
   #work .tech {
-    margin: 0;
+    margin: 0.5rem 0;
     color: rgba(34, 34, 34, 0.5);
     font-size: 0.75rem; }
   #work .links {
