@@ -1,7 +1,8 @@
 #work {
-  $project-title-height: 2rem;
-  $thumbnail-padding-half: 5rem;
+  $project-title-padding-vert: 0.5rem;
+  $project-title-height: $h3-default-size + $project-title-padding-vert;
 
+  $thumbnail-padding-half: 5rem;
   $thumbnail-padding-vert: (0.5 * $project-title-height) +  $thumbnail-padding-half;
 
   padding-top: $header-height;
@@ -53,7 +54,7 @@
   }
 
   .content {
-    padding: $padding-default;
+    padding: 2rem $padding-default 2.5rem;
 
     @media (min-width: $bp-large) {
       width: 50%;
@@ -61,10 +62,10 @@
   }
 
   .title {
-    color: $black;
-    height: $project-title-height;
+    color: $accent;
+    padding: $project-title-padding-vert 0;
     text-align: center;
-    border-bottom: 1px solid $black;
+    border-bottom: 1px solid $accent;
     width: 100%;
   }
 
@@ -75,29 +76,23 @@
   }
 
   .links {
+    $link-gutter: 0.1rem;
+
+    display: flex;
+
     .link {
+      width: 50%;
+      margin-right: $link-gutter;
       display: block;
       text-align: center;
+      // width: 50%;
 
-      @include button-outline(rgba($black, 0.8), $black);
+      @include button-outline(rgba($accent, 0.8), $accent);
     }
 
     // Second link
     .link + .link {
-      margin-top: 0.5rem;
-    }
-
-    @media (min-width: $bp-large) {
-      display: flex;
-
-      .link {
-        width: 49.5%;
-        margin: 0 0.25rem 0 0;
-      }
-
-      .link + .link {
-        margin: 0 0 0 0.25rem;
-      }
+      margin-left: $link-gutter;
     }
   }
 }

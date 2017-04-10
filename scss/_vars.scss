@@ -18,12 +18,15 @@ $z-bottom: -999;
 // Colors
 $black: #222;
 $white: #fefefe;
-$accent: #2196f3; // blue
+$accent: #5C6BC0; // lighter indigo
 $accent-dark: darken($accent, 4%);
 
 // Fonts
 $sans-serif-default: 'Open Sans', 'Helvetica', sans-serif;
 $sans-serif-secondary: 'Source Sans Pro', 'Helvetica', sans-serif;
+
+// Font sizes
+$h3-default-size: 2rem;
 
 // Transitions
 $transition-default: 0.25s linear;
