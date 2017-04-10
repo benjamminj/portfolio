@@ -85,7 +85,7 @@
       margin-right: $link-gutter;
       display: block;
       text-align: center;
-      // width: 50%;
+      font-size: 1rem;
 
       @include button-outline(rgba($accent, 0.8), $accent);
     }

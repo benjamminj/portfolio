@@ -480,7 +480,7 @@ textarea,
   clip: auto; }
 
 html {
-  font-size: 18px;
+  font-size: 20px;
   color: #222; }
 
 main {
@@ -508,6 +508,9 @@ h3 {
 
 h4 {
   font-size: 1.25rem; }
+
+h5 {
+  font-size: 1rem; }
 
 p {
   font-weight: 300; }
@@ -705,6 +708,7 @@ svg {
       margin-right: 0.1rem;
       display: block;
       text-align: center;
+      font-size: 1rem;
       border-radius: 1px;
       border: 1px solid rgba(92, 107, 192, 0.8);
       padding: 0.75rem;
