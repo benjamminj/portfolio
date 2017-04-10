@@ -497,14 +497,26 @@ h6 {
   line-height: 1.25;
   font-family: "Open Sans", "Helvetica", sans-serif; }
 
+h1 {
+  font-size: 2.5rem; }
+
+h2 {
+  font-size: 2rem; }
+
+h3 {
+  font-size: 1.5rem; }
+
+h4 {
+  font-size: 1.25rem; }
+
 p {
   font-weight: 300; }
 
 a {
   text-decoration: none;
-  color: #2196f3; }
+  color: #5C6BC0; }
   a:visited {
-    color: #0e8df2; }
+    color: #4d5eba; }
 
 img {
   max-width: 100%; }
@@ -651,7 +663,7 @@ svg {
     font-family: "Source Sans Pro", "Helvetica", sans-serif;
     font-size: 1.5rem;
     margin: 0;
-    padding: 6rem 0;
+    padding: 6.25rem 0;
     text-align: center;
     width: 100%; }
     #work .thumbnail-bg.horizon {
@@ -672,42 +684,38 @@ svg {
         width: 50%;
         margin: 1rem 3rem 1rem 1rem; } }
   #work .content {
-    padding: 0.75rem; }
+    padding: 2rem 0.75rem 2.5rem; }
     @media (min-width: 650px) {
       #work .content {
         width: 50%; } }
   #work .title {
-    color: #222;
-    height: 2rem;
+    color: #5C6BC0;
+    padding: 0.5rem 0;
     text-align: center;
-    border-bottom: 1px solid #222;
+    border-bottom: 1px solid #5C6BC0;
     width: 100%; }
   #work .tech {
     margin: 0;
     color: rgba(34, 34, 34, 0.5);
     font-size: 0.75rem; }
-  #work .links .link {
-    display: block;
-    text-align: center;
-    border-radius: 1px;
-    border: 1px solid rgba(34, 34, 34, 0.8);
-    padding: 0.75rem;
-    color: rgba(34, 34, 34, 0.8);
-    transition: color 0.25s linear, border-color 0.25s linear; }
-    #work .links .link:hover, #work .links .link:focus {
-      color: #222;
-      border-color: #222;
-      box-shadow: 0 0 5px rgba(34, 34, 34, 0.3); }
-  #work .links .link + .link {
-    margin-top: 0.5rem; }
-  @media (min-width: 650px) {
-    #work .links {
-      display: flex; }
-      #work .links .link {
-        width: 49.5%;
-        margin: 0 0.25rem 0 0; }
-      #work .links .link + .link {
-        margin: 0 0 0 0.25rem; } }
+  #work .links {
+    display: flex; }
+    #work .links .link {
+      width: 50%;
+      margin-right: 0.1rem;
+      display: block;
+      text-align: center;
+      border-radius: 1px;
+      border: 1px solid rgba(92, 107, 192, 0.8);
+      padding: 0.75rem;
+      color: rgba(92, 107, 192, 0.8);
+      transition: color 0.25s linear, border-color 0.25s linear; }
+      #work .links .link:hover, #work .links .link:focus {
+        color: #5C6BC0;
+        border-color: #5C6BC0;
+        box-shadow: 0 0 5px rgba(34, 34, 34, 0.3); }
+    #work .links .link + .link {
+      margin-left: 0.1rem; }
 
 #about {
   margin: 0 auto;
