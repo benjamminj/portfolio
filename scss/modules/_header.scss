@@ -1,7 +1,7 @@
 #header {
   align-items: center;
   background-color: rgba($white, 0.9);
-  color: $black;
+  color: rgba($accent, 0.8);
   display: flex;
   height: $header-height;
   justify-content: space-between;
@@ -19,5 +19,14 @@
 
   .title a {
     color: inherit;
+  }
+
+  .menu-btn {
+    transition: color $transition-default;
+
+    &:hover, svg:hover {
+      color: $accent;
+      cursor: pointer;
+    }
   }
 }

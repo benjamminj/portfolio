@@ -12,6 +12,11 @@
   opacity: 0;
 }
 
+
+#menu-toggle {
+
+}
+
 // Menu shown
 #menu-toggle:checked {
   & + #header .menu-toggler-label {
