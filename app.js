@@ -9,10 +9,10 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   })
 
-  var linkToWork = document.querySelector('.next-pane-btn a')
-  linkToWork.addEventListener('click', function (ev) {
+  var scrollButton = document.querySelector('.next-pane-btn a')
+  scrollButton.addEventListener('click', function (ev) {
     ev.preventDefault()
-    var target = linkToWork.getAttribute('href')
+    var target = scrollButton.getAttribute('href')
     smoothScroll(target, 750)
   })
 })
