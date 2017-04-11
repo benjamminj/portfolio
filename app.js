@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', function() {
 // Ease scrolling
 function smoothScroll (target, duration) {
   var start = window.pageYOffset
-  var distance = document.querySelector(target).offsetTop
+  var distance = document.querySelector(target).offsetTop - start
 
   // Robert Penner's easeInOutQuad - http://robertpenner.com/
   function easing (time, start, distance, duration) {

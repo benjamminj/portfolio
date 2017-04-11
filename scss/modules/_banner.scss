@@ -16,9 +16,9 @@
   }
 
   .next-pane-btn {
-    $icon-size: 1.75rem;
-    $icon-color: rgba($black, 0.5);
-    $icon-color-hover: rgba($black, 0.9);
+    $icon-size: 2rem;
+    $icon-color: rgba($accent, 0.8);
+    $icon-color-hover: $accent;
 
     bottom: 0;
     left: 0;

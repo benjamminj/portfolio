@@ -14,10 +14,17 @@
     color: rgba($black, 0.8);
     display: inline-block;
     transition: color $transition-default;
-    width: 1.5rem;
+    width: 2rem;
 
     &:hover {
       color: $black;
+    }
+
+    .media-icon {
+      $icon-size: 1.5rem;
+
+      width: $icon-size;
+      height: $icon-size;
     }
   }
 

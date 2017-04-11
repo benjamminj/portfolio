@@ -1,4 +1,6 @@
 #work {
+  $content-padding-vert: 2rem;
+
   $project-title-padding-vert: 0.5rem;
   $project-title-height: $h3-default-size + $project-title-padding-vert;
 
@@ -19,6 +21,16 @@
     }
   }
 
+  .thumbnail {
+    width: 50%;
+
+    @media (min-width: $bp-large) {
+      max-width: none;
+      // width: 50%;
+      margin: $content-padding-vert 2rem $content-padding-vert 0;
+    }
+  }
+
   .thumbnail-bg {
     font-family: $sans-serif-secondary;
     font-size: 1.5rem;
@@ -26,6 +38,7 @@
     padding: $thumbnail-padding-vert 0;
     text-align: center;
     width: 100%;
+    height: 100%;
 
     &.horizon {
       background: url('../img/sunset.png');
@@ -46,15 +59,10 @@
       box-shadow: 0 0 3rem rgba($black, 0.2);
     }
 
-    @media (min-width: $bp-large) {
-      max-width: auto;
-      width: 50%;
-      margin: 1rem 3rem 1rem 1rem;
-    }
   }
 
   .content {
-    padding: 2rem $padding-default 2.5rem;
+    padding: $content-padding-vert $padding-default $content-padding-vert;
 
     @media (min-width: $bp-large) {
       width: 50%;
