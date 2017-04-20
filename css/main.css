@@ -587,7 +587,7 @@ svg {
       z-index: 999; } }
 
 .menu-items {
-  color: #222;
+  color: #5C6BC0;
   font-size: 1.15rem;
   font-weight: 300;
   margin: 0;
@@ -603,8 +603,6 @@ svg {
       .menu-items .menu-item {
         margin: 0;
         padding-left: 2rem; } }
-  .menu-items a {
-    color: inherit; }
 
 #header {
   align-items: center;
