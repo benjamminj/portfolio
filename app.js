@@ -9,13 +9,24 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   })
 
-  var scrollButton = document.querySelector('.next-pane-btn a')
-  scrollButton.addEventListener('click', function (ev) {
-    ev.preventDefault()
-    var target = scrollButton.getAttribute('href')
-    smoothScroll(target, 750)
+  applySmoothScroll(document.querySelector('.next-pane-btn a'))
+  document.querySelectorAll('.menu-item-link a').forEach(function (el) {
+    applySmoothScroll(el)
   })
 })
+
+// Apply scroll easing to a single DOM node click
+function applySmoothScroll (node) {
+  node.addEventListener('click', function (ev) {
+    ev.preventDefault()
+
+    // Scroll to the target specified in the node's target
+    var target = node.getAttribute('href')
+    
+    // Apply scroll easing over 750ms
+    smoothScroll(target, 750)
+  })
+}
 
 // Ease scrolling
 function smoothScroll (target, duration) {
