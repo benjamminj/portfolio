@@ -6,7 +6,6 @@ import './App.css'
 import 'github-markdown-css'
 
 import BlogPreview from './layouts/BlogPreview'
-// import { Link, IndexRoute, Route, BrowserRouter } from 'react-router'
 
 // eslint-disable-next-line import/no-webpack-loader-syntax
 const webpackRequireContext = require.context(
