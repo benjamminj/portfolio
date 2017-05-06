@@ -1,11 +1,9 @@
 import React, {Component} from 'react'
-import logo from './logo.svg'
 import './App.css'
 
 // Begin blog stuff
 
 import 'github-markdown-css'
-import {Link} from 'react-router-dom'
 
 import BlogPreview from './layouts/BlogPreview'
 // import { Link, IndexRoute, Route, BrowserRouter } from 'react-router'
@@ -29,12 +27,6 @@ const blogs = webpackRequireContext
     }
   })
   .sort((post1, post2) => post1.date > post2.date)
-
-const BlogList = ({blogs}) => (
-  <ul>
-    {blogs.map(({path, title}) => <li key={path}>{title}</li>)}
-  </ul>
-)
 
 // End blog stuff
 
