@@ -1,11 +1,11 @@
 import React, {Component} from 'react'
 import './App.css'
+import 'github-markdown-css'
 
 // Begin blog stuff
 
-import 'github-markdown-css'
-
 import BlogPreview from './layouts/BlogPreview'
+import BlogPost from './layouts/BlogPost'
 
 // eslint-disable-next-line import/no-webpack-loader-syntax
 const webpackRequireContext = require.context(
@@ -35,7 +35,7 @@ class App extends Component {
   render () {
     return (
       <div className='App'>
-        <BlogPreview posts={blogs} />
+        <BlogPost post={blogs[0]} />
       </div>
     )
   }
