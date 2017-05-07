@@ -4,13 +4,18 @@ import React from 'react'
 /* eslint-disable */
 type Post = {
   title: string,
-  preview: string
+  id: string,
+  preview: string,
+  date: Date
 }
 /* eslint-enable */
 
 const PostPreview = ({post}: {post: Post}) => (
   <li>
-    <h3>{post.title}</h3>
+    <h3 id={post.id}>{post.title}</h3>
+    <div className='info'>
+      <span>{post.date.toDateString()}</span>
+    </div>
     <p>
       {post.preview.length > 140
         ? `${post.preview.slice(0, 139)}...`
