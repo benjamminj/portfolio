@@ -1,42 +1,41 @@
+// @flow
 import React, {Component} from 'react'
 import './App.css'
 import 'github-markdown-css'
 
-// Begin blog stuff
+import {BrowserRouter, Route} from 'react-router-dom'
 
 import BlogPreview from './layouts/BlogPreview'
 import BlogPost from './layouts/BlogPost'
+import posts from './get-posts'
 
-// eslint-disable-next-line import/no-webpack-loader-syntax
-const webpackRequireContext = require.context(
-  '!markdown-with-front-matter!./_posts',
-  false,
-  /\.md$/
+const Blog = ({match}: {match: *}) => (
+  <div>
+    <Route
+      exact
+      path={`${match.url}`}
+      render={() => <BlogPreview posts={posts} />}
+    />
+    {posts.map(post => (
+      <Route
+        key={post.id}
+        path={`${match.url}/${post.id}`}
+        render={() => <BlogPost post={post} />}
+      />
+    ))}
+  </div>
 )
 
-const blogs = webpackRequireContext
-  .keys()
-  .map(path => {
-    const postData = webpackRequireContext(path)
-
-    return {
-      ...postData,
-      path: path.slice(1), // remove the `.` at beginning of the path
-      date: new Date(postData.date || Date.now())
-    }
-  })
-  .sort((post1, post2) => post1.date > post2.date)
-
-// End blog stuff
-
-console.log(blogs)
-
+const DefaultView = () => <h1>Default Path</h1>
 class App extends Component {
   render () {
     return (
-      <div className='App'>
-        <BlogPost post={blogs[0]} />
-      </div>
+      <BrowserRouter>
+        <div className='App'>
+          <Route exact path='/' component={DefaultView} />
+          <Route path='/blog' component={Blog} />
+        </div>
+      </BrowserRouter>
     )
   }
 }
