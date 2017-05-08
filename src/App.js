@@ -3,7 +3,7 @@ import React, {Component} from 'react'
 import './App.css'
 import 'github-markdown-css'
 
-import {BrowserRouter, Route} from 'react-router-dom'
+import {BrowserRouter, Link, Route} from 'react-router-dom'
 
 import BlogPreview from './layouts/BlogPreview'
 import BlogPost from './layouts/BlogPost'
@@ -14,7 +14,7 @@ const Blog = ({match}: {match: *}) => (
     <Route
       exact
       path={`${match.url}`}
-      render={() => <BlogPreview posts={posts} />}
+      render={() => <BlogPreview posts={posts} url={match.url} />}
     />
     {posts.map(post => (
       <Route
@@ -26,7 +26,12 @@ const Blog = ({match}: {match: *}) => (
   </div>
 )
 
-const DefaultView = () => <h1>Default Path</h1>
+const DefaultView = () => (
+  <div>
+    <h1>Default View</h1>
+    <Link to='/blog'>Blog</Link>
+  </div>
+)
 class App extends Component {
   render () {
     return (
