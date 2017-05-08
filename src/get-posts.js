@@ -9,14 +9,14 @@ const blogs = webpackRequireContext
   .keys()
   .map(path => {
     const postData = webpackRequireContext(path)
-    const id = postData.id || path.slice(2).slice(0, -3)
+    const id = path.slice(2).slice(0, -3)
 
     console.log(id)
 
     return {
       ...postData,
       id,
-      path: path.slice(1), // remove the `.` at beginning of the path
+      path: path.slice(2), // remove the `./` at beginning of the path
       date: new Date(postData.date || Date.now())
     }
   })
