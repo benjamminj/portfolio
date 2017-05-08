@@ -4,6 +4,7 @@
   "private": true,
   "devDependencies": {
     "babel-eslint": "^7.2.3",
+    "babel-register": "^6.24.1",
     "eslint": "^3.19.0",
     "eslint-config-standard": "^10.2.1",
     "eslint-config-standard-react": "^5.0.0",
@@ -14,8 +15,10 @@
     "eslint-plugin-react": "^6.10.3",
     "eslint-plugin-standard": "^3.0.1",
     "flow-bin": "^0.45.0",
+    "prep": "^1.6.0",
     "prettier-eslint-cli": "^3.4.2",
-    "react-scripts": "0.9.5"
+    "react-scripts": "0.9.5",
+    "react-snapshot": "^1.0.4"
   },
   "dependencies": {
     "github-markdown-css": "^2.6.0",
@@ -27,6 +30,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "static": "prep -c static-render/prepconfig.js build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "lint": "prettier-eslint \"src/**/*.js\" --write -- --colors"
