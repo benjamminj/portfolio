@@ -27,5 +27,5 @@ test('should render the default headline if none given', () => {
       <BlogPreview {...defaultProps} />
     </MemoryRouter>
   )
-  console.log(wrapper.find('h2'))
+  expect(wrapper.find('h2')).toExist
 })
