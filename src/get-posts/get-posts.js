@@ -1,17 +1,10 @@
-// Will need to move this into initial state when a better state management is set up
-const webpackRequireContext = require.context(
-  '!markdown-with-front-matter!_posts',
-  false,
-  /\.md$/
-)
+import postsFiles from './read-posts-dir'
 
-const blogs = webpackRequireContext
+const blogs = postsFiles
   .keys()
   .map(path => {
-    const postData = webpackRequireContext(path)
+    const postData = postsFiles(path)
     const id = path.slice(2).slice(0, -3)
-
-    console.log(id)
 
     return {
       ...postData,

@@ -1,6 +1,6 @@
 // @flow
 import React from 'react'
-import { Link } from 'react-router-dom'
+import {Link} from 'react-router-dom'
 
 /* eslint-disable */
 type Post = {
@@ -11,7 +11,7 @@ type Post = {
 }
 /* eslint-enable */
 
-const PostPreview = ({ post, postLink }: { post: Post, postLink: string }) => (
+const PostPreview = ({post, postLink}: {post: Post, postLink: string}) => (
   <li>
     <Link to={postLink}><h3 id={post.id}>{post.title}</h3></Link>
     <div className='info'>
