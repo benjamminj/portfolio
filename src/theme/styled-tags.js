@@ -2,9 +2,9 @@ import styled, {css} from 'styled-components'
 import rgba from 'hex-rgba'
 
 import {COLORS} from './constants'
-import {animations, pseudoClasses} from './mixins'
+import {animations, pseudo} from './mixins'
 
-const {hover} = pseudoClasses
+const {hover} = pseudo
 
 export const A = styled.a`
   text-decoration: none
@@ -41,7 +41,7 @@ export const Label = styled.label`
 
 export const Svg = styled.svg`
   fill: currentColor
-  ${pseudoClasses.hover`
+  ${hover`
     cursor: pointer
   `}
 `

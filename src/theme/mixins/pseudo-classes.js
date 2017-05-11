@@ -8,3 +8,4 @@ const genPsuedoMixin = className => (...args) => css`
 
 export const hover = genPsuedoMixin('hover')
 export const focus = genPsuedoMixin('focus')
+export const checked = genPsuedoMixin('checked')

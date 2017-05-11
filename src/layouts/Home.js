@@ -1,11 +1,9 @@
 // @flow
 import React, {Component} from 'react'
 
-import {Nav, Toggler, Icons} from 'src/components'
+import {Toggler} from 'src/components'
 
 import type {NavItem} from '../components/Nav/Nav.types'
-
-const {MenuIcon} = Icons
 
 type HomeProps = {nav: Array<NavItem>}
 
@@ -14,16 +12,9 @@ class Home extends Component {
   defaultProps: HomeProps
 
   render () {
-    const navTogglerId = 'toggle-nav'
-    const HomeNav = () => (
-      <Nav
-        navItems={this.props.nav}
-        toggleNav={{target: navTogglerId, icon: MenuIcon}}
-      />
-    )
     return (
       <main className='Home'>
-        <Toggler toggledComponent={HomeNav} id={navTogglerId} />
+        <Toggler id='toggle-nav' navItems={this.props.nav} />
         <section id='Banner'>Banner</section>
         <section id='Work'>Work</section>
         <section id='About'>About</section>
