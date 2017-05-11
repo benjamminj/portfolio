@@ -10,12 +10,15 @@ const ToggleInput = styled(Input)`
   // Hides the navigation by default
   ;& + .Nav .toggle-able {
     visibility: hidden
+    opacity: 0
+    ${mixins.animations.transitionShort('all')}
   }
 
   // Shows navigation when checkbox is checked
   ${mixins.pseudo.checked`
     ;& + .Nav .toggle-able {
       visibility: visible
+      opacity: 1
     }
   `}
 `
