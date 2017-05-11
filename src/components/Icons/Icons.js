@@ -5,7 +5,7 @@ import {Svg as SvgStyled} from 'src/theme'
 import type {SvgProps} from './Icons.types'
 
 const Svg = (props: SvgProps) => (
-  <SvgStyled height='24' width='24' {...props}>
+  <SvgStyled height='24' width='24' viewBox='0 0 24 24' {...props}>
     {props.children}
   </SvgStyled>
 )

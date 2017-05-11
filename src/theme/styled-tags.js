@@ -2,7 +2,7 @@ import styled, {css} from 'styled-components'
 import rgba from 'hex-rgba'
 
 import {COLORS} from './constants'
-import {animations, pseudo} from './mixins'
+import {animations, layout, pseudo, text} from './mixins'
 
 const {hover} = pseudo
 
@@ -10,6 +10,7 @@ export const A = styled.a`
   text-decoration: none
   color: ${rgba(COLORS.white, 90)}
   text-shadow: none
+  ${text.centered}
 
   ${animations.transitionShort('color', 'text-shadow')}
 
@@ -38,7 +39,13 @@ export const Label = styled.label`
 
 export const Svg = styled.svg`
   fill: currentColor
+  ${props => (props.size ? layout.squareSizing(props.size) : '')}
   ${hover`
     cursor: pointer
   `}
+`
+
+export const Li = styled.li`
+  ${text.centered}
+  font-size: ${props => (props.fontSize ? `${props.fontSize}` : 'initial')}
 `
