@@ -1,5 +1,7 @@
 .App {
   padding: 1rem;
+  background: steelblue;
+  color: rgba(255, 255, 255, 0.8);
 }
 
 .App-logo {

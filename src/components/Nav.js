@@ -1,16 +1,24 @@
+// @flow
 import React from 'react'
-import {NavLink} from 'react-router-dom'
+import {A} from 'src/theme'
 
-const Nav = (props) => (
+type NavItem = {
+  url: string,
+  text: string
+}
+
+type NavProps = {
+  navItems: Array<NavItem>
+}
+
+const Nav = (props: NavProps) => (
   <nav>
     <ul>
-      {
-        props.navItems.map(item => (
-          <li key={item.url.slice(1)}>
-            <NavLink to={item.url}>{item.text}</NavLink>
-          </li>
-        ))
-      }
+      {props.navItems.map(item => (
+        <li key={item.url.slice(1)}>
+          <A href={item.url}>{item.text}</A>
+        </li>
+      ))}
     </ul>
   </nav>
 )

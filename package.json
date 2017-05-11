@@ -24,6 +24,7 @@
   },
   "dependencies": {
     "github-markdown-css": "^2.6.0",
+    "hex-rgba": "^1.0.1",
     "markdown-with-front-matter-loader": "^0.1.0",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
