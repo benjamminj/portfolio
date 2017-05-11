@@ -1,12 +1,13 @@
 // @flow
 import React from 'react'
 
+import {Svg as SvgStyled} from 'src/theme'
 import type {SvgProps} from './Icons.types'
 
 const Svg = (props: SvgProps) => (
-  <svg height='24' width='24' {...props}>
+  <SvgStyled height='24' width='24' {...props}>
     {props.children}
-  </svg>
+  </SvgStyled>
 )
 
 export const MenuIcon = (props: SvgProps) => (
