@@ -1,7 +1,9 @@
 import {css} from 'styled-components'
 
-export const hover = (strings, ...args) => `
-  ;&:hover {
-    ${css(strings, ...args)}
+const genPsuedoMixin = (className) => (...args) => css`
+  ;&:${className} {
+    ${css(...args)}
   }
 `
+
+export const hover = genPsuedoMixin('hover')
