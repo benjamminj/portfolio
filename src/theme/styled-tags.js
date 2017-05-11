@@ -21,8 +21,7 @@ export const A = styled.a`
 `
 
 export const Input = styled.input`
-  ${props => props.invisible
-    ? css`
+  ${props => (props.invisible ? css`
       position: absolute
       left: -100000px
 
@@ -30,13 +29,11 @@ export const Input = styled.input`
       ;&:focus + * label {
         outline: -webkit-focus-ring-color auto 5px;
       }
-    `
-    : ''
-  }
+    ` : '')}
 `
 
 export const Label = styled.label`
-  ${props => props.icon ? `user-select: none` : ''}
+  ${props => (props.icon ? `user-select: none` : '')}
 `
 
 export const Svg = styled.svg`
