@@ -2,7 +2,7 @@ import styled from 'styled-components'
 import rgba from 'hex-rgba'
 
 import {COLORS} from './constants'
-import {animations} from './mixins'
+import {animations, pseudoClasses} from './mixins'
 
 export const A = styled.a`
   text-decoration: none
@@ -16,4 +16,11 @@ export const A = styled.a`
     text-shadow: 0 0 ${COLORS.white}
     cursor: pointer
   }
+`
+
+export const Svg = styled.svg`
+  fill: currentColor
+  ${pseudoClasses.hover`
+    cursor: pointer
+  `}
 `
