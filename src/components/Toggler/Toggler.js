@@ -1,11 +1,7 @@
 // @flow
 import React from 'react'
 
-type TogglerProps = {
-  id: string,
-  toggledComponent: () => React.Component<*>,
-  children: React.Component<*>[]
-}
+import type {TogglerProps} from './Toggler.types'
 
 const Toggler = ({id, toggledComponent, children}: TogglerProps) => (
   <div className='Toggler'>
