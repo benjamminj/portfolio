@@ -1,13 +1,13 @@
 // @flow
 import React from 'react'
-import {A} from 'src/theme'
+import {A, Label} from 'src/theme'
 
 import type {NavProps} from './Nav.types'
 
 const Nav = (props: NavProps) => (
   <nav>
     {props.toggleNav
-      ? <label htmlFor={props.toggleNav.target}>{props.toggleNav.icon()}</label>
+      ? <Label icon htmlFor={props.toggleNav.target}>{props.toggleNav.icon()}</Label>
       : ''}
     <ul>
       {props.navItems.map(item => (
