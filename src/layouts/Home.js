@@ -1,13 +1,27 @@
-import React, {Component} from 'react'
-import {Link} from 'react-router-dom'
+// @flow
+import React, { Component } from 'react'
 
-import {Nav} from 'src/components'
+import { Nav, Toggler } from 'src/components'
+
+import type {NavItem} from '../components/Nav/Nav.types'
+
+type HomeProps = { nav: Array<NavItem> }
 
 class Home extends Component {
+  props: HomeProps
+  defaultProps: HomeProps
+
   render () {
+    const navTogglerId = 'toggle-nav'
+    const HomeNav = () => (
+      <Nav
+        navItems={this.props.nav}
+        toggleNav={{ target: `#${navTogglerId}`, icon: () => <i /> }}
+      />
+    )
     return (
       <main className='Home'>
-        <Nav navItems={this.props.nav} />
+        <Toggler toggledComponent={HomeNav} id={navTogglerId} />
         <section id='Banner'>Banner</section>
         <section id='Work'>Work</section>
         <section id='About'>About</section>
@@ -18,10 +32,10 @@ class Home extends Component {
 
 Home.defaultProps = {
   nav: [
-    {url: '/#Banner', text: 'home'},
-    {url: '/#Work', text: 'work'},
-    {url: '/#About', text: 'about'},
-    {url: 'mailto:benjamin.d.johnson@icloud.com', text: 'contact'}
+    { url: '/#Banner', text: 'home' },
+    { url: '/#Work', text: 'work' },
+    { url: '/#About', text: 'about' },
+    { url: 'mailto:benjamin.d.johnson@icloud.com', text: 'contact' }
   ]
 }
 

@@ -2,20 +2,7 @@
 import React from 'react'
 import {A} from 'src/theme'
 
-type NavItem = {
-  url: string,
-  text: string
-}
-
-type ToggleNav = {
-  target: string,
-  icon: * // TODO: find a correct typing for this
-}
-
-type NavProps = {
-  navItems: Array<NavItem>,
-  toggleNav: ToggleNav
-}
+import type {NavProps} from './Nav.types'
 
 const Nav = (props: NavProps) => (
   <nav>
