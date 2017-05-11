@@ -8,10 +8,12 @@ export const A = styled.a`
   text-decoration: none
   color: ${rgba(COLORS.white, 90)}
   text-shadow: none
-  ${animations.transitionShort('color')}
+
+  ${animations.transitionShort('color', 'text-shadow')}
 
   ;&:hover {
     color: ${rgba(COLORS.white, 100)}
+    text-shadow: 0 0 ${COLORS.white}
     cursor: pointer
   }
 `
