@@ -1,11 +1,13 @@
 // @flow
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 
-import { Nav, Toggler } from 'src/components'
+import {Nav, Toggler, Icons} from 'src/components'
 
 import type {NavItem} from '../components/Nav/Nav.types'
 
-type HomeProps = { nav: Array<NavItem> }
+const {MenuIcon} = Icons
+
+type HomeProps = {nav: Array<NavItem>}
 
 class Home extends Component {
   props: HomeProps
@@ -16,7 +18,7 @@ class Home extends Component {
     const HomeNav = () => (
       <Nav
         navItems={this.props.nav}
-        toggleNav={{ target: `#${navTogglerId}`, icon: () => <i /> }}
+        toggleNav={{target: navTogglerId, icon: MenuIcon}}
       />
     )
     return (
@@ -32,10 +34,10 @@ class Home extends Component {
 
 Home.defaultProps = {
   nav: [
-    { url: '/#Banner', text: 'home' },
-    { url: '/#Work', text: 'work' },
-    { url: '/#About', text: 'about' },
-    { url: 'mailto:benjamin.d.johnson@icloud.com', text: 'contact' }
+    {url: '/#Banner', text: 'home'},
+    {url: '/#Work', text: 'work'},
+    {url: '/#About', text: 'about'},
+    {url: 'mailto:benjamin.d.johnson@icloud.com', text: 'contact'}
   ]
 }
 
