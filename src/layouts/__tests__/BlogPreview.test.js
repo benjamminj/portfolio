@@ -4,7 +4,6 @@ import {MemoryRouter} from 'react-router-dom'
 
 import BlogPreview from '../BlogPreview'
 
-
 const mockPosts = Array.from(new Array(5)).map((post, i) => ({
   title: `test-${i}`,
   id: `test-${i}`,
