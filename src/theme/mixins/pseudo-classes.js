@@ -1,6 +1,6 @@
 import {css} from 'styled-components'
 
-const genPsuedoMixin = (className) => (...args) => css`
+const genPsuedoMixin = className => (...args) => css`
   ;&:${className} {
     ${css(...args)}
   }
