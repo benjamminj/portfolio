@@ -1,10 +1,10 @@
-import styled, {css} from 'styled-components'
+import styled, { css } from 'styled-components'
 import rgba from 'hex-rgba'
 
-import {COLORS, FOCUS_OUTLINE} from './constants'
-import {animations, layout, pseudo, text} from './mixins'
+import { COLORS, FOCUS_OUTLINE } from './constants'
+import { animations, layout, pseudo, text } from './mixins'
 
-const {focus, hover} = pseudo
+const { focus, hover } = pseudo
 
 export const A = styled.a`
   text-decoration: none
@@ -25,6 +25,12 @@ export const A = styled.a`
   `}
 `
 
+export const H1 = styled.h1`
+  margin: 0
+  ${text.fontSize}
+
+`
+
 export const Input = styled.input`
   ${props => (props.invisible ? css`
       position: absolute
@@ -41,15 +47,25 @@ export const Label = styled.label`
   ${props => (props.icon ? `user-select: none` : '')}
 `
 
+export const Li = styled.li`
+  ${text.centered}
+  ${text.fontSize}
+  ${layout.margin}
+`
+
+export const Section = styled.section`
+  background: ${props => props.background || 'initial'}
+  min-height: ${props => (props.fullscreen ? '100vh' : 'initial')}
+  padding: 1rem
+  width: 100%
+
+  ${props => (props.flexCenter ? layout.centerFlexColumn : '')}
+`
+
 export const Svg = styled.svg`
   fill: currentColor
   ${props => (props.size ? layout.squareSizing(props.size) : '')}
   ${hover`
     cursor: pointer
   `}
-`
-
-export const Li = styled.li`
-  ${text.centered}
-  font-size: ${props => (props.fontSize ? `${props.fontSize}` : 'initial')}
 `

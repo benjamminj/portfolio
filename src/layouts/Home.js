@@ -1,7 +1,7 @@
 // @flow
 import React, {Component} from 'react'
 
-import {Toggler} from 'src/components'
+import {Banner, Toggler} from 'src/components'
 
 import type {NavItem} from '../components/Nav/Nav.types'
 
@@ -15,7 +15,7 @@ class Home extends Component {
     return (
       <main className='Home'>
         <Toggler id='toggle-nav' navItems={this.props.nav} />
-        <section id='Banner'>Banner</section>
+        <Banner id='Banner' />
         <section id='Work'>Work</section>
         <section id='About'>About</section>
       </main>

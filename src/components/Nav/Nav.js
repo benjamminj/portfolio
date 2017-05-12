@@ -9,7 +9,7 @@ import type {NavProps} from './Nav.types'
 
 const NavMenu = styled.div`
   position: fixed
-  background: red
+  background: indianred
   display: flex
   flex-direction: column
   align-items: center
@@ -36,7 +36,7 @@ const Nav = (props: NavProps) => (
     <NavMenu className='toggle-able'>
       <ul>
         {props.navItems.map(item => (
-          <Li centered fontSize={FONT_SIZES.xlarge} key={item.url.slice(1)}>
+          <Li centered fontSize={FONT_SIZES.xlarge} key={item.url.slice(1)} margin={'1.5rem 0'}>
             <A href={item.url}>{item.text}</A>
           </Li>
         ))}

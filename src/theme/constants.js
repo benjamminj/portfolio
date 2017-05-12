@@ -12,7 +12,8 @@ export const Z_LEVELS = {
 }
 
 export const FONT_SIZES = {
-  xlarge: '2rem'
+  massive: '4rem',
+  xlarge: '2.5rem'
 }
 
 export const FOCUS_OUTLINE = css`outline: -webkit-focus-ring-color auto 2px`
