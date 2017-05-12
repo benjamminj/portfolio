@@ -17,3 +17,7 @@ export const FONT_SIZES = {
 }
 
 export const FOCUS_OUTLINE = css`outline: -webkit-focus-ring-color auto 2px`
+
+export const MARGIN_SIZES = {
+  base: '1rem'
+}

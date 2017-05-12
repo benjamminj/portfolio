@@ -1,10 +1,10 @@
-import styled, { css } from 'styled-components'
+import styled, {css} from 'styled-components'
 import rgba from 'hex-rgba'
 
-import { COLORS, FOCUS_OUTLINE } from './constants'
-import { animations, layout, pseudo, text } from './mixins'
+import {COLORS, FOCUS_OUTLINE, MARGIN_SIZES} from './constants'
+import {animations, layout, pseudo, text} from './mixins'
 
-const { focus, hover } = pseudo
+const {focus, hover} = pseudo
 
 export const A = styled.a`
   text-decoration: none
@@ -56,7 +56,7 @@ export const Li = styled.li`
 export const Section = styled.section`
   background: ${props => props.background || 'initial'}
   min-height: ${props => (props.fullscreen ? '100vh' : 'initial')}
-  padding: 1rem
+  padding: ${MARGIN_SIZES.base}
   width: 100%
 
   ${props => (props.flexCenter ? layout.centerFlexColumn : '')}

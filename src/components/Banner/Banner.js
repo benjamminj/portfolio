@@ -1,3 +1,4 @@
+// @flow
 import React from 'react'
 
 import {Section, H1, FONT_SIZES} from 'src/theme'

@@ -2,7 +2,7 @@
 import React from 'react'
 import styled from 'styled-components'
 
-import {A, Label, Li, Z_LEVELS, FONT_SIZES} from 'src/theme'
+import {A, Label, Li, Z_LEVELS, FONT_SIZES, MARGIN_SIZES} from 'src/theme'
 import {MenuIcon} from 'src/components/Icons'
 
 import type {NavProps} from './Nav.types'
@@ -23,6 +23,8 @@ const NavMenu = styled.div`
 
 const MenuLabel = styled(Label)`
   position: fixed
+  top: ${MARGIN_SIZES.base}
+  left: ${MARGIN_SIZES.base}
   z-index: ${Z_LEVELS.top}
 `
 
@@ -36,7 +38,12 @@ const Nav = (props: NavProps) => (
     <NavMenu className='toggle-able'>
       <ul>
         {props.navItems.map(item => (
-          <Li centered fontSize={FONT_SIZES.xlarge} key={item.url.slice(1)} margin={'1.5rem 0'}>
+          <Li
+            centered
+            fontSize={FONT_SIZES.xlarge}
+            key={item.url.slice(1)}
+            margin={'1.5rem 0'}
+          >
             <A href={item.url}>{item.text}</A>
           </Li>
         ))}
