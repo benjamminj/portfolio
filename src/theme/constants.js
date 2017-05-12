@@ -1,7 +1,8 @@
 import {css} from 'styled-components'
 
 export const COLORS = {
-  white: '#ffffff'
+  white: '#fefefe',
+  black: '#222222'
 }
 
 export const Z_LEVELS = {
