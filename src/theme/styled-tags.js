@@ -1,10 +1,10 @@
 import styled, {css} from 'styled-components'
 import rgba from 'hex-rgba'
 
-import {COLORS} from './constants'
+import {COLORS, FOCUS_OUTLINE} from './constants'
 import {animations, layout, pseudo, text} from './mixins'
 
-const {hover} = pseudo
+const {focus, hover} = pseudo
 
 export const A = styled.a`
   text-decoration: none
@@ -19,6 +19,10 @@ export const A = styled.a`
     text-shadow: 0 0 ${COLORS.white}
     cursor: pointer
   `}
+
+  ${focus`
+    ${FOCUS_OUTLINE}
+  `}
 `
 
 export const Input = styled.input`
@@ -28,7 +32,7 @@ export const Input = styled.input`
 
       /* Allows the hidden input's label to appear focused */
       ;&:focus + * label {
-        outline: -webkit-focus-ring-color auto 2px;
+        ${FOCUS_OUTLINE}
       }
     ` : '')}
 `
