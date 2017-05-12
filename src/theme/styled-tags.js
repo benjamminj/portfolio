@@ -28,7 +28,7 @@ export const Input = styled.input`
 
       /* Allows the hidden input's label to appear focused */
       ;&:focus + * label {
-        outline: -webkit-focus-ring-color auto 5px;
+        outline: -webkit-focus-ring-color auto 2px;
       }
     ` : '')}
 `
