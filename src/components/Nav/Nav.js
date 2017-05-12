@@ -22,20 +22,39 @@ const NavMenu = styled.div`
 `
 
 const MenuLabel = styled(Label)`
-  position: fixed
-  top: ${MARGIN_SIZES.base}
-  left: ${MARGIN_SIZES.base}
   z-index: ${Z_LEVELS.top}
+`
+
+const MenuHeader = styled.header`
+  position: fixed
+  top: 0
+  left: 0
+  right: 0
+  z-index: ${Z_LEVELS.top}
+  padding: ${MARGIN_SIZES.base}
+`
+
+const BlurredBackground = styled.div`
+  position: absolute
+  top: 0
+  bottom: 0
+  left: 0
+  right: 0
+  filter: blur(20px)
+  z-index: -1
 `
 
 const Nav = (props: NavProps) => (
   <nav className='Nav'>
-    {props.toggleId
-      ? <MenuLabel icon htmlFor={props.toggleId}>
-        <MenuIcon size={FONT_SIZES.xlarge} />
-        <CloseIcon size={FONT_SIZES.xlarge} />
-      </MenuLabel>
-      : ''}
+    <MenuHeader className='Menu-Header'>
+      <BlurredBackground className='Blurred-Background' />
+      {props.toggleId
+        ? <MenuLabel icon htmlFor={props.toggleId}>
+          <MenuIcon size={FONT_SIZES.xlarge} />
+          <CloseIcon size={FONT_SIZES.xlarge} />
+        </MenuLabel>
+        : ''}
+    </MenuHeader>
     <NavMenu className='toggle-able'>
       <ul>
         {props.navItems.map(item => (

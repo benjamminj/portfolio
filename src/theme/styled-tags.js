@@ -1,7 +1,7 @@
 import styled, {css} from 'styled-components'
 import rgba from 'hex-rgba'
 
-import {COLORS, FOCUS_OUTLINE, MARGIN_SIZES} from './constants'
+import {COLORS, FOCUS_OUTLINE} from './constants'
 import {animations, layout, pseudo, text} from './mixins'
 
 const {focus, hover} = pseudo
@@ -33,7 +33,7 @@ export const H1 = styled.h1`
 
 export const Input = styled.input`
   ${props => (props.invisible ? css`
-      position: absolute
+      position: fixed
       left: -100000px
 
       /* Allows the hidden input's label to appear focused */

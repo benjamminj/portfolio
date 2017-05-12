@@ -2,7 +2,7 @@
 import React from 'react'
 import styled from 'styled-components'
 
-import {Input, mixins} from 'src/theme'
+import {Input, mixins, MARGIN_SIZES} from 'src/theme'
 import Nav from '../Nav'
 import type {TogglerProps} from './Toggler.types'
 
@@ -22,7 +22,7 @@ const ToggleInput = styled(Input)`
   ;& + .Nav .Close-Icon {
     visibility: hidden
     position: absolute
-    left: 0
+    left: ${MARGIN_SIZES.base}
   }
 
   // Shows navigation when checkbox is checked
