@@ -14,8 +14,27 @@ const ToggleInput = styled(Input)`
     ${mixins.animations.transitionShort('all')}
   }
 
+  // TODO: refactor into a function
+  ;& + .Nav .Menu-Icon {
+    visibility: visible
+  }
+
+  ;& + .Nav .Close-Icon {
+    visibility: hidden
+    position: absolute
+    left: 0
+  }
+
   // Shows navigation when checkbox is checked
   ${mixins.pseudo.checked`
+    ;& + .Nav .Menu-Icon {
+      visibility: hidden
+    }
+
+    ;& + .Nav .Close-Icon {
+      visibility: visible
+    }
+
     ;& + .Nav .toggle-able {
       visibility: visible
       opacity: 1

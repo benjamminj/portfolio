@@ -3,7 +3,7 @@ import React from 'react'
 import styled from 'styled-components'
 
 import {A, Label, Li, Z_LEVELS, FONT_SIZES, MARGIN_SIZES} from 'src/theme'
-import {MenuIcon} from 'src/components/Icons'
+import {CloseIcon, MenuIcon} from 'src/components/Icons'
 
 import type {NavProps} from './Nav.types'
 
@@ -33,6 +33,7 @@ const Nav = (props: NavProps) => (
     {props.toggleId
       ? <MenuLabel icon htmlFor={props.toggleId}>
         <MenuIcon size={FONT_SIZES.xlarge} />
+        <CloseIcon size={FONT_SIZES.xlarge} />
       </MenuLabel>
       : ''}
     <NavMenu className='toggle-able'>
