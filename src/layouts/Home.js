@@ -24,7 +24,7 @@ class Home extends Component {
       <main className='Home'>
         <Toggler id='toggle-nav' navItems={this.props.nav} />
         <Banner id='Banner' />
-        <SubTitle id='SubTitle' />
+        <SubTitle id='SubTitle' actionMsg='create intuitive UIs with modern web technologies' />
         <Projects id='Projects'>
           <Project id='test-project' />
         </Projects>

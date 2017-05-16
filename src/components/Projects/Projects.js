@@ -1,12 +1,12 @@
 // @flow
 import React from 'react'
 
-import {Ul} from 'src/theme'
+import {H2, Ul} from 'src/theme'
 import type {ProjectsProps} from './Projects.types'
 
 const Projects = (props: ProjectsProps) => (
   <section className='Projects' {...props}>
-    <h2>recent work</h2>
+    <H2 padding='1rem' fontSize='2.5rem'>recent work</H2>
     <Ul>
       {props.children}
     </Ul>

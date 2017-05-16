@@ -28,7 +28,12 @@ export const A = styled.a`
 export const H1 = styled.h1`
   margin: 0
   ${text.fontSize}
+`
 
+export const H2 = styled.h2`
+  margin: 0
+  ${text.fontSize}
+  ${layout.padding}
 `
 
 export const Input = styled.input`
@@ -73,5 +78,6 @@ export const Svg = styled.svg`
 
 export const Ul = styled.ul`
   list-style-type: none
-  padding-left: 0;
+  padding-left: 0
+  margin: 0
 `

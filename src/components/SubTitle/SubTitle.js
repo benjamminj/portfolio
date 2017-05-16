@@ -3,7 +3,9 @@ import React from 'react'
 
 import {Section, COLORS} from 'src/theme'
 
-const SubTitle = props => (
+import type {SubTitleProps} from './SubTitle.types'
+
+const SubTitle = (props: SubTitleProps) => (
   <Section
     className='SubTitle'
     background={COLORS.white}
@@ -11,7 +13,7 @@ const SubTitle = props => (
     padding='2rem 1rem'
     {...props}
   >
-    <h2>i create elegant, simple uis using modern web technologies</h2>
+    <h2>I {props.actionMsg}</h2>
   </Section>
 )
 

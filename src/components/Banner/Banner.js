@@ -7,7 +7,7 @@ import type {BannerProps} from './Banner.types'
 const Banner = (props: BannerProps) => (
   <Section
     className='Banner'
-    background={COLORS.white}
+    background={COLORS.accent1}
     fullscreen
     flexCenter
     {...props}
