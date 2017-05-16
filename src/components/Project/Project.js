@@ -7,7 +7,8 @@ import type {ProjectProps} from './Project.types'
 
 const Project = (props: ProjectProps) => (
   <Li className='Project' id={`project-${props.id}`}>
-    <ProjectThumbnailGroup images={props.images} />
+    <ProjectThumbnailGroup images={props.project.images} />
+    <h3>{props.project.title}</h3>
   </Li>
 )
 

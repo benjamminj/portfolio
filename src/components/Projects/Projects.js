@@ -6,7 +6,7 @@ import type {ProjectsProps} from './Projects.types'
 
 const Projects = (props: ProjectsProps) => (
   <Section className='Projects' {...props}>
-    <H2 padding='1rem' fontSize='2.5rem'>recent work</H2>
+    <H2 padding='1rem 0' fontSize='2.5rem'>recent work</H2>
     <Ul>
       {props.children}
     </Ul>

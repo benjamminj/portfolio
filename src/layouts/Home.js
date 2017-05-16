@@ -30,9 +30,12 @@ class Home extends Component {
         <Projects id='Projects'>
           <Project
             id='test-project'
-            images={{
-              desktop: 'https://placehold.it/100x100?text=Desktop',
-              mobile: 'https://placehold.it/100x100?text=Mobile'
+            project={{
+              title: 'Test Project',
+              images: {
+                desktop: 'https://placehold.it/100x100?text=Desktop',
+                mobile: 'https://placehold.it/100x100?text=Mobile'
+              }
             }}
           />
         </Projects>

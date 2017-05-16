@@ -17,10 +17,10 @@ const ThumbNailBase = styled.img`
   position: absolute
   width: ${props => props.width}
   height: ${props => props.height}
-  max-width: none
-  ${props => (props.zIndex ? `z-index: ${props.zIndex}` : '')}
+  max-width: ${props => props.maxWidth || 'none'}
   object-fit: cover
 
+  ${props => props.zIndex ? `z-index: ${props.zIndex}` : ''}
   ${mixins.animations.transitionShort('box-shadow')}
   ${mixins.layout.positionEdges}
 
@@ -33,8 +33,9 @@ const DesktopImg = props => (
   <ThumbNailBase
     width='150%'
     height='90%'
-    right='1rem'
+    right='3rem'
     bottom='10%'
+    maxWidth='30rem'
     {...props}
   />
 )
@@ -45,7 +46,7 @@ const MobileImg = props => (
     height='16rem'
     right='0'
     bottom='0'
-    zIndex={Z_LEVELS.top}
+    zIndex={Z_LEVELS.middle}
     {...props}
   />
 )
