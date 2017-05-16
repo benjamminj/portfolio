@@ -1,15 +1,16 @@
 // @flow
 import React from 'react'
 import styled from 'styled-components'
+import rgba from 'hex-rgba'
 
-import {A, Label, Li, Z_LEVELS, FONT_SIZES, MARGIN_SIZES} from 'src/theme'
+import {A, Label, Li, Z_LEVELS, FONT_SIZES, MARGIN_SIZES, COLORS} from 'src/theme'
 import {CloseIcon, MenuIcon} from 'src/components/Icons'
 
 import type {NavProps} from './Nav.types'
 
 const NavMenu = styled.div`
   position: fixed
-  background: indianred
+  background: ${COLORS.white}
   display: flex
   flex-direction: column
   align-items: center
@@ -40,7 +41,7 @@ const BlurredBackground = styled.div`
   bottom: 0
   left: 0
   right: 0
-  filter: blur(20px)
+  background: ${rgba(COLORS.white, 98)}
   z-index: -1
 `
 

@@ -8,7 +8,7 @@ const {focus, hover} = pseudo
 
 export const A = styled.a`
   text-decoration: none
-  color: ${rgba(COLORS.white, 90)}
+  color: inherit
   text-shadow: none
   ${text.centered}
 
