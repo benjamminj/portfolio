@@ -18,15 +18,20 @@ class Home extends Component {
     ]
   }
 
-
   render () {
     return (
       <main className='Home'>
         <Toggler id='toggle-nav' navItems={this.props.nav} />
         <Banner id='Banner' />
-        <SubTitle id='SubTitle' actionMsg='create intuitive UIs with modern web technologies' />
+        <SubTitle
+          id='SubTitle'
+          actionMsg='create intuitive UIs with modern web technologies'
+        />
         <Projects id='Projects'>
-          <Project id='test-project' />
+          <Project id='test-project' images={{
+            desktop: 'https://placehold.it/100x100?text=Desktop',
+            mobile: 'https://placehold.it/100x100?text=Mobile'
+          }} />
         </Projects>
         <section id='About'>About</section>
       </main>

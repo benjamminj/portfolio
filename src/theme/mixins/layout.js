@@ -24,3 +24,10 @@ export const margin = props => css`margin: ${props.margin || 'initial'}`
 export const padding = props => css`padding: ${props.padding || 'initial'}`
 export const paddingBase = props =>
   css`padding: ${props.padding || MARGIN_SIZES.base}`
+
+export const positionEdges = props => css`
+  ${props => props.top ? `top: ${props.top}` : ''}
+  ${props => props.right ? `right: ${props.right}` : ''}
+  ${props => props.bottom ? `bottom: ${props.bottom}` : ''}
+  ${props => props.left ? `left: ${props.left}` : ''}
+`

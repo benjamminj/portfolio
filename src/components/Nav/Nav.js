@@ -3,7 +3,15 @@ import React from 'react'
 import styled from 'styled-components'
 import rgba from 'hex-rgba'
 
-import {A, Label, Li, Z_LEVELS, FONT_SIZES, MARGIN_SIZES, COLORS} from 'src/theme'
+import {
+  A,
+  Label,
+  Li,
+  Z_LEVELS,
+  FONT_SIZES,
+  MARGIN_SIZES,
+  COLORS
+} from 'src/theme'
 import {CloseIcon, MenuIcon} from 'src/components/Icons'
 
 import type {NavProps} from './Nav.types'
