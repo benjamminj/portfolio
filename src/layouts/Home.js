@@ -28,10 +28,13 @@ class Home extends Component {
           actionMsg='create intuitive UIs with modern web technologies'
         />
         <Projects id='Projects'>
-          <Project id='test-project' images={{
-            desktop: 'https://placehold.it/100x100?text=Desktop',
-            mobile: 'https://placehold.it/100x100?text=Mobile'
-          }} />
+          <Project
+            id='test-project'
+            images={{
+              desktop: 'https://placehold.it/100x100?text=Desktop',
+              mobile: 'https://placehold.it/100x100?text=Mobile'
+            }}
+          />
         </Projects>
         <section id='About'>About</section>
       </main>

@@ -52,16 +52,8 @@ const MobileImg = props => (
 
 const ProjectThumbnailGroup = (props: ProjectThumbnailGroupProps) => (
   <ImagesContainer className='Project-Thumbnail-Group'>
-    <DesktopImg
-      src={props.images.desktop}
-      alt=''
-      aria-hidden='true'
-    />
-    <MobileImg
-      src={props.images.mobile}
-      alt=''
-      aria-hidden='true'
-    />
+    <DesktopImg src={props.images.desktop} alt='' aria-hidden='true' />
+    <MobileImg src={props.images.mobile} alt='' aria-hidden='true' />
   </ImagesContainer>
 )
 
