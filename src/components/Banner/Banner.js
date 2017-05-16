@@ -1,13 +1,13 @@
 // @flow
 import React from 'react'
 
-import {Section, H1, FONT_SIZES} from 'src/theme'
+import {Section, H1, FONT_SIZES, COLORS} from 'src/theme'
 import type {BannerProps} from './Banner.types'
 
 const Banner = (props: BannerProps) => (
   <Section
     className='Banner'
-    background='teal'
+    background={COLORS.white}
     fullscreen
     flexCenter
     {...props}

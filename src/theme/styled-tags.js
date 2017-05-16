@@ -70,3 +70,8 @@ export const Svg = styled.svg`
     cursor: pointer
   `}
 `
+
+export const Ul = styled.ul`
+  list-style-type: none
+  padding-left: 0;
+`

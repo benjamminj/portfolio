@@ -1,7 +1,7 @@
 import {css} from 'styled-components'
 
 export const COLORS = {
-  white: '#fefefe',
+  white: '#f9f9f9',
   black: '#222222'
 }
 
