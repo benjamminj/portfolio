@@ -1,7 +1,7 @@
 // @flow
 import React from 'react'
 
-import {A, H3, Li, P} from 'src/theme'
+import {A, ButtonAnchor, H3, Li, P} from 'src/theme'
 import TechUsed from '../TechUsed'
 import ProjectThumbnailGroup from '../ProjectThumbnailGroup'
 import type {ProjectProps} from './Project.types'
@@ -14,6 +14,7 @@ const Project = (props: ProjectProps) => (
     </H3>
     <P>{props.project.desc}</P>
     <TechUsed items={props.project.tech} />
+    <ButtonAnchor href={props.project.url}>view website</ButtonAnchor>
   </Li>
 )
 

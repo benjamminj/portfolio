@@ -25,6 +25,24 @@ export const A = styled.a`
   `}
 `
 
+export const ButtonAnchor = styled(A)`
+  border: 2px solid ${COLORS.black}
+  border-radius: 2px
+  font-weight: bolder
+  margin-top: 2rem
+  padding: 1rem
+  display: block
+  text-align: center
+
+  ${animations.transitionShort('box-shadow', 'text-shadow')}
+  ${text.center}
+  ${text.fontSize}
+
+  ${hover`
+    box-shadow: 0 0 0.5rem ${rgba(COLORS.black, 30)}
+  `}
+`
+
 export const H1 = styled.h1`
   margin: 0
   ${text.fontSize}
