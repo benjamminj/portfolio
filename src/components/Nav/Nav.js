@@ -18,7 +18,7 @@ import type {NavProps} from './Nav.types'
 
 const NavMenu = styled.div`
   position: fixed
-  background: ${COLORS.white}
+  background: ${COLORS.accent1}
   display: flex
   flex-direction: column
   align-items: center
@@ -41,22 +41,12 @@ const MenuHeader = styled.header`
   right: 0
   z-index: ${Z_LEVELS.top}
   padding: ${MARGIN_SIZES.base}
-`
-
-const BlurredBackground = styled.div`
-  position: absolute
-  top: 0
-  bottom: 0
-  left: 0
-  right: 0
-  background: ${rgba(COLORS.white, 98)}
-  z-index: -1
+  background: ${rgba(COLORS.accent1, 90)}
 `
 
 const Nav = (props: NavProps) => (
   <nav className='Nav'>
     <MenuHeader className='Menu-Header'>
-      <BlurredBackground className='Blurred-Background' />
       {props.toggleId
         ? <MenuLabel icon htmlFor={props.toggleId}>
           <MenuIcon size={FONT_SIZES.xlarge} />

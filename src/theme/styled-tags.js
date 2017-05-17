@@ -2,7 +2,7 @@ import styled, {css} from 'styled-components'
 import rgba from 'hex-rgba'
 
 import {COLORS, FOCUS_OUTLINE} from './constants'
-import {animations, layout, pseudo, text} from './mixins'
+import {animations, colors, layout, pseudo, text} from './mixins'
 
 const {focus, hover} = pseudo
 
@@ -15,8 +15,8 @@ export const A = styled.a`
   ${animations.transitionShort('color', 'text-shadow')}
 
   ${hover`
-    color: ${rgba(COLORS.white, 100)}
-    text-shadow: 0 0 ${COLORS.white}
+    color: ${rgba(COLORS.black, 100)}
+    text-shadow: 0 0 ${COLORS.black}
     cursor: pointer
   `}
 
@@ -34,6 +34,13 @@ export const H2 = styled.h2`
   margin: 0
   ${text.fontSize}
   ${layout.padding}
+`
+
+export const H3 = styled.h3`
+  margin: 0
+  ${text.genDefaultFontSize('2rem')}
+  ${layout.padding}
+  ${text.underlineProp}
 `
 
 export const Input = styled.input`
@@ -56,14 +63,22 @@ export const Li = styled.li`
   ${text.centered}
   ${text.fontSize}
   ${layout.margin}
+  ${colors.background}
+  ${layout.paddingBase}
+`
+
+export const P = styled.p`
+  margin-top: 0
+  ${text.genDefaultFontSize('1.125rem')}
+  line-height: 1.5
 `
 
 export const Section = styled.section`
   background: ${props => props.background || 'initial'}
-  color: ${props => props.color || 'inherit'}
   min-height: ${props => (props.fullscreen ? '100vh' : 'initial')}
   width: 100%
 
+  ${colors.color}
   ${layout.paddingBase}
   ${props => (props.flexCenter ? layout.centerFlexColumn : '')}
 `

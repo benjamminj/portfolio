@@ -6,7 +6,11 @@ import type {
 export type ProjectProps = {
   id: string,
   project: {
+    url: string,
     title: string,
-    images: ProjectThumbnailGroupImages
+    tech: string[],
+    desc: string,
+    images: ProjectThumbnailGroupImages,
+    background: string
   }
 }

@@ -5,5 +5,6 @@ export type ProjectThumbnailGroupImages = {
 }
 
 export type ProjectThumbnailGroupProps = {
+  url: string,
   images: ProjectThumbnailGroupImages
 }

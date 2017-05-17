@@ -1,14 +1,19 @@
 // @flow
 import React from 'react'
 
-import {Li} from 'src/theme'
+import {A, H3, Li, P} from 'src/theme'
+import TechUsed from '../TechUsed'
 import ProjectThumbnailGroup from '../ProjectThumbnailGroup'
 import type {ProjectProps} from './Project.types'
 
 const Project = (props: ProjectProps) => (
-  <Li className='Project' id={`project-${props.id}`}>
-    <ProjectThumbnailGroup images={props.project.images} />
-    <h3>{props.project.title}</h3>
+  <Li className='Project' id={`project-${props.id}`} background={props.project.background} padding='1rem'>
+    <ProjectThumbnailGroup images={props.project.images} url={props.project.url} />
+    <H3 underline padding='1.5rem 0 1rem'>
+      <A href={props.project.url}>{props.project.title}</A>
+    </H3>
+    <P>{props.project.desc}</P>
+    <TechUsed items={props.project.tech} />
   </Li>
 )
 

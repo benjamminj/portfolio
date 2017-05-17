@@ -13,6 +13,7 @@ const ImagesContainer = styled.div`
 
 // TODO: refactor both of these into more reusable components
 const ThumbNailBase = styled.img`
+  border-radius: 2px
   box-shadow: 0.25rem 0.25rem 0.75rem ${rgba(COLORS.black, 80)}
   position: absolute
   width: ${props => props.width}
@@ -29,32 +30,36 @@ const ThumbNailBase = styled.img`
   `}
 `
 
-const DesktopImg = props => (
-  <ThumbNailBase
-    width='150%'
-    height='90%'
-    right='3rem'
-    bottom='10%'
-    maxWidth='30rem'
-    {...props}
-  />
+const DesktopImg = (props: ProjectThumbnailGroupProps) => (
+  <a href={props.url}>
+    <ThumbNailBase
+      width='150%'
+      height='90%'
+      right='3rem'
+      bottom='10%'
+      maxWidth='30rem'
+      {...props}
+    />
+  </a>
 )
 
-const MobileImg = props => (
-  <ThumbNailBase
-    width='9rem'
-    height='16rem'
-    right='0'
-    bottom='0'
-    zIndex={Z_LEVELS.middle}
-    {...props}
-  />
+const MobileImg = (props: ProjectThumbnailGroupProps) => (
+  <a href={props.url}>
+    <ThumbNailBase
+      width='9rem'
+      height='16rem'
+      right='0'
+      bottom='0'
+      zIndex={Z_LEVELS.middle}
+      {...props}
+    />
+  </a>
 )
 
 const ProjectThumbnailGroup = (props: ProjectThumbnailGroupProps) => (
   <ImagesContainer className='Project-Thumbnail-Group'>
-    <DesktopImg src={props.images.desktop} alt='' aria-hidden='true' />
-    <MobileImg src={props.images.mobile} alt='' aria-hidden='true' />
+    <DesktopImg url={props.url} src={props.images.desktop} alt='Desktop Preview' aria-hidden='true' />
+    <MobileImg url={props.url} src={props.images.mobile} alt='Mobile Preview' aria-hidden='true' />
   </ImagesContainer>
 )
 

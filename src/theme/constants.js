@@ -3,7 +3,8 @@ import {css} from 'styled-components'
 export const COLORS = {
   white: '#f9f9f9',
   black: '#222222',
-  accent1: '#a7ffeb'
+  accent1: '#a7ffeb',
+  accent2: '#ffc9a7'
 }
 
 export const Z_LEVELS = {

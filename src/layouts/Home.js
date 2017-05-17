@@ -1,8 +1,8 @@
 // @flow
 import React, {Component} from 'react'
 
+import {COLORS} from 'src/theme'
 import {Banner, Toggler, SubTitle, Projects, Project} from 'src/components'
-import {Ul} from 'src/theme'
 
 import type {NavItem} from '../components/Nav/Nav.types'
 
@@ -27,15 +27,19 @@ class Home extends Component {
           id='SubTitle'
           actionMsg='create intuitive UIs with modern web technologies'
         />
-        <Projects id='Projects'>
+        <Projects id='Projects' background={COLORS.accent2}>
           <Project
             id='test-project'
             project={{
-              title: 'Test Project',
+              url: 'https://test.com',
+              title: 'test project',
               images: {
                 desktop: 'https://placehold.it/100x100?text=Desktop',
                 mobile: 'https://placehold.it/100x100?text=Mobile'
-              }
+              },
+              background: COLORS.accent2,
+              desc: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam ratione alias, ab at minus, unde cupiditate quibusdam eius expedita, quaerat earum temporibus illo sed tenetur voluptas. Voluptatem, magni animi sequi quo aliquam odio iste repellat recusandae modi eligendi doloribus, illum.',
+              tech: ['reactjs', 'expressjs', 'nodejs', 'scss', 'webpack']
             }}
           />
         </Projects>
