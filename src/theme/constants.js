@@ -4,7 +4,9 @@ export const COLORS = {
   white: '#f9f9f9',
   black: '#222222',
   accent1: '#a7ffeb',
-  accent2: '#ffc9a7'
+  accent2: '#ffc9a7',
+  accent3: 'lightsteelblue',
+  accent4: '#4FE8CE'
 }
 
 export const Z_LEVELS = {

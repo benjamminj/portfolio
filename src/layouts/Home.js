@@ -2,12 +2,14 @@
 import React, {Component} from 'react'
 
 import {COLORS} from 'src/theme'
-import {Banner, Toggler, SubTitle, Projects, Project} from 'src/components'
+import {About, Banner, Toggler, SubTitle, Projects, Project} from 'src/components'
+import {projects, bio} from 'src/content'
 
 import type {NavItem} from '../components/Nav/Nav.types'
+import type {Project as ProjectType} from '../components/Project/Project.types'
 
 class Home extends Component {
-  props: {nav: Array<NavItem>}
+  props: {nav: NavItem[], projects: ProjectType[] }
 
   static defaultProps = {
     nav: [
@@ -15,7 +17,8 @@ class Home extends Component {
       {url: '/#Work', text: 'work'},
       {url: '/#About', text: 'about'},
       {url: 'mailto:benjamin.d.johnson@icloud.com', text: 'contact'}
-    ]
+    ],
+    projects: projects
   }
 
   render () {
@@ -28,22 +31,13 @@ class Home extends Component {
           actionMsg='create intuitive UIs with modern web technologies'
         />
         <Projects id='Projects' background={COLORS.accent2}>
-          <Project
-            id='test-project'
-            project={{
-              url: 'https://test.com',
-              title: 'test project',
-              images: {
-                desktop: 'https://placehold.it/100x100?text=Desktop',
-                mobile: 'https://placehold.it/100x100?text=Mobile'
-              },
-              background: COLORS.accent2,
-              desc: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam ratione alias, ab at minus, unde cupiditate quibusdam eius expedita, quaerat earum temporibus illo sed tenetur voluptas. Voluptatem, magni animi sequi quo aliquam odio iste repellat recusandae modi eligendi doloribus, illum.',
-              tech: ['reactjs', 'expressjs', 'nodejs', 'scss', 'webpack']
-            }}
-          />
+          {
+            this.props.projects.map(project =>
+              <Project key={project.title} id={project.title.split(' ').join()} project={project} />
+            )
+          }
         </Projects>
-        <section id='About'>About</section>
+        <About bio={bio} />
       </main>
     )
   }

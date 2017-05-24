@@ -7,9 +7,10 @@ import {animations, colors, layout, pseudo, text} from './mixins'
 const {focus, hover} = pseudo
 
 export const A = styled.a`
-  text-decoration: none
+  text-decoration: ${props => props.underline ? 'underline' : 'none'}
   color: inherit
   text-shadow: none
+  font-weight: ${props => props.bold ? 'bolder' : 'initial'}
   ${text.centered}
 
   ${animations.transitionShort('color', 'text-shadow')}
@@ -50,7 +51,7 @@ export const H1 = styled.h1`
 
 export const H2 = styled.h2`
   margin: 0
-  ${text.fontSize}
+  ${text.genDefaultFontSize('2.5rem')}
   ${layout.padding}
 `
 
