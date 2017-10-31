@@ -8,7 +8,8 @@
     "build": "preact build",
     "serve": "preact build && preact serve",
     "dev": "preact watch",
-    "lint": "eslint src"
+    "lint": "eslint src",
+    "format": "prettier-eslint \"src/**/*.js\" --write"
   },
   "eslintConfig": {
     "extends": [
@@ -31,7 +32,8 @@
     "eslint-plugin-react": "^7.4.0",
     "eslint-plugin-standard": "^3.0.1",
     "if-env": "^1.0.0",
-    "preact-cli": "^2.0.0"
+    "preact-cli": "^2.0.0",
+    "prettier-eslint-cli": "^4.4.0"
   },
   "dependencies": {
     "preact": "^8.2.1",

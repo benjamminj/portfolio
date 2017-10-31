@@ -7,7 +7,7 @@ import Profile from '../routes/profile'
 export default class App extends Component {
   handleRoute = e => {
     this.currentUrl = e.url
-  };
+  }
 
   render () {
     return (
