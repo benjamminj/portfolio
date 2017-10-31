@@ -16,7 +16,16 @@ export default class App extends Component {
       <div id='app'>
         <Router onChange={this.handleRoute}>
           <Home path='/' />
+
+          {/* TODO -- actual components here for various routes */}
+          <div path='projects'><h1>PROJECTS</h1></div>
+          <div path='blog'><h1>BLOG</h1></div>
+          <div path='resume'><h1>RESUME</h1></div>
         </Router>
+
+        <footer>
+          footer
+        </footer>
 
         <style jsx global>{`
           html, body {
@@ -38,6 +47,10 @@ export default class App extends Component {
 
           #app {
             height: 100%;
+          }
+
+          h1 {
+            font-size: 2rem;
           }
         `}</style>
       </div>
