@@ -2,7 +2,6 @@ import { h, Component } from 'preact'
 import { Router } from 'preact-router'
 
 import Home from '../routes/home'
-import Profile from '../routes/profile'
 
 import * as theme from '../styles/variables'
 
@@ -49,6 +48,7 @@ export default class App extends Component {
             height: 100%;
           }
 
+          // TODO -- reset of some sorts
           h1 {
             font-size: 2rem;
           }
