@@ -1,12 +1,23 @@
 import { h, Component } from 'preact'
-import style from './style'
 
 export default class Home extends Component {
   render () {
     return (
-      <div class={style.home}>
+      <div className='home'>
         <h1>Home</h1>
         <p>This is the Home component.</p>
+
+        <style jsx>{`
+          .home {
+            padding: 56px 20px;
+            min-height: 100%;
+            width: 100%;
+          }
+
+          h1 {
+            color: red;
+          }
+        `}</style>
       </div>
     )
   }
