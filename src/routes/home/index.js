@@ -1,14 +1,17 @@
 import { h, Component } from 'preact'
 import ProjectPreview from '../../components/project-preview'
-
+import projects from '../../constants/projects'
+import { H1, H2, Section } from '../../components/elements'
 // TODO -- make sure each one of these becomes its own component;
 const sections = [
   {
     title: 'Projects',
     route: 'projects',
-    content: () => <div>
-      <ProjectPreview projects={[{ name: 'horizon' }]} />
-    </div>
+    content: () => (
+      <div>
+        <ProjectPreview projects={projects} />
+      </div>
+    )
   },
   {
     title: 'Blog',
@@ -31,18 +34,20 @@ export default class Home extends Component {
   render () {
     return (
       <div className='home'>
-        <section className='banner'>
-          <h1>Hi, I'm Ben 👋🏻</h1>
-        </section>
+        <div className='banner'>
+          <Section>
+            <H1>Hi, I'm Ben 👋🏻</H1>
+          </Section>
+        </div>
 
         {sections.map(section => (
-          <section>
+          <Section>
             <a href={section.route}>
-              <h2>{section.title}</h2>
+              <H2>{section.title}</H2>
             </a>
 
             {section.content && section.content()}
-          </section>
+          </Section>
         ))}
 
         <style jsx>{`

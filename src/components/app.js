@@ -47,11 +47,6 @@ export default class App extends Component {
           #app {
             height: 100%;
           }
-
-          // TODO -- reset of some sorts
-          h1 {
-            font-size: 2rem;
-          }
         `}</style>
       </div>
     )
