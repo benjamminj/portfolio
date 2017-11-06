@@ -1,6 +1,7 @@
 // @flow @jsx h
 import { h } from 'preact'
-import { fontWeightBold } from '../../styles/variables'
+// import { fontWeightBold } from '../../styles/variables'
+import { heading } from '../../styles/mixins'
 
 import type { Node } from 'react'
 
@@ -14,9 +15,10 @@ const H2 = ({ children, color }: propTypes) => (
     {children}
 
     <style jsx>{`
-      font-weight: ${fontWeightBold};
       font-size: 1.5rem;
     `}</style>
+
+    <style jsx>{heading}</style>
   </h2>
 )
 
