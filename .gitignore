@@ -1,3 +1,9 @@
+# dependencies
 node_modules
+
+# build
 /build
 /*.log
+
+# IDE
+.vscode/*
