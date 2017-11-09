@@ -9,7 +9,7 @@ type propTypes = {
 }
 
 const Card = ({ children, header }: propTypes) => (
-  <div className='card'>
+  <div className='Card'>
     {header && <header>{header}</header>}
 
     <main>{children}</main>
@@ -17,7 +17,7 @@ const Card = ({ children, header }: propTypes) => (
     <style jsx>{`
       --color: #aaa;
 
-      .card {
+      .Card {
         border-radius: 2px;
         border: 1px solid var(--color);
       }

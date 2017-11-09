@@ -9,7 +9,7 @@ type propTypes = {
 }
 
 const H1 = ({ children }: propTypes) => (
-  <h1>
+  <h1 className='H1'>
     {children}
 
     <style jsx>{`
