@@ -34,6 +34,7 @@ export default class Home extends Component {
   render () {
     return (
       <div className='home'>
+        {/* TODO -- remove and latch onto global class */}
         <div className='banner'>
           <Section>
             <H1>Hi, I'm Ben 👋🏻</H1>

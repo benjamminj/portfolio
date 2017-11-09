@@ -11,7 +11,7 @@ type propTypes = {
 }
 
 const H2 = ({ children, color }: propTypes) => (
-  <h2 style={{ color }}>
+  <h2 style={{ color }} className='H2'>
     {children}
 
     <style jsx>{`

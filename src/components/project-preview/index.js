@@ -15,7 +15,7 @@ type propTypes = {
 }
 
 const ProjectPreview = (props: propTypes) => (
-  <div>
+  <div className='ProjectPreview'>
     <ul>
       {props.projects.map(project => (
         <li>
@@ -51,7 +51,8 @@ const ProjectPreview = (props: propTypes) => (
       }
 
       /* Margin for horizontal links */
-      :global(.A) + :global(.A) {
+      /* TODO -- move other components to have a global classname that can be latched onto as well as their local styles */
+      div :global(.A) + :global(.A) {
         margin-left: 1rem;
       }
     `}</style>
