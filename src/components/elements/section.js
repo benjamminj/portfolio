@@ -1,5 +1,5 @@
 // @flow @jsx h
-import { h } from 'preact';
+import { h } from 'preact'
 
 import type { Node } from 'react'
 
@@ -12,7 +12,7 @@ const Section = ({ children }: propTypes) => (
     {children}
 
     <style jsx>{`
-      padding: 1rem;
+      padding: 2rem 1rem;
     `}</style>
   </section>
 )

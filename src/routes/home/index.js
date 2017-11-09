@@ -33,7 +33,7 @@ const sections = [
 export default class Home extends Component {
   render () {
     return (
-      <div className='home'>
+      <div className='Home'>
         {/* TODO -- remove and latch onto global class */}
         <div className='banner'>
           <Section>
@@ -41,11 +41,9 @@ export default class Home extends Component {
           </Section>
         </div>
 
-        {sections.map(section => (
-          <Section>
-            <a href={section.route}>
-              <H2>{section.title}</H2>
-            </a>
+        {sections.map((section, i) => (
+          <Section dark={i % 2 === 0}>
+            <H2>{section.title}</H2>
 
             {section.content && section.content()}
           </Section>
@@ -61,6 +59,10 @@ export default class Home extends Component {
             justify-content: center;
             display: flex;
             align-items: center;
+          }
+
+          .Home :global(.Section) :global(.H2) {
+            margin-bottom: 1.5rem;
           }
         `}</style>
       </div>

@@ -1,5 +1,6 @@
 // @flow @jsx h
 import { h } from 'preact'
+import { white } from '../../styles/variables'
 
 import type { Node } from 'react'
 
@@ -20,6 +21,7 @@ const Card = ({ children, header }: propTypes) => (
       .Card {
         border-radius: 2px;
         border: 1px solid var(--color);
+        background: ${white}
       }
 
       header {
