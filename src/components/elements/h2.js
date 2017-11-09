@@ -16,6 +16,7 @@ const H2 = ({ children, color }: propTypes) => (
 
     <style jsx>{`
       font-size: 1.5rem;
+      font-weight: bold;
     `}</style>
 
     <style jsx>{heading}</style>
