@@ -1,13 +1,15 @@
 // @flow @jsx h
-import { h } from 'preact';
+import { h } from 'preact'
 
 import Card from '../card'
+
 import { A } from '../elements'
 
 type propTypes = {
   posts: Array<{
     title: String,
-
+    teaser: String,
+    url: String
   }>
 }
 
@@ -17,9 +19,11 @@ const BlogPreview = ({ posts }: propTypes) => (
       {posts.map(post => (
         <li>
           <Card>
-            <A><h3>{post.title}</h3></A>
+            <A>
+              <h3>{post.title}</h3>
+            </A>
 
-            {/* TODO -- simple preview of the post */}
+            <p>{post.teaser}...</p>
             {/* TODO -- simple tagging/categorization */}
           </Card>
         </li>
