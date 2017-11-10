@@ -20,7 +20,6 @@ const A = ({ children, href, target, color }: propTypes) => (
       --color: ${color ? String(color) : 'steelblue'};
 
       color: var(--color);
-      display: inline-block;
 
       a:hover {
         color: ${white};

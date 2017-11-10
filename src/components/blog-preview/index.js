@@ -19,9 +19,9 @@ const BlogPreview = ({ posts }: propTypes) => (
       {posts.map(post => (
         <li>
           <Card>
-            <A>
-              <h3>{post.title}</h3>
-            </A>
+            <h3>
+              <A>{post.title}</A>
+            </h3>
 
             <p>{post.teaser}...</p>
             {/* TODO -- simple tagging/categorization */}
@@ -29,6 +29,12 @@ const BlogPreview = ({ posts }: propTypes) => (
         </li>
       ))}
     </ul>
+
+    <style jsx>{`
+      li + li {
+        margin-top: 1rem;
+      }
+    `}</style>
   </div>
 )
 
