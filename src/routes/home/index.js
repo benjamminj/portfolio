@@ -3,7 +3,7 @@ import { h, Component } from 'preact'
 // components
 import ProjectPreview from '../../components/project-preview'
 import BlogPreview from '../../components/blog-preview'
-import { H1, H2, Section } from '../../components/elements'
+import { Section } from '../../components/elements'
 
 // data
 import projects from '../../constants/projects'
@@ -13,20 +13,17 @@ import postsPreviews from '../../constants/post-previews'
 const sections = [
   {
     title: 'Projects',
-    route: 'projects',
     content: () => (
       <ProjectPreview projects={projects} />
     )
   },
   {
-    title: 'Blog',
-    route: 'blog',
+    title: 'Latest From the Blog',
     content: () => <BlogPreview posts={postsPreviews} />
   },
   {
-    title: 'Resume',
-    route: 'resume',
-    content: () => <div>just a link to the resume</div>
+    title: 'About Me',
+    content: () => <div>Say a little something about myself</div>
   },
   {
     title: 'Contact',
@@ -41,21 +38,19 @@ export default class Home extends Component {
       <div className='Home'>
         {/* TODO -- remove and latch onto global class */}
         <div className='banner'>
-          <Section>
-            <H1>Hi, I'm Ben 👋🏻</H1>
-          </Section>
+          <h1>Hi, I'm Ben 👋🏻</h1>
         </div>
 
-        {sections.map((section, i) => (
-          <Section dark={i % 2 === 0}>
-            <H2>{section.title}</H2>
+        {sections.map(section => (
+          <Section>
+            <h1>{section.title}</h1>
 
             {section.content && section.content()}
           </Section>
         ))}
 
         <style jsx>{`
-          .home {
+          .Home {
             width: 100%;
           }
 
@@ -66,9 +61,18 @@ export default class Home extends Component {
             align-items: center;
           }
 
-          .Home :global(.Section) :global(.H2) {
-            margin-bottom: 1.5rem;
+          /* TODO -- eventually should be moved to the banner component */
+          .Home :global(.banner) h1 {
+            font-size: 2rem;
           }
+
+          .Home :global(.Section) h1 {
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+          }
+        `}</style>
+        <style jsx global>{`
+          --primaryColor: steelblue;
         `}</style>
       </div>
     )

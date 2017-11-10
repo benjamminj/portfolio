@@ -1,8 +1,6 @@
 // @flow @jsx h
 import { h } from 'preact';
 
-import { white } from '../../styles/variables'
-
 import type { Node } from 'React'
 
 type propTypes = {
@@ -17,13 +15,11 @@ const A = ({ children, href, target, color }: propTypes) => (
     {children}
 
     <style jsx>{`
-      --color: ${color ? String(color) : 'steelblue'};
-
-      color: var(--color);
+      color: var(--accent-primary);
 
       a:hover {
-        color: ${white};
-        background: var(--color);
+        color: var(--white);
+        background: var(--accent-primary);
       }
     `}</style>
   </a>

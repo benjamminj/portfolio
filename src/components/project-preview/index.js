@@ -1,8 +1,7 @@
 // @flow @jsx h
 import { h } from 'preact'
-import { fontWeightBold } from '../../styles/variables'
-import Card from '../card'
 
+import Card from '../card'
 import { A } from '../elements'
 
 type propTypes = {
@@ -20,11 +19,11 @@ const ProjectPreview = (props: propTypes) => (
       {props.projects.map(project => (
         <li>
           <Card>
-            <h3>
+            <h1>
               <A href={project.link || project.repo} target='_blank'>
                 {project.name}
               </A>
-            </h3>
+            </h1>
 
             <p>{project.description}</p>
 
@@ -44,16 +43,11 @@ const ProjectPreview = (props: propTypes) => (
         margin-top: 1rem;
       }
 
-      h3 {
-        font-weight: ${fontWeightBold};
-      }
-
       p {
         margin: 0.75rem 0;
       }
 
       /* Margin for horizontal links */
-      /* TODO -- move other components to have a global classname that can be latched onto as well as their local styles */
       div :global(.A) + :global(.A) {
         margin-left: 1rem;
       }

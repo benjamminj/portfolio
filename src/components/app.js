@@ -3,8 +3,6 @@ import { Router } from 'preact-router'
 
 import Home from '../routes/home'
 
-import * as theme from '../styles/variables'
-
 export default class App extends Component {
   handleRoute = e => {
     this.currentUrl = e.url
@@ -15,11 +13,6 @@ export default class App extends Component {
       <div id='app'>
         <Router onChange={this.handleRoute}>
           <Home path='/' />
-
-          {/* TODO -- actual components here for various routes */}
-          <div path='projects'><h1>PROJECTS</h1></div>
-          <div path='blog'><h1>BLOG</h1></div>
-          <div path='resume'><h1>RESUME</h1></div>
         </Router>
 
         <footer>
@@ -27,21 +20,30 @@ export default class App extends Component {
         </footer>
 
         <style jsx global>{`
-          html, body {
-            height: 100%;
-            width: 100%;
-            padding: 0;
-            margin: 0;
-            background: ${theme.white};
-            font-family: ${theme.fontDefault};
-            font-weight: ${theme.fontWeightDefault};
-            color: ${theme.black};
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
+          /* TODO -- move to external sheet somewhere? */
+          :root {
+            /* colors */
+            --white: #fefefe;
+            --black: #222;
+
+            --gray-lightest: #fafafa;
+            --gray-normal: #aaa;
+
+            --accent-primary: dodgerblue;
+
+            /* fonts */
+            --font-default: 'Andale Mono', 'Lucida Console', 'Consolas', monospace;
           }
 
-          * {
-            box-sizing: border-box;
+          html, body {
+            min-height: 100%;
+            width: 100%;
+            background: var(--white);
+            font-family: var(--font-default);
+            font-weight: normal;
+            color: var(--black);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
           }
 
           #app {

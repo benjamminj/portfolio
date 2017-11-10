@@ -1,6 +1,5 @@
 // @flow @jsx h
 import { h } from 'preact'
-import { white } from '../../styles/variables'
 
 import type { Node } from 'react'
 
@@ -10,18 +9,18 @@ type propTypes = {
 }
 
 const Card = ({ children, header }: propTypes) => (
-  <div className='Card'>
+  <article className='Card'>
     {header && <header>{header}</header>}
 
     <main>{children}</main>
 
     <style jsx>{`
-      --color: #aaa;
+      --color: var(--gray-normal);
 
       .Card {
         border-radius: 2px;
         border: 1px solid var(--color);
-        background: ${white}
+        background: var(--white);
       }
 
       header {
@@ -30,10 +29,10 @@ const Card = ({ children, header }: propTypes) => (
 
       header,
       main {
-        padding: 1rem;
+        padding: 1.25rem 1rem;
       }
     `}</style>
-  </div>
+  </article>
 )
 
 export default Card
