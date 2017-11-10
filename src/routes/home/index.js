@@ -1,22 +1,27 @@
 import { h, Component } from 'preact'
+
+// components
 import ProjectPreview from '../../components/project-preview'
-import projects from '../../constants/projects'
+import BlogPreview from '../../components/blog-preview'
 import { H1, H2, Section } from '../../components/elements'
+
+// data
+import projects from '../../constants/projects'
+import postsPreviews from '../../constants/post-previews'
+
 // TODO -- make sure each one of these becomes its own component;
 const sections = [
   {
     title: 'Projects',
     route: 'projects',
     content: () => (
-      <div>
-        <ProjectPreview projects={projects} />
-      </div>
+      <ProjectPreview projects={projects} />
     )
   },
   {
     title: 'Blog',
     route: 'blog',
-    content: () => <div>blog post previews here</div>
+    content: () => <BlogPreview posts={postsPreviews} />
   },
   {
     title: 'Resume',
