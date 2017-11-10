@@ -1,14 +1,15 @@
 import { h, Component } from 'preact'
 
 // components
-import ProjectPreview from '../../components/project-preview'
-import BlogPreview from '../../components/blog-preview'
 import AboutMe from '../../components/about-me'
+import BlogPreview from '../../components/blog-preview'
+import Contact from '../../components/contact'
+import ProjectPreview from '../../components/project-preview'
 import { Section } from '../../components/elements'
 
 // data
-import projects from '../../constants/projects'
 import postsPreviews from '../../constants/post-previews'
+import projects from '../../constants/projects'
 
 // TODO -- make sure each one of these becomes its own component;
 const sections = [
@@ -25,9 +26,8 @@ const sections = [
     content: () => <AboutMe />
   },
   {
-    title: 'Contact',
-    route: 'mailto:benjamin.d.johnson@icloud.com',
-    content: () => <div>a little blurb to get people to come calling</div>
+    title: 'Contact Me',
+    content: () => <Contact />
   }
 ]
 

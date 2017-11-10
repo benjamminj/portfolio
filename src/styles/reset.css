@@ -33,6 +33,9 @@ h5,
 h6 {
   font-size: 100%;
 }
+p {
+  line-height: 1.5;
+}
 ul {
   list-style: none;
 }

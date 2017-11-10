@@ -32,7 +32,6 @@ const AboutMe = () => (
     <style jsx>{`
       p {
         margin: 1.5rem 0;
-        line-height: 1.5;
       }
     `}</style>
   </div>
