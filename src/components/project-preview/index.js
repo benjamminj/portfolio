@@ -20,9 +20,11 @@ const ProjectPreview = (props: propTypes) => (
       {props.projects.map(project => (
         <li>
           <Card>
-            <A href={project.link || project.repo} target='_blank'>
-              <h3>{project.name}</h3>
-            </A>
+            <h3>
+              <A href={project.link || project.repo} target='_blank'>
+                {project.name}
+              </A>
+            </h3>
 
             <p>{project.description}</p>
 
