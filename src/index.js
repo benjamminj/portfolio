@@ -1,4 +1,4 @@
 import App from './components/app'
-import 'minireset.css'
+import './styles/reset.css'
 
 export default App
