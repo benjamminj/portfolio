@@ -3,6 +3,7 @@ import { h, Component } from 'preact'
 // components
 import ProjectPreview from '../../components/project-preview'
 import BlogPreview from '../../components/blog-preview'
+import AboutMe from '../../components/about-me'
 import { Section } from '../../components/elements'
 
 // data
@@ -13,9 +14,7 @@ import postsPreviews from '../../constants/post-previews'
 const sections = [
   {
     title: 'Projects',
-    content: () => (
-      <ProjectPreview projects={projects} />
-    )
+    content: () => <ProjectPreview projects={projects} />
   },
   {
     title: 'Latest From the Blog',
@@ -23,7 +22,7 @@ const sections = [
   },
   {
     title: 'About Me',
-    content: () => <div>Say a little something about myself</div>
+    content: () => <AboutMe />
   },
   {
     title: 'Contact',
