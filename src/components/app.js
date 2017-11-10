@@ -15,9 +15,7 @@ export default class App extends Component {
           <Home path='/' />
         </Router>
 
-        <footer>
-          footer
-        </footer>
+        <footer>footer</footer>
 
         <style jsx global>{`
           /* TODO -- move to external sheet somewhere? */
@@ -32,10 +30,12 @@ export default class App extends Component {
             --accent-primary: dodgerblue;
 
             /* fonts */
-            --font-default: 'Andale Mono', 'Lucida Console', 'Consolas', monospace;
+            --font-default: 'Andale Mono', 'Lucida Console', 'Consolas',
+              monospace;
           }
 
-          html, body {
+          html,
+          body {
             min-height: 100%;
             width: 100%;
             background: var(--white);

@@ -1,5 +1,5 @@
 // @flow @jsx h
-import { h } from 'preact';
+import { h } from 'preact'
 
 import type { Node } from 'React'
 
