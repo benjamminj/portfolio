@@ -3,7 +3,7 @@ module.exports = {
     '^react$': 'preact-compat',
     '^react-dom$': 'preact-compat'
   },
-  snapshotSerializers: ['jest-serializer-html-string'],
+  snapshotSerializers: ['preact-render-spy/snapshot', 'jest-serializer-html-string'],
   transform: {
     '^.+\\.js$': './babel-configs/jest-transformer.js'
   }
