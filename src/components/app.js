@@ -1,8 +1,12 @@
 import { h, Component } from 'preact'
 import { Router } from 'preact-router'
 
+// components
 import Home from '../routes/home'
 import Footer from '../components/footer'
+
+// data
+import socialMedia from '../constants/social-media'
 
 export default class App extends Component {
   handleRoute = e => {
@@ -16,7 +20,7 @@ export default class App extends Component {
           <Home path='/' />
         </Router>
 
-        <Footer />
+        <Footer socialMedia={socialMedia} />
 
         <style jsx global>{`
           /* TODO -- move to external sheet somewhere? */
@@ -27,6 +31,7 @@ export default class App extends Component {
 
             --gray-lightest: #f5f5f5;
             --gray-normal: #aaa;
+            --gray-dark: #757575;
 
             --accent-primary: lightseagreen;
 

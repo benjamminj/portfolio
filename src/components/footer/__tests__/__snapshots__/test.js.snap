@@ -4,7 +4,17 @@ exports[`Footer snap 1`] = `
 preact-render-spy (1 nodes)
 -------
 <footer class="jsx-3732945833 jsx-3732945833">
-  Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi ducimus ipsum fuga neque tempora cumque quisquam explicabo autem vel enim.
+  <ul class="jsx-3732945833 jsx-3732945833">
+    <li class="jsx-3732945833 jsx-3732945833">
+      <a
+        href="https://awesome-test.com"
+        target="_blank"
+        class="jsx-3732945833 jsx-3732945833"
+      >
+        function icon() {return _ref;}
+      </a>
+    </li>
+  </ul>
   <JSXStyle
     styleId="3732945833"
     css="footer.jsx-3732945833{background-color:var(--gray-lightest);padding:1rem;}"
