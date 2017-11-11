@@ -2,6 +2,7 @@ import { h, Component } from 'preact'
 import { Router } from 'preact-router'
 
 import Home from '../routes/home'
+import Footer from '../components/footer'
 
 export default class App extends Component {
   handleRoute = e => {
@@ -15,7 +16,7 @@ export default class App extends Component {
           <Home path='/' />
         </Router>
 
-        <footer>footer</footer>
+        <Footer />
 
         <style jsx global>{`
           /* TODO -- move to external sheet somewhere? */
@@ -24,7 +25,7 @@ export default class App extends Component {
             --white: #fefefe;
             --black: #222;
 
-            --gray-lightest: #fafafa;
+            --gray-lightest: #f5f5f5;
             --gray-normal: #aaa;
 
             --accent-primary: lightseagreen;

@@ -1,0 +1,14 @@
+:root {
+  /* colors */
+  --white: #fefefe;
+  --black: #222;
+
+  --gray-lightest: #fafafa;
+  --gray-normal: #aaa;
+
+  --accent-primary: lightseagreen;
+
+  /* fonts */
+  --font-default: 'Andale Mono', 'Lucida Console', 'Consolas',
+    monospace;
+}

@@ -17,6 +17,10 @@ const A = ({ children, href, target, color }: propTypes) => (
     <style jsx>{`
       color: var(--accent-primary);
 
+      /* add a little bit of margin around link on hover without offsetting text spacing */
+      padding: 0 0.2em;
+      margin: 0 -0.2em;
+
       a:hover {
         color: var(--white);
         background: var(--accent-primary);
