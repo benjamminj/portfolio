@@ -33,7 +33,7 @@ export default class App extends Component {
             --gray-normal: #aaa;
             --gray-dark: #757575;
 
-            --accent-primary: lightseagreen;
+            --accent-primary: #26a69a;
 
             /* fonts */
             --font-default: 'Andale Mono', 'Lucida Console', 'Consolas',
