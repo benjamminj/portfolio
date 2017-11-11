@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SocialMediaLink snapshot 1`] = `
+preact-render-spy (1 nodes)
+-------
+<a
+  target="_blank"
+  class="jsx-3618815995 jsx-3618815995"
+>
+  <JSXStyle
+    styleId="1918456904"
+    css=".__jsx-style-dynamic-selector{--fill:var(--gray-dark);display:inline-block;padding:1rem 1.25rem;}.__jsx-style-dynamic-selector:hover,.__jsx-style-dynamic-selector:active,.__jsx-style-dynamic-selector:focus{--local-accent:var(--fill);}"
+    dynamic={
+      Array [
+        "var(--gray-dark)"
+      ]
+    }
+  >
+  </JSXStyle>
+</a>
+
+`;
