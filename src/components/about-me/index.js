@@ -11,7 +11,7 @@ const AboutMe = () => (
       that all the time). Working as a frontend dev means that I am constantly
       evaluating the latest and greatest trends in web development for their
       usability, scalability, & ability to provide real-world solutions (as well
-      as the number of emojis in their readme 😎).
+      as the number of emojis in their README 😎).
     </p>
 
     <p>
