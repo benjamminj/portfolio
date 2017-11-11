@@ -29,14 +29,12 @@
     "build/*"
   ],
   "devDependencies": {
-    "ava": "^0.23.0",
-    "babel-eslint": "^8.0.1",
+    "babel-eslint": "^8.0.2",
     "babel-jest": "^21.2.0",
-    "babel-plugin-module-resolver": "^3.0.0",
     "babel-plugin-syntax-flow": "^6.18.0",
     "babel-plugin-transform-flow-strip-types": "^6.22.0",
     "babel-register": "^6.26.0",
-    "eslint": "^4.5.0",
+    "eslint": "^4.11.0",
     "eslint-config-standard": "^10.2.1",
     "eslint-config-standard-preact": "^1.1.6",
     "eslint-plugin-import": "^2.8.0",
@@ -47,14 +45,16 @@
     "flow-bin": "^0.58.0",
     "if-env": "^1.0.0",
     "jest": "^21.2.1",
-    "preact-cli": "^2.0.0",
+    "jest-serializer-html-string": "^1.0.1",
+    "preact-cli": "^2.1.0",
+    "preact-render-to-string": "^3.7.0",
     "prettier-eslint-cli": "^4.4.0"
   },
   "dependencies": {
     "minireset.css": "0.0.3",
     "preact": "^8.2.1",
     "preact-compat": "^3.17.0",
-    "preact-router": "^2.5.5",
-    "styled-jsx": "^2.1.2"
+    "preact-router": "^2.6.0",
+    "styled-jsx": "^2.1.3"
   }
 }

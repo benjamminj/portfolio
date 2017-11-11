@@ -1,6 +1,11 @@
 /* eslint-env jest */
+import { h } from 'preact'
+import render from 'preact-render-to-string'
 import AboutMe from '.'
 
-test('basic rendering', () => {
-  expect(1 + 1 === 2).toEqual(true)
+
+test('About Me snapshot', () => {
+  const tree = render(<AboutMe />)
+
+  expect(tree).toMatchSnapshot()
 })
