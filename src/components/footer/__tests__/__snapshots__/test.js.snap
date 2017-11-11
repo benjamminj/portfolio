@@ -3,21 +3,20 @@
 exports[`Footer snap 1`] = `
 preact-render-spy (1 nodes)
 -------
-<footer class="jsx-3732945833 jsx-3732945833">
-  <ul class="jsx-3732945833 jsx-3732945833">
-    <li class="jsx-3732945833 jsx-3732945833">
-      <a
-        href="https://awesome-test.com"
-        target="_blank"
-        class="jsx-3732945833 jsx-3732945833"
+<footer class="jsx-3347494647 jsx-3347494647">
+  <ul class="jsx-3347494647 jsx-3347494647">
+    <li class="jsx-3347494647 jsx-3347494647">
+      <SocialMediaLink
+        url="https://awesome-test.com"
+        icon={[Function icon]}
       >
-        function icon() {return _ref;}
-      </a>
+      </SocialMediaLink>
     </li>
   </ul>
+  <p class="jsx-3347494647">© 2017 Benjamin Johnson</p>
   <JSXStyle
-    styleId="3732945833"
-    css="footer.jsx-3732945833{background-color:var(--gray-lightest);padding:1rem;}"
+    styleId="3347494647"
+    css="footer.jsx-3347494647{background-color:var(--gray-lightest);padding:1rem;}ul.jsx-3347494647{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-pack:center;-webkit-justify-content:center;-ms-flex-pack:center;justify-content:center;}p.jsx-3347494647{text-align:center;font-size:0.75rem;}"
   >
   </JSXStyle>
 </footer>

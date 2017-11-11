@@ -9,6 +9,7 @@ type PropTypes = {
   socialMedia: Array<{
     color: string,
     icon: Node,
+    name: string,
     url: string
   }>
 }
