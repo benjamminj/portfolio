@@ -3,11 +3,11 @@
 exports[`About Me snapshot 1`] = `
 preact-render-spy (1 nodes)
 -------
-<div class="jsx-2744509581 jsx-2744509581 AboutMe">
-  <p class="jsx-2744509581">
+<div class="jsx-3386128420 jsx-3386128420 AboutMe">
+  <p class="jsx-3386128420">
     Hi, I'm Ben. I'm a musician-turned-frontend-dev based out of the greater Los Angeles area. I sometimes make things with code (ok actually, I do that all the time). Working as a frontend dev means that I am constantly evaluating the latest and greatest trends in web development for their usability, scalability, &amp; ability to provide real-world solutions (as well as the number of emojis in their README 😎).
   </p>
-  <p class="jsx-2744509581">
+  <p class="jsx-3386128420">
     Currently I'm working at a 
     <A
       href="https://www.autogravity.com/"
@@ -17,12 +17,12 @@ preact-render-spy (1 nodes)
     </A>
      to make the car-buying/financing process as simple as it can be using the power of the mobile web.
   </p>
-  <p class="jsx-2744509581">
+  <p class="jsx-3386128420">
     In addition to working as a frontend developer, I like to give back to my community. I occasionally do workshops for students learning to code, and try to write some articles here and there (in between everything else!).
   </p>
   <JSXStyle
-    styleId="2744509581"
-    css="p.jsx-2744509581{margin:1.5rem 0;}"
+    styleId="3386128420"
+    css="p.jsx-3386128420{margin:1.5rem 0;}p.jsx-3386128420:last-child{margin-bottom:0;}"
   >
   </JSXStyle>
 </div>

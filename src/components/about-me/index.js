@@ -33,6 +33,10 @@ const AboutMe = () => (
       p {
         margin: 1.5rem 0;
       }
+
+      p:last-child {
+        margin-bottom: 0;
+      }
     `}</style>
   </div>
 )
