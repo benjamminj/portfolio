@@ -1,0 +1,82 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Header snapshot 1`] = `
+preact-render-spy (1 nodes)
+-------
+<div
+  data-nav-open={false}
+  class="jsx-1735430183 jsx-3883457783 jsx-1735430183 jsx-3883457783 NavigationHeader"
+>
+  <header class="jsx-1735430183 jsx-3883457783 jsx-1735430183 jsx-3883457783">
+    <button
+      onClick={[Function anonymous]}
+      class="jsx-1735430183 jsx-3883457783 jsx-1735430183 jsx-3883457783"
+    >
+      open!
+    </button>
+  </header>
+  <nav class="jsx-1735430183 jsx-3883457783 jsx-1735430183 jsx-3883457783">
+    navigation!
+    <ul class="jsx-1735430183 jsx-3883457783 jsx-1735430183 jsx-3883457783">
+      <li class="jsx-1735430183 jsx-3883457783 jsx-1735430183 jsx-3883457783">
+        <a
+          href="#projects"
+          onClick={[Function anonymous]}
+          class="jsx-1735430183 jsx-3883457783 jsx-1735430183 jsx-3883457783"
+        >
+          Projects
+        </a>
+      </li>
+      <li class="jsx-1735430183 jsx-3883457783 jsx-1735430183 jsx-3883457783">
+        <a
+          href="#blog"
+          onClick={[Function anonymous]}
+          class="jsx-1735430183 jsx-3883457783 jsx-1735430183 jsx-3883457783"
+        >
+          Latest From the Blog
+        </a>
+      </li>
+      <li class="jsx-1735430183 jsx-3883457783 jsx-1735430183 jsx-3883457783">
+        <a
+          href="#about"
+          onClick={[Function anonymous]}
+          class="jsx-1735430183 jsx-3883457783 jsx-1735430183 jsx-3883457783"
+        >
+          About Me
+        </a>
+      </li>
+      <li class="jsx-1735430183 jsx-3883457783 jsx-1735430183 jsx-3883457783">
+        <a
+          href="#contact"
+          onClick={[Function anonymous]}
+          class="jsx-1735430183 jsx-3883457783 jsx-1735430183 jsx-3883457783"
+        >
+          Contact Me
+        </a>
+      </li>
+    </ul>
+    <button
+      onClick={[Function anonymous]}
+      class="jsx-1735430183 jsx-3883457783 jsx-1735430183 jsx-3883457783"
+    >
+      close!
+    </button>
+  </nav>
+  <JSXStyle
+    styleId="1735430183"
+    css="header.jsx-1735430183{position:fixed;}[data-nav-open].jsx-1735430183 header.jsx-1735430183{display:none;}nav.jsx-1735430183{opacity:0;position:fixed;top:0;bottom:0;left:0;right:0;background:var(--accent-primary);z-index:-1;}[data-nav-open].jsx-1735430183 nav.jsx-1735430183{opacity:1;z-index:1;}"
+  >
+  </JSXStyle>
+  <JSXStyle
+    styleId="1955133239"
+    css="body{overflow:initial;}"
+    dynamic={
+      Array [
+        "initial"
+      ]
+    }
+  >
+  </JSXStyle>
+</div>
+
+`;

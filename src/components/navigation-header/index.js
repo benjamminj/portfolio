@@ -1,7 +1,11 @@
 // @flow @jsx h
 import { h, Component } from 'preact'
 
+import sections from '../../constants/home-sections'
+// types
 import type { Node } from 'react'
+import type { Event } from 'flow-bin'
+
 type Props = {}
 type State = {
   open: boolean
@@ -18,6 +22,31 @@ class NavigationHeader extends Component<Props, State> {
     })
   }
 
+  onClickLink = (ev: Event) => {
+    ev.preventDefault()
+
+    this.setState({
+      open: false
+    })
+
+    this.scrollToHref(ev.target)
+  }
+
+  scrollToHref = (target: Event.target) => {
+    const targetHeight = this.getScrollTopPosition(target)
+
+    window.scrollTo(0, targetHeight)
+  }
+
+  getScrollTopPosition = (target: Event.target) => {
+    const selector = target.hash
+
+    const scrollTarget = document.querySelector(selector)
+    const targetHeight = scrollTarget !== null ? scrollTarget.offsetTop : 0
+
+    return targetHeight
+  }
+
   render (): Node {
     const { open } = this.state
 
@@ -30,6 +59,15 @@ class NavigationHeader extends Component<Props, State> {
         {/* Toggle visibility using data tag & CSS for accessibility & animations */}
         <nav>
           navigation!
+          <ul>
+            {sections.map(section => (
+              <li>
+                <a href={`#${section.id}`} onClick={this.onClickLink}>
+                  {section.title}
+                </a>
+              </li>
+            ))}
+          </ul>
           <button onClick={this.toggleNav}>close!</button>
         </nav>
 
@@ -43,17 +81,21 @@ class NavigationHeader extends Component<Props, State> {
           }
 
           nav {
-            display: none; /** TODO -- remove in favor of another hiding method */
+            opacity: 0; /** TODO -- remove in favor of another hiding method */
             position: fixed;
             top: 0;
             bottom: 0;
             left: 0;
             right: 0;
             background: var(--accent-primary);
+
+            /* keeps header from blocking click events */
+            z-index: -1;
           }
 
           [data-nav-open] nav {
-            display: initial;
+            opacity: 1;
+            z-index: 1;
           }
         `}</style>
 
