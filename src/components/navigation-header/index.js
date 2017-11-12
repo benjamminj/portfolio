@@ -44,7 +44,8 @@ class NavigationHeader extends Component<Props, State> {
     const scrollTarget = document.querySelector(selector)
     const targetHeight = scrollTarget !== null ? scrollTarget.offsetTop : 0
 
-    return targetHeight
+    // TODO -- better approximation of header height to offset by
+    return targetHeight - 50
   }
 
   render (): Node {
@@ -53,7 +54,7 @@ class NavigationHeader extends Component<Props, State> {
     return (
       <div className='NavigationHeader' data-nav-open={open}>
         <header>
-          <button onClick={this.toggleNav}>open!</button>
+          <button className='toggleButton' onClick={this.toggleNav}>open!</button>
         </header>
 
         {/* Toggle visibility using data tag & CSS for accessibility & animations */}
@@ -72,38 +73,44 @@ class NavigationHeader extends Component<Props, State> {
         </nav>
 
         <style jsx>{`
+          --transition: transform 350ms ease-in-out;
+
           header {
             position: fixed;
-          }
-
-          [data-nav-open] header {
-            display: none;
+            height: var(--header-height);
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 1rem;
+            background: var(--white);
+            border-bottom: 1px solid var(--gray-normal);
           }
 
           nav {
-            opacity: 0; /** TODO -- remove in favor of another hiding method */
             position: fixed;
             top: 0;
             bottom: 0;
             left: 0;
             right: 0;
             background: var(--accent-primary);
-
-            /* keeps header from blocking click events */
-            z-index: -1;
+            transform: translateY(-120%);
+            transition: var(--transition);
           }
 
           [data-nav-open] nav {
-            opacity: 1;
-            z-index: 1;
+            transform: translateY(0);
+            transition: var(--transition);
           }
-        `}</style>
 
-        <style jsx>{`
           :global(body) {
             overflow: ${open ? 'hidden' : 'initial'};
           }
         `}</style>
+
+        <style jsx>{``}</style>
       </div>
     )
   }
