@@ -19,11 +19,13 @@ export default class App extends Component {
       <div id='app'>
         <NavigationHeader />
 
-        <Router onChange={this.handleRoute}>
-          <Home path='/' />
-        </Router>
+        <div id='appBody'>
+          <Router onChange={this.handleRoute}>
+            <Home path='/' />
+          </Router>
 
-        <Footer socialMedia={socialMedia} />
+          <Footer socialMedia={socialMedia} />
+        </div>
 
         <style jsx global>{`
           /* TODO -- move to external sheet somewhere? */
@@ -40,6 +42,9 @@ export default class App extends Component {
 
             /* fonts */
             --font-default: Menlo, 'Andale Mono', 'Lucida Console', monospace;
+
+            /* layout */
+            --header-height: 3rem;
           }
 
           html,
@@ -56,6 +61,10 @@ export default class App extends Component {
 
           #app {
             height: 100%;
+          }
+
+          #appBody {
+            margin-top: var(--header-height);
           }
         `}</style>
       </div>
