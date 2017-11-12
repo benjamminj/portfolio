@@ -15,7 +15,7 @@ type PropTypes = {
 }
 
 const Footer = ({ socialMedia }: PropTypes) => (
-  <footer>
+  <footer className='Footer'>
     <ul>
       {socialMedia.map(media => (
         <li>

@@ -3,7 +3,7 @@
 exports[`Footer snap 1`] = `
 preact-render-spy (1 nodes)
 -------
-<footer class="jsx-3347494647 jsx-3347494647">
+<footer class="jsx-3347494647 jsx-3347494647 Footer">
   <ul class="jsx-3347494647 jsx-3347494647">
     <li class="jsx-3347494647 jsx-3347494647">
       <SocialMediaLink
