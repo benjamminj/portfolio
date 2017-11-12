@@ -4,6 +4,7 @@ import { Router } from 'preact-router'
 // components
 import Home from '../routes/home'
 import Footer from '../components/footer'
+import NavigationHeader from '../components/navigation-header'
 
 // data
 import socialMedia from '../constants/social-media'
@@ -16,6 +17,8 @@ export default class App extends Component {
   render () {
     return (
       <div id='app'>
+        <NavigationHeader />
+
         <Router onChange={this.handleRoute}>
           <Home path='/' />
         </Router>
