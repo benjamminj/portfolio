@@ -4,11 +4,12 @@ import { h } from 'preact'
 import type { Node } from 'react'
 
 type propTypes = {
-  children: Node
+  children: Node,
+  id: string
 }
 
-const Section = ({ children }: propTypes) => (
-  <section className='Section'>
+const Section = ({ children, id }: propTypes) => (
+  <section className='Section' id={id}>
     {children}
 
     <style jsx>{`
