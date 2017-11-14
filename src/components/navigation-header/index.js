@@ -54,7 +54,9 @@ class NavigationHeader extends Component<Props, State> {
     return (
       <div className='NavigationHeader' data-nav-open={open}>
         <header>
-          <button className='toggleButton' onClick={this.toggleNav}>open!</button>
+          <button className='toggleButton' onClick={this.toggleNav}>
+            open!
+          </button>
         </header>
 
         {/* Toggle visibility using data tag & CSS for accessibility & animations */}
@@ -73,7 +75,7 @@ class NavigationHeader extends Component<Props, State> {
         </nav>
 
         <style jsx>{`
-          --transition: transform 350ms ease-in-out;
+          --transition: 350ms ease-in-out;
 
           header {
             position: fixed;
@@ -85,8 +87,8 @@ class NavigationHeader extends Component<Props, State> {
             left: 0;
             right: 0;
             padding: 1rem;
-            background: var(--white);
-            border-bottom: 1px solid var(--gray-normal);
+            background: transparent;
+            z-index: 999;
           }
 
           nav {
@@ -95,14 +97,22 @@ class NavigationHeader extends Component<Props, State> {
             bottom: 0;
             left: 0;
             right: 0;
-            background: var(--accent-primary);
-            transform: translateY(-120%);
-            transition: var(--transition);
+            background: var(--white);
+            border-bottom: 1px solid var(--gray-normal);
+
+            /* put bottom of nav at */
+            transform: translateY(calc(-100% + var(--header-height)));
+            transition:
+            background var(--transition),
+              transform var(--transition);
           }
 
           [data-nav-open] nav {
             transform: translateY(0);
-            transition: var(--transition);
+            transition:
+              background var(--transition),
+              transform var(--transition);
+            background: var(--accent-primary);
           }
 
           :global(body) {
