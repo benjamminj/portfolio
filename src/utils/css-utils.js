@@ -5,10 +5,10 @@ export const getGlobalProperty = (propertyName) => {
 
 export const remToPx = (remValue) => {
   if (/rem/.test(remValue)) {
-    // removes any units from the values
-    const rootPixelNumber = getGlobalProperty('font-size').replace(/[a-z]/g, '')
-    const remNumber = remValue.replace(/[a-z]/g, '')
+    const rootPixelNumber = getGlobalProperty('font-size')
+    const remNumber = remValue
 
-    return rootPixelNumber * remNumber
+    // removes any units from the values
+    return rootPixelNumber.replace(/[a-z]/g, '') * remNumber.replace(/[a-z]/g, '')
   }
 }
