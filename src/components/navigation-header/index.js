@@ -2,6 +2,8 @@
 import { h, Component } from 'preact'
 
 import sections from '../../constants/home-sections'
+import { cssUtils } from '../../utils'
+
 // types
 import type { Node } from 'react'
 import type { Event } from 'flow-bin'
@@ -44,8 +46,10 @@ class NavigationHeader extends Component<Props, State> {
     const scrollTarget = document.querySelector(selector)
     const targetHeight = scrollTarget !== null ? scrollTarget.offsetTop : 0
 
-    // TODO -- better approximation of header height to offset by
-    return targetHeight - 50
+    const headerRems = cssUtils.getGlobalProperty('--header-height')
+    const headerHeight = cssUtils.remToPx(headerRems)
+
+    return targetHeight - headerHeight
   }
 
   render (): Node {
@@ -54,14 +58,14 @@ class NavigationHeader extends Component<Props, State> {
     return (
       <div className='NavigationHeader' data-nav-open={open}>
         <header>
-          <button className='toggleButton' onClick={this.toggleNav}>
-            open!
+          <button onClick={this.toggleNav}>
+            {open ? 'close!' : 'open!'}
           </button>
         </header>
 
         {/* Toggle visibility using data tag & CSS for accessibility & animations */}
+        {/* TODO -- move nav into its own component */}
         <nav>
-          navigation!
           <ul>
             {sections.map(section => (
               <li>
@@ -71,7 +75,6 @@ class NavigationHeader extends Component<Props, State> {
               </li>
             ))}
           </ul>
-          <button onClick={this.toggleNav}>close!</button>
         </nav>
 
         <style jsx>{`
@@ -91,6 +94,10 @@ class NavigationHeader extends Component<Props, State> {
             z-index: 999;
           }
 
+          button:hover {
+            cursor: pointer;
+          }
+
           nav {
             position: fixed;
             top: 0;
@@ -100,19 +107,35 @@ class NavigationHeader extends Component<Props, State> {
             background: var(--white);
             border-bottom: 1px solid var(--gray-normal);
 
-            /* put bottom of nav at */
+            /* put bottom of nav at bottom of "header" */
             transform: translateY(calc(-100% + var(--header-height)));
-            transition:
-            background var(--transition),
+            transition: background var(--transition),
               transform var(--transition);
           }
 
           [data-nav-open] nav {
             transform: translateY(0);
-            transition:
-              background var(--transition),
+            transition: background var(--transition),
               transform var(--transition);
             background: var(--accent-primary);
+          }
+
+          ul {
+            margin-top: var(--header-height);
+            padding: 1rem;
+          }
+
+          li {
+            font-size: 1.5rem;
+            padding: 2.5rem;
+            width: 100%;
+            text-align: center;
+          }
+
+          a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: bold;
           }
 
           :global(body) {
