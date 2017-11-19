@@ -2,6 +2,7 @@
 import { h, Component } from 'preact'
 
 import sections from '../../constants/home-sections'
+import { MenuIcon } from '../icons'
 import { cssUtils } from '../../utils'
 
 // types
@@ -59,7 +60,7 @@ class NavigationHeader extends Component<Props, State> {
       <div className='NavigationHeader' data-nav-open={open}>
         <header>
           <button onClick={this.toggleNav}>
-            {open ? 'close!' : 'open!'}
+            <MenuIcon open={open} />
           </button>
         </header>
 
@@ -94,6 +95,10 @@ class NavigationHeader extends Component<Props, State> {
             z-index: 999;
           }
 
+          button {
+            padding: 0;
+          }
+
           button:hover {
             cursor: pointer;
           }
@@ -106,6 +111,8 @@ class NavigationHeader extends Component<Props, State> {
             right: 0;
             background: var(--white);
             border-bottom: 1px solid var(--gray-normal);
+            overflow-y: scroll;
+            -webkit-overflow-scrolling: touch;
 
             /* put bottom of nav at bottom of "header" */
             transform: translateY(calc(-100% + var(--header-height)));
