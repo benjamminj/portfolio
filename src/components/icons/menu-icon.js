@@ -6,16 +6,58 @@ type PropTypes = {
 }
 
 const MenuIcon = ({ open }: PropTypes) => (
-  <svg style='width:24px;height:24px' viewBox='0 0 24 24'>
-    {open ? (
-      <path
-        fill='#000000'
-        d='M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z'
-      />
-    ) : (
-      <path fill='#000000' d='M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z' />
-    )}
-  </svg>
+  <div className='MenuIcon' open={open}>
+    <div className='menuBar' />
+    <div className='menuBar' />
+    <div className='menuBar' />
+
+    <style jsx>{`
+      --size: var(--header-height);
+      --color: var(--black);
+      --transition: 0.5s ease-in-out;
+
+      .MenuIcon {
+        height: var(--header-height);
+        width: var(--header-height);
+        position: absolute;
+        top: 0;
+        right: 0;
+        padding: 1rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+
+      .menuBar {
+        height: 2px;
+        width: 100%;
+        background: var(--color);
+        transform-origin: 0 0;
+        transition: transform var(--transition), opacity 250ms ease-in-out,
+          background var(--transition);
+      }
+
+      .menuBar + .menuBar {
+        margin-top: 3px;
+      }
+
+      [open='true'] .menuBar {
+        --color: var(--white);
+      }
+
+      [open='true'] .menuBar:nth-child(1) {
+        transform: translate(4px, -1px) rotate(45deg);
+      }
+
+      [open='true'] .menuBar:nth-child(2) {
+        opacity: 0;
+      }
+
+      [open='true'] .menuBar:nth-child(3) {
+        transform: translate(2.5px, 0.25px) rotate(-45deg);
+      }
+    `}</style>
+  </div>
 )
 
 export default MenuIcon
