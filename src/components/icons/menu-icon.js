@@ -14,7 +14,7 @@ const MenuIcon = ({ open }: PropTypes) => (
     <style jsx>{`
       --size: var(--header-height);
       --color: var(--black);
-      --transition: 0.5s ease-in-out;
+      --transition: 300ms ease-in-out;
 
       .MenuIcon {
         height: var(--header-height);
@@ -33,7 +33,7 @@ const MenuIcon = ({ open }: PropTypes) => (
         width: 100%;
         background: var(--color);
         transform-origin: 0 0;
-        transition: transform var(--transition), opacity 250ms ease-in-out,
+        transition: transform var(--transition), opacity var(--transition),
           background var(--transition);
       }
 
