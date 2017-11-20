@@ -48,6 +48,10 @@ export default class Home extends Component {
             :global(.Section) {
               padding-left: 2rem;
             }
+
+            .banner {
+              height: 70vh;
+            }
           }
         `}</style>
         <style jsx global>{`
