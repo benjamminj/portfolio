@@ -6,6 +6,8 @@ import Home from '../routes/home'
 import Footer from '../components/footer'
 import NavigationHeader from '../components/navigation-header'
 
+import { screenMd, aboveScreenLg } from '../styles/breakpoints'
+
 // data
 import socialMedia from '../constants/social-media'
 
@@ -23,10 +25,9 @@ export default class App extends Component {
           <Router onChange={this.handleRoute}>
             <Home path='/' />
           </Router>
-
-          <Footer socialMedia={socialMedia} />
         </div>
 
+        <Footer socialMedia={socialMedia} />
         <style jsx global>{`
           /* TODO -- move to external sheet somewhere? */
           :root {
@@ -45,6 +46,10 @@ export default class App extends Component {
 
             /* layout */
             --header-height: 3rem;
+
+            /* larger screen sizes */
+            --max-width: ${screenMd};
+            --nav-desktop-width: 9rem;
           }
 
           html,
@@ -65,6 +70,13 @@ export default class App extends Component {
 
           #appBody {
             margin-top: var(--header-height);
+          }
+
+          @media (${aboveScreenLg}) {
+            #appBody {
+              margin: 0 auto;
+              max-width: var(--max-width);
+            }
           }
         `}</style>
       </div>

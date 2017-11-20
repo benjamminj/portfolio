@@ -3,6 +3,7 @@ import { h, Component } from 'preact'
 // components
 import sections from '../../constants/home-sections'
 import { Section } from '../../components/elements'
+import { aboveScreenLg } from '../../styles/breakpoints'
 
 export default class Home extends Component {
   render () {
@@ -40,6 +41,13 @@ export default class Home extends Component {
           .Home :global(.Section) h1 {
             margin-bottom: 1.5rem;
             font-size: 1.5rem;
+          }
+
+          @media (${aboveScreenLg}) {
+            section,
+            :global(.Section) {
+              padding-left: 2rem;
+            }
           }
         `}</style>
         <style jsx global>{`
