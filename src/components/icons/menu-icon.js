@@ -12,17 +12,10 @@ const MenuIcon = ({ open }: PropTypes) => (
     <div className='menuBar' />
 
     <style jsx>{`
-      --size: var(--header-height);
       --color: var(--black);
       --transition: 300ms ease-in-out;
 
       .MenuIcon {
-        height: var(--header-height);
-        width: var(--header-height);
-        position: absolute;
-        top: 0;
-        right: 0;
-        padding: 1rem;
         display: flex;
         flex-direction: column;
         justify-content: center;
