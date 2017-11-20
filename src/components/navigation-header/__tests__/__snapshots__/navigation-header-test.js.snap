@@ -5,51 +5,56 @@ preact-render-spy (1 nodes)
 -------
 <div
   open={false}
-  class="jsx-2085888330 jsx-1638255919 jsx-2085888330 jsx-1638255919 NavigationHeader"
+  class="jsx-1780841340 jsx-1780841340 NavigationHeader"
 >
-  <header class="jsx-2085888330 jsx-1638255919 jsx-2085888330 jsx-1638255919">
-    <h1 class="jsx-2085888330 jsx-374065723 h1">Benjamin Johnson</h1>
+  <header class="jsx-1780841340 jsx-1780841340">
+    <a
+      href="/"
+      class="jsx-4156392680 a"
+    >
+      <h1 class="jsx-4156392680 h1">Benjamin Johnson</h1>
+    </a>
     <button
       onClick={[Function anonymous]}
-      class="jsx-2085888330 jsx-1638255919 jsx-2085888330 jsx-1638255919"
+      class="jsx-1780841340 jsx-1780841340"
     >
       <MenuIcon open={false}></MenuIcon>
     </button>
   </header>
-  <nav class="jsx-2085888330 jsx-1638255919 jsx-2085888330 jsx-1638255919">
-    <ul class="jsx-2085888330 jsx-1638255919 jsx-2085888330 jsx-1638255919">
-      <li class="jsx-2085888330 jsx-1638255919 jsx-2085888330 jsx-1638255919">
+  <nav class="jsx-1780841340 jsx-1780841340">
+    <ul class="jsx-1780841340 jsx-1780841340">
+      <li class="jsx-1780841340 jsx-1780841340">
         <a
           href="#projects"
           onClick={[Function anonymous]}
-          class="jsx-2085888330 jsx-1638255919 jsx-2085888330 jsx-1638255919"
+          class="jsx-1780841340 jsx-1780841340"
         >
           Projects
         </a>
       </li>
-      <li class="jsx-2085888330 jsx-1638255919 jsx-2085888330 jsx-1638255919">
+      <li class="jsx-1780841340 jsx-1780841340">
         <a
           href="#blog"
           onClick={[Function anonymous]}
-          class="jsx-2085888330 jsx-1638255919 jsx-2085888330 jsx-1638255919"
+          class="jsx-1780841340 jsx-1780841340"
         >
-          Latest From the Blog
+          Blog
         </a>
       </li>
-      <li class="jsx-2085888330 jsx-1638255919 jsx-2085888330 jsx-1638255919">
+      <li class="jsx-1780841340 jsx-1780841340">
         <a
           href="#about"
           onClick={[Function anonymous]}
-          class="jsx-2085888330 jsx-1638255919 jsx-2085888330 jsx-1638255919"
+          class="jsx-1780841340 jsx-1780841340"
         >
           About Me
         </a>
       </li>
-      <li class="jsx-2085888330 jsx-1638255919 jsx-2085888330 jsx-1638255919">
+      <li class="jsx-1780841340 jsx-1780841340">
         <a
           href="#contact"
           onClick={[Function anonymous]}
-          class="jsx-2085888330 jsx-1638255919 jsx-2085888330 jsx-1638255919"
+          class="jsx-1780841340 jsx-1780841340"
         >
           Contact Me
         </a>
@@ -57,18 +62,14 @@ preact-render-spy (1 nodes)
     </ul>
   </nav>
   <JSXStyle
-    styleId="117803533"
-    css=".__jsx-style-dynamic-selector{--transition:350ms ease-in-out;}.NavigationHeader.__jsx-style-dynamic-selector{--position:calc(-100% + var(--header-height));position:fixed;top:0;height:var(--header-height);left:0;right:0;-webkit-transform:translateZ(0);-ms-transform:translateZ(0);transform:translateZ(0);overflow:hidden;-webkit-transition:all var(--transition);transition:all var(--transition);border-bottom:1px solid var(--gray-normal);background:var(--white);}.NavigationHeader[open=&quot;true&quot;].__jsx-style-dynamic-selector{height:100%;-webkit-overflow-scrolling:touch;overflow-y:scroll;background:var(--accent-primary);}.NavigationHeader.__jsx-style-dynamic-selector header.__jsx-style-dynamic-selector{height:var(--header-height);display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;-webkit-transform:translateY(0);-ms-transform:translateY(0);transform:translateY(0);padding:1rem;background:transparent;z-index:999;}.NavigationHeader.__jsx-style-dynamic-selector h1.__jsx-style-dynamic-selector{color:indianred;-webkit-transition:color var(--transition);transition:color var(--transition);}.NavigationHeader[open=&quot;true&quot;].__jsx-style-dynamic-selector h1.__jsx-style-dynamic-selector{color:var(--white);-webkit-transition:all var(--transition);transition:all var(--transition);}button.__jsx-style-dynamic-selector{padding:0;position:absolute;padding:1rem;top:0;right:0;width:var(--header-height);height:var(--header-height);}button.__jsx-style-dynamic-selector:hover{cursor:pointer;}ul.__jsx-style-dynamic-selector{padding:0 1rem 1rem;}li.__jsx-style-dynamic-selector{font-size:1.5rem;padding:2.5rem;width:100%;text-align:center;}a.__jsx-style-dynamic-selector{color:var(--white);text-decoration:none;font-weight:bold;}body{overflow:initial;}"
+    styleId="1957650083"
+    css=".__jsx-style-dynamic-selector{--transition:350ms ease-in-out;--border-color:var(--gray-normal);}.NavigationHeader.__jsx-style-dynamic-selector{--position:calc(-100% + var(--header-height));position:fixed;top:0;height:var(--header-height);left:0;right:0;-webkit-transform:translateZ(0);-ms-transform:translateZ(0);transform:translateZ(0);overflow:hidden;-webkit-transition:all var(--transition);transition:all var(--transition);border-bottom:1px solid var(--border-color);background:var(--white);}.NavigationHeader[open].__jsx-style-dynamic-selector{height:100%;-webkit-overflow-scrolling:touch;overflow-y:scroll;background:var(--accent-primary);}header.__jsx-style-dynamic-selector{height:var(--header-height);display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;-webkit-transform:translateY(0);-ms-transform:translateY(0);transform:translateY(0);padding:1rem;background:transparent;z-index:999;}.NavigationHeader.__jsx-style-dynamic-selector .h1{color:var(--black);-webkit-transition:color var(--transition);transition:color var(--transition);}.NavigationHeader[open].__jsx-style-dynamic-selector h1.__jsx-style-dynamic-selector{color:var(--white);-webkit-transition:color var(--transition);transition:color var(--transition);}button.__jsx-style-dynamic-selector{padding:0;position:absolute;padding:1rem;top:0;right:0;width:var(--header-height);height:var(--header-height);}button.__jsx-style-dynamic-selector:hover{cursor:pointer;}ul.__jsx-style-dynamic-selector{padding:0 1rem 1rem;}li.__jsx-style-dynamic-selector{font-size:1.5rem;padding:2rem;width:100%;text-align:center;color:var(--white);}a.__jsx-style-dynamic-selector,header.__jsx-style-dynamic-selector .a{color:inherit;text-decoration:none;font-weight:bold;}body{overflow:initial;}@media (min-width: 63rem){.NavigationHeader.__jsx-style-dynamic-selector,.NavigationHeader[open].__jsx-style-dynamic-selector{right:auto;width:var(--nav-desktop-width);overflow:auto;height:auto;border-bottom:none;}header.__jsx-style-dynamic-selector{height:auto;-webkit-box-pack:end;-webkit-justify-content:flex-end;-ms-flex-pack:end;justify-content:flex-end;}.NavigationHeader.__jsx-style-dynamic-selector .a{text-align:right;}.NavigationHeader.__jsx-style-dynamic-selector .h1{-webkit-transition:none;transition:none;display:inline;}button.__jsx-style-dynamic-selector{display:none;}li.__jsx-style-dynamic-selector,[open].__jsx-style-dynamic-selector li.__jsx-style-dynamic-selector{color:var(--black);font-size:1rem;text-align:right;padding:1rem 0;}}a.__jsx-style-dynamic-selector:hover,.NavigationHeader.__jsx-style-dynamic-selector .h1:hover{color:var(--white);background:var(--accent-primary);}"
     dynamic={
       Array [
-        "initial"
+        "initial",
+        "min-width: 63rem"
       ]
     }
-  >
-  </JSXStyle>
-  <JSXStyle
-    styleId="2085888330"
-    css=""
   >
   </JSXStyle>
 </div>
