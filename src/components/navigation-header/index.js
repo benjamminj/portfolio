@@ -57,8 +57,9 @@ class NavigationHeader extends Component<Props, State> {
     const { open } = this.state
 
     return (
-      <div className='NavigationHeader' data-nav-open={open}>
+      <div className='NavigationHeader' open={open}>
         <header>
+          <h1 className='h1'>Benjamin Johnson</h1>
           <button onClick={this.toggleNav}>
             <MenuIcon open={open} />
           </button>
@@ -81,60 +82,71 @@ class NavigationHeader extends Component<Props, State> {
         <style jsx>{`
           --transition: 350ms ease-in-out;
 
-          header {
+          .NavigationHeader {
+            --position: calc(-100% + var(--header-height));
+
             position: fixed;
+            top: 0;
+            height: var(--header-height);
+            left: 0;
+            right: 0;
+            transform: translateZ(0);
+            overflow: hidden;
+            transition: all var(--transition);
+            border-bottom: 1px solid var(--gray-normal);
+
+            background: var(--white);
+          }
+
+          .NavigationHeader[open] {
+            height: 100%;
+            -webkit-overflow-scrolling: touch;
+            overflow-y: scroll;
+            background: var(--accent-primary);
+          }
+
+          header {
             height: var(--header-height);
             display: flex;
             align-items: center;
-            justify-content: flex-end;
-            top: 0;
-            left: 0;
-            right: 0;
+            transform: translateY(0);
             padding: 1rem;
             background: transparent;
             z-index: 999;
           }
 
+          /* TODO -- figure out why this selector isn't working */
+          .NavigationHeader :global(.h1) {
+            color: var(--black);
+            transition: color var(--transition);
+          }
+
+          .NavigationHeader[open] h1 {
+            color: var(--white);
+            transition: all var(--transition);
+          }
+
           button {
             padding: 0;
+            position: absolute;
+            padding: 1rem;
+            top: 0;
+            right: 0;
+            width: var(--header-height);
+            height: var(--header-height);
           }
 
           button:hover {
             cursor: pointer;
           }
 
-          nav {
-            position: fixed;
-            top: 0;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: var(--white);
-            border-bottom: 1px solid var(--gray-normal);
-            overflow-y: scroll;
-            -webkit-overflow-scrolling: touch;
-
-            /* put bottom of nav at bottom of "header" */
-            transform: translateY(calc(-100% + var(--header-height)));
-            transition: background var(--transition),
-              transform var(--transition);
-          }
-
-          [data-nav-open] nav {
-            transform: translateY(0);
-            transition: background var(--transition),
-              transform var(--transition);
-            background: var(--accent-primary);
-          }
-
           ul {
-            margin-top: var(--header-height);
-            padding: 1rem;
+            padding: 0 1rem 1rem;
           }
 
           li {
             font-size: 1.5rem;
-            padding: 2.5rem;
+            padding: 2rem;
             width: 100%;
             text-align: center;
           }
@@ -149,8 +161,6 @@ class NavigationHeader extends Component<Props, State> {
             overflow: ${open ? 'hidden' : 'initial'};
           }
         `}</style>
-
-        <style jsx>{``}</style>
       </div>
     )
   }

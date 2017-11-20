@@ -8,9 +8,9 @@ export default class Home extends Component {
   render () {
     return (
       <div className='Home'>
-        <div className='banner'>
+        <section className='banner'>
           <h1>Hi, I'm Ben 👋🏻</h1>
-        </div>
+        </section>
 
         {sections.map(section => (
           <Section id={section.id}>
