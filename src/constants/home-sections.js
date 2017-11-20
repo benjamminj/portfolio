@@ -16,7 +16,7 @@ const sections = [
     content: () => <ProjectPreview projects={projects} />
   },
   {
-    title: 'Latest From the Blog',
+    title: 'Blog',
     id: 'blog',
     content: () => <BlogPreview posts={postsPreviews} />
   },

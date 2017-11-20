@@ -4,7 +4,7 @@ import { h, Component } from 'preact'
 import sections from '../../constants/home-sections'
 import { MenuIcon } from '../icons'
 import { cssUtils } from '../../utils'
-
+import { aboveScreenLg } from '../../styles/breakpoints'
 // types
 import type { Node } from 'react'
 import type { Event } from 'flow-bin'
@@ -59,7 +59,9 @@ class NavigationHeader extends Component<Props, State> {
     return (
       <div className='NavigationHeader' open={open}>
         <header>
-          <h1 className='h1'>Benjamin Johnson</h1>
+          <a href='/' className='a'>
+            <h1 className='h1'>Benjamin Johnson</h1>
+          </a>
           <button onClick={this.toggleNav}>
             <MenuIcon open={open} />
           </button>
@@ -81,6 +83,7 @@ class NavigationHeader extends Component<Props, State> {
 
         <style jsx>{`
           --transition: 350ms ease-in-out;
+          --border-color: var(--gray-normal);
 
           .NavigationHeader {
             --position: calc(-100% + var(--header-height));
@@ -93,7 +96,7 @@ class NavigationHeader extends Component<Props, State> {
             transform: translateZ(0);
             overflow: hidden;
             transition: all var(--transition);
-            border-bottom: 1px solid var(--gray-normal);
+            border-bottom: 1px solid var(--border-color);
 
             background: var(--white);
           }
@@ -123,7 +126,7 @@ class NavigationHeader extends Component<Props, State> {
 
           .NavigationHeader[open] h1 {
             color: var(--white);
-            transition: all var(--transition);
+            transition: color var(--transition);
           }
 
           button {
@@ -149,16 +152,61 @@ class NavigationHeader extends Component<Props, State> {
             padding: 2rem;
             width: 100%;
             text-align: center;
+            color: var(--white);
           }
 
-          a {
-            color: var(--white);
+          /* TODO -- figure out what is wrong with these selectors */
+          a,
+          header :global(.a) {
+            color: inherit;
             text-decoration: none;
             font-weight: bold;
           }
 
           :global(body) {
             overflow: ${open ? 'hidden' : 'initial'};
+          }
+
+          @media (${aboveScreenLg}) {
+            .NavigationHeader,
+            .NavigationHeader[open] {
+              right: auto;
+              width: var(--nav-desktop-width);
+              overflow: auto;
+              height: auto;
+              border-bottom: none;
+            }
+
+            header {
+              height: auto;
+              justify-content: flex-end;
+            }
+
+            .NavigationHeader :global(.a) {
+              text-align: right;
+            }
+            .NavigationHeader :global(.h1) {
+              transition: none;
+              display: inline;
+            }
+
+            button {
+              display: none;
+            }
+
+            li,
+            [open] li {
+              color: var(--black);
+              font-size: 1rem;
+              text-align: right;
+              padding: 1rem 0;
+            }
+          }
+
+          a:hover,
+          .NavigationHeader :global(.h1):hover {
+            color: var(--white);
+            background: var(--accent-primary);
           }
         `}</style>
       </div>
