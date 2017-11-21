@@ -3,7 +3,8 @@ import { h } from 'preact'
 import { shallow } from 'preact-render-spy'
 import NavigationHeader from '..'
 
-test('Header snapshot', () => {
+// TODO -- up test coveragge for this component
+test('Header initial snapshot', () => {
   const tree = shallow(<NavigationHeader />)
   expect(tree).toMatchSnapshot()
 })

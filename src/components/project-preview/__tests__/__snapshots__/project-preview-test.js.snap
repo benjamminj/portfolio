@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Social Media CSS Wrapper snap 1`] = `
+preact-render-spy (1 nodes)
+-------
+<div class="jsx-3174525863 jsx-3174525863 ProjectPreview">
+  <ul class="jsx-3174525863 jsx-3174525863">
+    <li class="jsx-3174525863 jsx-3174525863">
+      <Card>
+        <h1 class="jsx-3174525863 jsx-3174525863">
+          <A
+            href="www.test.com"
+            target="_blank"
+          >
+            My Test Project
+          </A>
+        </h1>
+        <p class="jsx-3174525863 jsx-3174525863">A cool project</p>
+        <A href="www.test.com">demo</A>
+        <A href="https://github.com/test/test">code</A>
+      </Card>
+    </li>
+  </ul>
+  <JSXStyle
+    styleId="3174525863"
+    css="li.jsx-3174525863+li.jsx-3174525863{margin-top:1rem;}p.jsx-3174525863{margin:0.75rem 0;}div.jsx-3174525863 .A+.A{margin-left:1rem;}"
+  >
+  </JSXStyle>
+</div>
+
+`;

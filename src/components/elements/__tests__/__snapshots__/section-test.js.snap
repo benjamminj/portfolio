@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Section snapshot 1`] = `
+preact-render-spy (1 nodes)
+-------
+<section class="jsx-2426183947 jsx-2426183947 Section">
+  <JSXStyle
+    styleId="2426183947"
+    css=".jsx-2426183947{padding:2rem 1rem;}"
+  >
+  </JSXStyle>
+</section>
+
+`;

@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Social Media CSS Wrapper snap 1`] = `
+preact-render-spy (1 nodes)
+-------
+<div class="jsx-391102910 jsx-391102910 SocialMediaCssWrapper">
+  Test Content
+  <JSXStyle
+    styleId="391102910"
+    css=".jsx-391102910{--fill:var(--local-accent,var(--gray-normal));--size:2rem;}.SocialMediaCssWrapper.jsx-391102910 svg{height:var(--size);width:var(--size);}.SocialMediaCssWrapper.jsx-391102910 path{fill:var(--fill);-webkit-transition:0.175s fill ease-in-out;transition:0.175s fill ease-in-out;}"
+  >
+  </JSXStyle>
+</div>
+
+`;

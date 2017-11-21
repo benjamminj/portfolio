@@ -1,6 +1,6 @@
 // @flow @jsx h
 import { h } from 'preact'
-import { SocialMediaCssWrapper } from './social-media-css-wrapper'
+import SocialMediaCssWrapper from './social-media-css-wrapper'
 
 const GithubLogoIcon = () => (
   <SocialMediaCssWrapper>

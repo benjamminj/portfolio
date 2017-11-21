@@ -59,6 +59,7 @@ export default class App extends Component {
             background: var(--white);
             font-family: var(--font-default);
             font-weight: normal;
+            font-size: 18px;
             color: var(--black);
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
