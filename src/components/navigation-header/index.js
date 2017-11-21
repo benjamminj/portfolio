@@ -4,7 +4,7 @@ import { h, Component } from 'preact'
 import sections from '../../constants/home-sections'
 import { MenuIcon } from '../icons'
 import { cssUtils } from '../../utils'
-import { aboveScreenLg } from '../../styles/breakpoints'
+import { aboveScreenLg, screenLg } from '../../styles/breakpoints'
 // types
 import type { Node } from 'react'
 import type { Event } from 'flow-bin'
@@ -37,8 +37,14 @@ class NavigationHeader extends Component<Props, State> {
 
   scrollToHref = (target: Event.target) => {
     const targetHeight = this.getScrollTopPosition(target)
+    const screenBelowLg = cssUtils.remToPx(screenLg)
 
-    window.scrollTo(0, targetHeight)
+    if (window.innerWidth >= screenBelowLg) {
+      window.scroll({ left: 0, top: targetHeight, behavior: 'smooth' })
+    } else {
+      window.scrollTo(0, targetHeight)
+    }
+
   }
 
   getScrollTopPosition = (target: Event.target) => {
@@ -59,7 +65,7 @@ class NavigationHeader extends Component<Props, State> {
     return (
       <div className='NavigationHeader' open={open}>
         <header>
-          <a href='/' className='a'>
+          <a href='/#banner' className='a' onClick={this.onClickLink}>
             <h1 className='h1'>Benjamin Johnson</h1>
           </a>
           <button onClick={this.toggleNav}>

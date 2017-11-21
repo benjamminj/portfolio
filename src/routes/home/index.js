@@ -9,7 +9,7 @@ export default class Home extends Component {
   render () {
     return (
       <div className='Home'>
-        <section className='banner'>
+        <section id='#banner' className='banner'>
           <h1>Hi, I'm Ben 👋🏻</h1>
         </section>
 
