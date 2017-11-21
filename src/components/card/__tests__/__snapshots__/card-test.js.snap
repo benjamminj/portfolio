@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Card with contents snap 1`] = `
+preact-render-spy (1 nodes)
+-------
+<article class="jsx-1991709517 jsx-1991709517 Card">
+  <main class="jsx-1991709517 jsx-1991709517">Test content</main>
+  <JSXStyle
+    styleId="1991709517"
+    css=".jsx-1991709517{--color:var(--gray-normal);}.Card.jsx-1991709517{border-radius:2px;border:1px solid var(--color);background:var(--white);}header.jsx-1991709517{border-bottom:1px solid var(--color);}header.jsx-1991709517,main.jsx-1991709517{padding:1.25rem 1rem;}"
+  >
+  </JSXStyle>
+</article>
+
+`;
+
+exports[`Card with header snap 1`] = `
+preact-render-spy (1 nodes)
+-------
+<article class="jsx-1991709517 jsx-1991709517 Card">
+  <header class="jsx-1991709517 jsx-1991709517">function header() {return _ref2;}</header>
+  <main class="jsx-1991709517 jsx-1991709517">test content</main>
+  <JSXStyle
+    styleId="1991709517"
+    css=".jsx-1991709517{--color:var(--gray-normal);}.Card.jsx-1991709517{border-radius:2px;border:1px solid var(--color);background:var(--white);}header.jsx-1991709517{border-bottom:1px solid var(--color);}header.jsx-1991709517,main.jsx-1991709517{padding:1.25rem 1rem;}"
+  >
+  </JSXStyle>
+</article>
+
+`;

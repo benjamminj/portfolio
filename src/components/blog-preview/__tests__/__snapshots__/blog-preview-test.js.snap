@@ -1,0 +1,44 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`blog preview snap 1`] = `
+preact-render-spy (1 nodes)
+-------
+<div class="jsx-2341525854 jsx-2341525854 BlogPreview">
+  <ul class="jsx-2341525854 jsx-2341525854">
+    <li class="jsx-2341525854 jsx-2341525854">
+      <Card>
+        <p class="jsx-2341525854 jsx-2341525854 published">2017-10-07</p>
+        <h1 class="jsx-2341525854 jsx-2341525854">
+          <A
+            href="http://test.com"
+            target="_blank"
+          >
+            Test Post
+          </A>
+        </h1>
+        <p class="jsx-2341525854 jsx-2341525854 teaser">This is a test post...</p>
+      </Card>
+    </li>
+    <li class="jsx-2341525854 jsx-2341525854">
+      <Card>
+        <p class="jsx-2341525854 jsx-2341525854 published">2017-10-09</p>
+        <h1 class="jsx-2341525854 jsx-2341525854">
+          <A
+            href="http://test-2.com"
+            target="_blank"
+          >
+            Test Post #2
+          </A>
+        </h1>
+        <p class="jsx-2341525854 jsx-2341525854 teaser">This is another test post...</p>
+      </Card>
+    </li>
+  </ul>
+  <JSXStyle
+    styleId="2341525854"
+    css=".jsx-2341525854{--published-color:var(--gray-normal);}li.jsx-2341525854+li.jsx-2341525854{margin-top:1rem;}.published.jsx-2341525854{margin-bottom:1em;color:var(--published-color);font-size:0.75rem;text-align:right;}.teaser.jsx-2341525854{margin:1rem 0 0;}"
+  >
+  </JSXStyle>
+</div>
+
+`;

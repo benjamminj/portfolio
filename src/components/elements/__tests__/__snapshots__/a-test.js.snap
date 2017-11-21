@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Anchor snapshot 1`] = `
+preact-render-spy (1 nodes)
+-------
+<a class="jsx-3226047878 jsx-3226047878 A">
+  Test Link
+  <JSXStyle
+    styleId="3226047878"
+    css=".jsx-3226047878{color:var(--accent-primary);}a.jsx-3226047878:hover{color:var(--white);background:var(--accent-primary);}"
+  >
+  </JSXStyle>
+</a>
+
+`;
