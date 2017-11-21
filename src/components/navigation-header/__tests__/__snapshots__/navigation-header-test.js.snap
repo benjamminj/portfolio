@@ -9,8 +9,9 @@ preact-render-spy (1 nodes)
 >
   <header class="jsx-1780841340 jsx-1780841340">
     <a
-      href="/"
-      class="jsx-4156392680 a"
+      href="/#banner"
+      onClick={[Function anonymous]}
+      class="jsx-1780841340 jsx-1780841340 a"
     >
       <h1 class="jsx-4156392680 h1">Benjamin Johnson</h1>
     </a>
