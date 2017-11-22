@@ -20,9 +20,18 @@ class NavigationHeader extends Component<Props, State> {
   }
 
   toggleNav = () => {
+    this.lockScrolling()
     this.setState({
       open: !this.state.open
     })
+  }
+
+  lockScrolling = () => {
+    const { open } = this.state
+
+    if (document.body) {
+      document.body.style.overflow = open ? 'initial' : 'hidden'
+    }
   }
 
   onClickLink = (ev: Event) => {
@@ -44,7 +53,6 @@ class NavigationHeader extends Component<Props, State> {
     } else {
       window.scrollTo(0, targetHeight)
     }
-
   }
 
   getScrollTopPosition = (target: Event.target) => {
@@ -167,10 +175,6 @@ class NavigationHeader extends Component<Props, State> {
             color: inherit;
             text-decoration: none;
             font-weight: bold;
-          }
-
-          :global(body) {
-            overflow: ${open ? 'hidden' : 'initial'};
           }
 
           @media (${aboveScreenLg}) {
