@@ -190,11 +190,10 @@ class NavigationHeader extends Component<Props, State> {
             header {
               height: auto;
               justify-content: flex-end;
-            }
-
-            .NavigationHeader :global(.a) {
+              display: block;
               text-align: right;
             }
+
             .NavigationHeader :global(.h1) {
               transition: none;
               display: inline;
