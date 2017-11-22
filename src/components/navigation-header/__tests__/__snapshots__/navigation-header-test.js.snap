@@ -5,57 +5,57 @@ preact-render-spy (1 nodes)
 -------
 <div
   open={false}
-  class="jsx-1780841340 jsx-1780841340 NavigationHeader"
+  class="jsx-1389519552 jsx-1389519552 NavigationHeader"
 >
-  <header class="jsx-1780841340 jsx-1780841340">
+  <header class="jsx-1389519552 jsx-1389519552">
     <a
       href="/#banner"
       onClick={[Function anonymous]}
-      class="jsx-1780841340 jsx-1780841340 a"
+      class="jsx-1389519552 jsx-1389519552 a"
     >
-      <h1 class="jsx-4156392680 h1">Benjamin Johnson</h1>
+      <h1 class="jsx-1389519552 h1">Benjamin Johnson</h1>
     </a>
     <button
       onClick={[Function anonymous]}
-      class="jsx-1780841340 jsx-1780841340"
+      class="jsx-1389519552 jsx-1389519552"
     >
       <MenuIcon open={false}></MenuIcon>
     </button>
   </header>
-  <nav class="jsx-1780841340 jsx-1780841340">
-    <ul class="jsx-1780841340 jsx-1780841340">
-      <li class="jsx-1780841340 jsx-1780841340">
+  <nav class="jsx-1389519552 jsx-1389519552">
+    <ul class="jsx-1389519552 jsx-1389519552">
+      <li class="jsx-1389519552 jsx-1389519552">
         <a
           href="#projects"
           onClick={[Function anonymous]}
-          class="jsx-1780841340 jsx-1780841340"
+          class="jsx-1389519552 jsx-1389519552"
         >
           Projects
         </a>
       </li>
-      <li class="jsx-1780841340 jsx-1780841340">
+      <li class="jsx-1389519552 jsx-1389519552">
         <a
           href="#blog"
           onClick={[Function anonymous]}
-          class="jsx-1780841340 jsx-1780841340"
+          class="jsx-1389519552 jsx-1389519552"
         >
           Blog
         </a>
       </li>
-      <li class="jsx-1780841340 jsx-1780841340">
+      <li class="jsx-1389519552 jsx-1389519552">
         <a
           href="#about"
           onClick={[Function anonymous]}
-          class="jsx-1780841340 jsx-1780841340"
+          class="jsx-1389519552 jsx-1389519552"
         >
           About Me
         </a>
       </li>
-      <li class="jsx-1780841340 jsx-1780841340">
+      <li class="jsx-1389519552 jsx-1389519552">
         <a
           href="#contact"
           onClick={[Function anonymous]}
-          class="jsx-1780841340 jsx-1780841340"
+          class="jsx-1389519552 jsx-1389519552"
         >
           Contact Me
         </a>
@@ -63,14 +63,8 @@ preact-render-spy (1 nodes)
     </ul>
   </nav>
   <JSXStyle
-    styleId="1957650083"
-    css=".__jsx-style-dynamic-selector{--transition:350ms ease-in-out;--border-color:var(--gray-normal);}.NavigationHeader.__jsx-style-dynamic-selector{--position:calc(-100% + var(--header-height));position:fixed;top:0;height:var(--header-height);left:0;right:0;-webkit-transform:translateZ(0);-ms-transform:translateZ(0);transform:translateZ(0);overflow:hidden;-webkit-transition:all var(--transition);transition:all var(--transition);border-bottom:1px solid var(--border-color);background:var(--white);}.NavigationHeader[open].__jsx-style-dynamic-selector{height:100%;-webkit-overflow-scrolling:touch;overflow-y:scroll;background:var(--accent-primary);}header.__jsx-style-dynamic-selector{height:var(--header-height);display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;-webkit-transform:translateY(0);-ms-transform:translateY(0);transform:translateY(0);padding:1rem;background:transparent;z-index:999;}.NavigationHeader.__jsx-style-dynamic-selector .h1{color:var(--black);-webkit-transition:color var(--transition);transition:color var(--transition);}.NavigationHeader[open].__jsx-style-dynamic-selector h1.__jsx-style-dynamic-selector{color:var(--white);-webkit-transition:color var(--transition);transition:color var(--transition);}button.__jsx-style-dynamic-selector{padding:0;position:absolute;padding:1rem;top:0;right:0;width:var(--header-height);height:var(--header-height);}button.__jsx-style-dynamic-selector:hover{cursor:pointer;}ul.__jsx-style-dynamic-selector{padding:0 1rem 1rem;}li.__jsx-style-dynamic-selector{font-size:1.5rem;padding:2rem;width:100%;text-align:center;color:var(--white);}a.__jsx-style-dynamic-selector,header.__jsx-style-dynamic-selector .a{color:inherit;text-decoration:none;font-weight:bold;}body{overflow:initial;}@media (min-width: 63rem){.NavigationHeader.__jsx-style-dynamic-selector,.NavigationHeader[open].__jsx-style-dynamic-selector{right:auto;width:var(--nav-desktop-width);overflow:auto;height:auto;border-bottom:none;}header.__jsx-style-dynamic-selector{height:auto;-webkit-box-pack:end;-webkit-justify-content:flex-end;-ms-flex-pack:end;justify-content:flex-end;}.NavigationHeader.__jsx-style-dynamic-selector .a{text-align:right;}.NavigationHeader.__jsx-style-dynamic-selector .h1{-webkit-transition:none;transition:none;display:inline;}button.__jsx-style-dynamic-selector{display:none;}li.__jsx-style-dynamic-selector,[open].__jsx-style-dynamic-selector li.__jsx-style-dynamic-selector{color:var(--black);font-size:1rem;text-align:right;padding:1rem 0;}}a.__jsx-style-dynamic-selector:hover,.NavigationHeader.__jsx-style-dynamic-selector .h1:hover{color:var(--white);background:var(--accent-primary);}"
-    dynamic={
-      Array [
-        "initial",
-        "min-width: 63rem"
-      ]
-    }
+    styleId="1389519552"
+    css=".jsx-1389519552{--transition:350ms ease-in-out;--border-color:var(--gray-normal);}.NavigationHeader.jsx-1389519552{--position:calc(-100% + var(--header-height));position:fixed;top:0;height:var(--header-height);left:0;right:0;-webkit-transform:translateZ(0);-ms-transform:translateZ(0);transform:translateZ(0);overflow:hidden;-webkit-transition:all var(--transition);transition:all var(--transition);border-bottom:1px solid var(--border-color);background:var(--white);}.NavigationHeader[open].jsx-1389519552{height:100%;-webkit-overflow-scrolling:touch;overflow-y:scroll;background:var(--accent-primary);}header.jsx-1389519552{height:var(--header-height);display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;-webkit-transform:translateY(0);-ms-transform:translateY(0);transform:translateY(0);padding:1rem;background:transparent;z-index:999;}.NavigationHeader.jsx-1389519552 .h1{color:var(--black);-webkit-transition:color var(--transition);transition:color var(--transition);}.NavigationHeader[open].jsx-1389519552 h1.jsx-1389519552{color:var(--white);-webkit-transition:color var(--transition);transition:color var(--transition);}button.jsx-1389519552{padding:0;position:absolute;padding:1rem;top:0;right:0;width:var(--header-height);height:var(--header-height);}button.jsx-1389519552:hover{cursor:pointer;}ul.jsx-1389519552{padding:0 1rem 1rem;}li.jsx-1389519552{font-size:1.5rem;padding:2rem;width:100%;text-align:center;color:var(--white);}a.jsx-1389519552,header.jsx-1389519552 .a{color:inherit;text-decoration:none;font-weight:bold;}@media (min-width: 63rem){.NavigationHeader.jsx-1389519552,.NavigationHeader[open].jsx-1389519552{right:auto;width:var(--nav-desktop-width);overflow:auto;height:auto;border-bottom:none;}header.jsx-1389519552{height:auto;-webkit-box-pack:end;-webkit-justify-content:flex-end;-ms-flex-pack:end;justify-content:flex-end;display:block;text-align:right;}.NavigationHeader.jsx-1389519552 .h1{-webkit-transition:none;transition:none;display:inline;}button.jsx-1389519552{display:none;}li.jsx-1389519552,[open].jsx-1389519552 li.jsx-1389519552{color:var(--black);font-size:1rem;text-align:right;padding:1rem 0;}}a.jsx-1389519552:hover,.NavigationHeader.jsx-1389519552 .h1:hover{color:var(--white);background:var(--accent-primary);}"
   >
   </JSXStyle>
 </div>

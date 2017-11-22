@@ -62,14 +62,14 @@ preact-render-spy (1 nodes)
 -------
 <div
   open={false}
-  class="jsx-3501131796 jsx-3501131796 MenuIcon"
+  class="jsx-1584689900 jsx-1584689900 MenuIcon"
 >
-  <div class="jsx-3501131796 menuBar"></div>
-  <div class="jsx-3501131796 menuBar"></div>
-  <div class="jsx-3501131796 menuBar"></div>
+  <div class="jsx-1584689900 menuBar"></div>
+  <div class="jsx-1584689900 menuBar"></div>
+  <div class="jsx-1584689900 menuBar"></div>
   <JSXStyle
-    styleId="3501131796"
-    css=".jsx-3501131796{--color:var(--black);--transition:300ms ease-in-out;}.MenuIcon.jsx-3501131796{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;-webkit-box-pack:center;-webkit-justify-content:center;-ms-flex-pack:center;justify-content:center;}.menuBar.jsx-3501131796{height:2px;width:100%;background:var(--color);-webkit-transform-origin:0 0;-ms-transform-origin:0 0;transform-origin:0 0;-webkit-transition:-webkit-transform var(--transition),opacity var(--transition), background var(--transition);-webkit-transition:transform var(--transition),opacity var(--transition), background var(--transition);transition:transform var(--transition),opacity var(--transition), background var(--transition);}.menuBar.jsx-3501131796+.menuBar.jsx-3501131796{margin-top:3px;}[open='true'].jsx-3501131796 .menuBar.jsx-3501131796{--color:var(--white);}[open='true'].jsx-3501131796 .menuBar.jsx-3501131796:nth-child(1){-webkit-transform:translate(4px,-1px) rotate(45deg);-ms-transform:translate(4px,-1px) rotate(45deg);transform:translate(4px,-1px) rotate(45deg);}[open='true'].jsx-3501131796 .menuBar.jsx-3501131796:nth-child(2){opacity:0;}[open='true'].jsx-3501131796 .menuBar.jsx-3501131796:nth-child(3){-webkit-transform:translate(2.5px,0.25px) rotate(-45deg);-ms-transform:translate(2.5px,0.25px) rotate(-45deg);transform:translate(2.5px,0.25px) rotate(-45deg);}"
+    styleId="1584689900"
+    css=".jsx-1584689900{--color:var(--black);--transition:300ms ease-in-out;}.MenuIcon.jsx-1584689900{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;-webkit-box-pack:center;-webkit-justify-content:center;-ms-flex-pack:center;justify-content:center;}.menuBar.jsx-1584689900{height:2px;width:100%;background:var(--color);-webkit-transform-origin:0 0;-ms-transform-origin:0 0;transform-origin:0 0;-webkit-transition:-webkit-transform var(--transition),opacity var(--transition), background var(--transition);-webkit-transition:transform var(--transition),opacity var(--transition), background var(--transition);transition:transform var(--transition),opacity var(--transition), background var(--transition);}.menuBar.jsx-1584689900+.menuBar.jsx-1584689900{margin-top:3px;}[open='true'].jsx-1584689900 .menuBar.jsx-1584689900{--color:var(--white);}[open='true'].jsx-1584689900 .menuBar.jsx-1584689900:nth-child(1){-webkit-transform:translate(4px,-2px) rotate(45deg);-ms-transform:translate(4px,-2px) rotate(45deg);transform:translate(4px,-2px) rotate(45deg);}[open='true'].jsx-1584689900 .menuBar.jsx-1584689900:nth-child(2){opacity:0;}[open='true'].jsx-1584689900 .menuBar.jsx-1584689900:nth-child(3){-webkit-transform:translate(2.5px,0.25px) rotate(-45deg);-ms-transform:translate(2.5px,0.25px) rotate(-45deg);transform:translate(2.5px,0.25px) rotate(-45deg);}"
   >
   </JSXStyle>
 </div>
@@ -81,14 +81,14 @@ preact-render-spy (1 nodes)
 -------
 <div
   open={true}
-  class="jsx-3501131796 jsx-3501131796 MenuIcon"
+  class="jsx-1584689900 jsx-1584689900 MenuIcon"
 >
-  <div class="jsx-3501131796 menuBar"></div>
-  <div class="jsx-3501131796 menuBar"></div>
-  <div class="jsx-3501131796 menuBar"></div>
+  <div class="jsx-1584689900 menuBar"></div>
+  <div class="jsx-1584689900 menuBar"></div>
+  <div class="jsx-1584689900 menuBar"></div>
   <JSXStyle
-    styleId="3501131796"
-    css=".jsx-3501131796{--color:var(--black);--transition:300ms ease-in-out;}.MenuIcon.jsx-3501131796{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;-webkit-box-pack:center;-webkit-justify-content:center;-ms-flex-pack:center;justify-content:center;}.menuBar.jsx-3501131796{height:2px;width:100%;background:var(--color);-webkit-transform-origin:0 0;-ms-transform-origin:0 0;transform-origin:0 0;-webkit-transition:-webkit-transform var(--transition),opacity var(--transition), background var(--transition);-webkit-transition:transform var(--transition),opacity var(--transition), background var(--transition);transition:transform var(--transition),opacity var(--transition), background var(--transition);}.menuBar.jsx-3501131796+.menuBar.jsx-3501131796{margin-top:3px;}[open='true'].jsx-3501131796 .menuBar.jsx-3501131796{--color:var(--white);}[open='true'].jsx-3501131796 .menuBar.jsx-3501131796:nth-child(1){-webkit-transform:translate(4px,-1px) rotate(45deg);-ms-transform:translate(4px,-1px) rotate(45deg);transform:translate(4px,-1px) rotate(45deg);}[open='true'].jsx-3501131796 .menuBar.jsx-3501131796:nth-child(2){opacity:0;}[open='true'].jsx-3501131796 .menuBar.jsx-3501131796:nth-child(3){-webkit-transform:translate(2.5px,0.25px) rotate(-45deg);-ms-transform:translate(2.5px,0.25px) rotate(-45deg);transform:translate(2.5px,0.25px) rotate(-45deg);}"
+    styleId="1584689900"
+    css=".jsx-1584689900{--color:var(--black);--transition:300ms ease-in-out;}.MenuIcon.jsx-1584689900{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;-webkit-box-pack:center;-webkit-justify-content:center;-ms-flex-pack:center;justify-content:center;}.menuBar.jsx-1584689900{height:2px;width:100%;background:var(--color);-webkit-transform-origin:0 0;-ms-transform-origin:0 0;transform-origin:0 0;-webkit-transition:-webkit-transform var(--transition),opacity var(--transition), background var(--transition);-webkit-transition:transform var(--transition),opacity var(--transition), background var(--transition);transition:transform var(--transition),opacity var(--transition), background var(--transition);}.menuBar.jsx-1584689900+.menuBar.jsx-1584689900{margin-top:3px;}[open='true'].jsx-1584689900 .menuBar.jsx-1584689900{--color:var(--white);}[open='true'].jsx-1584689900 .menuBar.jsx-1584689900:nth-child(1){-webkit-transform:translate(4px,-2px) rotate(45deg);-ms-transform:translate(4px,-2px) rotate(45deg);transform:translate(4px,-2px) rotate(45deg);}[open='true'].jsx-1584689900 .menuBar.jsx-1584689900:nth-child(2){opacity:0;}[open='true'].jsx-1584689900 .menuBar.jsx-1584689900:nth-child(3){-webkit-transform:translate(2.5px,0.25px) rotate(-45deg);-ms-transform:translate(2.5px,0.25px) rotate(-45deg);transform:translate(2.5px,0.25px) rotate(-45deg);}"
   >
   </JSXStyle>
 </div>
