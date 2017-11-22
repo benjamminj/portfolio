@@ -6,10 +6,12 @@ import Footer from '../'
 
 test('Footer snap', () => {
   const props = {
-    socialMedia: [{
-      url: 'https://awesome-test.com',
-      icon: () => <i>😎</i>
-    }]
+    socialMedia: [
+      {
+        url: 'https://awesome-test.com',
+        icon: () => <i>😎</i>
+      }
+    ]
   }
 
   const tree = shallow(<Footer {...props} />)

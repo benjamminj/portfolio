@@ -1,10 +1,7 @@
 /* eslint-env jest */
 import { cssUtils } from '../'
 
-const {
-  getGlobalProperty,
-  remToPx
-} = cssUtils
+const { getGlobalProperty, remToPx } = cssUtils
 
 // TODO -- maybe a good idea to move these DOM/window mocks to a central location?
 const getPropertyValue = jest.fn(property => {

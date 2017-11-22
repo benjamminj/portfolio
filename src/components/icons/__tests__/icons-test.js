@@ -35,4 +35,3 @@ test('Twitter Logo snapshot', () => {
   const tree = shallow(<Icons.TwitterLogoIcon />)
   expect(tree).toMatchSnapshot()
 })
-

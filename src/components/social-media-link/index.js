@@ -1,12 +1,12 @@
 // @flow @jsx h
-import { h } from 'preact';
+import { h } from 'preact'
 
 import type { Node } from 'react'
 type PropTypes = {
   url: string,
   color: string,
   icon: Node,
-  name: string,
+  name: string
 }
 
 const SocialMediaLink = ({ url, color, icon, name }: PropTypes) => (
