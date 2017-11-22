@@ -11,7 +11,8 @@
     "lint": "eslint src",
     "format": "prettier-eslint \"src/**/*.js\" --write",
     "flow": "flow",
-    "test": "jest"
+    "test": "jest",
+    "deploy": "npm run build && gh-pages -d build"
   },
   "ava": {
     "require": [
