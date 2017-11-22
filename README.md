@@ -1,19 +1,5 @@
-# {{ name }}
+# Benjamin Johnson
 
-## CLI Commands
+Thanks for checking the source for my portfolio site! It's always a work in progress as I'm continually trying out new things (aren't we all)! 😎
 
-``` bash
-# install dependencies
-npm install
-
-# serve with hot reload at localhost:8080
-npm run dev
-
-# build for production with minification
-npm run build
-
-# test the production build locally
-npm run serve
-```
-
-For detailed explanation on how things work, checkout the [CLI Readme](https://github.com/developit/preact-cli/blob/master/README.md).
+If you're looking for the actual site, you can view it at https://benjaminjohnson.me
