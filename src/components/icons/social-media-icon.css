@@ -1,0 +1,14 @@
+
+.SocialMediaIcon {
+  --fill: var(--local-accent, var(--gray-normal));
+  --size: 2rem;
+
+  height: var(--size);
+  width: var(--size);
+}
+
+/* assumes each svg has a single path */
+.SocialMediaIcon path {
+  fill: var(--fill);
+  transition: 0.175s fill ease-in-out;
+}
