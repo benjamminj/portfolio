@@ -47,7 +47,7 @@ const MenuIcon = ({ open }: PropTypes) => (
       }
 
       [open='true'] .menuBar:nth-child(3) {
-        transform: translate(2.5px, 0.25px) rotate(-45deg);
+        transform: translate(2.5px, 0.75px) rotate(-45deg);
       }
     `}</style>
   </div>
