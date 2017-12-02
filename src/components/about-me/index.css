@@ -1,0 +1,7 @@
+.AboutMe p {
+  margin: 1.5rem 0;
+}
+
+.AboutMe p:last-child {
+  margin-bottom: 0;
+}

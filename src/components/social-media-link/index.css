@@ -1,0 +1,12 @@
+.SocialMediaLink {
+  display: inline-block;
+
+  /* increase click area without impacting vertical size */
+  padding: 1rem 1.25rem;
+}
+
+.SocialMediaLink:hover,
+.SocialMediaLink:active,
+.SocialMediaLink:focus {
+  --local-accent: var(--fill);
+}

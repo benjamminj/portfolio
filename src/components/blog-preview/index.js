@@ -4,6 +4,9 @@ import { h } from 'preact'
 import Card from '../card'
 import { A } from '../elements'
 
+// css
+import styles from './index.css'
+
 type propTypes = {
   posts: Array<{
     publishDate: String,
@@ -14,12 +17,12 @@ type propTypes = {
 }
 
 const BlogPreview = ({ posts }: propTypes) => (
-  <div className='BlogPreview'>
+  <div class={`BlogPreview ${styles.BlogPreview}`}>
     <ul>
       {posts.map(post => (
         <li>
           <Card>
-            <p className='published'>{post.publishDate}</p>
+            <p class={styles.published}>{post.publishDate}</p>
 
             <h1>
               <A href={post.url} target='_blank'>
@@ -27,31 +30,12 @@ const BlogPreview = ({ posts }: propTypes) => (
               </A>
             </h1>
 
-            <p className='teaser'>{post.teaser}...</p>
+            <p class={styles.teaser}>{post.teaser}...</p>
             {/* TODO -- simple tagging/categorization */}
           </Card>
         </li>
       ))}
     </ul>
-
-    <style jsx>{`
-      --published-color: var(--gray-normal);
-
-      li + li {
-        margin-top: 1rem;
-      }
-
-      .published {
-        margin-bottom: 1em;
-        color: var(--published-color);
-        font-size: 0.75rem;
-        text-align: right;
-      }
-
-      .teaser {
-        margin: 1rem 0 0;
-      }
-    `}</style>
   </div>
 )
 

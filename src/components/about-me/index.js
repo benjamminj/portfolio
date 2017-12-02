@@ -3,8 +3,11 @@ import { h } from 'preact'
 
 import { A } from '../../components/elements'
 
+// css
+import styles from './index.css'
+
 const AboutMe = () => (
-  <div className='AboutMe'>
+  <div class={`AboutMe ${styles.AboutMe}`}>
     <p>
       Hi, I'm Ben. I'm a musician-turned-frontend-dev based out of the greater
       Los Angeles area. I sometimes make things with code (ok actually, I do
@@ -28,16 +31,6 @@ const AboutMe = () => (
       community. I occasionally do workshops for students learning to code, and
       try to write some articles here and there (in between everything else!).
     </p>
-
-    <style jsx>{`
-      p {
-        margin: 1.5rem 0;
-      }
-
-      p:last-child {
-        margin-bottom: 0;
-      }
-    `}</style>
   </div>
 )
 

@@ -4,6 +4,9 @@ import { h } from 'preact'
 import Card from '../card'
 import { A } from '../elements'
 
+// css
+import styles from './index.css'
+
 type propTypes = {
   projects: Array<{
     name: String,
@@ -14,7 +17,7 @@ type propTypes = {
 }
 
 const ProjectPreview = (props: propTypes) => (
-  <div className='ProjectPreview'>
+  <div class={`ProjectPreview ${styles.ProjectPreview}`}>
     <ul>
       {props.projects.map(project => (
         <li>
@@ -34,24 +37,6 @@ const ProjectPreview = (props: propTypes) => (
         </li>
       ))}
     </ul>
-
-    <style jsx>{`
-      li {
-      }
-
-      li + li {
-        margin-top: 1rem;
-      }
-
-      p {
-        margin: 0.75rem 0;
-      }
-
-      /* Margin for horizontal links */
-      div :global(.A) + :global(.A) {
-        margin-left: 1rem;
-      }
-    `}</style>
   </div>
 )
 

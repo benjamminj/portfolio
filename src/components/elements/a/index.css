@@ -1,0 +1,8 @@
+.A {
+  color: var(--accent-primary);
+}
+
+.A:hover {
+  color: var(--white);
+  background: var(--accent-primary);
+}

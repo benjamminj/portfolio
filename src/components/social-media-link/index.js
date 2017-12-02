@@ -1,7 +1,11 @@
 // @flow @jsx h
-import { h } from 'preact'
+import { h, Component } from 'preact'
 
 import type { Node } from 'react'
+
+// css
+import styles from './index.css'
+
 type PropTypes = {
   url: string,
   color: string,
@@ -9,25 +13,37 @@ type PropTypes = {
   name: string
 }
 
-const SocialMediaLink = ({ url, color, icon, name }: PropTypes) => (
-  <a href={url} target='_blank' title={name}>
-    {icon}
+class SocialMediaLink extends Component<PropTypes> {
+  ref = undefined
 
-    <style jsx>{`
-      --fill: ${color ? String(color) : 'var(--gray-dark)'}
+  componentDidMount () {
+    // TODO -- should be abstracted into some type of utility method probably
+    const { color } = this.props
 
-      display: inline-block;
+    if (this.ref) {
+      const fillValue = color || 'var(--gray-normal)'
 
-      /* increase click area without impacting vertical size */
-      padding: 1rem 1.25rem;
+      this.ref.style.setProperty('--fill', fillValue)
+    }
+  }
 
-      :hover,
-      :active,
-      :focus {
-        --local-accent: var(--fill);
-      }
-    `}</style>
-  </a>
-)
+  render () {
+    const { url, name, icon } = this.props
+
+    return (
+      <a
+        class={`SocialMediaLink ${styles.SocialMediaLink}`}
+        href={url}
+        target='_blank'
+        title={name}
+        ref={ref => {
+          this.ref = ref
+        }}
+      >
+        {icon}
+      </a>
+    )
+  }
+}
 
 export default SocialMediaLink

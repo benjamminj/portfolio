@@ -1,0 +1,18 @@
+.BlogPreview {
+  --published-color: var(--gray-normal);
+}
+
+.BlogPreview li + li {
+  margin-top: 1rem;
+}
+
+.published {
+  margin-bottom: 1em;
+  color: var(--published-color);
+  font-size: 0.75rem;
+  text-align: right;
+}
+
+.teaser {
+  margin: 1rem 0 0;
+}

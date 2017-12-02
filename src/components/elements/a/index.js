@@ -3,6 +3,9 @@ import { h } from 'preact'
 
 import type { Node } from 'React'
 
+// css
+import styles from './index.css'
+
 type propTypes = {
   children: Node | Node[] | String,
   href: String,
@@ -11,17 +14,8 @@ type propTypes = {
 }
 
 const A = ({ children, href, target, color }: propTypes) => (
-  <a href={href} target={target} className='A'>
+  <a href={href} target={target} class={`A ${styles.A}`}>
     {children}
-
-    <style jsx>{`
-      color: var(--accent-primary);
-
-      a:hover {
-        color: var(--white);
-        background: var(--accent-primary);
-      }
-    `}</style>
   </a>
 )
 

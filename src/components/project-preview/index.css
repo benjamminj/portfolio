@@ -1,0 +1,13 @@
+.ProjectPreview li + li {
+  margin-top: 1rem;
+}
+
+.ProjectPreview p {
+  margin: 0.75rem 0;
+}
+
+/* Margin for horizontal links */
+/* TODO -- add specific selectors for each and let the components accept a class? */
+.ProjectPreview :global(.A) + :global(.A) {
+  margin-left: 1rem;
+}

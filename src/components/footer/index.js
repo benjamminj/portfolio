@@ -5,6 +5,9 @@ import SocialMediaLink from '../social-media-link'
 
 import type { Node } from 'react'
 
+// css
+import styles from './index.css'
+
 type PropTypes = {
   socialMedia: Array<{
     color: string,
@@ -15,7 +18,7 @@ type PropTypes = {
 }
 
 const Footer = ({ socialMedia }: PropTypes) => (
-  <footer className='Footer'>
+  <footer class={`Footer ${styles.Footer}`}>
     <ul>
       {socialMedia.map(media => (
         <li>
@@ -24,24 +27,7 @@ const Footer = ({ socialMedia }: PropTypes) => (
       ))}
     </ul>
 
-    <p>&copy; 2017 Benjamin Johnson</p>
-
-    <style jsx>{`
-      footer {
-        background-color: var(--gray-lightest);
-        padding: 1rem;
-      }
-
-      ul {
-        display: flex;
-        justify-content: center;
-      }
-
-      p {
-        text-align: center;
-        font-size: 0.75rem;
-      }
-    `}</style>
+    <p class={styles.p}>&copy; 2017 Benjamin Johnson</p>
   </footer>
 )
 
