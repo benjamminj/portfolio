@@ -39,12 +39,6 @@ export default class Profile extends Component {
           <button onClick={this.increment}>Click Me</button> Clicked {count}{' '}
           times.
         </p>
-
-        <style jsx>{`
-          padding: 56px 20px;
-          min-height: 100%;
-          width: 100%;
-        `}</style>
       </div>
     )
   }

@@ -1,1 +1,31 @@
+.Home {
+  width: 100%;
+}
 
+.banner {
+  height: 50vh;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+}
+
+/* TODO -- eventually should be moved to the banner component */
+.banner h1 {
+  font-size: 2rem;
+}
+
+.sectionTitle {
+  margin-bottom: 1.5rem;
+  font-size: 1.5rem;
+}
+
+@media (min-width: 63rem) {
+  .banner,
+  .Home :global(.Section) {
+    padding-left: 2rem;
+  }
+
+  .banner {
+    height: 70vh;
+  }
+}
