@@ -1,0 +1,11 @@
+.Link {
+  $color: var(--link-color, var(--accent-primary, red));
+  
+  color: $color;
+  transition: 25ms linear;
+
+  &:hover {
+    background: $color;
+    color: white;
+  }
+}
