@@ -8,9 +8,11 @@ import '../styles/theme.scss'
 import '../styles/base.scss'
 
 const TemplateWrapper = ({ children }) => (
-  <div style={{
-    padding: '1rem'
-  }}>
+  <div
+    style={{
+      padding: '1rem',
+    }}
+  >
     <Helmet
       title="Playground"
       meta={[

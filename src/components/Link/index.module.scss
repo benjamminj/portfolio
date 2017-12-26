@@ -1,5 +1,5 @@
 .Link {
-  $color: var(--link-color, var(--accent-primary, red));
+  $color: var(--link-color, var(--accent-1));
   
   color: $color;
   transition: 25ms linear;

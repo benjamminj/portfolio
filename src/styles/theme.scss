@@ -3,8 +3,12 @@
   --color-primary: #333;
   --color-secondary: #efefef;
 
-  --accent-primary: lightseagreen;
-  --accent-secondary: coral;
+  --accent-1: hsl(177, 70, 41);
+  --accent-1-dark: hsl(177, 70, 39);
+  --accent-2: hsl(16, 100, 66);
+  --accent-2-dark: hsl(16, 100, 60);
+
+  --gray-1: #ccc;
 
   // FONTS
   --font-primary: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,

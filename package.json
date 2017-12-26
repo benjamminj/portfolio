@@ -6,7 +6,8 @@
   "dependencies": {
     "gatsby": "^1.9.141",
     "gatsby-link": "^1.6.32",
-    "gatsby-plugin-react-helmet": "^1.0.8"
+    "gatsby-plugin-react-helmet": "^1.0.8",
+    "gatsby-plugin-react-next": "^1.0.7"
   },
   "keywords": [
     "gatsby"
@@ -25,6 +26,7 @@
   },
   "devDependencies": {
     "gatsby-plugin-sass": "^1.0.15",
-    "prettier": "^1.9.2"
+    "prettier": "^1.9.2",
+    "worker-loader": "^1.1.0"
   }
 }

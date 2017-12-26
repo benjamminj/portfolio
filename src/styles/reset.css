@@ -75,12 +75,8 @@ th {
   text-align: left;
 }
 
-button,
 button:focus {
-  background: transparent;
-  border: none;
-  box-shadow: none;
   /* TODO -- find a better way to show that buttons are focused than the default */
-  outline: none;
+  /* outline-width: 1px; */
 
 }
