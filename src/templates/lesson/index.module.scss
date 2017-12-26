@@ -1,0 +1,27 @@
+.Lesson {
+
+}
+
+.content {
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-secondary);
+    margin: 1em 0;
+    color: var(--accent-1-extra-dark);
+  }
+
+  h2 {
+    font-size: 1.25rem;
+  }
+
+  h3 {
+    font-size: 1.125rem;
+  }
+
+  :global(.example-placeholder) {
+    width: 100%;
+    height: 100px;
+    background: var(--color-primary);
+    opacity: 0.1;
+  }
+  // todo -- some type of syntax highlighting theme for JS 
+}

@@ -7,6 +7,9 @@ import '../styles/reset.css'
 import '../styles/theme.scss'
 import '../styles/base.scss'
 
+// todo -- figure out dynamic imports
+require('prismjs/themes/prism.css')
+
 const TemplateWrapper = ({ children }) => (
   <div
     style={{
