@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import { Button } from '../components'
+import { Button } from '../../components'
 import style from './index.module.scss'
 
 const MyWorker = require('worker-loader!./worker.js')

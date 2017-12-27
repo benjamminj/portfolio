@@ -1,27 +1,62 @@
 .Lesson {
-
+  padding: 1rem 0;
 }
 
-.content {
-  h1, h2, h3, h4, h5, h6 {
+.heading {
+  font-family: var(--font-secondary);
+}
+
+.date {
+  font-size: 0.75rem;
+}
+
+// todo move markdown styles somewhere else when appropriate
+.content,
+.example >  {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     font-family: var(--font-secondary);
-    margin: 1em 0;
-    color: var(--accent-1-extra-dark);
+    margin: 0.75em 0;
+    color: var(--color-primary);
   }
 
   h2 {
-    font-size: 1.25rem;
+    font-size: 1.255rem;
   }
 
   h3 {
     font-size: 1.125rem;
   }
 
-  :global(.example-placeholder) {
-    width: 100%;
-    height: 100px;
-    background: var(--color-primary);
-    opacity: 0.1;
+  h4 {
+    font-size: 1rem;
   }
-  // todo -- some type of syntax highlighting theme for JS 
+
+  h5 {
+    font-size: 0.825rem;
+  }
+
+  h6 {
+    font-size: 0.75rem;
+  }
+
+  ol,
+  ul {
+    padding-left: 1rem;
+    margin: 1em 0;
+  }
+
+  ul {
+    list-style-type: disc;
+
+    ul {
+      // smaller vertical rhythm for sublists
+      list-style-type: circle;
+      margin: 0.75em 0
+    }
+  }
 }

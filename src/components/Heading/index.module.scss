@@ -1,8 +1,9 @@
 .Heading {
   $font-size: var(--font-size, initial);
+  $color: var(--color, var(--color-primary));
 
   font-family: var(--font-secondary);
   font-size: $font-size;
-  margin-bottom: calc(#{$font-size} * 0.5);
-  color: var(--accent-1-extra-dark);
+  margin-bottom: 1em;
+  color: $color;
 }

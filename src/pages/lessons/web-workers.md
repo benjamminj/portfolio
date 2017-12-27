@@ -1,9 +1,7 @@
 ---
 title: Web Workers
 date: 2017-12-26
-examples:
-- counter
-- example-2
+example: counter
 ---
 
 ## What Are Web Workers?
@@ -21,5 +19,3 @@ for (let i = 0; i < arr.length; i++) {
   console.log(i)
 }
 ```
-
-<!-- example-1 -->

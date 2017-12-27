@@ -13,11 +13,7 @@ module.exports = {
     {
       resolve: `gatsby-transformer-remark`,
       options: {
-        plugins: [
-          {
-            resolve: 'gatsby-remark-prismjs'
-          }
-        ]
+        plugins: ['gatsby-remark-prismjs']
       }
     },
     `gatsby-plugin-react-helmet`,

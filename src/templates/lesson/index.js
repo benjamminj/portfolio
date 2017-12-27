@@ -1,27 +1,50 @@
-import React from 'react'
+import React, { Component } from 'react'
 
 import { Heading } from '../../components'
 import style from './index.module.scss'
 
-const LessonTemplate = ({ data }) => {
-  console.log(data)
-  const post = data.markdownRemark
+class LessonTemplate extends Component {
+  getExampleComponent = post => {
+    const { example } = post.frontmatter
 
-  return (
-    <article className={style.Lesson}>
-      <div className="heading">
-        <Heading large>
-          <h1>{post.frontmatter.title}</h1>
-        </Heading>
-        <span>{post.frontmatter.date}</span>
-      </div>
+    console.log(post.frontmatter)
+    if (example) {
+      const Component = require(`../../examples/${example}/index.js`)
+      return Component
+    }
+  }
 
-      <div
-        dangerouslySetInnerHTML={{ __html: post.html }}
-        className={style.content}
-      />
-    </article>
-  )
+  render() {
+    const { data } = this.props
+
+    const post = data.markdownRemark
+
+    const Example = this.getExampleComponent(post)
+    console.log(Example)
+    return (
+      <article className={style.Lesson}>
+        <div className={style.heading}>
+          <Heading large accented>
+            <h1>{post.frontmatter.title}</h1>
+          </Heading>
+        </div>
+
+        <div
+          dangerouslySetInnerHTML={{ __html: post.html }}
+          className={style.content}
+        />
+
+        {Example && (
+          <div className={style.example}>
+            <Heading>
+              <h2>Example</h2>
+            </Heading>
+            <Example />
+          </div>
+        )}
+      </article>
+    )
+  }
 }
 
 export default LessonTemplate
@@ -32,8 +55,8 @@ export const query = graphql`
       html
       frontmatter {
         title
-        examples
-        date(formatString: "MMMM DD, YYYY")
+        example
+        date(formatString: "MM-DD-YYYY")
       }
     }
   }

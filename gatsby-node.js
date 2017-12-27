@@ -21,8 +21,6 @@ exports.onCreateNode = ({ node, getNode, boundActionCreators }) => {
       name: 'slug',
       value: slug
     })
-    
-    // add example paths
   }
 }
 

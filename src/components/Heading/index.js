@@ -6,7 +6,8 @@ const Heading = props => (
   <div
     className={style.Heading}
     style={{
-      '--font-size': props.large ? '1.5rem' : 'initial', // TODO -- move into method?
+      '--font-size': props.large ? '1.5rem' : undefined, // TODO -- move into method?
+      '--color': props.accented ? 'var(--accent-1-dark)' : undefined
     }}
   >
     {props.children}
