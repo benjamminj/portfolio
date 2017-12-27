@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import { Heading } from '../../components'
+import { Heading, Markdown } from '../../components'
 import style from './index.module.scss'
 
 class LessonTemplate extends Component {
@@ -29,10 +29,7 @@ class LessonTemplate extends Component {
           </Heading>
         </div>
 
-        <div
-          dangerouslySetInnerHTML={{ __html: post.html }}
-          className={style.content}
-        />
+        <Markdown html={post.html} />
 
         {Example && (
           <div className={style.example}>
