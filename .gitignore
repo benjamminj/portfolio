@@ -9,4 +9,4 @@ public/
 yarn-error.log
 
 # Notes
-.notes.md
+*.notes.md
