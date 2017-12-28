@@ -1,3 +1,5 @@
+@import '../../styles/mixins';
+
 .Markdown {
   // headings
   h1,
@@ -6,10 +8,7 @@
   h4,
   h5,
   h6 {
-    // todo -- move to a mixin
-    font-family: var(--font-secondary);
-    margin: 0.75em 0;
-    color: var(--color-primary);
+    @include heading();
   }
 
   h2 {

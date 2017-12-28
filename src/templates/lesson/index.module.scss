@@ -1,3 +1,5 @@
+@import '../../styles/mixins';
+
 .Lesson {
   padding: 1rem 0;
 }
@@ -16,10 +18,8 @@
 
 .example {
   h2 {
-    // todo -- shared styles with markdown headings
-    font-family: var(--font-secondary);
     font-size: 1.25rem;
-    margin: 0.75em 0;
-    color: var(--color-primary);
+
+    @include heading();
   }
 }
