@@ -7,7 +7,6 @@ class LessonTemplate extends Component {
   getExampleComponent = post => {
     const { example } = post.frontmatter
 
-    console.log(post.frontmatter)
     if (example) {
       const Component = require(`../../examples/${example}/index.js`)
       return Component
@@ -20,13 +19,15 @@ class LessonTemplate extends Component {
     const post = data.markdownRemark
 
     const Example = this.getExampleComponent(post)
-    console.log(Example)
+    
     return (
       <article className={style.Lesson}>
         <div className={style.heading}>
           <Heading large accented>
             <h1>{post.frontmatter.title}</h1>
           </Heading>
+
+          <span className={style.subheading}>{post.frontmatter.date} &mdash; {post.timeToRead} min read</span>
         </div>
 
         <Markdown html={post.html} />
@@ -50,6 +51,7 @@ export const query = graphql`
   query LessonQuery($slug: String!) {
     markdownRemark(fields: { slug: { eq: $slug } }) {
       html
+      timeToRead
       frontmatter {
         title
         example

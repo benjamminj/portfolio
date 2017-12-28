@@ -4,10 +4,14 @@
 
 .heading {
   font-family: var(--font-secondary);
+  padding-bottom: 2rem;
 }
 
-.date {
-  font-size: 0.75rem;
+.subheading {
+  font-size: 0.825rem;
+  color: rgba(0,0,0,0.5);
+  margin-top: -1rem;
+  display: block;
 }
 
 .example {

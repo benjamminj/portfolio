@@ -1,6 +1,6 @@
 // make sure that we are in the worker scope
 if (typeof window === 'undefined') {
-  console.log('now in the worker scope')
+  console.log('now in the worker scope', self)
 
   onmessage = ({ data }) => {
     console.log('message from the main thread - ', data)

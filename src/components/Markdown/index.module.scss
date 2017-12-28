@@ -82,6 +82,10 @@
       > * {
         grid-column: 2;
       }
+
+      > p {
+        margin: initial;
+      }
     }
 
     // nested lists
@@ -164,5 +168,10 @@
       background: $color;
       color: var(--color-secondary);
     }
+  }
+
+  // img
+  img {
+    width: 100%;
   }
 }
