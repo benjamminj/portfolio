@@ -153,20 +153,7 @@
 
   // links
   a {
-    $border-size: 1px;
-    $color: var(--accent-1);
-
-    text-decoration: none;
-    border-bottom: $border-size solid $color;
-    color: $color;
-    padding-top: $border-size;
-    transition: all 50ms ease-in;
-
-    &:active,
-    &:hover {
-      background: $color;
-      color: var(--color-secondary);
-    }
+    @include link();
   }
 
   // img

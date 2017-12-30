@@ -1,11 +1,5 @@
-.Link {
-  $color: var(--link-color, var(--accent-1));
-  
-  color: $color;
-  transition: 25ms linear;
+@import '../../styles/mixins';
 
-  &:hover {
-    background: $color;
-    color: white;
-  }
+.Link {
+  @include link();
 }

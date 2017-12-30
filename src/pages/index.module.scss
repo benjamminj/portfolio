@@ -1,0 +1,41 @@
+$rhythm: 2rem;
+
+.IndexPage {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  justify-content: center;
+  z-index: -1;
+  // align-items: center;
+  left: 0;
+  right: 0;
+  padding: var(--body-padding);
+
+  > * {
+    max-width: 45rem;
+  }
+}
+
+.heading {
+  margin-bottom: $rhythm;
+}
+
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  margin: $rhythm 0;
+
+  .li {
+    display: inline;
+    padding: 0.5rem 0;
+    &:not(:last-child) {
+      margin-right: 3rem;
+    }
+  }
+
+  .listHeading {
+    margin: 0;
+  }
+}

@@ -3,23 +3,14 @@ import React, { Component } from 'react'
 import { Heading, Markdown } from '../../components'
 import style from './index.module.scss'
 
-class LessonTemplate extends Component {
-  getExampleComponent = post => {
-    const { example } = post.frontmatter
-
-    if (example) {
-      const Component = require(`../../examples/${example}/index.js`)
-      return Component
-    }
-  }
-
+class PostTemplate extends Component {
   render() {
     const { data } = this.props
 
     const post = data.markdownRemark
 
-    const Example = this.getExampleComponent(post)
-    
+    const { date, title } = post.frontmatter
+
     return (
       <article className={style.Lesson}>
         <div className={style.heading}>
@@ -27,25 +18,18 @@ class LessonTemplate extends Component {
             <h1>{post.frontmatter.title}</h1>
           </Heading>
 
-          <span className={style.subheading}>{post.frontmatter.date} &mdash; {post.timeToRead} min read</span>
+          <span className={style.subheading}>
+            {date && `${date} — `}{post.timeToRead} min read
+          </span>
         </div>
 
         <Markdown html={post.html} />
-
-        {Example && (
-          <div className={style.example}>
-            <Heading>
-              <h2>Example</h2>
-            </Heading>
-            <Example />
-          </div>
-        )}
       </article>
     )
   }
 }
 
-export default LessonTemplate
+export default PostTemplate
 
 export const query = graphql`
   query LessonQuery($slug: String!) {
@@ -54,7 +38,6 @@ export const query = graphql`
       timeToRead
       frontmatter {
         title
-        example
         date(formatString: "MM-DD-YYYY")
       }
     }
