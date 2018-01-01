@@ -1,3 +1,4 @@
+// shared styles
 @mixin heading() {
   font-family: var(--font-secondary);
   margin: 1.25em 0;
@@ -18,5 +19,19 @@
   &:hover {
     background: $color;
     color: var(--color-secondary);
+  }
+}
+
+// media
+// todo -- move media sizes into variables
+@mixin above-screen-sm() {
+  @media (min-width: 35rem) {
+    @content;
+  }
+}
+
+@mixin above-screen-md() {
+  @media (min-width: 50rem) {
+    @content;
   }
 }

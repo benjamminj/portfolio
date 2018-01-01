@@ -2,6 +2,11 @@
 
 .Lesson {
   margin: 1rem 0;
+
+  @include above-screen-md {
+    max-width: 70ch;
+    margin: 0 auto;
+  }
 }
 
 .heading {

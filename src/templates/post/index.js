@@ -14,7 +14,7 @@ class PostTemplate extends Component {
     return (
       <article className={style.Lesson}>
         <div className={style.heading}>
-          <Heading large accented>
+          <Heading large>
             <h1>{post.frontmatter.title}</h1>
           </Heading>
 

@@ -1,5 +1,15 @@
+@import '../styles/mixins';
+
 .TemplateWrapper {
   padding: var(--body-padding, 1rem);
+
+  @include above-screen-sm {
+    --body-padding: 3rem;
+  }
+
+  @include above-screen-md {
+    --body-padding: 1rem;
+  }
 }
 
 .header {
