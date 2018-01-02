@@ -75,8 +75,7 @@ th {
   text-align: left;
 }
 
-button:focus {
-  /* TODO -- find a better way to show that buttons are focused than the default */
-  /* outline-width: 1px; */
-
+li {
+  list-style-type: none;
 }
+

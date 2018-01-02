@@ -1,3 +1,5 @@
+@import './vars';
+
 // shared styles
 @mixin heading() {
   font-family: var(--font-secondary);
@@ -7,7 +9,7 @@
 
 @mixin link() {
   $border-size: 1px;
-  $color: var(--accent-1);
+  $color: var(--accent-1-dark);
 
   text-decoration: none;
   border-bottom: $border-size solid $color;
@@ -25,13 +27,13 @@
 // media
 // todo -- move media sizes into variables
 @mixin above-screen-sm() {
-  @media (min-width: 35rem) {
+  @media (min-width: $screen-md-min) {
     @content;
   }
 }
 
 @mixin above-screen-md() {
-  @media (min-width: 50rem) {
+  @media (min-width: $screen-lg-min) {
     @content;
   }
 }
