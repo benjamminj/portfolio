@@ -1,8 +1,9 @@
 ---
 title: Web Workers
 date: 2017-12-26
-example: counter
 ---
+
+Little blurb at the beginning to show as a preview and introduce the post and cool stuff like that. Make sure that it's always over 140 characters or else.
 
 ## What Is A Web Worker?
 
@@ -30,4 +31,4 @@ Give some notes about the worker environment...basically that we don't have acce
 
 ## Setting Up a Simple Web Worker
 
-- Perhaps put into a separate post and link from here?
+* Perhaps put into a separate post and link from here?
