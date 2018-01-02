@@ -66,20 +66,19 @@
   ul {
     li {
       // allows for nested lists with proper icon placement
-      display: grid;
-      grid-template-columns: auto 1fr;
+      padding-left: 2rem;
+      position: relative;
 
       &:before {
-        align-self: center;
         content: '*';
         font-family: var(--font-secondary);
         font-weight: bold;
-        grid-column: 1;
-        padding-right: 0.75rem;
+        position: absolute;
       }
 
-      > * {
+      * {
         grid-column: 2;
+        grid-area: text;
       }
 
       > p {
