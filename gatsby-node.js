@@ -14,7 +14,7 @@ exports.onCreateNode = ({ node, getNode, boundActionCreators }) => {
     const slug = createFilePath({ node, getNode, basePath: `pages` })
 
     const { createNodeField } = boundActionCreators
-    
+
     // add slug
     createNodeField({
       node,
@@ -26,7 +26,7 @@ exports.onCreateNode = ({ node, getNode, boundActionCreators }) => {
 
 exports.createPages = ({ graphql, boundActionCreators }) => {
   const { createPage } = boundActionCreators
-
+    
   return new Promise((resolve, reject) => {
     graphql(`
       {

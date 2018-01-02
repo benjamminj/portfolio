@@ -1,6 +1,7 @@
 ---
 title: Web Workers
 date: 2017-12-26
+draft: true
 ---
 
 Little blurb at the beginning to show as a preview and introduce the post and cool stuff like that. Make sure that it's always over 140 characters or else.
