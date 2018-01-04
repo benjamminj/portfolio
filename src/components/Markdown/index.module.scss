@@ -16,7 +16,7 @@
   }
 
   h3 {
-    font-size: 1.125rem;
+    font-size: 1rem;
   }
 
   h4 {
@@ -55,9 +55,13 @@
     counter-reset: ol-count;
 
     li {
+      position: relative;
+      padding-left: 2rem;
+      line-height: 1.5;
+
       &:before {
         content: counter(ol-count) ")";
-        // margin-right: 0.25rem;
+        position: absolute;
         counter-increment: ol-count;
       }
     }
@@ -68,6 +72,7 @@
       // allows for nested lists with proper icon placement
       padding-left: 2rem;
       position: relative;
+      line-height: 1.5;
 
       &:before {
         content: '*';
@@ -76,13 +81,17 @@
         position: absolute;
       }
 
-      * {
-        grid-column: 2;
-        grid-area: text;
-      }
+      // * {
+      //   grid-column: 2;
+      //   grid-area: text;
+      // }
 
       > p {
         margin: initial;
+      }
+
+      & + li {
+        margin-top: 2rem;
       }
     }
 

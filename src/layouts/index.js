@@ -14,11 +14,12 @@ require('prismjs/themes/prism.css')
 
 const TemplateWrapper = ({ children }) => (
   <div className={style.TemplateWrapper}>
+    {/* todo -- real metadata */}
     <Helmet
-      title="Playground"
+      title="Benjamin Johnson"
       meta={[
-        { name: 'description', content: 'Something cool about this' },
-        { name: 'keywords', content: 'sample, something' }
+        { name: 'description', content: 'Front-End Web Developer with a passion for clean UIs & elegant code' },
+        { name: 'keywords', content: 'front-end developer, web, javascript' }
       ]}
     />
     <header className={style.header}>

@@ -43,7 +43,7 @@ const IndexPage = () => (
 
     <ul className={style.list}>
       {navigation.map(link => (
-        <li className={style.li}>
+        <li className={style.li} key={link.href}>
           <Heading className={style.listHeading}>
             <Link external={link.external} to={link.href} href={link.href}>
               {link.text}
