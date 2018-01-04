@@ -1,16 +1,11 @@
 $rhythm: 2rem;
+$header-size: 2.25rem;
 
 .IndexPage {
   display: flex;
   flex-direction: column;
-  position: absolute;
-  top: 0;
-  bottom: 0;
   justify-content: center;
-  z-index: -1;
   align-items: center;
-  left: 0;
-  right: 0;
   padding: var(--body-padding);
 
   > * {

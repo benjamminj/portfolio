@@ -2,6 +2,9 @@
 
 .TemplateWrapper {
   padding: var(--body-padding, 1rem);
+  display: grid;
+  grid-template-rows: auto 1fr;
+  height: 100vh;
 
   @include above-screen-sm {
     --body-padding: 3rem;
