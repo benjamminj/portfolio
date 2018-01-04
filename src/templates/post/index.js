@@ -19,7 +19,8 @@ class PostTemplate extends Component {
           </Heading>
 
           <span className={style.subheading}>
-            {date && `${date} — `}{post.timeToRead} min read
+            {date && `${date} — `}
+            {post.timeToRead} min read
           </span>
         </div>
 

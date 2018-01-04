@@ -7,22 +7,22 @@ const navigation = [
   {
     text: 'github',
     external: true,
-    href: 'https://github.com/benjaminj6'
+    href: 'https://github.com/benjaminj6',
   },
   {
     text: 'blog',
-    href: '/blog'
+    href: '/blog',
   },
   {
     text: 'linkedin',
     external: true,
-    href: 'https://www.linkedin.com/in/benjamin-d-johnson/'
+    href: 'https://www.linkedin.com/in/benjamin-d-johnson/',
   },
   {
     text: 'contact',
     external: true,
-    href: 'mailto:benjamin.d.johnson@icloud.com'
-  }
+    href: 'mailto:benjamin.d.johnson@icloud.com',
+  },
 ]
 
 const IndexPage = () => (

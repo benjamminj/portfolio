@@ -7,7 +7,7 @@ const Heading = props => (
     className={`${style.Heading} ${props.className || ''}`}
     style={{
       '--font-size': props.large ? '1.5rem' : undefined, // TODO -- move into method?
-      '--color': props.accented ? 'var(--accent-1-dark)' : undefined
+      '--color': props.accented ? 'var(--accent-1-dark)' : undefined,
     }}
   >
     {props.children}

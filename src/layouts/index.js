@@ -18,8 +18,12 @@ const TemplateWrapper = ({ children }) => (
     <Helmet
       title="Benjamin Johnson"
       meta={[
-        { name: 'description', content: 'Front-End Web Developer with a passion for clean UIs & elegant code' },
-        { name: 'keywords', content: 'front-end developer, web, javascript' }
+        {
+          name: 'description',
+          content:
+            'Front-End Web Developer with a passion for clean UIs & elegant code',
+        },
+        { name: 'keywords', content: 'front-end developer, web, javascript' },
       ]}
     />
     <header className={style.header}>
@@ -30,7 +34,7 @@ const TemplateWrapper = ({ children }) => (
 )
 
 TemplateWrapper.propTypes = {
-  children: PropTypes.func
+  children: PropTypes.func,
 }
 
 export default TemplateWrapper
