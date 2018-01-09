@@ -11,11 +11,10 @@ class WebWorkerExample extends Component {
   }
 
   componentWillMount() {
+    // todo...button to unmount worker & make counter unresponsive
     this.worker = new MyWorker()
     this.worker.onmessage = this.onMessage
   }
-
-  incrementCounter = () => {}
 
   onMessage = msg => {
     console.log('message from the worker -', msg.data)
@@ -41,6 +40,9 @@ class WebWorkerExample extends Component {
           onClick={() => this.setState({ count: 0 })}
         >
           Clear
+        </Button>
+        <Button className={style.button} onClick={() => this.worker.terminate()}>
+          Terminate Worker
         </Button>
       </div>
     )
