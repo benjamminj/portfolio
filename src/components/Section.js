@@ -1,7 +1,6 @@
 import React from 'react'
 import { css } from 'emotion'
 import { textMaxWidth } from '../styles/variables'
-// import style from './index.module.scss'
 
 const Section = props => (
   <section className={css`${style} ${props.className}`}>

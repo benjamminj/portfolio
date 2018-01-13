@@ -6,32 +6,8 @@ import { css } from 'emotion'
 import { aboveScreenSm, aboveScreenMd } from '../styles/mixins'
 
 // todo -- global styles
-import '../styles/reset.css'
-import '../styles/theme.scss'
-import '../styles/base.scss'
-
-const style = css`
-  padding: var(--body-padding, 1rem);
-  display: grid;
-  grid-template-rows: auto 1fr;
-  height: 100vh;
-
-  ${aboveScreenSm(css`
-    --body-padding: 2rem;
-  `)};
-
-  ${aboveScreenMd(css`
-    --body-padding: 1rem;
-  `)};
-`
-
-const headerStyle = css`
-  margin-bottom: 1rem;
-  z-index: 100;
-  text-align: left;
-`
-
-// import style from './index.module.scss'
+import '../styles/theme.js'
+import '../styles/reset.js'
 
 const TemplateWrapper = ({ children }) => (
   <div className={style}>
@@ -59,3 +35,26 @@ TemplateWrapper.propTypes = {
 }
 
 export default TemplateWrapper
+
+
+// style 
+const style = css`
+  padding: var(--body-padding, 1rem);
+  display: grid;
+  grid-template-rows: auto 1fr;
+  height: 100vh;
+
+  ${aboveScreenSm(css`
+    --body-padding: 2rem;
+  `)};
+
+  ${aboveScreenMd(css`
+    --body-padding: 1rem;
+  `)};
+`
+
+const headerStyle = css`
+  margin-bottom: 1rem;
+  z-index: 100;
+  text-align: left;
+`

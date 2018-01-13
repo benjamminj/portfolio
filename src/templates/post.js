@@ -1,10 +1,9 @@
 import React, { Component } from 'react'
 import { css } from 'emotion'
 
-import { Heading, Markdown } from '../../components'
-import { aboveScreenMd } from '../../styles/mixins'
-import { textMaxWidth } from '../../styles/variables'
-// import style from './index.module.scss'
+import { Heading, Markdown } from '../components'
+import { aboveScreenMd } from '../styles/mixins'
+import { textMaxWidth } from '../styles/variables'
 
 class PostTemplate extends Component {
   render() {

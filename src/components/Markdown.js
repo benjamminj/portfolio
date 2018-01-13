@@ -1,8 +1,7 @@
 import React from 'react'
 import { css } from 'emotion'
 import { linkStyle } from '../styles/mixins'
-
-require('prismjs/themes/prism.css')
+import syntaxHighlightingStyles from '../styles/syntax-highlighting'
 
 const Markdown = props => (
   <div dangerouslySetInnerHTML={{ __html: props.html }} className={style} />
@@ -10,6 +9,7 @@ const Markdown = props => (
 
 export default Markdown
 
+// styles
 const style = css`
   /* headings */
   h1,
@@ -175,4 +175,6 @@ const style = css`
     width: 100%;
     margin: 2rem 0;
   }
+
+  ${syntaxHighlightingStyles};
 `
