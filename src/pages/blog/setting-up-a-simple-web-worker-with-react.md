@@ -8,15 +8,15 @@ Web Workers aren't exactly new citizens of the web platform, although I feel lik
 
 If you're not too familiar with _what_ web workers are, they're a browser API that allows you to execute a script separate from the main JavaScript thread. This is incredibly valuable as JavaScript is a _single-threaded_ programming language, and any intensive scripts run from the main thread can end up blocking user interaction (not a great UX when you can't click any buttons 😜).
 
-If you wanna do a quick refresh on web workers or simply find a more ocmprehensive article about what they are, I recommend you check out Kyle Simpson's chapter on [Program Performance](https://github.com/getify/You-Dont-Know-JS/blob/master/async%20%26%20performance/ch5.md#web-workers) in You Don't Know JS. In addition, the [MDN docs on using web workers](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Using_web_workers) are quite in-depth (props to the team at Mozilla for maintianing top-notch documentation for...well...everything on the web)
+If you wanna do a quick refresh on web workers or simply find a more ocmprehensive article about what they are, I recommend you check out Kyle Simpson's chapter on [Program Performance](https://github.com/getify/You-Dont-Know-JS/blob/master/async%20%26%20performance/ch5.md#web-workers) in You Don't Know JS. In addition, the [MDN docs on using web workers](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Using_web_workers) are quite in-depth (props to the team at Mozilla for maintianing top-notch documentation for...well...everything on the web). Last but not least, there's a great article on [FreeCodeCamp's blog](https://medium.freecodecamp.org/how-web-workers-can-help-with-consistent-asynchronous-tasks-in-javascript-cd6d728fa4ee) regarding usage of web workers.
 
 ## Step 1. A Simple Counter Component
 
 ### Commands to Run
 
-basic bootstrapping of the app
+First, let's bootstrap our app. I'm using `gatsby-cli`, so we'll need to install that globally (`npm install -g gatsby-cli`). I was using [create-react-app](https://github.com/facebookincubator/create-react-app) at first, but they currently don't let you make use custom webpack loaders without ejecting, and frankly I don't want to dig through all of that configuration. 😜 We'll get into exactly _why_ we need the ability to load with custom loaders in a little bit. 
 
-* you'll need gatsby-cli installed to start...explain why not using CRA since it does require a couple custom webpack loaders
+Once you're up and running with `gatsby-cli`, run the following commands to get the whole app bootstrapped.
 
 ```bash
 gatsby new example-web-workers
@@ -24,21 +24,21 @@ gatsby new example-web-workers
 npm cd example-web-workers
 ```
 
-And then install a couple dependencies we're gonna need later
+And then let's install that custom webpack loader that we're gonna need in a little bit (may as well get all the installations out of the way at the beginning).
 
 ```bash
 npm i -D worker-loader
 ```
 
-And lastly, start up our dev environmnet
+And with one final script, we're ready to start our development environment. 🎉🎉🎉
 
 ```bash
 npm run develop
+
+# once finished, open your browser of choice to http://localhost:8000
 ```
 
-And then open up your browser to `https://localhost:8000`.
-
-You should see this
+You should see something like this
 
 ![Picture of Gatsby Default HomePage](http://res.cloudinary.com/da2iq7dge/image/upload/v1515374563/gatsby-boilerrplate-home-2018_ekiock.png)
 
@@ -46,7 +46,9 @@ I edited the header text / color of mine, so that's why you're gonna see a littl
 
 ### The Glue: A Basic Component
 
-open up `src/pages/index.js`...this is the code we're gonna start with for our example
+We're gonna be writing a basic counter component to illustrate using web workers. Now, it's important to note that this is probably not a "real-world" use-case for web workers, but rather a simple example to get us familiar with using them. I find it extremely helpful to reduce the cognitive load when I'm learning something new, so not having to deal with complex business logic when learning a new browser API is crucial.
+
+With that being said, let's modify our `src/pages/index.js` to contain the wrapper code for the counter
 
 ```jsx
 import React, { Component } from 'react'
@@ -74,9 +76,7 @@ class WebWorkerCounter extends Component {
 export default WebWorkerCounter
 ```
 
-Overall, it's pretty simple, we're gonna be building a counter that displays a number, & allows you to increase / decrease that number by clicking on the appropriate button. Clicking the "clear" button will reset out counter to 0.
-
-For right now the counter buttons don't do anything, that's gonna be the next step. Also note that this type of "app" doesn't require a WW **at all**, it could easily be done within the component since none of our operations are thred-blocking. However, doing a realllly trivial component will help us to get familiar with the protocols needed to communicate back & forth with dedicated web workers.
+Overall, it's pretty simple, we're gonna be building a counter that displays a number, & allows you to increase / decrease that number by clicking on the appropriate button. Clicking the "clear" button will reset out counter to 0. For right now the counter buttons don't do anything, that's gonna come in the next step.
 
 ## Step 2: Using a Web Worker to communicate with our Counter
 
