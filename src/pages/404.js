@@ -3,25 +3,7 @@ import React from 'react'
 import { Heading, Link, Section } from '../components'
 import { css } from 'emotion'
 
-const style = css`
-  position: absolute;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-`
-
-const headingStyle = css`
-  font-size: 7rem;
-  margin-top: 0;
-  margin-bottom: 0;
-  color: var(--gray-2);
-`
-
+// component
 const NotFoundPage = () => (
   <Section className={style}>
     <Heading className={headingStyle}>
@@ -40,3 +22,25 @@ const NotFoundPage = () => (
 )
 
 export default NotFoundPage
+
+// styles
+const style = css`
+  align-items: center;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  left: 0;
+  padding: 1rem;
+  position: absolute;
+  right: 0;
+  text-align: center;
+  top: 0;
+`
+
+const headingStyle = css`
+  color: var(--gray-2);
+  font-size: 7rem;
+  margin-bottom: 0;
+  margin-top: 0;
+`

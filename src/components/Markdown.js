@@ -4,7 +4,13 @@ import { linkStyle } from '../styles/mixins'
 
 require('prismjs/themes/prism.css')
 
-const markdownStyles = css`
+const Markdown = props => (
+  <div dangerouslySetInnerHTML={{ __html: props.html }} className={style} />
+)
+
+export default Markdown
+
+const style = css`
   /* headings */
   h1,
   h2,
@@ -97,7 +103,7 @@ const markdownStyles = css`
 
     /* nested lists */
     ul {
-      // smaller vertical rhythm for sublists
+      /* smaller vertical rhythm for sublists */
       margin: 0;
 
       li {
@@ -161,7 +167,7 @@ const markdownStyles = css`
 
   /* links */
   a {
-    ${linkStyle}
+    ${linkStyle};
   }
 
   /* img */
@@ -170,12 +176,3 @@ const markdownStyles = css`
     margin: 2rem 0;
   }
 `
-
-const Markdown = props => (
-  <div
-    dangerouslySetInnerHTML={{ __html: props.html }}
-    className={markdownStyles}
-  />
-)
-
-export default Markdown

@@ -2,19 +2,19 @@ import React from 'react'
 
 import { Heading, Link, Section } from '../../components'
 import GatsbyLink from 'gatsby-link'
+import { css } from 'emotion'
 
-import style from './index.module.scss'
-
+// component
 const BlogLandingPage = ({ data, errors }) => (
-  <Section className={style.BlogLandingPage}>
-    <Heading large className={style.pageHeading}>
+  <Section className={style}>
+    <Heading large className="pageHeading">
       <h1>Blog</h1>
     </Heading>
 
-    <ul className={style.postsList}>
+    <ul className="postsList">
       {data.allMarkdownRemark.edges.map(({ node }) => (
-        <li className={style.listItem} key={node.fields.slug}>
-          <Heading className={style.listItemHeading}>
+        <li className="listItem" key={node.fields.slug}>
+          <Heading className="listItemHeading">
             <h2>
               <Link to={node.fields.slug}>{node.frontmatter.title}</Link>
             </h2>
@@ -22,7 +22,7 @@ const BlogLandingPage = ({ data, errors }) => (
 
           <p>{node.excerpt}</p>
 
-          <h3 className={style.listItemSubheading}>
+          <h3 className="listItemSubheading">
             {node.frontmatter.date} &mdash; {node.timeToRead} min. read
           </h3>
         </li>
@@ -56,5 +56,33 @@ export const query = graphql`
         }
       }
     }
+  }
+`
+
+// style
+const gutter = '0.5rem'
+const style = css`
+  .pageHeading {
+    margin: 3rem 0 2rem; // todo -- should standardize
+  }
+
+  .postsList {
+    margin: 1rem 0;
+  }
+
+  .listItem + .listItem {
+    margin-top: 3rem;
+  }
+
+  .listItemHeading {
+    margin-bottom: $gutter;
+  }
+
+  .listItemSubheading {
+    font-size: 0.825rem;
+    margin: $gutter 0;
+    color: #888;
+    font-family: var(--font-secondary);
+    font-weight: normal;
   }
 `

@@ -4,12 +4,6 @@ import { css } from 'emotion'
 import { linkStyle } from '../styles/mixins'
 // import styles from './index.module.scss'
 
-const borderSize = '1px'
-const color = 'var(--accent-1-dark)'
-const styles = css`
-  ${linkStyle()}
-`
-
 const Link = ({ external, ...props }) => (
   <Fragment>
     {external ? (
@@ -26,3 +20,9 @@ const Link = ({ external, ...props }) => (
 )
 
 export default Link
+
+const borderSize = '1px'
+const color = 'var(--accent-1-dark)'
+const styles = css`
+  ${linkStyle()};
+`

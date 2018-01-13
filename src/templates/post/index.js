@@ -1,7 +1,10 @@
 import React, { Component } from 'react'
+import { css } from 'emotion'
 
 import { Heading, Markdown } from '../../components'
-import style from './index.module.scss'
+import { aboveScreenMd } from '../../styles/mixins'
+import { textMaxWidth } from '../../styles/variables'
+// import style from './index.module.scss'
 
 class PostTemplate extends Component {
   render() {
@@ -12,13 +15,13 @@ class PostTemplate extends Component {
     const { date, title } = post.frontmatter
 
     return (
-      <article className={style.Lesson}>
-        <div className={style.heading}>
+      <article className={style}>
+        <div className="heading">
           <Heading large>
             <h1>{post.frontmatter.title}</h1>
           </Heading>
 
-          <span className={style.subheading}>
+          <span className="subheading">
             {date && `${date} — `}
             {post.timeToRead} min read
           </span>
@@ -31,7 +34,6 @@ class PostTemplate extends Component {
 }
 
 export default PostTemplate
-
 export const query = graphql`
   query LessonQuery($slug: String!) {
     markdownRemark(fields: { slug: { eq: $slug } }) {
@@ -43,4 +45,28 @@ export const query = graphql`
       }
     }
   }
+`
+
+// styles
+const style = css`
+  margin: 1rem 0;
+
+  ${aboveScreenMd(css`
+    max-width: ${textMaxWidth};
+    margin: 0 auto 1rem;
+  `)}
+}
+
+.heading {
+  font-family: var(--font-secondary);
+  padding-bottom: 2rem;
+  padding-top: 2rem;
+}
+
+.subheading {
+  font-size: 0.825rem;
+  color: rgba(0,0,0,0.5);
+  margin-top: -1rem;
+  display: block;
+}
 `

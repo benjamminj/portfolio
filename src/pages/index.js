@@ -2,39 +2,6 @@ import React from 'react'
 import { Heading, Link } from '../components'
 import styled, { css } from 'emotion'
 
-const rhythm = '2rem'
-const style = css`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: var(--body-padding);
-
-  > * {
-    max-width: 35rem;
-  }
-
-  .list {
-    display: flex;
-    flex-wrap: wrap;
-    margin: ${rhythm} 0;
-
-    .li {
-      display: inline;
-      padding: 0.5rem 0;
-      &:not(:last-child) {
-        margin-right: 3rem;
-      }
-    }
-
-    .listHeading {
-      margin: 0;
-    }
-  }
-`
-
-const headingStyle = css`margin-bottom: ${rhythm};`
-
 // todo...somewhere else perhaps?
 const navigation = [
   {
@@ -92,3 +59,37 @@ const IndexPage = () => (
 )
 
 export default IndexPage
+
+// styles
+const rhythm = '2rem'
+const style = css`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: var(--body-padding);
+
+  > * {
+    max-width: 35rem;
+  }
+
+  .list {
+    display: flex;
+    flex-wrap: wrap;
+    margin: ${rhythm} 0;
+
+    .li {
+      display: inline;
+      padding: 0.5rem 0;
+      &:not(:last-child) {
+        margin-right: 3rem;
+      }
+    }
+
+    .listHeading {
+      margin: 0;
+    }
+  }
+`
+
+const headingStyle = css`margin-bottom: ${rhythm};`

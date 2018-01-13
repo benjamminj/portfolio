@@ -15,7 +15,6 @@ const style = css`
   display: grid;
   grid-template-rows: auto 1fr;
   height: 100vh;
-  text-align: center;
 
   ${aboveScreenSm(css`
     --body-padding: 2rem;
