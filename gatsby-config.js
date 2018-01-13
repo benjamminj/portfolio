@@ -16,6 +16,7 @@ module.exports = {
         plugins: ['gatsby-remark-prismjs']
       }
     },
+    'gatsby-plugin-emotion',
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-sass`,
     `gatsby-plugin-react-next`
