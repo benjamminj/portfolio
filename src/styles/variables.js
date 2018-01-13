@@ -1,0 +1,1 @@
+export const textMaxWidth = '70ch'

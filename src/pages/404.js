@@ -1,11 +1,30 @@
 import React from 'react'
 
 import { Heading, Link, Section } from '../components'
-import style from './404.module.scss'
+import { css } from 'emotion'
+
+const style = css`
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+`
+
+const headingStyle = css`
+  font-size: 7rem;
+  margin-top: 0;
+  margin-bottom: 0;
+  color: var(--gray-2);
+`
 
 const NotFoundPage = () => (
-  <Section className={style.NotFoundPage}>
-    <Heading className={style.heading}>
+  <Section className={style}>
+    <Heading className={headingStyle}>
       <h1>404</h1>
     </Heading>
     <p>

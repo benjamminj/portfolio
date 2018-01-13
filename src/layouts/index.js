@@ -1,19 +1,41 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Link } from '../components'
-// import Link from 'gatsby-link'
 import Helmet from 'react-helmet'
+import { css } from 'emotion'
+import { aboveScreenSm, aboveScreenMd } from '../styles/mixins'
 
+// todo -- global styles
 import '../styles/reset.css'
 import '../styles/theme.scss'
 import '../styles/base.scss'
-import style from './index.module.scss'
 
-// todo -- figure out dynamic imports
-require('prismjs/themes/prism.css')
+const style = css`
+  padding: var(--body-padding, 1rem);
+  display: grid;
+  grid-template-rows: auto 1fr;
+  height: 100vh;
+  text-align: center;
+
+  ${aboveScreenSm(css`
+    --body-padding: 2rem;
+  `)};
+
+  ${aboveScreenMd(css`
+    --body-padding: 1rem;
+  `)};
+`
+
+const headerStyle = css`
+  margin-bottom: 1rem;
+  z-index: 100;
+  text-align: left;
+`
+
+// import style from './index.module.scss'
 
 const TemplateWrapper = ({ children }) => (
-  <div className={style.TemplateWrapper}>
+  <div className={style}>
     {/* todo -- real metadata */}
     <Helmet
       title="Benjamin Johnson"
@@ -21,12 +43,12 @@ const TemplateWrapper = ({ children }) => (
         {
           name: 'description',
           content:
-            'Front-End Web Developer with a passion for clean UIs & elegant code',
+            'Front-End Web Developer with a passion for clean UIs & elegant code'
         },
-        { name: 'keywords', content: 'front-end developer, web, javascript' },
+        { name: 'keywords', content: 'front-end developer, web, javascript' }
       ]}
     />
-    <header className={style.header}>
+    <header className={headerStyle}>
       <Link to="/">benjaminjohnson.me</Link>
     </header>
     {children()}
@@ -34,7 +56,7 @@ const TemplateWrapper = ({ children }) => (
 )
 
 TemplateWrapper.propTypes = {
-  children: PropTypes.func,
+  children: PropTypes.func
 }
 
 export default TemplateWrapper

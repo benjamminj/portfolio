@@ -1,14 +1,21 @@
-@import '../../styles/mixins';
+import React from 'react'
+import { css } from 'emotion'
+import { linkStyle } from '../styles/mixins'
 
-.Markdown {
-  // headings
+require('prismjs/themes/prism.css')
+
+const markdownStyles = css`
+  /* headings */
   h1,
   h2,
   h3,
   h4,
   h5,
   h6 {
-    @include heading();
+    /* todo -- move to a central mixin location? */
+    font-family: var(--font-secondary);
+    margin: 1.25em 0;
+    color: var(--color-primary);
   }
 
   h2 {
@@ -31,18 +38,16 @@
     font-size: 0.75rem;
   }
 
-  // lists
+  /* lists */
   ol,
   ul {
     margin: 1em 0;
-    // padding-left: 1rem;
-    // position: relative;
 
     li {
       margin: 0.5em 0;
-      
+
       &:before {
-        // position: absolute;
+        /* position: absolute; */
         padding-right: 0.5rem;
         font-family: var(--font-secondary);
         left: 0;
@@ -60,7 +65,7 @@
       line-height: 1.5;
 
       &:before {
-        content: counter(ol-count) ")";
+        content: counter(ol-count) ')';
         position: absolute;
         counter-increment: ol-count;
       }
@@ -69,7 +74,7 @@
 
   ul {
     li {
-      // allows for nested lists with proper icon placement
+      /* allows for nested lists with proper icon placement */
       padding-left: 2rem;
       position: relative;
       line-height: 1.5;
@@ -81,11 +86,6 @@
         position: absolute;
       }
 
-      // * {
-      //   grid-column: 2;
-      //   grid-area: text;
-      // }
-
       > p {
         margin: initial;
       }
@@ -95,7 +95,7 @@
       }
     }
 
-    // nested lists
+    /* nested lists */
     ul {
       // smaller vertical rhythm for sublists
       margin: 0;
@@ -108,7 +108,7 @@
     }
   }
 
-  // dividers
+  /* dividers */
   hr {
     margin: 1.5rem 0;
     border-width: 0;
@@ -122,7 +122,7 @@
     }
   }
 
-  // paragraphs
+  /* paragraphs */
   p {
     margin: 1em 0;
 
@@ -135,7 +135,7 @@
     }
   }
 
-  // code
+  /* code */
   pre {
     margin: 1.25em 0;
   }
@@ -145,7 +145,7 @@
     padding: 0.25em;
   }
 
-  // blockquote
+  /* blockquote */
   blockquote {
     background: var(--accent-1-extra-light);
     font-family: var(--font-secondary);
@@ -159,14 +159,23 @@
     }
   }
 
-  // links
+  /* links */
   a {
-    @include link();
+    ${linkStyle}
   }
 
-  // img
+  /* img */
   img {
     width: 100%;
     margin: 2rem 0;
   }
-}
+`
+
+const Markdown = props => (
+  <div
+    dangerouslySetInnerHTML={{ __html: props.html }}
+    className={markdownStyles}
+  />
+)
+
+export default Markdown
