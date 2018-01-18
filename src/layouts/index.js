@@ -5,7 +5,6 @@ import Helmet from 'react-helmet'
 import { css } from 'emotion'
 import { aboveScreenSm, aboveScreenMd } from '../styles/mixins'
 
-// todo -- global styles
 import '../styles/theme.js'
 import '../styles/reset.js'
 
