@@ -26,11 +26,15 @@ exports.onCreateNode = ({ node, getNode, boundActionCreators }) => {
 
 exports.createPages = ({ graphql, boundActionCreators }) => {
   const { createPage } = boundActionCreators
-    
+
   return new Promise((resolve, reject) => {
+    const filter = process.env.NODE_ENV === 'production'
+      ? `frontmatter: { draft: { ne: true } }`
+      : ''
+
     graphql(`
       {
-        allMarkdownRemark {
+        allMarkdownRemark(filter: {${filter}}) {
           edges {
             node {
               fields {
