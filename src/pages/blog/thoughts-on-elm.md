@@ -15,7 +15,7 @@ Here's a couple of the key differences that I've experienced in the past few mon
 
 ## Pros
 
-### Strong Typing
+### 1. Strong Typing
 
 Elm is a _strongly-typed_ language, as opposed to JavaScript's _weak typing_. This means that all of the functions you declare have a _type signature_.
 
@@ -44,11 +44,11 @@ const sum = add('a', 'b') // returns the string "ab" 🤔
 sum = add "a" "b" -- throws a compiler error that's helpful! 🎉
 ```
 
-The definition of the function in Elm includes a _type signature_ &mdash; indicating that the `add` function takes 2 numbers as parameters & returns a number as a result. Since, the Elm compiler is usually smart enough to _infer_ your type signatures for you, you don't actually have to type this signature to get all the strongly-typed goodies. However, I found that as I played more with Elm, I found myself thinking about the type signatures of the functions that I was writing.
+The definition of the function in Elm includes a _type signature_ &mdash; indicating that the `add` function takes 2 numbers as parameters & returns a number as a result. Since the Elm compiler is usually smart enough to _infer_ your type signatures for you, you don't actually have to type this signature to get all the strongly-typed goodies. However, I found that as I played more with Elm, I found myself thinking about the type signatures of the functions that I was writing.
 
 While JavaScript has had a few attempts to bring types to it (notably [Flow](https://flow.org/) & [TypeScript](https://www.typescriptlang.org/)), they both fall way short of Elm's type syntax & static type checking capabilities. In Elm, type declarations feel more like a first class citizen, encouraging developers to think about types more often.
 
-### Enforced Error Handling
+### 2. Enforced Error Handling
 
 In Elm, the compiler will get reaaaaaaallly angry if you don't handle potential points of failure in your application code.
 
@@ -65,7 +65,7 @@ For example, let's say you make a network request for some JSON. You're gonna op
 
 Easy peasy, right? You just get the JSON, and use the appropriate keys to render your blog post.
 
-Not so fast.
+**Not so fast.**
 
 What happens if the network went down in between when the user loaded your web page & when they made this request?
 What happens if the JSON sends back an array of authors instead of a String?
@@ -79,7 +79,7 @@ Elm forces you to write error-handling code for any operations that could _poten
 
 Like I said, it's possible to write JavaScript that handles those potential errors, but it's really helpful to have the compiler on your side when you forget to write an error handler. I've seen a lot of bugs that happened because a developer forgot to handle an edge case or write code that was defensive to all points of failure.
 
-### Purely Functional
+### 3. Purely Functional
 
 While a purely functional language is awesome, purity without some form of state management doesn't work well for UIs (we need to be able to respond to user input & state changes 😜). Elm keeps the language pure by managing state mutations inside of the Elm runtime. This method of managing state updates, more commonly known as "[The Elm Architecture](https://guide.elm-lang.org/architecture/)" is also quite common outside of the Elm community (React + Redux is a prime example).
 
@@ -87,7 +87,7 @@ Programming with this paradigm makes your UI a pure function of application stat
 
 ## Cons
 
-### It's Hard To Beat The JavaScript Ecosystem 
+### 1. It's Hard To Beat The JavaScript Ecosystem 
 
 Say what you want about the "JavaScript fatigue" & having a new framework pop up each week: there's a _ton_ of competition in the front-end JS world, and this results in the best solutions rising to the top (usually).
 
@@ -97,7 +97,7 @@ Intermingling with JavaScript code makes it much more difficult for Elm to type-
 
 I'm a big fan of staying minimal & only using 3rd-party dependencies when you need them, but a beautiful part of the JS ecosystem is that you can consume these packages on NPM when you need to move fast or when you want to isolate a specific concept you're learning (i.e. you only want to learn Vue as a framework so you use Vue Material or Bootstrap so you don't spend all of your precious time styling your components).
 
-### HTML Templating is Little Strange
+### 2. HTML Templating is Little Strange
 
 Everything that I heard from the Elm community said that over time you get used to the HTML syntax, but it never really caught on for me. Here's a quick example of an Elm "template" (or "view" function).
 
@@ -136,7 +136,7 @@ Or something like Vue's template syntax, which just builds on top of HTML
 
 In my opinion, both the React & Vue template syntaxes are quite a bit easier to read quickly, although they might not be quite as flexible & composable as Elm's HTML functions.
 
-### Lack of Support From a Major Company
+### 3. Lack of Support From a Major Company
 
 On one hand, I hesitate to even make this a point against Elm as a language. The language should stand or fall on the way that it operates alone (in a perfect world...). 
 
