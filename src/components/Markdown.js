@@ -1,6 +1,6 @@
 import React from 'react'
 import { css } from 'emotion'
-import { linkStyle } from '../styles/mixins'
+import { aboveScreenSm, linkStyle } from '../styles/mixins'
 import syntaxHighlightingStyles from '../styles/syntax-highlighting'
 
 const Markdown = props => (
@@ -11,6 +11,12 @@ export default Markdown
 
 // styles
 const style = css`
+  width: calc(100vw - (2 * var(--body-padding)));
+  
+  ${aboveScreenSm(css`
+    width: inherit;
+  `)};
+
   /* headings */
   h1,
   h2,
@@ -146,8 +152,8 @@ const style = css`
     margin: 1.25em 0;
   }
 
-  :not(pre) > code {
-    background: var(--accent-1-extra-light);
+  *:not(pre) > code {
+    background: var(--gray-0);
     padding: 0.25em;
   }
 

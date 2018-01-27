@@ -62,7 +62,7 @@ export default css`
 
   :not(pre) > code[class*='language-'],
   pre[class*='language-'] {
-    background: #f5f2f0;
+    background: var(--gray-0);
   }
 
   /* Inline code */

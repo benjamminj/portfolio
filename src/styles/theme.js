@@ -12,10 +12,14 @@ injectGlobal`
     --accent-1-dark: #0077c2;
     --accent-1-extra-dark: #1565c0;
 
-    --accent-2: hsl(16, 100, 66);
+    --accent-2: #FF5722;
     --accent-2-dark: hsl(16, 100, 60);
     --accent-2-extra-dark: hsl(16, 100, 50);
 
+    --accent-3: #7cb342;
+    --accent-4: #ad1457;
+
+    --gray-0: #f2f2f2;
     --gray-1: #ccc;
     --gray-2: #999;
 
