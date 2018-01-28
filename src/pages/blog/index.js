@@ -20,7 +20,7 @@ const BlogLandingPage = ({ data, errors }) => (
             </h2>
           </Heading>
 
-          <p>{node.excerpt}</p>
+          <p className="postPreview">{node.excerpt}</p>
 
           <h3 className="listItemSubheading">
             {node.frontmatter.date} &mdash; {node.timeToRead} min. read
@@ -68,6 +68,10 @@ const style = css`
 
   .postsList {
     margin: 1rem 0;
+  }
+
+  .postPreview {
+    margin-top: 1rem;
   }
 
   .listItem + .listItem {
