@@ -182,5 +182,9 @@ const style = css`
     margin: 2rem 0;
   }
 
+  p > img {
+    margin: 1rem 0;
+  }
+
   ${syntaxHighlightingStyles};
 `
