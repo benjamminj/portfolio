@@ -1,12 +1,10 @@
 import React from 'react'
-import { css } from 'emotion'
+import { css, cx } from 'emotion'
 import { headingStyle } from '../styles/mixins'
 
 const Heading = props => (
   <div
-    className={css`
-      ${getStyle(props)} ${props.className};
-    `}
+    className={cx(getStyle(props), props.className)}
   >
     {props.children}
   </div>

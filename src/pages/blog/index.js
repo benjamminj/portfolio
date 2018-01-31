@@ -60,31 +60,24 @@ export const query = graphql`
 `
 
 // style
-const gutter = '0.5rem'
 const style = css`
-  .pageHeading {
-    margin: 3rem 0 2rem; // todo -- should standardize
-  }
+  margin-top: 3rem;
 
   .postsList {
     margin: 1rem 0;
   }
 
-  .postPreview {
-    margin-top: 1rem;
-  }
-
-  .listItem + .listItem {
-    margin-top: 3rem;
+  .listItem {
+    margin-top: 4rem;
   }
 
   .listItemHeading {
-    margin-bottom: $gutter;
+    margin: 0.75rem 0;
   }
 
   .listItemSubheading {
     font-size: 0.825rem;
-    margin: $gutter 0;
+    margin: 1rem 0;
     color: #888;
     font-family: var(--font-secondary);
     font-weight: normal;
