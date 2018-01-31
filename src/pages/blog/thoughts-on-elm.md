@@ -118,7 +118,7 @@ Compare this to something like JSX, which feel much closer to raw HTML.
 const view = model => (
   <div>
     <button onClick={Decrement}> - </button>
-    <div>model</div> 
+    <div>{model}</div> 
     <button onClick={Increment}> + </button>
   </div> 
 )
