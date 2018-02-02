@@ -1,7 +1,6 @@
 ---
 title: "Clean Console: Using Chrome DevTools to Stop Logging JSON Responses"
-draft: true
-date: 2018-01-27
+date: 2018-02-01
 ---
 
 ![Tools](https://res.cloudinary.com/da2iq7dge/image/upload/v1517373105/tools_lmjssm.jpg)
