@@ -52,7 +52,7 @@ const style = css`
 
   ${aboveScreenMd(css`
     max-width: ${textMaxWidth};
-    margin: 0 auto 1rem;
+    margin: 0 auto 3rem;
   `)}
 }
 
