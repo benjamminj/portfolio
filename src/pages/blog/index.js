@@ -67,17 +67,8 @@ const style = css`
     margin: 1rem 0;
   }
 
-<<<<<<< HEAD
   .listItem {
     margin-top: 4rem;
-=======
-  .postPreview {
-    margin-top: 1rem;
-  }
-
-  .listItem + .listItem {
-    margin-top: 3rem;
->>>>>>> 3fe1e6a4a7814e1563adf84aa1192583cb458eba
   }
 
   .listItemHeading {
