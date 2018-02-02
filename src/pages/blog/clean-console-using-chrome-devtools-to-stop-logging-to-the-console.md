@@ -1,18 +1,20 @@
 ---
-title: "Clean Console: Using Chrome DevTools to Stop Logging to the Console"
+title: "Clean Console — Using Chrome DevTools to Stop Logging JSON Responses"
 draft: true
 date: 2018-01-27
 ---
 
-![using a browser](https://res.cloudinary.com/da2iq7dge/image/upload/v1517121290/console_psnblz.png)
+![Tools](https://res.cloudinary.com/da2iq7dge/image/upload/v1517373105/tools_lmjssm.jpg)
 
-I've been fortunate to interact & work with many people that are just learning to code through the very same bootcamp I attended about a year and a half ago &mdash; [Thinkful](https://www.thinkful.com/). Most recently I've been doing a series of workshops on using Chrome Devtools.
+I've been fortunate to interact & work with many people that are just learning to code through the very same bootcamp I attended about a year and a half ago &mdash; [Thinkful](https://www.thinkful.com/). Most recently I've been doing a series of workshops on using Chrome Devtools, where I teach some common parts of Chrome DevTools that many front-end developers are using daily.
 
-I didn't learn how to use Chrome DevTools until I got onto my first job. I knew how to do the basics, preview CSS changes, change HTML, basically a bit of the stuff inside the `Elements` tab. I've heard similar stories from some of my colleagues &mdash; _debugging & developer tools_ aren't often learned until people get out on their first gig (exactly why I'm doing these workshops for Thinkful).
+I didn't learn how to use Chrome DevTools until I got on my first gig. I knew how to do the basics &mdash; preview CSS changes, change HTML, basically a bit of the stuff inside the `Elements` tab. 
 
-My most recent workshop focused on the Chrome DevTools "Network" tab: how to analyze your load time & other "productivity hacks" I've picked up. One key one that I included in the workshop is the inspiration for this article.
+I've also heard similar stories from some of my colleagues at my current job &mdash; debugging & developer tools aren't usually learned until _after_ people get out on their first gig.
 
-## The Problem: Logging Everywhere
+My most recent workshop focused on the Chrome DevTools "Network" tab: how to analyze your load time & other "productivity hacks" I've picked up. One of the points that I made there was the motivation for writing this article.
+
+## The Problem: Log, Log, Everywhere
 
 One of the earlier lessons in the process of learning web development is learning about fetching data via AJAX. Most apps that goes beyond triviality or need to respond to data dynamically are gonna fetch some JSON from an API, and then operate on that JSON.
 
@@ -23,19 +25,19 @@ fetch('https://jsonplaceholder.typicode.com/posts')
   .then(res => res.json())
   .then(json => {
     console.log(json) // to see what the response was
-    // code operate on the JSON 💻
+    // code operate on the JSON goes here
   })
 ```
 
 To preview my JSON, I'd either scatter `console.log` all over my codebase and dig through browser console to find my JSON, or I'd go copy-paste the endpoint into Postman or a `cURL` request. All of these work, but **what if there was a faster way to debug JSON responses in the browser?**
 
-## Chrome DevTools & Previewing JSON
+## Chrome DevTools To the Rescue!
 
 Thanks to Chrome DevTools, we can preview our JSON _without touching our source code_ (a.k.a. higher productivity & a smaller chance that you accidentally forget to delete a `console.log`).
 
 ### 1. Open the Network Tab
 
-I'm gonna be demonstrating all of this on one of my own apps, called [Horizon](https://benjaminj6.github.io/horizon). It's essentially a sunset tracker, pulling data from https://sunrise-sunset.org/. You're welcome to follow along or use any app of your choice (as long as it's sending JSON over the network).
+I'm gonna be demonstrating all of this on one of my own apps, called [Horizon](https://benjaminj6.github.io/horizon). It's essentially a sunset tracker, pulling data from https://sunrise-sunset.org/. You're welcome to follow along or use any app of your choice, provided it sends JSON over the internet.
 
 First, since we're gonna be debugging via the Network Tab, we'll want to open that up. Once you've got it open, you'll see something like this.
 
@@ -47,7 +49,7 @@ Great! Now we're all set to start our debugging.
 
 While my sample app may not have a ton of requests, many apps can contain 100+ requests on initial page load, making it a little more difficult to find the specific AJAX request we're looking for.
 
-Fortunately, Chrome DevTools lets us filter by response type. You'll see all of the options available to you near the top bar. Select `XHR` (**X**ml**H**ttp**R**equest) &mdash; this will contain all JSON data pulled into the app via `fetch` (or `$.ajax`, `axios`, or whatever HTTP client you're using)
+Fortunately, Chrome DevTools lets us filter by response type. You'll see all of the options available to you near the top bar. Select **`XHR`** (this stands for **X**ml**H**ttp**R**equest), which contains all JSON data pulled into the app via `fetch` (or `$.ajax`, `axios`, or whatever way you're using to grab your data).
 
 With the response filtered, your Network Tab should look like this:
 
@@ -69,12 +71,12 @@ There's our JSON! We've successfully found it _without touching our source code_
 
 ### Conclusion
 
-When I first discovered this method of debugging network requests, I felt on top of the world. All of a sudden I had one more tool in my toolbelt. While a well-placed `console.log` can be an extremely effective tool scattering it all over my source code to debug my network requests really felt like the whole "Maslow's Hammer" dilemma:
+When I first discovered this method of debugging network requests, I felt like I had just been given superpowers. While a well-placed `console.log` can be an extremely effective tool, scattering it all over my source code to  felt much like the whole "Maslow's Hammer" dilemma:
 
 > I suppose it is tempting, if the only tool you have is a hammer, to treat everything as if it were a nail.
 >
 > — Abraham Maslow, 1966
 
-Knowing how to use Chrome DevTools makes me think about a passage in [The Pragmatic Programmer](https://www.amazon.com/Pragmatic-Programmer-Journeyman-Master/dp/020161622X) where the author writes that the better you know your tools, the more productive you will be, effectively allowing you to write better software.
+Knowing how to use Chrome DevTools also makes me think about a passage in [The Pragmatic Programmer](https://www.amazon.com/Pragmatic-Programmer-Journeyman-Master/dp/020161622X) where the author writes that the better you know your tools, the more productive you will be, effectively allowing you to write better software.
 
 As always, if you read this post and enjoyed it, I'd love to know! Shoot me a tweet on my [Twitter](https://twitter.com/benjamminj) or connect with me on [LinkedIn](https://www.linkedin.com/in/benjamin-d-johnson/).
