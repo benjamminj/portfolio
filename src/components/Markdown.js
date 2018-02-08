@@ -26,7 +26,7 @@ const style = css`
   h6 {
     /* todo -- move to a central mixin location? */
     font-family: var(--font-secondary);
-    margin: 1.25em 0;
+    margin: 2em 0 0;
     color: var(--color-primary);
   }
 
@@ -122,7 +122,7 @@ const style = css`
 
   /* dividers */
   hr {
-    margin: 1.5rem 0;
+    margin: 2rem 0;
     border-width: 0;
     text-align: center;
     letter-spacing: 4px;
@@ -136,14 +136,10 @@ const style = css`
 
   /* paragraphs */
   p {
-    margin: 1em 0;
+    margin: 1em 0 0;
 
-    &:first-child {
-      margin-top: 0;
-    }
-
-    &:last-child {
-      margin-bottom: 0;
+    & + p {
+      margin-top: 2em;
     }
   }
 
@@ -159,12 +155,12 @@ const style = css`
 
   /* blockquote */
   blockquote {
-    background: var(--accent-1-extra-light);
+    border-left: 0.25rem solid var(--accent-1);
     font-family: var(--font-secondary);
     font-size: 0.825rem;
-    padding: 1rem;
-    border-radius: 2px;
     font-style: italic;
+    padding: 1rem 1rem 1rem 1.75rem;
+    margin: 2rem 0 2rem;
 
     p {
       line-height: 1.25;
@@ -183,7 +179,7 @@ const style = css`
   }
 
   p > img {
-    margin: 1rem 0;
+    margin: 1rem 0 0;
   }
 
   ${syntaxHighlightingStyles};
