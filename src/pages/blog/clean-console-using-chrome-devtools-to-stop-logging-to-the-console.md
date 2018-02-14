@@ -1,17 +1,18 @@
 ---
-title: "Clean Console: Using Chrome DevTools to Stop Logging JSON Responses"
+title: Clean Console
+subtitle: Using Chrome DevTools to Inspect JSON Responses from API Requests
 date: 2018-02-01
 ---
 
 ![Tools](https://res.cloudinary.com/da2iq7dge/image/upload/v1517373105/tools_lmjssm.jpg)
 
-I've been fortunate to instruct & work with many people that are just learning to code through the very same bootcamp I attended about a year and a half ago ([Thinkful](https://www.thinkful.com/) &mdash; yes this is a shameless plug 😜). It's awesome &mdash; I get to give back & invest in others' careers, while also getting to  work on my public speaking. Most recently I've been doing a series of workshops on using Chrome Devtools, where I teach some common parts of Chrome DevTools that many front-end developers are using daily.
+I’ve been fortunate to instruct and work with many people that are beginning to code through the very same bootcamp I attended about a year and a half ago ([Thinkful](https://www.thinkful.com/) &mdash; yes this is a shameless plug 😜 ). Most recently I’ve been doing a series of workshops on Chrome Devtools, where I teach common parts of Chrome DevTools that many front end developers are using daily. One of the most common inefficiencies I’ve noticed is using `console.log` to preview JSON responses from an API.
 
 I didn't learn how to use Chrome DevTools until I got on my first gig. I knew how to do the basics &mdash; preview CSS changes, change HTML, basically a bit of the stuff inside the `Elements` tab. 
 
-I've also heard similar stories from some of my colleagues at my current job &mdash; debugging & developer tools aren't usually learned until _after_ people get out on their first gig.
+I've also heard similar stories from some of my colleagues at my current job &mdash; debugging & developer tools aren't usually learned until _after_ people get out on their first gig. One reason is that 3–6 months is a short time to learn how to program, much less learn how to use developer tools well (but I digress…maybe that’s another blog post).
 
-My most recent workshop focused on the Chrome DevTools "Network" tab: how to analyze your load time & other "productivity hacks" I've picked up. One of the key "tricks" that I shared was the motivation for writing this article.
+My most recent workshop focused on the Chrome DevTools "Network" tab: how to analyze your load time & other "productivity hacks" I've picked up.
 
 ## The Problem: Log, Log, Everywhere
 
@@ -28,15 +29,17 @@ fetch('https://jsonplaceholder.typicode.com/posts')
   })
 ```
 
-To preview my JSON, I'd either scatter `console.log` all over my codebase and dig through browser console to find my JSON, or I'd go copy-paste the endpoint into Postman or a `cURL` request. All of these work, but **what if there was a faster way to debug JSON responses in the browser?**
+To preview my JSON, I would either scatter console.log all over my codebase and dig through the browser console window to find my JSON, or I would copy-paste the endpoint into Postman or a cURL request. All of these work, but **what if there was a faster way to debug JSON responses in the browser?**
+
+---
 
 ## Chrome DevTools To the Rescue!
 
-Thanks to Chrome DevTools, we can preview our JSON _without touching our source code_ (a.k.a. higher productivity & a smaller chance that you accidentally forget to delete a `console.log`).
+Thanks to Chrome DevTools, we can preview our JSON _without touching our source code_ (read: higher productivity & a smaller chance that you accidentally forget to delete a `console.log`).
 
 ### 1. Open the Network Tab
 
-I'm gonna be demonstrating all of this on one of my own apps, called [Horizon](https://benjaminj6.github.io/horizon). It's essentially a sunset tracker, pulling data from https://sunrise-sunset.org/. You're welcome to follow along or use any app of your choice, provided it sends JSON over the internet.
+I’m going to demonstrate all of this on one of my own apps, called [Horizon](https://benjaminj6.github.io/horizon). It's essentially a sunset tracker, pulling data from https://sunrise-sunset.org/. You're welcome to follow along or use any app of your choice, provided it sends JSON over the internet.
 
 First, since we're gonna be debugging via the Network Tab, we'll want to open that up. Once you've got it open, you'll see something like this.
 
@@ -68,9 +71,13 @@ The final step is for us to select that `Preview` tab. Once selected, you should
 
 There's our JSON! We've successfully found it _without touching our source code_. This means we can use this method of debugging _anywhere we can use Chrome DevTools_ &mdash; including debugging sites in production with minified JavaScript.
 
+---
+
 ## Conclusion
 
-If you're a seasoned pro & read all the way to the end, you might be thinking, "I've known this for years". However, when I first discovered this method of debugging network requests, I felt like I had just been given superpowers. A well-placed `console.log` can be an extremely effective tool, but scattering it all over source code felt much like the whole "Maslow's Hammer" dilemma:
+If you’re a seasoned pro and read all the way to the end, you might be thinking, “I’ve known this for years, people have really never learned this?”
+
+When I first discovered this method of debugging network requests, I felt like I had just been given superpowers. I’m grateful for the developers in my career that taught me how to use tools and increase my productivity. A well-placed `console.log` can be an extremely effective tool, but scattering it all over source code felt much like the whole "Maslow's Hammer" dilemma:
 
 > I suppose it is tempting, if the only tool you have is a hammer, to treat everything as if it were a nail.
 >
