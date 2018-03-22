@@ -1,69 +1,86 @@
 ---
-title: How CSS Works - The CSSOM, Render Tree, Layout, & Paint
+title: How CSS Works - The Critical Rendering Path & CSS
 draft: true
 date: 2018-03-15
 ---
 
-<!-- INTRO -->
-<!-- 
-CSS is one of the staples of the front-end developer workflow, yet it's really easy 
-to just use it without fully knowing & understanding how it works under the hood.
--->
+<!-- Intro -->
+- The tortoise & the hare "Slow & Steady Wins the Race"
+- In many things this is great — better to take slightly longer & be consistent, reliable, etc than to go super fast & miss details or (much worse) crash & burn
+- However, when talking about load time there is no room for "slow & steady". What you need is "fast & stable", since load times are a critical factor in conversion rate.
+  - Find that report that says that after 3s load time you'll lose 50% of your traffic.
 
-<!-- How Does CSS get from index.css to actually making pages look pretty? -->
+<!-- Defining the Critical Rendering Path -->
+When talking about load times, it's important to define what we mean by the "critical rendering path". In short.
 
-<!--
-CSS Rendering Pipeline
+**The critical rendering path** is the steps that the browser has to take in order to display the first pixels on the screen.
 
-Below is the process that CSS has to go through to get from code -> rendered pixels on the screen.
+In short, the critical rendering path looks something like this.
 
-Sidenote: This matters even if you're manipulating CSS with JavaScript as well. Changes to CSS, HTML class name, or CSS maipulated thru JS will all trigger CSS to go through this rendering path.
+1. Build the DOM from the recieved HTML
+2. If we encounter a CSS style sheet (embedded or linked), start building the CSSOM.
+3. If we encounter a JS block (non-async) while building the DOM, wait for CSSOM construction, stop DOM construction  & parse/execute the code. The reason for this is because JS execution can modify the DOM & access/modify the CSSOM.
 
-1. Calculate styles (parsing & figuring out the "Render Tree")
-  - 50% of time in this step is figuring out which selectors apply to an element
-  - Other 50% of the time usually involves figuring out _which_ styles are applied to the element based on the matching selectors
--->
+<!-- HTML & the Critical Rendering Path -->
+Since this is primarily an article on CSS, we won't spend a _ton_ of time on DOM construction.
 
-## 1. Calculate CSS Styles.
+However, since CSS is fundamentally a language for styling markup, we need to be aware of how it interacts with the DOM.
 
-The first step in our CSS rendering path is construction of the CSS Object Model (CSSOM) & "Render Tree". You've heard of the DOM (Document Object Model)? When the browser begins parsing a CSS file, it turns the CSS code into a tree of CSS selectors & their attached rules.
+**The DOM** is simply a tree-like data structure containing all of the HTML nodes on the page. Each node contains the data about that HTML element (attributes, classes, etc), & points to its own children nodes. For example, given the following HTML, we would construct the following DOM
 
-The structure of the CSSOM give CSS its cascading nature. Elements further down in the tree inherit the rules from their parent nodes, applying their own rules as overrides.
+```html
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>A nice, light DOM</title>
+  </head>
+  <body>
+    <header>
+      <h1>DOM construction</h1>
+    </header> 
 
-After building the CSSOM, the browser will then combine it with the DOM to create the "render tree". In short, the render tree will consist of _all visible elements in the DOM_. This means that any HTML elements that are invisible (such as `<head> or <script>`) will not be included, as well as CSS that has been removed from the DOM via `display: none;`
+    <main>
+      <p>Yay! Content</p>
+    </main>
+  </body>
+</html>
+```
 
-It's worth noting that CSSOM & render tree construction primarily happen on the initial load. When re-rendering styles, the browser is a little streamlined. It doesn't have to reconstruct the _entire_ CSSOM / render tree, it simply has to determine _which_ CSS selectors apply to the changed element & which rules to apply based on those selectors.
+```
+include the graph of the DOM here
+```
 
-## 2. Layout
+If you're observant you might notice that the HTML's indentation closely mirrors the structure of the DOM (perhaps this is an unconscious reason we indent this way!).
 
+As far as the critical rendering path goes, we consider HTML to be a "render-blocking" resource, meaning that the browser can't render any pixels until it has constructed the DOM. This makes sense, given that we can't display anything on the page if we don't have anything parsed yet.
 
+<!-- CSSOM -->
+When the browser encounters a CSS stylesheet (either embedded or external), it needs to parse the text into something it can use for style layouts & paints. The data structure that the browser turns CSS into is creatively named the **CSSOM**, which stands for CSS Object Model.
 
-<!-- 
-2. Layout
-  - After figuring out which rules to apply to an element, the browser then has to figure out WHERE they go & how much SPACE they take up.
-  - This can also be a fairly expensive step of the pipeline, as any elements that have to go through the layout phase will also be forced through the pains & composite steps
-3. Paint
-  - Actually fill in pixels on the screen!
-  - Often the most expensive area of the pipeline
-4. Composite
-  - In this step the browser uses the multiple layers & the GPU to handle rendering.
-  - This step is fairly cheap as far as time on the main thread goes, however it does have extra memory constraints.
-  - If you change rules that only affect the composite phase (transform & opacity), especially for moving elements & animations, you will see the biggest perf benefits.
--->
-<!-- 
-CSS & the Critical Rendering Path
+What does the CSSOM look like? Given the following CSS, the browser would construct a CSSOM that looks like this.
 
-1. CSS parsing, layout, & paint will block the rendering of the rest of the page. That is to say, teh browser cannot continue with the page until it is done with the CSS.
-  - In the rendering pipeline, the browser compares the CSSOM with the DOM to build the 'render tree'
-2. 
--->
+```css
+body {
+  font-size: 16px;
+}
 
-<!-- 
-Why You Should Care How CSS Is Loaded 
+h1 {
+  font-size: 1.5rem;
+}
 
-1. Knowing how the browser turns your CSS into beautiful pixels gives you knowledge of how to write more performant CSS
-2. Web perf is HUGE -- know how to load a page quickly by & reduce "jank" by writing performant CSS.
-3. Measure first
-  - spending a ton of time optimizing your CSS selectors will likely only yield milliseconds of perf improvements
-  - CSS is often a culprit of slow page loads, but it's usually because you're sending TOO MUCH CSS.
--->
+.red {
+  color: red;
+}
+
+div p {
+  color: black;
+}
+```
+
+```
+CSSOM goes here...perhaps show them side-by-side?
+```
+
+It's also worth noting, that unlike HTML, the CSSOM doesn't directly mirror the CSS code. Rather, it mirrors, your CSS selector structure. Nested selectors will be further down in the tree, while stand-alone selectors will just be below the `body` tag.
+
+<!-- Render Tree construction -->
