@@ -5,23 +5,28 @@ date: 2018-03-15
 ---
 
 <!-- Intro -->
-- The tortoise & the hare "Slow & Steady Wins the Race"
-- In many things this is great — better to take slightly longer & be consistent, reliable, etc than to go super fast & miss details or (much worse) crash & burn
-- However, when talking about load time there is no room for "slow & steady". What you need is "fast & stable", since load times are a critical factor in conversion rate.
-  - Find that report that says that after 3s load time you'll lose 50% of your traffic.
+Remember the story of the tortoise and the hare? It's from *Aesop's Fables*. If you don't remember it, here's the TL;DR &mdash; a tortoise and a rabbit have a race. The rabbit races super fast, but along the way decides to take a nap. The tortoise wins, exclaiming "Slow & steady wins the race!".
+
+There's a lot of great morals that come out of this story, of course. Taking a little longer to finish something is way better unfinished projects. Oftentimes work done hastily may be sloppy & this may be another case where taking it "slow & steady" yields a win in the long run.
+
+However, if your website subscribes to the "slow & steady" methodology in regards to its initial load, chances are your users aren't gonna wait for you to cross the finish line. Especially when roughly [50% of users leave a page that takes longer than 3s to load](https://www.thinkwithgoogle.com/marketing-resources/data-measurement/mobile-page-speed-new-industry-benchmarks/). Users want to see something on the page, and they want to see it quickly.
 
 <!-- Defining the Critical Rendering Path -->
 ## What is the Critical Rendering Path, Anyway?
 
-When talking about load times, it's important to define what we mean by the "critical rendering path". In short.
+When we say that users want quick load times, this doesn't mean that everything in your web application has to be loaded after 3s. With many apps this is impossible, especially if you're sending high-quality photos or shooting for a more app-like experience with a JavaScript framework.
 
-**The critical rendering path** is the steps that the browser has to take in order to display the first pixels on the screen.
+Rather, users want to see _something_ in their viewport soon after dedicating their time to your website. They want the time between when they click your search result & when they see the first pixels rendered to the screen to be snappy. Any resources that delay this first paint will make the page lag & increase the likelihood of user bounce rates.
+
+**The critical rendering path** is the minimum steps that the browser has to take from the moment it recieves the first byte of HTML to the moment that is renders pixels on the screen for the first time.
 
 In short, the critical rendering path looks something like this.
 
 1. Build the DOM from the recieved HTML
 2. If we encounter a CSS style sheet (embedded or linked), start building the CSSOM.
 3. If we encounter a JS block (non-async) while building the DOM, wait for CSSOM construction, stop DOM construction  & parse/execute the code. The reason for this is because JS execution can modify the DOM & access/modify the CSSOM.
+
+For the purposes of this article, we'll be diving into how CSS factors into the critical rendering path. It's easy to take utmost care to tree-shake, route-split, & lazy-load our JavaScript, but sometimes CSS can be forgotten. However, an unoptimized CSS bundle can easily wreak havoc on your load times.
 
 <!-- HTML & the Critical Rendering Path -->
 ## HTML and the Critical Rendering Path
@@ -87,31 +92,35 @@ div p {
 CSSOM goes here...perhaps show them side-by-side?
 ```
 
-It's also worth noting, that unlike HTML, the CSSOM doesn't directly mirror the CSS code. Rather, it mirrors, your CSS selector structure. Nested selectors will be further down in the tree, while stand-alone selectors will just be below the `body` tag.
+Essentially, we parse through any CSS selectors we have & assign them their place in the tree. If there's a single selector, it will be attached to the root node of the tree. Nested selectors will be attached to the node which they are nested underneath. The CSS parser has to read nested selectors from *right-to-left* in order to guarantee that they end up underneath the correct nodes.
+
+Building the CSSOM is considered to be a "render-blocking" stage just like building the DOM. The main reason that the browser stops to wait for CSS parsing & style calculation is so that it can avoid a "flash of unstyled content". If it just went ahead we'd see the unstyled content (ugly!) for a moment while the CSSOM was parsing, and then everything would shift around when the CSS was applied. Not exactly a great UX.
 
 <!-- Render Tree construction -->
-Once the CSSOM _and_ the DOM have been constructed, the browser works on combining these two into a _render tree_. The Render Tree contains _all of the information needed for the browser to create pixels on the page_.
+## The Render Tree
 
-During render tree construction, the browser engine first removes all non-visible elements. This includes elements such as `<head>` & metadata, as well as HTML elements that have the `hidden` attribute. When we remove these elements, we essentially create a subset of the DOM only including HTML elements that the browser would need to paint to the page.
+The browser uses the constructed CSSOM & DOM to create a "render tree". In short, the render tree contains _all of the information needed for the browser to create pixels on the page_. The browser basically takes the DOM & CSSOM & smooshes them together, removing anything that won't have an affect on the rendered output.
+
+First, the browser removes all non-visible elements. This includes elements such as `<head>`, `<script>` & `<meta>`, as well as HTML elements that have the `hidden` attribute. These elements, although used by other parts of the app, won't be rendered to the page, so the browser can safely proceed with rendering knowing that all elements in the render tree are in fact visible HTML elements.
 
 ```
 small graph of the render tree at this point
 ```
 
-Next, we go through the CSSOM & find out _which elements in our subset of the DOM match these CSS selectors_. In this same phase, we attach the CSS rules from this node of the CSSOM to our matched render tree node.
+Next, we go through the CSSOM & find out _which elements in our current render tree match the CSS selectors_. The CSS rules for any selector that does match will be applied to that node of the render tree.
 
-While matching up CSS rules to the render tree, applying `display: none` to a render tree node _will remove that tree from the render tree entirely_. Essentially `display: none` turns its matching DOM node into a non-visible element & it is stripped out at this point.
+There's one CSS rule that's an exception, though. Applying `display: none;` in a CSS rule, will _remove an element from the render tree entirely_. This goes back to only including visible elements in the render tree. *Other methods of hiding an element, sich as `opacity: 0;` will not remove an element from the render tree but rather render it without showing it*.
 
 ```
 small graph of combining CSS to the render tree
 ```
 
-And there we have it! After we've combined our CSSOM & DOM into a render tree, the browser can use this & safely assume that the render tree contains exactly the information needed to paint to the page &mdash; nothing more, nothing less.
+And with that we have a render tree, all ready to go! After we've combined our CSSOM & DOM into a render tree, the browser can use this & safely assume that the render tree contains exactly the information needed to paint those first pixels &mdash; nothing more, nothing less.
 
 <!-- The home stretch: Layout & Paint -->
 ## Racing Down the Home Stretch: Layout & Paint
 
-Armed with its render tree, the browser is ready to start putting actual pixels on the page. The last phase of the critical rendering pipeline contains two main steps: Layout & Paint.
+Armed with a complete render tree, the browser is ready to start putting actual pixels on the page. The last phase of the critical rendering pipeline contains two main steps: Layout & Paint.
 
 **Layout** is where the browser figures out _where elements go_ and _how much space they take up_. The browser takes rules affecting margin, padding, width, & positioning into account here. When calculating layout, the browser has to start at the top of the render tree & move downward, since each element's positioning, width, & height is calculated based off of the positioning of its parent nodes. If you're familiar with the CSS box model, the browser is essentially drawing a bunch of CSS boxes accross the page.
 
@@ -122,8 +131,10 @@ However, it's important to remember that at this point _nothing is shown on the 
 <!-- Practical Takeaways -->
 ## Why Should I Care About CSS in the Critical Rendering Path?
 
-You can spend as much time as you want optimizing the frames per second performance of your app or making it look pretty, but if it doesn't load quickly you're gonna have some of your users bounce.
+You can spend as much time as you want optimizing the frames per second performance of your app, making it look pretty, or A-B testing for higher conversion rates, but it doesn't matter if your users bounce before the page even loads.
 
-Knowing which steps the browser takes to get to that ever-so-important first pixel is paramount if you're trying to improve your load time. Since the browser blocks rendering until it has parsed all CSS you can greatly improve your load time by _removing any CSS that doesn't apply to the first paint_ from your initial HTML document. Doing so greatly decreases the amount of time the browser needs to construct the CSSOM & render tree. Any CSS that is not necessary for the first load is considered to be "non-critical" & can be lazy-loaded after users have gotten that first paint (this is especially important if you have a single page app, it's a big performance hit to send CSS for pages that aren't even visible yet!)
+Knowing which steps the browser takes to get to that ever-so-important first pixel is critical (no pun intended 😂) if you're trying to improve your load time. Since the browser blocks rendering until it has parsed all CSS you can greatly improve your load time by _removing any CSS that doesn't apply to the first paint_ from your initial HTML document. Doing so greatly decreases the amount of time the browser needs to construct the CSSOM & render tree. Any CSS that is not necessary for the first load can be considered "non-critical" & can be lazy-loaded after users have gotten that first paint (this is especially important if you have a single page app, it's a big performance hit to send CSS for pages that aren't even visible yet!)
 
 Another benefit of knowing how the CSSOM is constructed is deeper knowledge of selector performance. Since nested selectors must check parent nodes of the CSSOM, they tend to be slightly less performant than a flat CSSOM that avoids nested selectors. However, I would venture that in most apps that this isn't your performance bottleneck, and likely other things can be optimized before needing to rewrite CSS selectors.
+
+As with anything related to web performance, you're probably better off profiling your load time before you start doing an overhaul on your CSS. If you're using Chrome, pop open DevTools & head over to the `Performance` tab. You can quickly see how much time you're spending on CSSOM construction, Layout & Paint by looking for the `Recalculate Styles`, `Layout`, & `Paint` events.
