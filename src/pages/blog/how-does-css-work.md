@@ -5,18 +5,18 @@ date: 2018-03-15
 ---
 
 <!-- Intro -->
-Remember the story of the tortoise and the hare? It's from *Aesop's Fables*. If you don't remember it, here's the TL;DR &mdash; a tortoise and a rabbit have a race. The rabbit races super fast, but along the way decides to take a nap. The tortoise wins, exclaiming "Slow & steady wins the race!".
+Remember the story of the tortoise and the hare? It's from *Aesop's Fables*. If you don't remember it, here's the TL;DR &mdash; a tortoise and a rabbit have a race. The rabbit races super fast, but along the way decides to take a nap. By the time he wakes up the tortoise is crossing the finish line. Slow & steady wins the race, after all.
 
-There's a lot of great morals that come out of this story, of course. Taking a little longer to finish something is way better unfinished projects. Oftentimes work done hastily may be sloppy & this may be another case where taking it "slow & steady" yields a win in the long run.
+There's a lot of great morals that come out of this story, of course. Taking a little longer to finish something is preferable to unfinished projects. Sometimes hasty work can be sloppy & it takes a little more time to do the job right.
 
-However, if your website subscribes to the "slow & steady" methodology in regards to its initial load, chances are your users aren't gonna wait for you to cross the finish line. Especially when roughly [50% of users leave a page that takes longer than 3s to load](https://www.thinkwithgoogle.com/marketing-resources/data-measurement/mobile-page-speed-new-industry-benchmarks/). Users want to see something on the page, and they want to see it quickly.
+However, if your website subscribes to the "slow & steady" methodology in regards to its initial load, chances are your users aren't gonna wait for you to cross the finish line. Especially when roughly [50% of users leave a page that takes longer than 3 seconds to load](https://www.thinkwithgoogle.com/marketing-resources/data-measurement/mobile-page-speed-new-industry-benchmarks/). Users want to see something on the page, and they want to see it fast.
 
 <!-- Defining the Critical Rendering Path -->
 ## What is the Critical Rendering Path, Anyway?
 
-When we say that users want quick load times, this doesn't mean that everything in your web application has to be loaded after 3s. With many apps this is impossible, especially if you're sending high-quality photos or shooting for a more app-like experience with a JavaScript framework.
+When we say that users want quick load times, this doesn't mean that everything in your web application has to be loaded after 3 seconds. With many apps this is impossible, especially if you're sending high-quality photos or shooting for a more app-like experience with a JavaScript framework.
 
-Rather, users want to see _something_ in their viewport soon after dedicating their time to your website. They want the time between when they click your search result & when they see the first pixels rendered to the screen to be snappy. Any resources that delay this first paint will make the page lag & increase the likelihood of user bounce rates.
+Rather, users want to see _something_ in their viewport so they can start browsing the website. They want a snappy response between when they click your search result & when they see your app on their screen. Any resources that delay this first paint will make the page lag & increase the likelihood of user bounce rates.
 
 **The critical rendering path** is the minimum steps that the browser has to take from the moment it recieves the first byte of HTML to the moment that is renders pixels on the screen for the first time.
 
@@ -37,27 +37,7 @@ However, since CSS is fundamentally a language for styling markup, we need to be
 
 **The DOM** is simply a tree-like data structure containing all of the HTML nodes on the page. Each node contains the data about that HTML element (attributes, classes, etc), & points to its own children nodes. For example, given the following HTML, we would construct the following DOM
 
-```html
-<html>
-  <head>
-    <meta charset="UTF-8">
-    <title>A nice, light DOM</title>
-  </head>
-  <body>
-    <header>
-      <h1>DOM construction</h1>
-    </header> 
-
-    <main>
-      <p>Yay! Content</p>
-    </main>
-  </body>
-</html>
-```
-
-```
-include the graph of the DOM here
-```
+![DOM Construction](https://res.cloudinary.com/da2iq7dge/image/upload/v1522285613/DOM_attay8.png)
 
 If you're observant you might notice that the HTML's indentation closely mirrors the structure of the DOM (perhaps this is an unconscious reason we indent this way!).
 
@@ -70,27 +50,7 @@ When the browser encounters a CSS stylesheet (either embedded or external), it n
 
 What does the CSSOM look like? Given the following CSS, the browser would construct a CSSOM that looks like this.
 
-```css
-body {
-  font-size: 16px;
-}
-
-h1 {
-  font-size: 1.5rem;
-}
-
-.red {
-  color: red;
-}
-
-div p {
-  color: black;
-}
-```
-
-```
-CSSOM goes here...perhaps show them side-by-side?
-```
+![CSSOM Construction](https://res.cloudinary.com/da2iq7dge/image/upload/v1522285610/CSSOM_agge4f.png)
 
 Essentially, we parse through any CSS selectors we have & assign them their place in the tree. If there's a single selector, it will be attached to the root node of the tree. Nested selectors will be attached to the node which they are nested underneath. The CSS parser has to read nested selectors from *right-to-left* in order to guarantee that they end up underneath the correct nodes.
 
@@ -111,9 +71,7 @@ Next, we go through the CSSOM & find out _which elements in our current render t
 
 There's one CSS rule that's an exception, though. Applying `display: none;` in a CSS rule, will _remove an element from the render tree entirely_. This goes back to only including visible elements in the render tree. *Other methods of hiding an element, sich as `opacity: 0;` will not remove an element from the render tree but rather render it without showing it*.
 
-```
-small graph of combining CSS to the render tree
-```
+![Render Tree Construction](https://res.cloudinary.com/da2iq7dge/image/upload/v1522285619/Render_Tree_h1duy5.png)
 
 And with that we have a render tree, all ready to go! After we've combined our CSSOM & DOM into a render tree, the browser can use this & safely assume that the render tree contains exactly the information needed to paint those first pixels &mdash; nothing more, nothing less.
 
