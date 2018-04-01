@@ -14,39 +14,31 @@ However, if your website subscribes to the "slow & steady" methodology in regard
 <!-- Defining the Critical Rendering Path -->
 ## What is the Critical Rendering Path, Anyway?
 
-When we say that users want quick load times, this doesn't mean that everything in your web application has to be loaded after 3 seconds. With many apps this is impossible, especially if you're sending high-quality photos or shooting for a more app-like experience with a JavaScript framework.
+When we say that users want quick load times, we have to draw the distinction between *critical* and *non-critical* resources. Perhaps you're lazy-loading some of your images or you've set up a bit of fancy route-splitting (thank you webpack!) to not send all of your JavaScript at once. These resources that are loaded after the initial page render are considered to be *non-critical* &mdash; that is, they don't delay the initial render of the page. Resources that delay the first render of the page are considered to be *critical*.
 
-Rather, users want to see _something_ in their viewport so they can start browsing the website. They want a snappy response between when they click your search result & when they see your app on their screen. Any resources that delay this first paint will make the page lag & increase the likelihood of user bounce rates.
+**The critical rendering path** is the minimum steps that the browser has to take from the moment it recieves the first byte of HTML to the moment that is renders pixels on the screen for the first time. Essentially, it's what the browser has to do to process our critical resources into something our users can enjoy. It looks something like this.
 
-**The critical rendering path** is the minimum steps that the browser has to take from the moment it recieves the first byte of HTML to the moment that is renders pixels on the screen for the first time.
+1. Build the DOM (Document Object Model) from the recieved HTML
+2. If we encounter a CSS style sheet (embedded or linked), start building the CSSOM (CSS Object Model &mdash; we'll get into what this is in a bit).
+3. If we encounter a JS block (not designated as `async`) while building the DOM, wait for CSSOM construction, stop DOM construction & parse/execute the code. The reason for this is because JS execution can modify the DOM & access/modify the CSSOM.
 
-In short, the critical rendering path looks something like this.
-
-1. Build the DOM from the recieved HTML
-2. If we encounter a CSS style sheet (embedded or linked), start building the CSSOM.
-3. If we encounter a JS block (non-async) while building the DOM, wait for CSSOM construction, stop DOM construction  & parse/execute the code. The reason for this is because JS execution can modify the DOM & access/modify the CSSOM.
-
-For the purposes of this article, we'll be diving into how CSS factors into the critical rendering path. It's easy to take utmost care to tree-shake, route-split, & lazy-load our JavaScript, but sometimes CSS can be forgotten. However, an unoptimized CSS bundle can easily wreak havoc on your load times.
+For the purposes of this article, we'll be diving into that 2nd step &mdash; how CSS factors into the critical rendering path. It's easy to take utmost care to tree-shake, route-split, & lazy-load our JavaScript, but sometimes CSS can be forgotten. However, an unoptimized CSS bundle can easily wreak havoc on your load times.
 
 <!-- HTML & the Critical Rendering Path -->
 ## HTML and the Critical Rendering Path
 
-Since this is primarily an article on CSS, we won't spend a _ton_ of time on DOM construction.
+Since this is primarily an article on CSS, we won't spend a _ton_ of time on DOM construction. However, CSS is fundamentally a language for styling markup, so we need to be aware of how it interacts with the DOM.
 
-However, since CSS is fundamentally a language for styling markup, we need to be aware of how it interacts with the DOM.
-
-**The DOM** is simply a tree-like data structure containing all of the HTML nodes on the page. Each node contains the data about that HTML element (attributes, classes, etc), & points to its own children nodes. For example, given the following HTML, we would construct the following DOM
+The **DOM** is a tree-like data structure containing all of the HTML nodes on the page. Each node contains the data about that HTML element (such as attributes, ids, & classes) If the node has any HTML elements as children, it will also point to those child nodes. For example, given the following HTML, we would construct the following DOM. Notice how the HTML's indentation & the DOM's structure are very similar.
 
 ![DOM Construction](https://res.cloudinary.com/da2iq7dge/image/upload/v1522285613/DOM_attay8.png)
 
-If you're observant you might notice that the HTML's indentation closely mirrors the structure of the DOM (perhaps this is an unconscious reason we indent this way!).
+As far as the critical rendering path goes, we consider HTML to be one of our render-blocking, critical resources &mdash; we can't render any content if we haven't parsed it yet!
 
-As far as the critical rendering path goes, we consider HTML to be a "render-blocking" resource, meaning that the browser can't render any pixels until it has constructed the DOM. This makes sense, given that we can't display anything on the page if we don't have anything parsed yet.
-
-<!-- CSSOM -->
+<!-- CSSOM -->.
 ## Building the CSS Object Model
 
-When the browser encounters a CSS stylesheet (either embedded or external), it needs to parse the text into something it can use for style layouts & paints. The data structure that the browser turns CSS into is creatively named the **CSSOM**, which stands for CSS Object Model.
+When the browser encounters a CSS stylesheet (either embedded or external), it needs to parse the text into something it can use for style layouts & paints. The data structure that the browser turns CSS into is creatively named the **CSSOM**, &mdash; the CSS Object Model.
 
 What does the CSSOM look like? Given the following CSS, the browser would construct a CSSOM that looks like this.
 
@@ -54,7 +46,7 @@ What does the CSSOM look like? Given the following CSS, the browser would constr
 
 Essentially, we parse through any CSS selectors we have & assign them their place in the tree. If there's a single selector, it will be attached to the root node of the tree. Nested selectors will be attached to the node which they are nested underneath. The CSS parser has to read nested selectors from *right-to-left* in order to guarantee that they end up underneath the correct nodes.
 
-Building the CSSOM is considered to be a "render-blocking" stage just like building the DOM. The main reason that the browser stops to wait for CSS parsing & style calculation is so that it can avoid a "flash of unstyled content". If it just went ahead we'd see the unstyled content (ugly!) for a moment while the CSSOM was parsing, and then everything would shift around when the CSS was applied. Not exactly a great UX.
+Turning CSS into the CSSOM is considered to be a "render-blocking" stage just like building the DOM out of our HTML. If it just went ahead and rendered to pixels without waiting for the CSSOM we'd see a flash of unstyled content (ugly!) for a moment while the CSSOM was parsing. After that everything would shift around when finally applying the CSS. Not exactly a great UX by a long shot.
 
 <!-- Render Tree construction -->
 ## The Render Tree
