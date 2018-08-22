@@ -7,7 +7,7 @@ const navigation = [
   {
     text: 'github',
     external: true,
-    href: 'https://github.com/benjaminj6'
+    href: 'https://github.com/benjamminj'
   },
   {
     text: 'blog',
