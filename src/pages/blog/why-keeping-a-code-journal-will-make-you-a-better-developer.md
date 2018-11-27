@@ -3,7 +3,7 @@ title: Why Keeping a Code Journal Will Help You Become a Better Developer
 date: 2017-10-24
 ---
 
-![](http://res.cloudinary.com/da2iq7dge/image/upload/v1514863356/blog-img-journal_cxzwoo.jpg)
+![](https://res.cloudinary.com/da2iq7dge/image/upload/v1514863356/blog-img-journal_cxzwoo.jpg)
 
 I’ll be honest — I straight-up stole this idea from [Ryan McDermott](https://medium.com/@ryansworks) after hearing him talk about keeping a code journal on [JS Jabber](https://devchat.tv/js-jabber/clean-code-javascript-with-ryan-mcdermott) and how it helped him write better code over time.
 

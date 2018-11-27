@@ -31,7 +31,7 @@ A couple things are part of contract to actually get the optimizations. For the 
 - the recursive portion of the function must be in "tail position". You must `return` the result of the recursion.
 - you must be in `use strict` mode
 
-For a more in-depth look of what `tail position` is, please check out [this post](http://2ality.com/2015/06/tail-call-optimization.html) on 2ality. They've done an amazing job of summing up exactly _what_ you must do to recieve the benefits of tail-call optimization.
+For a more in-depth look of what `tail position` is, please check out [this post](https://2ality.com/2015/06/tail-call-optimization.html) on 2ality. They've done an amazing job of summing up exactly _what_ you must do to recieve the benefits of tail-call optimization.
 
 However, there's one problem with relying on TCO (before you go and do a ton of recursion)
 
