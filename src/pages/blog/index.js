@@ -1,34 +1,36 @@
 import React from 'react'
 
-import { Heading, Link, Section } from '../../components'
+import { Heading, Link, Section, Layout } from '../../components'
 import GatsbyLink from 'gatsby-link'
 import { css } from 'emotion'
 
 // component
 const BlogLandingPage = ({ data, errors }) => (
-  <Section className={style}>
-    <Heading large className="pageHeading">
-      <h1>Blog</h1>
-    </Heading>
+  <Layout>
+    <Section className={style}>
+      <Heading large className="pageHeading">
+        <h1>Blog</h1>
+      </Heading>
 
-    <ul className="postsList">
-      {data.allMarkdownRemark.edges.map(({ node }) => (
-        <li className="listItem" key={node.fields.slug}>
-          <Heading className="listItemHeading">
-            <h2>
-              <Link to={node.fields.slug}>{node.frontmatter.title}</Link>
-            </h2>
-          </Heading>
+      <ul className="postsList">
+        {data.allMarkdownRemark.edges.map(({ node }) => (
+          <li className="listItem" key={node.fields.slug}>
+            <Heading className="listItemHeading">
+              <h2>
+                <Link to={node.fields.slug}>{node.frontmatter.title}</Link>
+              </h2>
+            </Heading>
 
-          <p className="postPreview">{node.excerpt}</p>
+            <p className="postPreview">{node.excerpt}</p>
 
-          <h3 className="listItemSubheading">
-            {node.frontmatter.date} &mdash; {node.timeToRead} min. read
-          </h3>
-        </li>
-      ))}
-    </ul>
-  </Section>
+            <h3 className="listItemSubheading">
+              {node.frontmatter.date} &mdash; {node.timeToRead} min. read
+            </h3>
+          </li>
+        ))}
+      </ul>
+    </Section>
+  </Layout>
 )
 
 export default BlogLandingPage

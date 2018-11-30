@@ -17,7 +17,7 @@ const TemplateWrapper = ({ children }) => (
         {
           name: 'description',
           content:
-            'Front-End Web Developer with a passion for clean UIs & elegant code'
+            'Front-end engineer with a passion for clean UIs & elegant code'
         },
         { name: 'keywords', content: 'front-end developer, web, javascript' }
       ]}
@@ -25,7 +25,7 @@ const TemplateWrapper = ({ children }) => (
     <header className={headerStyle}>
       <Link to="/">benjaminjohnson.me</Link>
     </header>
-    {children()}
+    {children}
   </div>
 )
 
