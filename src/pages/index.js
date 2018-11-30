@@ -1,5 +1,5 @@
 import React from 'react'
-import { Heading, Link } from '../components'
+import { Heading, Link, Layout } from '../components'
 import styled, { css } from 'emotion'
 
 // todo...somewhere else perhaps?
@@ -26,36 +26,38 @@ const navigation = [
 ]
 
 const IndexPage = () => (
-  <div className={style}>
-    <Heading
-      className={headingStyle}
-      large
-    >
-      <h1>Benjamin Johnson</h1>
-    </Heading>
+  <Layout>
+    <div className={style}>
+      <Heading
+        className={headingStyle}
+        large
+      >
+        <h1>Benjamin Johnson</h1>
+      </Heading>
 
-    <p>
-      Welcome! 👋🏻 I'm a frontend engineer / web developer with a passion for
-      clean UIs, easy-to-understand code, and a well-made cup of coffee.
-      Currently learning/working at{' '}
-      <Link external href="https://autogravity.com">
-        AutoGravity
-      </Link>{' '}
-      in the greater Los Angeles area.
-    </p>
+      <p>
+        Welcome! 👋🏻 I'm a frontend engineer / web developer with a passion for
+        clean UIs, easy-to-understand code, and a well-made cup of coffee.
+        Currently learning/working at{' '}
+        <Link external href="https://autogravity.com">
+          AutoGravity
+        </Link>{' '}
+        in the greater Los Angeles area.
+      </p>
 
-    <ul className="list">
-      {navigation.map(link => (
-        <li className="li" key={link.href}>
-          <Heading className="listHeading">
-            <Link external={link.external} to={link.href} href={link.href}>
-              {link.text}
-            </Link>
-          </Heading>
-        </li>
-      ))}
-    </ul>
-  </div>
+      <ul className="list">
+        {navigation.map(link => (
+          <li className="li" key={link.href}>
+            <Heading className="listHeading">
+              <Link external={link.external} to={link.href} href={link.href}>
+                {link.text}
+              </Link>
+            </Heading>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </Layout>
 )
 
 export default IndexPage

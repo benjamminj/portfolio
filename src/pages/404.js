@@ -1,24 +1,26 @@
 import React from 'react'
 
-import { Heading, Link, Section } from '../components'
+import { Heading, Link, Section, Layout } from '../components'
 import { css } from 'emotion'
 
 // component
 const NotFoundPage = () => (
-  <Section className={style}>
-    <Heading className={headingStyle}>
-      <h1>404</h1>
-    </Heading>
-    <p>
-      Looks like the page you're looking for doesn't exist...so sorry about
-      that!
-    </p>
+  <Layout>
+    <Section className={style}>
+      <Heading className={headingStyle}>
+        <h1>404</h1>
+      </Heading>
+      <p>
+        Looks like the page you're looking for doesn't exist...so sorry about
+        that!
+      </p>
 
-    {
-      // todo -- go back one entry in browser history OR to home page?
-    }
-    <Link to="/">Go back to the home page</Link>
-  </Section>
+      {
+        // todo -- go back one entry in browser history OR to home page?
+      }
+      <Link to="/">Go back to the home page</Link>
+    </Section>
+  </Layout>
 )
 
 export default NotFoundPage
