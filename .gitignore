@@ -8,5 +8,9 @@ public/
 .DS_Store
 yarn-error.log
 
+# Environment
+.env.development
+.env.production
+
 # Notes
 *.notes.md
