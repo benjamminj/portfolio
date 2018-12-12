@@ -36,13 +36,13 @@ const IndexPage = () => (
       </Heading>
 
       <p>
-        Welcome! 👋🏻 I'm a frontend engineer / web developer with a passion for
+        Hi! 👋🏻 I'm a frontend engineer with a passion for
         clean UIs, easy-to-understand code, and a well-made cup of coffee.
         Currently learning/working at{' '}
-        <Link external href="https://autogravity.com">
-          AutoGravity
+        <Link external href="https://happymoney.com">
+          Happy Money
         </Link>{' '}
-        in the greater Los Angeles area.
+        in Orange County, CA.
       </p>
 
       <ul className="list">
