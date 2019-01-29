@@ -1,18 +1,11 @@
 import React from 'react'
-import { css } from 'emotion'
+import styled, { css } from 'react-emotion'
 import { aboveScreenSm, linkStyle } from '../styles/mixins'
 import syntaxHighlightingStyles from '../styles/syntax-highlighting'
 
-const Markdown = props => (
-  <div dangerouslySetInnerHTML={{ __html: props.html }} className={style} />
-)
-
-export default Markdown
-
-// styles
-const style = css`
+const Wrapper = styled.div`
   width: calc(100vw - (2 * var(--body-padding)));
-  
+
   ${aboveScreenSm(css`
     width: inherit;
   `)};
@@ -184,3 +177,9 @@ const style = css`
 
   ${syntaxHighlightingStyles};
 `
+
+const Markdown = props => (
+  <Wrapper dangerouslySetInnerHTML={{ __html: props.html }} />
+)
+
+export default Markdown

@@ -1,27 +1,23 @@
 import React from 'react'
 import GatsbyLink from 'gatsby-link'
-import { css } from 'emotion'
+import styled from 'react-emotion'
 import { linkStyle } from '../styles/mixins'
 
-const borderSize = '1px'
-const color = 'var(--accent-1-dark)'
-
-const styles = css`
+const A = styled.a`
   ${linkStyle()};
 `
 
+const InternalLink = A.withComponent(GatsbyLink)
 
-const Link = ({ external, ...props }) => (
+const Link = ({ external, ...props }) =>
   external ? (
-    <a
+    <A
       {...props}
-      className={styles}
       target="_blank"
       rel="noopener noreferrer"
     />
   ) : (
-      <GatsbyLink {...props} className={styles} />
-    )
-)
+    <InternalLink {...props} />
+  )
 
 export default Link

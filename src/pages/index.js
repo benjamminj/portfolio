@@ -1,6 +1,6 @@
 import React from 'react'
 import { Heading, Link, Layout } from '../components'
-import styled, { css } from 'emotion'
+import { css } from 'emotion'
 
 // todo...somewhere else perhaps?
 const navigation = [
@@ -28,17 +28,17 @@ const navigation = [
 const IndexPage = () => (
   <Layout>
     <div className={style}>
-      <Heading
-        className={headingStyle}
-        large
-      >
+      <Heading className={headingStyle} large>
         <h1>Benjamin Johnson</h1>
       </Heading>
 
       <p>
-        Hi! 👋🏻 I'm a frontend engineer with a passion for
-        clean UIs, easy-to-understand code, and a well-made cup of coffee.
-        Currently learning/working at{' '}
+        Hi!{' '}
+        <span role="img" aria-label="waving hand">
+          👋🏻
+        </span>{' '}
+        I'm a frontend engineer with a passion for clean UIs, easy-to-understand
+        code, and a well-made cup of coffee. Currently learning/working at{' '}
         <Link external href="https://happymoney.com">
           Happy Money
         </Link>{' '}
@@ -94,4 +94,6 @@ const style = css`
   }
 `
 
-const headingStyle = css`margin-bottom: ${rhythm};`
+const headingStyle = css`
+  margin-bottom: ${rhythm};
+`
