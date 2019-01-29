@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { css } from 'emotion'
+import { graphql } from 'gatsby'
 
 import { Heading, Markdown } from '../components'
 import { aboveScreenMd } from '../styles/mixins'
@@ -17,7 +18,7 @@ class PostTemplate extends Component {
       <article className={style}>
         <div className="heading">
           <Heading large>
-            <h1>{post.frontmatter.title}</h1>
+            <h1>{title}</h1>
           </Heading>
 
           <span className="subheading">

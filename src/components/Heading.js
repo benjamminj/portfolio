@@ -1,18 +1,10 @@
 import React from 'react'
-import { css, cx } from 'emotion'
+import styled from 'react-emotion'
 import { headingStyle } from '../styles/mixins'
 
-const Heading = props => (
-  <div
-    className={cx(getStyle(props), props.className)}
-  >
-    {props.children}
-  </div>
-)
+const Heading = styled.div`
+  ${headingStyle};
+  ${props => props.large && 'font-size: 1.5rem;'};
+`
 
 export default Heading
-
-const getStyle = props => css`
-  ${headingStyle};
-  ${props.large && 'font-size: 1.5rem;'};
-`
