@@ -19,7 +19,7 @@ const BlogLandingPage = ({ data, errors }) => {
   }))
 
   const logrocketPosts = allMediumUser.edges[0].node.posts
-    .filter(post => post.homeCollectionId !== LOGROCKET_URL)
+    .filter(post => post.homeCollectionId !== LOGROCKET_COLLECTION_ID)
     .map(
       ({
         updatedAt,
