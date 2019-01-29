@@ -1,37 +1,94 @@
 import React from 'react'
 
+import { graphql } from 'gatsby'
+import { LOGROCKET_COLLECTION_ID, LOGROCKET_URL } from '../../constants'
 import { Heading, Link, Section, Layout } from '../../components'
-import GatsbyLink from 'gatsby-link'
-import { css } from 'emotion'
+import { css } from 'react-emotion'
 
 // component
-const BlogLandingPage = ({ data, errors }) => (
-  <Layout>
-    <Section className={style}>
-      <Heading large className="pageHeading">
-        <h1>Blog</h1>
-      </Heading>
+const BlogLandingPage = ({ data, errors }) => {
+  const { allMarkdownRemark, allMediumUser } = data
+  const formattedMarkdownPosts = allMarkdownRemark.edges.map(({ node }) => ({
+    external: false,
+    url: node.fields.slug,
+    title: node.frontmatter.title,
+    excerpt: node.excerpt,
+    publishDate: node.frontmatter.publishDate,
+    formattedPublishDate: node.frontmatter.formattedPublishDate,
+    timeToRead: node.timeToRead
+  }))
 
-      <ul className="postsList">
-        {data.allMarkdownRemark.edges.map(({ node }) => (
-          <li className="listItem" key={node.fields.slug}>
-            <Heading className="listItemHeading">
-              <h2>
-                <Link to={node.fields.slug}>{node.frontmatter.title}</Link>
-              </h2>
-            </Heading>
+  const logrocketPosts = allMediumUser.edges[0].node.posts
+    .filter(post => post.homeCollectionId !== LOGROCKET_URL)
+    .map(
+      ({
+        updatedAt,
+        publishDate,
+        formattedPublishDate,
+        uniqueSlug,
+        title,
+        previewContent,
+        virtuals
+      }) => ({
+        external: true,
+        url: `${LOGROCKET_URL}/${uniqueSlug}`,
+        title,
+        excerpt: previewContent.subtitle,
+        publishDate,
+        formattedPublishDate,
+        timeToRead: virtuals.readingTime
+      })
+    )
 
-            <p className="postPreview">{node.excerpt}</p>
+  const posts = [...formattedMarkdownPosts, ...logrocketPosts].sort(
+    (current, next) => next.publishDate - current.publishDate
+  )
 
-            <h3 className="listItemSubheading">
-              {node.frontmatter.date} &mdash; {node.timeToRead} min. read
-            </h3>
-          </li>
-        ))}
-      </ul>
-    </Section>
-  </Layout>
-)
+  console.log(posts)
+  return (
+    <Layout>
+      <Section className={style}>
+        <Heading large className="pageHeading">
+          <h1>Blog</h1>
+        </Heading>
+
+        <ul className="postsList">
+          {posts.map(
+            ({
+              external,
+              url,
+              title,
+              excerpt,
+              formattedPublishDate,
+              timeToRead
+            }) => (
+              <li className="listItem" key={url}>
+                <Heading className="listItemHeading">
+                  <h2>
+                    {external ? (
+                      <Link external href={url}>
+                        {title}
+                      </Link>
+                    ) : (
+                      <Link to={url}>{title}</Link>
+                    )}
+                  </h2>
+                </Heading>
+
+                <p className="postPreview">{excerpt}</p>
+
+                <h3 className="listItemSubheading">
+                  {formattedPublishDate} &mdash; {Math.ceil(timeToRead)} min.
+                  read
+                </h3>
+              </li>
+            )
+          )}
+        </ul>
+      </Section>
+    </Layout>
+  )
+}
 
 export default BlogLandingPage
 
@@ -51,9 +108,35 @@ export const query = graphql`
           }
           excerpt
           timeToRead
+          title: frontmatter {
+            title
+          }
           frontmatter {
             title
-            date(formatString: "MM-DD-YYYY")
+            publishDate: date(formatString: "x")
+            formattedPublishDate: date(formatString: "MM-DD-YYYY")
+          }
+        }
+      }
+    }
+    allMediumUser {
+      edges {
+        node {
+          posts {
+            formattedPublishDate: firstPublishedAt(formatString: "MM-DD-YYYY")
+            publishDate: firstPublishedAt(formatString: "x")
+            updatedAt
+            slug
+            title
+            virtuals {
+              readingTime
+            }
+            uniqueSlug
+            approvedHomeCollectionId
+            previewContent {
+              isFullContent
+              subtitle
+            }
           }
         }
       }
