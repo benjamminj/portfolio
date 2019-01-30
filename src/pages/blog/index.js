@@ -19,7 +19,7 @@ const BlogLandingPage = ({ data, errors }) => {
   }))
 
   const logrocketPosts = allMediumUser.edges[0].node.posts
-    .filter(post => post.homeCollectionId !== LOGROCKET_COLLECTION_ID)
+    .filter(post => post.homeCollectionId === LOGROCKET_COLLECTION_ID)
     .map(
       ({
         updatedAt,
@@ -132,7 +132,7 @@ export const query = graphql`
               readingTime
             }
             uniqueSlug
-            approvedHomeCollectionId
+            homeCollectionId
             previewContent {
               isFullContent
               subtitle
