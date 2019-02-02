@@ -162,7 +162,7 @@ const Wrapper = styled.div`
 
   /* links */
   a {
-    ${linkStyle};
+    ${linkStyle()};
   }
 
   /* img */
