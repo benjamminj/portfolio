@@ -1,66 +1,64 @@
 ---
-title: "Coding with empathy"
-subtitle: TK
-date: 2019-01-10
+title: Coding with empathy
+subtitle: Writing code with emotional awareness
+date: 2019-02-02
 draft: true
 ---
 
-I'm a big fan of [April Wensel](TK link) and her talks on "compassionate code". If you're not familiar with the idea of compassionate coding I'd highly encourage you to check out her talks&mdash;I promise that they will not be a waste of your time!
+I'm a big fan of [April Wensel](https://compassionatecoding.com/) and her talks on "compassionate code". I love how she drives home the point that software engineering is fundamentally about working with other humans. Yes, it is incredibly important that we have technical expertise, but we also need to be experts in collaboration.
 
-However, for the purposes of this post compassionate coding can be summed up and framed with the following idea: software engineering is fundamentally about working with other humans. And in order to work with other humans we need to be engineers that have a high degree of _emotional intelligence_.
-
-While this certainly means decreasing the interpersonal toxicity that is often associated with engineering culture, this also means thinking about the empathy that lies beneath the code we write. That's what we'll be exploring in this post——writing code with empathy in mind.
+In order to collaborate effectively we need to be engineers that have a high degree of _emotional intelligence_. And while this certainly means decreasing workplace toxicity, emotional intelligence also extends to the code we write. That's what we'll be exploring in this post—writing code with empathy in mind.
 
 ## But how can code be empathetic?
 
-It's a good question to ask. After all, empathy is primarily a human trait, ascribing it as a quality of the code we write feels a little bit silly.
+It's a good question to ask. After all, we often think of empathy as something connected to our interactions with other people, and we think of code as the time when we get to be "purely technical".
 
-However, if we go with the definition that empathy is the ability to anticipate and share the feeliings of another (to "put yourself in their shoes", as it were), we can definitely identify code that does&mdash;or fails to&mdash;exhibit empathy.
+However, as authors of the code we write, we have an opportunity to practice empathy for our code's future maintainers. When we write code that takes into account how future maintainers will feel reading it, we approach our job differently. All of a sudden it become less about just getting things to work or pushing out feature after feature. Instead we start to care about maintainability, readability, and simplicity.
 
-Often we notice code that _lacks empathy_ more than code that is empathetic. You open up a project only to discover thousands of inconsistencies in the way files are formatted, 0% test automation coverage, and an over-abundance of variables named `a`, `q`, and `foo`. Perhaps it's overly abstract and you have to dive through twenty files just to change a button color.
+There's a familiar programming quote from [Code For The Maintainer](http://wiki.c2.com/?CodeForTheMaintainer) that emphasizes this aspect of empathy (along with a little melodrama).
 
-If this code was written by one of your teammates (or yourself in the past) you might feel a little bit of dread knowing that for your next feature or bug fix you will be swimming blindly through this sea of spaghetti code. You know that it's probably going to take forever to get a good idea of how this code works, and you're afraid of changing things because the likelihood of breaking something is extremely high.
+> Always code as if the person who ends up maintaining your code is a violent psychopath who knows where you live.
 
-Code like this is the exact opposite of empathy: instead of making its maintainers feel safe and confident, it tears them down and destroys morale.
+What I love about this quote is that it taps into our survival instinct to remind us that it's important to think of the future people that will maintain the code we write today. Sometimes that future maintainer is yourself, sometimes it's someone you've never met. And while it's rare that the future maintainer is gonna come stalking you with murderous intent, they are still human. It's vital that we write code that makes their job a joy—not a living hell.
 
-Compare this with code that has been lovingly tended to and well-thought out. Such code can have the potential to enable its maintainers to push boundaries and focus on the stuff that matters: shipping quality stuff to users.
+## So how do we write empathetic code?
 
-I've seen this effect firsthand——in my few years working as a front-end engineer I've seen a number of nightmare codebases. I've also been fortunate enough to work on _one_ codebase that was lovingly tended to. 
+A lot of the software industry loves this idea of code being _clean_, first introduced by Robert Martin in his book ["Clean Code"](https://www.amazon.com/Clean-Code-Handbook-Software-Craftsmanship/dp/0132350882). And while I like a ton of these clean coding principles, I think we miss a lot if we only focus on "best practices" or a list rules to make our code "clean" or "unclean".
 
-In the messy codebases developers did their job with fear: they simply patched bugs, piled features onto an unstable foundation. You could feel this sense of helplessness when talking about the codebase as a whole (even if some parts of the codebase were rather clean). 
-
-In the clean codebase I saw my team's productivity and morale go through the roof. People felt safety when they needed to go patch a bug or refactor some module to fit new requirements.
-
-## How can we write empathetic code?
-
-However, it's not enough to simply acknowledge that working in a codebase that has been actively tended to is psychologically beneficial. The real question we have to ask ourselves is _how do we make codebases that treat their maintainers with respect?_
-
-We can go through a big laundry list of software "best practices" and tie each one back to empathy, but the most important thing when writing empathetic code is that we as developers _actually have empathy for our users and for our teammates_. If we don't start there any software practices that promote empathy will just feel like another thing on the list of things to do before we push things to production.
+Instead, I think it's important for us to frame these software "best practices" through the lens of empathy and how they affect the people that consume our code (perhaps other developers using an internal module's API) or make updates to our code. That way it becomes less of a checklist of things that we "have to do" and more established into the _way that we do things_.
 
 Let's take a quick look at some of these software practices, framed through the lens of empathy:
 
 ### Automated Tests
 
-Adding tests to prevent regressions and costly bugs from creeping into the codebase can prove to be a major source of empathy for your team members. I know for myself that diving into a complex module of code _without tests_ can be downright terrifying. It's hard to know what you can change without breaking things. When we write tests we're not only saving the business time and money, we're actively taking care of the psychological safety of our teammates. 
+Tests are a great way to provide long-term safety to a module of code. By automatically verifying that the code works, they serve as one of the first line of defense against costly bugs and regressions. When I open up a file for the first time and see that it has some comprehensive test coverage, I feel complete freedom to make whatever changes I need to—without the fear of breaking things! By contrast, opening a file without any tests can be downright terrifying. When we write tests we're not only saving our business [time and money](https://medium.com/javascript-scene/the-outrageous-cost-of-skipping-tdd-code-reviews-57887064c412), we're making sure that the future maintainer of our code can feel safe about modifying it.
 
-### Linting & formatting
+### Consistent styling
 
-Linting and formatting are two of the "low-hanging fruit" as far as code sanity goes. With very little effort it's possible to guarantee that your entire codebase looks and feels (somewhat) consistent. While they won't protect you from a bad architecture or sloppy business logic, automating the stylistic decisions in your codebase frees people to not  waste brain cycles trying to remember whether they should include a semicolon or not. We can show empathy and give our fellow developers the ability to use their brainpower solving bigger problems.
+Having a consistent code style goes a long way towards making life easier for future maintainers. Syntax and formatting issues tend to be low-hanging fruit that can usually be automated with tools like [ESLint](https://eslint.org/) and [Prettier](https://prettier.io/) (if you're writing JavaScript, for other languages you might need different tools).
+
+Having a consistent code style is empathetic because it allows your teammates to understand the code faster. Not forcing them to spend extra brain cycles reading through inconsistently formatted code allows them to focus on what actually matters: the problem they are trying to solve.
 
 ### Choosing good variable names
 
-Choosing good variable names is a struggle you'll face every time you sit down to write a bit of code. One large reason that choosing the perfect variable name is so difficult is that in order to do so we must understand exactly how to communicate to future readers of the code (our team or ourselves) _what_ we were thinking at the moment we authored the code. There's a quote from "Clean Code" by Robert Martin that goes along the lines of "you should name every variable with the same care that you would give to naming your firstborn child".
+There's a quote from "Clean Code" by Robert Martin that goes along the lines of "you should name every variable with the same care that you would give to naming your firstborn child".
 
-While the metaphor may be a touch hyperbolic, the point stands: naming things matters. By spending the extra (often small) effort up-front to choose descriptive names, we are helping our team (and ourselves) gain context about what the code they are reading is supposed to do.
+While the metaphor may be a touch hyperbolic, the point stands: naming things matters. By spending the extra (often small) effort up-front to choose descriptive names, we are helping our team (and ourselves) gain context about the code. Often we know what the code is supposed to do when we are writing it, so that's the best time to choose a descriptive variable name that clearly communicates intent.
 
 ### Documentation
 
-One of the best measures of empathy for a codebase is the level of effort that it takes a new team member to get up and running. And crucial to getting up and running quickly is a solid set of documentation.
+A great way to measure the empathy of your codebase is to watch what happens when a new team member comes on board. How long does it take for them to get the app running locally? What types of questions are they asking? What types of things are they "doing wrong" in their first few PRs.
 
-However, not all projects require equal levels of documentation. If you work on a framework or library you might need to maintain extensive docs and tutorials, whereas if you work on a product team you might be able to get away with less extensive docs. The amount of documentation will vary by the project, but in every case it's helpful to assume that the people reading your docs are just getting started with this codebase (regardless of experience levels).
+If you don't have any new team members coming onboard for a while, put yourself in the shoes of a junior developer starting their first day at your company. What types of things about your codebase would be confusing or unclear?
 
-Another helpful tip I've come across for writing empathetic documentation is to optimize docs for copy-paste. Essentially, assume that the person reading your docs is going to copy-paste the examples into their codebase. This tends to help readers of documentation get up to speed faster, in addition to helping me think through what a thouroughly fleshed-out example looks like.
+One of the best ways to fight unclarity is through a good set of documentation. Having clear, well-written docs about getting the app running or performing certain tasks can go a long way towards making a codebase friendly and inviting instead of unclear and daunting.
+
+However, docs also have to be written with empathy in mind! Making sure that documentation is extensive enough to provide clarity while not coming across as belittling is a fine balance. One way that I try to assess the clarity of my docs is to "optimize for copy-paste". Assume that the person reading your documentation is going to copy-paste your examples into their code because they're trying to solve a complicated problem on a time crunch. Thinking about docs in this way forces you to write examples that are fully fleshed out.
 
 ### And many more!
 
-This is definitely not an exhaustive list of the ways we can make our code empathetic. In fact, I'd argue that a lot of the "clean coding" tips and software "best practices" out there could be looked at through the lens of developer empathy. Whether it's adding continuous integration, A/B testing to see what our users connect with, or even peer review&mdash;writing software is about communicating, and communicating effectively requires a great deal of empathy.
+This is definitely not an exhaustive list of the ways to make our code empathetic. In fact, any of the "best practices" out there could be looked at through the lens of empathy. Take a couple of the best practices that you're passionate about and think about how they positively impact future maintainers and you'll see what I'm talking about!
+
+## Conclusion
+
+At the end of the day, engineering is about communication—we tell the computer what operations to execute, and we tell our teammates what the code is supposed to do. And while the computer doesn't care about how empathetic our code is, our teammates and future maintainers do. By focusing on empathy in the code we write, we will produce higher quality software as a byproduct.
