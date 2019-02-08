@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { css } from 'emotion'
 import { graphql } from 'gatsby'
+import Img from 'gatsby-image'
 
 import { Heading, Markdown } from '../components'
 import { aboveScreenMd } from '../styles/mixins'
@@ -9,7 +10,7 @@ import { textMaxWidth } from '../styles/variables'
 class PostTemplate extends Component {
   render() {
     const { data } = this.props
-
+    console.log('__DATA__', data)
     const post = data.markdownRemark
 
     const { date, title } = post.frontmatter
@@ -35,13 +36,24 @@ class PostTemplate extends Component {
 
 export default PostTemplate
 export const query = graphql`
-  query LessonQuery($slug: String!) {
+  query PostQuery($slug: String!, $bannerUrl: String!) {
     markdownRemark(fields: { slug: { eq: $slug } }) {
       html
       timeToRead
       frontmatter {
         title
         date(formatString: "MM-DD-YYYY")
+        image {
+          url
+          alt
+        }
+      }
+    }
+    file(relativePath: { eq: $bannerUrl }) {
+      childImageSharp {
+        fluid(maxWidth: 800) {
+          ...GatsbyImageSharpFluid_noBase64
+        }
       }
     }
   }

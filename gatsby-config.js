@@ -1,4 +1,3 @@
-
 module.exports = {
   siteMetadata: {
     title: `Benjamin Johnson`
@@ -21,8 +20,8 @@ module.exports = {
       resolve: `gatsby-source-medium`,
       options: {
         username: `@benjamin.d.johnson`,
-        limit: 200,
-      },
+        limit: 200
+      }
     },
     {
       resolve: `gatsby-plugin-google-analytics`,
@@ -30,6 +29,8 @@ module.exports = {
         trackingId: process.env.GOOGLE_ANALYTICS_TRACKER_ID
       }
     },
+    `gatsby-transformer-sharp`,
+    `gatsby-plugin-sharp`,
     'gatsby-plugin-emotion',
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-sass`
