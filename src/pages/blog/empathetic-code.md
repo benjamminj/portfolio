@@ -1,9 +1,11 @@
 ---
 title: Coding with empathy
-subtitle: Writing code with emotional awareness
-date: 2019-02-02
+subtitle: It's important to write code with emotional awareness. When we forget that code is also for humans to read, we end up with scary codebases that make the future maintainers of our code sad.
+date: 2019-02-07
 draft: true
 ---
+
+![Team of board game markers in a line](https://res.cloudinary.com/da2iq7dge/image/upload/v1549608596/battle-board-game-challenge-209640_djrbu1.jpg)
 
 I'm a big fan of [April Wensel](https://compassionatecoding.com/) and her talks on "compassionate code". I love how she drives home the point that software engineering is fundamentally about working with other humans. Yes, it is incredibly important that we have technical expertise, but we also need to be experts in collaboration.
 
