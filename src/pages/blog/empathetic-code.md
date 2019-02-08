@@ -1,9 +1,10 @@
 ---
 title: Coding with empathy
-subtitle: Writing code with emotional awareness
-date: 2019-02-02
-draft: true
+subtitle: It's important to write code with emotional awareness. When we forget that code is also for humans to read, we end up with scary codebases that make the future maintainers of our code sad.
+date: 2019-02-07
 ---
+
+![Team of board game markers in a line](https://res.cloudinary.com/da2iq7dge/image/upload/v1549608596/battle-board-game-challenge-209640_djrbu1.jpg)
 
 I'm a big fan of [April Wensel](https://compassionatecoding.com/) and her talks on "compassionate code". I love how she drives home the point that software engineering is fundamentally about working with other humans. Yes, it is incredibly important that we have technical expertise, but we also need to be experts in collaboration.
 
@@ -23,7 +24,7 @@ What I love about this quote is that it taps into our survival instinct to remin
 
 ## So how do we write empathetic code?
 
-A lot of the software industry loves this idea of code being _clean_, first introduced by Robert Martin in his book ["Clean Code"](https://www.amazon.com/Clean-Code-Handbook-Software-Craftsmanship/dp/0132350882). And while I like a ton of these clean coding principles, I think we miss a lot if we only focus on "best practices" or a list rules to make our code "clean" or "unclean".
+A lot of the software industry loves this idea of code being "clean", first introduced by Robert Martin in his book "[Clean Code](https://www.amazon.com/Clean-Code-Handbook-Software-Craftsmanship/dp/0132350882)". And while I like a ton of these clean coding principles, I think we miss a lot if we only focus on "best practices" or a list rules to make our code "clean" or "unclean".
 
 Instead, I think it's important for us to frame these software "best practices" through the lens of empathy and how they affect the people that consume our code (perhaps other developers using an internal module's API) or make updates to our code. That way it becomes less of a checklist of things that we "have to do" and more established into the _way that we do things_.
 
@@ -41,9 +42,17 @@ Having a consistent code style is empathetic because it allows your teammates to
 
 ### Choosing good variable names
 
-There's a quote from "Clean Code" by Robert Martin that goes along the lines of "you should name every variable with the same care that you would give to naming your firstborn child".
+There's another quote from "Clean Code" that goes along the lines of "you should name every variable with the same care that you would give to naming your firstborn child".
 
-While the metaphor may be a touch hyperbolic, the point stands: naming things matters. By spending the extra (often small) effort up-front to choose descriptive names, we are helping our team (and ourselves) gain context about the code. Often we know what the code is supposed to do when we are writing it, so that's the best time to choose a descriptive variable name that clearly communicates intent.
+While the metaphor may be a bit hyperbolic, the point still stands: how you name things matters. By spending that extra (often small) effort up-front to choose a descriptive name, you help your team (and your future self) gain context about the code. In the moment we know extra context about _why_ our code is the way it is, so that's the best time to choose a descriptive variable name to remind future maintainers of that context.
+
+### Adding comments 
+
+If you can't fit all of the context inside a variable name, leave a helpful comment along with whatever name you chose! 
+
+You might have heard some people say that "code should be self-documenting so comments are unnecessary". While it is true that we should strive to make our _code_ as clear as possible, a well-placed comment can pack a ton of extra context that you wouldn't really be able to fit inside a variable.
+
+I'm a big fan of using comments to explain the _why_ behind the code. We don't really need to comment that a `for` loop iterates through the list, but if it's there to solve a specific edge case it's helpful to know what that edge case is. Adding a comment can be super valuable when some future developer stumbles across that code and is trying to figure out exactly why it's in the codebase. That way they know whether it's safe to delete that code or not.
 
 ### Documentation
 
