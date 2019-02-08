@@ -2,7 +2,6 @@
 title: Coding with empathy
 subtitle: It's important to write code with emotional awareness. When we forget that code is also for humans to read, we end up with scary codebases that make the future maintainers of our code sad.
 date: 2019-02-07
-draft: true
 ---
 
 ![Team of board game markers in a line](https://res.cloudinary.com/da2iq7dge/image/upload/v1549608596/battle-board-game-challenge-209640_djrbu1.jpg)
