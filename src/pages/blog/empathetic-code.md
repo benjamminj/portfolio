@@ -24,7 +24,7 @@ What I love about this quote is that it taps into our survival instinct to remin
 
 ## So how do we write empathetic code?
 
-A lot of the software industry loves this idea of code being _clean_, first introduced by Robert Martin in his book "[Clean Code](https://www.amazon.com/Clean-Code-Handbook-Software-Craftsmanship/dp/0132350882)". And while I like a ton of these clean coding principles, I think we miss a lot if we only focus on "best practices" or a list rules to make our code "clean" or "unclean".
+A lot of the software industry loves this idea of code being "clean", first introduced by Robert Martin in his book "[Clean Code](https://www.amazon.com/Clean-Code-Handbook-Software-Craftsmanship/dp/0132350882)". And while I like a ton of these clean coding principles, I think we miss a lot if we only focus on "best practices" or a list rules to make our code "clean" or "unclean".
 
 Instead, I think it's important for us to frame these software "best practices" through the lens of empathy and how they affect the people that consume our code (perhaps other developers using an internal module's API) or make updates to our code. That way it becomes less of a checklist of things that we "have to do" and more established into the _way that we do things_.
 
