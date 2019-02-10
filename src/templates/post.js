@@ -10,10 +10,10 @@ import { textMaxWidth } from '../styles/variables'
 class PostTemplate extends Component {
   render() {
     const { data } = this.props
-    console.log('__DATA__', data)
     const post = data.markdownRemark
 
     const { date, title } = post.frontmatter
+    const imageFile = data.file
 
     return (
       <article className={style}>
@@ -28,6 +28,7 @@ class PostTemplate extends Component {
           </span>
         </div>
 
+        {imageFile && <Img fluid={imageFile.childImageSharp.fluid} />}
         <Markdown html={post.html} />
       </article>
     )
@@ -53,6 +54,7 @@ export const query = graphql`
       childImageSharp {
         fluid(maxWidth: 800) {
           ...GatsbyImageSharpFluid_noBase64
+          presentationWidth
         }
       }
     }
@@ -67,18 +69,17 @@ const style = css`
     max-width: ${textMaxWidth};
     margin: 0 auto 3rem;
   `)}
-}
 
-.heading {
-  font-family: var(--font-secondary);
-  padding-bottom: 2rem;
-  padding-top: 2rem;
-}
+  .heading {
+    font-family: var(--font-secondary);
+    padding-bottom: 2rem;
+    padding-top: 2rem;
+  }
 
-.subheading {
-  font-size: 0.825rem;
-  color: rgba(0,0,0,0.5);
-  margin-top: -1rem;
-  display: block;
-}
+  .subheading {
+    font-size: 0.825rem;
+    color: rgba(0, 0, 0, 0.5);
+    margin-top: -1rem;
+    display: block;
+  }
 `
