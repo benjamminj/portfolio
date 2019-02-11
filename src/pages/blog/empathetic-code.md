@@ -7,8 +7,6 @@ image:
   alt: A team of four game pieces stand in a row
 ---
 
-![Team of board game markers in a line](https://res.cloudinary.com/da2iq7dge/image/upload/v1549608596/battle-board-game-challenge-209640_djrbu1.jpg)
-
 I'm a big fan of [April Wensel](https://compassionatecoding.com/) and her talks on "compassionate code". I love how she drives home the point that software engineering is fundamentally about working with other humans. Yes, it is incredibly important that we have technical expertise, but we also need to be experts in collaboration.
 
 In order to collaborate effectively we need to be engineers that have a high degree of _emotional intelligence_. And while this certainly means decreasing workplace toxicity, emotional intelligence also extends to the code we write. That's what we'll be exploring in this post—writing code with empathy in mind.
