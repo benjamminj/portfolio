@@ -153,7 +153,7 @@ const Wrapper = styled.div`
     font-size: 0.825rem;
     font-style: italic;
     padding: 1rem 1rem 1rem 1.75rem;
-    margin: 2rem 0 2rem;
+    margin: 2rem 0;
 
     p {
       line-height: 1.25;

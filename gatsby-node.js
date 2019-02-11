@@ -4,6 +4,7 @@
  * See: https://www.gatsbyjs.org/docs/node-apis/
  */
 const path = require('path')
+const get = require('lodash/get')
 
 const { createFilePath } = require('gatsby-source-filesystem')
 
@@ -28,9 +29,10 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
   const { createPage } = boundActionCreators
 
   return new Promise((resolve, reject) => {
-    const filter = process.env.NODE_ENV === 'production'
-      ? `frontmatter: { draft: { ne: true } }`
-      : ''
+    const filter =
+      process.env.NODE_ENV === 'production'
+        ? `frontmatter: { draft: { ne: true } }`
+        : ''
 
     graphql(`
       {
@@ -39,6 +41,12 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
             node {
               fields {
                 slug
+              }
+              frontmatter {
+                image {
+                  url
+                  alt
+                }
               }
             }
           }
@@ -51,12 +59,12 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
             path: node.fields.slug,
             component: path.resolve('./src/templates/post.js'),
             context: {
-              slug: node.fields.slug
+              slug: node.fields.slug,
+              bannerUrl: get(node, 'frontmatter.image.url', '')
             }
           })
         })
 
-        // console.log(JSON.stringify(res, null, 4))
         resolve()
       })
       .catch(err => {

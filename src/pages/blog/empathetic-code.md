@@ -2,6 +2,9 @@
 title: Coding with empathy
 subtitle: It's important to write code with emotional awareness. When we forget that code is also for humans to read, we end up with scary codebases that make the future maintainers of our code sad.
 date: 2019-02-07
+image:
+  url: 'img/battle-board-game-pieces.jpg'
+  alt: A team of four game pieces stand in a row
 ---
 
 ![Team of board game markers in a line](https://res.cloudinary.com/da2iq7dge/image/upload/v1549608596/battle-board-game-challenge-209640_djrbu1.jpg)
@@ -46,9 +49,9 @@ There's another quote from "Clean Code" that goes along the lines of "you should
 
 While the metaphor may be a bit hyperbolic, the point still stands: how you name things matters. By spending that extra (often small) effort up-front to choose a descriptive name, you help your team (and your future self) gain context about the code. In the moment we know extra context about _why_ our code is the way it is, so that's the best time to choose a descriptive variable name to remind future maintainers of that context.
 
-### Adding comments 
+### Adding comments
 
-If you can't fit all of the context inside a variable name, leave a helpful comment along with whatever name you chose! 
+If you can't fit all of the context inside a variable name, leave a helpful comment along with whatever name you chose!
 
 You might have heard some people say that "code should be self-documenting so comments are unnecessary". While it is true that we should strive to make our _code_ as clear as possible, a well-placed comment can pack a ton of extra context that you wouldn't really be able to fit inside a variable.
 

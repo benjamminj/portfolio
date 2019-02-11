@@ -1,11 +1,12 @@
 ---
 title: Some Thoughts on Elm
 date: 2018-01-27
+image:
+  url: 'img/elm-logo.png'
+  alt: Elm Logo
 ---
 
-![elm logo](https://res.cloudinary.com/da2iq7dge/image/upload/v1517088790/Elm_logo_l3kspm.png)
-
-I've been playing around with Elm off & on since mid-2017. In short, Elm and I have a complex relationship. I **love** Elm as a language &mdash; the syntax just kinda gets out of your way / lets you focus on what you're actually writing, and the compiler is a strict-yet-loving teacher. In addition, it's a huge relief to feel confident that _code that compiles will not throw runtime exceptions_. 
+I've been playing around with Elm off & on since mid-2017. In short, Elm and I have a complex relationship. I **love** Elm as a language &mdash; the syntax just kinda gets out of your way / lets you focus on what you're actually writing, and the compiler is a strict-yet-loving teacher. In addition, it's a huge relief to feel confident that _code that compiles will not throw runtime exceptions_.
 
 However, at the same time the rest of the front-end ecosystem is sprinting onward (on many fronts!) & I'm using React at work, so it's difficult to devote any significant portion of my free time to playing around with Elm.
 
@@ -22,10 +23,13 @@ Elm is a _strongly-typed_ language, as opposed to JavaScript's _weak typing_. Th
 For example, if I wrote a function named `add` that takes two numbers & returns the added result, it would look like this.
 
 #### JavaScript
+
 ```javascript
 const add = (a, b) => a + b
 ```
+
 #### Elm
+
 ```haskell
 add: Number -> Number -> Number
 add a b =
@@ -35,11 +39,13 @@ add a b =
 The key to strong typing comes in when I want to _ actually use_ the function. What happens if I forget to pass a number & instead pass strings as my parameters?
 
 #### JavaScript
+
 ```javascript
 const sum = add('a', 'b') // returns the string "ab" 🤔
 ```
 
 #### Elm
+
 ```haskell
 sum = add "a" "b" -- throws a compiler error that's helpful! 🎉
 ```
@@ -52,7 +58,7 @@ While JavaScript has had a few attempts to bring types to it (notably [Flow](htt
 
 In Elm, the compiler will get reaaaaaaallly angry if you don't handle potential points of failure in your application code.
 
-For example, let's say you make a network request for some JSON. You're gonna operate on this JSON blob to render a blog post (like the one you're reading. Thanks 😜) You expect the JSON to look like this. 
+For example, let's say you make a network request for some JSON. You're gonna operate on this JSON blob to render a blog post (like the one you're reading. Thanks 😜) You expect the JSON to look like this.
 
 ```json
 {
@@ -73,7 +79,7 @@ What happens if `dateCreated` is `null`?
 
 All of these are possiblities, especially if you're relying on a third-party API to deliver your content or you're working with other developers. And as much as you might want to say "That shouldn't happen. The backend engineers will let me know when they change the payload", the fact is that sometimes this type of stuff happens, even in the best of organizations.
 
-In JavaScript, you _could_ (not saying you always do, & definitely not saying you should!) write the code to assume that the JSON response loads perfectly every time. You might not find out that your app failed until you get either an error saying ``Cannot read property `body` of `undefined`.`` and now you have to crawl through a debugger. Or you accidentally render the word `null` to your screen. Not the best UX by a long shot.
+In JavaScript, you _could_ (not saying you always do, & definitely not saying you should!) write the code to assume that the JSON response loads perfectly every time. You might not find out that your app failed until you get either an error saying `` Cannot read property `body` of `undefined`. `` and now you have to crawl through a debugger. Or you accidentally render the word `null` to your screen. Not the best UX by a long shot.
 
 Elm forces you to write error-handling code for any operations that could _potentially fail_. Like network requests, or GeoLocation in the browser, or time-based operations (converting a string into a timestamp, for example). The main reason it's even capable of doing this is the static type system. When the compiler sees one of these "potentially failable" operations without error-handling code, it just refuses to compile until you write something to handle your errors.
 
@@ -87,11 +93,11 @@ Programming with this paradigm makes your UI a pure function of application stat
 
 ## Cons
 
-### 1. It's Hard To Beat The JavaScript Ecosystem 
+### 1. It's Hard To Beat The JavaScript Ecosystem
 
 Say what you want about the "JavaScript fatigue" & having a new framework pop up each week: there's a _ton_ of competition in the front-end JS world, and this results in the best solutions rising to the top (usually).
 
-Also, if you're playing with a new JS framework, it's usually not too difficult to get it to integrate with other portions of your favorite front-end stack (CSS/SCSS/LESS/CSS-in-JS, utility libs, etc.). 
+Also, if you're playing with a new JS framework, it's usually not too difficult to get it to integrate with other portions of your favorite front-end stack (CSS/SCSS/LESS/CSS-in-JS, utility libs, etc.).
 
 Intermingling with JavaScript code makes it much more difficult for Elm to type-check & deliver on its promise of "no runtime exceptions", so there's a process of communicating with JavaScript packages via "ports". However, communicating with a JS port can tend to be rather tedious, and I found myself writing a lot of my own logic for things that I likely would have used a utility for had I been working in JS.
 
@@ -118,9 +124,9 @@ Compare this to something like JSX, which feel much closer to raw HTML.
 const view = model => (
   <div>
     <button onClick={Decrement}> - </button>
-    <div>{model}</div> 
+    <div>{model}</div>
     <button onClick={Increment}> + </button>
-  </div> 
+  </div>
 )
 ```
 
@@ -128,25 +134,25 @@ Or something like Vue's template syntax, which just builds on top of HTML
 
 ```html
 <div>
-  <button v-on:click="Decrement"> - </button>
+  <button v-on:click="Decrement">-</button>
   <div>{{model}}</div>
-  <button v-on:click="Increment"> + </button>
-</div> 
+  <button v-on:click="Increment">+</button>
+</div>
 ```
 
 In my opinion, both the React & Vue template syntaxes are quite a bit easier to read quickly, although they might not be quite as flexible & composable as Elm's HTML functions.
 
 ### 3. Lack of Support From a Major Company
 
-On one hand, I hesitate to even make this a point against Elm as a language. The language should stand or fall on the way that it operates alone (in a perfect world...). 
+On one hand, I hesitate to even make this a point against Elm as a language. The language should stand or fall on the way that it operates alone (in a perfect world...).
 
-However, what I've found when talking to colleagues is that the primary concern about Elm is due to the fact that it's not supported by a major company. I would venture that the reason I haven't seen too many companies adopt it is that without the big $$$ from a major company, the evolution & support of the language could potentially end abruptly. 
+However, what I've found when talking to colleagues is that the primary concern about Elm is due to the fact that it's not supported by a major company. I would venture that the reason I haven't seen too many companies adopt it is that without the big \$\$\$ from a major company, the evolution & support of the language could potentially end abruptly.
 
 The front-end landscape shifts pretty quickly, and keeping a language up-to-date is a full-time job (props to the people currently supporting Elm). Couple that with the fact the compile target (JavaScript) isn't staying still: in fact, JavaScript is moving at breakneck speed, gaining new features & browser APIs every year. Hopefully we will see Elm stick around & continue to keep up-to-date, as it's a really pleasant language to write in.
 
 ## Conclusion
 
-I still think that Elm is 100% worth learning &mdash; if you have the time. It's valuable for the way that it forces you to think about programming. What happens if the JSON you recieve from a server doesn't have the key you expect? What if the user's browser fails to give you geolocation data? (Both have been sources of particularly tricky bugs in JS I've worked on in the past year or so). 
+I still think that Elm is 100% worth learning &mdash; if you have the time. It's valuable for the way that it forces you to think about programming. What happens if the JSON you recieve from a server doesn't have the key you expect? What if the user's browser fails to give you geolocation data? (Both have been sources of particularly tricky bugs in JS I've worked on in the past year or so).
 
 Elm forces you to handle all your errors, dot all your "t's", cross all your "i's". Even if you don't start using it in the workplace, the benefits from stretching your mind & trying new paradigms are huge.
 

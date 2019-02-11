@@ -2,13 +2,14 @@
 title: Clean Console
 subtitle: Using Chrome DevTools to Inspect JSON Responses from API Requests
 date: 2018-02-01
+image:
+  url: 'img/tools.jpg'
+  alt: Tools at a workdesk
 ---
-
-![Tools](https://res.cloudinary.com/da2iq7dge/image/upload/v1517373105/tools_lmjssm.jpg)
 
 I’ve been fortunate to instruct and work with many people that are beginning to code through the very same bootcamp I attended about a year and a half ago ([Thinkful](https://www.thinkful.com/) &mdash; yes this is a shameless plug 😜 ). Most recently I’ve been doing a series of workshops on Chrome Devtools, where I teach common parts of Chrome DevTools that many front end developers are using daily. One of the most common inefficiencies I’ve noticed is using `console.log` to preview JSON responses from an API.
 
-I didn't learn how to use Chrome DevTools until I got on my first gig. I knew how to do the basics &mdash; preview CSS changes, change HTML, basically a bit of the stuff inside the `Elements` tab. 
+I didn't learn how to use Chrome DevTools until I got on my first gig. I knew how to do the basics &mdash; preview CSS changes, change HTML, basically a bit of the stuff inside the `Elements` tab.
 
 I've also heard similar stories from some of my colleagues at my current job &mdash; debugging & developer tools aren't usually learned until _after_ people get out on their first gig. One reason is that 3–6 months is a short time to learn how to program, much less learn how to use developer tools well (but I digress…maybe that’s another blog post).
 
