@@ -3,6 +3,9 @@ title: Coding with empathy
 subtitle: Writing code with emotional awareness
 date: 2019-02-02
 draft: true
+image:
+  url: 'img/battle-board-game-pieces.jpg'
+  alt: A team of four game pieces stand in a row
 ---
 
 I'm a big fan of [April Wensel](https://compassionatecoding.com/) and her talks on "compassionate code". I love how she drives home the point that software engineering is fundamentally about working with other humans. Yes, it is incredibly important that we have technical expertise, but we also need to be experts in collaboration.

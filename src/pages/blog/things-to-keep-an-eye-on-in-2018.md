@@ -1,9 +1,10 @@
 ---
 title: 5 Front-End Technologies I'm Keeping My Eye on in 2018
 date: 2018-01-06
+image:
+  url: 'img/ace-card.jpg'
+  alt: Ace of Spades against a black background
 ---
-
-![](https://res.cloudinary.com/da2iq7dge/image/upload/v1515227724/ace_card_ywjiot.jpg)
 
 My wife is from Las Vegas. At New Years Eve just a week ago, Las Vegas swarmed with over 300,000 guests. Some of those guests left a lot richer than when they were when they arrived in Vegas, no doubt having won a sheer stroke of luck (or maybe skill, they claim). Others, not so much.
 

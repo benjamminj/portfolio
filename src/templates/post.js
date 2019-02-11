@@ -15,6 +15,7 @@ class PostTemplate extends Component {
     const { date, title } = post.frontmatter
     const imageFile = data.file
 
+    console.log({ imageFile, data })
     return (
       <article className={style}>
         <div className="heading">
