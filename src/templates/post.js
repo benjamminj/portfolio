@@ -30,7 +30,10 @@ class PostTemplate extends Component {
         </div>
 
         {imageFile && <Img fluid={imageFile.childImageSharp.fluid} />}
-        <Markdown html={post.html} />
+
+        <div className="content">
+          <Markdown html={post.html} />
+        </div>
       </article>
     )
   }
@@ -63,6 +66,7 @@ export const query = graphql`
 `
 
 // styles
+const gutter = '1rem'
 const style = css`
   margin: 1rem 0;
 
@@ -73,8 +77,7 @@ const style = css`
 
   .heading {
     font-family: var(--font-secondary);
-    padding-bottom: 2rem;
-    padding-top: 2rem;
+    padding: 2rem ${gutter};
   }
 
   .subheading {
@@ -82,5 +85,9 @@ const style = css`
     color: rgba(0, 0, 0, 0.5);
     margin-top: -1rem;
     display: block;
+  }
+
+  .content {
+    padding: 0 ${gutter};
   }
 `
