@@ -5,6 +5,7 @@ import syntaxHighlightingStyles from '../styles/syntax-highlighting'
 
 const Wrapper = styled.div`
   width: calc(100vw - (2 * var(--body-padding)));
+  font-size: 1.125rem;
 
   ${aboveScreenSm(css`
     width: inherit;
@@ -24,23 +25,23 @@ const Wrapper = styled.div`
   }
 
   h2 {
-    font-size: 1.25rem;
+    font-size: 1.25em;
   }
 
   h3 {
-    font-size: 1rem;
+    font-size: 1em;
   }
 
   h4 {
-    font-size: 1rem;
+    font-size: 1em;
   }
 
   h5 {
-    font-size: 0.825rem;
+    font-size: 0.825em;
   }
 
   h6 {
-    font-size: 0.75rem;
+    font-size: 0.75em;
   }
 
   /* lists */
@@ -54,7 +55,7 @@ const Wrapper = styled.div`
       &:before {
         /* position: absolute; */
         padding-right: 0.5rem;
-        font-family: var(--font-secondary);
+        /* font-family: var(--font-secondary); */
         left: 0;
       }
     }
@@ -66,13 +67,14 @@ const Wrapper = styled.div`
 
     li {
       position: relative;
-      padding-left: 2rem;
+      margin-left: 1.125rem;
       line-height: 1.5;
 
       &:before {
-        content: counter(ol-count) ')';
+        content: counter(ol-count) '.';
         position: absolute;
         counter-increment: ol-count;
+        left: -1.125rem;
       }
     }
   }
@@ -80,7 +82,7 @@ const Wrapper = styled.div`
   ul {
     li {
       /* allows for nested lists with proper icon placement */
-      padding-left: 2rem;
+      padding-left: 1.125rem;
       position: relative;
       line-height: 1.5;
 
@@ -96,7 +98,7 @@ const Wrapper = styled.div`
       }
 
       & + li {
-        margin-top: 2rem;
+        margin-top: 1rem;
       }
     }
 
@@ -132,7 +134,7 @@ const Wrapper = styled.div`
     margin: 1em 0 0;
 
     & + p {
-      margin-top: 2em;
+      margin-top: 1em;
     }
   }
 
@@ -149,11 +151,16 @@ const Wrapper = styled.div`
   /* blockquote */
   blockquote {
     border-left: 0.25rem solid var(--accent-1);
+    background-color: var(--accent-1-extra-light);
     font-family: var(--font-secondary);
-    font-size: 0.825rem;
+    font-size: 1rem;
     font-style: italic;
     padding: 1rem 1rem 1rem 1.75rem;
     margin: 2rem 0;
+
+    & > p {
+      margin-top: 0;
+    }
 
     p {
       line-height: 1.25;
@@ -167,7 +174,7 @@ const Wrapper = styled.div`
 
   /* img */
   img {
-    width: 100%;
+    width: calc(100%);
     margin: 2rem 0;
   }
 

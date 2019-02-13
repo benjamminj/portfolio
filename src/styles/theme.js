@@ -2,7 +2,7 @@ import { injectGlobal } from 'emotion'
 
 injectGlobal`
   :root {
-    // colors
+    /* colors */
     --color-primary: #333;
     --color-secondary: #efefef;
 
@@ -23,13 +23,13 @@ injectGlobal`
     --gray-1: #ccc;
     --gray-2: #999;
 
-    // fonts
+    /* fonts */
     --font-primary: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
       Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
     --font-secondary: Menlo, Monaco, Lucida Console, Ubuntu Mono, Courier New,
       monospace;
 
-    // paddings
+    /* paddings */
     --body-padding: 1rem;
   }
 `
