@@ -10,7 +10,6 @@ export default css`
   code[class*='language-'],
   pre[class*='language-'] {
     color: black;
-    background: none;
     text-shadow: 0 1px white;
     font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
     text-align: left;
