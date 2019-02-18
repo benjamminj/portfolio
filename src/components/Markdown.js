@@ -144,8 +144,9 @@ const Wrapper = styled.div`
   }
 
   *:not(pre) > code {
-    background: var(--gray-0);
+    background: var(--accent-1-extra-light);
     padding: 0.25em;
+    border-radius: 4px;
   }
 
   /* blockquote */
