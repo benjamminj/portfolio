@@ -12,7 +12,7 @@ export const linkStyle = (color = 'var(--accent-1-dark)') => {
 
   return css`
     text-decoration: none;
-    border-bottom: ${borderSize} solid $color;
+    border-bottom: ${borderSize} solid ${color};
     color: ${color};
     padding-top: ${borderSize};
     transition: all 50ms ease-in;
@@ -20,7 +20,7 @@ export const linkStyle = (color = 'var(--accent-1-dark)') => {
     &:active,
     &:hover {
       background: ${color};
-      color: var(--color-secondary);
+      color: var(--white);
     }
   `
 }
