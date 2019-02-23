@@ -43,7 +43,6 @@
     "publish": "npm run build && gh-pages -d public"
   },
   "devDependencies": {
-    "gatsby-plugin-sass": "^2.0.4",
     "gh-pages": "^2.0.1",
     "prettier": "^1.9.2",
     "worker-loader": "^2.0.0"

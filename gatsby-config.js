@@ -33,6 +33,5 @@ module.exports = {
     `gatsby-plugin-sharp`,
     'gatsby-plugin-emotion',
     `gatsby-plugin-react-helmet`,
-    `gatsby-plugin-sass`
   ]
 }
