@@ -9,12 +9,12 @@ const get = require('lodash/get')
 const { createFilePath } = require('gatsby-source-filesystem')
 
 // You can delete this file if you're not using it
-exports.onCreateNode = ({ node, getNode, boundActionCreators }) => {
+exports.onCreateNode = ({ node, getNode, actions }) => {
   if (node.internal.type === 'MarkdownRemark') {
     // const fileNode = getNode(node.parent)
     const slug = createFilePath({ node, getNode, basePath: `pages` })
 
-    const { createNodeField } = boundActionCreators
+    const { createNodeField } = actions
 
     // add slug
     createNodeField({
@@ -25,8 +25,8 @@ exports.onCreateNode = ({ node, getNode, boundActionCreators }) => {
   }
 }
 
-exports.createPages = ({ graphql, boundActionCreators }) => {
-  const { createPage } = boundActionCreators
+exports.createPages = ({ graphql, actions }) => {
+  const { createPage } = actions
 
   return new Promise((resolve, reject) => {
     const filter =
