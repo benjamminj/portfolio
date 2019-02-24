@@ -1,13 +1,33 @@
-import React from 'react'
-
+/** @jsx jsx */
 import { Heading, Link, Section, Layout } from '../components'
-import { css } from 'emotion'
+import { jsx, css } from '@emotion/core'
+import { colors } from '../styles/theme'
 
-// component
 const NotFoundPage = () => (
   <Layout>
-    <Section className={style}>
-      <Heading className={headingStyle}>
+    <Section
+      css={css`
+        align-items: center;
+        bottom: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        left: 0;
+        padding: 1rem;
+        position: absolute;
+        right: 0;
+        text-align: center;
+        top: 0;
+      `}
+    >
+      <Heading
+        css={css`
+          color: ${colors.gray[500]};
+          font-size: 7rem;
+          margin-bottom: 0;
+          margin-top: 0;
+        `}
+      >
         <h1>404</h1>
       </Heading>
       <p>
@@ -24,25 +44,3 @@ const NotFoundPage = () => (
 )
 
 export default NotFoundPage
-
-// styles
-const style = css`
-  align-items: center;
-  bottom: 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  left: 0;
-  padding: 1rem;
-  position: absolute;
-  right: 0;
-  text-align: center;
-  top: 0;
-`
-
-const headingStyle = css`
-  color: var(--gray-2);
-  font-size: 7rem;
-  margin-bottom: 0;
-  margin-top: 0;
-`

@@ -1,10 +1,12 @@
 import React from 'react'
-import styled, { css } from 'react-emotion'
+import { css } from '@emotion/core'
+import styled from '@emotion/styled'
 import { aboveScreenSm, linkStyle } from '../styles/mixins'
 import syntaxHighlightingStyles from '../styles/syntax-highlighting'
+import { spacing, fonts, colors } from '../styles/theme'
 
 const Wrapper = styled.div`
-  width: calc(100vw - (2 * var(--body-padding)));
+  width: calc(100vw - (2 * ${spacing.body.gutter}));
   font-size: 1.125rem;
 
   ${aboveScreenSm(css`
@@ -19,9 +21,13 @@ const Wrapper = styled.div`
   h5,
   h6 {
     /* todo -- move to a central mixin location? */
-    font-family: var(--font-secondary);
+    font-family: ${fonts.secondary};
     margin: 2em 0 0;
-    color: var(--color-primary);
+    color: ${colors.primary};
+
+    & > code[class*='language-'] {
+      white-space: pre-wrap;
+    }
   }
 
   h2 {
@@ -53,9 +59,7 @@ const Wrapper = styled.div`
       margin: 0.5em 0;
 
       &:before {
-        /* position: absolute; */
         padding-right: 0.5rem;
-        /* font-family: var(--font-secondary); */
         left: 0;
       }
     }
@@ -88,7 +92,7 @@ const Wrapper = styled.div`
 
       &:before {
         content: '*';
-        font-family: var(--font-secondary);
+        font-family: ${fonts.secondary};
         font-weight: bold;
         position: absolute;
       }
@@ -122,7 +126,7 @@ const Wrapper = styled.div`
     text-align: center;
     letter-spacing: 4px;
     font-weight: 100;
-    font-family: var(--font-secondary);
+    font-family: ${fonts.secondary};
 
     &:before {
       content: '***';
@@ -144,16 +148,16 @@ const Wrapper = styled.div`
   }
 
   *:not(pre) > code {
-    background: var(--accent-1-extra-light);
+    background: ${colors.accent1[100]};
     padding: 0.25em;
     border-radius: 4px;
   }
 
   /* blockquote */
   blockquote {
-    border-left: 0.25rem solid var(--accent-1);
-    background-color: var(--accent-1-extra-light);
-    font-family: var(--font-secondary);
+    border-left: 0.25rem solid ${colors.accent1[500]};
+    background-color: ${colors.accent1[100]};
+    font-family: ${fonts.secondary};
     font-size: 1rem;
     font-style: italic;
     padding: 1rem 1rem 1rem 1.75rem;

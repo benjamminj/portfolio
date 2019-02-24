@@ -2,24 +2,25 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Link } from '../components'
 import Helmet from 'react-helmet'
-import styled, { css } from 'react-emotion'
+import { css, Global } from '@emotion/core'
+import styled from '@emotion/styled'
 import { aboveScreenSm, aboveScreenMd } from '../styles/mixins'
 
-import '../styles/theme.js'
-import '../styles/reset.js'
+import { spacing } from '../styles/theme.js'
+import reset from '../styles/reset.js'
 
 const Container = styled.div`
-  padding: var(--body-padding, 1rem);
+  padding: ${spacing.body.gutter};
   display: grid;
   grid-template-rows: auto 1fr;
   height: 100vh;
 
   ${aboveScreenSm(css`
-    --body-padding: 2rem;
+    padding: 2rem;
   `)};
 
   ${aboveScreenMd(css`
-    --body-padding: 1rem;
+    padding: 1rem;
   `)};
 `
 
@@ -31,6 +32,7 @@ const Header = styled.header`
 
 const TemplateWrapper = ({ children }) => (
   <Container>
+    <Global styles={reset} />
     {/* todo -- real metadata */}
     <Helmet
       title="Benjamin Johnson"
@@ -40,7 +42,10 @@ const TemplateWrapper = ({ children }) => (
           content:
             'Front-end engineer with a passion for clean UIs & elegant code'
         },
-        { name: 'keywords', content: 'front-end developer, web, javascript' }
+        {
+          name: 'keywords',
+          content: 'front-end developer, web, javascript'
+        }
       ]}
     />
     <Header>

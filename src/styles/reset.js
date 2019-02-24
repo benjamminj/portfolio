@@ -1,11 +1,12 @@
-import { injectGlobal } from 'emotion'
+import { css } from '@emotion/core'
+import { fonts } from './theme'
 
-injectGlobal`
+export default css`
   /*! minireset.css v0.0.3 | MIT License | github.com/jgthms/minireset.css */
   body {
-    font-family: var(--font-primary, sans-serif);
+    font-family: ${fonts.primary};
   }
-  
+
   html,
   body,
   p,

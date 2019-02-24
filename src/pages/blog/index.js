@@ -1,12 +1,10 @@
-import React from 'react'
-
-import { graphql } from 'gatsby'
+/** @jsx jsx */
+import { useStaticQuery, graphql } from 'gatsby'
 import { LOGROCKET_COLLECTION_ID, LOGROCKET_URL } from '../../constants'
 import { Heading, Link, Section, Layout } from '../../components'
-import { css } from 'react-emotion'
+import { jsx } from '@emotion/core'
 
-// component
-const BlogLandingPage = ({ data, errors }) => {
+const formatPostPreviews = data => {
   const { allMarkdownRemark, allMediumUser } = data
   const formattedMarkdownPosts = allMarkdownRemark.edges.map(({ node }) => ({
     external: false,
@@ -40,59 +38,10 @@ const BlogLandingPage = ({ data, errors }) => {
       })
     )
 
-  const posts = [...formattedMarkdownPosts, ...logrocketPosts].sort(
-    (current, next) => next.publishDate - current.publishDate
-  )
-
-  console.log(posts)
-  return (
-    <Layout>
-      <Section className={style}>
-        <Heading large className="pageHeading">
-          <h1>Blog</h1>
-        </Heading>
-
-        <ul className="postsList">
-          {posts.map(
-            ({
-              external,
-              url,
-              title,
-              excerpt,
-              formattedPublishDate,
-              timeToRead
-            }) => (
-              <li className="listItem" key={url}>
-                <Heading className="listItemHeading">
-                  <h2>
-                    {external ? (
-                      <Link external href={url}>
-                        {title}
-                      </Link>
-                    ) : (
-                      <Link to={url}>{title}</Link>
-                    )}
-                  </h2>
-                </Heading>
-
-                <p className="postPreview">{excerpt}</p>
-
-                <h3 className="listItemSubheading">
-                  {formattedPublishDate} &mdash; {Math.ceil(timeToRead)} min.
-                  read
-                </h3>
-              </li>
-            )
-          )}
-        </ul>
-      </Section>
-    </Layout>
-  )
+  return formattedMarkdownPosts.concat(logrocketPosts)
 }
 
-export default BlogLandingPage
-
-export const query = graphql`
+const query = graphql`
   query PostsQuery {
     allMarkdownRemark(
       filter: {
@@ -144,27 +93,69 @@ export const query = graphql`
   }
 `
 
-// style
-const style = css`
-  margin-top: 3rem;
+// component
+const BlogLandingPage = () => {
+  const data = useStaticQuery(query)
+  const formattedPostPreviews = formatPostPreviews(data)
+  const posts = formattedPostPreviews.sort(
+    (current, next) => next.publishDate - current.publishDate
+  )
 
-  .postsList {
-    margin: 1rem 0;
-  }
+  return (
+    <Layout>
+      <Section
+        css={{
+          marginTop: '3rem'
+        }}
+      >
+        <Heading large className="pageHeading">
+          <h1>Blog</h1>
+        </Heading>
 
-  .listItem {
-    margin-top: 4rem;
-  }
+        <ul css={{ margin: '1rem 0' }}>
+          {posts.map(
+            ({
+              external,
+              url,
+              title,
+              excerpt,
+              formattedPublishDate,
+              timeToRead
+            }) => (
+              <li css={{ marginTop: '4rem' }} key={url}>
+                <Heading css={{ margin: '0.75rem 0' }}>
+                  <h2>
+                    {external ? (
+                      <Link external href={url}>
+                        {title}
+                      </Link>
+                    ) : (
+                      <Link to={url}>{title}</Link>
+                    )}
+                  </h2>
+                </Heading>
 
-  .listItemHeading {
-    margin: 0.75rem 0;
-  }
+                <p>{excerpt}</p>
 
-  .listItemSubheading {
-    font-size: 0.825rem;
-    margin: 1rem 0;
-    color: #888;
-    font-family: var(--font-secondary);
-    font-weight: normal;
-  }
-`
+                <h3
+                  css={{
+                    fontSize: '0.825rem',
+                    margin: '1rem 0',
+                    color: '#888',
+                    fontFamily: 'var(--font-secondary)',
+                    fontWeight: 'normal'
+                  }}
+                >
+                  {formattedPublishDate} &mdash; {Math.ceil(timeToRead)} min.
+                  read
+                </h3>
+              </li>
+            )
+          )}
+        </ul>
+      </Section>
+    </Layout>
+  )
+}
+
+export default BlogLandingPage

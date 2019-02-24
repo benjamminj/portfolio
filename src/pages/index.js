@@ -1,8 +1,8 @@
-import React from 'react'
+/** @jsx jsx */
 import { Heading, Link, Layout } from '../components'
-import { css } from 'emotion'
+import { jsx, css } from '@emotion/core'
+import { spacing } from '../styles/theme'
 
-// todo...somewhere else perhaps?
 const navigation = [
   {
     text: 'github',
@@ -25,10 +25,29 @@ const navigation = [
   }
 ]
 
+const rhythm = '2rem'
+
 const IndexPage = () => (
   <Layout>
-    <div className={style}>
-      <Heading className={headingStyle} large>
+    <div
+      css={css`
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: ${spacing.body.gutter};
+
+        > * {
+          max-width: 35rem;
+        }
+      `}
+    >
+      <Heading
+        css={css`
+          margin-bottom: ${rhythm};
+        `}
+        large
+      >
         <h1>Benjamin Johnson</h1>
       </Heading>
 
@@ -45,10 +64,29 @@ const IndexPage = () => (
         in Orange County, CA.
       </p>
 
-      <ul className="list">
+      <ul
+        css={css`
+          display: flex;
+          flex-wrap: wrap;
+          margin: ${rhythm} 0;
+        `}
+      >
         {navigation.map(link => (
-          <li className="li" key={link.href}>
-            <Heading className="listHeading">
+          <li
+            css={css`
+              display: inline;
+              padding: 0.5rem 0;
+              &:not(:last-child) {
+                margin-right: 3rem;
+              }
+            `}
+            key={link.href}
+          >
+            <Heading
+              css={css`
+                margin: 0;
+              `}
+            >
               <Link external={link.external} to={link.href} href={link.href}>
                 {link.text}
               </Link>
@@ -61,39 +99,3 @@ const IndexPage = () => (
 )
 
 export default IndexPage
-
-// styles
-const rhythm = '2rem'
-const style = css`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: var(--body-padding);
-
-  > * {
-    max-width: 35rem;
-  }
-
-  .list {
-    display: flex;
-    flex-wrap: wrap;
-    margin: ${rhythm} 0;
-
-    .li {
-      display: inline;
-      padding: 0.5rem 0;
-      &:not(:last-child) {
-        margin-right: 3rem;
-      }
-    }
-
-    .listHeading {
-      margin: 0;
-    }
-  }
-`
-
-const headingStyle = css`
-  margin-bottom: ${rhythm};
-`

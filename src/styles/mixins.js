@@ -1,13 +1,14 @@
-import { css } from 'emotion'
+import { css } from '@emotion/core'
+import { fonts, colors } from '../styles/theme'
 
 // shared styles
 export const headingStyle = () => css`
-  font-family: var(--font-secondary);
+  font-family: ${fonts.secondary};
   margin: 1.25em 0;
-  color: var(--color-primary);
+  color: ${colors.primary};
 `
 
-export const linkStyle = (color = 'var(--accent-1-dark)') => {
+export const linkStyle = (color = colors.accent1[700]) => {
   const borderSize = '1px'
 
   return css`
@@ -20,7 +21,7 @@ export const linkStyle = (color = 'var(--accent-1-dark)') => {
     &:active,
     &:hover {
       background: ${color};
-      color: var(--white);
+      color: ${colors.white};
     }
   `
 }

@@ -1,4 +1,4 @@
-import styled from 'react-emotion'
+import styled from '@emotion/styled'
 import { textMaxWidth } from '../styles/variables'
 
 const Section = styled.section`

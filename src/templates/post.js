@@ -1,29 +1,48 @@
-import React, { Component } from 'react'
-import { css } from 'emotion'
+/** @jsx jsx */
+import { jsx, css } from '@emotion/core'
 import { graphql } from 'gatsby'
 import Img from 'gatsby-image'
+import Layout from '../components/layout'
 
 import { Heading, Markdown } from '../components'
-import { aboveScreenMd } from '../styles/mixins'
 import { textMaxWidth } from '../styles/variables'
+import { fonts } from '../styles/theme'
 
-class PostTemplate extends Component {
-  render() {
-    const { data } = this.props
-    const post = data.markdownRemark
+function PostTemplate(props) {
+  const { data } = props
+  const post = data.markdownRemark
 
-    const { date, title } = post.frontmatter
-    const imageFile = data.file
+  const { date, title } = post.frontmatter
+  const imageFile = data.file
 
-    console.log({ imageFile, data })
-    return (
-      <article className={style}>
-        <div className="heading">
+  return (
+    <Layout>
+      <article
+        css={css`
+          @media (min-width: 35rem) {
+            max-width: ${textMaxWidth};
+            margin: 0 auto 3rem;
+          }
+        `}
+      >
+        <div
+          css={css`
+            font-family: ${fonts.secondary};
+            padding: 2rem 0;
+          `}
+        >
           <Heading large>
             <h1>{title}</h1>
           </Heading>
 
-          <span className="subheading">
+          <span
+            css={css`
+              font-size: 0.825rem;
+              color: rgba(0, 0, 0, 0.5);
+              margin-top: -1rem;
+              display: block;
+            `}
+          >
             {date && `${date} — `}
             {post.timeToRead} min read
           </span>
@@ -31,12 +50,16 @@ class PostTemplate extends Component {
 
         {imageFile && <Img fluid={imageFile.childImageSharp.fluid} />}
 
-        <div className="content">
+        <div
+          css={css`
+            padding: 0;
+          `}
+        >
           <Markdown html={post.html} />
         </div>
       </article>
-    )
-  }
+    </Layout>
+  )
 }
 
 export default PostTemplate
@@ -62,32 +85,5 @@ export const query = graphql`
         }
       }
     }
-  }
-`
-
-// styles
-const gutter = '1rem'
-const style = css`
-  margin: 1rem 0;
-
-  ${aboveScreenMd(css`
-    max-width: ${textMaxWidth};
-    margin: 0 auto 3rem;
-  `)}
-
-  .heading {
-    font-family: var(--font-secondary);
-    padding: 2rem ${gutter};
-  }
-
-  .subheading {
-    font-size: 0.825rem;
-    color: rgba(0, 0, 0, 0.5);
-    margin-top: -1rem;
-    display: block;
-  }
-
-  .content {
-    padding: 0 ${gutter};
   }
 `

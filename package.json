@@ -4,8 +4,10 @@
   "version": "1.1.0",
   "author": "Kyle Mathews <mathews.kyle@gmail.com>",
   "dependencies": {
-    "emotion": "9.2.12",
-    "emotion-server": "9.2.12",
+    "@emotion/core": "^10.0.7",
+    "@emotion/styled": "^10.0.7",
+    "emotion": "^10.0.7",
+    "emotion-server": "^10.0.7",
     "gatsby": "^2.0.55",
     "gatsby-image": "^2.0.29",
     "gatsby-link": "^2.0.6",
@@ -23,7 +25,6 @@
     "prismjs": "^1.15.0",
     "react": "^16.6.3",
     "react-dom": "^16.6.3",
-    "react-emotion": "^9.2.12",
     "react-helmet": "^5.2.0"
   },
   "keywords": [
