@@ -1,15 +1,8 @@
 ---
 title: Tools like Prettier ask us to give up control
 draft: true
-date: 2019-02-18
+date: 2019-02-24
 ---
-
-<!--
-1. Talk about what Prettier does. Keep it brief, perhaps lean more on links than your own stuff
-2. Talk about why tools like Prettier sometimes receive pushback. The main reason often has to do with developers disliking the way it formats the code (i.e. "it's not clean or easy to read", or "I dislike how it formats ternary statements")
-3. Transition — Prettier does come with an ask: give up your control over the formatting, I'll handle it. Trust me, I've got this.
-4. What we gain in return for giving up ou control.
--->
 
 Perhaps you've heard of a tool called [Prettier](). If you haven't, Prettier is a code formatter for a variety of languages—JavaScript, TypeScript, CSS, Markdown, GraphQL, and many others!
 
@@ -21,17 +14,16 @@ I think one of the main reasons that tools like Prettier receive pushback is due
 
 Prettier doesn't hide the fact that it's opinionated about the way it formats code. After all, it's chosen description is "An opinionated code formatter". Opinionated tools always comes with an ask: "Leave the formatting to me—don't worry, I've got this."
 
-When we adopt opinionated tools like Prettier we do lose something—our fine-grained control over the code-formatting specifics. But what we gain in return makes the loss 100% worth it (in my opinion).
+When we adopt opinionated tools like Prettier we do lose something—our fine-grained control over the code-formatting specifics. But what we gain in return can make the loss 100% worth it.
 
-<!--
-Using the "best-in-class" tools often requires that we give up some of the fine-grained control over our software. And for some this can be difficult.
+When we give control of formatting over to our tools we can suddenly stop thinking about formatting rules. I didn't realize how much time I spent deciding whether a function should be broken into a single line vs. multiple lines, trying to hunt down missing semicolons, or other miscellaneous formatting decisions. Although each of these amount to small decisions, they add up over the course of a day. If we can cut out an entire _category_ of decisions from our workflow, we free up a _ton_ of decision-making power for stuff that can't be automated, like variable names, API decisions, and future maintainability.
 
-Prettier/formatters — stop caring about what the code _looks_ like cosmetically. You have to trust that the code formatter will do its job. In addition, even if it formats it in ways that you "don't like", you have to humbly step down and let it format away. Because what we gain in return is so much better.
-  - Stop "nitpicks" on PRs
-  - Stop second-guessing whether your code is "up to style" with the team's standards
-  - Makes it easier for people that switch b/w projects to easily match the proper coding style (freelancers, consultants, side-hustles, & OSS)
-  - Focus on the actual code and how it runs, not whether it has a semicolon or not.
-  - https://www.reddit.com/r/javascript/comments/8as6ns/i_dont_like_prettier/
+When we give control of formatting over to our tools we also eliminate an entire class of PR comments. Seeing a PR with 50 comments saying "semicolon here" or "please break into multiple lines" isn't fun in the slightest (for both the reviewer _and_ the author). We can set the PR author up for success if we simply add a formatter to our project—whatever the formatter does is the "right way" for the project. Instead of spending precious time and energy commenting on style, PR reviewers can focus on the maintainability of the new code and how it fits within the larger ecosystem of the codebase.
 
+When we give control of formatting over to our tools we make our project more welcoming to newcomers. Whether it's someone who's just started learning how to code or a seasoned veteran juggling 3-4 different projects (each with their own formatting requirements), having tools guarantee that every commit and PR is formatted correctly helps these newcomers get up to speed quickly and start contributing value.
 
--->
+---
+
+Tools like Prettier ask us to loosen our grip on code formatting and styling. Many of us are passionate about the code we write—and there's nothing wrong about that! However, this passion often results in us holding on very tightly to our idea of what "looks good" or "looks bad". Adopting a formatter for any team project turns this conversation about style into a one-time decision—which formatter shall we choose, and how shall we configure it.
+
+What about you? Have you encountered pushback when introducing formatters into a codebase? Have you pushed back yourself? I'd love to hear any thoughts you have about what happens when we let our tools take control. If you want you can reach out to me on [Twitter](https://twitter.com/benjamminj) and let me know what you think!
