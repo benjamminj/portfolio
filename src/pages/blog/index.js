@@ -1,1 +1,3 @@
-export { default } from '../../_pages/Blog'
+import BlogPage from '../../_pages/blog'
+
+export default BlogPage
