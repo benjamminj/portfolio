@@ -40,11 +40,14 @@
     "build": "gatsby build",
     "dev": "gatsby develop",
     "format": "prettier --trailing-comma es5 --no-semi --single-quote --write \"src/**/*.js\"",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "publish": "npm run build && gh-pages -d public"
   },
   "devDependencies": {
+    "babel-jest": "^24.1.0",
+    "babel-preset-gatsby": "^0.1.8",
     "gh-pages": "^2.0.1",
+    "identity-obj-proxy": "^3.0.0",
     "jest": "^24.1.0",
     "prettier": "^1.9.2",
     "react-testing-library": "^6.0.0",
