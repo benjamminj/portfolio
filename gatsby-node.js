@@ -20,7 +20,7 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
     createNodeField({
       node,
       name: 'slug',
-      value: 'blog/' + slug
+      value: '/blog' + slug
     })
   }
 }
@@ -57,7 +57,7 @@ exports.createPages = ({ graphql, actions }) => {
         data.allMarkdownRemark.edges.map(({ node }) => {
           createPage({
             path: node.fields.slug,
-            component: path.resolve('./src/templates/post.js'),
+            component: path.resolve('./src/templates/post/index.js'),
             context: {
               slug: node.fields.slug,
               bannerUrl: get(node, 'frontmatter.image.url', '')

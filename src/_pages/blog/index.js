@@ -5,7 +5,7 @@ import { jsx } from '@emotion/core'
 import formatPostPreviews from './formatPostPreviews'
 
 const query = graphql`
-  query PostsQuery {
+  query PostPreviewsQuery {
     allMarkdownRemark(
       filter: {
         frontmatter: { draft: { ne: true } }

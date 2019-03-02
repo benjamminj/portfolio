@@ -26,7 +26,7 @@ export const formatLogRocketPosts = allMediumUser => {
 
 const formatPostPreviews = data => {
   const { allMarkdownRemark, allMediumUser } = data
-  console.log(data)
+
   const formattedMarkdownPosts = allMarkdownRemark.edges.map(({ node }) => ({
     external: false,
     url: node.fields.slug,

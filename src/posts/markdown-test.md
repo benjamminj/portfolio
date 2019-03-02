@@ -1,5 +1,6 @@
 ---
 title: Markdown Test Page
+draft: true
 ---
 
 ## Heading Level 2
@@ -24,7 +25,7 @@ Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eveniet obcaecati ex e
 
 ---
 
-## Text Styling 
+## Text Styling
 
 Here is a paragraph that contains **a bit of bold text to show what that looks like**. Then for a little bit do regular to separate it from _the italics portion_. Lastly, [here's a link]() to nowhere.
 
@@ -59,18 +60,18 @@ For now the horizontal rhythm of these two list types are different because that
 ---
 
 ## BlockQuote
+
 In paragraphs for context.
 
 Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eveniet obcaecati ex eos at deserunt sed animi, ea beatae officiis impedit? Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eveniet obcaecati ex eos at deserunt sed animi, ea beatae officiis impedit? Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eveniet obcaecati ex eos at deserunt sed animi, ea beatae officiis impedit?
 
->Here is the first line of the blockquote, a really long line that should wrap around on most screens
+> Here is the first line of the blockquote, a really long line that should wrap around on most screens
 >
->And another line to see a little bigger
+> And another line to see a little bigger
 >
->Lastly, a third line
+> Lastly, a third line
 
 Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eveniet obcaecati ex eos at deserunt sed animi, ea beatae officiis impedit? Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eveniet obcaecati ex eos at deserunt sed animi, ea beatae officiis impedit? Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eveniet obcaecati ex eos at deserunt sed animi, ea beatae officiis impedit?
-
 
 ---
 
@@ -114,8 +115,8 @@ Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eveniet obcaecati ex e
 
 Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eveniet obcaecati ex eos at deserunt sed animi, ea beatae officiis impedit? Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eveniet obcaecati ex eos at deserunt sed animi, ea beatae officiis impedit? Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eveniet obcaecati ex eos at deserunt sed animi, ea beatae officiis impedit?
 
-
 ### CSS
+
 ```css
 :root {
   --color-primary: #333;

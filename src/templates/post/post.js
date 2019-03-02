@@ -2,11 +2,11 @@
 import { jsx, css } from '@emotion/core'
 import { graphql } from 'gatsby'
 import Img from 'gatsby-image'
-import Layout from '../components/layout'
+import Layout from '../../components/layout'
 
-import { Heading, Markdown } from '../components'
-import { textMaxWidth } from '../styles/variables'
-import { fonts } from '../styles/theme'
+import { Heading, Markdown } from '../../components'
+import { textMaxWidth } from '../../styles/variables'
+import { fonts } from '../../styles/theme'
 
 function PostTemplate(props) {
   const { data } = props
