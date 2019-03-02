@@ -4,7 +4,7 @@ import { Heading, Link, Section, Layout } from '../../components'
 import { jsx } from '@emotion/core'
 import formatPostPreviews from './formatPostPreviews'
 
-const query = graphql`
+export const pageQuery = graphql`
   query PostsQuery {
     allMarkdownRemark(
       filter: {
@@ -57,8 +57,7 @@ const query = graphql`
 `
 
 // component
-const BlogLandingPage = () => {
-  const data = useStaticQuery(query)
+const BlogLandingPage = ({ data }) => {
   const formattedPostPreviews = formatPostPreviews(data)
   const posts = formattedPostPreviews.sort(
     (current, next) => next.publishDate - current.publishDate

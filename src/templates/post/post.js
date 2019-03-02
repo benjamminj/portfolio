@@ -63,7 +63,7 @@ function PostTemplate(props) {
 }
 
 export default PostTemplate
-export const query = graphql`
+export const pageQuery = graphql`
   query PostQuery($slug: String!, $bannerUrl: String!) {
     markdownRemark(fields: { slug: { eq: $slug } }) {
       html
