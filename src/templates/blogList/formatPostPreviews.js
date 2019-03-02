@@ -1,31 +1,32 @@
 import { LOGROCKET_COLLECTION_ID, LOGROCKET_URL } from '../../constants'
 
-export const formatLogRocketPosts = allMediumUser => {
-  return allMediumUser.edges[0].node.posts
-    .filter(post => post.homeCollectionId === LOGROCKET_COLLECTION_ID)
-    .map(
-      ({
-        updatedAt,
-        publishDate,
-        formattedPublishDate,
-        uniqueSlug,
-        title,
-        previewContent,
-        virtuals
-      }) => ({
-        external: true,
-        url: `${LOGROCKET_URL}/${uniqueSlug}`,
-        title,
-        excerpt: previewContent.subtitle,
-        publishDate,
-        formattedPublishDate,
-        timeToRead: virtuals.readingTime
-      })
-    )
+export const formatLogRocketPosts = allMediumPost => {
+  console.log(allMediumPost.edges)
+  return allMediumPost.edges.map(({ node }) => {
+    const {
+      updatedAt,
+      publishDate,
+      formattedPublishDate,
+      uniqueSlug,
+      title,
+      previewContent,
+      virtuals
+    } = node
+
+    return {
+      external: true,
+      url: `${LOGROCKET_URL}/${uniqueSlug}`,
+      title,
+      excerpt: previewContent.subtitle,
+      publishDate,
+      formattedPublishDate,
+      timeToRead: virtuals.readingTime
+    }
+  })
 }
 
 const formatPostPreviews = data => {
-  const { allMarkdownRemark, allMediumUser } = data
+  const { allMarkdownRemark, allMediumPost } = data
   console.log(data)
   const formattedMarkdownPosts = allMarkdownRemark.edges.map(({ node }) => ({
     external: false,
@@ -37,7 +38,7 @@ const formatPostPreviews = data => {
     timeToRead: node.timeToRead
   }))
 
-  const logrocketPosts = formatLogRocketPosts(allMediumUser)
+  const logrocketPosts = formatLogRocketPosts(allMediumPost)
 
   return formattedMarkdownPosts.concat(logrocketPosts)
 }

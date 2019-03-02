@@ -7,6 +7,7 @@ const path = require('path')
 const get = require('lodash/get')
 
 const { createFilePath } = require('gatsby-source-filesystem')
+const { LOGROCKET_COLLECTION_ID } = require('./src/constants')
 
 // You can delete this file if you're not using it
 exports.onCreateNode = ({ node, getNode, actions }) => {
@@ -98,6 +99,7 @@ exports.createPages = ({ graphql, actions }) => {
             path: i === 0 ? '/blog' : `/blog/${i + 1}`,
             component: path.resolve('./src/templates/blogList/blogList.js'),
             context: {
+              logRocketId: LOGROCKET_COLLECTION_ID,
               limit: numberOfPostsPerPage,
               skip: i * numberOfPostsPerPage
             }
