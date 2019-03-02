@@ -99,6 +99,7 @@ exports.createPages = ({ graphql, actions }) => {
             path: i === 0 ? '/blog' : `/blog/${i + 1}`,
             component: path.resolve('./src/templates/blogList/blogList.js'),
             context: {
+              pageNumber: i === 0 ? null : i + 1,
               logRocketId: LOGROCKET_COLLECTION_ID,
               limit: numberOfPostsPerPage,
               skip: i * numberOfPostsPerPage

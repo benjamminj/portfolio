@@ -55,11 +55,13 @@ export const pageQuery = graphql`
 `
 
 // component
-const BlogLandingPage = ({ data }) => {
+const BlogLandingPage = ({ data, pageContext }) => {
   const formattedPostPreviews = formatPostPreviews(data)
-  const posts = formattedPostPreviews.sort(
-    (current, next) => next.publishDate - current.publishDate
-  )
+  const { skip, limit, pageNumber } = pageContext
+  const pageIndex = skip / limit + 2
+  const posts = formattedPostPreviews
+    .sort((current, next) => next.publishDate - current.publishDate)
+    .slice(skip, skip + limit)
 
   return (
     <Layout>
@@ -114,6 +116,25 @@ const BlogLandingPage = ({ data }) => {
           )}
         </ul>
       </Section>
+
+      <nav
+        css={{
+          display: 'grid',
+          gridTemplateColumns: 'auto auto',
+          margin: '0 auto',
+          padding: '1rem',
+          gridColumnGap: '1rem'
+        }}
+      >
+        {pageNumber && (
+          <Link to={`/blog/${pageNumber > 2 ? pageNumber - 1 : ''}`}>
+            newer posts
+          </Link>
+        )}
+        {limit <= posts.length && (
+          <Link to={`/blog/${pageIndex}`}>older posts</Link>
+        )}
+      </nav>
     </Layout>
   )
 }
