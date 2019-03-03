@@ -1,52 +1,15 @@
 /** @jsx jsx */
-import { useStaticQuery, graphql } from 'gatsby'
-import { LOGROCKET_COLLECTION_ID, LOGROCKET_URL } from '../../constants'
+import { graphql } from 'gatsby'
 import { Heading, Link, Section, Layout } from '../../components'
 import { jsx } from '@emotion/core'
+import formatPostPreviews from './formatPostPreviews'
 
-const formatPostPreviews = data => {
-  const { allMarkdownRemark, allMediumUser } = data
-  const formattedMarkdownPosts = allMarkdownRemark.edges.map(({ node }) => ({
-    external: false,
-    url: node.fields.slug,
-    title: node.frontmatter.title,
-    excerpt: node.excerpt,
-    publishDate: node.frontmatter.publishDate,
-    formattedPublishDate: node.frontmatter.formattedPublishDate,
-    timeToRead: node.timeToRead
-  }))
-
-  const logrocketPosts = allMediumUser.edges[0].node.posts
-    .filter(post => post.homeCollectionId === LOGROCKET_COLLECTION_ID)
-    .map(
-      ({
-        updatedAt,
-        publishDate,
-        formattedPublishDate,
-        uniqueSlug,
-        title,
-        previewContent,
-        virtuals
-      }) => ({
-        external: true,
-        url: `${LOGROCKET_URL}/${uniqueSlug}`,
-        title,
-        excerpt: previewContent.subtitle,
-        publishDate,
-        formattedPublishDate,
-        timeToRead: virtuals.readingTime
-      })
-    )
-
-  return formattedMarkdownPosts.concat(logrocketPosts)
-}
-
-const query = graphql`
-  query PostsQuery {
+export const pageQuery = graphql`
+  query($logRocketId: String!) {
     allMarkdownRemark(
       filter: {
         frontmatter: { draft: { ne: true } }
-        fileAbsolutePath: { regex: "//pages/blog//" }
+        fileAbsolutePath: { regex: "//posts//" }
       }
       sort: { fields: [frontmatter___date], order: DESC }
     ) {
@@ -68,24 +31,22 @@ const query = graphql`
         }
       }
     }
-    allMediumUser {
+    allMediumPost(filter: { homeCollectionId: { eq: $logRocketId } }) {
       edges {
         node {
-          posts {
-            formattedPublishDate: firstPublishedAt(formatString: "MM-DD-YYYY")
-            publishDate: firstPublishedAt(formatString: "x")
-            updatedAt
-            slug
-            title
-            virtuals {
-              readingTime
-            }
-            uniqueSlug
-            homeCollectionId
-            previewContent {
-              isFullContent
-              subtitle
-            }
+          formattedPublishDate: firstPublishedAt(formatString: "MM-DD-YYYY")
+          publishDate: firstPublishedAt(formatString: "x")
+          updatedAt
+          slug
+          title
+          virtuals {
+            readingTime
+          }
+          uniqueSlug
+          homeCollectionId
+          previewContent {
+            isFullContent
+            subtitle
           }
         }
       }
@@ -94,12 +55,13 @@ const query = graphql`
 `
 
 // component
-const BlogLandingPage = () => {
-  const data = useStaticQuery(query)
+const BlogLandingPage = ({ data, pageContext }) => {
   const formattedPostPreviews = formatPostPreviews(data)
-  const posts = formattedPostPreviews.sort(
-    (current, next) => next.publishDate - current.publishDate
-  )
+  const { skip, limit, pageNumber } = pageContext
+  const pageIndex = skip / limit + 2
+  const posts = formattedPostPreviews
+    .sort((current, next) => next.publishDate - current.publishDate)
+    .slice(skip, skip + limit)
 
   return (
     <Layout>
@@ -154,6 +116,25 @@ const BlogLandingPage = () => {
           )}
         </ul>
       </Section>
+
+      <nav
+        css={{
+          display: 'grid',
+          gridTemplateColumns: 'auto auto',
+          margin: '0 auto',
+          padding: '1rem',
+          gridColumnGap: '1rem'
+        }}
+      >
+        {pageNumber && (
+          <Link to={`/blog/${pageNumber > 2 ? pageNumber - 1 : ''}`}>
+            newer posts
+          </Link>
+        )}
+        {limit <= posts.length && (
+          <Link to={`/blog/${pageIndex}`}>older posts</Link>
+        )}
+      </nav>
     </Layout>
   )
 }

@@ -1,2 +1,2 @@
-export const LOGROCKET_URL = 'https://blog.logrocket.com'
-export const LOGROCKET_COLLECTION_ID = '7f3d96429888'
+module.exports.LOGROCKET_URL = 'https://blog.logrocket.com'
+module.exports.LOGROCKET_COLLECTION_ID = '7f3d96429888'

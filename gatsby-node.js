@@ -7,12 +7,13 @@ const path = require('path')
 const get = require('lodash/get')
 
 const { createFilePath } = require('gatsby-source-filesystem')
+const { LOGROCKET_COLLECTION_ID } = require('./src/constants')
 
 // You can delete this file if you're not using it
 exports.onCreateNode = ({ node, getNode, actions }) => {
   if (node.internal.type === 'MarkdownRemark') {
     // const fileNode = getNode(node.parent)
-    const slug = createFilePath({ node, getNode, basePath: `pages` })
+    const slug = createFilePath({ node, getNode, basePath: `posts` })
 
     const { createNodeField } = actions
 
@@ -20,7 +21,7 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
     createNodeField({
       node,
       name: 'slug',
-      value: slug
+      value: '/blog' + slug
     })
   }
 }
@@ -35,7 +36,7 @@ exports.createPages = ({ graphql, actions }) => {
         : ''
 
     graphql(`
-      {
+      query BuildQuery {
         allMarkdownRemark(filter: {${filter}}) {
           edges {
             node {
@@ -43,6 +44,7 @@ exports.createPages = ({ graphql, actions }) => {
                 slug
               }
               frontmatter {
+                publishDate: date(formatString: "x")
                 image {
                   url
                   alt
@@ -51,16 +53,56 @@ exports.createPages = ({ graphql, actions }) => {
             }
           }
         }
+        allMediumPost(
+          filter: { homeCollectionId: { eq: "7f3d96429888" } }
+        ) {
+          edges {
+            node {
+              title
+              uniqueSlug
+              homeCollectionId
+              slug
+              publishDate: firstPublishedAt(formatString: "x")
+            }
+          }
+        }
       }
     `)
-      .then(({ data }) => {
-        data.allMarkdownRemark.edges.map(({ node }) => {
+      .then(({ data, errors }) => {
+        if (errors) {
+          console.log(errors)
+          reject(errors)
+        }
+        // build the individual post pages
+        const posts = data.allMarkdownRemark.edges
+        posts.map(({ node }) => {
           createPage({
             path: node.fields.slug,
-            component: path.resolve('./src/templates/post.js'),
+            component: path.resolve('./src/templates/post/post.js'),
             context: {
               slug: node.fields.slug,
               bannerUrl: get(node, 'frontmatter.image.url', '')
+            }
+          })
+        })
+
+        // build the blog "list" pages
+        // the list of blog articles combines two data sources (markdown & Medium)
+        // to create one unified list.
+        const mediumPosts = data.allMediumPost.edges
+        const numberOfPosts = posts.concat(mediumPosts).length
+        const numberOfPostsPerPage = 5
+        const numberOfPages = Math.ceil(numberOfPosts / numberOfPostsPerPage)
+
+        Array.from({ length: numberOfPages }).forEach((_, i) => {
+          createPage({
+            path: i === 0 ? '/blog' : `/blog/${i + 1}`,
+            component: path.resolve('./src/templates/blogList/blogList.js'),
+            context: {
+              pageNumber: i === 0 ? null : i + 1,
+              logRocketId: LOGROCKET_COLLECTION_ID,
+              limit: numberOfPostsPerPage,
+              skip: i * numberOfPostsPerPage
             }
           })
         })
