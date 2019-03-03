@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { useStaticQuery, graphql } from 'gatsby'
+import { graphql } from 'gatsby'
 import { Heading, Link, Section, Layout } from '../../components'
 import { jsx } from '@emotion/core'
 import formatPostPreviews from './formatPostPreviews'

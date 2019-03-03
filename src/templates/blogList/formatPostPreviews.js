@@ -1,10 +1,9 @@
-import { LOGROCKET_COLLECTION_ID, LOGROCKET_URL } from '../../constants'
+import { LOGROCKET_URL } from '../../constants'
 
 export const formatLogRocketPosts = allMediumPost => {
   console.log(allMediumPost.edges)
   return allMediumPost.edges.map(({ node }) => {
     const {
-      updatedAt,
       publishDate,
       formattedPublishDate,
       uniqueSlug,
