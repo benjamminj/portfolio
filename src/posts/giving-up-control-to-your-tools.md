@@ -3,6 +3,11 @@ title: Tools like Prettier ask us to give up control
 description: Many of us are passionate about the code we write—and there's nothing wrong about that! However, this passion often results in us holding on tightly to our idea of what "looks good" or "looks bad". Using a formatter for any team project turns this conversation about style into a one-time decision—which formatter shall you choose, and how shall you configure it.
 draft: true
 date: 2019-03-01
+image:
+  url: 'img/plane-controls.jpg'
+  alt: Flight commander tweaks airplane controls
+  by: https://unsplash.com/@byronsterk
+  source: https://unsplash.com
 ---
 
 Perhaps you've heard of a tool called [Prettier](https://prettier.io/). If you haven't, Prettier is a code formatter for a variety of languages—JavaScript, TypeScript, CSS, Markdown, GraphQL, and many other languages. It's an amazing tool and I've been a huge fan of having it as a part of my workflow for the past few years.
