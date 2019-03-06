@@ -1,4 +1,5 @@
 import { css } from '@emotion/core'
+import { colors } from './theme'
 
 export default css`
   /**
@@ -61,7 +62,7 @@ export default css`
 
   :not(pre) > code[class*='language-'],
   pre[class*='language-'] {
-    background: var(--gray-0);
+    background: ${colors.gray[100]};
   }
 
   /* Inline code */
