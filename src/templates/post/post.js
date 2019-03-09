@@ -13,9 +13,12 @@ function PostTemplate(props) {
   const { data } = props
   const post = data.markdownRemark
 
-  const { date, title, description } = post.frontmatter
+  const { date, title, description: frontMatterDesc } = post.frontmatter
   const imageFile = data.file
+  const imageAltText = post.frontmatter.image.alt
 
+  const description = frontMatterDesc || post.excerpt
+  console.log(data)
   return (
     <Layout>
       <Helmet
@@ -23,7 +26,35 @@ function PostTemplate(props) {
         meta={[
           {
             name: 'description',
-            content: description || post.excerpt
+            content: description
+          },
+          {
+            name: 'twitter:card',
+            content: 'summary'
+          },
+          {
+            name: 'twitter:site',
+            content: '@benjamminj'
+          },
+          {
+            name: 'twitter:title',
+            content: title
+          },
+          {
+            name: 'twitter:description',
+            content: description
+          },
+          {
+            name: 'twitter:image',
+            content: imageFile.childImageSharp.fixed.src
+          },
+          {
+            name: 'twitter:image:alt',
+            content: imageAltText
+          },
+          {
+            name: 'twitter:creator',
+            content: '@benjamminj'
           }
         ]}
       />
@@ -58,7 +89,9 @@ function PostTemplate(props) {
           </span>
         </div>
 
-        {imageFile && <Img fluid={imageFile.childImageSharp.fluid} />}
+        {imageFile && (
+          <Img alt={imageAltText} fluid={imageFile.childImageSharp.fluid} />
+        )}
 
         <div
           css={css`
@@ -91,6 +124,9 @@ export const pageQuery = graphql`
     }
     file(relativePath: { eq: $bannerUrl }) {
       childImageSharp {
+        fixed(width: 200, height: 200) {
+          ...GatsbyImageSharpFixed_noBase64
+        }
         fluid(maxWidth: 800) {
           ...GatsbyImageSharpFluid_noBase64
           presentationWidth
