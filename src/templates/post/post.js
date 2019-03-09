@@ -1,6 +1,7 @@
 /** @jsx jsx */
 import { jsx, css } from '@emotion/core'
 import { graphql } from 'gatsby'
+import get from 'lodash/get'
 import Img from 'gatsby-image'
 import Helmet from 'react-helmet'
 import Layout from '../../components/layout'
@@ -15,10 +16,10 @@ function PostTemplate(props) {
 
   const { date, title, description: frontMatterDesc } = post.frontmatter
   const imageFile = data.file
-  const imageAltText = post.frontmatter.image.alt
+  const imageAltText = get(post, 'frontmatter.image.alt', null)
 
   const description = frontMatterDesc || post.excerpt
-  console.log(data)
+
   return (
     <Layout>
       <Helmet
@@ -44,14 +45,18 @@ function PostTemplate(props) {
             name: 'twitter:description',
             content: description
           },
-          {
-            name: 'twitter:image',
-            content: imageFile.childImageSharp.fixed.src
-          },
-          {
-            name: 'twitter:image:alt',
-            content: imageAltText
-          },
+          ...(imageFile
+            ? [
+                {
+                  name: 'twitter:image',
+                  content: imageFile.childImageSharp.fixed.src
+                },
+                {
+                  name: 'twitter:image:alt',
+                  content: imageAltText
+                }
+              ]
+            : []),
           {
             name: 'twitter:creator',
             content: '@benjamminj'
