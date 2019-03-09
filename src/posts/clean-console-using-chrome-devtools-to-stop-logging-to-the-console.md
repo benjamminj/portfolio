@@ -1,6 +1,6 @@
 ---
 title: Clean Console
-subtitle: Using Chrome DevTools to Inspect JSON Responses from API Requests
+description: Using Chrome DevTools to Inspect JSON Responses from API Requests
 date: 2018-02-01
 image:
   url: 'img/tools.jpg'

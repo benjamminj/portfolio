@@ -1,5 +1,6 @@
 ---
 title: 5 Front-End Technologies I'm Keeping My Eye on in 2018
+description: Here's some things I'm placing bets on & diving into in 2018.
 date: 2018-01-06
 image:
   url: 'img/ace-card.jpg'

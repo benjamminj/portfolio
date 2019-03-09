@@ -2,6 +2,7 @@
 import { jsx, css } from '@emotion/core'
 import { graphql } from 'gatsby'
 import Img from 'gatsby-image'
+import Helmet from 'react-helmet'
 import Layout from '../../components/layout'
 
 import { Heading, Markdown } from '../../components'
@@ -12,11 +13,20 @@ function PostTemplate(props) {
   const { data } = props
   const post = data.markdownRemark
 
-  const { date, title } = post.frontmatter
+  const { date, title, description } = post.frontmatter
   const imageFile = data.file
 
   return (
     <Layout>
+      <Helmet
+        title={title}
+        meta={[
+          {
+            name: 'description',
+            content: description || post.excerpt
+          }
+        ]}
+      />
       <article
         css={css`
           @media (min-width: 35rem) {
@@ -67,9 +77,11 @@ export const pageQuery = graphql`
   query PostQuery($slug: String!, $bannerUrl: String!) {
     markdownRemark(fields: { slug: { eq: $slug } }) {
       html
+      excerpt
       timeToRead
       frontmatter {
         title
+        description
         date(formatString: "MM-DD-YYYY")
         image {
           url

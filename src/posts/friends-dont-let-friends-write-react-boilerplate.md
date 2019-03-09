@@ -1,5 +1,6 @@
 ---
 title: Friends Don't Let Friends Write React Boilerplate
+description: If the core of your app could be done on top of a "boilerplate framework", save yourself some time & effort—focus on delivering an awesome user experience.
 date: 2018-02-13
 image:
   url: 'img/pies.jpg'

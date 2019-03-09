@@ -1,6 +1,6 @@
 ---
 title: Tools like Prettier ask us to give up control
-description: Many of us are passionate about the code we write—and there's nothing wrong about that! However, this passion often results in us holding on tightly to our idea of what "looks good" or "looks bad". Using a formatter for any team project turns this conversation about style into a one-time decision—which formatter shall you choose, and how shall you configure it.
+description: There's nothing wrong about caring about code formatting! Using a formatter requires that we give up fine-grained control and let our tools do the heavy lifting.
 draft: false
 date: 2019-03-01
 image:

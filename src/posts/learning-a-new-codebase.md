@@ -1,5 +1,6 @@
 ---
 title: "Learning a New Codebase: The Good, The Bad, and The Ugly"
+description: If getting up to speed with a codebase of thousands and thousands of lines sounds intimidating, remember that it is a long process that greatly pays off.
 date: 2017-08-28
 ---
 

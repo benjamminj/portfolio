@@ -1,5 +1,6 @@
 ---
 title: 5 Myths About The Post-Bootcamp Job Search
+description: Here’s 5 common misconceptions that could be holding you back from your first development job.
 date: 2017-08-14
 image:
   url: 'img/blog-img-man-at-desk.jpg'
