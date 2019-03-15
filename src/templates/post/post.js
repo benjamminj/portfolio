@@ -12,7 +12,7 @@ import { fonts } from '../../styles/theme'
 import { HOMEPAGE } from '../../constants'
 
 function PostTemplate(props) {
-  const { data } = props
+  const { data, pageContext } = props
   const post = data.markdownRemark
 
   const { date, title, description: frontMatterDesc } = post.frontmatter
@@ -33,11 +33,19 @@ function PostTemplate(props) {
         <meta name="twitter:title" content={title} />
         <meta name="twitter:description" content={description} />
         <meta name="twitter:creator" content="@benjamminj" />
+
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content={description} />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={HOMEPAGE + pageContext.slug} />
       </Helmet>
       {imageFile && (
         <Helmet>
           <meta name="twitter:image:src" content={absoluteImagePath} />
           <meta name="twitter:image:alt" content={imageAltText} />
+
+          <meta property="og:image:url" content={absoluteImagePath} />
+          <meta property="og:image:alt" content={absoluteImagePath} />
         </Helmet>
       )}
       <article
