@@ -27,6 +27,7 @@ function PostTemplate(props) {
     <Layout>
       <Helmet>
         <title>{title}</title>
+        <description>{description}</description>
         <meta name="description" content={description} />
         <meta name="twitter:card" content="summary" />
         <meta name="twitter:site" content="@benjamminj" />
@@ -114,7 +115,7 @@ export const pageQuery = graphql`
     }
     file(relativePath: { eq: $bannerUrl }) {
       childImageSharp {
-        fixed(width: 200, height: 200) {
+        fixed(width: 700) {
           ...GatsbyImageSharpFixed_noBase64
         }
         fluid(maxWidth: 800) {
