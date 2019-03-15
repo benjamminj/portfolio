@@ -9,6 +9,7 @@ import Layout from '../../components/layout'
 import { Heading, Markdown } from '../../components'
 import { textMaxWidth } from '../../styles/variables'
 import { fonts } from '../../styles/theme'
+import { HOMEPAGE } from '../../constants'
 
 function PostTemplate(props) {
   const { data } = props
@@ -17,52 +18,28 @@ function PostTemplate(props) {
   const { date, title, description: frontMatterDesc } = post.frontmatter
   const imageFile = data.file
   const imageAltText = get(post, 'frontmatter.image.alt', null)
-
+  const absoluteImagePath = imageFile
+    ? HOMEPAGE + imageFile.childImageSharp.fixed.src
+    : null
   const description = frontMatterDesc || post.excerpt
 
   return (
     <Layout>
-      <Helmet
-        title={title}
-        meta={[
-          {
-            name: 'description',
-            content: description
-          },
-          {
-            name: 'twitter:card',
-            content: 'summary'
-          },
-          {
-            name: 'twitter:site',
-            content: '@benjamminj'
-          },
-          {
-            name: 'twitter:title',
-            content: title
-          },
-          {
-            name: 'twitter:description',
-            content: description
-          },
-          ...(imageFile
-            ? [
-                {
-                  name: 'twitter:image',
-                  content: imageFile.childImageSharp.fixed.src
-                },
-                {
-                  name: 'twitter:image:alt',
-                  content: imageAltText
-                }
-              ]
-            : []),
-          {
-            name: 'twitter:creator',
-            content: '@benjamminj'
-          }
-        ]}
-      />
+      <Helmet>
+        <title>{title}</title>
+        <meta name="description" content={description} />
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:site" content="@benjamminj" />
+        <meta name="twitter:title" content={title} />
+        <meta name="twitter:description" content={description} />
+        <meta name="twitter:creator" content="@benjamminj" />
+      </Helmet>
+      {imageFile && (
+        <Helmet>
+          <meta name="twitter:image" content={absoluteImagePath} />
+          <meta name="twitter:image:alt" content={imageAltText} />
+        </Helmet>
+      )}
       <article
         css={css`
           @media (min-width: 35rem) {
