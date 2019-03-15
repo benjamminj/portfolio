@@ -36,7 +36,7 @@ function PostTemplate(props) {
       </Helmet>
       {imageFile && (
         <Helmet>
-          <meta name="twitter:image" content={absoluteImagePath} />
+          <meta name="twitter:image:src" content={absoluteImagePath} />
           <meta name="twitter:image:alt" content={imageAltText} />
         </Helmet>
       )}
