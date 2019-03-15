@@ -28,6 +28,7 @@ function PostTemplate(props) {
       <Helmet>
         <title>{title}</title>
         <description>{description}</description>
+        <meta name="author" content="Benjamin Johnson" />
         <meta name="description" content={description} />
         <meta name="twitter:card" content="summary" />
         <meta name="twitter:site" content="@benjamminj" />
