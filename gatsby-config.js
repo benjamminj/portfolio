@@ -29,9 +29,19 @@ module.exports = {
         trackingId: process.env.GOOGLE_ANALYTICS_TRACKER_ID
       }
     },
+    {
+      resolve: `gatsby-plugin-prefetch-google-fonts`,
+      options: {
+        fonts: [
+          {
+            family: `Inconsolata`
+          }
+        ]
+      }
+    },
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     'gatsby-plugin-emotion',
-    `gatsby-plugin-react-helmet`,
+    `gatsby-plugin-react-helmet`
   ]
 }
