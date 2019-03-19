@@ -38,7 +38,8 @@ module.exports = {
           }
         ]
       }
-    }`gatsby-transformer-sharp`,
+    },
+    `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     'gatsby-plugin-emotion',
     `gatsby-plugin-react-helmet`
