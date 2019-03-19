@@ -42,7 +42,7 @@ export default css`
     font-size: 100%;
   }
   p {
-    line-height: 1.75;
+    line-height: 2;
   }
   ul {
     list-style: none;

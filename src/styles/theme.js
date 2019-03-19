@@ -24,10 +24,9 @@ export const colors = {
 }
 
 export const fonts = {
-  primary: `-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-  Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif`,
-  secondary: `Menlo, Monaco, Lucida Console, Ubuntu Mono, Courier New,
-  monospace`
+  primary:
+    'Inconsolata, Menlo, Monaco, Lucida Console, Ubuntu Mono, Courier New, monospace',
+  secondary: `Inconsolata, Menlo, Monaco, Lusica Console, Ubuntu Mono, Courier New, monospace`
 }
 
 export const spacing = {
