@@ -58,8 +58,8 @@ const IndexPage = () => (
         </span>{' '}
         I'm a frontend engineer with a passion for clean UIs, easy-to-understand
         code, and a well-made cup of coffee. Currently learning/working at{' '}
-        <Link external href="https://happymoney.com">
-          Happy Money
+        <Link external href="https://www.sourcestrike.com">
+          SourceStrike
         </Link>{' '}
         in Orange County, CA.
       </p>
