@@ -102,15 +102,100 @@ Finally, the last portion of our mock is to restore the actual `global.fetch` to
 
 This is important if you're running multiple test suites that rely on `global.fetch`. If you don't clean up the test suite correctly you could see failing tests for code _that is not broken_. What essentially happens is the subsequent test suites use the mock from _the earlier test suite_ and they're not expecting the same response (after all, that mock is likely in an entirely different file 😱). Furthermore, your tests might not run in the exact same order each time so it's never really a good idea to have tests share state. Instead, it's better to think of each test suite in isolation—can it run at any time, will it set up whatever it needs, and can it clean up after itself?
 
-### Method #2: Use `jest.spyOn` to handle the mocking & resetting
+### Method #2: Use `jest.spyOn` to do all the hard work for us
 
-## Customizing the mocked response
+<!-- TODO transition -->
 
-<!--
-OUTLINE
-- intro to mocking
-- why should we mock network calls?
-- setting up our tests in a way that allows us to mock network calls
-- writing mocks for network calls
-- using network mocks to reproduce edge cases
- -->
+There's also a second way to mock fetch that is specific to Jest. If you haven't used [Jest](https://jestjs.io/) before, it's another testing framework built and maintained by the engineers at Facebook. One of my favorite aspects of using Jest is how simple it makes it for us to mock out code—even our `window.fetch` function!
+
+While the first example of mocking `fetch` would work in any JavaScript testing framework—for example, Mocha or Jasmine—this method of mocking `fetch` is specific to Jest. Here's what it looks like to mock `window.fetch` in Jest:
+
+```diff
+-// Part 1
+-const unmockedFetch = global.fetch
+-
+-// Part 2
+-beforeAll(() => {
+-  global.fetch = () => Promise.resolve({ json: () => [] })
+-})
+-
+-// Part 3
+-afterAll(() => {
+-  global.fetch = unmockedFetch
+-})
+
++const fetchMock = jest
++  .spyOn(global, 'fetch')
++  .mockImplementation(() => Promise.resolve({ json: () => [] }))
+```
+
+Jest provides a `.spyOn` method that allows you to listen to all calls to any method on an object. To use `jest.spyOn` you pass the object containing the method you want to spy on, and then you pass the _name of the method as a string_ as the second argument.
+
+Jest's `spyOn` method returns a _mock function_, but as of right now we _haven't replaced the fetch function's functionality_. To do that we need to use the `.mockImplementation(callbackFn)` method and insert what we want to replace `fetch` with as the `callbackFn` argument. We can simply use the same `fetch` mock from before, where we replace `fetch` with `() => Promise.resolve({ json: () => [] })`.
+
+If you're not familiar with test spies and mock functions, the TL;DR is that a spy function _doesn't change any functionality_ while a _mock function replaces the functionality_. Test spies let you record all of the things that function was called with—then you can later assert things based on the spy function. For example we could assert that `fetch` was called with `https://placeholderjson.org` as its argument:
+
+```js
+const fetchMock = jest
+  .spyOn(global, 'fetch')
+  .mockImplementation(() => Promise.resolve({ json: () => [] }))
+
+describe('withFetch', () => {
+  test('works', async () => {
+    const json = await withFetch()
+
+    // highlight-start
+    expect(fetchMock).toHaveBeenCalledWith(
+      'https://jsonplaceholder.typicode.com/posts'
+    )
+    // highlight-end
+
+    expect(Array.isArray(json)).toEqual(true)
+    expect(json.length).toEqual(0)
+  })
+})
+```
+
+The cool thing about this method of mocking fetch is that we get a couple extra things for free that we don't when we're replacing the `global.fetch` function manually. First off, instead of managing `beforeAll` and `afterAll` ourselves, we can simply use Jest to mock out the `fetch` function and Jest will handle _all of the setup and teardown for us_! Secondly, we make it a lot easier to spy on what `fetch` was called with and use that in our test assertions.
+
+## Customizing the mocked response for individual tests
+
+In addition to being able to mock out `fetch` for a single file, we also want to be able to customize _how `fetch` is mocked for an individual test_.
+
+The main reason that we want to be able to do this boils down to what the module we're testing is responsible for. Often, if we have a module that calls an API, it's usually also responsible for dealing with a handful of API scenarios. For example, we know what this module does when the response is 0 items, but what about when there are 10 items? 100 items? What happens if the data is paginated or if the API sends back a 500 error? 
+
+Our code that deals with external APIs has to handle a ton of scenarios if we want it to be considered "robust", but we also want to set up automated tests for these scenarios. Getting the API to return a 500 error might actually be a little difficult if you're manually testing from the front-end, so having a mocked `fetch` allows us to run our API handling code with every unit test run.
+
+In order to mock `fetch` for an individual test, we  don't have to change much from the previous mocks we wrote! As a first step, we can simply move the mocking code _inside of the test_.
+
+```js
+describe('withFetch', () => {
+  test('works', async () => {
+    // highlight-start
+    const fetchMock = jest
+      .spyOn(global, 'fetch')
+      .mockImplementation(() => Promise.resolve({ json: () => [] }))
+    // highlight-end
+
+    const json = await withFetch()
+    expect(fetchMock).toHaveBeenCalledWith(
+      'https://jsonplaceholder.typicode.com/posts'
+    )
+
+    expect(Array.isArray(json)).toEqual(true)
+    expect(json.length).toEqual(0)
+  })
+})
+```
+
+And that's it! Now, if we were to add another test, all we would need to do is re-implement the mock _for that test_, except we have complete freedom to do a _different_ `mockImplementation` than we did in the first test.
+
+The big caveat of mocking `fetch` for each individual test is there is considerably more boilerplate than mocking it in a `beforeEach` hook or at the top of the module. However, if I need to switch how `fetch` responds for individual tests, a little extra boilerplate is much better than skipping the tests and accidentally shipping bugs to end users.
+
+---
+
+## Conclusion
+
+Mocking `window.fetch` is a valuable tool to have in your automated-testing toolbelt—it makes it incredibly easy to recreate difficult-to-reproduce scenarios and guarantees that your tests will run the same way no matter what (even when disconnected from the internet).
+
+If you enjoyed this tutorial, I'd love to connect! As always, you can [follow me on Twitter](https://twitter.com/benjamminj) or [connect with me on LinkedIn](https://www.linkedin.com/in/benjamin-d-johnson/) to hear about new blog posts as I publish them.
