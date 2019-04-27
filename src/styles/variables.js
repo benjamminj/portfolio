@@ -1,1 +1,1 @@
-export const textMaxWidth = '70ch'
+export const textMaxWidth = '80ch'
