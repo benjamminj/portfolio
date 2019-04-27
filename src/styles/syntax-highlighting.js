@@ -12,7 +12,8 @@ export default css`
   pre[class*='language-'] {
     color: black;
     text-shadow: 0 1px white;
-    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+    font-family: 'Inconsolata', Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono',
+      monospace;
     text-align: left;
     white-space: pre;
     word-spacing: normal;
@@ -141,5 +142,10 @@ export default css`
 
   .token.entity {
     cursor: help;
+  }
+
+  .gatsby-highlight-code-line {
+    display: block;
+    background: rgba(255, 255, 255, 0.5);
   }
 `
