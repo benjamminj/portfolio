@@ -5,7 +5,7 @@ import { jsx } from '@emotion/core'
 import formatPostPreviews from './formatPostPreviews'
 
 export const pageQuery = graphql`
-  query($logRocketId: String!) {
+  query {
     allMarkdownRemark(
       filter: {
         frontmatter: { draft: { ne: true } }
@@ -27,26 +27,6 @@ export const pageQuery = graphql`
             title
             publishDate: date(formatString: "x")
             formattedPublishDate: date(formatString: "MM-DD-YYYY")
-          }
-        }
-      }
-    }
-    allMediumPost(filter: { homeCollectionId: { eq: $logRocketId } }) {
-      edges {
-        node {
-          formattedPublishDate: firstPublishedAt(formatString: "MM-DD-YYYY")
-          publishDate: firstPublishedAt(formatString: "x")
-          updatedAt
-          slug
-          title
-          virtuals {
-            readingTime
-          }
-          uniqueSlug
-          homeCollectionId
-          previewContent {
-            isFullContent
-            subtitle
           }
         }
       }

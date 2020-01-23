@@ -53,19 +53,6 @@ exports.createPages = ({ graphql, actions }) => {
             }
           }
         }
-        allMediumPost(
-          filter: { homeCollectionId: { eq: "7f3d96429888" } }
-        ) {
-          edges {
-            node {
-              title
-              uniqueSlug
-              homeCollectionId
-              slug
-              publishDate: firstPublishedAt(formatString: "x")
-            }
-          }
-        }
       }
     `)
       .then(({ data, errors }) => {
@@ -89,8 +76,7 @@ exports.createPages = ({ graphql, actions }) => {
         // build the blog "list" pages
         // the list of blog articles combines two data sources (markdown & Medium)
         // to create one unified list.
-        const mediumPosts = data.allMediumPost.edges
-        const numberOfPosts = posts.concat(mediumPosts).length
+        const numberOfPosts = posts.length
         const numberOfPostsPerPage = 5
         const numberOfPages = Math.ceil(numberOfPosts / numberOfPostsPerPage)
 
@@ -100,7 +86,6 @@ exports.createPages = ({ graphql, actions }) => {
             component: path.resolve('./src/templates/blogList/blogList.js'),
             context: {
               pageNumber: i === 0 ? null : i + 1,
-              logRocketId: LOGROCKET_COLLECTION_ID,
               limit: numberOfPostsPerPage,
               skip: i * numberOfPostsPerPage
             }
