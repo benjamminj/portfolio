@@ -2,12 +2,3 @@ language: node_js
 node_js:
   - '10'
 script: npm run build
-deploy:
-  local-dir: public
-  provider: pages
-  target-branch: gh-pages
-  skip-cleanup: true
-  github-token: $GITHUB_TOKEN # Set in travis-ci.org dashboard, marked secure
-  keep-history: true
-  on:
-    branch: master
