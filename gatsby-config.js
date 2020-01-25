@@ -17,13 +17,6 @@ module.exports = {
       }
     },
     {
-      resolve: `gatsby-source-medium`,
-      options: {
-        username: `@benjamin.d.johnson`,
-        limit: 200
-      }
-    },
-    {
       resolve: `gatsby-plugin-google-analytics`,
       options: {
         trackingId: process.env.GOOGLE_ANALYTICS_TRACKER_ID
@@ -34,7 +27,8 @@ module.exports = {
       options: {
         fonts: [
           {
-            family: `Inconsolata`
+            family: `Inconsolata`,
+            variants: [`400`, `700`]
           }
         ]
       }
