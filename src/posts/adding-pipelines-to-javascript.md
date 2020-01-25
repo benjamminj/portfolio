@@ -1,7 +1,7 @@
 ---
 title: "Adding pipelines to JavaScript"
 description: In this article I examine one of ECMAScript's exciting new proposals which adds a pipeline operator to JavaScript.
-draft: true
+
 date: 2018-11-19
 publisher: LogRocket
 link: https://blog.logrocket.com/adding-pipelines-to-javascript-f79ae7311574/

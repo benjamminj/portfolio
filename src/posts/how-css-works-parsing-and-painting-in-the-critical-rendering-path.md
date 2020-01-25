@@ -1,7 +1,7 @@
 ---
 title: "How CSS works: Parsing & painting CSS in the critical rendering path"
 description: Dive into the critical rendering path and see what happens to the CSS that we write.
-draft: true
+
 date: 2018-04-10
 publisher: LogRocket
 link: https://blog.logrocket.com/how-css-works-parsing-painting-css-in-the-critical-rendering-path-b3ee290762d3/
