@@ -77,7 +77,7 @@ exports.createPages = ({ graphql, actions }) => {
         // the list of blog articles combines two data sources (markdown & Medium)
         // to create one unified list.
         const numberOfPosts = posts.length
-        const numberOfPostsPerPage = 5
+        const numberOfPostsPerPage = 10
         const numberOfPages = Math.ceil(numberOfPosts / numberOfPostsPerPage)
 
         Array.from({ length: numberOfPages }).forEach((_, i) => {

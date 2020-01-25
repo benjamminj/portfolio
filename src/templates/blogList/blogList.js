@@ -40,7 +40,6 @@ export const pageQuery = graphql`
 const BlogLandingPage = ({ data, pageContext }) => {
   const formattedPostPreviews = formatPostPreviews(data)
 
-  console.log('previews >>', formattedPostPreviews)
   const { skip, limit, pageNumber } = pageContext
   const pageIndex = skip / limit + 2
   const posts = formattedPostPreviews
