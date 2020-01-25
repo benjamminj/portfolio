@@ -99,16 +99,18 @@ function PostTemplate(props) {
         >
           <Markdown html={post.html} />
 
-          <Link
-            external
-            href={externalLink}
-            css={css`
-              display: inline-block;
-              margin-top: 2rem;
-            `}
-          >
-            Read the full article on {publisher}.
-          </Link>
+          {publisher && externalLink && (
+            <Link
+              external
+              href={externalLink}
+              css={css`
+                display: inline-block;
+                margin-top: 2rem;
+              `}
+            >
+              Read the full article on {publisher}.
+            </Link>
+          )}
         </div>
       </article>
     </Layout>
