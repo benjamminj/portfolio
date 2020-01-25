@@ -27,6 +27,8 @@ export const pageQuery = graphql`
             title
             publishDate: date(formatString: "x")
             formattedPublishDate: date(formatString: "MM-DD-YYYY")
+            publisher
+            link
           }
         }
       }
@@ -37,6 +39,8 @@ export const pageQuery = graphql`
 // component
 const BlogLandingPage = ({ data, pageContext }) => {
   const formattedPostPreviews = formatPostPreviews(data)
+
+  console.log('previews >>', formattedPostPreviews)
   const { skip, limit, pageNumber } = pageContext
   const pageIndex = skip / limit + 2
   const posts = formattedPostPreviews
@@ -62,7 +66,9 @@ const BlogLandingPage = ({ data, pageContext }) => {
               title,
               excerpt,
               formattedPublishDate,
-              timeToRead
+              timeToRead,
+              publisher,
+              externalLink
             }) => (
               <li css={{ marginTop: '4rem' }} key={url}>
                 <Heading css={{ margin: '0.75rem 0' }}>
@@ -88,8 +94,15 @@ const BlogLandingPage = ({ data, pageContext }) => {
                     fontWeight: 'normal'
                   }}
                 >
-                  {formattedPublishDate} &mdash; {Math.ceil(timeToRead)} min.
-                  read
+                  {formattedPublishDate}
+                  {publisher && externalLink && (
+                    <span
+                      css={{
+                        fontWeight: 'bold'
+                      }}
+                    >{` on ${publisher}`}</span>
+                  )}{' '}
+                  &mdash; {Math.ceil(timeToRead)} min. read
                 </h3>
               </li>
             )

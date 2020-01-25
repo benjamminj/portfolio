@@ -140,4 +140,4 @@ Lastly, I wanted to reiterate that that the best solutions with TypeScript typic
 
 If you enjoyed this, please let me know on my Twitter or LinkedIn with a share! If you found any errors or bugs in this article let me know or submit a pull request to update this article.
 
-_The cover photo for this article is provided by [TODO: img author name]() on [Unsplash]()_
+_The cover photo for this article is provided by [TODO: img author name]() on [Unsplash]()_.

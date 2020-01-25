@@ -27,7 +27,8 @@ module.exports = {
       options: {
         fonts: [
           {
-            family: `Inconsolata`
+            family: `Inconsolata`,
+            variants: [`400`, `700`]
           }
         ]
       }

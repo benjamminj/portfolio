@@ -6,7 +6,7 @@ import Img from 'gatsby-image'
 import Helmet from 'react-helmet'
 import Layout from '../../components/layout'
 
-import { Heading, Markdown } from '../../components'
+import { Heading, Markdown, Link } from '../../components'
 import { textMaxWidth } from '../../styles/variables'
 import { fonts } from '../../styles/theme'
 import { HOMEPAGE } from '../../constants'
@@ -15,7 +15,13 @@ function PostTemplate(props) {
   const { data, pageContext } = props
   const post = data.markdownRemark
 
-  const { date, title, description: frontMatterDesc } = post.frontmatter
+  const {
+    date,
+    title,
+    description: frontMatterDesc,
+    publisher,
+    externalLink
+  } = post.frontmatter
   const imageFile = data.file
   const imageAltText = get(post, 'frontmatter.image.alt', null)
   const absoluteImagePath = imageFile
@@ -41,6 +47,7 @@ function PostTemplate(props) {
         <meta property="og:type" content="website" />
         <meta property="og:url" content={HOMEPAGE + pageContext.slug} />
       </Helmet>
+
       {imageFile && (
         <Helmet>
           <meta name="twitter:image" content={absoluteImagePath} />
@@ -91,6 +98,17 @@ function PostTemplate(props) {
           `}
         >
           <Markdown html={post.html} />
+
+          <Link
+            external
+            href={externalLink}
+            css={css`
+              display: inline-block;
+              margin-top: 2rem;
+            `}
+          >
+            Read the full article on {publisher}.
+          </Link>
         </div>
       </article>
     </Layout>
@@ -107,6 +125,8 @@ export const pageQuery = graphql`
       frontmatter {
         title
         description
+        publisher
+        externalLink: link
         date(formatString: "MM-DD-YYYY")
         image {
           url

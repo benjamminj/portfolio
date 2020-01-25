@@ -8,7 +8,9 @@ const formatPostPreviews = data => {
     excerpt: node.excerpt,
     publishDate: node.frontmatter.publishDate,
     formattedPublishDate: node.frontmatter.formattedPublishDate,
-    timeToRead: node.timeToRead
+    timeToRead: node.timeToRead,
+    publisher: node.frontmatter.publisher,
+    externalLink: node.frontmatter.link
   }))
 
   return formattedMarkdownPosts
