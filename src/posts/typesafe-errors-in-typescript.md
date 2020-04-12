@@ -22,7 +22,7 @@ I've written about both of these before—here's [an article I wrote a while bac
 
 After working with TypeScript (TS) for a while, I think it has a type system that's _strong enough_ to provide confidence. The verbosity I felt when using TS was more due to unfamiliarity.
 
-I'm a firm believer that when using a static type system you get more out of it by leaning _into_ the type system rather than fighting against the type system. It's best if you think of the compiler as your friend instead of your enemy..
+I'm a firm believer that when using a static type system you get more out of it by leaning _into_ the type system rather than fighting against the type system. It's best if you think of the compiler as your friend instead of your enemy.
 
 Which brings me to the focus of this article—how we can work _with_ TypeScript to handle errors.
 
