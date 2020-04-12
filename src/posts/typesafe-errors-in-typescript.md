@@ -2,12 +2,13 @@
 title: Leaning into TypeScript for type-safe error handling
 description: You get more out of it if you think of the compiler as your friend instead of  a gatekeeper.
 date: 2020-04-12
+draft: false
+image:
+  url: 'img/pawel-czerwinski-unsplash.jpg'
+  alt: 'Abstract rock pattern with vibrant colors'
 tags:
   - typescript
   - exception-handling
-image:
-  url: 'img/pawel-czerwinski-LyZLaA5jtiY-unsplash.jpg'
-  alt: 'Abstract rock pattern with vibrant colors'
 ---
 
 Over the past year I've been working on a large TypeScript project, and I'm happy to say I'm now officially on "team TypeScript".
@@ -152,4 +153,5 @@ Lastly, I wanted to reiterate that that the best solutions with TypeScript typic
 
 If you enjoyed this, please let me know on my [Twitter](twitter.com/benjamminj) or [LinkedIn](https://www.linkedin.com/in/benjamin-d-johnson/) with a share! If you found any errors or bugs in this article let me know or submit a pull request to update this article.
 
-_The cover photo for this article is provided by [Paweł Czerwiński](https://unsplash.com/@pawel_czerwinski?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) on [Unsplash](https://unsplash.com/s/photos/rocks-abstract?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)_.
+<!-- prettier-ignore -->
+*The cover photo for this article is by [Pawel Czerwinski](https://unsplash.com/@pawel_czerwinski) on [Unplash](https://unsplash.com/s/photos/rocks-abstract).*
