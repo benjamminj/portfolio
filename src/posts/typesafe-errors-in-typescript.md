@@ -1,6 +1,6 @@
 ---
 title: Leaning into TypeScript for type-safe error handling
-description: You get more out of it if you think of the compiler as your friend instead of  a gatekeeper.
+description: You get more out of the type system if you think of the compiler as your friend instead of  a gatekeeper.
 date: 2020-04-12
 draft: false
 image:
