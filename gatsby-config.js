@@ -23,14 +23,10 @@ module.exports = {
       }
     },
     {
-      resolve: `gatsby-plugin-prefetch-google-fonts`,
+      resolve: `gatsby-plugin-google-fonts`,
       options: {
-        fonts: [
-          {
-            family: `Inconsolata`,
-            variants: [`400`, `700`]
-          }
-        ]
+        fonts: [`inconsolata\:400,700`],
+        display: 'swap'
       }
     },
     `gatsby-transformer-sharp`,
