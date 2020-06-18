@@ -1,13 +1,13 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Link } from '../components'
+import { Link } from '.'
 import Helmet from 'react-helmet'
-import { css, Global } from '@emotion/core'
+import { css, jsx, Global } from '@emotion/core'
 import styled from '@emotion/styled'
 import { aboveScreenSm, aboveScreenMd } from '../styles/mixins'
-
 import { spacing } from '../styles/theme.js'
 import reset from '../styles/reset.js'
+/** @jsx jsx */ jsx
 
 const Container = styled.div`
   padding: ${spacing.body.gutter};
@@ -30,7 +30,7 @@ const Header = styled.header`
   text-align: left;
 `
 
-const TemplateWrapper = ({ children }) => (
+export const TemplateWrapper = ({ children }) => (
   <Container>
     <Global styles={reset} />
     {/* todo -- real metadata */}
@@ -49,7 +49,7 @@ const TemplateWrapper = ({ children }) => (
       ]}
     />
     <Header>
-      <Link to="/">benjaminjohnson.me</Link>
+      <Link href="/">benjaminjohnson.me</Link>
     </Header>
     {children}
   </Container>
