@@ -38,7 +38,9 @@ const NotFoundPage = () => (
       {
         // todo -- go back one entry in browser history OR to home page?
       }
-      <Link to="/">Go back to the home page</Link>
+      <Link href="/index" as="/">
+        Go back to the home page
+      </Link>
     </Section>
   </Layout>
 )

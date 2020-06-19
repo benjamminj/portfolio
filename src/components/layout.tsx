@@ -49,7 +49,9 @@ export const TemplateWrapper = ({ children }) => (
       ]}
     />
     <Header>
-      <Link href="/">benjaminjohnson.me</Link>
+      <Link href="/index" as="/">
+        benjaminjohnson.me
+      </Link>
     </Header>
     {children}
   </Container>

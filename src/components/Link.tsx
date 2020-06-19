@@ -17,6 +17,7 @@ interface AdditionalLinkProps {
 export const Link: FC<LinkProps & AdditionalLinkProps> = ({
   external = false,
   href,
+  as,
   ...props
 }) => {
   if (external) {
@@ -24,7 +25,7 @@ export const Link: FC<LinkProps & AdditionalLinkProps> = ({
   }
 
   return (
-    <NextLink href={href} passHref>
+    <NextLink href={href} as={as} passHref>
       <A {...props} />
     </NextLink>
   )
