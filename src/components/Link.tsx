@@ -20,8 +20,15 @@ export const Link: FC<LinkProps & AdditionalLinkProps> = ({
   as,
   ...props
 }) => {
-  if (external) {
-    return <A {...props} target="_blank" rel="noopener noreferrer" />
+  if (external && typeof href === 'string') {
+    return (
+      <A
+        {...props}
+        href={href}
+        target="_blank"
+        rel="noopener noreferrer"
+      />
+    )
   }
 
   return (

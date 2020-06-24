@@ -1,7 +1,17 @@
+import React from 'react'
 import fs from 'fs'
 import fm from 'front-matter'
 import path from 'path'
 import { GetStaticProps, GetStaticPaths, NextPage } from 'next'
+import dynamic from 'next/dynamic'
+import { MarkdownWrapperStyles } from '../../src/components/Markdown'
+import { Layout, Heading, Link } from '../../src/components'
+import { jsx } from '@emotion/core'
+import { textMaxWidth } from '../../src/styles/variables'
+import { fonts } from '../../src/styles/theme'
+import { format } from 'date-fns'
+import readingTime from 'reading-time'
+/** @jsx jsx */ jsx
 
 interface PostPageParams {
   slug: string
@@ -9,13 +19,84 @@ interface PostPageParams {
 
 interface PostPageProps {
   slug: string
+  fileName: string
+  frontmatter: {
+    title: string
+    date: string
+    readingTime: string
+    publisher?: string
+    link?: string
+  }
 }
 
 const PostPage: NextPage<PostPageProps> = props => {
+  const MDX = dynamic(import(`../../src/posts/${props.fileName}`))
+  const {
+    title,
+    date,
+    readingTime,
+    publisher,
+    link: externalLink
+  } = props.frontmatter
+  
+  console.log('PROPS >>', props)
   return (
-    <pre>
-      <code>{JSON.stringify(props, null, 4)}</code>
-    </pre>
+    <Layout>
+      <main
+        css={{
+          maxWidth: '100vw',
+          // TODO: this needs to change, it doesn't work at tablet widths
+          '@media (min-width: 35rem)': {
+            maxWidth: textMaxWidth,
+            margin: '0 auto 3rem'
+          }
+        }}
+      >
+        <div
+          css={{
+            fontFamily: fonts.secondary,
+            padding: '2rem 0'
+          }}
+        >
+          <Heading large>
+            <h1>{title}</h1>
+          </Heading>
+
+          <span
+            css={{
+              fontSize: '0.825rem',
+              color: 'rgba(0, 0, 0, 0.5)',
+              marginTop: '-1rem',
+              display: 'block'
+            }}
+          >
+            {date && `${date} — `}
+            {readingTime}
+          </span>
+        </div>
+
+        <MarkdownWrapperStyles
+          css={{
+            padding: 0
+          }}
+        >
+          <MDX />
+        </MarkdownWrapperStyles>
+
+        {publisher && externalLink && (
+          <Link
+            external
+            href={externalLink}
+            css={{
+              display: 'inline-block',
+              marginTop: '2rem'
+            }}
+          >
+            Read the full article on {publisher}.
+          </Link>
+        )}
+      </main>
+    </Layout>
   )
 }
 
@@ -32,8 +113,8 @@ export const getStaticPaths: GetStaticPaths<PostPageParams> = async () => {
 
     const slug = filePath
       .replace(/^src\/posts/, '')
-      .replace(/.mdx?$/, '')
-      .replace(/.tsx?$/, '')
+      .replace(/\.mdx?$/, '')
+      .replace(/\.tsx?$/, '')
 
     paths.push({ params: { slug } })
   }
@@ -46,7 +127,6 @@ export const getStaticPaths: GetStaticPaths<PostPageParams> = async () => {
 
 type GetPostPageStaticProps = GetStaticProps<PostPageProps, PostPageParams>
 export const getStaticProps: GetPostPageStaticProps = async ctx => {
-  console.log('CTX', ctx.params)
   const { slug } = ctx.params
 
   const basePath = './src/posts'
@@ -55,8 +135,8 @@ export const getStaticProps: GetPostPageStaticProps = async ctx => {
   const matchingPost = postFiles.find(filePath => {
     const postSlug = filePath
       .replace(/^src\/posts/, '')
-      .replace(/.mdx?$/, '')
-      .replace(/.tsx?$/, '')
+      .replace(/\.mdx?$/, '')
+      .replace(/\.tsx?$/, '')
 
     return postSlug === slug
   })
@@ -70,15 +150,17 @@ export const getStaticProps: GetPostPageStaticProps = async ctx => {
   const filePath = path.join(basePath, matchingPost)
   const { ext, name } = path.parse(filePath)
 
-  const { attributes, body } = fm<any>(fs.readFileSync(filePath, 'utf8'))
-  console.log('POST >>', ext, name)
+  const source = fs.readFileSync(filePath, 'utf8')
+  const { attributes, body } = fm<any>(source)
 
   return {
     props: {
       slug,
-      attributes: {
+      fileName: matchingPost,
+      frontmatter: {
         ...attributes,
-        date: null
+        date: format(attributes.date, 'MM-dd-yyyy'),
+        readingTime: readingTime(body).text
       },
       body
     }

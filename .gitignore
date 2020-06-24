@@ -8,6 +8,7 @@ public/
 .DS_Store
 yarn-error.log
 .next
+.mdx-data
 
 # Environment
 .env.development
@@ -18,3 +19,4 @@ yarn-error.log
 
 # Notes
 *.notes.md
+*.todo.md

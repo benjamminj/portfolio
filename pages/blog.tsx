@@ -107,8 +107,8 @@ export const getStaticProps: GetStaticProps = async () => {
           ...(attributes as object),
           href: filePath
             .replace(/^src\/posts/, '/blog')
-            .replace(/.mdx?$/, '')
-            .replace(/.tsx?$/, ''),
+            .replace(/\.mdx?$/, '')
+            .replace(/\.tsx?$/, ''),
           readingTime: readingTime(rest.body).text
         }
 
