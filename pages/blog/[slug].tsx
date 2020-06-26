@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useRef, useEffect, useState } from 'react'
 import fs from 'fs'
 import fm from 'front-matter'
 import path from 'path'
@@ -11,15 +11,19 @@ import { textMaxWidth } from '../../src/styles/variables'
 import { fonts } from '../../src/styles/theme'
 import { format } from 'date-fns'
 import readingTime from 'reading-time'
+import { ParsedUrlQuery } from 'querystring'
+import { Img } from '../../src/components/Img'
 /** @jsx jsx */ jsx
 
-interface PostPageParams {
+interface PostPageParams extends ParsedUrlQuery {
   slug: string
 }
 
 interface PostPageProps {
   slug: string
   fileName: string
+  imageSrc?: string
+  placeholderSrc?: string
   frontmatter: {
     title: string
     date: string
@@ -38,8 +42,7 @@ const PostPage: NextPage<PostPageProps> = props => {
     publisher,
     link: externalLink
   } = props.frontmatter
-  
-  console.log('PROPS >>', props)
+
   return (
     <Layout>
       <main
@@ -74,6 +77,14 @@ const PostPage: NextPage<PostPageProps> = props => {
             {readingTime}
           </span>
         </div>
+
+        {props.imageSrc && props.placeholderSrc && (
+          <Img
+            src={props.imageSrc}
+            placeholder={props.placeholderSrc}
+            alt="abstract colors"
+          />
+        )}
 
         <MarkdownWrapperStyles
           css={{
@@ -110,6 +121,7 @@ export const getStaticPaths: GetStaticPaths<PostPageParams> = async () => {
   for (const filePath of rawPosts) {
     // If it's not a markdown (or MDX) file don't build a static path for it.
     if (!filePath.match(/.mdx?$/)) continue
+    if (filePath.includes('markdown-test')) continue
 
     const slug = filePath
       .replace(/^src\/posts/, '')
@@ -153,6 +165,16 @@ export const getStaticProps: GetPostPageStaticProps = async ctx => {
   const source = fs.readFileSync(filePath, 'utf8')
   const { attributes, body } = fm<any>(source)
 
+  let imageProps = {}
+
+  if (attributes.image?.url) {
+    const image = require(`../../src/${attributes.image.url}?lqip`)
+    imageProps = {
+      imageSrc: image.src,
+      placeholderSrc: image.preSrc
+    }
+  }
+
   return {
     props: {
       slug,
@@ -162,6 +184,7 @@ export const getStaticProps: GetPostPageStaticProps = async ctx => {
         date: format(attributes.date, 'MM-dd-yyyy'),
         readingTime: readingTime(body).text
       },
+      ...imageProps,
       body
     }
   }
