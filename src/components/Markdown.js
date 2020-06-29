@@ -151,6 +151,7 @@ export const MarkdownWrapperStyles = styled.div`
     background: ${colors.accent1[100]};
     padding: 0.25em;
     border-radius: 4px;
+    font-size: 1.25rem;
   }
 
   /* blockquote */

@@ -1,18 +1,20 @@
-import React, { useRef, useEffect, useState } from 'react'
-import fs from 'fs'
-import fm from 'front-matter'
-import path from 'path'
-import { GetStaticProps, GetStaticPaths, NextPage } from 'next'
-import dynamic from 'next/dynamic'
-import { MarkdownWrapperStyles } from '../../src/components/Markdown'
-import { Layout, Heading, Link } from '../../src/components'
 import { jsx } from '@emotion/core'
-import { textMaxWidth } from '../../src/styles/variables'
-import { fonts } from '../../src/styles/theme'
 import { format } from 'date-fns'
-import readingTime from 'reading-time'
+import fm from 'front-matter'
+import fs from 'fs'
+import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
+import useHydrateMdx from 'next-mdx-remote/hydrate'
+import renderToString from 'next-mdx-remote/render-to-string'
+import path from 'path'
 import { ParsedUrlQuery } from 'querystring'
+import React from 'react'
+import readingTime from 'reading-time'
+import { Heading, Layout, Link } from '../../src/components'
 import { Img } from '../../src/components/Img'
+import { MarkdownWrapperStyles } from '../../src/components/Markdown'
+import { fonts } from '../../src/styles/theme'
+import { textMaxWidth } from '../../src/styles/variables'
+import prism from '@mapbox/rehype-prism'
 /** @jsx jsx */ jsx
 
 interface PostPageParams extends ParsedUrlQuery {
@@ -23,6 +25,7 @@ interface PostPageProps {
   slug: string
   fileName: string
   imageSrc?: string
+  mdxContent: string
   placeholderSrc?: string
   frontmatter: {
     title: string
@@ -34,7 +37,8 @@ interface PostPageProps {
 }
 
 const PostPage: NextPage<PostPageProps> = props => {
-  const MDX = dynamic(import(`../../src/posts/${props.fileName}`))
+  const hydrated = useHydrateMdx(props.mdxContent, {})
+  // const MDX = dynamic(import(`../../src/posts/${props.fileName}`))
   const {
     title,
     date,
@@ -49,9 +53,9 @@ const PostPage: NextPage<PostPageProps> = props => {
         css={{
           maxWidth: '100vw',
           // TODO: this needs to change, it doesn't work at tablet widths
-          '@media (min-width: 35rem)': {
+          '@media screen and (min-width: 50rem)': {
             maxWidth: textMaxWidth,
-            margin: '0 auto 3rem'
+            margin: '0 auto 3rem',
           }
         }}
       >
@@ -91,7 +95,7 @@ const PostPage: NextPage<PostPageProps> = props => {
             padding: 0
           }}
         >
-          <MDX />
+          {hydrated}
         </MarkdownWrapperStyles>
 
         {publisher && externalLink && (
@@ -175,10 +179,15 @@ export const getStaticProps: GetPostPageStaticProps = async ctx => {
     }
   }
 
+  const mdxContent = await renderToString(body, {}, {
+    rehypePlugins: [prism]
+  })
+
   return {
     props: {
       slug,
       fileName: matchingPost,
+      mdxContent,
       frontmatter: {
         ...attributes,
         date: format(attributes.date, 'MM-dd-yyyy'),
