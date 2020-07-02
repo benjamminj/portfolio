@@ -1,5 +1,5 @@
 import { css } from '@emotion/core'
-import { colors } from './theme'
+import { colors, fonts } from './theme'
 
 export default css`
   /**
@@ -12,8 +12,7 @@ export default css`
   pre[class*='language-'] {
     color: black;
     text-shadow: 0 1px white;
-    font-family: 'Inconsolata', Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono',
-      monospace;
+    font-family: ${fonts.primary};
     text-align: left;
     white-space: pre;
     word-spacing: normal;

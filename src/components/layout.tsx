@@ -1,12 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Link } from '.'
-import Helmet from 'react-helmet'
 import { css, jsx, Global } from '@emotion/core'
 import styled from '@emotion/styled'
 import { aboveScreenSm, aboveScreenMd } from '../styles/mixins'
 import { spacing } from '../styles/theme.js'
 import reset from '../styles/reset.js'
+import Head from 'next/head'
 /** @jsx jsx */ jsx
 
 const Container = styled.div`
@@ -32,22 +32,32 @@ const Header = styled.header`
 
 export const TemplateWrapper = ({ children }) => (
   <Container>
+    <Head>
+      <title>Benjamin Johnson | Senior Front-End Engineer</title>
+      <meta
+        name="description"
+        content="Front-end engineer with a passion for clean UIs & elegant code"
+      />
+      <meta
+        name="keywords"
+        content="front-end engineer, web, javascript, react"
+      />
+
+      <link rel="preload" href="/fonts/Inconsolata-Regular.ttf" as="font" />
+    </Head>
+
     <Global styles={reset} />
-    {/* todo -- real metadata */}
-    <Helmet
-      title="Benjamin Johnson"
-      meta={[
-        {
-          name: 'description',
-          content:
-            'Front-end engineer with a passion for clean UIs & elegant code'
-        },
-        {
-          name: 'keywords',
-          content: 'front-end developer, web, javascript'
+    <Global
+      styles={css`
+        @font-face {
+          font-family: 'Inconsolata';
+          font-display: optional;
+          src: url('/fonts/Inconsolata-Regular.ttf') format('truetype');
+          font-weight: 400;
         }
-      ]}
+      `}
     />
+
     <Header>
       <Link href="/index" as="/">
         benjaminjohnson.me

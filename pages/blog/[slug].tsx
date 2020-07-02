@@ -15,6 +15,7 @@ import { MarkdownWrapperStyles } from '../../src/components/Markdown'
 import { fonts } from '../../src/styles/theme'
 import { textMaxWidth } from '../../src/styles/variables'
 import prism from '@mapbox/rehype-prism'
+import Head from 'next/head'
 /** @jsx jsx */ jsx
 
 interface PostPageParams extends ParsedUrlQuery {
@@ -29,10 +30,14 @@ interface PostPageProps {
   placeholderSrc?: string
   frontmatter: {
     title: string
+    description:string
     date: string
     readingTime: string
     publisher?: string
     link?: string
+    image?: {
+      alt: string
+    }
   }
 }
 
@@ -44,11 +49,41 @@ const PostPage: NextPage<PostPageProps> = props => {
     date,
     readingTime,
     publisher,
-    link: externalLink
+    link: externalLink,
+    image,
   } = props.frontmatter
 
+  const { NEXT_PUBLIC_HOMEPAGE: HOMEPAGE } = process.env
+  const absoluteImagePath = props.imageSrc ? HOMEPAGE + props.imageSrc : undefined
   return (
     <Layout>
+      <Head>
+        <title>{title}</title>
+        <meta name="author" content="Benjamin Johnson" />
+        <meta name="description" content={props.frontmatter.description} />
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:site" content="@benjamminj" />
+        <meta name="twitter:title" content={title} />
+        <meta name="twitter:description" content={props.frontmatter.description} />
+        <meta name="twitter:creator" content="@benjamminj" />
+
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content={props.frontmatter.description} />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={HOMEPAGE + '/blog/' + props.slug} />
+
+        {absoluteImagePath && image?.alt && (
+          <>
+            <meta name="twitter:image" content={absoluteImagePath} />
+            {/* TODO: alt text */}
+            <meta name="twitter:image:alt" content={image?.alt} />
+
+            <meta property="og:image:url" content={absoluteImagePath} />
+            <meta property="og:image:alt" content={image?.alt} />
+          </>
+        )}
+      </Head>
+
       <main
         css={{
           maxWidth: '100vw',
