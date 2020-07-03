@@ -1,11 +1,11 @@
 ---
 title: Audit all NPM dependencies in a project using this bash script
 date: 2020-07-02
-draft: true
+draft: false
 tags:
   - bash
   - automation
-  - productivity
+  - npm
 ---
 
 ## Intro
