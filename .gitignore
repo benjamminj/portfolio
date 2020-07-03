@@ -12,7 +12,7 @@ yarn-error.log
 # Environment
 .env.development
 .env.production
-.env
+.env.local
 
 # IDE
 .vscode/
