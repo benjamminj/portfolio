@@ -43,28 +43,13 @@ export const TemplateWrapper = ({ children }) => (
         content="front-end engineer, web, javascript, react"
       />
 
-      <link rel="preload" href="/fonts/Inconsolata-Regular.ttf" as="font" />
-      <link rel="preload" href="/fonts/Inconsolata-Bold.ttf" as="font" />
+      <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Inconsolata:400,700&display=swap"
+      />
     </Head>
 
     <Global styles={reset} />
-    <Global
-      styles={css`
-        @font-face {
-          font-family: 'Inconsolata';
-          font-display: optional;
-          src: url('/fonts/Inconsolata-Regular.ttf') format('truetype');
-          font-weight: 400;
-        }
-
-        @font-face {
-          font-family: 'Inconsolata';
-          font-display: optional;
-          src: url('/fonts/Inconsolata-Bold.ttf') format('truetype');
-          font-weight: 700;
-        }
-      `}
-    />
 
     <Header>
       <Link href="/index" as="/">
