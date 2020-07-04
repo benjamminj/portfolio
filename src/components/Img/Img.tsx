@@ -2,9 +2,17 @@ import { useState, useRef, useEffect } from 'react'
 import { jsx } from '@emotion/core'
 /** @jsx jsx */ jsx
 
+export interface ImageResource {
+  /** The URI to the primary (or fallback) image source */
+  src: string
+  /** If providing multiple size options, this */
+  srcSet?: string[]
+}
+
 export interface ImgProps {
   /** Relative path to the image file */
   src: string
+  /** Low quality placeholder image source */
   placeholder: string
   /** Alt text describing the image */
   alt: string
@@ -51,7 +59,6 @@ const ActualImg = ({ src, alt }: ImgProps) => {
  * image and will fade in the actual image once it has been loaded.
  */
 export const Img = (props: ImgProps) => {
-  const path = '../../img/pawel-czerwinski-unsplash.jpg'
   return (
     <div css={{ position: 'relative' }}>
       <img src={props.placeholder} css={{ width: '100%' }} alt={props.alt} />

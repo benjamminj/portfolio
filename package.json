@@ -65,6 +65,7 @@
     "react-testing-library": "^6.0.0",
     "remark-frontmatter": "^2.0.0",
     "responsive-loader": "^1.2.0",
+    "sharp": "^0.25.4",
     "svg-sprite-loader": "^5.0.0",
     "typescript": "^3.9.5",
     "webp-loader": "^0.6.0",

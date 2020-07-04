@@ -28,6 +28,10 @@ interface PostPageProps {
   imageSrc?: string
   mdxContent: string
   placeholderSrc?: string
+  image?: {
+    src: string;
+    placeholder: string;
+  }
   frontmatter: {
     title: string
     description:string
@@ -117,10 +121,12 @@ const PostPage: NextPage<PostPageProps> = props => {
           </span>
         </div>
 
-        {props.imageSrc && props.placeholderSrc && (
+        {props.image && (
           <Img
-            src={props.imageSrc}
-            placeholder={props.placeholderSrc}
+            {...props.image}
+            // webpSrc={props.webpSrc}
+            // src={props.imageSrc}
+            // placeholder={props.placeholderSrc}
             alt="abstract colors"
           />
         )}
@@ -204,13 +210,15 @@ export const getStaticProps: GetPostPageStaticProps = async ctx => {
   const source = fs.readFileSync(filePath, 'utf8')
   const { attributes, body } = fm<any>(source)
 
-  let imageProps = {}
+  let imageProps: { image?: PostPageProps['image'] } = {}
 
   if (attributes.image?.url) {
+    const resized = require(`../../src/${attributes.image.url}?resize&size=640`)
     const image = require(`../../src/${attributes.image.url}?lqip`)
-    imageProps = {
-      imageSrc: image.src,
-      placeholderSrc: image.preSrc
+
+    imageProps.image = {
+      src: resized.src,
+      placeholder: image.preSrc
     }
   }
 
