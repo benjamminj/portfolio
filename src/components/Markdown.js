@@ -93,7 +93,7 @@ export const MarkdownWrapperStyles = styled.div`
       &:before {
         content: '*';
         font-family: ${fonts.secondary};
-        font-weight: bold;
+        font-weight: 700;
         position: absolute;
       }
 
@@ -125,7 +125,7 @@ export const MarkdownWrapperStyles = styled.div`
     border-width: 0;
     text-align: center;
     letter-spacing: 4px;
-    font-weight: 100;
+    font-weight: 400;
     font-family: ${fonts.secondary};
 
     &:before {

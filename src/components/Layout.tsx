@@ -44,6 +44,7 @@ export const TemplateWrapper = ({ children }) => (
       />
 
       <link rel="preload" href="/fonts/Inconsolata-Regular.ttf" as="font" />
+      <link rel="preload" href="/fonts/Inconsolata-Bold.ttf" as="font" />
     </Head>
 
     <Global styles={reset} />
@@ -54,6 +55,13 @@ export const TemplateWrapper = ({ children }) => (
           font-display: optional;
           src: url('/fonts/Inconsolata-Regular.ttf') format('truetype');
           font-weight: 400;
+        }
+
+        @font-face {
+          font-family: 'Inconsolata';
+          font-display: optional;
+          src: url('/fonts/Inconsolata-Bold.ttf') format('truetype');
+          font-weight: 700;
         }
       `}
     />

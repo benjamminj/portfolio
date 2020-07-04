@@ -37,10 +37,7 @@ const BlogPage = ({ posts }) => {
           marginTop: '3rem'
         }}
       >
-        <Heading
-          // large
-          className="pageHeading"
-        >
+        <Heading large className="pageHeading">
           <h1>Blog</h1>
         </Heading>
 

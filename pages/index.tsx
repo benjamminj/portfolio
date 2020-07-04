@@ -47,7 +47,7 @@ const IndexPage = () => (
         css={css`
           margin-bottom: ${rhythm};
         `}
-        // large
+        large
       >
         <h1>Benjamin Johnson</h1>
       </Heading>
