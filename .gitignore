@@ -8,6 +8,7 @@ node_modules
 yarn-error.log
 .next
 .mdx-data
+out
 
 # Environment
 .env.development
