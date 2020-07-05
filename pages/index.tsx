@@ -28,6 +28,9 @@ const navigation = [
 
 const rhythm = '2rem'
 
+/**
+ * Not too much going on in this page, it's just the basic landing page!
+ */
 const IndexPage = () => (
   <Layout>
     <div

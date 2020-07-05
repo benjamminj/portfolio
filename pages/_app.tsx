@@ -1,15 +1,15 @@
-import NextApp from 'next/app'
-import Router from 'next/router'
 import { CacheProvider } from '@emotion/core'
-
-// Use only { cache } from 'emotion'. Don't use { css }.
+// Use only { cache } from 'emotion'. Don't use { css } in this file.
 import { cache } from 'emotion'
+import Router from 'next/router'
 import { useEffect } from 'react'
 import * as analytics from '../src/helpers/analytics'
 
-// import { globalStyles } from '../shared/styles'
-
+/**
+ * Render the shell of the application, initialize client-side styles.
+ */
 export const App = ({ Component, pageProps }) => {
+  // On every page change, trigger a pageview in GA
   useEffect(() => {
     const handleRouteChange = url => {
       analytics.pageview(url)

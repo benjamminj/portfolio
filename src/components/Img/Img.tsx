@@ -24,12 +24,18 @@ export interface ImgProps {
 const ActualImg = ({ src, alt }: ImgProps) => {
   const [loaded, setLoaded] = useState(false)
 
-  const img = useRef(typeof window === 'undefined' ? null : new Image())
+  const isServer = typeof window === 'undefined'
+
+  // Store the image asset in a ref so that we can fade it in after the component
+  // renders into the DOM.
+  const img = useRef(isServer ? null : new Image())
 
   useEffect(() => {
     if (!img.current) return
     img.current.src = src
 
+    // Once the image has fully loaded into the browser, flip the state
+    // and display it!
     img.current.onload = () => {
       setLoaded(true)
     }

@@ -5,6 +5,9 @@ import { aboveScreenSm, linkStyle } from '../styles/mixins'
 import syntaxHighlightingStyles from '../styles/syntax-highlighting'
 import { spacing, fonts, colors } from '../styles/theme'
 
+/**
+ * Meant to wrap around rendered markdown content to provide it with styling.
+ */
 export const MarkdownWrapperStyles = styled.div`
   width: calc(100vw - (2 * ${spacing.body.gutter}));
   font-size: 1.125rem;
@@ -191,8 +194,6 @@ export const MarkdownWrapperStyles = styled.div`
   ${syntaxHighlightingStyles};
 `
 
-const Markdown = props => (
+export const Markdown = props => (
   <MarkdownWrapperStyles dangerouslySetInnerHTML={{ __html: props.html }} />
 )
-
-export default Markdown

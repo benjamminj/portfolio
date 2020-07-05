@@ -1,12 +1,11 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import { Link } from '.'
-import { css, jsx, Global } from '@emotion/core'
+import { css, Global, jsx } from '@emotion/core'
 import styled from '@emotion/styled'
-import { aboveScreenSm, aboveScreenMd } from '../styles/mixins'
-import { spacing } from '../styles/theme.js'
-import reset from '../styles/reset.js'
 import Head from 'next/head'
+import React, { ReactNode } from 'react'
+import { aboveScreenMd, aboveScreenSm } from '../styles/mixins'
+import reset from '../styles/reset.js'
+import { spacing } from '../styles/theme.js'
+import { Link } from './Link'
 /** @jsx jsx */ jsx
 
 const Container = styled.div`
@@ -30,7 +29,11 @@ const Header = styled.header`
   text-align: left;
 `
 
-export const TemplateWrapper = ({ children }) => (
+/**
+ * Generic layout wrapper for the entire website. Contains some default metadata,
+ * loads some fonts, and top-level navigation.
+ */
+export const Layout = ({ children }: { children?: ReactNode }) => (
   <Container>
     <Head>
       <title>Benjamin Johnson | Senior Front-End Engineer</title>
@@ -56,12 +59,7 @@ export const TemplateWrapper = ({ children }) => (
         benjaminjohnson.me
       </Link>
     </Header>
+
     {children}
   </Container>
 )
-
-TemplateWrapper.propTypes = {
-  children: PropTypes.node
-}
-
-export default TemplateWrapper

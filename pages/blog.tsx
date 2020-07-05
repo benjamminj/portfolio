@@ -9,23 +9,26 @@ import { Heading, Layout, Link, Section } from '../src/components'
 /** @jsx jsx */ jsx
 
 interface PostPreview {
+  /** The post title */
   title: string
+  /** Brief description of the post used for previews */
   description: string
+  /** The date that the post was first published. */
   date: string
+  /** Whether or not the post is a WIP or not. */
   draft?: boolean
-  image?: {
-    url: string
-    alt: string
-    by?: string
-    source?: string
-  }
+  /** If the post was externally published, the link to the original article */
   link?: string
+  /** If the post was externally published, the name of the original publisher. */
   publisher?: string
+  /** The `href` to the actual post itself */
   href: string
+  /** An estimate of how long the post will take to read */
   readingTime: string
-  tags: string[]
 }
+
 interface BlogPageProps {
+  /** List of blog posts. */
   posts: PostPreview[]
 }
 
@@ -80,17 +83,21 @@ const BlogPage = ({ posts }) => {
 }
 
 export const getStaticProps: GetStaticProps = async () => {
+  // All of the posts are located within the `src/posts` directory.
   const basePath = './src/posts/'
+  // Get a list of post file paths so that we can process them into the blog list.
   const rawPosts = fs.readdirSync(basePath)
 
   let posts = []
   for (let item of rawPosts) {
     const filePath = path.join(basePath, item)
-    const { ext, name } = path.parse(filePath)
+    const { ext } = path.parse(filePath)
 
     if (
       ext.startsWith('.md') &&
+      // Skip the `index` file
       ext !== 'index' &&
+      // Skip the markdown test as well, it's not an actual post.
       !filePath.includes('posts/markdown-test')
     ) {
       try {
@@ -98,6 +105,7 @@ export const getStaticProps: GetStaticProps = async () => {
           fs.readFileSync(filePath, 'utf8')
         )
 
+        // Don't add the post to the list if it's a WIP
         if (attributes.draft) continue
 
         const postData = {
@@ -125,6 +133,8 @@ export const getStaticProps: GetStaticProps = async () => {
     props: {
       posts: posts
         .sort((a, b) => compareDesc(a.date, b.date))
+        // We add the date formatting _after_ sorting so that we can accurately sort
+        // by date.
         .map(addDateFormattingToPost)
     }
   }
