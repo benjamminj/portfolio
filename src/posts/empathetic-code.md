@@ -57,7 +57,7 @@ I'm a big fan of using comments to explain the _why_ behind the code. We don't r
 
 ### Documentation
 
-A great way to measure the empathy of your codebase is to watch what happens when a new team member comes on board. How long does it take for them to get the app running locally? What types of questions are they asking? What types of things are they "doing wrong" in their first few PRs.
+A great way to measure the empathy of your codebase is to watch what happens when a new team member comes on board. How long does it take for them to get the app running locally? What types of questions are they asking? What types of things are they "doing wrong" in their first few PRs?
 
 If you don't have any new team members coming onboard for a while, put yourself in the shoes of a junior developer starting their first day at your company. What types of things about your codebase would be confusing or unclear?
 
