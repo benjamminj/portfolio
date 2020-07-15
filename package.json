@@ -43,6 +43,7 @@
     "dev": "yarn next",
     "next:dev": "yarn next",
     "start": "yarn next start",
+    "export": "yarn next export",
     "ts": "tsc",
     "format": "prettier --trailing-comma es5 --no-semi --single-quote --write \"src/**/*.js\"",
     "test": "jest",
