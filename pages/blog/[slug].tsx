@@ -80,7 +80,7 @@ const PostPage: NextPage<PostPageProps> = props => {
     link: externalLink
   } = props.frontmatter
 
-  const { DEPLOY_PRIME_URL: HOMEPAGE } = process.env
+  const { HOMEPAGE } = process.env
 
   // If there's a banner image, we want to use that for the metadata, so we need
   // to create a non-relative URL to the image.
