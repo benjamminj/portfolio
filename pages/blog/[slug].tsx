@@ -30,14 +30,14 @@ interface PostPageProps {
   /** If the article has a banner image, this will contain all relevant URIs */
   image?: {
     /** The full, high-fidelity image URI */
-    src: string;
-    /** 
-     * A low quality placeholder image. This can be stretched out to fit the same 
+    src: string
+    /**
+     * A low quality placeholder image. This can be stretched out to fit the same
      * "size" as the `src` while the high-fidelity image is loading.
      */
-    placeholder: string;
+    placeholder: string
     /** Alt text for the banner image */
-    alt: string;
+    alt: string
   }
   /** Post metadata */
   frontmatter: {
@@ -49,7 +49,7 @@ interface PostPageProps {
     date: string
     /** A rough estimate of how long this post will take to read. */
     readingTime: string
-    /** 
+    /**
      * If the post was published in an external publication, this will contain the
      * name of the publisher.
      */
@@ -77,14 +77,16 @@ const PostPage: NextPage<PostPageProps> = props => {
     date,
     readingTime,
     publisher,
-    link: externalLink,
+    link: externalLink
   } = props.frontmatter
 
-  const { NEXT_PUBLIC_HOMEPAGE: HOMEPAGE } = process.env
+  const { DEPLOY_PRIME_URL: HOMEPAGE } = process.env
 
   // If there's a banner image, we want to use that for the metadata, so we need
   // to create a non-relative URL to the image.
-  const absoluteImagePath = props.image?.src ? HOMEPAGE + props.image?.src : undefined
+  const absoluteImagePath = props.image?.src
+    ? HOMEPAGE + props.image?.src
+    : undefined
 
   return (
     <Layout>
@@ -95,11 +97,17 @@ const PostPage: NextPage<PostPageProps> = props => {
         <meta name="twitter:card" content="summary" />
         <meta name="twitter:site" content="@benjamminj" />
         <meta name="twitter:title" content={title} />
-        <meta name="twitter:description" content={props.frontmatter.description} />
+        <meta
+          name="twitter:description"
+          content={props.frontmatter.description}
+        />
         <meta name="twitter:creator" content="@benjamminj" />
 
         <meta property="og:title" content={title} />
-        <meta property="og:description" content={props.frontmatter.description} />
+        <meta
+          property="og:description"
+          content={props.frontmatter.description}
+        />
         <meta property="og:type" content="website" />
         <meta property="og:url" content={HOMEPAGE + '/blog/' + props.slug} />
 
@@ -118,7 +126,7 @@ const PostPage: NextPage<PostPageProps> = props => {
           maxWidth: '100vw',
           '@media screen and (min-width: 50rem)': {
             maxWidth: textMaxWidth,
-            margin: '0 auto 3rem',
+            margin: '0 auto 3rem'
           }
         }}
       >
@@ -145,12 +153,7 @@ const PostPage: NextPage<PostPageProps> = props => {
           </span>
         </div>
 
-        {props.image && (
-          <Img
-            {...props.image}
-            alt={props.image.alt}
-          />
-        )}
+        {props.image && <Img {...props.image} alt={props.image.alt} />}
 
         <MarkdownWrapperStyles
           css={{
@@ -271,10 +274,14 @@ export const getStaticProps: GetPostPageStaticProps = async ctx => {
   }
 
   // Render out the MDX content.
-  const mdxContent = await renderToString(body, {}, {
-    // `prism` adds syntax highlighting as CSS classes to the code blocks.
-    rehypePlugins: [prism]
-  })
+  const mdxContent = await renderToString(
+    body,
+    {},
+    {
+      // `prism` adds syntax highlighting as CSS classes to the code blocks.
+      rehypePlugins: [prism]
+    }
+  )
 
   return {
     props: {

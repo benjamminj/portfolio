@@ -7,5 +7,11 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 module.exports = withBundleAnalyzer(
   withMdxEnhanced({
     fileExtensions: ['mdx', 'md']
-  })(withOptimizedImages({}))
+  })(
+    withOptimizedImages({
+      env: {
+        DEPLOY_PRIME_URL: process.env.DEPLOY_PRIME_URL
+      }
+    })
+  )
 )

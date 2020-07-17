@@ -29,7 +29,7 @@ You'll need a `.env.local` file with the following variables in order to run the
 # This variable allows creation of absolute links. It should reference the _root_ URL
 # of the site—if you're running locally it'll be `localhost:PORT` as shown below, in
 # the deployed environment it will be your domain name.
-NEXT_PUBLIC_HOMEPAGE="http://localhost:3000"
+DEPLOY_PRIME_URL="http://localhost:3000"
 
 # OPTIONAL
 # Track pageviews on google analytics. Having this locally won't track real pageviews
