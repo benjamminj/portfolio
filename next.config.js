@@ -10,7 +10,7 @@ module.exports = withBundleAnalyzer(
   })(
     withOptimizedImages({
       env: {
-        HOMEPAGE: process.env.URL
+        HOMEPAGE: process.env.BASE_URL || process.env.URL
       }
     })
   )
