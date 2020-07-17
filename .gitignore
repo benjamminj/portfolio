@@ -4,16 +4,20 @@ node_modules
 .cache/
 
 # Build directory
-public/
 .DS_Store
 yarn-error.log
+.next
+.mdx-data
+out
 
 # Environment
 .env.development
 .env.production
+.env.local
 
 # IDE
 .vscode/
 
 # Notes
 *.notes.md
+*.todo.md

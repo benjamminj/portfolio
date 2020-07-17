@@ -1,7 +1,8 @@
-/** @jsx jsx */
-import { Heading, Link, Layout } from '../components'
-import { jsx, css } from '@emotion/core'
-import { spacing } from '../styles/theme'
+import { css, jsx } from '@emotion/core'
+import React from 'react'
+import { Heading, Layout, Link } from '../src/components'
+import { spacing } from '../src/styles/theme'
+/** @jsx jsx */ jsx
 
 const navigation = [
   {
@@ -27,6 +28,9 @@ const navigation = [
 
 const rhythm = '2rem'
 
+/**
+ * Not too much going on in this page, it's just the basic landing page!
+ */
 const IndexPage = () => (
   <Layout>
     <div
@@ -87,7 +91,7 @@ const IndexPage = () => (
                 margin: 0;
               `}
             >
-              <Link external={link.external} to={link.href} href={link.href}>
+              <Link external={link.external} href={link.href}>
                 {link.text}
               </Link>
             </Heading>

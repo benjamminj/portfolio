@@ -5,7 +5,10 @@ import { aboveScreenSm, linkStyle } from '../styles/mixins'
 import syntaxHighlightingStyles from '../styles/syntax-highlighting'
 import { spacing, fonts, colors } from '../styles/theme'
 
-const Wrapper = styled.div`
+/**
+ * Meant to wrap around rendered markdown content to provide it with styling.
+ */
+export const MarkdownWrapperStyles = styled.div`
   width: calc(100vw - (2 * ${spacing.body.gutter}));
   font-size: 1.125rem;
 
@@ -93,7 +96,7 @@ const Wrapper = styled.div`
       &:before {
         content: '*';
         font-family: ${fonts.secondary};
-        font-weight: bold;
+        font-weight: 700;
         position: absolute;
       }
 
@@ -125,7 +128,7 @@ const Wrapper = styled.div`
     border-width: 0;
     text-align: center;
     letter-spacing: 4px;
-    font-weight: 100;
+    font-weight: 400;
     font-family: ${fonts.secondary};
 
     &:before {
@@ -151,6 +154,7 @@ const Wrapper = styled.div`
     background: ${colors.accent1[100]};
     padding: 0.25em;
     border-radius: 4px;
+    font-size: 1.25rem;
   }
 
   /* blockquote */
@@ -190,8 +194,6 @@ const Wrapper = styled.div`
   ${syntaxHighlightingStyles};
 `
 
-const Markdown = props => (
-  <Wrapper dangerouslySetInnerHTML={{ __html: props.html }} />
+export const Markdown = props => (
+  <MarkdownWrapperStyles dangerouslySetInnerHTML={{ __html: props.html }} />
 )
-
-export default Markdown
