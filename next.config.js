@@ -15,7 +15,8 @@ module.exports = withBundleAnalyzer(
   })(
     withOptimizedImages({
       env: {
-        HOMEPAGE: BASE_URL
+        HOMEPAGE: BASE_URL,
+        NEXT_PUBLIC_GA_TRACKING_ID: process.env.NEXT_PUBLIC_GA_TRACKING_ID
       }
     })
   )
