@@ -119,6 +119,8 @@ const PostPage: NextPage<PostPageProps> = props => {
             <meta property="og:image:alt" content={props.image?.alt} />
           </>
         )}
+
+        <script src="https://unpkg.com/requestidlecallback-polyfill@1.0.2/index.js" />
       </Head>
 
       <main
