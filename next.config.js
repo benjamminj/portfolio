@@ -4,20 +4,19 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
   enabled: process.env.ANALYZE === 'true'
 })
 
+const BASE_URL =
+  process.env.CONTEXT === 'production'
+    ? process.env.URL
+    : process.env.DEPLOY_PRIME_URL
+
 module.exports = withBundleAnalyzer(
   withMdxEnhanced({
     fileExtensions: ['mdx', 'md']
   })(
     withOptimizedImages({
       env: {
-        HOMEPAGE:
-          // In the production environment, we want to use the actual configured
-          // URL as a base URL.
-          //
-          // In non-production environments, we want to use the preview url.
-          process.env.PRODUCTION_URL === 'true'
-            ? process.env.URL
-            : process.env.DEPLOY_PRIME_URL
+        HOMEPAGE: BASE_URL,
+        NEXT_PUBLIC_GA_TRACKING_ID: process.env.NEXT_PUBLIC_GA_TRACKING_ID
       }
     })
   )
