@@ -24,7 +24,7 @@ jobs:
           urls: "
             ${{ steps.waitFor200.outputs.url }}, 
             ${{ steps.waitFor200.outputs.url }}/blog,
-            ${{ steps.waitFor200.outputs.url }}/blog/mocking-fetch/
+            ${{ steps.waitFor200.outputs.url }}/blog/mocking-fetch
           "
           outputDirectory: /tmp/artifacts
       - name: Upload artifacts
