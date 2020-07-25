@@ -1,16 +1,14 @@
 name: Lighthouse
-# This workflow is triggered on pull requests to the repository.
+
 on: [pull_request]
 
 jobs:
   lighthouse:
     name: Run Lighthouse
-    # This job runs on Linux
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
       - run: mkdir /tmp/artifacts
-      # This step prints an output (time) from the previous step's action.
       - name: Wait for Netlify
         uses: kamranayub/wait-for-netlify-action@2.0.0
         id: waitFor200
@@ -23,14 +21,8 @@ jobs:
       - name: Run Lighthouse
         uses: foo-software/lighthouse-check-action@master
         with:
-          # accessToken: ${{ secrets.LIGHTHOUSE_CHECK_GITHUB_ACCESS_TOKEN }}
           urls: "
             ${{ steps.waitFor200.outputs.url }}, 
-            ${{ steps.waitFor200.outputs.url }}/blog
+            ${{ steps.waitFor200.outputs.url }}/blog,
+            ${{ steps.waitFor200.outputs.url }}/mocking-fetch/
           "
-          # urls: |
-          #   ${{ steps.waitFor200.outputs.url }}/
-          #   ${{ steps.waitFor200.outputs.url }}/blog
-          # # budgetPath: ./budget.json
-          # uploadArtifacts: true
-      
