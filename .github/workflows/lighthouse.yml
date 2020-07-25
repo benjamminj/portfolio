@@ -3,12 +3,13 @@ name: Lighthouse
 on: [pull_request]
 
 jobs:
-  build:
-    name: Wait for Netlify
+  lighthouse:
+    name: Run Lighthouse
     # This job runs on Linux
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
+      - run: mkdir /tmp/artifacts
       # This step prints an output (time) from the previous step's action.
       - name: Wait for Netlify
         uses: kamranayub/wait-for-netlify-action@2.0.0
@@ -19,14 +20,17 @@ jobs:
           max_timeout: 600
         env: 
           NETLIFY_TOKEN: ${{secrets.NETLIFY_TOKEN}}
-      - name: Echo the netlify url
-        run: echo 'The url is ${{ steps.waitFor200.outputs.url }}.'
-      - name: Audit URLs using Lighthouse
-        uses: treosh/lighthouse-ci-action@v3
+      - name: Run Lighthouse
+        uses: foo-software/lighthouse-check-action@master
         with:
-          urls: |
-            ${{ steps.waitFor200.outputs.url }}/
+          # accessToken: ${{ secrets.LIGHTHOUSE_CHECK_GITHUB_ACCESS_TOKEN }}
+          urls: "
+            ${{ steps.waitFor200.outputs.url }}, 
             ${{ steps.waitFor200.outputs.url }}/blog
-          # budgetPath: ./budget.json
-          uploadArtifacts: true
+          "
+          # urls: |
+          #   ${{ steps.waitFor200.outputs.url }}/
+          #   ${{ steps.waitFor200.outputs.url }}/blog
+          # # budgetPath: ./budget.json
+          # uploadArtifacts: true
       
