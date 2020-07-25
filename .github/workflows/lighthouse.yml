@@ -26,3 +26,9 @@ jobs:
             ${{ steps.waitFor200.outputs.url }}/blog,
             ${{ steps.waitFor200.outputs.url }}/blog/mocking-fetch/
           "
+          outputDirectory: /tmp/artifacts
+      - name: Upload artifacts
+        uses: actions/upload-artifact@main
+        with:
+          name: Lighthouse reports
+          path: /tmp/artifacts
