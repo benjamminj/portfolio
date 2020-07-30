@@ -21,3 +21,4 @@ out
 # Notes
 *.notes.md
 *.todo.md
+.vercel
