@@ -1,7 +1,9 @@
 export {}
 
+const BASE_URL = process.env.TEST_BASE_URL
+
 test('smoketest', async () => {
-  await page.goto('https://www.benjaminjohnson.me/blog/mocking-fetch')
+  await page.goto(`${BASE_URL}/blog/mocking-fetch`)
   await page.waitForSelector('text="benjaminjohnson.me"')
 
   const pageContent = {
@@ -36,7 +38,7 @@ test('smoketest', async () => {
   const selectors = [
     `h1 >> text="${pageContent.title}"`,
     'text="04-26-2019 — 12 min read"',
-    `[alt=${pageContent.imageAlt}]`
+    `[alt="${pageContent.imageAlt}"]`
   ]
 
   await Promise.all(selectors.map(s => page.waitForSelector(s)))

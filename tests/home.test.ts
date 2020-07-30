@@ -1,7 +1,9 @@
 export {}
 
+const BASE_URL = process.env.TEST_BASE_URL
+
 test('smoketest', async () => {
-  await page.goto('https://www.benjaminjohnson.me')
+  await page.goto(BASE_URL)
 
   await page.waitForSelector('text="Benjamin Johnson"')
   await page.$('text="benjaminjohnson.me"')
