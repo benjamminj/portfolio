@@ -1,6 +1,11 @@
-name: Lighthouse
+name: Preview URL Checks
 
 on: [pull_request]
+
+env:
+  CI: true
+  # Force terminal colors. @see https://www.npmjs.com/package/colors
+  FORCE_COLOR: 1
 
 jobs:
   wait_for_preview:
@@ -19,22 +24,13 @@ jobs:
           max_timeout: 600
         env: 
           NETLIFY_TOKEN: ${{secrets.NETLIFY_TOKEN}}
+
   lighthouse:
     name: Run Lighthouse
     runs-on: ubuntu-latest
     needs: wait_for_preview
     steps:
-      # - uses: actions/checkout@v1
       - run: mkdir /tmp/artifacts
-      # - name: Wait for Netlify
-      #   uses: kamranayub/wait-for-netlify-action@2.0.0
-      #   id: waitFor200
-      #   with: 
-      #     site_name: "benjaminjohnsonme"
-      #     # Wait on URL for up to 10 minutes, since Netlify throttles builds 😭
-      #     max_timeout: 600
-      #   env: 
-      #     NETLIFY_TOKEN: ${{secrets.NETLIFY_TOKEN}}
       - name: Run Lighthouse
         uses: foo-software/lighthouse-check-action@master
         with:
@@ -49,3 +45,18 @@ jobs:
         with:
           name: Lighthouse reports
           path: /tmp/artifacts
+
+  e2e_tests:
+    name: End-to-end tests
+    runs-on: ubuntu-latest
+    needs: wait_for_preview
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 10
+      - uses: microsoft/playwright-github-action@v1
+      - run: yarn
+      - run: npm test
+        env: 
+          TEST_BASE_URL: ${{ needs.wait_for_preview.outputs.url }}
