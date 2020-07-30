@@ -38,7 +38,7 @@
     "singleQuote": true
   },
   "scripts": {
-    "build": "yarn next build",
+    "build": "TZ=UTC yarn next build",
     "build:analyze": "ANALYZE=true yarn next build",
     "dev": "yarn next",
     "next:dev": "yarn next",
