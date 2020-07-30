@@ -1,14 +1,20 @@
-name: Lighthouse
+name: Preview URL Checks
 
 on: [pull_request]
 
+env:
+  CI: true
+  # Force terminal colors. @see https://www.npmjs.com/package/colors
+  FORCE_COLOR: 1
+
 jobs:
-  lighthouse:
-    name: Run Lighthouse
+  wait_for_preview:
+    name: Wait for preview URL
     runs-on: ubuntu-latest
+    outputs:
+      url: ${{ steps.waitFor200.outputs.url }}
     steps:
       - uses: actions/checkout@v1
-      - run: mkdir /tmp/artifacts
       - name: Wait for Netlify
         uses: kamranayub/wait-for-netlify-action@2.0.0
         id: waitFor200
@@ -18,13 +24,20 @@ jobs:
           max_timeout: 600
         env: 
           NETLIFY_TOKEN: ${{secrets.NETLIFY_TOKEN}}
+
+  lighthouse:
+    name: Run Lighthouse
+    runs-on: ubuntu-latest
+    needs: wait_for_preview
+    steps:
+      - run: mkdir /tmp/artifacts
       - name: Run Lighthouse
         uses: foo-software/lighthouse-check-action@master
         with:
           urls: "
-            ${{ steps.waitFor200.outputs.url }}, 
-            ${{ steps.waitFor200.outputs.url }}/blog,
-            ${{ steps.waitFor200.outputs.url }}/blog/mocking-fetch
+            ${{ needs.wait_for_preview.outputs.url }}, 
+            ${{ needs.wait_for_preview.outputs.url }}/blog,
+            ${{ needs.wait_for_preview.outputs.url }}/blog/mocking-fetch
           "
           outputDirectory: /tmp/artifacts
       - name: Upload artifacts
@@ -32,3 +45,18 @@ jobs:
         with:
           name: Lighthouse reports
           path: /tmp/artifacts
+
+  e2e_tests:
+    name: End-to-end tests
+    runs-on: ubuntu-latest
+    needs: wait_for_preview
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 10
+      - uses: microsoft/playwright-github-action@v1
+      - run: yarn
+      - run: npm test
+        env: 
+          TEST_BASE_URL: ${{ needs.wait_for_preview.outputs.url }}
