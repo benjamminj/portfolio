@@ -29,7 +29,12 @@ You'll need a `.env.local` file with the following variables in order to run the
 # This variable allows creation of absolute links. It should reference the _root_ URL
 # of the site—if you're running locally it'll be `localhost:PORT` as shown below, in
 # the deployed environment it will be your domain name.
+#
+# You can set either `DEPLOY_PRIME_URL` or just `URL` when running locally. In CI and
+# the deployed environment Netlify uses `URL` to refer to the production URL and
+# `DEPLOY_PRIME_URL` to refer to the preview URL.
 DEPLOY_PRIME_URL="http://localhost:3000"
+URL="https://www.benjaminjohnson.me"
 
 # OPTIONAL
 # Track pageviews on google analytics. Having this locally won't track real pageviews
@@ -50,6 +55,37 @@ This should spin up a development server with hot reloading, live builds of page
 ```bash
 $ yarn dev
 ```
+
+## Running the tests
+
+Right now I've got a small suite of [`playwright`](https://playwright.dev) tests to make sure that my website loads on a few key browsers and that nothing crazy is missing. 🙃
+
+To run the `playwright` tests you'll need to add the following variables to your `.env.local` file.
+
+```bash
+# REQUIRED
+# Base url from which to load web pages.
+# Should correspond to the deployment url of whichever application is being tested.
+TEST_BASE_URL="http://localhost:3000"
+
+# OPTIONAL
+# Whether to launch a headful or headless browser for end-to-end tests.
+# DEFAULT: "true"
+TEST_HEADLESS_BROWSER="true"
+
+# OPTIONAL
+# Puts the e2e test runner into "debug" mode
+# DEFAULT: "false"
+# Note that this will override the behavior in "TEST_HEADLESS_BROWSER"
+TEST_DEBUG_MODE="false"
+
+# OPTIONAL
+# Which browsers to run end-to-end tests in.
+# DEFAULT: "chromium,firefox,webkit"
+TEST_BROWSERS='chromium'
+```
+
+Once you've got the environment variables added, you can run the end-to-end tests with `npm test` or `yarn test`.
 
 ## Copyright & Theft
 
