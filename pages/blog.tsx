@@ -68,11 +68,9 @@ const BlogPage = ({ posts }) => {
               >
                 {post.date}
                 {post.publisher && post.link && (
-                  <span
-                    css={{
-                      fontWeight: 'bold'
-                    }}
-                  >{` on ${post.publisher}`}</span>
+                  <span css={{ fontWeight: 'bold' }}>
+                    {` on ${post.publisher}`}
+                  </span>
                 )}{' '}
                 &mdash; {post.readingTime}
               </h3>
