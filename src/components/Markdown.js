@@ -9,7 +9,6 @@ import { spacing, fonts, colors } from '../styles/theme'
  * Meant to wrap around rendered markdown content to provide it with styling.
  */
 export const MarkdownWrapperStyles = styled.div`
-  width: calc(100vw - (2 * ${spacing.body.gutter}));
   font-size: 1.125rem;
 
   ${aboveScreenSm(css`
@@ -190,7 +189,7 @@ export const MarkdownWrapperStyles = styled.div`
     margin: 1rem 0 0;
   }
 
-    ${syntaxHighlightingStyles};
+  ${syntaxHighlightingStyles};
 `
 
 export const Markdown = props => (

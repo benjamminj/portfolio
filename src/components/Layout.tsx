@@ -1,32 +1,22 @@
-import { css, Global, jsx } from '@emotion/core'
+import { Global, jsx } from '@emotion/core'
 import styled from '@emotion/styled'
 import Head from 'next/head'
 import React, { ReactNode } from 'react'
-import { aboveScreenMd, aboveScreenSm } from '../styles/mixins'
 import reset from '../styles/reset.js'
-import { spacing } from '../styles/theme.js'
 import { Link } from './Link'
 /** @jsx jsx */ jsx
 
 const Container = styled.div`
-  padding: ${spacing.body.gutter};
   display: grid;
   grid-template-rows: auto 1fr;
-  height: 100vh;
-
-  ${aboveScreenSm(css`
-    padding: 2rem;
-  `)};
-
-  ${aboveScreenMd(css`
-    padding: 1rem;
-  `)};
+  min-height: 100vh;
 `
 
 const Header = styled.header`
   margin-bottom: 1rem;
   z-index: 100;
   text-align: left;
+  padding: var(--body-gutter);
 `
 
 /**

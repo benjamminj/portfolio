@@ -2,6 +2,10 @@ import { css } from '@emotion/core'
 import { fonts } from './theme'
 
 export default css`
+  :root {
+    --body-gutter: 1rem;
+  }
+
   /*! minireset.css v0.0.3 | MIT License | github.com/jgthms/minireset.css */
   body {
     font-family: ${fonts.primary};

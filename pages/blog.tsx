@@ -37,7 +37,8 @@ const BlogPage = ({ posts }) => {
     <Layout>
       <Section
         css={{
-          marginTop: '3rem'
+          marginTop: '3rem',
+          padding: 'var(--body-gutter)'
         }}
       >
         <Heading large className="pageHeading">

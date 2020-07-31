@@ -34,6 +34,7 @@ export const spacing = {
     gutter: '1rem'
   }
 }
+
 export default css`
   :root {
     /* colors */

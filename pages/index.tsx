@@ -1,7 +1,6 @@
 import { css, jsx } from '@emotion/core'
 import React from 'react'
 import { Heading, Layout, Link } from '../src/components'
-import { spacing } from '../src/styles/theme'
 /** @jsx jsx */ jsx
 
 const navigation = [
@@ -39,7 +38,7 @@ const IndexPage = () => (
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        padding: ${spacing.body.gutter};
+        padding: var(--body-gutter);
 
         > * {
           max-width: 35rem;
