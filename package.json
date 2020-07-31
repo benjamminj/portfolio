@@ -2,6 +2,9 @@
   "name": "benjohnsons-portfolio",
   "description": "Gatsby default starter",
   "version": "1.1.0",
+  "engines": {
+    "node": "10.x"
+  },
   "author": "Kyle Mathews <mathews.kyle@gmail.com>",
   "dependencies": {
     "@emotion/core": "^10.0.7",
@@ -57,7 +60,6 @@
     "gh-pages": "^2.0.1",
     "identity-obj-proxy": "^3.0.0",
     "image-trace-loader": "^1.0.2",
-    "imagemin-gifsicle": "^7.0.0",
     "imagemin-mozjpeg": "^9.0.0",
     "imagemin-optipng": "^8.0.0",
     "imagemin-svgo": "^8.0.0",
