@@ -29,12 +29,7 @@ You'll need a `.env.local` file with the following variables in order to run the
 # This variable allows creation of absolute links. It should reference the _root_ URL
 # of the site—if you're running locally it'll be `localhost:PORT` as shown below, in
 # the deployed environment it will be your domain name.
-#
-# You can set either `DEPLOY_PRIME_URL` or just `URL` when running locally. In CI and
-# the deployed environment Netlify uses `URL` to refer to the production URL and
-# `DEPLOY_PRIME_URL` to refer to the preview URL.
-DEPLOY_PRIME_URL="http://localhost:3000"
-URL="https://www.benjaminjohnson.me"
+VERCEL_URL="http://localhost:3000"
 
 # OPTIONAL
 # Track pageviews on google analytics. Having this locally won't track real pageviews
