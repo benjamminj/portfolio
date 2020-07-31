@@ -61,7 +61,7 @@ const BlogPage = ({ posts }) => {
                 css={{
                   fontSize: '0.825rem',
                   margin: '1rem 0',
-                  color: '#888',
+                  color: '#887',
                   fontFamily: 'var(--font-secondary)',
                   fontWeight: 'normal'
                 }}
