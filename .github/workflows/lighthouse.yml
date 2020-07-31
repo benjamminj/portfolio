@@ -23,7 +23,7 @@ jobs:
           # site_name: "benjaminjohnsonme"
           # Wait on URL for up to 10 minutes, since Netlify throttles builds 😭
           max_timeout: 600
-        env: 
+        # en˝v: 
           # NETLIFY_TOKEN: ${{secrets.NETLIFY_TOKEN}}
 
   lighthouse:
