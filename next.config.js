@@ -10,7 +10,7 @@ module.exports = withBundleAnalyzer(
   })(
     withOptimizedImages({
       env: {
-        HOMEPAGE: process.env.VERCEL_URL,
+        HOMEPAGE: process.env.URL || process.env.VERCEL_URL,
         NEXT_PUBLIC_GA_TRACKING_ID: process.env.NEXT_PUBLIC_GA_TRACKING_ID
       }
     })

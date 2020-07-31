@@ -32,6 +32,11 @@ You'll need a `.env.local` file with the following variables in order to run the
 VERCEL_URL="http://localhost:3000"
 
 # OPTIONAL
+# This allows overriding the `VERCEL_URL` so that metadata and absolute URLs can
+# be populated with a custom domain.
+URL="https://benjaminjohnson.me"
+
+# OPTIONAL
 # Track pageviews on google analytics. Having this locally won't track real pageviews
 # since the tracker is scoped to the hosted domain.
 NEXT_PUBLIC_GA_TRACKING_ID="TRACKER_ID"
