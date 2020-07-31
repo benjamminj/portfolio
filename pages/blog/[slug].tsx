@@ -126,6 +126,7 @@ const PostPage: NextPage<PostPageProps> = props => {
       <main
         css={{
           maxWidth: '100vw',
+          padding: 'var(--body-gutter)',
           '@media screen and (min-width: 50rem)': {
             maxWidth: textMaxWidth,
             margin: '0 auto 3rem'
