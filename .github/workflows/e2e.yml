@@ -15,15 +15,16 @@ jobs:
       url: ${{ steps.waitFor200.outputs.url }}
     steps:
       - uses: actions/checkout@v1
-      - name: Wait for Netlify
-        uses: kamranayub/wait-for-netlify-action@2.0.0
+      - name: Wait for Vercel
+        uses: patrickedqvist/wait-for-vercel-preview@master
         id: waitFor200
         with: 
-          site_name: "benjaminjohnsonme"
+          token: ${{ secrets.GH_TOKEN }}
+          # site_name: "benjaminjohnsonme"
           # Wait on URL for up to 10 minutes, since Netlify throttles builds 😭
           max_timeout: 600
         env: 
-          NETLIFY_TOKEN: ${{secrets.NETLIFY_TOKEN}}
+          # NETLIFY_TOKEN: ${{secrets.NETLIFY_TOKEN}}
 
   lighthouse:
     name: Run Lighthouse
