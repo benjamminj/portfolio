@@ -9,21 +9,15 @@ import { Heading, Layout, Link, Section } from '../src/components'
 import { getPostBySlug } from '../lib/getPostBySlug'
 import { slugifyPost } from '../lib/slugifyPost'
 import { getPostFilePaths } from '../lib/getPostFilePaths'
+import { PostFrontmatter } from '../lib/types'
 /** @jsx jsx */ jsx
 
-interface PostPreview {
-  /** The post title */
-  title: string
-  /** Brief description of the post used for previews */
-  description: string
+type PostPreview = Pick<
+  PostFrontmatter,
+  'title' | 'description' | 'draft' | 'link' | 'publisher'
+> & {
   /** The date that the post was first published. */
   date: string
-  /** Whether or not the post is a WIP or not. */
-  draft?: boolean
-  /** If the post was externally published, the link to the original article */
-  link?: string
-  /** If the post was externally published, the name of the original publisher. */
-  publisher?: string
   /** The `href` to the actual post itself */
   href: string
   /** An estimate of how long the post will take to read */
@@ -35,6 +29,7 @@ interface BlogPageProps {
   posts: PostPreview[]
 }
 
+/** Displays a list of all published writings. */
 const BlogPage = ({ posts }: BlogPageProps) => {
   return (
     <Layout>

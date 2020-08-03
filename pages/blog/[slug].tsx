@@ -1,7 +1,6 @@
 import { jsx } from '@emotion/core'
 import prism from '@mapbox/rehype-prism'
 import { format } from 'date-fns'
-import fs from 'fs'
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
 import useHydrateMdx from 'next-mdx-remote/hydrate'
 import renderToString from 'next-mdx-remote/render-to-string'
@@ -10,13 +9,14 @@ import { ParsedUrlQuery } from 'querystring'
 import React from 'react'
 import readingTime from 'reading-time'
 import { getPostBySlug } from '../../lib/getPostBySlug'
+import { getPostFilePaths } from '../../lib/getPostFilePaths'
+import { slugifyPost } from '../../lib/slugifyPost'
+import { PostFrontmatter } from '../../lib/types'
 import { Heading, Layout, Link } from '../../src/components'
 import { Img } from '../../src/components/Img'
 import { MarkdownWrapperStyles } from '../../src/components/Markdown'
 import { fonts } from '../../src/styles/theme'
 import { textMaxWidth } from '../../src/styles/variables'
-import { getPostFilePaths } from '../../lib/getPostFilePaths'
-import { slugifyPost } from '../../lib/slugifyPost'
 /** @jsx jsx */ jsx
 
 interface PostPageParams extends ParsedUrlQuery {
@@ -41,26 +41,13 @@ interface PostPageProps {
     alt: string
   }
   /** Post metadata */
-  frontmatter: {
-    /** The title of the post. */
-    title: string
-    /** A brief description of the post for social media and for previews. */
-    description?: string
-    /** The date that the post was first published. */
+  frontmatter: Pick<
+    PostFrontmatter,
+    'title' | 'description' | 'publisher' | 'link'
+  > & {
     date: string
     /** A rough estimate of how long this post will take to read. */
     readingTime: string
-    /**
-     * If the post was published in an external publication, this will contain the
-     * name of the publisher.
-     */
-    publisher?: string
-    /**
-     * If the post was externally published, this will contain the link to the original
-     * article. For these posts, the actual post body will just be a summary of the
-     * originally published post.
-     */
-    link?: string
   }
 }
 
@@ -183,10 +170,6 @@ const PostPage: NextPage<PostPageProps> = props => {
   )
 }
 
-/**
- * Create a blog URL for each post imported. This page component generates
- * a post per file within the `src/posts` folder.
- */
 export const getStaticPaths: GetStaticPaths<PostPageParams> = async () => {
   const postFiles = getPostFilePaths()
 
@@ -202,17 +185,13 @@ export const getStaticPaths: GetStaticPaths<PostPageParams> = async () => {
 }
 
 type GetPostPageStaticProps = GetStaticProps<PostPageProps, PostPageParams>
-
-/**
- * Process the post data at build time.
- */
 export const getStaticProps: GetPostPageStaticProps = async ctx => {
   const { slug } = ctx.params
   const { frontmatter, body } = getPostBySlug(slug)
 
   let imageProps: { image?: PostPageProps['image'] } = {}
 
-  // If there's an image, we fetch the image, resize it to the max width shown, and
+  // If there's an image, fetch the image, resize it to the max width shown, and
   // create a low quality placeholder image.
   if (frontmatter.image?.url) {
     const resized = require(`../../src/${frontmatter.image.url}?resize&size=640`)
