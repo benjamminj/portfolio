@@ -77,16 +77,15 @@ const PostPage: NextPage<PostPageProps> = props => {
     date,
     readingTime,
     publisher,
-    link: externalLink
+    link: externalLink,
   } = props.frontmatter
 
   const { HOMEPAGE } = process.env
 
   // If there's a banner image, we want to use that for the metadata, so we need
   // to create a non-relative URL to the image.
-  const absoluteImagePath = props.image?.src
-    ? HOMEPAGE + props.image?.src
-    : undefined
+  const absoluteImagePath =
+    props.image?.src && HOMEPAGE ? HOMEPAGE + props.image?.src : undefined
 
   return (
     <Layout>
@@ -129,14 +128,14 @@ const PostPage: NextPage<PostPageProps> = props => {
           padding: 'var(--body-gutter)',
           '@media screen and (min-width: 50rem)': {
             maxWidth: textMaxWidth,
-            margin: '0 auto 3rem'
-          }
+            margin: '0 auto 3rem',
+          },
         }}
       >
         <div
           css={{
             fontFamily: fonts.secondary,
-            padding: '2rem 0'
+            padding: '2rem 0',
           }}
         >
           <Heading large>
@@ -148,7 +147,7 @@ const PostPage: NextPage<PostPageProps> = props => {
               fontSize: '0.825rem',
               color: 'rgba(0, 0, 0, 0.5)',
               marginTop: '-1rem',
-              display: 'block'
+              display: 'block',
             }}
           >
             {date && `${date} — `}
@@ -160,7 +159,7 @@ const PostPage: NextPage<PostPageProps> = props => {
 
         <MarkdownWrapperStyles
           css={{
-            padding: 0
+            padding: 0,
           }}
         >
           {hydrated}
@@ -172,7 +171,7 @@ const PostPage: NextPage<PostPageProps> = props => {
             href={externalLink}
             css={{
               display: 'inline-block',
-              marginTop: '2rem'
+              marginTop: '2rem',
             }}
           >
             Read the full article on {publisher}.
@@ -220,7 +219,7 @@ export const getStaticPaths: GetStaticPaths<PostPageParams> = async () => {
 
   return {
     paths,
-    fallback: false
+    fallback: false,
   }
 }
 
@@ -272,7 +271,7 @@ export const getStaticProps: GetPostPageStaticProps = async ctx => {
     imageProps.image = {
       src: resized.src,
       placeholder: image.preSrc,
-      alt: attributes.image.alt
+      alt: attributes.image.alt,
     }
   }
 
@@ -282,7 +281,7 @@ export const getStaticProps: GetPostPageStaticProps = async ctx => {
     {},
     {
       // `prism` adds syntax highlighting as CSS classes to the code blocks.
-      rehypePlugins: [prism]
+      rehypePlugins: [prism],
     }
   )
 
@@ -293,11 +292,11 @@ export const getStaticProps: GetPostPageStaticProps = async ctx => {
       frontmatter: {
         ...attributes,
         date: format(attributes.date, 'MM-dd-yyyy'),
-        readingTime: readingTime(body).text
+        readingTime: readingTime(body).text,
       },
       ...imageProps,
-      body
-    }
+      body,
+    },
   }
 }
 
