@@ -2,7 +2,7 @@ import { getPostBySlug } from './getPostBySlug'
 
 test('should return parsed post data for a given slug', () => {
   const post = getPostBySlug('mocking-fetch')
-  console.log('post', post)
+
   expect(post.frontmatter).toEqual({
     title: 'Mocking the fetch API with Jest',
     description:

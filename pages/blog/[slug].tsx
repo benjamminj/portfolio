@@ -15,6 +15,8 @@ import { Img } from '../../src/components/Img'
 import { MarkdownWrapperStyles } from '../../src/components/Markdown'
 import { fonts } from '../../src/styles/theme'
 import { textMaxWidth } from '../../src/styles/variables'
+import { getPostFilePaths } from '../../lib/getPostFilePaths'
+import { slugifyPost } from '../../lib/slugifyPost'
 /** @jsx jsx */ jsx
 
 interface PostPageParams extends ParsedUrlQuery {
@@ -186,35 +188,12 @@ const PostPage: NextPage<PostPageProps> = props => {
  * a post per file within the `src/posts` folder.
  */
 export const getStaticPaths: GetStaticPaths<PostPageParams> = async () => {
-  // Posts live within the `src/posts` directory.
-  const basePath = './src/posts/'
-  // Get all of the file paths, this will allow us to loop thru and process each
-  // file into a blog post "slug".
-  const rawPosts = fs.readdirSync(basePath)
+  const postFiles = getPostFilePaths()
 
-  // We are going to generate an array of post "paths"
   type Path = { params: PostPageParams }
-  const paths: Path[] = []
-
-  // Loop thru all of the file paths and process each one into a valid "slug" param.
-  for (const filePath of rawPosts) {
-    // If it's not a markdown (or MDX) file don't build a static path for it.
-    if (!filePath.match(/.mdx?$/)) continue
-
-    // There's a special file for testing the markdown rendering, don't render that either.
-    //
-    // In the future it might make sense to attach this to `NODE_ENV` so that
-    // we _do_ render the markdown test in development but not in prod.
-    if (filePath.includes('markdown-test')) continue
-
-    // Remove the file extension and nested directory structure from the "slug" param.
-    const slug = filePath
-      .replace(/^src\/posts/, '')
-      .replace(/\.mdx?$/, '')
-      .replace(/\.tsx?$/, '')
-
-    paths.push({ params: { slug } })
-  }
+  const paths = postFiles.map<Path>(file => {
+    return { params: { slug: slugifyPost(file) } }
+  })
 
   return {
     paths,
