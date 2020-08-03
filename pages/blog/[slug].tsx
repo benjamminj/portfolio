@@ -1,16 +1,15 @@
 import { jsx } from '@emotion/core'
 import prism from '@mapbox/rehype-prism'
 import { format } from 'date-fns'
-import fm from 'front-matter'
 import fs from 'fs'
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
 import useHydrateMdx from 'next-mdx-remote/hydrate'
 import renderToString from 'next-mdx-remote/render-to-string'
 import Head from 'next/head'
-import path from 'path'
 import { ParsedUrlQuery } from 'querystring'
 import React from 'react'
 import readingTime from 'reading-time'
+import { getPostBySlug } from '../../lib/getPostBySlug'
 import { Heading, Layout, Link } from '../../src/components'
 import { Img } from '../../src/components/Img'
 import { MarkdownWrapperStyles } from '../../src/components/Markdown'
@@ -44,7 +43,7 @@ interface PostPageProps {
     /** The title of the post. */
     title: string
     /** A brief description of the post for social media and for previews. */
-    description: string
+    description?: string
     /** The date that the post was first published. */
     date: string
     /** A rough estimate of how long this post will take to read. */
@@ -230,48 +229,20 @@ type GetPostPageStaticProps = GetStaticProps<PostPageProps, PostPageParams>
  */
 export const getStaticProps: GetPostPageStaticProps = async ctx => {
   const { slug } = ctx.params
-
-  // The posts are all in the `src/post` directory.
-  const basePath = './src/posts'
-  // Fetch the list of file names for each post.
-  const postFiles = fs.readdirSync(basePath)
-
-  // Specifically, find the post that matches the "slug" parameter passed.
-  const matchingPost = postFiles.find(filePath => {
-    const postSlug = filePath
-      .replace(/^src\/posts/, '')
-      .replace(/\.mdx?$/, '')
-      .replace(/\.tsx?$/, '')
-
-    return postSlug === slug
-  })
-
-  // Fail loudly if we're trying to statically render a path that doesn't have
-  // a corresponding markdown file
-  if (!matchingPost) {
-    throw new Error(`No file found for "${matchingPost}"`)
-  }
-
-  // Next, we are going to read the actual file content of the post. Getting this
-  // raw first lets us process it into markdown, metadata, etc.
-  const filePath = path.join(basePath, matchingPost)
-  const source = fs.readFileSync(filePath, 'utf8')
-
-  // Split out the frontmatter from the body content.
-  const { attributes, body } = fm<any>(source)
+  const { frontmatter, body } = getPostBySlug(slug)
 
   let imageProps: { image?: PostPageProps['image'] } = {}
 
   // If there's an image, we fetch the image, resize it to the max width shown, and
   // create a low quality placeholder image.
-  if (attributes.image?.url) {
-    const resized = require(`../../src/${attributes.image.url}?resize&size=640`)
-    const image = require(`../../src/${attributes.image.url}?lqip`)
+  if (frontmatter.image?.url) {
+    const resized = require(`../../src/${frontmatter.image.url}?resize&size=640`)
+    const image = require(`../../src/${frontmatter.image.url}?lqip`)
 
     imageProps.image = {
       src: resized.src,
       placeholder: image.preSrc,
-      alt: attributes.image.alt,
+      alt: frontmatter.image.alt,
     }
   }
 
@@ -290,8 +261,8 @@ export const getStaticProps: GetPostPageStaticProps = async ctx => {
       slug,
       mdxContent,
       frontmatter: {
-        ...attributes,
-        date: format(attributes.date, 'MM-dd-yyyy'),
+        ...frontmatter,
+        date: format(frontmatter.date, 'MM-dd-yyyy'),
         readingTime: readingTime(body).text,
       },
       ...imageProps,
