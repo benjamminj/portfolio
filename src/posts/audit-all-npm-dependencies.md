@@ -42,7 +42,7 @@ _I might circle back around and update this to be completely Bash someday, but i
 
 **This script is built assuming the following directory structure.** Since I'm currently working as a consultant and it's possible that we might have code for different clients on the same computer, I use the following directory structure on my work machine.
 
-```
+```bash
 work
 └─ client-a
 │     └─  repo-1
