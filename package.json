@@ -38,19 +38,19 @@
   "main": "n/a",
   "prettier": {
     "semi": false,
-    "singleQuote": true
+    "singleQuote": true,
+    "trailingComma": "es5"
   },
   "scripts": {
     "build": "TZ=UTC yarn next build",
     "build:analyze": "ANALYZE=true yarn next build",
     "dev": "yarn next",
-    "next:dev": "yarn next",
     "start": "yarn next start",
     "export": "yarn next export",
     "ts": "tsc",
     "format": "prettier --trailing-comma es5 --no-semi --single-quote --write \"src/**/*.js\"",
     "test": "jest",
-    "publish": "npm run build && gh-pages -d public"
+    "test:e2e": "jest --config=./jest.e2e.config.js"
   },
   "devDependencies": {
     "@types/jest": "^26.0.7",

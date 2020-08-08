@@ -7,8 +7,6 @@ const getJestPlaywrightConfig = () => {
     TEST_BROWSERS = 'chromium,firefox,webkit'
   } = process.env
 
-  let isHeadless = TEST_HEADLESS_BROWSER === 'true'
-
   if (TEST_DEBUG_MODE === 'true') {
     return {
       launchOptions: {
@@ -19,7 +17,7 @@ const getJestPlaywrightConfig = () => {
   }
 
   return {
-    launchOptions: { headless: isHeadless },
+    launchOptions: { headless: TEST_HEADLESS_BROWSER === 'true' },
     browsers: TEST_BROWSERS.split(',')
   }
 }
