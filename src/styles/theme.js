@@ -1,5 +1,25 @@
 import { css } from '@emotion/core'
 
+export const palette = {
+  white: '#fff',
+  black: '#000',
+  primary_100: '#ebf6ff',
+  primary_300: '#a1d2fc',
+  primary_500: '#0077c2',
+  primary_700: '#00396b',
+  primary_900: '#001c3d',
+  neutral_100: '#f2f5f8',
+  neutral_300: '#d7dae0',
+  neutral_500: '#b3b8c1',
+  neutral_700: '#5b6171',
+  neutral_900: '#282b39',
+  accent1_100: '',
+  accent1_300: '',
+  accent1_500: '#ff5722',
+  accent1_700: 'hsl(16deg 100% 60%)',
+  accent1_900: 'hsl(16deg 100% 50%)',
+}
+
 export const colors = {
   white: '#fff',
   primary: '#333',
@@ -9,30 +29,31 @@ export const colors = {
     300: '#80d6ff',
     500: '#42a5f5',
     700: '#0077c2',
-    900: '#1565c0'
+    900: '#1565c0',
   },
   accent2: {
     500: '#ff5722',
-    700: 'hsl(16, 100, 60)',
-    900: 'hsl(16, 100, 50)'
+    700: 'hsl(16deg 100% 60%)',
+    900: 'hsl(16deg 100% 50%)',
   },
   gray: {
     100: '#f2f2f2',
     500: '#ccc',
-    700: '#999'
-  }
+    700: '#999',
+  },
 }
 
 export const fonts = {
-  primary:
-    'Inconsolata, Menlo, Monaco, Lucida Console, Ubuntu Mono, Courier New, monospace',
-  secondary: `Inconsolata, Menlo, Monaco, Lusica Console, Ubuntu Mono, Courier New, monospace`
+  primary: `-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif`,
+  secondary: `Menlo, Monaco, Lusica Console, Ubuntu Mono, Courier New, monospace`,
+  mono: `Menlo, Monaco, Lusica Console, Ubuntu Mono, Courier New, monospace`,
 }
 
 export const spacing = {
+  base: 16,
   body: {
-    gutter: '1rem'
-  }
+    gutter: '1rem',
+  },
 }
 
 export default css`
@@ -63,6 +84,8 @@ export default css`
     --font-primary: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
       Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
     --font-secondary: Menlo, Monaco, Lucida Console, Ubuntu Mono, Courier New,
+      monospace;
+    --font-mono: Menlo, Monaco, Lucida Console, Ubuntu Mono, Courier New,
       monospace;
 
     /* paddings */

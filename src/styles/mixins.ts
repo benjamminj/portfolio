@@ -1,5 +1,5 @@
 import { css } from '@emotion/core'
-import { fonts, colors } from '../styles/theme'
+import { fonts, colors, palette } from './theme'
 
 // shared styles
 export const headingStyle = () => css`
@@ -8,8 +8,32 @@ export const headingStyle = () => css`
   color: ${colors.primary};
 `
 
-export const linkStyle = (color = colors.accent1[700]) => {
-  const borderSize = '1px'
+export const createLinkStyles = (color = palette.primary_500) => {
+  const borderSize = '2px'
+
+  return css`
+    display: inline-block;
+    position: relative;
+    text-decoration: underline;
+    color: ${color};
+    padding: 0 4px;
+    margin: 0 -4px;
+    border-radius: 4px;
+    transition: all 50ms ease-in;
+
+    :active,
+    :hover {
+      background: ${color};
+      color: ${colors.white};
+    }
+  `
+}
+
+export const linkStyle = (
+  color = colors.accent1[700],
+  highlightColor = colors.accent1[100]
+) => {
+  const borderSize = '2px'
 
   return css`
     text-decoration: none;
@@ -20,7 +44,7 @@ export const linkStyle = (color = colors.accent1[700]) => {
 
     &:active,
     &:hover {
-      background: ${color};
+      background: ${highlightColor};
       color: ${colors.white};
     }
   `

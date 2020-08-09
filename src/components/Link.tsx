@@ -1,10 +1,10 @@
 import React, { FC } from 'react'
 import NextLink, { LinkProps } from 'next/link'
 import styled from '@emotion/styled'
-import { linkStyle } from '../styles/mixins'
+import { linkStyle, createLinkStyles } from '../styles/mixins'
 
 const A = styled.a`
-  ${linkStyle()};
+  ${createLinkStyles()};
 `
 
 interface AdditionalLinkProps {

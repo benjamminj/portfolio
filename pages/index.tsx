@@ -7,22 +7,22 @@ const navigation = [
   {
     text: 'github',
     external: true,
-    href: 'https://github.com/benjamminj'
+    href: 'https://github.com/benjamminj',
   },
   {
     text: 'blog',
-    href: '/blog'
+    href: '/blog',
   },
   {
     text: 'linkedin',
     external: true,
-    href: 'https://www.linkedin.com/in/benjamin-d-johnson/'
+    href: 'https://www.linkedin.com/in/benjamin-d-johnson/',
   },
   {
     text: 'contact',
     external: true,
-    href: 'mailto:benjamin.d.johnson@icloud.com'
-  }
+    href: 'mailto:benjamin.d.johnson@icloud.com',
+  },
 ]
 
 const rhythm = '2rem'
@@ -58,9 +58,10 @@ const IndexPage = () => (
         Hi!{' '}
         <span role="img" aria-label="waving hand">
           👋🏻
-        </span>{' '}
-        I'm a frontend engineer with a passion for clean UIs, easy-to-understand
-        code, and a well-made cup of coffee. Currently learning/working at{' '}
+        </span>
+        &nbsp; I'm a frontend engineer with a passion for clean UIs,
+        easy-to-understand code, and a well-made cup of coffee. Currently
+        learning/working at{' '}
         <Link external href="https://www.sourcestrike.com">
           SourceStrike
         </Link>{' '}
@@ -85,15 +86,9 @@ const IndexPage = () => (
             `}
             key={link.href}
           >
-            <Heading
-              css={css`
-                margin: 0;
-              `}
-            >
-              <Link external={link.external} href={link.href}>
-                {link.text}
-              </Link>
-            </Heading>
+            <Link external={link.external} href={link.href}>
+              {link.text}
+            </Link>
           </li>
         ))}
       </ul>
