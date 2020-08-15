@@ -12,7 +12,7 @@ export default css`
   pre[class*='language-'] {
     color: black;
     text-shadow: 0 1px white;
-    font-family: ${fonts.primary};
+    font-family: ${fonts.mono};
     text-align: left;
     white-space: pre;
     word-spacing: normal;

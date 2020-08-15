@@ -1,7 +1,11 @@
 import React from 'react'
 import { css } from '@emotion/core'
 import styled from '@emotion/styled'
-import { aboveScreenSm, linkStyle } from '../styles/mixins'
+import {
+  aboveScreenSm,
+  createLinkStyles,
+  createHighlight,
+} from '../styles/mixins'
 import syntaxHighlightingStyles from '../styles/syntax-highlighting'
 import { spacing, fonts, colors } from '../styles/theme'
 
@@ -9,7 +13,7 @@ import { spacing, fonts, colors } from '../styles/theme'
  * Meant to wrap around rendered markdown content to provide it with styling.
  */
 export const MarkdownWrapperStyles = styled.div`
-  font-size: 1.125rem;
+  font-size: 1rem;
 
   ${aboveScreenSm(css`
     width: inherit;
@@ -150,9 +154,7 @@ export const MarkdownWrapperStyles = styled.div`
   }
 
   *:not(pre) > code {
-    background: ${colors.accent1[100]};
-    padding: 0.25em;
-    border-radius: 4px;
+    ${createHighlight()}
   }
 
   /* blockquote */
@@ -176,7 +178,14 @@ export const MarkdownWrapperStyles = styled.div`
 
   /* links */
   a {
-    ${linkStyle()};
+    ${createLinkStyles()};
+  }
+
+  a > code {
+    padding: 0;
+    margin: 0;
+    background-color: transparent;
+    border-radius: 0;
   }
 
   /* img */

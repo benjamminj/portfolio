@@ -5,7 +5,7 @@ export const palette = {
   black: '#000',
   primary_100: '#ebf6ff',
   primary_300: '#a1d2fc',
-  primary_500: '#0077c2',
+  primary_500: '#006bad',
   primary_700: '#00396b',
   primary_900: '#001c3d',
   neutral_100: '#f2f5f8',
@@ -13,11 +13,11 @@ export const palette = {
   neutral_500: '#b3b8c1',
   neutral_700: '#5b6171',
   neutral_900: '#282b39',
-  accent1_100: '',
-  accent1_300: '',
-  accent1_500: '#ff5722',
-  accent1_700: 'hsl(16deg 100% 60%)',
-  accent1_900: 'hsl(16deg 100% 50%)',
+  accent1_100: '#fee8e7',
+  accent1_300: '#f78d87',
+  accent1_500: '#E53935',
+  accent1_700: '#ac1411',
+  accent1_900: '#610705',
 }
 
 export const colors = {

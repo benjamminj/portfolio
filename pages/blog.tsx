@@ -48,7 +48,7 @@ const BlogPage = ({ posts }: BlogPageProps) => {
             <li css={{ marginTop: '4rem' }} key={post.href}>
               <Heading css={{ margin: '0.75rem 0' }}>
                 <h2>
-                  <Link href="/blog/[slug]" as={post.href}>
+                  <Link inline href="/blog/[slug]" as={post.href}>
                     {post.title}
                   </Link>
                 </h2>

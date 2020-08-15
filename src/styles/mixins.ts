@@ -8,43 +8,41 @@ export const headingStyle = () => css`
   color: ${colors.primary};
 `
 
-export const createLinkStyles = (color = palette.primary_500) => {
-  const borderSize = '2px'
+export const highlightYPadding = '0.25em'
+export const highlightXPadding = '0.5em'
+
+export const createHighlight = (
+  background = palette.primary_100,
+  foreground = 'inherit'
+) => {
+  return css({
+    padding: `${highlightYPadding} ${highlightXPadding}`,
+    margin: `-${highlightYPadding} 0`,
+    backgroundColor: background,
+    color: foreground,
+    borderRadius: 6,
+  })
+}
+
+export const createLinkStyles = ({
+  color = palette.primary_500,
+  highlight = palette.primary_100,
+} = {}) => {
+  const highlightStyles = createHighlight(highlight, color)
 
   return css`
     display: inline-block;
     position: relative;
     text-decoration: underline;
-    color: ${color};
-    padding: 0 4px;
-    margin: 0 -4px;
-    border-radius: 4px;
+    line-height: 1;
+
+    ${highlightStyles}
+
     transition: all 50ms ease-in;
 
     :active,
     :hover {
-      background: ${color};
-      color: ${colors.white};
-    }
-  `
-}
-
-export const linkStyle = (
-  color = colors.accent1[700],
-  highlightColor = colors.accent1[100]
-) => {
-  const borderSize = '2px'
-
-  return css`
-    text-decoration: none;
-    border-bottom: ${borderSize} solid ${color};
-    color: ${color};
-    padding-top: ${borderSize};
-    transition: all 50ms ease-in;
-
-    &:active,
-    &:hover {
-      background: ${highlightColor};
+      background-color: ${color};
       color: ${colors.white};
     }
   `

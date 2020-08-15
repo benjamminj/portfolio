@@ -11,6 +11,11 @@ export default css`
     font-family: ${fonts.primary};
   }
 
+  code {
+    font-family: ${fonts.mono};
+    font-size: 0.875rem;
+  }
+
   html,
   body,
   p,
