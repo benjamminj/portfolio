@@ -86,7 +86,6 @@ const SwatchRow = ({
 }) => {
   return (
     <div css={{ paddingTop: 16 }}>
-      {/* TODO: actual heading */}
       <div css={{ paddingTop: 16, paddingBottom: 16 }}>
         <Text variant="h5">{name}</Text>
       </div>
@@ -95,7 +94,7 @@ const SwatchRow = ({
         css={{
           display: 'grid',
           gridGap: 8,
-          gridTemplateColumns: 'repeat(5, 1fr)',
+          gridTemplateColumns: `repeat(${Math.max(5, swatches.length)}, 1fr)`,
         }}
       >
         {swatches.map(swatch => (
@@ -162,9 +161,12 @@ const DesignSystem = () => {
 
         <ComponentContainer>
           <SwatchRow swatches={['black', 'white']} name="top-level" />
-          <SwatchGroup name="primary" prefix="primary_" />
           <SwatchGroup name="neutral" prefix="neutral_" />
+          <SwatchGroup name="primary" prefix="primary_" />
           <SwatchGroup name="accent 1" prefix="accent1_" />
+          <SwatchGroup name="success" prefix="success_" />
+          <SwatchGroup name="warning" prefix="warning_" />
+          <SwatchGroup name="error" prefix="error_" />
         </ComponentContainer>
       </div>
     </Layout>

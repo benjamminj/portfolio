@@ -47,7 +47,7 @@ export const textVariants: { [key in TextVariantToken]: TextVariantConfig } = {
     weight: 'bold',
     letterSpacing: -0.06,
     font: 'secondary',
-    lineHeight: 1,
+    lineHeight: 1.25,
     transform: 'none',
   },
   h4: {

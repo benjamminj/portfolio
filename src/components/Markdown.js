@@ -8,13 +8,12 @@ import {
 } from '../styles/mixins'
 import syntaxHighlightingStyles from '../styles/syntax-highlighting'
 import { spacing, fonts, colors } from '../styles/theme'
+import { textVariants, getFontStylesFromVariant } from './Text'
 
 /**
  * Meant to wrap around rendered markdown content to provide it with styling.
  */
 export const MarkdownWrapperStyles = styled.div`
-  font-size: 1rem;
-
   ${aboveScreenSm(css`
     width: inherit;
   `)};
@@ -26,10 +25,7 @@ export const MarkdownWrapperStyles = styled.div`
   h4,
   h5,
   h6 {
-    /* todo -- move to a central mixin location? */
-    font-family: ${fonts.secondary};
     margin: 2em 0 0;
-    color: ${colors.primary};
 
     & > code[class*='language-'] {
       white-space: pre-wrap;
@@ -37,23 +33,23 @@ export const MarkdownWrapperStyles = styled.div`
   }
 
   h2 {
-    font-size: 1.25em;
+    ${getFontStylesFromVariant('h4')}
   }
 
   h3 {
-    font-size: 1em;
+    ${getFontStylesFromVariant('h5')}
   }
 
   h4 {
-    font-size: 1em;
+    ${getFontStylesFromVariant('h6')}
   }
 
   h5 {
-    font-size: 0.825em;
+    ${getFontStylesFromVariant('subtitle')}
   }
 
   h6 {
-    font-size: 0.75em;
+    ${getFontStylesFromVariant('overline')}
   }
 
   /* lists */
@@ -150,7 +146,9 @@ export const MarkdownWrapperStyles = styled.div`
 
   /* code */
   pre {
-    margin: 1.25em 0;
+    --overflow-size: calc(-1 * var(--body-gutter));
+    margin: 1.25em var(--overflow-size);
+    border-radius: 10px;
   }
 
   *:not(pre) > code {

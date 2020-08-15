@@ -20,20 +20,19 @@ export const createHighlight = (
     margin: `-${highlightYPadding} 0`,
     backgroundColor: background,
     color: foreground,
+    borderRadius: 6,
   })
 }
 
-export const createLinkStyles = ({
-  color = palette.neutral_700,
-  inline = false,
-} = {}) => {
+export const createLinkStyles = ({ color = palette.primary_700 } = {}) => {
   return css`
     position: relative;
     text-decoration: underline;
 
     /* Spacing around the link to handle hover styles */
     line-height: 1.5;
-    padding: 0.25em;
+    padding: 0.25em 0.25em;
+    border-radius: 6px;
 
     color: ${color};
     transition: all 50ms ease-in;

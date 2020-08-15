@@ -54,7 +54,7 @@ const ActualImg = ({ src, alt }: ImgProps) => {
         right: 0,
         opacity: loaded ? 1 : 0,
         height: '100%',
-        zIndex: 1
+        zIndex: 1,
       }}
     />
   )
@@ -66,7 +66,7 @@ const ActualImg = ({ src, alt }: ImgProps) => {
  */
 export const Img = (props: ImgProps) => {
   return (
-    <div css={{ position: 'relative' }}>
+    <div css={{ position: 'relative', borderRadius: 10, overflow: 'hidden' }}>
       <img src={props.placeholder} css={{ width: '100%' }} alt={props.alt} />
       <ActualImg {...props} />
     </div>
