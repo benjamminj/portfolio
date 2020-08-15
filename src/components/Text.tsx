@@ -27,14 +27,6 @@ interface TextVariantConfig {
 
 export const textVariants: { [key in TextVariantToken]: TextVariantConfig } = {
   h1: {
-    scale: 4,
-    weight: 'bold',
-    letterSpacing: -0.06,
-    font: 'secondary',
-    lineHeight: 1,
-    transform: 'none',
-  },
-  h2: {
     scale: 3,
     weight: 'bold',
     letterSpacing: -0.06,
@@ -42,7 +34,7 @@ export const textVariants: { [key in TextVariantToken]: TextVariantConfig } = {
     lineHeight: 1,
     transform: 'none',
   },
-  h3: {
+  h2: {
     scale: 2.5,
     weight: 'bold',
     letterSpacing: -0.06,
@@ -50,7 +42,7 @@ export const textVariants: { [key in TextVariantToken]: TextVariantConfig } = {
     lineHeight: 1,
     transform: 'none',
   },
-  h4: {
+  h3: {
     scale: 2,
     weight: 'bold',
     letterSpacing: -0.06,
@@ -58,7 +50,7 @@ export const textVariants: { [key in TextVariantToken]: TextVariantConfig } = {
     lineHeight: 1,
     transform: 'none',
   },
-  h5: {
+  h4: {
     scale: 1.5,
     weight: 'bold',
     letterSpacing: -0.06,
@@ -66,8 +58,16 @@ export const textVariants: { [key in TextVariantToken]: TextVariantConfig } = {
     lineHeight: 1,
     transform: 'none',
   },
-  h6: {
+  h5: {
     scale: 1.25,
+    weight: 'bold',
+    letterSpacing: -0.06,
+    font: 'secondary',
+    lineHeight: 1,
+    transform: 'none',
+  },
+  h6: {
+    scale: 1.125,
     weight: 'bold',
     letterSpacing: -0.06,
     font: 'secondary',

@@ -1,6 +1,7 @@
 import { css, jsx } from '@emotion/core'
 import React from 'react'
 import { Heading, Layout, Link } from '../src/components'
+import { Text } from '../src/components/Text'
 /** @jsx jsx */ jsx
 
 const navigation = [
@@ -51,21 +52,25 @@ const IndexPage = () => (
         `}
         large
       >
-        <h1>Benjamin Johnson</h1>
+        <h1>
+          <Text variant="h4">Benjamin Johnson</Text>
+        </h1>
       </Heading>
 
       <p>
-        Hi!{' '}
-        <span role="img" aria-label="waving hand">
-          👋🏻
-        </span>
-        &nbsp; I'm a frontend engineer with a passion for clean UIs,
-        easy-to-understand code, and a well-made cup of coffee. Currently
-        learning/working at{' '}
-        <Link external href="https://www.sourcestrike.com">
-          SourceStrike
-        </Link>{' '}
-        in Orange County, CA.
+        <Text>
+          Hi!{' '}
+          <span role="img" aria-label="waving hand">
+            👋🏻
+          </span>
+          &nbsp; I'm a frontend engineer with a passion for clean UIs,
+          easy-to-understand code, and a well-made cup of coffee. Currently
+          learning/working at{' '}
+          <Link external href="https://www.sourcestrike.com">
+            SourceStrike
+          </Link>{' '}
+          in Orange County, CA.
+        </Text>
       </p>
 
       <ul
@@ -87,7 +92,7 @@ const IndexPage = () => (
             key={link.href}
           >
             <Link external={link.external} href={link.href}>
-              {link.text}
+              <Text>{link.text}</Text>
             </Link>
           </li>
         ))}

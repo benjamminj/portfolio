@@ -10,6 +10,7 @@ import { getPostBySlug } from '../lib/getPostBySlug'
 import { slugifyPost } from '../lib/slugifyPost'
 import { getPostFilePaths } from '../lib/getPostFilePaths'
 import { PostFrontmatter } from '../lib/types'
+import { Text } from '../src/components/Text'
 /** @jsx jsx */ jsx
 
 type PostPreview = Pick<
@@ -40,38 +41,49 @@ const BlogPage = ({ posts }: BlogPageProps) => {
         }}
       >
         <Heading large className="pageHeading">
-          <h1>Blog</h1>
+          <h1>
+            <Text variant="h3">Blog</Text>
+          </h1>
         </Heading>
 
         <ul css={{ margin: '1rem 0' }}>
           {posts.map(post => (
             <li css={{ marginTop: '4rem' }} key={post.href}>
-              <Heading css={{ margin: '0.75rem 0' }}>
+              <Heading css={{ margin: '0.75rem 0 0' }}>
                 <h2>
-                  <Link inline href="/blog/[slug]" as={post.href}>
-                    {post.title}
+                  <Link
+                    href="/blog/[slug]"
+                    as={post.href}
+                    // css={{ marginLeft: '-0.5em' }}
+                  >
+                    <Text variant="h5">{post.title}</Text>
                   </Link>
                 </h2>
               </Heading>
 
-              <p>{post.description}</p>
+              {post.description && (
+                <p css={{ marginTop: 16 }}>
+                  <Text>{post.description}</Text>
+                </p>
+              )}
 
               <h3
                 css={{
-                  fontSize: '0.825rem',
-                  margin: '1rem 0',
+                  margin: '0.75rem 0',
                   color: '#888',
                   fontFamily: 'var(--font-secondary)',
                   fontWeight: 'normal',
                 }}
               >
-                {post.date}
-                {post.publisher && post.link && (
-                  <span css={{ fontWeight: 'bold' }}>
-                    {` on ${post.publisher}`}
-                  </span>
-                )}{' '}
-                &mdash; {post.readingTime}
+                <Text variant="caption">
+                  {post.date}
+                  {post.publisher && post.link && (
+                    <span css={{ fontWeight: 'bold' }}>
+                      {` on ${post.publisher}`}
+                    </span>
+                  )}{' '}
+                  &mdash; {post.readingTime}
+                </Text>
               </h3>
             </li>
           ))}

@@ -12,7 +12,7 @@ export const highlightYPadding = '0.25em'
 export const highlightXPadding = '0.5em'
 
 export const createHighlight = (
-  background = palette.primary_100,
+  background = palette.neutral_100,
   foreground = 'inherit'
 ) => {
   return css({
@@ -20,30 +20,29 @@ export const createHighlight = (
     margin: `-${highlightYPadding} 0`,
     backgroundColor: background,
     color: foreground,
-    borderRadius: 6,
   })
 }
 
 export const createLinkStyles = ({
-  color = palette.primary_500,
-  highlight = palette.primary_100,
+  color = palette.neutral_700,
+  inline = false,
 } = {}) => {
-  const highlightStyles = createHighlight(highlight, color)
-
   return css`
-    display: inline-block;
     position: relative;
     text-decoration: underline;
-    line-height: 1;
 
-    ${highlightStyles}
+    /* Spacing around the link to handle hover styles */
+    line-height: 1.5;
+    padding: 0.25em;
 
+    color: ${color};
     transition: all 50ms ease-in;
 
     :active,
     :hover {
+      text-decoration-color: ${palette.white};
+      color: ${palette.white};
       background-color: ${color};
-      color: ${colors.white};
     }
   `
 }
