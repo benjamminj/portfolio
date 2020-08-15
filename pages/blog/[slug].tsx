@@ -147,7 +147,15 @@ const PostPage: NextPage<PostPageProps> = props => {
           </span>
         </div>
 
-        {props.image && <Img {...props.image} alt={props.image.alt} />}
+        {props.image && (
+          <Img
+            {...props.image}
+            alt={props.image.alt}
+            css={{
+              margin: `0 calc(-1 * var(--body-gutter))`,
+            }}
+          />
+        )}
 
         <MarkdownWrapperStyles
           css={{

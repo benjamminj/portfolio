@@ -5,6 +5,7 @@ import {
   aboveScreenSm,
   createLinkStyles,
   createHighlight,
+  aboveScreenMd,
 } from '../styles/mixins'
 import syntaxHighlightingStyles from '../styles/syntax-highlighting'
 import { spacing, fonts, colors } from '../styles/theme'
@@ -148,7 +149,13 @@ export const MarkdownWrapperStyles = styled.div`
   pre {
     --overflow-size: calc(-1 * var(--body-gutter));
     margin: 1.25em var(--overflow-size);
-    border-radius: 10px;
+    /* border-radius: 10px; */
+
+    ${aboveScreenMd(
+      css({
+        borderRadius: 10,
+      })
+    )}
   }
 
   *:not(pre) > code {

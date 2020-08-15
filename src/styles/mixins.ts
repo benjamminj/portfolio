@@ -24,7 +24,7 @@ export const createHighlight = (
   })
 }
 
-export const createLinkStyles = ({ color = palette.primary_700 } = {}) => {
+export const createLinkStyles = ({ color = palette.primary_500 } = {}) => {
   return css`
     position: relative;
     text-decoration: underline;

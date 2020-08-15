@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from 'react'
-import { jsx } from '@emotion/core'
+import { jsx, css } from '@emotion/core'
+import { aboveScreenMd } from '../styles/mixins'
 /** @jsx jsx */ jsx
 
 export interface ImageResource {
@@ -16,6 +17,8 @@ export interface ImgProps {
   placeholder: string
   /** Alt text describing the image */
   alt: string
+  /** Overrides for styles */
+  className?: string
 }
 
 /**
@@ -66,7 +69,15 @@ const ActualImg = ({ src, alt }: ImgProps) => {
  */
 export const Img = (props: ImgProps) => {
   return (
-    <div css={{ position: 'relative', borderRadius: 10, overflow: 'hidden' }}>
+    <div
+      css={[
+        { position: 'relative', overflow: 'hidden' },
+        aboveScreenMd({
+          borderRadius: 10,
+        }),
+      ]}
+      {...props}
+    >
       <img src={props.placeholder} css={{ width: '100%' }} alt={props.alt} />
       <ActualImg {...props} />
     </div>

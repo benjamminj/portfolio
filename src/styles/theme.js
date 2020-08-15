@@ -17,7 +17,7 @@ export const palette = {
   primary_700: '#00396b',
   primary_900: '#001f66',
   // accents
-  accent1_100: '#f9e1fe',
+  accent1_100: '#fbebfe',
   accent1_300: '#ecb9fd',
   accent1_500: '#d392fc',
   accent1_700: '#9707df',
