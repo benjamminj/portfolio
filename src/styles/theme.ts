@@ -1,4 +1,5 @@
 import { css } from '@emotion/core'
+import { aboveScreenSm } from './media'
 
 export const palette = {
   white: '#fff',
@@ -97,6 +98,10 @@ export default css`
     --font-mono: ${fonts.mono};
 
     /* paddings */
-    --body-gutter: 1rem;
+    --body-gutter: 1.5rem;
+
+    ${aboveScreenSm({
+      '--body-gutter': '1.25rem',
+    })}
   }
 `

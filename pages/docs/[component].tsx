@@ -3,11 +3,12 @@ import { jsx, InterpolationWithTheme } from '@emotion/core'
 import { ReactNode } from 'react'
 import { Link, Layout } from '../../src/components'
 import { palette } from '../../src/styles/theme'
+import { MarkdownWrapperStyles } from '../../src/components/Markdown'
 /** @jsx jsx */ jsx
 
 const SectionHeading = ({ children }: { children: ReactNode }) => {
   return (
-    <div css={{ paddingTop: 32, paddingBottom: 32, borderBottom: '2px solid' }}>
+    <div css={{ paddingTop: 32, paddingBottom: 8, borderBottom: '4px solid' }}>
       <Text variant="h3">{children}</Text>
     </div>
   )
@@ -138,15 +139,15 @@ const DesignSystem = () => {
         <SectionHeading>Links</SectionHeading>
 
         <ComponentContainer>
-          <div css={{ padding: 32 }}>
+          <div css={{ marginTop: 32 }}>
             <Link href="#">Sample link</Link>
           </div>
-          <div css={{ padding: 32 }}>
+          <div css={{ marginTop: 32 }}>
             <Link external href="https://google.com">
               External link (google)
             </Link>
           </div>
-          <div css={{ padding: 32 }}>
+          <div css={{ marginTop: 32 }}>
             <Text>
               And a{' '}
               <Link external href="https://google.com">
@@ -157,8 +158,29 @@ const DesignSystem = () => {
           </div>
         </ComponentContainer>
 
-        <SectionHeading>Colors</SectionHeading>
+        <SectionHeading>Unordered lists</SectionHeading>
+        <ComponentContainer>
+          <MarkdownWrapperStyles>
+            <ul>
+              <li>this is the first item.</li>
+              <li>now this is the second item.</li>
+              <li>finally, the third item.</li>
+            </ul>
+          </MarkdownWrapperStyles>
+        </ComponentContainer>
 
+        <SectionHeading>Ordered lists</SectionHeading>
+        <ComponentContainer>
+          <MarkdownWrapperStyles>
+            <ol>
+              <li>this is the first item.</li>
+              <li>now this is the second item.</li>
+              <li>finally, the third item.</li>
+            </ol>
+          </MarkdownWrapperStyles>
+        </ComponentContainer>
+
+        <SectionHeading>Colors</SectionHeading>
         <ComponentContainer>
           <SwatchRow swatches={['black', 'white']} name="top-level" />
           <SwatchGroup name="neutral" prefix="neutral_" />

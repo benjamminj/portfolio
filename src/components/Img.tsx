@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from 'react'
 import { jsx, css } from '@emotion/core'
-import { aboveScreenMd } from '../styles/mixins'
+import { aboveScreenMd } from '../styles/media'
 /** @jsx jsx */ jsx
 
 export interface ImageResource {

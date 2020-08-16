@@ -24,6 +24,7 @@ export const createHighlight = (
   })
 }
 
+export const linkPadding = '0.25em'
 export const createLinkStyles = ({ color = palette.primary_500 } = {}) => {
   return css`
     position: relative;
@@ -31,7 +32,7 @@ export const createLinkStyles = ({ color = palette.primary_500 } = {}) => {
 
     /* Spacing around the link to handle hover styles */
     line-height: 1.5;
-    padding: 0.25em 0.25em;
+    padding: ${linkPadding};
     border-radius: var(--border-radius-s);
 
     color: ${color};
@@ -45,16 +46,3 @@ export const createLinkStyles = ({ color = palette.primary_500 } = {}) => {
     }
   `
 }
-
-// media queries
-export const aboveScreenSm = styles => css`
-  @media (min-width: 35rem) {
-    ${styles};
-  }
-`
-
-export const aboveScreenMd = styles => css`
-  @media (min-width: 50rem) {
-    ${styles};
-  }
-`

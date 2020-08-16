@@ -59,7 +59,7 @@ export default css`
 
   /* Code blocks */
   pre[class*='language-'] {
-    padding: 1em;
+    /* padding: 1em; */
     overflow: auto;
   }
 

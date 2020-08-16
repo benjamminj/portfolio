@@ -34,12 +34,7 @@ interface BlogPageProps {
 const BlogPage = ({ posts }: BlogPageProps) => {
   return (
     <Layout>
-      <Section
-        css={{
-          marginTop: '3rem',
-          padding: 'var(--body-gutter)',
-        }}
-      >
+      <Section css={{ padding: 'var(--body-gutter)' }}>
         <Heading large className="pageHeading">
           <h1>
             <Text variant="h3">Blog</Text>

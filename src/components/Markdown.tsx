@@ -1,14 +1,10 @@
 import React from 'react'
 import { css } from '@emotion/core'
 import styled from '@emotion/styled'
-import {
-  aboveScreenSm,
-  createLinkStyles,
-  createHighlight,
-  aboveScreenMd,
-} from '../styles/mixins'
+import { createLinkStyles, createHighlight } from '../styles/mixins'
+import { aboveScreenSm, aboveScreenMd } from '../styles/media'
 import syntaxHighlightingStyles from '../styles/syntax-highlighting'
-import { spacing, fonts, colors } from '../styles/theme'
+import { spacing, fonts, colors, palette } from '../styles/theme'
 import { textVariants, getFontStylesFromVariant } from './Text'
 
 /**
@@ -74,14 +70,14 @@ export const MarkdownWrapperStyles = styled.div`
 
     li {
       position: relative;
-      margin-left: 1.125rem;
+      padding-left: 2rem;
       line-height: 1.5;
 
       &:before {
         content: counter(ol-count) '.';
         position: absolute;
         counter-increment: ol-count;
-        left: -1.125rem;
+        padding-left: 0.5rem;
       }
     }
   }
@@ -89,15 +85,19 @@ export const MarkdownWrapperStyles = styled.div`
   ul {
     li {
       /* allows for nested lists with proper icon placement */
-      padding-left: 1.125rem;
+      padding-left: 2rem;
       position: relative;
       line-height: 1.5;
 
       &:before {
-        content: '*';
-        font-family: ${fonts.secondary};
-        font-weight: 700;
+        content: '●';
+        padding-left: 0.5rem;
+        font-size: 10px;
+        line-height: 2.5em;
         position: absolute;
+        height: 100%;
+        display: flex;
+        /* align-items: center; */
       }
 
       > p {
@@ -148,7 +148,12 @@ export const MarkdownWrapperStyles = styled.div`
   /* code */
   pre {
     --overflow-size: calc(-1 * var(--body-gutter));
+
     margin: 1.25em var(--overflow-size);
+    background: ${palette.neutral_900};
+    color: ${palette.white};
+    padding: 2rem var(--body-gutter);
+    overflow: auto;
 
     ${aboveScreenMd(
       css({

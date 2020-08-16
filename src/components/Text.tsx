@@ -31,7 +31,7 @@ export const textVariants: { [key in TextVariantToken]: TextVariantConfig } = {
     weight: 'bold',
     letterSpacing: -0.06,
     font: 'secondary',
-    lineHeight: 1,
+    lineHeight: 1.25,
     transform: 'none',
   },
   h2: {
@@ -39,7 +39,7 @@ export const textVariants: { [key in TextVariantToken]: TextVariantConfig } = {
     weight: 'bold',
     letterSpacing: -0.06,
     font: 'secondary',
-    lineHeight: 1,
+    lineHeight: 1.25,
     transform: 'none',
   },
   h3: {
@@ -55,7 +55,7 @@ export const textVariants: { [key in TextVariantToken]: TextVariantConfig } = {
     weight: 'bold',
     letterSpacing: -0.06,
     font: 'secondary',
-    lineHeight: 1,
+    lineHeight: 1.25,
     transform: 'none',
   },
   h5: {
@@ -63,7 +63,7 @@ export const textVariants: { [key in TextVariantToken]: TextVariantConfig } = {
     weight: 'bold',
     letterSpacing: -0.06,
     font: 'secondary',
-    lineHeight: 1,
+    lineHeight: 1.25,
     transform: 'none',
   },
   h6: {
@@ -71,7 +71,7 @@ export const textVariants: { [key in TextVariantToken]: TextVariantConfig } = {
     weight: 'bold',
     letterSpacing: -0.06,
     font: 'secondary',
-    lineHeight: 1,
+    lineHeight: 1.25,
     transform: 'none',
   },
   subtitle: {
@@ -79,7 +79,7 @@ export const textVariants: { [key in TextVariantToken]: TextVariantConfig } = {
     weight: 'bold',
     letterSpacing: 0,
     font: 'primary',
-    lineHeight: 1.25,
+    lineHeight: 1.5,
     transform: 'none',
   },
   body: {
