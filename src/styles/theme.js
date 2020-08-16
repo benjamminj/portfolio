@@ -4,7 +4,7 @@ export const palette = {
   white: '#fff',
   black: '#000',
   // neutrals
-  neutral_100: '#f2f5f8',
+  neutral_100: '#eef2f6',
   neutral_200: '#e6e8ea',
   neutral_300: '#d7dae0',
   neutral_500: '#b3b8c1',

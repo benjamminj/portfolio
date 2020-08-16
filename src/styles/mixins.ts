@@ -12,7 +12,7 @@ export const highlightYPadding = '0.25em'
 export const highlightXPadding = '0.5em'
 
 export const createHighlight = (
-  background = palette.neutral_200,
+  background = palette.neutral_100,
   foreground = 'inherit'
 ) => {
   return css({
