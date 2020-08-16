@@ -5,6 +5,7 @@ export const palette = {
   black: '#000',
   // neutrals
   neutral_100: '#f2f5f8',
+  neutral_200: '#e6e8ea',
   neutral_300: '#d7dae0',
   neutral_500: '#b3b8c1',
   neutral_600: '#979daa',
@@ -80,37 +81,22 @@ export const spacing = {
 
 export default css`
   :root {
-    /* colors */
-    --white: #fff;
-    --color-primary: #333;
-    --color-secondary: #efefef;
-
-    --accent-1-extra-light: #e6f5ff;
-    --accent-1-light: #80d6ff;
-    --accent-1: #42a5f5;
-    --accent-1-dark: #0077c2;
-    --accent-1-extra-dark: #1565c0;
-
-    --accent-2: #ff5722;
-    --accent-2-dark: hsl(16, 100, 60);
-    --accent-2-extra-dark: hsl(16, 100, 50);
-
-    --accent-3: #7cb342;
-    --accent-4: #ad1457;
-
-    --gray-0: #f2f2f2;
-    --gray-1: #ccc;
-    --gray-2: #999;
+    /**
+     * Border Radius
+     *
+     * Currently, all values are "0", but they're still differentiated so that
+     * updating the border radii is only a matter of updating the design system.
+     */
+    --border-radius-s: 0;
+    --border-radius-m: 10px;
+    --border-radius-l: 0;
 
     /* fonts */
-    --font-primary: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-      Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-    --font-secondary: Menlo, Monaco, Lucida Console, Ubuntu Mono, Courier New,
-      monospace;
-    --font-mono: Menlo, Monaco, Lucida Console, Ubuntu Mono, Courier New,
-      monospace;
+    --font-primary: ${fonts.primary};
+    --font-secondary: ${fonts.secondary};
+    --font-mono: ${fonts.mono};
 
     /* paddings */
-    --body-padding: 1rem;
+    --body-gutter: 1rem;
   }
 `

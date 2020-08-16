@@ -71,7 +71,6 @@ export default css`
   /* Inline code */
   :not(pre) > code[class*='language-'] {
     padding: 0.1em;
-    border-radius: 0.3em;
     white-space: normal;
   }
 

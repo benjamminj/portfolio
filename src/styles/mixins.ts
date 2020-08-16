@@ -12,7 +12,7 @@ export const highlightYPadding = '0.25em'
 export const highlightXPadding = '0.5em'
 
 export const createHighlight = (
-  background = palette.neutral_100,
+  background = palette.neutral_200,
   foreground = 'inherit'
 ) => {
   return css({
@@ -20,7 +20,7 @@ export const createHighlight = (
     margin: `-${highlightYPadding} 0`,
     backgroundColor: background,
     color: foreground,
-    borderRadius: 6,
+    borderRadius: 'var(--border-radius-s)',
   })
 }
 
@@ -32,7 +32,7 @@ export const createLinkStyles = ({ color = palette.primary_500 } = {}) => {
     /* Spacing around the link to handle hover styles */
     line-height: 1.5;
     padding: 0.25em 0.25em;
-    border-radius: 6px;
+    border-radius: var(--border-radius-s);
 
     color: ${color};
     transition: all 50ms ease-in;

@@ -73,7 +73,7 @@ export const Img = (props: ImgProps) => {
       css={[
         { position: 'relative', overflow: 'hidden' },
         aboveScreenMd({
-          borderRadius: 10,
+          borderRadius: 'var(--border-radius-m)',
         }),
       ]}
       {...props}

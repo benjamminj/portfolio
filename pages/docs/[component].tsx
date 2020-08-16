@@ -38,7 +38,7 @@ const ColorSwatch = ({ hex, name }) => {
           backgroundSize: `20px 20px`,
           backgroundPosition: `0 0, 0 10px, 10px -10px, -10px 0px`,
           height: 128,
-          borderRadius: 16,
+          borderRadius: 'var(--border-radius-l)',
         }}
       >
         <div
@@ -51,7 +51,7 @@ const ColorSwatch = ({ hex, name }) => {
             height: '100%',
             width: '100%',
             boxShadow: '0 0 2px inset rgba(0,0,0,0.5)',
-            borderRadius: 16,
+            borderRadius: 'var(--border-radius-l)',
           }}
         >
           <Text css={{ color: palette.white, backgroundColor: 'inherit' }}>
