@@ -136,7 +136,7 @@ export default css`
   .token.regex,
   .token.important,
   .token.variable {
-    color: ${palette.neutral_100};
+    color: var(--second-color);
   }
 
   .token.important,
