@@ -1,11 +1,11 @@
 ---
-title: "3 ways everyone breaks their website’s focus state"
+title: '3 ways everyone breaks their website’s focus state'
 description: Common ways to break your app for anyone using a keyboard.
 
-date: 2018-01-15
+date: 2019-01-15
 publisher: LogRocket
 link: https://blog.logrocket.com/3-ways-everyone-breaks-their-websites-focus-state-b0d29bdeda11/
-tags: 
+tags:
   - accessibility
   - css
   - html
