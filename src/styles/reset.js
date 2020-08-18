@@ -1,14 +1,17 @@
 import { css } from '@emotion/core'
-import { fonts } from './theme'
+import theme, { fonts } from './theme'
 
 export default css`
-  :root {
-    --body-gutter: 1rem;
-  }
+  ${theme};
 
   /*! minireset.css v0.0.3 | MIT License | github.com/jgthms/minireset.css */
   body {
     font-family: ${fonts.primary};
+  }
+
+  code {
+    font-family: ${fonts.mono};
+    font-size: 0.875em;
   }
 
   html,

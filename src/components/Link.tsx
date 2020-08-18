@@ -1,16 +1,15 @@
-import React, { FC } from 'react'
+import { FC } from 'react'
 import NextLink, { LinkProps } from 'next/link'
-import styled from '@emotion/styled'
-import { linkStyle } from '../styles/mixins'
-
-const A = styled.a`
-  ${linkStyle()};
-`
+import { createLinkStyles } from '../styles/mixins'
+import { css, jsx, InterpolationWithTheme } from '@emotion/core'
+/** @jsx jsx */ jsx
 
 interface AdditionalLinkProps {
   /** If the link is not on this site, open it in a new tab */
   external?: boolean
 }
+
+const linkStyles = createLinkStyles()
 
 export const Link: FC<LinkProps & AdditionalLinkProps> = ({
   external = false,
@@ -22,13 +21,19 @@ export const Link: FC<LinkProps & AdditionalLinkProps> = ({
   // render a regular `a` tag.
   if (external && typeof href === 'string') {
     return (
-      <A {...props} href={href} target="_blank" rel="noopener noreferrer" />
+      <a
+        {...props}
+        css={linkStyles}
+        href={href}
+        target="_blank"
+        rel="noopener noreferrer"
+      />
     )
   }
 
   return (
     <NextLink href={href} as={as} passHref>
-      <A {...props} />
+      <a {...props} css={linkStyles} />
     </NextLink>
   )
 }

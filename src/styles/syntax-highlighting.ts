@@ -1,5 +1,5 @@
 import { css } from '@emotion/core'
-import { colors, fonts } from './theme'
+import { colors, palette, fonts } from './theme'
 
 export default css`
   /**
@@ -7,12 +7,16 @@ export default css`
  * Based on dabblet (http://dabblet.com)
  * @author Lea Verou
  */
+  --first-color: ${palette.success_300};
+  --second-color: ${palette.accent1_300};
+  --third-color: ${palette.primary_300};
+  --fourth-color: ${palette.warning_300};
 
   code[class*='language-'],
   pre[class*='language-'] {
-    color: black;
-    text-shadow: 0 1px white;
-    font-family: ${fonts.primary};
+    color: ${palette.white};
+
+    font-family: ${fonts.mono};
     text-align: left;
     white-space: pre;
     word-spacing: normal;
@@ -55,20 +59,18 @@ export default css`
 
   /* Code blocks */
   pre[class*='language-'] {
-    padding: 1em;
-    margin: 0.5em 0;
+    /* padding: 1em; */
     overflow: auto;
   }
 
   :not(pre) > code[class*='language-'],
   pre[class*='language-'] {
-    background: ${colors.gray[100]};
+    background: ${palette.neutral_900};
   }
 
   /* Inline code */
   :not(pre) > code[class*='language-'] {
     padding: 0.1em;
-    border-radius: 0.3em;
     white-space: normal;
   }
 
@@ -76,11 +78,11 @@ export default css`
   .token.prolog,
   .token.doctype,
   .token.cdata {
-    color: slategray;
+    color: ${palette.neutral_600};
   }
 
   .token.punctuation {
-    color: #999;
+    color: var(--second-color);
   }
 
   .namespace {
@@ -92,18 +94,25 @@ export default css`
   .token.boolean,
   .token.number,
   .token.constant,
-  .token.symbol,
-  .token.deleted {
-    color: #905;
+  .token.symbol {
+    color: inherit;
   }
 
   .token.selector,
   .token.attr-name,
   .token.string,
   .token.char,
-  .token.builtin,
+  .token.builtin {
+    /* color: #690; */
+    color: var(--fourth-color);
+  }
+
+  .token.deleted {
+    color: ${palette.error_300};
+  }
+
   .token.inserted {
-    color: #690;
+    color: ${palette.success_300};
   }
 
   .token.operator,
@@ -111,30 +120,30 @@ export default css`
   .token.url,
   .language-css .token.string,
   .style .token.string {
-    color: #a67f59;
-    background: hsla(0, 0%, 100%, 0.5);
+    color: var(--first-color);
   }
 
   .token.atrule,
   .token.attr-value,
   .token.keyword {
-    color: #07a;
+    color: var(--first-color);
   }
 
   .token.function {
-    color: #dd4a68;
+    color: var(--third-color);
   }
 
   .token.regex,
   .token.important,
   .token.variable {
-    color: #e90;
+    color: var(--second-color);
   }
 
   .token.important,
   .token.bold {
     font-weight: 700;
   }
+
   .token.italic {
     font-style: italic;
   }

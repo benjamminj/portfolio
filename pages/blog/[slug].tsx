@@ -17,6 +17,7 @@ import { Img } from '../../src/components/Img'
 import { MarkdownWrapperStyles } from '../../src/components/Markdown'
 import { fonts } from '../../src/styles/theme'
 import { textMaxWidth } from '../../src/styles/variables'
+import { Text } from '../../src/components/Text'
 /** @jsx jsx */ jsx
 
 interface PostPageParams extends ParsedUrlQuery {
@@ -123,27 +124,38 @@ const PostPage: NextPage<PostPageProps> = props => {
         <div
           css={{
             fontFamily: fonts.secondary,
-            padding: '2rem 0',
+            margin: '2rem 0',
           }}
         >
           <Heading large>
-            <h1>{title}</h1>
+            <h1>
+              <Text variant="h3">{title}</Text>
+            </h1>
           </Heading>
 
           <span
             css={{
-              fontSize: '0.825rem',
-              color: 'rgba(0, 0, 0, 0.5)',
+              color: 'rgba(0, 0, 0, 0.7)',
               marginTop: '-1rem',
               display: 'block',
             }}
           >
-            {date && `${date} — `}
-            {readingTime}
+            <Text variant="caption">
+              {date && `${date} — `}
+              {readingTime}
+            </Text>
           </span>
         </div>
 
-        {props.image && <Img {...props.image} alt={props.image.alt} />}
+        {props.image && (
+          <Img
+            {...props.image}
+            alt={props.image.alt}
+            css={{
+              margin: `0 calc(-1 * var(--body-gutter))`,
+            }}
+          />
+        )}
 
         <MarkdownWrapperStyles
           css={{

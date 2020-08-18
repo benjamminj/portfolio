@@ -4,6 +4,7 @@ import Head from 'next/head'
 import React, { ReactNode } from 'react'
 import reset from '../styles/reset.js'
 import { Link } from './Link'
+import { linkPadding } from '../styles/mixins'
 /** @jsx jsx */ jsx
 
 const Container = styled.div`
@@ -13,7 +14,6 @@ const Container = styled.div`
 `
 
 const Header = styled.header`
-  margin-bottom: 1rem;
   z-index: 100;
   text-align: left;
   padding: var(--body-gutter);
@@ -45,7 +45,7 @@ export const Layout = ({ children }: { children?: ReactNode }) => (
     <Global styles={reset} />
 
     <Header>
-      <Link href="/index" as="/">
+      <Link href="/index" as="/" css={{ marginLeft: `-${linkPadding}` }}>
         benjaminjohnson.me
       </Link>
     </Header>

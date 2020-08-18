@@ -1,16 +1,16 @@
 import React from 'react'
 import { css } from '@emotion/core'
 import styled from '@emotion/styled'
-import { aboveScreenSm, linkStyle } from '../styles/mixins'
+import { createLinkStyles, createHighlight } from '../styles/mixins'
+import { aboveScreenSm, aboveScreenMd } from '../styles/media'
 import syntaxHighlightingStyles from '../styles/syntax-highlighting'
-import { spacing, fonts, colors } from '../styles/theme'
+import { spacing, fonts, colors, palette } from '../styles/theme'
+import { textVariants, getFontStylesFromVariant } from './Text'
 
 /**
  * Meant to wrap around rendered markdown content to provide it with styling.
  */
 export const MarkdownWrapperStyles = styled.div`
-  font-size: 1.125rem;
-
   ${aboveScreenSm(css`
     width: inherit;
   `)};
@@ -22,10 +22,7 @@ export const MarkdownWrapperStyles = styled.div`
   h4,
   h5,
   h6 {
-    /* todo -- move to a central mixin location? */
-    font-family: ${fonts.secondary};
     margin: 2em 0 0;
-    color: ${colors.primary};
 
     & > code[class*='language-'] {
       white-space: pre-wrap;
@@ -33,23 +30,23 @@ export const MarkdownWrapperStyles = styled.div`
   }
 
   h2 {
-    font-size: 1.25em;
+    ${getFontStylesFromVariant('h4')}
   }
 
   h3 {
-    font-size: 1em;
+    ${getFontStylesFromVariant('h5')}
   }
 
   h4 {
-    font-size: 1em;
+    ${getFontStylesFromVariant('h6')}
   }
 
   h5 {
-    font-size: 0.825em;
+    ${getFontStylesFromVariant('subtitle')}
   }
 
   h6 {
-    font-size: 0.75em;
+    ${getFontStylesFromVariant('overline')}
   }
 
   /* lists */
@@ -73,14 +70,14 @@ export const MarkdownWrapperStyles = styled.div`
 
     li {
       position: relative;
-      margin-left: 1.125rem;
+      padding-left: 2rem;
       line-height: 1.5;
 
       &:before {
         content: counter(ol-count) '.';
         position: absolute;
         counter-increment: ol-count;
-        left: -1.125rem;
+        padding-left: 0.5rem;
       }
     }
   }
@@ -88,15 +85,19 @@ export const MarkdownWrapperStyles = styled.div`
   ul {
     li {
       /* allows for nested lists with proper icon placement */
-      padding-left: 1.125rem;
+      padding-left: 2rem;
       position: relative;
       line-height: 1.5;
 
       &:before {
-        content: '*';
-        font-family: ${fonts.secondary};
-        font-weight: 700;
+        content: '●';
+        padding-left: 0.5rem;
+        font-size: 10px;
+        line-height: 2.5em;
         position: absolute;
+        height: 100%;
+        display: flex;
+        /* align-items: center; */
       }
 
       > p {
@@ -146,13 +147,23 @@ export const MarkdownWrapperStyles = styled.div`
 
   /* code */
   pre {
-    margin: 1.25em 0;
+    --overflow-size: calc(-1 * var(--body-gutter));
+
+    margin: 1.25em var(--overflow-size);
+    background: ${palette.neutral_900};
+    color: ${palette.white};
+    padding: 2rem var(--body-gutter);
+    overflow: auto;
+
+    ${aboveScreenMd(
+      css({
+        borderRadius: 'var(--border-radius-m)',
+      })
+    )}
   }
 
   *:not(pre) > code {
-    background: ${colors.accent1[100]};
-    padding: 0.25em;
-    border-radius: 4px;
+    ${createHighlight()}
   }
 
   /* blockquote */
@@ -176,7 +187,14 @@ export const MarkdownWrapperStyles = styled.div`
 
   /* links */
   a {
-    ${linkStyle()};
+    ${createLinkStyles()};
+  }
+
+  a > code {
+    padding: 0;
+    margin: 0;
+    background-color: transparent;
+    border-radius: 0;
   }
 
   /* img */

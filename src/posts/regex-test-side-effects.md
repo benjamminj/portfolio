@@ -23,7 +23,7 @@ To put it in functional programming terms—`regex.test` is not a pure function 
 Here's an example of this behavior in action.
 
 ```js
-// note that we're using the `g` flag on the
+// note that we're using the `g` flag
 const regex = /test/g
 
 // returns true

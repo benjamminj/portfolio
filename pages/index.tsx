@@ -1,28 +1,29 @@
 import { css, jsx } from '@emotion/core'
 import React from 'react'
 import { Heading, Layout, Link } from '../src/components'
+import { Text } from '../src/components/Text'
 /** @jsx jsx */ jsx
 
 const navigation = [
   {
     text: 'github',
     external: true,
-    href: 'https://github.com/benjamminj'
+    href: 'https://github.com/benjamminj',
   },
   {
     text: 'blog',
-    href: '/blog'
+    href: '/blog',
   },
   {
     text: 'linkedin',
     external: true,
-    href: 'https://www.linkedin.com/in/benjamin-d-johnson/'
+    href: 'https://www.linkedin.com/in/benjamin-d-johnson/',
   },
   {
     text: 'contact',
     external: true,
-    href: 'mailto:benjamin.d.johnson@icloud.com'
-  }
+    href: 'mailto:benjamin.d.johnson@icloud.com',
+  },
 ]
 
 const rhythm = '2rem'
@@ -51,20 +52,25 @@ const IndexPage = () => (
         `}
         large
       >
-        <h1>Benjamin Johnson</h1>
+        <h1>
+          <Text variant="h4">Benjamin Johnson</Text>
+        </h1>
       </Heading>
 
       <p>
-        Hi!{' '}
-        <span role="img" aria-label="waving hand">
-          👋🏻
-        </span>{' '}
-        I'm a frontend engineer with a passion for clean UIs, easy-to-understand
-        code, and a well-made cup of coffee. Currently learning/working at{' '}
-        <Link external href="https://www.sourcestrike.com">
-          SourceStrike
-        </Link>{' '}
-        in Orange County, CA.
+        <Text>
+          Hi!{' '}
+          <span role="img" aria-label="waving hand">
+            👋🏻
+          </span>
+          &nbsp; I'm a frontend engineer with a passion for clean UIs,
+          easy-to-understand code, and a well-made cup of coffee. Currently
+          learning/working at{' '}
+          <Link external href="https://www.sourcestrike.com">
+            SourceStrike
+          </Link>{' '}
+          in Orange County, CA.
+        </Text>
       </p>
 
       <ul
@@ -85,15 +91,9 @@ const IndexPage = () => (
             `}
             key={link.href}
           >
-            <Heading
-              css={css`
-                margin: 0;
-              `}
-            >
-              <Link external={link.external} href={link.href}>
-                {link.text}
-              </Link>
-            </Heading>
+            <Link external={link.external} href={link.href}>
+              <Text>{link.text}</Text>
+            </Link>
           </li>
         ))}
       </ul>
