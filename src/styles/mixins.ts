@@ -9,7 +9,7 @@ export const headingStyle = () => css`
 `
 
 export const highlightYPadding = '0.25em'
-export const highlightXPadding = '0.5em'
+export const highlightXPadding = '0.25em'
 
 export const createHighlight = (
   background = palette.neutral_100,
@@ -25,24 +25,23 @@ export const createHighlight = (
 }
 
 export const linkPadding = '0.25em'
-export const createLinkStyles = ({ color = palette.primary_500 } = {}) => {
-  return css`
-    position: relative;
-    text-decoration: underline;
+export const createLinkStyles = ({
+  color = palette.primary_500,
+  hoverColor = palette.primary_600,
+} = {}) => {
+  return css({
+    textDecoration: 'underline',
+    borderRadius: 'var(--border-radius-s)',
+    color,
+    transition: 'all 50ms ease-in',
+    fontWeight: 'bolder',
 
-    /* Spacing around the link to handle hover styles */
-    line-height: 1.5;
-    padding: ${linkPadding};
-    border-radius: var(--border-radius-s);
+    /* When focusing links, make sure the box is slightly larger than the text */
+    padding: linkPadding,
+    margin: `-${linkPadding}`,
 
-    color: ${color};
-    transition: all 50ms ease-in;
-
-    :active,
-    :hover {
-      text-decoration-color: ${palette.white};
-      color: ${palette.white};
-      background-color: ${color};
-    }
-  `
+    ':active, :hover': {
+      color: hoverColor,
+    },
+  })
 }

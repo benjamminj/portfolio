@@ -190,13 +190,6 @@ export const MarkdownWrapperStyles = styled.div`
     ${createLinkStyles()};
   }
 
-  a > code {
-    padding: 0;
-    margin: 0;
-    background-color: transparent;
-    border-radius: 0;
-  }
-
   /* img */
   img {
     width: calc(100%);
