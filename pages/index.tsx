@@ -91,9 +91,11 @@ const IndexPage = () => (
             `}
             key={link.href}
           >
-            <Link external={link.external} href={link.href}>
-              <Text>{link.text}</Text>
-            </Link>
+            <Text>
+              <Link external={link.external} href={link.href}>
+                {link.text}
+              </Link>
+            </Text>
           </li>
         ))}
       </ul>
