@@ -34,7 +34,6 @@ export const createLinkStyles = ({
     borderRadius: 'var(--border-radius-s)',
     color,
     transition: 'all 50ms ease-in',
-    fontWeight: 'bolder',
 
     /* When focusing links, make sure the box is slightly larger than the text */
     padding: linkPadding,
