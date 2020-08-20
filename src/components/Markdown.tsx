@@ -92,16 +92,16 @@ export const MarkdownWrapperStyles = styled.div`
       &:before {
         content: '●';
         padding-left: 0.5rem;
+        padding-top: 0.5em;
         font-size: 10px;
-        line-height: 2.5em;
         position: absolute;
         height: 100%;
         display: flex;
-        /* align-items: center; */
       }
 
       > p {
         margin: initial;
+        line-height: inherit;
       }
 
       & + li {
