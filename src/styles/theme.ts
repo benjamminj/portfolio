@@ -16,6 +16,7 @@ export const palette = {
   primary_100: '#ebf6ff',
   primary_300: '#92d1fc',
   primary_500: '#006bad',
+  primary_600: '#045c9f',
   primary_700: '#00396b',
   primary_900: '#001f66',
   // accents
@@ -88,7 +89,7 @@ export default css`
      * Currently, all values are "0", but they're still differentiated so that
      * updating the border radii is only a matter of updating the design system.
      */
-    --border-radius-s: 0;
+    --border-radius-s: 6px;
     --border-radius-m: 10px;
     --border-radius-l: 0;
 
