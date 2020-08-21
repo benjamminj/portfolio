@@ -162,7 +162,9 @@ const DesignSystem = () => {
         <ComponentContainer>
           <MarkdownWrapperStyles>
             <ul>
-              <li>this is the first item.</li>
+              <li>
+                this is the first item. <br /> it has two lines
+              </li>
               <li>now this is the second item.</li>
               <li>finally, the third item.</li>
             </ul>
