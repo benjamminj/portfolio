@@ -46,11 +46,7 @@ const BlogPage = ({ posts }: BlogPageProps) => {
             <li css={{ marginTop: '4rem' }} key={post.href}>
               <Heading css={{ margin: '0.75rem 0 0' }}>
                 <h2>
-                  <Link
-                    href="/blog/[slug]"
-                    as={post.href}
-                    // css={{ marginLeft: '-0.5em' }}
-                  >
+                  <Link href="/blog/[slug]" as={post.href}>
                     <Text variant="h5">{post.title}</Text>
                   </Link>
                 </h2>
@@ -103,7 +99,7 @@ export const getStaticProps: GetStaticProps = async () => {
 
       const postData = {
         ...frontmatter,
-        href: `blog/${slug}`,
+        href: `/blog/${slug}`,
         readingTime: readingTime(body).text,
       }
 

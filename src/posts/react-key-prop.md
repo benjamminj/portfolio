@@ -1,7 +1,7 @@
 ---
 title: 'Cheat sheet: using keys in React'
 description: 'A couple recommendations (and warnings) about using the "key" prop'
-date: 2020-08-23
+date: 2020-08-24
 tags:
   - react
   - javascript
