@@ -1,7 +1,6 @@
 import { css } from '@emotion/core'
 import { fonts, colors, palette } from './theme'
 
-// shared styles
 export const headingStyle = () => css`
   font-family: ${fonts.secondary};
   margin: 1.25em 0;

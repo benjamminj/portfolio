@@ -2,6 +2,9 @@
 title: Testing Animated Components in React Native
 description: As a result of my issues with testing React Native components with animations I learned quite a bit about how React Native and Jest environment are set up.
 date: 2019-02-17
+tags:
+  - react-native
+  - testing
 ---
 
 I came up upon this issue a couple weeks back and it's been bouncing around my head as food for a blog post since. I've always thought that the "write the blog post you wish you had" concept is great. The hard part is that after you're done solving difficult problems, you barely have any energy left to write the post!
