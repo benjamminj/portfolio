@@ -5,7 +5,6 @@ draft: false
 tags:
   - javascript
   - regex
-  - programming
 ---
 
 I recently came up on this JavaScript quirk while debugging some form input validators that were failing intermittently. When I finally found the source of the bug, I was surprised at this behavior from the seemingly innocent [Regex.prototype.test](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp/test) function.

@@ -5,6 +5,8 @@ description: Elm is a functional compile-to-JavaScript language used for buildin
 image:
   url: 'img/elm-logo.png'
   alt: Elm Logo
+tags:
+  - functional-programming
 ---
 
 I've been playing around with Elm off & on since mid-2017. In short, Elm and I have a complex relationship. I **love** Elm as a language &mdash; the syntax just kinda gets out of your way / lets you focus on what you're actually writing, and the compiler is a strict-yet-loving teacher. In addition, it's a huge relief to feel confident that _code that compiles will not throw runtime exceptions_.

@@ -2,9 +2,8 @@
 title: '(Personal) code preferences: arrow functions'
 date: 2020-08-20
 tags:
-  - programming
   - javascript
-  - preferences
+  - formatting
 ---
 
 Most opinions about code formatting boil down to personal preference.

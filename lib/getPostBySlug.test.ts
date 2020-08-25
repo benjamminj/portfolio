@@ -13,6 +13,7 @@ test('should return parsed post data for a given slug', () => {
       url: 'img/blue-paint-swirls.jpg',
       alt: 'Abstract swirling colors of blue and red',
     },
+    tags: ['testing', 'jest', 'javascript'],
   })
 
   expect(typeof post.body).toEqual('string')
