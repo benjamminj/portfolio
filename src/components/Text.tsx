@@ -75,7 +75,7 @@ export const textVariants: { [key in TextVariantToken]: TextVariantConfig } = {
     transform: 'none',
   },
   subtitle: {
-    scale: 1,
+    scale: 1.125,
     weight: 'bold',
     letterSpacing: 0,
     font: 'primary',
@@ -102,7 +102,7 @@ export const textVariants: { [key in TextVariantToken]: TextVariantConfig } = {
     scale: 0.75,
     weight: 'normal',
     letterSpacing: 0,
-    font: 'primary',
+    font: 'secondary',
     lineHeight: 1.25,
     transform: 'none',
   },
