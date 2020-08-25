@@ -6,11 +6,9 @@ import { getPostBySlug } from '../lib/getPostBySlug'
 import { getPostFilePaths } from '../lib/getPostFilePaths'
 import { slugifyPost } from '../lib/slugifyPost'
 import { PostFrontmatter } from '../lib/types'
-import { Heading, Layout, Link, Section } from '../src/components'
-import { Text, textVariants } from '../src/components/Text'
-import { palette, spacing } from '../src/styles/theme'
-import { aboveScreenSm } from '../src/styles/media'
-import { Tag } from '../src/components/Tag'
+import { Heading, Layout, Section } from '../src/components'
+import { PostListItem } from '../src/components/PostListItem'
+import { Text } from '../src/components/Text'
 /** @jsx jsx */ jsx
 
 type PostPreview = Pick<
@@ -43,57 +41,13 @@ const BlogPage = ({ posts }: BlogPageProps) => {
 
         <ul css={{ margin: '1rem 0' }}>
           {posts.map(post => (
-            <li
-              css={[
-                {
-                  paddingTop: 12,
-                  paddingBottom: 12,
-                },
-                aboveScreenSm({
-                  display: 'grid',
-                  gridTemplateColumns: 'auto 1fr',
-                  gridTemplateRows: 'auto auto',
-                  gridColumnGap: 16,
-                }),
-              ]}
-              key={post.href}
-            >
-              <div>
-                <Text
-                  css={{
-                    fontVariantNumeric: 'tabular-nums',
-                    color: palette.neutral_700,
-                    verticalAlign: 'sub',
-                  }}
-                >
-                  {post.date}
-                </Text>
-              </div>
-
-              <h2>
-                <Link
-                  href="/blog/[slug]"
-                  as={post.href}
-                  css={{
-                    textDecoration: 'none',
-                    padding: 8,
-                    margin: -8,
-                    ':hover, :focus': {
-                      background: palette.neutral_100,
-                    },
-                  }}
-                >
-                  <Text variant="subtitle">{post.title}</Text>
-                </Link>
-              </h2>
-
-              {post.tags?.length > 0 && (
-                <div css={{ gridRow: 2, gridColumn: 2 }}>
-                  {post.tags?.map(tag => (
-                    <Tag key={tag} tag={tag} />
-                  ))}
-                </div>
-              )}
+            <li key={post.href}>
+              <PostListItem
+                title={post.title}
+                date={post.date}
+                tags={post.tags}
+                href={post.href}
+              />
             </li>
           ))}
         </ul>
