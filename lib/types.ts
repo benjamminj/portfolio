@@ -24,6 +24,8 @@ export interface PostFrontmatter {
    * name of the publisher.
    */
   publisher?: string
+  /** List of topics that the post has been tagged with */
+  tags?: string[]
 }
 
 export interface ParsedPost {
