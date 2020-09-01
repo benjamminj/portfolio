@@ -3,7 +3,7 @@ import { Link } from '../components'
 import { Tag } from '../components/Tag'
 import { Text } from '../components/Text'
 import { palette } from '../styles/theme'
-import { aboveScreenSm } from '../styles/media'
+import { aboveTablet } from '../styles/media'
 /** @jsx jsx */ jsx
 
 interface PostListItemProps {
@@ -26,7 +26,7 @@ export const PostListItem = ({
           paddingTop: 12,
           paddingBottom: 12,
         },
-        aboveScreenSm({
+        aboveTablet({
           display: 'grid',
           gridTemplateColumns: 'auto 1fr',
           gridTemplateRows: 'auto auto',
@@ -36,6 +36,7 @@ export const PostListItem = ({
     >
       <div>
         <Text
+          variant={['caption', 'body']}
           css={{
             fontVariantNumeric: 'tabular-nums',
             color: palette.neutral_700,
@@ -55,7 +56,6 @@ export const PostListItem = ({
             padding: 8,
             margin: -8,
             ':hover, :focus': {
-              // background: palette.neutral_100,
               textDecoration: 'underline',
             },
           }}

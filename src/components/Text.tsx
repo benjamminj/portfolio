@@ -1,6 +1,10 @@
 import { ReactNode } from 'react'
-import { jsx, InterpolationWithTheme } from '@emotion/core'
+import { jsx, Interpolation } from '@emotion/core'
 import { fonts, spacing } from '../styles/theme'
+import {
+  resolveResponsiveValue,
+  ResponsiveProp,
+} from '../styles/resolveResponsiveValue'
 /** @jsx jsx */ jsx
 
 export type TextVariantToken =
@@ -118,7 +122,7 @@ export const textVariants: { [key in TextVariantToken]: TextVariantConfig } = {
 
 export const getFontStylesFromVariant = (
   variant: TextVariantToken
-): InterpolationWithTheme<any> => {
+): Interpolation => {
   const { lineHeight, font, scale, weight, transform } = textVariants[variant]
   return {
     fontFamily: fonts[font],
@@ -131,13 +135,16 @@ export const getFontStylesFromVariant = (
 
 export interface TextProps {
   children: ReactNode
-  variant?: TextVariantToken
+  variant?: ResponsiveProp<TextVariantToken>
   className?: string
 }
 
 export const Text = ({ children, variant = 'body', ...rest }: TextProps) => {
   return (
-    <span {...rest} css={getFontStylesFromVariant(variant)}>
+    <span
+      {...rest}
+      css={resolveResponsiveValue(variant, getFontStylesFromVariant)}
+    >
       {children}
     </span>
   )
