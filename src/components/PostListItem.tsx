@@ -2,7 +2,7 @@ import { jsx } from '@emotion/core'
 import { Link } from '../components'
 import { Tag } from '../components/Tag'
 import { Text } from '../components/Text'
-import { palette } from '../styles/theme'
+import { palette, spacing } from '../styles/theme'
 import { aboveTablet } from '../styles/media'
 /** @jsx jsx */ jsx
 
@@ -23,14 +23,14 @@ export const PostListItem = ({
     <div
       css={[
         {
-          paddingTop: 12,
-          paddingBottom: 12,
+          paddingTop: spacing.s,
+          paddingBottom: spacing.s,
         },
         aboveTablet({
           display: 'grid',
-          gridTemplateColumns: 'auto 1fr',
+          gridTemplateColumns: '122px 1fr',
           gridTemplateRows: 'auto auto',
-          gridColumnGap: 16,
+          gridColumnGap: spacing.m,
         }),
       ]}
     >
@@ -53,8 +53,8 @@ export const PostListItem = ({
           as={href}
           css={{
             textDecoration: 'none',
-            padding: 8,
-            margin: -8,
+            padding: spacing.xs,
+            margin: spacing.xs * -1,
             ':hover, :focus': {
               textDecoration: 'underline',
             },
