@@ -33,11 +33,11 @@ const BlogPage = ({ posts }: BlogPageProps) => {
   return (
     <Layout>
       <Section css={{ padding: 'var(--body-gutter)' }}>
-        {/* <Heading large className="pageHeading"> */}
-        <h1>
-          <Text variant="h3">Blog</Text>
-        </h1>
-        {/* </Heading> */}
+        <Heading>
+          <h1>
+            <Text variant="h3">Blog</Text>
+          </h1>
+        </Heading>
 
         <ul css={{ margin: '1rem 0' }}>
           {posts.map(post => (

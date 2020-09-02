@@ -46,14 +46,11 @@ const IndexPage = () => (
         }
       `}
     >
-      <Heading
-        css={css`
-          margin-bottom: ${rhythm};
-        `}
-        large
-      >
+      <Heading>
         <h1>
-          <Text variant="h4">Benjamin Johnson</Text>
+          <Text css={{ marginBottom: rhythm }} variant="h4">
+            Benjamin Johnson
+          </Text>
         </h1>
       </Heading>
 

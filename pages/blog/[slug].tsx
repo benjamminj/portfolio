@@ -127,7 +127,7 @@ const PostPage: NextPage<PostPageProps> = props => {
             margin: '2rem 0',
           }}
         >
-          <Heading large>
+          <Heading>
             <h1>
               <Text variant="h3">{title}</Text>
             </h1>
