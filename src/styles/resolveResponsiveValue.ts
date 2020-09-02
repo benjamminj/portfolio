@@ -2,33 +2,27 @@ import { Interpolation } from 'emotion'
 import { aboveDesktop, aboveTablet } from './media'
 import { SerializedStyles } from '@emotion/core'
 
+/**
+ * Passing an array of values will apply the values on different screen sizes
+ * 
+ * @example
+ * ```tsx
+ * // "large" on all screen sizes
+ * <Component size="large" />
+ * 
+ * // "small" below tablet, "large" everywhere else
+ * <Component size={["small", "large"]} />
+ * 
+ * // "small" below tablet, "medium" below desktop, "large" everywhere else
+ * <Component size={["small", "medium", "large"]} />
+ * ```
+ */
 export type ResponsiveProp<T> = T | T[]
 
 export type ScreenSizes = 'mobile' | 'tablet' | 'desktop'
 
 /**
- * API
- *
- * Same on all screen sizes:
- * <Component size="small" />
- * <Component size={['small']} />
- *
- * Different for Mobile / Tablet / Desktop
- * <Component size={['small', 'medium', 'large']} />
- *
- * Different for Mobile / Desktop
- * <Component size={['small', 'medium']} />
- */
-
-/**
- *  [small, medium]
- *
- * css
- * font-size: 10px
- *
- * @media (above desktop) {
- *  font-size: 16px
- * }
+ * Take a responsive prop and turn it into a CSS styles object
  */
 export const resolveResponsiveValue = <T extends unknown>(
   value: ResponsiveProp<T>,
