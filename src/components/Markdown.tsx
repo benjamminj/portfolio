@@ -2,7 +2,7 @@ import React from 'react'
 import { css } from '@emotion/core'
 import styled from '@emotion/styled'
 import { createLinkStyles, createHighlight } from '../styles/mixins'
-import { aboveScreenSm, aboveScreenMd } from '../styles/media'
+import { aboveDesktop, aboveTablet } from '../styles/media'
 import syntaxHighlightingStyles from '../styles/syntax-highlighting'
 import { spacing, fonts, colors, palette } from '../styles/theme'
 import { textVariants, getFontStylesFromVariant } from './Text'
@@ -11,7 +11,7 @@ import { textVariants, getFontStylesFromVariant } from './Text'
  * Meant to wrap around rendered markdown content to provide it with styling.
  */
 export const MarkdownWrapperStyles = styled.div`
-  ${aboveScreenSm(css`
+  ${aboveTablet(css`
     width: inherit;
   `)};
 
@@ -155,7 +155,7 @@ export const MarkdownWrapperStyles = styled.div`
     padding: 2rem var(--body-gutter);
     overflow: auto;
 
-    ${aboveScreenMd(
+    ${aboveDesktop(
       css({
         borderRadius: 'var(--border-radius-m)',
       })

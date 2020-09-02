@@ -13,12 +13,6 @@ export const above = {
 }
 
 type MediaQueryFunction = (styles: any) => Interpolation
-// media queries
-export const aboveScreenSm: MediaQueryFunction = styles => css`
-  @media (min-width: 35rem) {
-    ${styles};
-  }
-`
 
 export const aboveTablet: MediaQueryFunction = styles => {
   return { [above.tablet]: styles }
@@ -27,9 +21,3 @@ export const aboveTablet: MediaQueryFunction = styles => {
 export const aboveDesktop: MediaQueryFunction = styles => {
   return { [above.desktop]: styles }
 }
-
-export const aboveScreenMd: MediaQueryFunction = styles => css`
-  @media (min-width: 50rem) {
-    ${styles};
-  }
-`

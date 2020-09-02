@@ -1,5 +1,5 @@
 import { css } from '@emotion/core'
-import { aboveScreenSm } from './media'
+import { aboveTablet } from './media'
 
 export const palette = {
   white: '#fff',
@@ -101,7 +101,7 @@ export default css`
     /* paddings */
     --body-gutter: 1.5rem;
 
-    ${aboveScreenSm({
+    ${aboveTablet({
       '--body-gutter': '1.25rem',
     })}
   }
