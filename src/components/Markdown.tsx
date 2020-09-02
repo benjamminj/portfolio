@@ -58,7 +58,7 @@ export const MarkdownWrapperStyles = styled.div`
       margin: 0.5em 0;
 
       &:before {
-        padding-right: 0.5rem;
+        padding-right: ${spacing.xs}px;
         left: 0;
       }
     }
@@ -70,14 +70,14 @@ export const MarkdownWrapperStyles = styled.div`
 
     li {
       position: relative;
-      padding-left: 2rem;
+      padding-left: ${spacing.xl}px;
       line-height: 1.5;
 
       &:before {
         content: counter(ol-count) '.';
         position: absolute;
         counter-increment: ol-count;
-        padding-left: 0.5rem;
+        padding-left: ${spacing.xs}px;
       }
     }
   }
@@ -85,13 +85,13 @@ export const MarkdownWrapperStyles = styled.div`
   ul {
     li {
       /* allows for nested lists with proper icon placement */
-      padding-left: 2rem;
+      padding-left: ${spacing.xl}px;
       position: relative;
       line-height: 1.5;
 
       &:before {
         content: '●';
-        padding-left: 0.5rem;
+        padding-left: ${spacing.xs}px;
         padding-top: 0.5em;
         font-size: 10px;
         position: absolute;
@@ -105,7 +105,7 @@ export const MarkdownWrapperStyles = styled.div`
       }
 
       & + li {
-        margin-top: 1rem;
+        margin-top: ${spacing.m}px;
       }
     }
 
@@ -124,7 +124,7 @@ export const MarkdownWrapperStyles = styled.div`
 
   /* dividers */
   hr {
-    margin: 2rem 0;
+    margin: ${spacing.xl}px 0;
     border-width: 0;
     text-align: center;
     letter-spacing: 4px;
@@ -152,14 +152,12 @@ export const MarkdownWrapperStyles = styled.div`
     margin: 1.25em var(--overflow-size);
     background: ${palette.neutral_900};
     color: ${palette.white};
-    padding: 2rem var(--body-gutter);
+    padding: ${spacing.xl}px var(--body-gutter);
     overflow: auto;
 
-    ${aboveDesktop(
-      css({
-        borderRadius: 'var(--border-radius-m)',
-      })
-    )}
+    ${aboveDesktop({
+      borderRadius: 'var(--border-radius-m)',
+    })}
   }
 
   *:not(pre) > code {
@@ -168,13 +166,14 @@ export const MarkdownWrapperStyles = styled.div`
 
   /* blockquote */
   blockquote {
-    border-left: 0.25rem solid ${colors.accent1[500]};
-    background-color: ${colors.accent1[100]};
+    border-left: ${spacing.xxs} solid ${palette.accent1_500};
+    background-color: ${palette.accent1_100};
     font-family: ${fonts.secondary};
     font-size: 1rem;
     font-style: italic;
-    padding: 1rem 1rem 1rem 1.75rem;
-    margin: 2rem 0;
+    padding: ${spacing.m}px;
+    padding-right: ${spacing.xl}px;
+    margin: ${spacing.xl}px 0;
 
     & > p {
       margin-top: 0;
@@ -193,11 +192,11 @@ export const MarkdownWrapperStyles = styled.div`
   /* img */
   img {
     width: calc(100%);
-    margin: 2rem 0;
+    margin: ${spacing.xl}px 0;
   }
 
   p > img {
-    margin: 1rem 0 0;
+    margin: ${spacing.m}px 0 0;
   }
 
   ${syntaxHighlightingStyles};

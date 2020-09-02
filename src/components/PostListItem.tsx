@@ -28,7 +28,7 @@ export const PostListItem = ({
         },
         aboveTablet({
           display: 'grid',
-          gridTemplateColumns: '122px 1fr',
+          gridTemplateColumns: 'auto 1fr',
           gridTemplateRows: 'auto auto',
           gridColumnGap: spacing.m,
         }),
