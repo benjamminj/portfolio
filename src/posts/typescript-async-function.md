@@ -42,7 +42,7 @@ Changing a regular function into an async function happens just by using the `as
 
 Before we get to writing TypeScript definitions, it's important that we have a thorough understanding of how JavaScript [promises](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) work. The reason for this is that async/await is just a pretty syntax for promises! So when we get around to type definitions, typing an async function is exactly the same as typing a function that returns a promise.
 
-Our sample function _without promises_ would look like this:
+Our sample function _without async/await_ would look like this:
 
 ```js
 function fetchData(id) {
