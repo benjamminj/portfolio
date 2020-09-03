@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from 'react'
 import { jsx, css } from '@emotion/core'
-import { aboveScreenMd } from '../styles/media'
+import { aboveDesktop } from '../styles/media'
 /** @jsx jsx */ jsx
 
 export interface ImageResource {
@@ -72,7 +72,7 @@ export const Img = (props: ImgProps) => {
     <div
       css={[
         { position: 'relative', overflow: 'hidden' },
-        aboveScreenMd({
+        aboveDesktop({
           borderRadius: 'var(--border-radius-m)',
         }),
       ]}

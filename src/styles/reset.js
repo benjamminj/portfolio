@@ -11,7 +11,6 @@ export default css`
 
   code {
     font-family: ${fonts.mono};
-    font-size: 0.875em;
   }
 
   html,

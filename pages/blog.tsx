@@ -33,7 +33,7 @@ const BlogPage = ({ posts }: BlogPageProps) => {
   return (
     <Layout>
       <Section css={{ padding: 'var(--body-gutter)' }}>
-        <Heading large className="pageHeading">
+        <Heading>
           <h1>
             <Text variant="h3">Blog</Text>
           </h1>
