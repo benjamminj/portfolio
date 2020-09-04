@@ -20,7 +20,7 @@ See this article on [GitHub's engineering blog](https://github.blog/2020-08-13-w
 
 We will use Architecture Decision Records, as [described by Michael Nygard](http://thinkrelevance.com/blog/2011/11/15/documenting-architecture-decisions).
 
-We will write ADRs in the first-person **plural** tense, as if there's multiple people building the app.
+ADRs from here on out will be written in the first-person **singular** tense, since it's mainly just me building the app.
 
 ## Consequences
 
