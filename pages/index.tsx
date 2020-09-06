@@ -27,11 +27,6 @@ const navigation = [
   },
 ]
 
-const rhythm = '2rem'
-
-/**
- * Not too much going on in this page, it's just the basic landing page!
- */
 const IndexPage = () => (
   <Layout>
     <Box
@@ -69,29 +64,29 @@ const IndexPage = () => (
         </Text>
       </p>
 
-      <ul
-        css={css`
-          display: flex;
-          flex-wrap: wrap;
-          margin: ${rhythm} 0;
-        `}
+      <Box
+        display="flex"
+        paddingY="xl"
+        as="ul"
+        css={{
+          flexWrap: 'wrap',
+        }}
       >
         {navigation.map((link, i) => (
           <Box
+            as="li"
             key={link.href}
             paddingY="xs"
             paddingLeft={i === 0 ? 'none' : 'xxl'}
           >
-            <li>
-              <Text>
-                <Link external={link.external} href={link.href}>
-                  {link.text}
-                </Link>
-              </Text>
-            </li>
+            <Text>
+              <Link external={link.external} href={link.href}>
+                {link.text}
+              </Link>
+            </Text>
           </Box>
         ))}
-      </ul>
+      </Box>
     </Box>
   </Layout>
 )
