@@ -4,15 +4,15 @@ import { SerializedStyles } from '@emotion/core'
 
 /**
  * Passing an array of values will apply the values on different screen sizes
- * 
+ *
  * @example
  * ```tsx
  * // "large" on all screen sizes
  * <Component size="large" />
- * 
+ *
  * // "small" below tablet, "large" everywhere else
  * <Component size={["small", "large"]} />
- * 
+ *
  * // "small" below tablet, "medium" below desktop, "large" everywhere else
  * <Component size={["small", "medium", "large"]} />
  * ```

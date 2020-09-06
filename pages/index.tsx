@@ -2,6 +2,7 @@ import { css, jsx } from '@emotion/core'
 import React from 'react'
 import { Heading, Layout, Link } from '../src/components'
 import { Text } from '../src/components/Text'
+import { Box } from '../src/components/Box'
 /** @jsx jsx */ jsx
 
 const navigation = [
@@ -33,9 +34,9 @@ const rhythm = '2rem'
  */
 const IndexPage = () => (
   <Layout>
-    <div
+    <Box
+      display="flex"
       css={css`
-        display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
@@ -48,9 +49,7 @@ const IndexPage = () => (
     >
       <Heading>
         <h1>
-          <Text css={{ marginBottom: rhythm }} variant="h4">
-            Benjamin Johnson
-          </Text>
+          <Text variant="h4">Benjamin Johnson</Text>
         </h1>
       </Heading>
 
@@ -77,26 +76,23 @@ const IndexPage = () => (
           margin: ${rhythm} 0;
         `}
       >
-        {navigation.map(link => (
-          <li
-            css={css`
-              display: inline;
-              padding: 0.5rem 0;
-              &:not(:last-child) {
-                margin-right: 3rem;
-              }
-            `}
+        {navigation.map((link, i) => (
+          <Box
             key={link.href}
+            paddingY="xs"
+            paddingLeft={i === 0 ? 'none' : 'xxl'}
           >
-            <Text>
-              <Link external={link.external} href={link.href}>
-                {link.text}
-              </Link>
-            </Text>
-          </li>
+            <li>
+              <Text>
+                <Link external={link.external} href={link.href}>
+                  {link.text}
+                </Link>
+              </Text>
+            </li>
+          </Box>
         ))}
       </ul>
-    </div>
+    </Box>
   </Layout>
 )
 

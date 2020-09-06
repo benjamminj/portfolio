@@ -53,6 +53,8 @@
     "test:e2e": "jest --config=./jest.e2e.config.js"
   },
   "devDependencies": {
+    "@testing-library/jest-dom": "^5.11.4",
+    "@testing-library/react": "^11.0.2",
     "@types/jest": "^26.0.7",
     "@types/react": "^16.9.41",
     "babel-preset-gatsby": "^0.1.8",
@@ -64,6 +66,7 @@
     "imagemin-optipng": "^8.0.0",
     "imagemin-svgo": "^8.0.0",
     "jest": "^26.1.0",
+    "jest-emotion": "^10.0.32",
     "jest-playwright-preset": "^1.2.1",
     "jimp": "^0.13.0",
     "lqip-loader": "^2.2.0",
