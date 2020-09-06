@@ -74,6 +74,8 @@ export const fonts = {
   mono: `Menlo, Monaco, Lusica Console, Ubuntu Mono, Courier New, monospace`,
 }
 
+export type SpacingToken = Exclude<keyof typeof spacing, 'base' | 'body'>
+
 export const spacing = {
   base: 16,
   body: {
@@ -90,12 +92,7 @@ export const spacing = {
 
 export default css`
   :root {
-    /**
-     * Border Radius
-     *
-     * Currently, all values are "0", but they're still differentiated so that
-     * updating the border radii is only a matter of updating the design system.
-     */
+    /** Border Radius */
     --border-radius-s: 6px;
     --border-radius-m: 10px;
     --border-radius-l: 0;

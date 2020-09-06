@@ -1,9 +1,10 @@
 import { textVariants, Text, TextVariantToken } from '../../src/components/Text'
-import { jsx, InterpolationWithTheme } from '@emotion/core'
+import { jsx } from '@emotion/core'
 import { ReactNode } from 'react'
 import { Link, Layout } from '../../src/components'
-import { palette } from '../../src/styles/theme'
+import { palette, SpacingToken, spacing } from '../../src/styles/theme'
 import { MarkdownWrapperStyles } from '../../src/components/Markdown'
+import { Box } from '../../src/components/Box'
 /** @jsx jsx */ jsx
 
 const SectionHeading = ({ children }: { children: ReactNode }) => {
@@ -134,6 +135,34 @@ const DesignSystem = () => {
               </Text>
             </div>
           ))}
+        </ComponentContainer>
+
+        <SectionHeading>Spacing</SectionHeading>
+        <ComponentContainer>
+          {(['xxs', 'xs', 's', 'm', 'l', 'xl', 'xxl'] as SpacingToken[]).map(
+            token => (
+              <Box
+                paddingRight="l"
+                display="inline-flex"
+                css={{ flexDirection: 'column', alignItems: 'center' }}
+              >
+                <Box
+                  display="inline-flex"
+                  paddingLeft={token}
+                  paddingTop={token}
+                  css={{ background: palette.black }}
+                />
+                <Box
+                  display="flex"
+                  paddingTop="s"
+                  css={{ textAlign: 'center', flexDirection: 'column' }}
+                >
+                  <Text variant="caption">{token}</Text>
+                  <Text variant="caption">({spacing[token]})</Text>
+                </Box>
+              </Box>
+            )
+          )}
         </ComponentContainer>
 
         <SectionHeading>Links</SectionHeading>

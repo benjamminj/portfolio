@@ -18,6 +18,9 @@ out
 # IDE
 .vscode/
 
+# Test artifacts
+coverage/
+
 # Notes
 *.notes.md
 *.todo.md
