@@ -65,9 +65,9 @@ const IndexPage = () => (
       </p>
 
       <Box
+        as="ul"
         display="flex"
         paddingY="xl"
-        as="ul"
         css={{
           flexWrap: 'wrap',
         }}
