@@ -31,11 +31,11 @@ const IndexPage = () => (
   <Layout>
     <Box
       display="flex"
+      padding="gutter"
       css={css`
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        padding: var(--body-gutter);
 
         > * {
           max-width: 35rem;

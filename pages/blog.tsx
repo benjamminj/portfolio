@@ -10,6 +10,7 @@ import { Heading, Layout, Section } from '../src/components'
 import { PostListItem } from '../src/components/PostListItem'
 import { Text } from '../src/components/Text'
 import { Box } from '../src/components/Box'
+import { textMaxWidth } from '../src/styles/variables'
 /** @jsx jsx */ jsx
 
 type PostPreview = Pick<
@@ -33,7 +34,12 @@ interface BlogPageProps {
 const BlogPage = ({ posts }: BlogPageProps) => {
   return (
     <Layout>
-      <Section css={{ padding: 'var(--body-gutter)' }}>
+      <Box
+        as="section"
+        padding="gutter"
+        paddingTop="xxl"
+        css={{ maxWidth: textMaxWidth, margin: '0 auto' }}
+      >
         <Heading>
           <h1>
             <Text variant="h3">Blog</Text>
@@ -52,7 +58,7 @@ const BlogPage = ({ posts }: BlogPageProps) => {
             </li>
           ))}
         </Box>
-      </Section>
+      </Box>
     </Layout>
   )
 }
