@@ -5,7 +5,7 @@ import { css, jsx, InterpolationWithTheme } from '@emotion/core'
 /** @jsx jsx */ jsx
 
 interface AdditionalLinkProps {
-  /** If the link is not on this site, open it in a new tab */
+  /** Opens the link in a new tab securely */
   external?: boolean
 }
 
