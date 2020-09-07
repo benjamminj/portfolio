@@ -20,7 +20,7 @@ interface BoxProps {
    */
   className?: string
   /** Corresponds 1:1 to the CSS `display` rule */
-  display?: CSSProperties['display']
+  display?: ResponsiveProp<CSSProperties['display']>
   /** Padding on all sides for the "box". If not provided, will default to `0` */
   padding?: ResponsiveBoxPaddingToken
   /**
@@ -99,7 +99,7 @@ export const Box = ({
     ...props,
     className,
     css: [
-      { display },
+      resolveResponsiveValue(display, display => ({ display })),
       resolvePaddingProp(paddingLeft || paddingX || padding, 'paddingLeft'),
       resolvePaddingProp(paddingRight || paddingX || padding, 'paddingRight'),
       resolvePaddingProp(paddingTop || paddingY || padding, 'paddingTop'),

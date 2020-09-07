@@ -9,6 +9,7 @@ import { PostFrontmatter } from '../lib/types'
 import { Heading, Layout, Section } from '../src/components'
 import { PostListItem } from '../src/components/PostListItem'
 import { Text } from '../src/components/Text'
+import { Box } from '../src/components/Box'
 /** @jsx jsx */ jsx
 
 type PostPreview = Pick<
@@ -39,7 +40,7 @@ const BlogPage = ({ posts }: BlogPageProps) => {
           </h1>
         </Heading>
 
-        <ul css={{ margin: '1rem 0' }}>
+        <Box as="ul" paddingBottom="m">
           {posts.map(post => (
             <li key={post.href}>
               <PostListItem
@@ -50,7 +51,7 @@ const BlogPage = ({ posts }: BlogPageProps) => {
               />
             </li>
           ))}
-        </ul>
+        </Box>
       </Section>
     </Layout>
   )

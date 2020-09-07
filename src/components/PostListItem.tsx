@@ -4,6 +4,7 @@ import { Tag } from '../components/Tag'
 import { Text } from '../components/Text'
 import { palette, spacing } from '../styles/theme'
 import { aboveTablet } from '../styles/media'
+import { Box } from './Box'
 /** @jsx jsx */ jsx
 
 interface PostListItemProps {
@@ -20,19 +21,14 @@ export const PostListItem = ({
   date,
 }: PostListItemProps) => {
   return (
-    <div
-      css={[
-        {
-          paddingTop: spacing.s,
-          paddingBottom: spacing.s,
-        },
-        aboveTablet({
-          display: 'grid',
-          gridTemplateColumns: 'auto 1fr',
-          gridTemplateRows: 'auto auto',
-          gridColumnGap: spacing.m,
-        }),
-      ]}
+    <Box
+      paddingY="s"
+      css={aboveTablet({
+        display: 'grid',
+        gridTemplateColumns: 'auto 1fr',
+        gridTemplateRows: 'auto auto',
+        gridColumnGap: spacing.m,
+      })}
     >
       <div>
         <Text
@@ -71,6 +67,6 @@ export const PostListItem = ({
           ))}
         </div>
       )}
-    </div>
+    </Box>
   )
 }
