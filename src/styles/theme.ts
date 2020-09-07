@@ -74,13 +74,11 @@ export const fonts = {
   mono: `Menlo, Monaco, Lusica Console, Ubuntu Mono, Courier New, monospace`,
 }
 
-export type SpacingToken = Exclude<keyof typeof spacing, 'base' | 'body'>
+export type SpacingToken = keyof typeof spacing
 
 export const spacing = {
   base: 16,
-  body: {
-    gutter: '1rem',
-  },
+  gutter: 'var(--body-gutter)',
   xxs: 4,
   xs: 8,
   s: 12,
@@ -92,7 +90,7 @@ export const spacing = {
 
 export default css`
   :root {
-    /** Border Radius */
+    /** border radius */
     --border-radius-s: 6px;
     --border-radius-m: 10px;
     --border-radius-l: 0;

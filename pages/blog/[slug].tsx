@@ -15,9 +15,10 @@ import { PostFrontmatter } from '../../lib/types'
 import { Heading, Layout, Link } from '../../src/components'
 import { Img } from '../../src/components/Img'
 import { MarkdownWrapperStyles } from '../../src/components/Markdown'
-import { fonts } from '../../src/styles/theme'
+import { fonts, palette } from '../../src/styles/theme'
 import { textMaxWidth } from '../../src/styles/variables'
 import { Text } from '../../src/components/Text'
+import { Box } from '../../src/components/Box'
 /** @jsx jsx */ jsx
 
 interface PostPageParams extends ParsedUrlQuery {
@@ -111,41 +112,32 @@ const PostPage: NextPage<PostPageProps> = props => {
         <script src="https://unpkg.com/requestidlecallback-polyfill@1.0.2/index.js" />
       </Head>
 
-      <main
+      <Box
+        as="main"
+        padding="gutter"
+        paddingY="xxl"
         css={{
           maxWidth: '100vw',
-          padding: 'var(--body-gutter)',
           '@media screen and (min-width: 50rem)': {
             maxWidth: textMaxWidth,
-            margin: '0 auto 3rem',
+            margin: '0 auto',
           },
         }}
       >
-        <div
-          css={{
-            fontFamily: fonts.secondary,
-            margin: '2rem 0',
-          }}
-        >
-          <Heading>
+        <Box paddingTop="l" paddingBottom="xl">
+          <Box>
             <h1>
               <Text variant="h3">{title}</Text>
             </h1>
-          </Heading>
+          </Box>
 
-          <span
-            css={{
-              color: 'rgba(0, 0, 0, 0.7)',
-              marginTop: '-1rem',
-              display: 'block',
-            }}
-          >
-            <Text variant="caption">
+          <Box paddingTop="xs" display="block">
+            <Text variant="caption" css={{ color: palette.neutral_700 }}>
               {date && `${date} — `}
               {readingTime}
             </Text>
-          </span>
-        </div>
+          </Box>
+        </Box>
 
         {props.image && (
           <Img
@@ -157,27 +149,16 @@ const PostPage: NextPage<PostPageProps> = props => {
           />
         )}
 
-        <MarkdownWrapperStyles
-          css={{
-            padding: 0,
-          }}
-        >
-          {hydrated}
-        </MarkdownWrapperStyles>
+        <MarkdownWrapperStyles>{hydrated}</MarkdownWrapperStyles>
 
         {publisher && externalLink && (
-          <Link
-            external
-            href={externalLink}
-            css={{
-              display: 'inline-block',
-              marginTop: '2rem',
-            }}
-          >
-            Read the full article on {publisher}.
-          </Link>
+          <Box paddingTop="xl">
+            <Link external href={externalLink}>
+              Read the full article on {publisher}.
+            </Link>
+          </Box>
         )}
-      </main>
+      </Box>
     </Layout>
   )
 }
