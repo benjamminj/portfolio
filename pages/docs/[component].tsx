@@ -211,6 +211,34 @@ const DesignSystem = () => {
           </MarkdownWrapperStyles>
         </ComponentContainer>
 
+        <SectionHeading>Quotations</SectionHeading>
+        <ComponentContainer>
+          <MarkdownWrapperStyles>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+              Deserunt, officia qui nesciunt molestias aut nemo quisquam optio
+              placeat soluta quas assumenda consectetur, quasi omnis commodi
+              impedit molestiae nobis minima voluptas.
+            </p>
+
+            <blockquote>“This is the content of the quotation.”</blockquote>
+
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+              Deserunt, officia qui nesciunt molestias aut nemo quisquam optio
+              placeat soluta quas assumenda consectetur, quasi omnis commodi
+              impedit molestiae nobis minima voluptas.
+            </p>
+
+            <blockquote>
+              ”Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+              Deserunt, officia qui nesciunt molestias aut nemo quisquam optio
+              placeat soluta quas assumenda consectetur, quasi omnis commodi
+              impedit molestiae nobis minima voluptas.”
+            </blockquote>
+          </MarkdownWrapperStyles>
+        </ComponentContainer>
+
         <SectionHeading>Colors</SectionHeading>
         <ComponentContainer>
           <SwatchRow swatches={['black', 'white']} name="top-level" />

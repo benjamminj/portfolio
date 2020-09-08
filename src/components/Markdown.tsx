@@ -4,8 +4,8 @@ import styled from '@emotion/styled'
 import { createLinkStyles, createHighlight } from '../styles/mixins'
 import { aboveDesktop, aboveTablet } from '../styles/media'
 import syntaxHighlightingStyles from '../styles/syntax-highlighting'
-import { spacing, fonts, colors, palette } from '../styles/theme'
-import { textVariants, getFontStylesFromVariant } from './Text'
+import { spacing, fonts, palette } from '../styles/theme'
+import { getFontStylesFromVariant } from './Text'
 
 /**
  * Meant to wrap around rendered markdown content to provide it with styling.
@@ -166,13 +166,16 @@ export const MarkdownWrapperStyles = styled.div`
 
   /* blockquote */
   blockquote {
-    border-left: ${spacing.xxs} solid ${palette.accent1_500};
-    background-color: ${palette.accent1_100};
-    font-family: ${fonts.secondary};
-    font-size: 1rem;
+    --blockquote-sizing: ${spacing.xl}px;
+
+    background-color: ${palette.primary_100};
+    border: 2px solid ${palette.primary_200};
+    border-radius: var(--border-radius-l);
+
+    ${getFontStylesFromVariant('body')};
+
     font-style: italic;
-    padding: ${spacing.m}px;
-    padding-right: ${spacing.xl}px;
+    padding: var(--blockquote-sizing);
     margin: ${spacing.xl}px 0;
 
     & > p {

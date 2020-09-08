@@ -14,6 +14,7 @@ export const palette = {
   neutral_900: '#282b39',
   // primary
   primary_100: '#ebf6ff',
+  primary_200: '#bee2fe',
   primary_300: '#92d1fc',
   primary_500: '#006bad',
   primary_600: '#045c9f',
@@ -93,7 +94,7 @@ export default css`
     /** border radius */
     --border-radius-s: 6px;
     --border-radius-m: 10px;
-    --border-radius-l: 0;
+    --border-radius-l: 16px;
 
     /* fonts */
     --font-primary: ${fonts.primary};
