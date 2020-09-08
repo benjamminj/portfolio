@@ -19,7 +19,7 @@ However, as authors of the code we write, we have an opportunity to practice emp
 
 There's a familiar programming quote from [Code For The Maintainer](http://wiki.c2.com/?CodeForTheMaintainer) that emphasizes this aspect of empathy (along with a little melodrama).
 
-> Always code as if the person who ends up maintaining your code is a violent psychopath who knows where you live.
+> “Always code as if the person who ends up maintaining your code is a violent psychopath who knows where you live.”
 
 What I love about this quote is that it taps into our survival instinct to remind us that it's important to think of the future people that will maintain the code we write today. Sometimes that future maintainer is yourself, sometimes it's someone you've never met. And while it's rare that the future maintainer is gonna come stalking you with murderous intent, they are still human. It's vital that we write code that makes their job a joy—not a living hell.
 
