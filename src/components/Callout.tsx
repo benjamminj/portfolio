@@ -9,6 +9,7 @@ interface CalloutProps {
   children: ReactNode
   variant?: 'success' | 'error' | 'warning' | 'info'
   icon?: ReactNode
+  heading?: ReactNode
 }
 
 const calloutColorScheme = {
@@ -21,31 +22,36 @@ export const Callout = ({
   variant = 'info',
   icon = '🤔',
   children,
+  heading = null,
 }: CalloutProps) => {
   return (
     <Box
       paddingY="xl"
       paddingX="l"
-      display="flex"
+      display="grid"
       css={{
+        gridTemplateColumns: 'auto 1fr',
+        gridTemplateRows: 'auto min-content',
+        gridColumnGap: spacing.m,
+        gridRowGap: spacing.xs,
         border: `2px solid ${calloutColorScheme.border}`,
         borderRadius: 'var(--border-radius-l)',
         backgroundColor: calloutColorScheme.background,
       }}
     >
-      <Box paddingRight="m">
-        <Text
-          variant="h4"
-          css={{
-            height: spacing.l,
-            width: spacing.l,
-            lineHeight: 1,
-          }}
-        >
-          {icon}
-        </Text>
-      </Box>
-      {children}
+      <Text
+        variant="h4"
+        css={{
+          height: spacing.l,
+          width: spacing.l,
+        }}
+      >
+        {icon}
+      </Text>
+
+      {heading && <Text variant="subtitle">{heading}</Text>}
+
+      <Box css={{ gridColumn: 2 }}>{children}</Box>
     </Box>
   )
 }

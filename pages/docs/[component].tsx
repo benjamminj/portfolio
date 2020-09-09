@@ -250,7 +250,7 @@ const DesignSystem = () => {
           </Callout>
 
           <Box paddingTop="m">
-            <Callout icon="😱">
+            <Callout icon="😱" heading="With a heading!">
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis
               provident quasi iure consequatur facere corporis quaerat minus
               corrupti! Dolorum deleniti non eaque veritatis id aliquid tempore
