@@ -5,6 +5,7 @@ import { Link, Layout } from '../../src/components'
 import { palette, SpacingToken, spacing } from '../../src/styles/theme'
 import { MarkdownWrapperStyles } from '../../src/components/Markdown'
 import { Box } from '../../src/components/Box'
+import { Callout } from '../../src/components/Callout'
 /** @jsx jsx */ jsx
 
 const SectionHeading = ({ children }: { children: ReactNode }) => {
@@ -237,6 +238,25 @@ const DesignSystem = () => {
               impedit molestiae nobis minima voluptas.”
             </blockquote>
           </MarkdownWrapperStyles>
+        </ComponentContainer>
+
+        <SectionHeading>Callouts</SectionHeading>
+        <ComponentContainer>
+          <Callout>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis
+            provident quasi iure consequatur facere corporis quaerat minus
+            corrupti! Dolorum deleniti non eaque veritatis id aliquid tempore
+            deserunt. Vero, veritatis suscipit?
+          </Callout>
+
+          <Box paddingTop="m">
+            <Callout icon="😱">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis
+              provident quasi iure consequatur facere corporis quaerat minus
+              corrupti! Dolorum deleniti non eaque veritatis id aliquid tempore
+              deserunt. Vero, veritatis suscipit?
+            </Callout>
+          </Box>
         </ComponentContainer>
 
         <SectionHeading>Colors</SectionHeading>
