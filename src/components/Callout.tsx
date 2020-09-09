@@ -11,6 +11,12 @@ interface CalloutProps {
   icon?: ReactNode
 }
 
+const calloutColorScheme = {
+  background: palette.neutral_100,
+  border: palette.neutral_300,
+  heading: palette.neutral_700,
+}
+
 export const Callout = ({
   variant = 'info',
   icon = '🤔',
@@ -22,8 +28,9 @@ export const Callout = ({
       paddingX="l"
       display="flex"
       css={{
-        border: '2px solid black',
+        border: `2px solid ${calloutColorScheme.border}`,
         borderRadius: 'var(--border-radius-l)',
+        backgroundColor: calloutColorScheme.background,
       }}
     >
       <Box paddingRight="m">
