@@ -74,6 +74,8 @@ const mdxComponents = {
 
 /**
  * This page displays an individual post for viewing.
+ *
+ * The mdx in the
  */
 const PostPage: NextPage<PostPageProps> = props => {
   // Hydrate the MDX content. The second argument is an object of React components
@@ -133,7 +135,7 @@ const PostPage: NextPage<PostPageProps> = props => {
       </Head>
 
       <Box
-        as="main"
+        component="main"
         padding="gutter"
         paddingY="xxl"
         css={{
