@@ -35,7 +35,7 @@ const TagPage = ({ tag, posts }: TagPageProps) => {
         as="section"
         padding="gutter"
         paddingTop="xxl"
-        css={{ maxWidth: textMaxWidth, margin: '0 auto' }}
+        css={{ maxWidth: textMaxWidth }}
       >
         <Heading>
           <h1>
