@@ -1,10 +1,11 @@
-import { textVariants, Text, TextVariantToken } from '../../src/components/Text'
 import { jsx } from '@emotion/core'
 import { ReactNode } from 'react'
-import { Link, Layout } from '../../src/components'
-import { palette, SpacingToken, spacing } from '../../src/styles/theme'
-import { MarkdownWrapperStyles } from '../../src/components/Markdown'
+import { Layout, Link } from '../../src/components'
 import { Box } from '../../src/components/Box'
+import { Callout, CalloutVariant } from '../../src/components/Callout'
+import { MarkdownWrapperStyles } from '../../src/components/Markdown'
+import { Text, textVariants, TextVariantToken } from '../../src/components/Text'
+import { palette, spacing, SpacingToken } from '../../src/styles/theme'
 /** @jsx jsx */ jsx
 
 const SectionHeading = ({ children }: { children: ReactNode }) => {
@@ -237,6 +238,39 @@ const DesignSystem = () => {
               impedit molestiae nobis minima voluptas.”
             </blockquote>
           </MarkdownWrapperStyles>
+        </ComponentContainer>
+
+        <SectionHeading>Callouts</SectionHeading>
+        <ComponentContainer>
+          <Callout>
+            This is the default callout component, with no props applied. It's
+            essentially the "info" variant!
+          </Callout>
+
+          <Box paddingTop="m">
+            <Callout icon="😱" heading="With a heading!">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis
+              provident quasi iure consequatur facere corporis quaerat minus
+              corrupti! Dolorum deleniti non eaque veritatis id aliquid tempore
+              deserunt. Vero, veritatis suscipit?
+            </Callout>
+          </Box>
+
+          {(['success', 'warning', 'error', 'info'] as CalloutVariant[]).map(
+            variant => (
+              <Box paddingTop="m" key={variant}>
+                <Callout
+                  variant={variant}
+                  heading={variant.slice(0, 1).toUpperCase() + variant.slice(1)}
+                >
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Optio, ipsa qui fugiat id, recusandae dolorem iure modi vel ea
+                  alias, obcaecati illo minus dolores tempora sunt esse.
+                  Officiis, cumque quam.
+                </Callout>
+              </Box>
+            )
+          )}
         </ComponentContainer>
 
         <SectionHeading>Colors</SectionHeading>
