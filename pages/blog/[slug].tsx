@@ -12,13 +12,14 @@ import { getPostBySlug } from '../../lib/getPostBySlug'
 import { getPostFilePaths } from '../../lib/getPostFilePaths'
 import { slugifyPost } from '../../lib/slugifyPost'
 import { PostFrontmatter } from '../../lib/types'
-import { Heading, Layout, Link } from '../../src/components'
+import { Layout, Link } from '../../src/components'
+import { Box } from '../../src/components/Box'
+import { Callout } from '../../src/components/Callout'
 import { Img } from '../../src/components/Img'
 import { MarkdownWrapperStyles } from '../../src/components/Markdown'
-import { fonts, palette } from '../../src/styles/theme'
-import { textMaxWidth } from '../../src/styles/variables'
 import { Text } from '../../src/components/Text'
-import { Box } from '../../src/components/Box'
+import { palette, spacing } from '../../src/styles/theme'
+import { textMaxWidth } from '../../src/styles/variables'
 /** @jsx jsx */ jsx
 
 interface PostPageParams extends ParsedUrlQuery {
@@ -53,6 +54,14 @@ interface PostPageProps {
   }
 }
 
+const mdxComponents = {
+  Callout: props => (
+    <Box css={{ marginTop: spacing.xxl, marginBottom: spacing.xxl }}>
+      <Callout {...props} />
+    </Box>
+  ),
+}
+
 /**
  * This page displays an individual post for viewing.
  */
@@ -60,7 +69,7 @@ const PostPage: NextPage<PostPageProps> = props => {
   // Hydrate the MDX content. The second argument is an object of React components
   // to interpolate into the MDX components. Hydrating in this fashion means that
   // we can move the MDX to any folder we want, or even to a separate repository.
-  const hydrated = useHydrateMdx(props.mdxContent, {})
+  const hydrated = useHydrateMdx(props.mdxContent, mdxComponents)
 
   const {
     title,
@@ -198,14 +207,10 @@ export const getStaticProps: GetPostPageStaticProps = async ctx => {
   }
 
   // Render out the MDX content.
-  const mdxContent = await renderToString(
-    body,
-    {},
-    {
-      // `prism` adds syntax highlighting as CSS classes to the code blocks.
-      rehypePlugins: [prism],
-    }
-  )
+  const mdxContent = await renderToString(body, mdxComponents, {
+    // `prism` adds syntax highlighting as CSS classes to the code blocks.
+    rehypePlugins: [prism],
+  })
 
   return {
     props: {

@@ -1,10 +1,10 @@
-import React from 'react'
 import { css } from '@emotion/core'
 import styled from '@emotion/styled'
-import { createLinkStyles, createHighlight } from '../styles/mixins'
+import React from 'react'
 import { aboveDesktop, aboveTablet } from '../styles/media'
+import { createHighlight, createLinkStyles } from '../styles/mixins'
 import syntaxHighlightingStyles from '../styles/syntax-highlighting'
-import { spacing, fonts, palette } from '../styles/theme'
+import { fonts, palette, spacing } from '../styles/theme'
 import { getFontStylesFromVariant } from './Text'
 
 /**
@@ -139,6 +139,10 @@ export const MarkdownWrapperStyles = styled.div`
   /* paragraphs */
   p {
     margin: 1em 0 0;
+
+    &:first-child {
+      margin-top: 0;
+    }
 
     & + p {
       margin-top: 1em;

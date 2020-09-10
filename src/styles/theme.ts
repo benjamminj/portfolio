@@ -28,13 +28,15 @@ export const palette = {
   accent1_900: '#44037d',
   // error
   error_100: '#fee8e7',
+  error_200: '#fbc0c0',
   error_300: '#f78d87',
   error_500: '#E53935',
   error_700: '#ac1411',
   error_900: '#610705',
   // greenish color?
-  success_100: '#dbfffb',
-  success_300: '#31e3c8',
+  success_100: '#e5fffc',
+  success_200: '#aef9ed',
+  success_300: '#78edd5',
   success_500: '#0bb79d',
   success_700: '#016556',
   success_900: '#014132',

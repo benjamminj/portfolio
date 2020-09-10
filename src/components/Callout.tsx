@@ -1,29 +1,62 @@
 import { jsx } from '@emotion/core'
 import { ReactNode } from 'react'
+import { palette, spacing } from '../styles/theme'
 import { Box } from './Box'
 import { Text } from './Text'
-import { spacing, palette } from '../styles/theme'
 /** @jsx jsx */ jsx
+
+export type CalloutVariant = 'success' | 'error' | 'warning' | 'info'
 
 interface CalloutProps {
   children: ReactNode
-  variant?: 'success' | 'error' | 'warning' | 'info'
+  variant?: CalloutVariant
   icon?: ReactNode
   heading?: ReactNode
+  className?: string
 }
 
-const calloutColorScheme = {
-  background: palette.neutral_100,
-  border: palette.neutral_300,
-  heading: palette.neutral_700,
+interface ColorVariantConfig {
+  background: string
+  border: string
+  heading: string
+  defaultIcon: ReactNode
+}
+
+const colorVariants: { [key in CalloutVariant]: ColorVariantConfig } = {
+  success: {
+    background: palette.success_100,
+    border: palette.success_200,
+    heading: palette.success_900,
+    defaultIcon: '✅',
+  },
+  error: {
+    background: palette.error_100,
+    border: palette.error_200,
+    heading: palette.error_900,
+    defaultIcon: '🚨',
+  },
+  warning: {
+    background: palette.warning_100,
+    border: palette.warning_300,
+    heading: palette.warning_900,
+    defaultIcon: '🚧',
+  },
+  info: {
+    background: palette.neutral_100,
+    border: palette.neutral_300,
+    heading: palette.neutral_900,
+    defaultIcon: '💬',
+  },
 }
 
 export const Callout = ({
   variant = 'info',
-  icon = '🤔',
+  icon,
   children,
   heading = null,
+  ...props
 }: CalloutProps) => {
+  const config = colorVariants[variant]
   return (
     <Box
       paddingY="xl"
@@ -33,11 +66,12 @@ export const Callout = ({
         gridTemplateColumns: 'auto 1fr',
         gridTemplateRows: 'auto min-content',
         gridColumnGap: spacing.m,
-        gridRowGap: spacing.xs,
-        border: `2px solid ${calloutColorScheme.border}`,
+        gridRowGap: spacing.xxs,
+        border: `2px solid ${config.border}`,
         borderRadius: 'var(--border-radius-l)',
-        backgroundColor: calloutColorScheme.background,
+        backgroundColor: config.background,
       }}
+      {...props}
     >
       <Text
         variant="h4"
@@ -46,12 +80,16 @@ export const Callout = ({
           width: spacing.l,
         }}
       >
-        {icon}
+        {icon || config.defaultIcon}
       </Text>
 
-      {heading && <Text variant="subtitle">{heading}</Text>}
+      {heading && (
+        <Text variant="subtitle" css={{ color: config.heading }}>
+          {heading}
+        </Text>
+      )}
 
-      <Box css={{ gridColumn: 2 }}>{children}</Box>
+      <Box css={{ gridColumn: 2, paddingTop: spacing.xxs }}>{children}</Box>
     </Box>
   )
 }
