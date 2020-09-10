@@ -35,7 +35,7 @@ const BlogPage = ({ posts }: BlogPageProps) => {
   return (
     <Layout>
       <Box
-        as="section"
+        component="section"
         padding="gutter"
         paddingTop="xxl"
         css={{ maxWidth: textMaxWidth, margin: '0 auto' }}
@@ -46,7 +46,7 @@ const BlogPage = ({ posts }: BlogPageProps) => {
           </h1>
         </Heading>
 
-        <Box as="ul" paddingBottom="m">
+        <Box component="ul" paddingBottom="m">
           {posts.map(post => (
             <li key={post.href}>
               <PostListItem

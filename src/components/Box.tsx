@@ -13,7 +13,7 @@ interface BoxProps {
   /** Contents of the box */
   children?: ReactNode
   /** Allows customization of the rendered HTML under the hood */
-  as?: keyof HTMLElementTagNameMap
+  component?: keyof HTMLElementTagNameMap
   /**
    * Allows overriding the applied CSS. This should be a last resort over using
    * the built-in styling props
@@ -92,10 +92,10 @@ export const Box = ({
   paddingBottom,
   className,
   display,
-  as = 'div',
+  component = 'div',
   ...props
 }: BoxProps) => {
-  return jsx(as, {
+  return jsx(component, {
     ...props,
     className,
     css: [

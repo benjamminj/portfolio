@@ -65,7 +65,7 @@ const IndexPage = () => (
       </p>
 
       <Box
-        as="ul"
+        component="ul"
         display="flex"
         paddingY="xl"
         css={{
@@ -74,7 +74,7 @@ const IndexPage = () => (
       >
         {navigation.map((link, i) => (
           <Box
-            as="li"
+            component="li"
             key={link.href}
             paddingY="xs"
             paddingLeft={i === 0 ? 'none' : 'xxl'}
