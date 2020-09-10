@@ -56,7 +56,16 @@ interface PostPageProps {
 
 const mdxComponents = {
   Callout: props => (
-    <Box css={{ marginTop: spacing.xxl, marginBottom: spacing.xxl }}>
+    <Box
+      css={{
+        marginTop: spacing.xxl,
+        marginBottom: spacing.xxl,
+
+        '*:not(pre) > code': {
+          background: palette.neutral_300,
+        },
+      }}
+    >
       <Callout {...props} />
     </Box>
   ),
