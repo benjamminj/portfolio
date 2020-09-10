@@ -32,7 +32,7 @@ const TagPage = ({ tag, posts }: TagPageProps) => {
   return (
     <Layout>
       <Box
-        as="section"
+        component="section"
         padding="gutter"
         paddingTop="xxl"
         css={{ maxWidth: textMaxWidth }}
@@ -43,7 +43,7 @@ const TagPage = ({ tag, posts }: TagPageProps) => {
           </h1>
         </Heading>
 
-        <Box as="ul" paddingBottom="m">
+        <Box component="ul" paddingBottom="m">
           {posts.map(post => (
             <li key={post.href}>
               <PostListItem
