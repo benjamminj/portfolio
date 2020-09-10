@@ -8,6 +8,10 @@ export interface TagProps {
   tag: string
 }
 
+/**
+ * Each `<Tag>` corresponds to a post `tag` value. All tags are links,
+ * so clicking on one allows you to view all posts that have the same tag.
+ */
 export const Tag = ({ tag }: TagProps) => {
   return (
     <Link
