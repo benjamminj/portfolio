@@ -5,6 +5,7 @@ import React, { ReactNode } from 'react'
 import reset from '../styles/reset.js'
 import { Link } from './Link'
 import { linkPadding } from '../styles/mixins'
+import { Box } from './Box'
 /** @jsx jsx */ jsx
 
 const Container = styled.div`
