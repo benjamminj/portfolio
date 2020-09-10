@@ -1,10 +1,10 @@
-import { jsx, Interpolation } from '@emotion/core'
-import { ReactNode, CSSProperties } from 'react'
-import { SpacingToken, spacing } from '../styles/theme'
+import { jsx } from '@emotion/core'
+import { CSSProperties, ReactNode } from 'react'
 import {
-  ResponsiveProp,
   resolveResponsiveValue,
+  ResponsiveProp,
 } from '../styles/resolveResponsiveValue'
+import { spacing, SpacingToken } from '../styles/theme'
 /** @jsx jsx */ jsx
 
 type BoxPaddingToken = SpacingToken | 'none'
