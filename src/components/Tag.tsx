@@ -1,20 +1,41 @@
 import { jsx } from '@emotion/core'
 import { Text } from './Text'
 import { spacing, palette } from '../styles/theme'
+import { Link } from './Link'
 /** @jsx jsx */ jsx
 
 export interface TagProps {
   tag: string
 }
 
+/**
+ * Each `<Tag>` corresponds to a post `tag` value. All tags are links,
+ * so clicking on one allows you to view all posts that have the same tag.
+ */
 export const Tag = ({ tag }: TagProps) => {
   return (
-    <Text
-      variant="caption"
-      key={tag}
-      css={{ marginRight: spacing.xs, color: palette.neutral_700 }}
+    <Link
+      href={`/tags/${tag}`}
+      css={{
+        textDecoration: 'none',
+        marginRight: spacing.xs,
+        padding: spacing.xxs,
+      }}
     >
-      #{tag}
-    </Text>
+      <Text
+        variant="caption"
+        key={tag}
+        css={{
+          color: palette.neutral_700,
+
+          ':hover': {
+            color: palette.neutral_900,
+            textDecoration: 'underline',
+          },
+        }}
+      >
+        #{tag}
+      </Text>
+    </Link>
   )
 }
