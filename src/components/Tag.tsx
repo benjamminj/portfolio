@@ -1,6 +1,6 @@
 import { jsx } from '@emotion/core'
 import { Text } from './Text'
-import { spacing } from '../styles/theme'
+import { spacing, palette } from '../styles/theme'
 /** @jsx jsx */ jsx
 
 export interface TagProps {
@@ -9,7 +9,11 @@ export interface TagProps {
 
 export const Tag = ({ tag }: TagProps) => {
   return (
-    <Text variant="caption" key={tag} css={{ marginRight: spacing.xs }}>
+    <Text
+      variant="caption"
+      key={tag}
+      css={{ marginRight: spacing.xs, color: palette.neutral_700 }}
+    >
       #{tag}
     </Text>
   )

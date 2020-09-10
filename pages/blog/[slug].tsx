@@ -20,6 +20,7 @@ import { MarkdownWrapperStyles } from '../../src/components/Markdown'
 import { Text } from '../../src/components/Text'
 import { palette, spacing } from '../../src/styles/theme'
 import { textMaxWidth } from '../../src/styles/variables'
+import { Tag } from '../../src/components/Tag'
 /** @jsx jsx */ jsx
 
 interface PostPageParams extends ParsedUrlQuery {
@@ -46,7 +47,7 @@ interface PostPageProps {
   /** Post metadata */
   frontmatter: Pick<
     PostFrontmatter,
-    'title' | 'description' | 'publisher' | 'link'
+    'title' | 'description' | 'publisher' | 'link' | 'tags'
   > & {
     date: string
     /** A rough estimate of how long this post will take to read. */
@@ -86,6 +87,7 @@ const PostPage: NextPage<PostPageProps> = props => {
     readingTime,
     publisher,
     link: externalLink,
+    tags = [],
   } = props.frontmatter
 
   const { HOMEPAGE } = process.env
@@ -143,6 +145,14 @@ const PostPage: NextPage<PostPageProps> = props => {
         }}
       >
         <Box paddingTop="l" paddingBottom="xl">
+          {tags.length > 0 && (
+            <Box>
+              {tags.map(tag => (
+                <Tag key={tag} tag={tag} />
+              ))}
+            </Box>
+          )}
+
           <Box>
             <h1>
               <Text variant="h3">{title}</Text>
