@@ -9,7 +9,7 @@ test('smoketest', async () => {
   const pageContent = {
     title: 'Mocking the fetch API with Jest',
     description: `Why should we mock the network? We'll take a look at why it's important to mock window.fetch and a couple methods we can use in our test suites.`,
-    imageAlt: `Abstract swirling colors of blue and red`
+    imageAlt: `Abstract swirling colors of blue and red`,
   }
 
   // Validate metadata
@@ -24,7 +24,7 @@ test('smoketest', async () => {
     ['og:description', pageContent.description],
     ['twitter:image:alt', pageContent.imageAlt],
     ['og:image:alt', pageContent.imageAlt],
-    ['og:type', 'website']
+    ['og:type', 'website'],
   ]
 
   const metaTags = await Promise.all(
@@ -38,7 +38,10 @@ test('smoketest', async () => {
   const selectors = [
     `h1 >> text="${pageContent.title}"`,
     'text="04-26-2019 — 12 min read"',
-    `[alt="${pageContent.imageAlt}"]`
+    `[alt="${pageContent.imageAlt}"]`,
+    `text="#testing"`,
+    `text="#javascript"`,
+    `text="#jest"`,
   ]
 
   await Promise.all(selectors.map(s => page.waitForSelector(s)))
