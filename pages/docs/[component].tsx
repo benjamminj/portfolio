@@ -126,6 +126,7 @@ const DesignSystem = () => {
         <ComponentContainer>
           {Object.keys(textVariants).map((variant: TextVariantToken) => (
             <div
+              key={variant}
               css={{
                 padding: 32,
                 border: '1px dashed black',
