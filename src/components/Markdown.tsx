@@ -11,9 +11,9 @@ import { getFontStylesFromVariant } from './Text'
  * Meant to wrap around rendered markdown content to provide it with styling.
  */
 export const MarkdownWrapperStyles = styled.div`
-  ${aboveTablet(css`
+  /* ${aboveTablet(css`
     width: inherit;
-  `)};
+  `)}; */
 
   /* headings */
   h1,
