@@ -8,7 +8,7 @@ const trackingId = process.env.NEXT_PUBLIC_GA_TRACKING_ID
  * which helps keep google analytics from bleeding into the rest of the codebase.
  */
 declare global {
-  type GTagFunction = (eventName: string, ...args: any[]) => void
+  type GTagFunction = (eventName: string, ...args: unknown[]) => void
 
   interface Window {
     gtag: GTagFunction
@@ -22,7 +22,7 @@ declare global {
  */
 export const pageview = (url: string): void => {
   window.gtag('config', trackingId, {
-    page_path: url
+    page_path: url,
   })
 }
 
@@ -35,6 +35,6 @@ export const event = ({ action, category, label, value }) => {
   window.gtag('event', action, {
     event_category: category,
     event_label: label,
-    value: value
+    value: value,
   })
 }
