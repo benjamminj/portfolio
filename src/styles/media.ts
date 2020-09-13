@@ -12,7 +12,7 @@ export const above = {
   desktop: `@media (min-width: ${breakpoints.desktop})`,
 }
 
-type MediaQueryFunction = (styles: any) => Interpolation
+type MediaQueryFunction = (styles: Interpolation) => Interpolation
 
 export const aboveTablet: MediaQueryFunction = styles => {
   return { [above.tablet]: styles }

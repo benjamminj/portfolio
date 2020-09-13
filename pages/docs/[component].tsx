@@ -143,6 +143,7 @@ const DesignSystem = () => {
           {(['xxs', 'xs', 's', 'm', 'l', 'xl', 'xxl'] as SpacingToken[]).map(
             token => (
               <Box
+                key={token}
                 paddingRight="l"
                 display="inline-flex"
                 css={{ flexDirection: 'column', alignItems: 'center' }}
