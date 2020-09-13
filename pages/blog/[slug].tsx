@@ -138,7 +138,13 @@ const PostPage: NextPage<PostPageProps> = props => {
         component="main"
         padding="gutter"
         paddingY="xxl"
-        css={{ maxWidth: container }}
+        css={{
+          maxWidth: '100vw',
+          [`@media screen and (min-width: ${container})`]: {
+            maxWidth: container,
+            margin: '0 auto',
+          },
+        }}
       >
         <Box paddingTop="l" paddingBottom="xl">
           {tags.length > 0 && (
@@ -174,7 +180,7 @@ const PostPage: NextPage<PostPageProps> = props => {
               {...props.image}
               alt={props.image.alt}
               css={{
-                maxWidth: '100%',
+                maxWidth: '100vw',
                 overflowX: 'hidden',
               }}
             />
