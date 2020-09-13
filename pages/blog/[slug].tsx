@@ -19,7 +19,7 @@ import { Img } from '../../src/components/Img'
 import { MarkdownWrapperStyles } from '../../src/components/Markdown'
 import { Text } from '../../src/components/Text'
 import { palette, spacing } from '../../src/styles/theme'
-import { textMaxWidth } from '../../src/styles/variables'
+import { container } from '../../src/styles/variables'
 import { Tag } from '../../src/components/Tag'
 /** @jsx jsx */ jsx
 
@@ -140,8 +140,8 @@ const PostPage: NextPage<PostPageProps> = props => {
         paddingY="xxl"
         css={{
           maxWidth: '100vw',
-          '@media screen and (min-width: 50rem)': {
-            maxWidth: textMaxWidth,
+          [`@media screen and (min-width: ${container})`]: {
+            maxWidth: container,
             margin: '0 auto',
           },
         }}
@@ -170,12 +170,18 @@ const PostPage: NextPage<PostPageProps> = props => {
         </Box>
 
         {props.image && (
-          <Box paddingBottom="l">
+          <Box
+            paddingBottom="l"
+            css={{
+              margin: `0 calc(-1 * var(--body-gutter))`,
+            }}
+          >
             <Img
               {...props.image}
               alt={props.image.alt}
               css={{
-                margin: `0 calc(-1 * var(--body-gutter))`,
+                maxWidth: '100vw',
+                overflowX: 'hidden',
               }}
             />
           </Box>

@@ -6,13 +6,17 @@ import reset from '../styles/reset.js'
 import { Link } from './Link'
 import { linkPadding } from '../styles/mixins'
 import { Box } from './Box'
+import { breakpoints } from '../styles/media'
+import { container } from '../styles/variables'
 /** @jsx jsx */ jsx
 
-const Container = styled.div`
-  display: grid;
-  grid-template-rows: auto 1fr;
-  min-height: 100vh;
-`
+const Container = styled.div({
+  display: 'grid',
+  gridTemplateRows: 'auto 1fr',
+  minHeight: '100vh',
+  maxWidth: container,
+  margin: '0 auto',
+})
 
 const Header = styled.header`
   z-index: 100;
