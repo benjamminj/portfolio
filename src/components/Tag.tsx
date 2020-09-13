@@ -15,7 +15,8 @@ export interface TagProps {
 export const Tag = ({ tag }: TagProps) => {
   return (
     <Link
-      href={`/tags/${tag}`}
+      href="/tags/[tag]"
+      as={`/tags/${tag}`}
       css={{
         textDecoration: 'none',
         marginRight: spacing.xs,
