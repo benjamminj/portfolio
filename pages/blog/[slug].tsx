@@ -170,13 +170,15 @@ const PostPage: NextPage<PostPageProps> = props => {
         </Box>
 
         {props.image && (
-          <Img
-            {...props.image}
-            alt={props.image.alt}
-            css={{
-              margin: `0 calc(-1 * var(--body-gutter))`,
-            }}
-          />
+          <Box paddingBottom="l">
+            <Img
+              {...props.image}
+              alt={props.image.alt}
+              css={{
+                margin: `0 calc(-1 * var(--body-gutter))`,
+              }}
+            />
+          </Box>
         )}
 
         <MarkdownWrapperStyles>{hydrated}</MarkdownWrapperStyles>
