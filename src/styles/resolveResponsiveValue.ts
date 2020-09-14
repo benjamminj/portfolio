@@ -25,9 +25,11 @@ export type ScreenSizes = 'mobile' | 'tablet' | 'desktop'
  * Take a responsive prop and turn it into a CSS styles object
  */
 export const resolveResponsiveValue = <T extends unknown>(
-  value: ResponsiveProp<T>,
+  value: ResponsiveProp<T> | null | undefined,
   getStyles: (responsiveValue: T) => Interpolation
 ): Interpolation => {
+  if (value === null || value === undefined) return {}
+
   if (!Array.isArray(value)) {
     return getStyles(value)
   }

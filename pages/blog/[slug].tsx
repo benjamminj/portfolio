@@ -170,12 +170,7 @@ const PostPage: NextPage<PostPageProps> = props => {
         </Box>
 
         {props.image && (
-          <Box
-            paddingBottom="l"
-            css={{
-              margin: `0 calc(-1 * var(--body-gutter))`,
-            }}
-          >
+          <Box paddingBottom="l" bleedX="gutter">
             <Img
               {...props.image}
               alt={props.image.alt}
