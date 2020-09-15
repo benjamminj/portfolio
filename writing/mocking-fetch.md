@@ -4,7 +4,7 @@ description: Why should we mock the network? We'll take a look at why it's impor
 draft: false
 date: 2019-04-26
 image:
-  url: 'img/blue-paint-swirls.jpg'
+  url: 'images/blue-paint-swirls.jpg'
   alt: 'Abstract swirling colors of blue and red'
 tags:
   - testing
