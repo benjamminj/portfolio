@@ -3,7 +3,7 @@ title: Some Thoughts on Elm
 date: 2018-01-27
 description: Elm is a functional compile-to-JavaScript language used for building robust, bug-resistant UIs.
 image:
-  url: 'images/elm-logo.png'
+  url: 'elm-logo.png'
   alt: Elm Logo
 tags:
   - functional-programming
