@@ -3,8 +3,8 @@ import { CSSProperties, ReactNode } from 'react'
 import {
   resolveResponsiveValue,
   ResponsiveProp,
-} from '../../styles/resolveResponsiveValue'
-import { spacing, SpacingToken } from '../../styles/theme'
+} from '../styles/resolveResponsiveValue'
+import { spacing, SpacingToken } from '../styles/theme'
 /** @jsx jsx */ jsx
 
 type BoxPaddingToken = SpacingToken | 'none'

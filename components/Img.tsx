@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from 'react'
 import { jsx, css } from '@emotion/core'
-import { aboveDesktop } from '../../styles/media'
+import { aboveDesktop } from '../styles/media'
 /** @jsx jsx */ jsx
 
 export interface ImageResource {

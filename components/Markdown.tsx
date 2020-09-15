@@ -1,9 +1,9 @@
 import styled from '@emotion/styled'
 import React from 'react'
-import { aboveDesktop } from '../../styles/media'
-import { createHighlight, createLinkStyles } from '../../styles/mixins'
-import syntaxHighlightingStyles from '../../styles/syntax-highlighting'
-import { fonts, palette, spacing } from '../../styles/theme'
+import { aboveDesktop } from '../styles/media'
+import { createHighlight, createLinkStyles } from '../styles/mixins'
+import syntaxHighlightingStyles from '../styles/syntax-highlighting'
+import { fonts, palette, spacing } from '../styles/theme'
 import { getFontStylesFromVariant } from './Text'
 
 /**

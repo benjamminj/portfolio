@@ -1,6 +1,6 @@
 import { jsx } from '@emotion/core'
 import { Text } from './Text'
-import { spacing, palette } from '../../styles/theme'
+import { spacing, palette } from '../styles/theme'
 import { Link } from './Link'
 /** @jsx jsx */ jsx
 

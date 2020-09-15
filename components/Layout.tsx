@@ -2,10 +2,10 @@ import { Global, jsx } from '@emotion/core'
 import styled from '@emotion/styled'
 import Head from 'next/head'
 import React, { ReactNode } from 'react'
-import reset from '../../styles/reset'
+import reset from '../styles/reset'
 import { Link } from './Link'
-import { linkPadding } from '../../styles/mixins'
-import { container } from '../../styles/variables'
+import { linkPadding } from '../styles/mixins'
+import { container } from '../styles/variables'
 /** @jsx jsx */ jsx
 
 const Container = styled.div({
