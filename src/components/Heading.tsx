@@ -1,5 +1,5 @@
 import styled from '@emotion/styled'
-import { headingStyle } from '../styles/mixins'
+import { headingStyle } from '../../styles/mixins'
 
 /**
  * A heading component.

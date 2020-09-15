@@ -1,10 +1,10 @@
 import { ReactNode } from 'react'
 import { jsx, Interpolation } from '@emotion/core'
-import { fonts, spacing } from '../styles/theme'
+import { fonts, spacing } from '../../styles/theme'
 import {
   resolveResponsiveValue,
   ResponsiveProp,
-} from '../styles/resolveResponsiveValue'
+} from '../../styles/resolveResponsiveValue'
 /** @jsx jsx */ jsx
 
 export type TextVariantToken =

@@ -1,4 +1,4 @@
-import { css, Interpolation } from '@emotion/core'
+import { Interpolation } from '@emotion/core'
 
 // Keeping breakpoints in `rem` units allows them to scale
 // as users scale their font size

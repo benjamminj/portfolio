@@ -18,8 +18,8 @@ import { Callout } from '../../src/components/Callout'
 import { Img } from '../../src/components/Img'
 import { MarkdownWrapperStyles } from '../../src/components/Markdown'
 import { Text } from '../../src/components/Text'
-import { palette, spacing } from '../../src/styles/theme'
-import { container } from '../../src/styles/variables'
+import { palette, spacing } from '../../styles/theme'
+import { container } from '../../styles/variables'
 import { Tag } from '../../src/components/Tag'
 /** @jsx jsx */ jsx
 

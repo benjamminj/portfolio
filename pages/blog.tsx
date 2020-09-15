@@ -6,11 +6,11 @@ import { getPostBySlug } from '../lib/getPostBySlug'
 import { getPostFilePaths } from '../lib/getPostFilePaths'
 import { slugifyPost } from '../lib/slugifyPost'
 import { PostFrontmatter } from '../lib/types'
-import { Heading, Layout, Section } from '../src/components'
+import { Heading, Layout } from '../src/components'
 import { PostListItem } from '../src/components/PostListItem'
 import { Text } from '../src/components/Text'
 import { Box } from '../src/components/Box'
-import { textMaxWidth } from '../src/styles/variables'
+import { textMaxWidth } from '../styles/variables'
 /** @jsx jsx */ jsx
 
 type PostPreview = Pick<

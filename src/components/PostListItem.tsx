@@ -2,8 +2,8 @@ import { jsx } from '@emotion/core'
 import { Link } from '../components'
 import { Tag } from '../components/Tag'
 import { Text } from '../components/Text'
-import { palette, spacing } from '../styles/theme'
-import { aboveTablet } from '../styles/media'
+import { palette, spacing } from '../../styles/theme'
+import { aboveTablet } from '../../styles/media'
 import { Box } from './Box'
 /** @jsx jsx */ jsx
 

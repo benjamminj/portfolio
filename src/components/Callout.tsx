@@ -1,6 +1,6 @@
 import { jsx } from '@emotion/core'
 import { ReactNode } from 'react'
-import { palette, spacing } from '../styles/theme'
+import { palette, spacing } from '../../styles/theme'
 import { Box } from './Box'
 import { Text } from './Text'
 /** @jsx jsx */ jsx
