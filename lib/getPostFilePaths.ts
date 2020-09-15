@@ -2,7 +2,7 @@ import fs from 'fs'
 import { POSTS_BASE_PATH } from './constants'
 import { slugifyPost } from './slugifyPost'
 
-// Some files inside the posts directory are not actually posts.
+// Some files inside the writing directory are not actually posts.
 // These files shouldn't be built into the list of posts.
 // In the future it might be nice to tie these to an env variable so we can
 // optionally add these files in.

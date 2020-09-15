@@ -3,7 +3,7 @@
  */
 export const slugifyPost = (filePath: string) => {
   return filePath
-    .replace(/^posts\//, '')
+    .replace(/^writing\//, '')
     .replace(/\.mdx?$/, '')
     .replace(/\.tsx?$/, '')
 }
