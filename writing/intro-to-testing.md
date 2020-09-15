@@ -4,7 +4,7 @@ description: TBD
 draft: true
 date: 2019-04-27
 # image:
-#   url: 'images/battle-board-game-pieces.jpg'
+#   url: 'battle-board-game-pieces.jpg'
 #   alt: A team of four game pieces stand in a row
 ---
 

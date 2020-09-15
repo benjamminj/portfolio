@@ -221,8 +221,8 @@ export const getStaticProps: GetPostPageStaticProps = async ctx => {
   // If there's an image, fetch the image, resize it to the max width shown, and
   // create a low quality placeholder image.
   if (frontmatter.image?.url) {
-    const resized = require(`../../${frontmatter.image.url}?resize&size=640`)
-    const image = require(`../../${frontmatter.image.url}?lqip`)
+    const resized = require(`../../images/${frontmatter.image.url}?resize&size=640`)
+    const image = require(`../../images/${frontmatter.image.url}?lqip`)
 
     imageProps.image = {
       src: resized.src,
