@@ -27,6 +27,7 @@ root/
 ├─ lib/ # helper functions, utilities
 │   ├─ utility.ts
 │   ├─ utility.test.ts
+├─ styles/ # CSS-in-JS helpers
 ├─ components/ # reusable building blocks
 │   ├─ Component.tsx
 │   ├─ Component.test.tsx
@@ -46,3 +47,4 @@ root/
 - A flat file structure might result in things being grouped by _type_ rather than by _domain_.
 - Having the test files in the same folder level with the source files might get cluttered.
 - This structure might not scale as the website code gets larger. But I think it's appropriate for the current amount of code.
+- It might make sense to combine `styles` and `lib` into a single folder. For now I'll keep them separate
