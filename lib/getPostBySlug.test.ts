@@ -10,7 +10,7 @@ test('should return parsed post data for a given slug', () => {
     draft: false,
     date: new Date('2019-04-26T00:00:00.000Z'),
     image: {
-      url: 'img/blue-paint-swirls.jpg',
+      url: 'images/blue-paint-swirls.jpg',
       alt: 'Abstract swirling colors of blue and red',
     },
     tags: ['testing', 'jest', 'javascript'],

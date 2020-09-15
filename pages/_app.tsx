@@ -3,7 +3,7 @@ import { CacheProvider } from '@emotion/core'
 import { cache } from 'emotion'
 import Router from 'next/router'
 import { useEffect } from 'react'
-import * as analytics from '../src/helpers/analytics'
+import * as analytics from '../lib/analytics'
 
 /**
  * Render the shell of the application, initialize client-side styles.

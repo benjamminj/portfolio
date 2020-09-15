@@ -4,7 +4,7 @@ description: Understanding how JavaScript async functions work under the hood he
 date: 2020-04-22
 draft: false
 image:
-  url: 'img/photo-boards-shapes.jpg'
+  url: 'images/photo-boards-shapes.jpg'
   alt: 'Abstract wall decor in blue, yellow and brown'
 tags:
   - typescript

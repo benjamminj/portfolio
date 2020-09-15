@@ -4,7 +4,7 @@ description: You get more out of the type system if you think of the compiler as
 date: 2020-04-12
 draft: false
 image:
-  url: 'img/pawel-czerwinski-unsplash.jpg'
+  url: 'images/pawel-czerwinski-unsplash.jpg'
   alt: 'Abstract rock pattern with vibrant colors'
 tags:
   - typescript

@@ -4,7 +4,7 @@ description: There's nothing wrong about caring about code formatting! Using a f
 draft: false
 date: 2019-03-01
 image:
-  url: 'img/plane-controls.jpg'
+  url: 'images/plane-controls.jpg'
   alt: Flight commander tweaks airplane controls
   by: https://unsplash.com/@byronsterk
   source: https://unsplash.com

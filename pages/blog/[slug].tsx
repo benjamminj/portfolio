@@ -12,15 +12,16 @@ import { getPostBySlug } from '../../lib/getPostBySlug'
 import { getPostFilePaths } from '../../lib/getPostFilePaths'
 import { slugifyPost } from '../../lib/slugifyPost'
 import { PostFrontmatter } from '../../lib/types'
-import { Layout, Link } from '../../src/components'
-import { Box } from '../../src/components/Box'
-import { Callout } from '../../src/components/Callout'
-import { Img } from '../../src/components/Img'
-import { MarkdownWrapperStyles } from '../../src/components/Markdown'
-import { Text } from '../../src/components/Text'
-import { palette, spacing } from '../../src/styles/theme'
-import { container } from '../../src/styles/variables'
-import { Tag } from '../../src/components/Tag'
+import { Layout } from '../../components/Layout'
+import { Link } from '../../components/Link'
+import { Box } from '../../components/Box'
+import { Callout } from '../../components/Callout'
+import { Img } from '../../components/Img'
+import { MarkdownWrapperStyles } from '../../components/Markdown'
+import { Text } from '../../components/Text'
+import { palette, spacing } from '../../styles/theme'
+import { container } from '../../styles/variables'
+import { Tag } from '../../components/Tag'
 /** @jsx jsx */ jsx
 
 interface PostPageParams extends ParsedUrlQuery {
@@ -220,8 +221,8 @@ export const getStaticProps: GetPostPageStaticProps = async ctx => {
   // If there's an image, fetch the image, resize it to the max width shown, and
   // create a low quality placeholder image.
   if (frontmatter.image?.url) {
-    const resized = require(`../../src/${frontmatter.image.url}?resize&size=640`)
-    const image = require(`../../src/${frontmatter.image.url}?lqip`)
+    const resized = require(`../../${frontmatter.image.url}?resize&size=640`)
+    const image = require(`../../${frontmatter.image.url}?lqip`)
 
     imageProps.image = {
       src: resized.src,

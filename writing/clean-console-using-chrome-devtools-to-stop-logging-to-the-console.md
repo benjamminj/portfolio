@@ -3,7 +3,7 @@ title: Clean Console
 description: Using Chrome DevTools to Inspect JSON Responses from API Requests
 date: 2018-02-01
 image:
-  url: 'img/tools.jpg'
+  url: 'images/tools.jpg'
   alt: Tools at a workdesk
 ---
 

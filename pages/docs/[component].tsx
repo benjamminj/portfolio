@@ -1,11 +1,12 @@
 import { jsx } from '@emotion/core'
 import { ReactNode } from 'react'
-import { Layout, Link } from '../../src/components'
-import { Box } from '../../src/components/Box'
-import { Callout, CalloutVariant } from '../../src/components/Callout'
-import { MarkdownWrapperStyles } from '../../src/components/Markdown'
-import { Text, textVariants, TextVariantToken } from '../../src/components/Text'
-import { palette, spacing, SpacingToken } from '../../src/styles/theme'
+import { Layout } from '../../components/Layout'
+import { Link } from '../../components/Link'
+import { Box } from '../../components/Box'
+import { Callout, CalloutVariant } from '../../components/Callout'
+import { MarkdownWrapperStyles } from '../../components/Markdown'
+import { Text, textVariants, TextVariantToken } from '../../components/Text'
+import { palette, spacing, SpacingToken } from '../../styles/theme'
 /** @jsx jsx */ jsx
 
 const SectionHeading = ({ children }: { children: ReactNode }) => {

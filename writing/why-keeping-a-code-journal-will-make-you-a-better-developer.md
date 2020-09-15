@@ -3,7 +3,7 @@ title: Why Keeping a Code Journal Will Help You Become a Better Developer
 description: Even if you’re not journaling frequently, reflection is one of the best ways to internalize the things that you learn.
 date: 2017-10-24
 image:
-  url: 'img/blog-img-journal.jpg'
+  url: 'images/blog-img-journal.jpg'
   alt: Journal and pen lying on a table
 ---
 
