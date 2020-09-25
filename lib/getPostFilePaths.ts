@@ -8,9 +8,7 @@ import { slugifyPost } from './slugifyPost'
 // optionally add these files in.
 const excludedFiles = ['markdown-test', 'index']
 
-/**
- * Fetch a list of post files from the posts directory
- */
+/** Fetch a list of post files from the posts directory */
 export const getPostFilePaths = () => {
   const postFiles = fs.readdirSync(POSTS_BASE_PATH)
 

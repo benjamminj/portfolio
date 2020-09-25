@@ -1,3 +1,6 @@
+/**
+ * All of the possible metadata that can possibly in a article's frontmatter.
+ */
 export interface PostFrontmatter {
   /** The title of the post. */
   title: string
@@ -7,6 +10,14 @@ export interface PostFrontmatter {
   draft?: boolean
   /** The date that the post was first published. */
   date: Date
+  /**
+   * The date the article was most recently updated.
+   *
+   * In the future this could potentially be automated (for example, if the
+   * content was hosted in a separate repository).
+   */
+  lastUpdated?: Date
+  /** Banner image for the post. */
   image?: {
     /** Path to the full high-fidelity image resource */
     url: string

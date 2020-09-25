@@ -1,7 +1,6 @@
 import { jsx } from '@emotion/core'
 import { compareDesc, format } from 'date-fns'
 import { GetStaticProps } from 'next'
-import readingTime from 'reading-time'
 import { getPostBySlug } from '../lib/getPostBySlug'
 import { getPostFilePaths } from '../lib/getPostFilePaths'
 import { slugifyPost } from '../lib/slugifyPost'
@@ -72,7 +71,7 @@ export const getStaticProps: GetStaticProps = async () => {
   for (let postFile of postFiles) {
     try {
       const slug = slugifyPost(postFile)
-      const { frontmatter, body } = getPostBySlug(slug)
+      const { frontmatter } = getPostBySlug(slug)
 
       // Don't add the post to the list if it's a WIP
       if (frontmatter.draft) continue
@@ -80,7 +79,6 @@ export const getStaticProps: GetStaticProps = async () => {
       const postData = {
         ...frontmatter,
         href: `/blog/${slug}`,
-        readingTime: readingTime(body).text,
       }
 
       posts.push(postData)
@@ -93,6 +91,7 @@ export const getStaticProps: GetStaticProps = async () => {
     .sort((a, b) => compareDesc(a.date, b.date))
     .map(p => ({
       ...p,
+      lastUpdated: format(p.date, 'yyyy-MM-dd'),
       // We add the date formatting _after_ sorting so that we can accurately sort
       // by date.
       date: format(p.date, 'yyyy-MM-dd'),
