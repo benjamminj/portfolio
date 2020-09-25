@@ -7,7 +7,6 @@ import renderToString from 'next-mdx-remote/render-to-string'
 import Head from 'next/head'
 import { ParsedUrlQuery } from 'querystring'
 import React from 'react'
-import readingTime from 'reading-time'
 import { getPostBySlug } from '../../lib/getPostBySlug'
 import { getPostFilePaths } from '../../lib/getPostFilePaths'
 import { slugifyPost } from '../../lib/slugifyPost'
@@ -51,8 +50,6 @@ interface PostPageProps {
     'title' | 'description' | 'publisher' | 'link' | 'tags'
   > & {
     date: string
-    /** A rough estimate of how long this post will take to read. */
-    readingTime: string
   }
 }
 
@@ -87,7 +84,6 @@ const PostPage: NextPage<PostPageProps> = props => {
   const {
     title,
     date,
-    readingTime,
     publisher,
     link: externalLink,
     tags = [],
@@ -101,99 +97,120 @@ const PostPage: NextPage<PostPageProps> = props => {
     props.image?.src && HOMEPAGE ? HOMEPAGE + props.image?.src : undefined
 
   return (
-    <Layout>
-      <Head>
-        <title>{title}</title>
-        <meta name="author" content="Benjamin Johnson" />
-        <meta name="description" content={props.frontmatter.description} />
-        <meta name="twitter:card" content="summary" />
-        <meta name="twitter:site" content="@benjamminj" />
-        <meta name="twitter:title" content={title} />
-        <meta
-          name="twitter:description"
-          content={props.frontmatter.description}
-        />
-        <meta name="twitter:creator" content="@benjamminj" />
+    <>
+      <Layout>
+        <Head>
+          <title>{title}</title>
+          <meta name="author" content="Benjamin Johnson" />
+          <meta name="description" content={props.frontmatter.description} />
+          <meta name="twitter:card" content="summary" />
+          <meta name="twitter:site" content="@benjamminj" />
+          <meta name="twitter:title" content={title} />
+          <meta
+            name="twitter:description"
+            content={props.frontmatter.description}
+          />
+          <meta name="twitter:creator" content="@benjamminj" />
 
-        <meta property="og:title" content={title} />
-        <meta
-          property="og:description"
-          content={props.frontmatter.description}
-        />
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content={HOMEPAGE + '/blog/' + props.slug} />
+          <meta property="og:title" content={title} />
+          <meta
+            property="og:description"
+            content={props.frontmatter.description}
+          />
+          <meta property="og:type" content="website" />
+          <meta property="og:url" content={HOMEPAGE + '/blog/' + props.slug} />
 
-        {absoluteImagePath && props.image?.alt && (
-          <>
-            <meta name="twitter:image" content={absoluteImagePath} />
-            <meta name="twitter:image:alt" content={props.image?.alt} />
-            <meta property="og:image:url" content={absoluteImagePath} />
-            <meta property="og:image:alt" content={props.image?.alt} />
-          </>
-        )}
+          {absoluteImagePath && props.image?.alt && (
+            <>
+              <meta name="twitter:image" content={absoluteImagePath} />
+              <meta name="twitter:image:alt" content={props.image?.alt} />
+              <meta property="og:image:url" content={absoluteImagePath} />
+              <meta property="og:image:alt" content={props.image?.alt} />
+            </>
+          )}
 
-        <script src="https://unpkg.com/requestidlecallback-polyfill@1.0.2/index.js" />
-      </Head>
+          <script src="https://unpkg.com/requestidlecallback-polyfill@1.0.2/index.js" />
+        </Head>
 
-      <Box
-        component="main"
-        padding="gutter"
-        paddingY="xxl"
-        css={{
-          maxWidth: '100vw',
-          [`@media screen and (min-width: ${container})`]: {
-            maxWidth: container,
-            margin: '0 auto',
-          },
-        }}
-      >
-        <Box paddingTop="l" paddingBottom="xl">
-          {tags.length > 0 && (
+        <Box
+          component="main"
+          padding="gutter"
+          paddingTop="xxl"
+          paddingBottom="xl"
+          css={{
+            maxWidth: '100vw',
+            [`@media screen and (min-width: ${container})`]: {
+              maxWidth: container,
+              margin: '0 auto',
+            },
+          }}
+        >
+          <Box paddingTop="l" paddingBottom="xl">
             <Box>
-              {tags.map(tag => (
-                <Tag key={tag} tag={tag} />
-              ))}
+              <h1>
+                <Text variant="h3">{title}</Text>
+              </h1>
+            </Box>
+
+            {tags.length > 0 && (
+              <Box>
+                {tags.map(tag => (
+                  <Tag key={tag} tag={tag} />
+                ))}
+              </Box>
+            )}
+            {/* <Box paddingTop="xs" display="block">
+              <Text variant="caption" css={{ color: palette.neutral_700 }}>
+                {date && `${date} — `}
+                {readingTime}
+              </Text>
+            </Box> */}
+          </Box>
+
+          {props.image && (
+            <Box paddingBottom="l" bleedX="gutter">
+              <Img
+                {...props.image}
+                alt={props.image.alt}
+                css={{
+                  maxWidth: '100vw',
+                  overflowX: 'hidden',
+                }}
+              />
             </Box>
           )}
 
-          <Box>
-            <h1>
-              <Text variant="h3">{title}</Text>
-            </h1>
-          </Box>
+          <MarkdownWrapperStyles>{hydrated}</MarkdownWrapperStyles>
 
-          <Box paddingTop="xs" display="block">
-            <Text variant="caption" css={{ color: palette.neutral_700 }}>
-              {date && `${date} — `}
-              {readingTime}
-            </Text>
-          </Box>
+          {publisher && externalLink && (
+            <Box paddingTop="xl">
+              <Link external href={externalLink}>
+                Read the full article on {publisher}.
+              </Link>
+            </Box>
+          )}
         </Box>
 
-        {props.image && (
-          <Box paddingBottom="l" bleedX="gutter">
-            <Img
-              {...props.image}
-              alt={props.image.alt}
-              css={{
-                maxWidth: '100vw',
-                overflowX: 'hidden',
-              }}
-            />
+        {Boolean(date) && (
+          <Box
+            data-testid="SlugPage__footer"
+            component="footer"
+            paddingTop="xl"
+            paddingBottom="xxl"
+            paddingX="gutter"
+            css={{ borderTop: `2px solid ${palette.neutral_100}` }}
+          >
+            <Text
+              variant="caption"
+              css={{ color: palette.neutral_900, display: 'block' }}
+            >
+              Last updated
+            </Text>
+            <Text variant="body">{date}</Text>
           </Box>
         )}
-
-        <MarkdownWrapperStyles>{hydrated}</MarkdownWrapperStyles>
-
-        {publisher && externalLink && (
-          <Box paddingTop="xl">
-            <Link external href={externalLink}>
-              Read the full article on {publisher}.
-            </Link>
-          </Box>
-        )}
-      </Box>
-    </Layout>
+      </Layout>
+    </>
   )
 }
 
@@ -237,14 +254,16 @@ export const getStaticProps: GetPostPageStaticProps = async ctx => {
     rehypePlugins: [prism],
   })
 
+  const { lastUpdated, ...frontmatterProps } = frontmatter
+  const displayedDate = lastUpdated || frontmatter.date
+
   return {
     props: {
       slug,
       mdxContent,
       frontmatter: {
-        ...frontmatter,
-        date: format(frontmatter.date, 'MM-dd-yyyy'),
-        readingTime: readingTime(body).text,
+        ...frontmatterProps,
+        date: format(displayedDate, 'MM-dd-yyyy'),
       },
       ...imageProps,
       body,
