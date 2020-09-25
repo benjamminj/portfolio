@@ -1,7 +1,6 @@
 import { jsx } from '@emotion/core'
 import { compareDesc, format } from 'date-fns'
 import { GetStaticProps } from 'next'
-import readingTime from 'reading-time'
 import { getPostBySlug } from '../lib/getPostBySlug'
 import { getPostFilePaths } from '../lib/getPostFilePaths'
 import { slugifyPost } from '../lib/slugifyPost'
@@ -80,7 +79,6 @@ export const getStaticProps: GetStaticProps = async () => {
       const postData = {
         ...frontmatter,
         href: `/blog/${slug}`,
-        readingTime: readingTime(body).text,
       }
 
       posts.push(postData)

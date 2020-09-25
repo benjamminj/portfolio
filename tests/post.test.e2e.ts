@@ -37,7 +37,8 @@ test('smoketest', async () => {
   // Validate specific page content
   const selectors = [
     `h1 >> text="${pageContent.title}"`,
-    'text="04-26-2019 — 12 min read"',
+    `[data-testid="SlugPage__footer"] >> text="04-26-2019"`,
+    `[data-testid="SlugPage__footer"] >> text="Last updated"`,
     `[alt="${pageContent.imageAlt}"]`,
     `text="#testing"`,
     `text="#javascript"`,

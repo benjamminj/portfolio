@@ -7,7 +7,6 @@ import renderToString from 'next-mdx-remote/render-to-string'
 import Head from 'next/head'
 import { ParsedUrlQuery } from 'querystring'
 import React from 'react'
-import readingTime from 'reading-time'
 import { getPostBySlug } from '../../lib/getPostBySlug'
 import { getPostFilePaths } from '../../lib/getPostFilePaths'
 import { slugifyPost } from '../../lib/slugifyPost'
@@ -51,8 +50,6 @@ interface PostPageProps {
     'title' | 'description' | 'publisher' | 'link' | 'tags'
   > & {
     date: string
-    /** A rough estimate of how long this post will take to read. */
-    readingTime: string
   }
 }
 
@@ -87,7 +84,6 @@ const PostPage: NextPage<PostPageProps> = props => {
   const {
     title,
     date,
-    readingTime,
     publisher,
     link: externalLink,
     tags = [],
@@ -197,6 +193,7 @@ const PostPage: NextPage<PostPageProps> = props => {
 
         {Boolean(date) && (
           <Box
+            data-testid="SlugPage__footer"
             component="footer"
             paddingTop="xl"
             paddingBottom="xxl"
@@ -266,7 +263,6 @@ export const getStaticProps: GetPostPageStaticProps = async ctx => {
       frontmatter: {
         ...frontmatter,
         date: format(displayedDate, 'MM-dd-yyyy'),
-        readingTime: readingTime(body).text,
       },
       ...imageProps,
       body,
