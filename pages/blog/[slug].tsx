@@ -47,10 +47,14 @@ interface PostPageProps {
   /** Post metadata */
   frontmatter: Pick<
     PostFrontmatter,
-    'title' | 'description' | 'publisher' | 'link' | 'tags'
-  > & {
-    date: string
-  }
+    | 'title'
+    | 'description'
+    | 'publisher'
+    | 'link'
+    | 'tags'
+    | 'date'
+    | 'lastUpdated'
+  >
 }
 
 const mdxComponents = {
@@ -84,12 +88,15 @@ const PostPage: NextPage<PostPageProps> = props => {
   const {
     title,
     date,
+    lastUpdated,
     publisher,
     link: externalLink,
     tags = [],
   } = props.frontmatter
 
   const { HOMEPAGE } = process.env
+
+  const updatedDate = lastUpdated || date
 
   // If there's a banner image, we want to use that for the metadata, so we need
   // to create a non-relative URL to the image.
@@ -159,12 +166,6 @@ const PostPage: NextPage<PostPageProps> = props => {
                 ))}
               </Box>
             )}
-            {/* <Box paddingTop="xs" display="block">
-              <Text variant="caption" css={{ color: palette.neutral_700 }}>
-                {date && `${date} — `}
-                {readingTime}
-              </Text>
-            </Box> */}
           </Box>
 
           {props.image && (
@@ -191,7 +192,7 @@ const PostPage: NextPage<PostPageProps> = props => {
           )}
         </Box>
 
-        {Boolean(date) && (
+        {Boolean(updatedDate) && (
           <Box
             data-testid="SlugPage__footer"
             component="footer"
@@ -206,7 +207,7 @@ const PostPage: NextPage<PostPageProps> = props => {
             >
               Last updated
             </Text>
-            <Text variant="body">{date}</Text>
+            <Text variant="body">{format(updatedDate, 'yyyy-MM-dd')}</Text>
           </Box>
         )}
       </Layout>
@@ -254,17 +255,11 @@ export const getStaticProps: GetPostPageStaticProps = async ctx => {
     rehypePlugins: [prism],
   })
 
-  const { lastUpdated, ...frontmatterProps } = frontmatter
-  const displayedDate = lastUpdated || frontmatter.date
-
   return {
     props: {
       slug,
       mdxContent,
-      frontmatter: {
-        ...frontmatterProps,
-        date: format(displayedDate, 'MM-dd-yyyy'),
-      },
+      frontmatter,
       ...imageProps,
       body,
     },
