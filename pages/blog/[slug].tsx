@@ -254,14 +254,15 @@ export const getStaticProps: GetPostPageStaticProps = async ctx => {
     rehypePlugins: [prism],
   })
 
-  const displayedDate = frontmatter.lastUpdated || frontmatter.date
+  const { lastUpdated, ...frontmatterProps } = frontmatter
+  const displayedDate = lastUpdated || frontmatter.date
 
   return {
     props: {
       slug,
       mdxContent,
       frontmatter: {
-        ...frontmatter,
+        ...frontmatterProps,
         date: format(displayedDate, 'MM-dd-yyyy'),
       },
       ...imageProps,
