@@ -1,0 +1,147 @@
+---
+title: My engineering principles
+date: 2020-10-15T00:17:34.237Z
+tags:
+  - software-development
+  - philosophy
+---
+
+<!--
+TODO intro
+
+There's a lot of opinions in software engineering.
+You'll hear a lot of people talking about "laws" and "rules". As an industry we're obsessed with rules. We set up code formatting rules so that everyone writes code using the same syntax. We may have rules for how to name variables, or API endpoint URL structure (REST / GraphQL), or data flow (Redux), or any other myriad of things.
+
+We're always telling each other (or being told) that you HAVE to do X or you're not a "real" programmer
+
+That's not to say having rules is bad, but we need to make sure that we're not stifling creativity. Legalism in programming leads to burnt-out, cranky, argumentative engineers. I've found it much more liberating to start from a set of "first principles" and think of all these "best" practices as pillars supporting those principles.
+
+I find that this gives me a strong "why" when being asked about these principles. Rather than doing something "because it's best practice" or "because we should", there's an underlying "fundamental" pillar (or a few) that the practice supports.
+ -->
+
+There's a lot of opinions in software engineering.
+
+Ask a few software engineers what building "good" software looks like. Chances are you'll get a different answer each time.
+
+You might hear a lot of about "laws" or "rules" that you need to follow. If you can just adhere to these, then your software will be "clean", maintainable, and well-written.
+
+Many of us have heard the phrase "you _need_ to do _{insert programming practice}_ or you're not a _real software engineer_". 😱
+
+Having rules and laws isn't inherently wrong, but becoming legalistic in building software is dangerous. Instead of rigidly thinking in rules or "best practices" or "clean code", I find it more helpful to think about building software from **first principles**.
+
+Thinking from first principles starts with the _why_ behind software practices. Then, we can fit various "best practices" underneath these large pillars. This makes it significantly easier to advocate and justify the value of each practice.
+
+---
+
+## People first
+
+_Software development is attached to real people. Code has two primary audiences—the developers coding on top of it (internal) and people using it (external)._
+
+While programming can be artistic and code can be elegant—elegant code is not the end in and of itself. Rather, it's a path to the goal of serving these two audiences.
+
+You serve the internal audience (often future you!) when your code is easy to understand and modify. You serve the external audience when they actually use the things that you create!
+
+### Supported engineering practices
+
+- Documentation
+- Code comments (commenting the "why")
+- Automatic formatters and linters
+- Intuitive APIs (well-thought-out, ergonomic, understandable interfaces)
+- Accessibility
+- ADRs
+- Good variable names
+- Developer experience
+- Automation (automate as much as is reasonably possible)
+- Simple code over clever code (however, "simple" is often up to interpretation)
+- Static type systems (TypeScript, Flow, ReasonML)
+- User testing & research
+- A/B testing
+- Timely refactoring (don't abstract too early)
+- Reasonable work hours (no death marches)
+
+## Duplication is better than bad abstractions
+
+_Undoing a bad abstraction is more difficult than creating an abstraction for some duplication. Wait to write abstract "DRY" code until you know enough about what you need to create a good interface._
+
+This principle is heavily influenced by Sandi Metz's [The Wrong Abstraction](https://sandimetz.com/blog/2016/1/20/the-wrong-abstraction).
+
+### Supported engineering practices
+
+- Regular refactoring (both at dedicated times and as-you-go)
+- Automated tests (especially integration and end-to-end tests)
+- Static type systems
+- Code comments (commenting the "why")
+- "Hot garbage architecture"
+- Timely refactoring
+
+## Optimize for flexibility
+
+_Changing requirements are to be expected, perhaps even the norm. Optimize code to be flexible and pliable so you can iterate on and polish it over time._
+
+### Supported engineering practices
+
+- Composition
+- Automated tests
+- Static type systems
+- Regular refactoring
+- Documentation
+- Code comments
+- ADRs
+- Timely refactoring
+- Continuous deployment
+- Continuous integration
+- Feature flags
+- Colocation of files (optimizing to delete code)
+- "Hot garbage architecture"
+- Pragmatic guidelines over dogmatic laws
+
+## Backwards compatability
+
+_Don't break things. Have confidence that your new code doesn't break your old code._
+
+### Supported engineering practices
+
+- Semantic versioning
+- Automated tests
+- Feature flags
+- Continuous integration
+- Code reviews / pull requests
+- Preview apps
+- Static type systems
+- Observability
+
+## Ship early and often
+
+_Ship to production as quickly as you possibly can without breaking things. Code in production is money code, and that's the code you're motivated to keep healthy._
+
+### Supported engineering practices
+
+- Feature flags
+- Trunk-based development
+- Automated tests
+- Continuous deployment
+- Timely performance optimization (measure before you optimize)
+- Observability
+
+---
+
+## Additional Resources
+
+No one comes up with stuff like this in a vacuum. Over time we pick up ideas from conference talks, blog articles, and coworkers. We try things out and watch them succeed or fail.
+
+In short—we learn.
+
+Here's some conference talks and articles that have been a huge influence on these engineering principles:
+
+- [The Wrong Abstraction](https://sandimetz.com/blog/2016/1/20/the-wrong-abstraction) by Sandi Metz
+- [Hot Garbage: Clean Code is Dead](https://www.youtube.com/watch?reload=9&v=-NP_upexPFg) by Michael Chan
+- [A Codebase is an Organism](https://meltingasphalt.com/a-codebase-is-an-organism/) by Kevin Simler
+- [On the Spectrum of Abstraction](https://www.youtube.com/watch?v=mVVNJKv9esE) by Cheng Lou
+
+## A couple caveats
+
+First, this list isn't exhaustive. There's probably things that I forgot. There's probably things that I'll add as time goes on.
+
+Second, this is a living document. I plan on coming back to this periodically as my views and engineering values evolve.
+
+Finally, if you don't do everything here, that doesn't instantly make you a "bad" engineer. Some of these practices are things I'm currently learning and haven't had extensive experience in.
