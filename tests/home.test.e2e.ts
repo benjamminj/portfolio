@@ -12,7 +12,7 @@ test('smoketest', async () => {
     ['github', 'https://github.com/benjamminj'],
     ['blog', '/blog'],
     ['linkedin', 'https://www.linkedin.com/in/benjamin-d-johnson/'],
-    ['contact', 'mailto:benjamin.d.johnson@icloud.com']
+    ['contact', 'mailto:benjamin.d.johnson@icloud.com'],
   ]
 
   for (const [linkText, linkHref] of navigationLinks) {

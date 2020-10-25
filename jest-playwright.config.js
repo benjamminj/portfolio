@@ -1,25 +1,35 @@
 require('dotenv').config({ path: '.env.local' })
 
 const getJestPlaywrightConfig = () => {
-  const {
-    TEST_HEADLESS_BROWSER = 'true',
-    TEST_DEBUG_MODE = 'false',
-    TEST_BROWSERS = 'chromium,firefox,webkit'
-  } = process.env
+  const { TEST_MODE = 'dev' } = process.env
 
-  if (TEST_DEBUG_MODE === 'true') {
-    return {
+  const configs = {
+    dev: {
       launchOptions: {
         headless: false,
-        devtools: true
-      }
-    }
+        devtools: true,
+      },
+    },
+    headless: {
+      launchOptions: {
+        headless: true,
+      },
+    },
+    browsers: {
+      launchOptions: {
+        headless: true,
+      },
+      browsers: ['chromium', 'firefox', 'webkit'],
+    },
+    devices: {
+      launchOptions: {
+        headless: true,
+      },
+      devices: /(iPhone X)|(Pixel 2)/,
+    },
   }
 
-  return {
-    launchOptions: { headless: TEST_HEADLESS_BROWSER === 'true' },
-    browsers: TEST_BROWSERS.split(',')
-  }
+  return configs[TEST_MODE]
 }
 
 module.exports = getJestPlaywrightConfig()
