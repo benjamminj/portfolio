@@ -19,7 +19,7 @@
     "emotion-server": "^10.0.7",
     "front-matter": "^4.0.2",
     "lodash": "^4.17.11",
-    "next": "^9.4.4",
+    "next": "^10.0.0",
     "next-mdx-enhanced": "^3.0.0",
     "next-mdx-remote": "^0.4.0",
     "next-optimized-images": "^2.6.1",
@@ -53,6 +53,7 @@
     "test:e2e": "jest --config=./jest.e2e.config.js"
   },
   "devDependencies": {
+    "@babel/preset-typescript": "^7.12.1",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.0.2",
     "@types/jest": "^26.0.7",
