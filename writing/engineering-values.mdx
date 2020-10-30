@@ -1,45 +1,36 @@
 ---
-title: My engineering principles
-date: 2020-10-15T00:17:34.237Z
+title: Engineering values
+date: 2020-10-30T22:21:15.099Z
 tags:
   - software-development
   - philosophy
 ---
 
-<!--
-TODO intro
+Recently I've been thinking about high-level values as they pertain to software engineering.
 
-There's a lot of opinions in software engineering.
-You'll hear a lot of people talking about "laws" and "rules". As an industry we're obsessed with rules. We set up code formatting rules so that everyone writes code using the same syntax. We may have rules for how to name variables, or API endpoint URL structure (REST / GraphQL), or data flow (Redux), or any other myriad of things.
+You can tell a lot about an engineering team by their **practices**, but that won't tell you the **values** driving those practices. Engineering values serve as a guiding light driving engineering practices. Rather than a list of rules to follow, values give us the "why" behind the things we do.
 
-We're always telling each other (or being told) that you HAVE to do X or you're not a "real" programmer
+## A couple caveats
 
-That's not to say having rules is bad, but we need to make sure that we're not stifling creativity. Legalism in programming leads to burnt-out, cranky, argumentative engineers. I've found it much more liberating to start from a set of "first principles" and think of all these "best" practices as pillars supporting those principles.
+First, this list isn't exhaustive. There's probably things that I forgot. There's probably things that I'll add as time goes on.
 
-I find that this gives me a strong "why" when being asked about these principles. Rather than doing something "because it's best practice" or "because we should", there's an underlying "fundamental" pillar (or a few) that the practice supports.
- -->
+Second, this is a living document. I plan on coming back to this periodically as my views and engineering values evolve.
 
-There's a lot of opinions in software engineering.
-
-Ask a few software engineers what building "good" software looks like. Chances are you'll get a different answer each time.
-
-You might hear a lot of about "laws" or "rules" that you need to follow. If you can just adhere to these, then your software will be "clean", maintainable, and well-written.
-
-Many of us have heard the phrase "you _need_ to do _{insert programming practice}_ or you're not a _real software engineer_". 😱
-
-Having rules and laws isn't inherently wrong, but becoming legalistic in building software is dangerous. Instead of rigidly thinking in rules or "best practices" or "clean code", I find it more helpful to think about building software from **first principles**.
-
-Thinking from first principles starts with the _why_ behind software practices. Then, we can fit various "best practices" underneath these large pillars. This makes it significantly easier to advocate and justify the value of each practice.
+Finally, if you don't do everything here, that doesn't instantly make you a "bad" engineer. Some of these practices are things I'm currently learning and haven't had extensive experience in.
 
 ---
 
 ## People first
 
-_Software development is attached to real people. Code has two primary audiences—the developers coding on top of it (internal) and people using it (external)._
+<Callout>
+
+_Software development is about real people. Code has two primary audiences—the developers coding on top of it (internal) and people using it (external)._
+
+</Callout>
 
 While programming can be artistic and code can be elegant—elegant code is not the end in and of itself. Rather, it's a path to the goal of serving these two audiences.
 
-You serve the internal audience (often future you!) when your code is easy to understand and modify. You serve the external audience when they actually use the things that you create!
+You serve the internal audience (often future you!) when your code is easy to work with. You serve the external audience when they actually use the things that you create!
 
 ### Supported engineering practices
 
@@ -50,7 +41,7 @@ You serve the internal audience (often future you!) when your code is easy to un
 - Accessibility
 - ADRs
 - Good variable names
-- Developer experience
+- Developer experience (DX)
 - Automation (automate as much as is reasonably possible)
 - Simple code over clever code (however, "simple" is often up to interpretation)
 - Static type systems (TypeScript, Flow, ReasonML)
@@ -61,7 +52,11 @@ You serve the internal audience (often future you!) when your code is easy to un
 
 ## Duplication is better than bad abstractions
 
+<Callout>
+
 _Undoing a bad abstraction is more difficult than creating an abstraction for some duplication. Wait to write abstract "DRY" code until you know enough about what you need to create a good interface._
+
+</Callout>
 
 This principle is heavily influenced by Sandi Metz's [The Wrong Abstraction](https://sandimetz.com/blog/2016/1/20/the-wrong-abstraction).
 
@@ -76,7 +71,11 @@ This principle is heavily influenced by Sandi Metz's [The Wrong Abstraction](htt
 
 ## Optimize for flexibility
 
+<Callout>
+
 _Changing requirements are to be expected, perhaps even the norm. Optimize code to be flexible and pliable so you can iterate on and polish it over time._
+
+</Callout>
 
 ### Supported engineering practices
 
@@ -97,7 +96,11 @@ _Changing requirements are to be expected, perhaps even the norm. Optimize code 
 
 ## Backwards compatability
 
+<Callout>
+
 _Don't break things. Have confidence that your new code doesn't break your old code._
+
+</Callout>
 
 ### Supported engineering practices
 
@@ -112,7 +115,11 @@ _Don't break things. Have confidence that your new code doesn't break your old c
 
 ## Ship early and often
 
+<Callout>
+
 _Ship to production as quickly as you possibly can without breaking things. Code in production is money code, and that's the code you're motivated to keep healthy._
+
+</Callout>
 
 ### Supported engineering practices
 
@@ -137,11 +144,4 @@ Here's some conference talks and articles that have been a huge influence on the
 - [Hot Garbage: Clean Code is Dead](https://www.youtube.com/watch?reload=9&v=-NP_upexPFg) by Michael Chan
 - [A Codebase is an Organism](https://meltingasphalt.com/a-codebase-is-an-organism/) by Kevin Simler
 - [On the Spectrum of Abstraction](https://www.youtube.com/watch?v=mVVNJKv9esE) by Cheng Lou
-
-## A couple caveats
-
-First, this list isn't exhaustive. There's probably things that I forgot. There's probably things that I'll add as time goes on.
-
-Second, this is a living document. I plan on coming back to this periodically as my views and engineering values evolve.
-
-Finally, if you don't do everything here, that doesn't instantly make you a "bad" engineer. Some of these practices are things I'm currently learning and haven't had extensive experience in.
+- [Figma's Engineering Values](https://www.figma.com/blog/figmas-engineering-values/) by Thomas Wright
