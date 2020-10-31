@@ -1,4 +1,4 @@
-import Document, { Head, Main, NextScript } from 'next/document'
+import Document, { Head, Html, Main, NextScript } from 'next/document'
 import { extractCritical } from 'emotion-server'
 
 const trackerId = process.env.NEXT_PUBLIC_GA_TRACKING_ID
@@ -28,13 +28,13 @@ export default class CustomDocument extends Document {
             dangerouslySetInnerHTML={{ __html: styles.css }}
           />
         </>
-      )
+      ),
     }
   }
 
   render() {
     return (
-      <html lang="en">
+      <Html>
         <Head>
           {/* Google Analytics */}
           <script
@@ -50,7 +50,7 @@ export default class CustomDocument extends Document {
                 gtag('js', new Date());
 
                 gtag('config', '${trackerId}');
-            `
+            `,
             }}
           />
         </Head>
@@ -59,7 +59,7 @@ export default class CustomDocument extends Document {
           <Main />
           <NextScript />
         </body>
-      </html>
+      </Html>
     )
   }
 }
