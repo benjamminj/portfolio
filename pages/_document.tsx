@@ -1,5 +1,4 @@
 import Document, { Head, Html, Main, NextScript } from 'next/document'
-import { extractCritical } from 'emotion-server'
 
 const trackerId = process.env.NEXT_PUBLIC_GA_TRACKING_ID
 
@@ -11,27 +10,6 @@ const trackerId = process.env.NEXT_PUBLIC_GA_TRACKING_ID
  * flash of unstyled content.
  */
 export default class CustomDocument extends Document {
-  static async getInitialProps(ctx) {
-    const initialProps = await Document.getInitialProps(ctx)
-
-    // Pull out the critical path CSS from the rendered HTML
-    const styles = extractCritical(initialProps.html)
-
-    return {
-      ...initialProps,
-      styles: (
-        <>
-          {initialProps.styles}
-          {/** And then we add the critical CSS into the head of the document */}
-          <style
-            data-emotion-css={styles.ids.join(' ')}
-            dangerouslySetInnerHTML={{ __html: styles.css }}
-          />
-        </>
-      ),
-    }
-  }
-
   render() {
     return (
       <Html>

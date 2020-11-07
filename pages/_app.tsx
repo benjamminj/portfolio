@@ -1,6 +1,3 @@
-import { CacheProvider } from '@emotion/core'
-// Use only { cache } from 'emotion'. Don't use { css } in this file.
-import { cache } from 'emotion'
 import Router from 'next/router'
 import { useEffect } from 'react'
 import * as analytics from '../lib/analytics'
@@ -20,11 +17,7 @@ export const App = ({ Component, pageProps }) => {
     }
   }, [])
 
-  return (
-    <CacheProvider value={cache}>
-      <Component {...pageProps} />
-    </CacheProvider>
-  )
+  return <Component {...pageProps} />
 }
 
 export default App
