@@ -1,6 +1,5 @@
-import { Interpolation } from 'emotion'
 import { aboveDesktop, aboveTablet } from './media'
-import { SerializedStyles } from '@emotion/core'
+import { Interpolation, SerializedStyles } from '@emotion/core'
 
 /**
  * Passing an array of values will apply the values on different screen sizes
