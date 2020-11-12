@@ -11,7 +11,7 @@ import { PostListItem } from '../components/PostListItem'
 import { Text } from '../components/Text'
 import { Box } from '../components/Box'
 import { textMaxWidth } from '../styles/variables'
-/** @jsx jsx */ jsx
+/** @jsxImportSource @emotion/core */ jsx
 
 type PostPreview = Pick<
   PostFrontmatter,

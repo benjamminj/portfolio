@@ -5,7 +5,7 @@ import { Text } from './Text'
 import { palette, spacing } from '../styles/theme'
 import { aboveTablet } from '../styles/media'
 import { Box } from './Box'
-/** @jsx jsx */ jsx
+/** @jsxImportSource @emotion/core */ jsx
 
 interface PostListItemProps {
   href: string

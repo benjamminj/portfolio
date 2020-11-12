@@ -7,7 +7,7 @@ import { Callout, CalloutVariant } from '../../components/Callout'
 import { MarkdownWrapperStyles } from '../../components/Markdown'
 import { Text, textVariants, TextVariantToken } from '../../components/Text'
 import { palette, spacing, SpacingToken } from '../../styles/theme'
-/** @jsx jsx */ jsx
+/** @jsxImportSource @emotion/core */ jsx
 
 const SectionHeading = ({ children }: { children: ReactNode }) => {
   return (

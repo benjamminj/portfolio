@@ -5,7 +5,7 @@ import {
   resolveResponsiveValue,
   ResponsiveProp,
 } from '../styles/resolveResponsiveValue'
-/** @jsx jsx */ jsx
+/** @jsxImportSource @emotion/core */ jsx
 
 export type TextVariantToken =
   | 'h1'

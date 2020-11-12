@@ -12,7 +12,7 @@ import { textMaxWidth } from '../../styles/variables'
 import { compareDesc, format } from 'date-fns'
 import { PostListItem } from '../../components/PostListItem'
 import { css, jsx } from '@emotion/core'
-/** @jsx jsx */ jsx
+/** @jsxImportSource @emotion/core */ jsx
 
 type PostPreview = Pick<PostFrontmatter, 'title' | 'tags'> & {
   date: string

@@ -6,7 +6,7 @@ import reset from '../styles/reset'
 import { Link } from './Link'
 import { linkPadding } from '../styles/mixins'
 import { container } from '../styles/variables'
-/** @jsx jsx */ jsx
+/** @jsxImportSource @emotion/core */ jsx
 
 const Container = styled.div({
   display: 'grid',

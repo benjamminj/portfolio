@@ -6,7 +6,7 @@ import useHydrateMdx from 'next-mdx-remote/hydrate'
 import renderToString from 'next-mdx-remote/render-to-string'
 import Head from 'next/head'
 import { ParsedUrlQuery } from 'querystring'
-import React from 'react'
+import React, { Fragment } from 'react'
 import { getPostBySlug } from '../../lib/getPostBySlug'
 import { getPostFilePaths } from '../../lib/getPostFilePaths'
 import { slugifyPost } from '../../lib/slugifyPost'
@@ -21,7 +21,7 @@ import { Text } from '../../components/Text'
 import { palette, spacing } from '../../styles/theme'
 import { container } from '../../styles/variables'
 import { Tag } from '../../components/Tag'
-/** @jsx jsx */ jsx
+/** @jsxImportSource @emotion/core */ jsx
 
 interface PostPageParams extends ParsedUrlQuery {
   slug: string
@@ -104,7 +104,7 @@ const PostPage: NextPage<PostPageProps> = props => {
     props.image?.src && HOMEPAGE ? HOMEPAGE + props.image?.src : undefined
 
   return (
-    <>
+    <Fragment>
       <Layout>
         <Head>
           <title>{title}</title>
@@ -128,12 +128,12 @@ const PostPage: NextPage<PostPageProps> = props => {
           <meta property="og:url" content={HOMEPAGE + '/blog/' + props.slug} />
 
           {absoluteImagePath && props.image?.alt && (
-            <>
+            <Fragment>
               <meta name="twitter:image" content={absoluteImagePath} />
               <meta name="twitter:image:alt" content={props.image?.alt} />
               <meta property="og:image:url" content={absoluteImagePath} />
               <meta property="og:image:alt" content={props.image?.alt} />
-            </>
+            </Fragment>
           )}
 
           <script src="https://unpkg.com/requestidlecallback-polyfill@1.0.2/index.js" />
@@ -211,7 +211,7 @@ const PostPage: NextPage<PostPageProps> = props => {
           </Box>
         )}
       </Layout>
-    </>
+    </Fragment>
   )
 }
 
