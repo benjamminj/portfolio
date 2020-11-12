@@ -19,7 +19,7 @@
     "lodash": "^4.17.11",
     "next": "^10.0.0",
     "next-mdx-enhanced": "^3.0.0",
-    "next-mdx-remote": "^0.4.0",
+    "next-mdx-remote": "^1.0.0",
     "next-optimized-images": "^2.6.1",
     "prismjs": "^1.15.0",
     "react": "^17.0.1",

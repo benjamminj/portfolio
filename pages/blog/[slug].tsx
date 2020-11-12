@@ -83,7 +83,9 @@ const PostPage: NextPage<PostPageProps> = props => {
   // Hydrate the MDX content. The second argument is an object of React components
   // to interpolate into the MDX components. Hydrating in this fashion means that
   // we can move the MDX to any folder we want, or even to a separate repository.
-  const hydrated = useHydrateMdx(props.mdxContent, mdxComponents)
+  const hydrated = useHydrateMdx(props.mdxContent, {
+    components: mdxComponents,
+  })
 
   const {
     title,
@@ -250,9 +252,12 @@ export const getStaticProps: GetPostPageStaticProps = async ctx => {
   }
 
   // Render out the MDX content.
-  const mdxContent = await renderToString(body, mdxComponents, {
-    // `prism` adds syntax highlighting as CSS classes to the code blocks.
-    rehypePlugins: [prism],
+  const mdxContent = await renderToString(body, {
+    components: mdxComponents,
+    mdxOptions: {
+      // `prism` adds syntax highlighting as CSS classes to the code blocks.
+      rehypePlugins: [prism],
+    },
   })
 
   return {
