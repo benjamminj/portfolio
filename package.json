@@ -49,6 +49,7 @@
     "format": "prettier --trailing-comma es5 --no-semi --single-quote --write \"src/**/*.js\"",
     "test": "jest",
     "test:e2e": "jest --config=./jest.e2e.config.js",
+    "e2e": "yarn e2e:open",
     "e2e:open": "TZ=UTC yarn cypress open",
     "e2e:run": "TZ=UTC yarn cypress run"
   },

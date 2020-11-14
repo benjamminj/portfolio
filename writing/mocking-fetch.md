@@ -2,7 +2,7 @@
 title: Mocking the fetch API with Jest
 description: Why should we mock the network? We'll take a look at why it's important to mock window.fetch and a couple methods we can use in our test suites.
 draft: false
-date: 2019-04-26T01:57:43.116Z
+date: 2019-04-26
 image:
   url: 'blue-paint-swirls.jpg'
   alt: 'Abstract swirling colors of blue and red'
