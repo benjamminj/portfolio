@@ -1,3 +1,4 @@
+import React from 'react'
 import { jsx } from '@emotion/core'
 import { Text } from './Text'
 import { spacing, palette } from '../styles/theme'

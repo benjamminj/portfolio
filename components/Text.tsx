@@ -1,4 +1,4 @@
-import { ReactNode } from 'react'
+import React, { ReactNode } from 'react'
 import { jsx, Interpolation } from '@emotion/core'
 import { fonts, spacing } from '../styles/theme'
 import {
