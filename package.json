@@ -48,7 +48,9 @@
     "ts": "tsc",
     "format": "prettier --trailing-comma es5 --no-semi --single-quote --write \"src/**/*.js\"",
     "test": "jest",
-    "test:e2e": "jest --config=./jest.e2e.config.js"
+    "test:e2e": "jest --config=./jest.e2e.config.js",
+    "e2e:open": "TZ=UTC yarn cypress open",
+    "e2e:run": "TZ=UTC yarn cypress run"
   },
   "devDependencies": {
     "@babel/preset-typescript": "^7.12.1",
