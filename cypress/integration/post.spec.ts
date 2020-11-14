@@ -36,7 +36,7 @@ describe('Post page', () => {
 
     cy.contains(pageContent.title).should('exist')
     cy.get('[data-testid="SlugPage__footer"')
-      .contains('2019-04-25')
+      .contains('2019-04-26')
       .should('exist')
     cy.get('[data-testid="SlugPage__footer"')
       .contains('Last updated')
