@@ -20,6 +20,7 @@ out
 
 # Test artifacts
 coverage/
+cypress/screenshots/
 
 # Notes
 *.notes.md

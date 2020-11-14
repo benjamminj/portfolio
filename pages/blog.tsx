@@ -15,12 +15,13 @@ import { textMaxWidth } from '../styles/variables'
 
 type PostPreview = Pick<
   PostFrontmatter,
-  'title' | 'description' | 'draft' | 'link' | 'publisher' | 'tags' | 'date'
+  'title' | 'description' | 'draft' | 'link' | 'publisher' | 'tags'
 > & {
   /** The `href` to the actual post itself */
   href: string
   /** An estimate of how long the post will take to read */
   readingTime: string
+  date: string
 }
 
 interface BlogPageProps {
@@ -49,7 +50,7 @@ const BlogPage = ({ posts }: BlogPageProps) => {
             <li key={post.href}>
               <PostListItem
                 title={post.title}
-                date={format(post.date, 'yyyy-MM-dd')}
+                date={post.date}
                 tags={post.tags}
                 href={post.href}
               />
@@ -85,7 +86,9 @@ export const getStaticProps: GetStaticProps = async () => {
     }
   }
 
-  const sortedPosts = posts.sort((a, b) => compareDesc(a.date, b.date))
+  const sortedPosts = posts
+    .sort((a, b) => compareDesc(a.date, b.date))
+    .map(p => ({ ...p, date: format(p.date, 'yyyy-MM-dd') }))
 
   return { props: { posts: sortedPosts } }
 }
