@@ -61,7 +61,7 @@ jobs:
           CYPRESS_BASE_URL: ${{ needs.wait_for_preview.outputs.url }}
 
   jest_tests:
-    name: End-to-end tests
+    name: Jest tests
     runs-on: ubuntu-latest
     needs: wait_for_preview
     steps:
