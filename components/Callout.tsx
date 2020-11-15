@@ -3,7 +3,7 @@ import { ReactNode } from 'react'
 import { palette, spacing } from '../styles/theme'
 import { Box } from './Box'
 import { Text } from './Text'
-/** @jsx jsx */ jsx
+/** @jsxImportSource @emotion/core */ jsx
 
 export type CalloutVariant = 'success' | 'error' | 'warning' | 'info'
 

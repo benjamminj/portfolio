@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from 'react'
 import { jsx, css } from '@emotion/core'
 import { aboveDesktop } from '../styles/media'
-/** @jsx jsx */ jsx
+/** @jsxImportSource @emotion/core */ jsx
 
 export interface ImageResource {
   /** The URI to the primary (or fallback) image source */

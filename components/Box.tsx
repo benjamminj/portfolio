@@ -5,7 +5,7 @@ import {
   ResponsiveProp,
 } from '../styles/resolveResponsiveValue'
 import { spacing, SpacingToken } from '../styles/theme'
-/** @jsx jsx */ jsx
+/** @jsxImportSource @emotion/core */ jsx
 
 type BoxSpacingToken = SpacingToken | 'none'
 type ResponsiveBoxSpacingToken = ResponsiveProp<BoxSpacingToken>

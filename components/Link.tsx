@@ -1,8 +1,8 @@
-import { FC } from 'react'
+import React, { FC } from 'react'
 import NextLink, { LinkProps } from 'next/link'
 import { createLinkStyles } from '../styles/mixins'
 import { css, jsx, InterpolationWithTheme } from '@emotion/core'
-/** @jsx jsx */ jsx
+/** @jsxImportSource @emotion/core */ jsx
 
 interface AdditionalLinkProps {
   /** Opens the link in a new tab securely */
