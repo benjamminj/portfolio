@@ -1,11 +1,10 @@
-import { css, jsx } from '@emotion/core'
+import { css } from '@emotion/core'
 import React from 'react'
 import { Heading } from '../components/Heading'
 import { Layout } from '../components/Layout'
 import { Link } from '../components/Link'
 import { Text } from '../components/Text'
 import { Box } from '../components/Box'
-/** @jsxImportSource @emotion/core */ jsx
 
 const navigation = [
   {

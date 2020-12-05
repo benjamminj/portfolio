@@ -1,9 +1,7 @@
-import { jsx } from '@emotion/core'
 import { ReactNode } from 'react'
 import { palette, spacing } from '../styles/theme'
 import { Box } from './Box'
 import { Text } from './Text'
-/** @jsxImportSource @emotion/core */ jsx
 
 export type CalloutVariant = 'success' | 'error' | 'warning' | 'info'
 
