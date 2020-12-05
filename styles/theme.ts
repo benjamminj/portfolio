@@ -11,6 +11,7 @@ export const palette = {
   neutral_500: '#b3b8c1',
   neutral_600: '#979daa',
   neutral_700: '#5b6171',
+  neutral_800: '#323748',
   neutral_900: '#282b39',
   // primary
   primary_100: '#ebf6ff',
@@ -77,6 +78,10 @@ export const fonts = {
   mono: `Menlo, Monaco, Lusica Console, Ubuntu Mono, Courier New, monospace`,
 }
 
+export const layers = {
+  header: 50,
+}
+
 export type SpacingToken = keyof typeof spacing
 
 export const spacing = {
@@ -89,25 +94,45 @@ export const spacing = {
   l: 24,
   xl: 32,
   xxl: 48,
+  '3xl': 64,
+  '4xl': 80,
+  '5xl': 96,
+  '6xl': 128,
+  '7xl': 160,
+  '8xl': 192,
+}
+
+export const weights = {
+  light: 300,
+  normal: 400,
+  medium: 500,
+  semibold: 600,
+  bold: 700,
+}
+
+export const fontSizes = {
+  xs: '0.75rem',
+  s: '0.875rem',
+  m: '1rem',
+  l: '1.25rem',
+  xl: '1.5rem',
+  xxl: '2rem',
+  '3xl': '3rem',
+}
+
+export const radius = {
+  s: 6,
+  m: 10,
+  l: 16,
 }
 
 export default css`
   :root {
-    /** border radius */
-    --border-radius-s: 6px;
-    --border-radius-m: 10px;
-    --border-radius-l: 16px;
-
-    /* fonts */
-    --font-primary: ${fonts.primary};
-    --font-secondary: ${fonts.secondary};
-    --font-mono: ${fonts.mono};
-
     /* paddings */
     --body-gutter: 1.5rem;
 
     ${aboveTablet({
       '--body-gutter': '1.25rem',
-    })}
+    })};
   }
 `

@@ -1,5 +1,5 @@
 import { css } from '@emotion/core'
-import { fonts, colors, palette } from './theme'
+import { fonts, colors, palette, radius } from './theme'
 
 export const headingStyle = () => css`
   font-family: ${fonts.secondary};
@@ -19,7 +19,7 @@ export const createHighlight = (
     margin: `-${highlightYPadding} 0`,
     backgroundColor: background,
     color: foreground,
-    borderRadius: 'var(--border-radius-s)',
+    borderRadius: radius.s,
   })
 }
 
@@ -30,7 +30,7 @@ export const createLinkStyles = ({
 } = {}) => {
   return css({
     textDecoration: 'underline',
-    borderRadius: 'var(--border-radius-s)',
+    borderRadius: radius.s,
     color,
     transition: 'all 50ms ease-in',
 

@@ -92,4 +92,8 @@ export default css`
   li {
     list-style-type: none;
   }
+  button {
+    background-color: transparent;
+    border-width: 0;
+  }
 `

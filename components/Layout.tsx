@@ -1,7 +1,7 @@
 import { Global, jsx } from '@emotion/core'
 import styled from '@emotion/styled'
 import Head from 'next/head'
-import React, { ReactNode } from 'react'
+import React, { ComponentType, ReactNode } from 'react'
 import reset from '../styles/reset'
 import { Link } from './Link'
 import { linkPadding } from '../styles/mixins'
@@ -25,9 +25,26 @@ const Header = styled.header`
 /**
  * Generic layout wrapper for the entire website. Contains some default metadata,
  * loads some fonts, and top-level navigation.
+ *
+ * @todo deprecate?
+ * - time to go more on a "bespoke" page-by-page basis. spin up a few different headers.
  */
-export const Layout = ({ children }: { children?: ReactNode }) => (
-  <Container>
+export const Layout = ({
+  children,
+  containerComponent: ContainerComponent = Container,
+  header = (
+    <Header>
+      <Link href="/index" as="/" css={{ marginLeft: `-${linkPadding}` }}>
+        benjaminjohnson.me
+      </Link>
+    </Header>
+  ),
+}: {
+  children?: ReactNode
+  header?: ReactNode
+  containerComponent?: ComponentType
+}) => (
+  <ContainerComponent>
     <Head>
       <title>Benjamin Johnson | Senior Front-End Engineer</title>
       <meta
@@ -47,12 +64,7 @@ export const Layout = ({ children }: { children?: ReactNode }) => (
 
     <Global styles={reset} />
 
-    <Header>
-      <Link href="/index" as="/" css={{ marginLeft: `-${linkPadding}` }}>
-        benjaminjohnson.me
-      </Link>
-    </Header>
-
+    {header}
     {children}
-  </Container>
+  </ContainerComponent>
 )

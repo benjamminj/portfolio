@@ -21,3 +21,7 @@ export const aboveTablet: MediaQueryFunction = styles => {
 export const aboveDesktop: MediaQueryFunction = styles => {
   return { [above.desktop]: styles }
 }
+
+export const darkMode: MediaQueryFunction = styles => {
+  return { '@media (prefers-color-scheme: dark)': styles }
+}

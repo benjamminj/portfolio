@@ -15,6 +15,8 @@ interface BoxProps {
   children?: ReactNode
   /** Allows customization of the rendered HTML under the hood */
   component?: keyof HTMLElementTagNameMap
+  /** Control how items are aligned on the primary flex axis */
+  alignItems?: CSSProperties['alignItems']
   /**
    * Amount that the Box "bleeds" outside of its own container. Defaults to `0` if
    * not provided
@@ -63,6 +65,10 @@ interface BoxProps {
   className?: string
   /** Corresponds 1:1 to the CSS `display` rule */
   display?: ResponsiveProp<CSSProperties['display']>
+  /** Corresponds 1:1 to the CSS `justifyContent` rule */
+  justifyContent?: CSSProperties['justifyContent']
+  /** Corresponds 1:1 to the CSS `minHeight` rule */
+  minHeight?: CSSProperties['minHeight']
   /** Padding on all sides for the "box". If not provided, will default to `0` */
   padding?: ResponsiveBoxSpacingToken
   /**
@@ -179,6 +185,7 @@ export const Box = ({
   bleedRight,
   ...props
 }: BoxProps) => {
+  console.log(props)
   return jsx(component, {
     ...props,
     className,
