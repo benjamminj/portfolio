@@ -59,8 +59,8 @@ const IndexPage = () => (
           &nbsp; I'm a frontend engineer with a passion for clean UIs,
           easy-to-understand code, and a well-made cup of coffee. Currently
           learning/working at{' '}
-          <Link external href="https://www.housecallpro.com/">
-            Housecall Pro
+          <Link external href="https://www.sourcestrike.com/">
+            SourceStrike
           </Link>{' '}
           remotely.
         </Text>
