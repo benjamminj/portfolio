@@ -1,17 +1,24 @@
 module.exports = {
-  plugins: ['superjson-next'],
+  presets: [
+    [
+      'next/babel',
+      {
+        'preset-react': {
+          runtime: 'automatic',
+          importSource: '@emotion/react',
+        },
+      },
+    ],
+  ],
+  plugins: ['superjson-next', '@emotion/babel-plugin'],
   env: {
-    development: {
-      presets: ['next/babel'],
-    },
-    production: {
-      presets: ['next/babel'],
-    },
     test: {
       presets: [
-        ['@babel/env', { targets: { node: 'current' } }],
-        '@babel/react',
-        '@babel/preset-typescript',
+        'next/babel',
+        [
+          '@babel/preset-react',
+          { runtime: 'automatic', importSource: '@emotion/react' },
+        ],
       ],
     },
   },
