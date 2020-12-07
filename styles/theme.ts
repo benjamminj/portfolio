@@ -116,8 +116,8 @@ export const fontSizes = {
   m: '1rem',
   l: '1.25rem',
   xl: '1.5rem',
-  xxl: '2rem',
-  '3xl': '3rem',
+  xxl: '1.75rem',
+  '3xl': '2.5rem',
 }
 
 export const radius = {
@@ -127,6 +127,10 @@ export const radius = {
 }
 
 export default css`
+  html {
+    font-size: 16px;
+  }
+
   :root {
     /* paddings */
     --body-gutter: 1.5rem;

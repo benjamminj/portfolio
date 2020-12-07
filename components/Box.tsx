@@ -183,6 +183,9 @@ export const Box = ({
   bleedBottom,
   bleedLeft,
   bleedRight,
+  minHeight,
+  alignItems,
+  justifyContent,
   ...props
 }: BoxProps) => {
   console.log(props)
@@ -190,6 +193,7 @@ export const Box = ({
     ...props,
     className,
     css: [
+      { minHeight, alignItems, justifyContent },
       resolveResponsiveValue(display, display => ({ display })),
       resolvePaddingProp(paddingLeft || paddingX || padding, 'paddingLeft'),
       resolvePaddingProp(paddingRight || paddingX || padding, 'paddingRight'),

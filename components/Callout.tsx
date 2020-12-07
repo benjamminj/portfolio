@@ -1,5 +1,6 @@
 import { ReactNode } from 'react'
-import { palette, spacing } from '../styles/theme'
+import { aboveTablet, darkMode } from '../styles/media'
+import { palette, radius, spacing } from '../styles/theme'
 import { Box } from './Box'
 import { Text } from './Text'
 
@@ -14,35 +15,71 @@ interface CalloutProps {
 }
 
 interface ColorVariantConfig {
-  background: string
-  border: string
-  heading: string
+  light: {
+    background: string
+    border: string
+    heading: string
+  }
+  dark: {
+    background: string
+    border: string
+    heading: string
+  }
   defaultIcon: ReactNode
 }
 
 const colorVariants: { [key in CalloutVariant]: ColorVariantConfig } = {
   success: {
-    background: palette.success_100,
-    border: palette.success_200,
-    heading: palette.success_900,
+    light: {
+      background: palette.success_100,
+      border: palette.success_200,
+      heading: palette.success_900,
+    },
+    dark: {
+      background: palette.success_700,
+      border: palette.success_900,
+      heading: palette.success_100,
+    },
     defaultIcon: '✅',
   },
   error: {
-    background: palette.error_100,
-    border: palette.error_200,
-    heading: palette.error_900,
+    light: {
+      background: palette.error_100,
+      border: palette.error_200,
+      heading: palette.error_900,
+    },
+    dark: {
+      background: palette.error_700,
+      border: palette.error_900,
+      heading: palette.error_100,
+    },
     defaultIcon: '🚨',
   },
   warning: {
-    background: palette.warning_100,
-    border: palette.warning_300,
-    heading: palette.warning_900,
+    light: {
+      background: palette.warning_100,
+      border: palette.warning_300,
+      heading: palette.warning_900,
+    },
+    dark: {
+      background: palette.warning_700,
+      border: palette.warning_900,
+      heading: palette.warning_300,
+    },
     defaultIcon: '🚧',
   },
   info: {
-    background: palette.neutral_100,
-    border: palette.neutral_300,
-    heading: palette.neutral_900,
+    light: {
+      background: palette.neutral_100,
+      border: palette.neutral_300,
+      heading: palette.neutral_900,
+    },
+    dark: {
+      background: palette.neutral_900,
+      border: palette.neutral_900,
+      heading: palette.white,
+    },
+
     defaultIcon: '💬',
   },
 }
@@ -60,15 +97,24 @@ export const Callout = ({
       paddingY="xl"
       paddingX="l"
       display="grid"
-      css={{
-        gridTemplateColumns: 'auto 1fr',
-        gridTemplateRows: 'auto min-content',
-        gridColumnGap: spacing.m,
-        gridRowGap: spacing.xxs,
-        border: `2px solid ${config.border}`,
-        borderRadius: 'var(--border-radius-l)',
-        backgroundColor: config.background,
-      }}
+      css={[
+        {
+          gridTemplateColumns: 'auto 1fr',
+          gridTemplateRows: 'auto min-content',
+          gridColumnGap: spacing.m,
+          gridRowGap: spacing.s,
+          border: `2px solid ${config.light.border}`,
+          borderRadius: radius.l,
+          backgroundColor: config.light.background,
+        },
+        aboveTablet({
+          gridRowGap: spacing.xxs,
+        }),
+        darkMode({
+          borderColor: config.dark.border,
+          backgroundColor: config.dark.background,
+        }),
+      ]}
       {...props}
     >
       <Text
@@ -82,12 +128,32 @@ export const Callout = ({
       </Text>
 
       {heading && (
-        <Text variant="subtitle" css={{ color: config.heading }}>
+        <Text
+          variant="subtitle"
+          css={[
+            { color: config.light.heading },
+            darkMode({
+              color: config.dark.heading,
+            }),
+          ]}
+        >
           {heading}
         </Text>
       )}
 
-      <Box css={{ gridColumn: 2, paddingTop: spacing.xxs }}>{children}</Box>
+      <Box
+        css={[
+          {
+            gridColumn: '1 / 3',
+            '> p': { margin: 0 },
+          },
+          aboveTablet({
+            gridColumn: 2,
+          }),
+        ]}
+      >
+        {children}
+      </Box>
     </Box>
   )
 }

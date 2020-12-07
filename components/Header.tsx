@@ -52,11 +52,7 @@ export const Header = () => {
         {
           zIndex: layers.header,
           maxWidth: '100vw',
-          // background: palette.neutral_100,
         },
-        darkMode({
-          // background: palette.neutral_900,
-        }),
       ]}
     >
       <Container>
