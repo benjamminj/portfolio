@@ -80,21 +80,22 @@ export const Header = () => {
 
           <Stack
             horizontal
-            css={[{ marginTop: spacing.xs }, aboveTablet({ marginTop: 0 })]}
+            css={[
+              { marginTop: spacing.xs, textTransform: 'lowercase' },
+              aboveTablet({ marginTop: 0 }),
+            ]}
           >
             <nav>
               <Stack horizontal>
-                {/* TODO: swap to about page */}
-                <Link href="/layout" passHref>
-                  <HeaderLink title="About">about</HeaderLink>
-                </Link>
-
                 {/* TODO: change to "writing" */}
                 <Link href="/blog" passHref>
                   <HeaderLink title="Writing">writing</HeaderLink>
                 </Link>
 
-                {/* TODO: separate contact page */}
+                <HeaderLink title="GitHub" href="https://github.com/benjamminj">
+                  GitHub
+                </HeaderLink>
+
                 <HeaderLink
                   title="Contact"
                   href="mailto:benjamin.d.johnson@icloud.com"

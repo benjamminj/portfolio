@@ -1,6 +1,8 @@
+import { ThemeProvider } from '@emotion/react'
 import Router from 'next/router'
 import { useEffect } from 'react'
 import * as analytics from '../lib/analytics'
+import '../styles/index.css'
 
 /**
  * Render the shell of the application, initialize client-side styles.

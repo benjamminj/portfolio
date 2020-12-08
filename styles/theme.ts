@@ -126,6 +126,15 @@ export const radius = {
   l: 16,
 }
 
+export const theme = {
+  colors: {
+    ...palette,
+    green: ['lightgreen', 'green', 'darkgreen'],
+  },
+}
+
+export type Theme = typeof theme
+
 export default css`
   html {
     font-size: 16px;

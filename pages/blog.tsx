@@ -6,11 +6,18 @@ import { getPostFilePaths } from '../lib/getPostFilePaths'
 import { slugifyPost } from '../lib/slugifyPost'
 import { PostFrontmatter } from '../lib/types'
 import { Heading } from '../components/Heading'
-import { Layout } from '../components/Layout'
+import { Layout, LayoutV2 } from '../components/Layout'
 import { PostListItem } from '../components/PostListItem'
 import { Text } from '../components/Text'
-import { Box } from '../components/Box'
+import { Box as DeprecatedBox } from '../components/Box'
 import { textMaxWidth } from '../styles/variables'
+import { fontSizes, palette, radius, spacing, Theme } from '../styles/theme'
+import styled from '@emotion/styled'
+import { color, space, layout, ColorProps, LayoutProps } from 'styled-system'
+import { Box } from '../components/Box.v2'
+import { Stack } from '../components/Stack'
+import { ReactNode } from 'react'
+
 /** @jsxImportSource @emotion/core */ jsx
 
 type PostPreview = Pick<
@@ -29,36 +36,47 @@ interface BlogPageProps {
   posts: PostPreview[]
 }
 
+interface PostPreviewCardProps {
+  post: PostPreview
+}
+
+const PostPreviewCard = ({ post }: PostPreviewCardProps) => {
+  return (
+    <div className="p-8 bg-gray-800 rounded-2xl">
+      <div className="space-y-4">
+        <h2 className="text-2xl">
+          <a
+            href={post.href}
+            title={post.title}
+            className="no-underline text-gray-200"
+          >
+            {post.title}
+          </a>
+        </h2>
+
+        {post.description && <p className="leading-7">{post.description}</p>}
+      </div>
+    </div>
+  )
+}
+
 /** Displays a list of all published writings. */
 const BlogPage = ({ posts }: BlogPageProps) => {
   return (
-    <Layout>
-      <Box
-        component="section"
-        padding="gutter"
-        paddingTop="xxl"
-        css={{ maxWidth: textMaxWidth, margin: '0 auto' }}
-      >
-        <Heading>
-          <h1>
-            <Text variant="h3">Blog</Text>
-          </h1>
-        </Heading>
-
-        <Box component="ul" paddingBottom="m">
-          {posts.map(post => (
-            <li key={post.href}>
-              <PostListItem
-                title={post.title}
-                date={post.date}
-                tags={post.tags}
-                href={post.href}
-              />
-            </li>
-          ))}
-        </Box>
-      </Box>
-    </Layout>
+    <LayoutV2 title="Writing" subtitle="subtitle TODO">
+      <ul>
+        <div className="space-y-4">
+          {posts.map(post => {
+            console.log('post>>', post)
+            return (
+              <li key={post.href} className="w-full">
+                <PostPreviewCard post={post} />
+              </li>
+            )
+          })}
+        </div>
+      </ul>
+    </LayoutV2>
   )
 }
 
