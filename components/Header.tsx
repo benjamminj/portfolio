@@ -1,3 +1,4 @@
+import clsx from 'clsx'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { forwardRef, MutableRefObject, ReactNode } from 'react'
@@ -7,37 +8,30 @@ import { Box } from './Box'
 import { Container } from './Container'
 import { Stack } from './Stack'
 
+interface HeaderLinkProps {
+  href?: string
+  title: string
+  children: ReactNode
+}
 const HeaderLink = forwardRef(
   (
-    {
-      href,
-      title,
-      children,
-    }: {
-      href?: string
-      title: string
-      children: ReactNode
-    },
+    { href, title, children }: HeaderLinkProps,
     ref: MutableRefObject<HTMLAnchorElement>
   ) => {
     const router = useRouter()
     const active = router.asPath === href
+
     return (
       <a
         ref={ref}
         href={href}
         title={title}
-        css={[
-          {
-            fontSize: fontSizes.m,
-            color: active ? palette.black : palette.neutral_900,
-            fontWeight: active ? weights.bold : weights.normal,
-            textDecoration: 'none',
-          },
-          darkMode({
-            color: active ? palette.white : palette.neutral_100,
-          }),
-        ]}
+        className={clsx(
+          'text-base no-underline',
+          active
+            ? 'text-black font-bold dark:text-white'
+            : 'text-gray-800 font-normal dark:text-gray-200'
+        )}
       >
         {children}
       </a>
@@ -47,14 +41,7 @@ const HeaderLink = forwardRef(
 
 export const Header = () => {
   return (
-    <header
-      css={[
-        {
-          zIndex: layers.header,
-          maxWidth: '100vw',
-        },
-      ]}
-    >
+    <header className="z-header max-w-viewport">
       <Container>
         <Box
           padding="gutter"

@@ -91,6 +91,7 @@
     "sharp": "^0.25.4",
     "svg-sprite-loader": "^5.0.0",
     "tailwindcss": "^2.0.1",
+    "tailwindcss-pseudo-elements": "^1.5.1",
     "typescript": "^3.9.5",
     "webp-loader": "^0.6.0",
     "worker-loader": "^2.0.0"

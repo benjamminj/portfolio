@@ -7,6 +7,7 @@ import { Callout, CalloutVariant } from '../../components/Callout'
 import { MarkdownWrapperStyles } from '../../components/Markdown'
 import { Text, textVariants, TextVariantToken } from '../../components/Text'
 import { palette, spacing, SpacingToken } from '../../styles/theme'
+import { darkMode } from '../../styles/media'
 /** @jsxImportSource @emotion/core */ jsx
 
 const SectionHeading = ({ children }: { children: ReactNode }) => {
@@ -122,170 +123,174 @@ const SwatchGroup = ({ name, prefix }: { name: string; prefix: string }) => {
 const DesignSystem = () => {
   return (
     <Layout>
-      <div css={{ maxWidth: '80ch', margin: '0 auto' }}>
-        <SectionHeading>Typography</SectionHeading>
-        <ComponentContainer>
-          {Object.keys(textVariants).map((variant: TextVariantToken) => (
-            <div
-              key={variant}
-              css={{
-                padding: 32,
-                border: '1px dashed black',
-              }}
-            >
-              <Text variant={variant}>
-                {variant}: The quick brown fox jumps over the lazy dog
+      <div className="dark:bg-gray-800">
+        <div css={[{ maxWidth: '80ch', margin: '0 auto' }]}>
+          <SectionHeading>Typography</SectionHeading>
+          <ComponentContainer>
+            {Object.keys(textVariants).map((variant: TextVariantToken) => (
+              <div
+                key={variant}
+                css={{
+                  padding: 32,
+                  border: '1px dashed black',
+                }}
+              >
+                <Text variant={variant}>
+                  {variant}: The quick brown fox jumps over the lazy dog
+                </Text>
+              </div>
+            ))}
+          </ComponentContainer>
+
+          <SectionHeading>Spacing</SectionHeading>
+          <ComponentContainer>
+            {(['xxs', 'xs', 's', 'm', 'l', 'xl', 'xxl'] as SpacingToken[]).map(
+              token => (
+                <Box
+                  key={token}
+                  paddingRight="l"
+                  display="inline-flex"
+                  css={{ flexDirection: 'column', alignItems: 'center' }}
+                >
+                  <Box
+                    display="inline-flex"
+                    paddingLeft={token}
+                    paddingTop={token}
+                    css={{ background: palette.black }}
+                  />
+                  <Box
+                    display="flex"
+                    paddingTop="s"
+                    css={{ textAlign: 'center', flexDirection: 'column' }}
+                  >
+                    <Text variant="caption">{token}</Text>
+                    <Text variant="caption">({spacing[token]})</Text>
+                  </Box>
+                </Box>
+              )
+            )}
+          </ComponentContainer>
+
+          <SectionHeading>Links</SectionHeading>
+
+          <ComponentContainer>
+            <div css={{ marginTop: 32 }}>
+              <Link href="#">Sample link</Link>
+            </div>
+            <div css={{ marginTop: 32 }}>
+              <Link external href="https://google.com">
+                External link (google)
+              </Link>
+            </div>
+            <div css={{ marginTop: 32 }}>
+              <Text>
+                And a{' '}
+                <Link external href="https://google.com">
+                  link that is part
+                </Link>{' '}
+                of a sentance.
               </Text>
             </div>
-          ))}
-        </ComponentContainer>
+          </ComponentContainer>
 
-        <SectionHeading>Spacing</SectionHeading>
-        <ComponentContainer>
-          {(['xxs', 'xs', 's', 'm', 'l', 'xl', 'xxl'] as SpacingToken[]).map(
-            token => (
-              <Box
-                key={token}
-                paddingRight="l"
-                display="inline-flex"
-                css={{ flexDirection: 'column', alignItems: 'center' }}
-              >
-                <Box
-                  display="inline-flex"
-                  paddingLeft={token}
-                  paddingTop={token}
-                  css={{ background: palette.black }}
-                />
-                <Box
-                  display="flex"
-                  paddingTop="s"
-                  css={{ textAlign: 'center', flexDirection: 'column' }}
-                >
-                  <Text variant="caption">{token}</Text>
-                  <Text variant="caption">({spacing[token]})</Text>
-                </Box>
-              </Box>
-            )
-          )}
-        </ComponentContainer>
+          <SectionHeading>Unordered lists</SectionHeading>
+          <ComponentContainer>
+            <MarkdownWrapperStyles>
+              <ul>
+                <li>
+                  this is the first item. <br /> it has two lines
+                </li>
+                <li>now this is the second item.</li>
+                <li>finally, the third item.</li>
+              </ul>
+            </MarkdownWrapperStyles>
+          </ComponentContainer>
 
-        <SectionHeading>Links</SectionHeading>
+          <SectionHeading>Ordered lists</SectionHeading>
+          <ComponentContainer>
+            <MarkdownWrapperStyles>
+              <ol>
+                <li>this is the first item.</li>
+                <li>now this is the second item.</li>
+                <li>finally, the third item.</li>
+              </ol>
+            </MarkdownWrapperStyles>
+          </ComponentContainer>
 
-        <ComponentContainer>
-          <div css={{ marginTop: 32 }}>
-            <Link href="#">Sample link</Link>
-          </div>
-          <div css={{ marginTop: 32 }}>
-            <Link external href="https://google.com">
-              External link (google)
-            </Link>
-          </div>
-          <div css={{ marginTop: 32 }}>
-            <Text>
-              And a{' '}
-              <Link external href="https://google.com">
-                link that is part
-              </Link>{' '}
-              of a sentance.
-            </Text>
-          </div>
-        </ComponentContainer>
+          <SectionHeading>Quotations</SectionHeading>
+          <ComponentContainer>
+            <MarkdownWrapperStyles>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                Deserunt, officia qui nesciunt molestias aut nemo quisquam optio
+                placeat soluta quas assumenda consectetur, quasi omnis commodi
+                impedit molestiae nobis minima voluptas.
+              </p>
 
-        <SectionHeading>Unordered lists</SectionHeading>
-        <ComponentContainer>
-          <MarkdownWrapperStyles>
-            <ul>
-              <li>
-                this is the first item. <br /> it has two lines
-              </li>
-              <li>now this is the second item.</li>
-              <li>finally, the third item.</li>
-            </ul>
-          </MarkdownWrapperStyles>
-        </ComponentContainer>
+              <blockquote>“This is the content of the quotation.”</blockquote>
 
-        <SectionHeading>Ordered lists</SectionHeading>
-        <ComponentContainer>
-          <MarkdownWrapperStyles>
-            <ol>
-              <li>this is the first item.</li>
-              <li>now this is the second item.</li>
-              <li>finally, the third item.</li>
-            </ol>
-          </MarkdownWrapperStyles>
-        </ComponentContainer>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                Deserunt, officia qui nesciunt molestias aut nemo quisquam optio
+                placeat soluta quas assumenda consectetur, quasi omnis commodi
+                impedit molestiae nobis minima voluptas.
+              </p>
 
-        <SectionHeading>Quotations</SectionHeading>
-        <ComponentContainer>
-          <MarkdownWrapperStyles>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-              Deserunt, officia qui nesciunt molestias aut nemo quisquam optio
-              placeat soluta quas assumenda consectetur, quasi omnis commodi
-              impedit molestiae nobis minima voluptas.
-            </p>
+              <blockquote>
+                ”Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                Deserunt, officia qui nesciunt molestias aut nemo quisquam optio
+                placeat soluta quas assumenda consectetur, quasi omnis commodi
+                impedit molestiae nobis minima voluptas.”
+              </blockquote>
+            </MarkdownWrapperStyles>
+          </ComponentContainer>
 
-            <blockquote>“This is the content of the quotation.”</blockquote>
-
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-              Deserunt, officia qui nesciunt molestias aut nemo quisquam optio
-              placeat soluta quas assumenda consectetur, quasi omnis commodi
-              impedit molestiae nobis minima voluptas.
-            </p>
-
-            <blockquote>
-              ”Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-              Deserunt, officia qui nesciunt molestias aut nemo quisquam optio
-              placeat soluta quas assumenda consectetur, quasi omnis commodi
-              impedit molestiae nobis minima voluptas.”
-            </blockquote>
-          </MarkdownWrapperStyles>
-        </ComponentContainer>
-
-        <SectionHeading>Callouts</SectionHeading>
-        <ComponentContainer>
-          <Callout>
-            This is the default callout component, with no props applied. It's
-            essentially the "info" variant!
-          </Callout>
-
-          <Box paddingTop="m">
-            <Callout icon="😱" heading="With a heading!">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis
-              provident quasi iure consequatur facere corporis quaerat minus
-              corrupti! Dolorum deleniti non eaque veritatis id aliquid tempore
-              deserunt. Vero, veritatis suscipit?
+          <SectionHeading>Callouts</SectionHeading>
+          <ComponentContainer>
+            <Callout>
+              This is the default callout component, with no props applied. It's
+              essentially the "info" variant!
             </Callout>
-          </Box>
 
-          {(['success', 'warning', 'error', 'info'] as CalloutVariant[]).map(
-            variant => (
-              <Box paddingTop="m" key={variant}>
-                <Callout
-                  variant={variant}
-                  heading={variant.slice(0, 1).toUpperCase() + variant.slice(1)}
-                >
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Optio, ipsa qui fugiat id, recusandae dolorem iure modi vel ea
-                  alias, obcaecati illo minus dolores tempora sunt esse.
-                  Officiis, cumque quam.
-                </Callout>
-              </Box>
-            )
-          )}
-        </ComponentContainer>
+            <Box paddingTop="m">
+              <Callout icon="😱" heading="With a heading!">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis
+                provident quasi iure consequatur facere corporis quaerat minus
+                corrupti! Dolorum deleniti non eaque veritatis id aliquid
+                tempore deserunt. Vero, veritatis suscipit?
+              </Callout>
+            </Box>
 
-        <SectionHeading>Colors</SectionHeading>
-        <ComponentContainer>
-          <SwatchRow swatches={['black', 'white']} name="top-level" />
-          <SwatchGroup name="neutral" prefix="neutral_" />
-          <SwatchGroup name="primary" prefix="primary_" />
-          <SwatchGroup name="accent 1" prefix="accent1_" />
-          <SwatchGroup name="success" prefix="success_" />
-          <SwatchGroup name="warning" prefix="warning_" />
-          <SwatchGroup name="error" prefix="error_" />
-        </ComponentContainer>
+            {(['success', 'warning', 'error', 'info'] as CalloutVariant[]).map(
+              variant => (
+                <Box paddingTop="m" key={variant}>
+                  <Callout
+                    variant={variant}
+                    heading={
+                      variant.slice(0, 1).toUpperCase() + variant.slice(1)
+                    }
+                  >
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Optio, ipsa qui fugiat id, recusandae dolorem iure modi vel
+                    ea alias, obcaecati illo minus dolores tempora sunt esse.
+                    Officiis, cumque quam.
+                  </Callout>
+                </Box>
+              )
+            )}
+          </ComponentContainer>
+
+          <SectionHeading>Colors</SectionHeading>
+          <ComponentContainer>
+            <SwatchRow swatches={['black', 'white']} name="top-level" />
+            <SwatchGroup name="neutral" prefix="neutral_" />
+            <SwatchGroup name="primary" prefix="primary_" />
+            <SwatchGroup name="accent 1" prefix="accent1_" />
+            <SwatchGroup name="success" prefix="success_" />
+            <SwatchGroup name="warning" prefix="warning_" />
+            <SwatchGroup name="error" prefix="error_" />
+          </ComponentContainer>
+        </div>
       </div>
     </Layout>
   )

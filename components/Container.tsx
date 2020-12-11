@@ -1,3 +1,4 @@
+import clsx from 'clsx'
 import { ReactNode } from 'react'
 import { containerWide, textMaxWidth } from '../styles/variables'
 
@@ -10,13 +11,7 @@ export const Container = ({
   className?: string
 }) => {
   return (
-    <div
-      className={className}
-      css={{
-        maxWidth: textMaxWidth,
-        margin: '0 auto',
-      }}
-    >
+    <div className={clsx('max-w-prose my-0 mx-auto', className)}>
       {children}
     </div>
   )

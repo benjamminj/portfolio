@@ -1,0 +1,13 @@
+.ul > .li:before {
+  content: '●';
+  @apply text-xs leading-7;
+}
+
+.ol {
+  counter-reset: ol-count;
+}
+
+.ol > .li:before {
+  content: counter(ol-count) '.';
+  counter-increment: ol-count;
+}

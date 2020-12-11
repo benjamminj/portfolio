@@ -19,7 +19,7 @@ const Container = styled.div({
   display: 'grid',
   gridTemplateRows: 'auto 1fr',
   minHeight: '100vh',
-  maxWidth: container,
+  // maxWidth: container,
   margin: '0 auto',
 })
 

@@ -1,5 +1,4 @@
-import { aboveDesktop, aboveTablet, darkMode } from '../styles/media'
-import { fontSizes, palette, radius, spacing, weights } from '../styles/theme'
+import styles from './MarkdownTags.module.css'
 
 export const A = ({ href, children }) => (
   <a
@@ -39,35 +38,7 @@ export const H6 = ({ children }) => {
 
 export const Pre = ({ children }) => {
   return (
-    <pre
-      css={[
-        {
-          backgroundColor: palette.neutral_100,
-          padding: spacing.l,
-          marginTop: spacing.l,
-          marginBottom: spacing.l,
-          overflowX: 'auto',
-          fontSize: fontSizes.m,
-
-          // TODO: use gutter?
-          // Or make gutter more "static" & "composable"?
-          marginLeft: -1 * spacing.l,
-          marginRight: -1 * spacing.l,
-        },
-        aboveTablet({
-          borderRadius: radius.l,
-          marginLeft: 0,
-          marginRight: 0,
-        }),
-        aboveDesktop({
-          marginLeft: -1 * spacing.l,
-          marginRight: -1 * spacing.l,
-        }),
-        darkMode({
-          backgroundColor: palette.neutral_900,
-        }),
-      ]}
-    >
+    <pre className="p-6 my-6 -mx-6 overflow-auto text-base bg-gray-100 md:rounded-2xl md:mx-0 lg:-mx-6 dark:bg-gray-900">
       {children}
     </pre>
   )
@@ -75,71 +46,24 @@ export const Pre = ({ children }) => {
 
 export const InlineCode = ({ children }) => {
   return (
-    <code
-      css={[
-        {
-          padding: spacing.xxs,
-          borderRadius: radius.s,
-          background: palette.neutral_100,
-        },
-        darkMode({
-          backgroundColor: palette.neutral_900,
-        }),
-      ]}
-    >
+    <code className="p-1 bg-gray-100 rounded-md dark:bg-gray-900">
       {children}
     </code>
   )
 }
 
 export const Ol = ({ children }) => {
-  return (
-    <ol
-      css={{
-        counterReset: 'ol-count',
-        paddingLeft: spacing.xl,
-      }}
-    >
-      {children}
-    </ol>
-  )
+  return <ol className={`pl-8 ${styles.ol}`}>{children}</ol>
 }
 
 export const Ul = ({ children }) => {
-  return <ul css={{ paddingLeft: spacing.xl }}>{children}</ul>
+  return <ul className={`pl-6 ${styles.ul}`}>{children}</ul>
 }
 
 export const Li = ({ children }) => {
   return (
     <li
-      css={{
-        position: 'relative',
-        marginTop: spacing.m,
-        marginBottom: spacing.m,
-        paddingLeft: spacing.xs,
-        fontSize: fontSizes.m,
-        lineHeight: 1.7,
-
-        ':before': {
-          left: -1 * spacing.m,
-          position: 'absolute',
-        },
-
-        'ol &': {
-          ':before': {
-            content: "counter(ol-count) '.'",
-            counterIncrement: 'ol-count',
-          },
-        },
-
-        'ul &': {
-          ':before': {
-            content: '"●"',
-            fontSize: fontSizes.xs,
-            lineHeight: `calc(${fontSizes.m} * 1.7)`,
-          },
-        },
-      }}
+      className={`relative pl-2 my-4 text-base leading-7 before:-left-4 before:absolute ${styles.li}`}
     >
       {children}
     </li>
@@ -147,19 +71,5 @@ export const Li = ({ children }) => {
 }
 
 export const Hr = () => {
-  return (
-    <hr
-      css={[
-        {
-          marginTop: spacing['3xl'],
-          marginBottom: spacing['3xl'],
-          border: '1px solid',
-          borderColor: palette.neutral_100,
-        },
-        darkMode({
-          borderColor: palette.neutral_900,
-        }),
-      ]}
-    />
-  )
+  return <hr className="my-16 border border-gray-100 dark:border-gray-900" />
 }
