@@ -3,18 +3,7 @@ import { palette } from '../styles/theme'
 
 export const PageWrapper = ({ children }) => {
   return (
-    <div
-      css={[
-        {
-          minHeight: '100vh',
-          backgroundColor: palette.white,
-        },
-        darkMode({
-          color: palette.white,
-          backgroundColor: palette.neutral_800,
-        }),
-      ]}
-    >
+    <div className="min-h-screen bg-white dark:text-white dark:bg-gray-800">
       {children}
     </div>
   )

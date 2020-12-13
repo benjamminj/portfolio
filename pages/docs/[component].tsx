@@ -2,12 +2,10 @@ import { jsx } from '@emotion/core'
 import { ReactNode } from 'react'
 import { Layout } from '../../components/Layout'
 import { Link } from '../../components/Link'
-import { Box } from '../../components/Box'
 import { Callout, CalloutVariant } from '../../components/Callout'
 import { MarkdownWrapperStyles } from '../../components/Markdown'
 import { Text, textVariants, TextVariantToken } from '../../components/Text'
-import { palette, spacing, SpacingToken } from '../../styles/theme'
-import { darkMode } from '../../styles/media'
+import { palette } from '../../styles/theme'
 /** @jsxImportSource @emotion/core */ jsx
 
 const SectionHeading = ({ children }: { children: ReactNode }) => {
@@ -142,35 +140,6 @@ const DesignSystem = () => {
             ))}
           </ComponentContainer>
 
-          <SectionHeading>Spacing</SectionHeading>
-          <ComponentContainer>
-            {(['xxs', 'xs', 's', 'm', 'l', 'xl', 'xxl'] as SpacingToken[]).map(
-              token => (
-                <Box
-                  key={token}
-                  paddingRight="l"
-                  display="inline-flex"
-                  css={{ flexDirection: 'column', alignItems: 'center' }}
-                >
-                  <Box
-                    display="inline-flex"
-                    paddingLeft={token}
-                    paddingTop={token}
-                    css={{ background: palette.black }}
-                  />
-                  <Box
-                    display="flex"
-                    paddingTop="s"
-                    css={{ textAlign: 'center', flexDirection: 'column' }}
-                  >
-                    <Text variant="caption">{token}</Text>
-                    <Text variant="caption">({spacing[token]})</Text>
-                  </Box>
-                </Box>
-              )
-            )}
-          </ComponentContainer>
-
           <SectionHeading>Links</SectionHeading>
 
           <ComponentContainer>
@@ -252,18 +221,18 @@ const DesignSystem = () => {
               essentially the "info" variant!
             </Callout>
 
-            <Box paddingTop="m">
+            <div className="pt-4">
               <Callout icon="😱" heading="With a heading!">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis
                 provident quasi iure consequatur facere corporis quaerat minus
                 corrupti! Dolorum deleniti non eaque veritatis id aliquid
                 tempore deserunt. Vero, veritatis suscipit?
               </Callout>
-            </Box>
+            </div>
 
             {(['success', 'warning', 'error', 'info'] as CalloutVariant[]).map(
               variant => (
-                <Box paddingTop="m" key={variant}>
+                <div className="pt-4" key={variant}>
                   <Callout
                     variant={variant}
                     heading={
@@ -275,7 +244,7 @@ const DesignSystem = () => {
                     ea alias, obcaecati illo minus dolores tempora sunt esse.
                     Officiis, cumque quam.
                   </Callout>
-                </Box>
+                </div>
               )
             )}
           </ComponentContainer>

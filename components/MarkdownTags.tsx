@@ -1,16 +1,24 @@
+import { forwardRef, ReactNode } from 'react'
+import { Callout } from './Callout'
 import styles from './MarkdownTags.module.css'
 
-export const A = ({ href, children }) => (
-  <a
-    title={children}
-    href={href}
-    className={
-      'px-0.5 font-medium text-gray-500 no-underline bg-transparent border-b-2 border-gray-200 rounded-sm border-b-solid hover:bg-gray-100 hover:text-gray-600 hover:border-gray-600 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-800 dark:hover:bg-opacity-50 dark:hover:border-white'
-    }
-  >
-    {children}
-  </a>
-)
+export const A = forwardRef<
+  HTMLAnchorElement,
+  { href?: string; children: ReactNode; title?: string }
+>(({ href, children, title }, ref) => {
+  return (
+    <a
+      ref={ref}
+      title={title}
+      href={href}
+      className={
+        'px-0.5 font-medium text-gray-500 no-underline bg-transparent border-b-2 border-gray-200 rounded-sm border-b-solid hover:bg-gray-100 hover:text-gray-600 hover:border-gray-600 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-900 dark:hover:bg-opacity-50 dark:hover:border-white'
+      }
+    >
+      {children}
+    </a>
+  )
+})
 
 export const P = ({ children }) => {
   return <p className="mb-6 text-base leading-7">{children}</p>
@@ -71,5 +79,31 @@ export const Li = ({ children }) => {
 }
 
 export const Hr = () => {
-  return <hr className="my-16 border border-gray-100 dark:border-gray-900" />
+  return (
+    <hr
+      className="relative h-auto my-16 font-mono tracking-tighter text-center border-none content-before before:text-lg dark:text-gray-400"
+      tw-content-before="* * *"
+    />
+  )
+}
+
+export const components = {
+  a: A,
+  p: P,
+  h2: H2,
+  h3: H3,
+  h4: H4,
+  h5: H5,
+  h6: H6,
+  pre: Pre,
+  inlineCode: InlineCode,
+  ol: Ol,
+  ul: Ul,
+  li: Li,
+  hr: Hr,
+  Callout: props => (
+    <div className="my-6 -mx-6">
+      <Callout {...props} />
+    </div>
+  ),
 }

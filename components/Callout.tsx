@@ -1,3 +1,4 @@
+import clsx from 'clsx'
 import { ReactNode } from 'react'
 import styles from './Callout.module.css'
 
@@ -60,7 +61,7 @@ export const Callout = ({
   const config = colorVariants[variant]
 
   return (
-    <div className={`${styles.container} ${config.css} bg-opacity-60`}>
+    <div className={clsx(styles.container, config.css)}>
       <div className="w-6 h-6 text-xl">{icon || config.icon}</div>
 
       {heading && <div className="text-xl font-medium">{heading}</div>}

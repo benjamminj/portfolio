@@ -4,15 +4,9 @@ import { getPostBySlug } from '../../lib/getPostBySlug'
 import { getPostFilePaths } from '../../lib/getPostFilePaths'
 import { slugifyPost } from '../../lib/slugifyPost'
 import { PostFrontmatter } from '../../lib/types'
-import { Box } from '../../components/Box'
-import { Heading } from '../../components/Heading'
-import { Layout } from '../../components/Layout'
-import { Text } from '../../components/Text'
-import { textMaxWidth } from '../../styles/variables'
+import { LayoutV2 } from '../../components/Layout'
 import { compareDesc, format } from 'date-fns'
 import { PostListItem } from '../../components/PostListItem'
-import { css, jsx } from '@emotion/core'
-/** @jsxImportSource @emotion/core */ jsx
 
 type PostPreview = Pick<PostFrontmatter, 'title' | 'tags'> & {
   date: string
@@ -30,33 +24,15 @@ interface TagPageParams extends ParsedUrlQuery {
 
 const TagPage = ({ tag, posts }: TagPageProps) => {
   return (
-    <Layout>
-      <Box
-        component="section"
-        padding="gutter"
-        paddingTop="xxl"
-        css={{ maxWidth: textMaxWidth }}
-      >
-        <Heading>
-          <h1>
-            <Text variant="h3">#{tag}</Text>
-          </h1>
-        </Heading>
-
-        <Box component="ul" paddingBottom="m">
-          {posts.map(post => (
-            <li key={post.href}>
-              <PostListItem
-                title={post.title}
-                date={post.date}
-                tags={post.tags}
-                href={post.href}
-              />
-            </li>
-          ))}
-        </Box>
-      </Box>
-    </Layout>
+    <LayoutV2 title={`#${tag}`}>
+      <ul>
+        {posts.map(post => (
+          <li key={post.href}>
+            <PostListItem post={post} />
+          </li>
+        ))}
+      </ul>
+    </LayoutV2>
   )
 }
 

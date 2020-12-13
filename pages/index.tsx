@@ -51,12 +51,7 @@ const IndexPage = ({ mdxContent }) => {
 }
 
 export const getStaticProps = async () => {
-  // const introContent = fs.readFileSync('./writing/markdown-test.md', 'utf8')
-
-  const introContent = fs.readFileSync(
-    './writing/accessible-icon-buttons.mdx',
-    'utf8'
-  )
+  const introContent = fs.readFileSync('./content/intro.mdx', 'utf8')
 
   const { attributes: metadata, body } = fm(introContent)
   const mdxContent = await renderToString(body, { components })

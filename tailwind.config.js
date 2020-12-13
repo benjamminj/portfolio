@@ -1,4 +1,5 @@
 const colors = require('tailwindcss/colors')
+const plugin = require('tailwindcss/plugin')
 
 module.exports = {
   purge: ['./components/**/*.{js,ts,jsx,tsx}', './pages/**/*.{js,ts,jsx,tsx}'],
@@ -486,11 +487,12 @@ module.exports = {
       viewport: '100vw',
       ...breakpoints(theme('screens')),
     }),
-    minHeight: {
+    minHeight: theme => ({
+      ...theme('spacing'),
       0: '0px',
       full: '100%',
       screen: '100vh',
-    },
+    }),
     minWidth: {
       0: '0px',
       full: '100%',
@@ -721,6 +723,8 @@ module.exports = {
       screen: '100vw',
       min: 'min-content',
       max: 'max-content',
+      // TODO: rename?
+      prose: '80ch',
     }),
     zIndex: {
       auto: 'auto',
@@ -833,7 +837,7 @@ module.exports = {
     gridRowStart: ['responsive'],
     gridTemplateColumns: ['responsive'],
     gridTemplateRows: ['responsive'],
-    height: ['responsive'],
+    height: ['responsive', 'before', 'after'],
     inset: ['responsive', 'before', 'after'],
     justifyContent: ['responsive'],
     justifyItems: ['responsive'],
@@ -845,8 +849,8 @@ module.exports = {
     margin: ['responsive'],
     maxHeight: ['responsive'],
     maxWidth: ['responsive'],
-    minHeight: ['responsive'],
-    minWidth: ['responsive'],
+    minHeight: ['responsive', 'before', 'after'],
+    minWidth: ['responsive', 'before', 'after'],
     objectFit: ['responsive'],
     objectPosition: ['responsive'],
     opacity: ['responsive', 'group-hover', 'focus-within', 'hover', 'focus'],
@@ -861,7 +865,7 @@ module.exports = {
     placeholderColor: ['responsive', 'dark', 'focus'],
     placeholderOpacity: ['responsive', 'focus'],
     pointerEvents: ['responsive'],
-    position: ['responsive', 'before'],
+    position: ['responsive', 'before', 'after'],
     resize: ['responsive'],
     ringColor: ['responsive', 'dark', 'focus-within', 'focus'],
     ringOffsetColor: ['responsive', 'dark', 'focus-within', 'focus'],
@@ -911,9 +915,21 @@ module.exports = {
     verticalAlign: ['responsive'],
     visibility: ['responsive'],
     whitespace: ['responsive'],
-    width: ['responsive'],
+    width: ['responsive', 'before', 'after'],
     wordBreak: ['responsive'],
     zIndex: ['responsive', 'focus-within', 'focus'],
   },
-  plugins: [require('tailwindcss-pseudo-elements')],
+  plugins: [
+    require('tailwindcss-pseudo-elements'),
+    plugin(({ addUtilities }) => {
+      addUtilities(
+        {
+          '.empty-content': {
+            content: "''",
+          },
+        },
+        ['before']
+      )
+    }),
+  ],
 }

@@ -2,11 +2,7 @@ import clsx from 'clsx'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { forwardRef, MutableRefObject, ReactNode } from 'react'
-import { aboveTablet, darkMode } from '../styles/media'
-import { fontSizes, layers, palette, spacing, weights } from '../styles/theme'
-import { Box } from './Box'
 import { Container } from './Container'
-import { Stack } from './Stack'
 
 interface HeaderLinkProps {
   href?: string
@@ -43,37 +39,16 @@ export const Header = () => {
   return (
     <header className="z-header max-w-viewport">
       <Container>
-        <Box
-          padding="gutter"
-          display={['block', 'flex']}
-          css={[{ justifyContent: 'space-between' }]}
-        >
+        <div className="justify-between block p-4 space-y-2 sm:flex sm:space-y-0">
           <Link href="/" passHref>
-            <a
-              css={[
-                {
-                  display: 'inline-block',
-                  textDecoration: 'none',
-                  fontSize: fontSizes.l,
-                  color: palette.black,
-                  fontWeight: weights.medium,
-                },
-                darkMode({ color: palette.white }),
-              ]}
-            >
-              <span css={{ textTransform: 'lowercase' }}>Benjamin Johnson</span>
+            <a className="inline-block text-xl font-medium text-black no-underline dark:text-white">
+              <span className="lowercase">Benjamin Johnson</span>
             </a>
           </Link>
 
-          <Stack
-            horizontal
-            css={[
-              { marginTop: spacing.xs, textTransform: 'lowercase' },
-              aboveTablet({ marginTop: 0 }),
-            ]}
-          >
+          <div className="flex mt-2 space-x-4 lowercase">
             <nav>
-              <Stack horizontal>
+              <div className="flex items-center space-x-4">
                 {/* TODO: change to "writing" */}
                 <Link href="/blog" passHref>
                   <HeaderLink title="Writing">writing</HeaderLink>
@@ -89,10 +64,10 @@ export const Header = () => {
                 >
                   contact
                 </HeaderLink>
-              </Stack>
+              </div>
             </nav>
-          </Stack>
-        </Box>
+          </div>
+        </div>
       </Container>
     </header>
   )

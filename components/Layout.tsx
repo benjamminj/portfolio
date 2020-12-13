@@ -5,14 +5,9 @@ import React, { ComponentType, ReactNode } from 'react'
 import reset from '../styles/reset'
 import { Link } from './Link'
 import { linkPadding } from '../styles/mixins'
-import { container, textMaxWidth } from '../styles/variables'
 import { PageWrapper } from './PageWrapper'
 import { Banner } from './Banner'
 import { Header as HeaderV2 } from './Header'
-import { fonts, fontSizes, palette, spacing, weights } from '../styles/theme'
-import { Box } from './Box'
-import { darkMode } from '../styles/media'
-import { Stack } from './Stack'
 /** @jsxImportSource @emotion/core */ jsx
 
 const Container = styled.div({
@@ -105,57 +100,26 @@ export const LayoutV2 = ({
 
       <Global styles={reset} />
 
-      <div css={{ position: 'relative' }}>
-        <div css={{ position: 'absolute', top: 0, left: 0, right: 0 }}>
-          {header}
-        </div>
+      <div className="relative">
+        <div className="absolute inset-x-0 top-0">{header}</div>
 
         <Banner>
           {/* TODO: remove and make composable? */}
-          <Stack>
-            <h1
-              css={{
-                textTransform: 'lowercase',
-                fontSize: fontSizes['3xl'],
-                fontFamily: fonts.primary,
-                fontWeight: weights.bold,
-              }}
-            >
-              {title}
-            </h1>
+          <div className="space-y-4">
+            <h1 className="text-5xl font-bold lowercase">{title}</h1>
 
             {subtitle && (
-              <h2
-                css={[
-                  {
-                    textTransform: 'lowercase',
-                    fontSize: fontSizes['xl'],
-                    fontWeight: weights.normal,
-                    color: palette.neutral_700,
-                  },
-                  darkMode({
-                    color: palette.neutral_200,
-                  }),
-                ]}
-              >
+              <h2 className="text-2xl font-normal text-gray-700 lowercase dark:text-gray-400">
                 {subtitle}
               </h2>
             )}
-          </Stack>
+          </div>
         </Banner>
       </div>
 
-      <Box paddingTop="xl">
-        <div
-          css={{
-            maxWidth: textMaxWidth,
-            margin: '0 auto',
-            padding: spacing.gutter,
-          }}
-        >
-          {children}
-        </div>
-      </Box>
+      <div className="p-4 pt-10 mx-auto my-0 max-w-viewport md:max-w-prose">
+        {children}
+      </div>
     </PageWrapper>
   )
 }

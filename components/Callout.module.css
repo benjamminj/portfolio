@@ -1,5 +1,9 @@
 .container {
   grid-template-columns: auto 1fr;
-  grid-template-roes: auto min-content;
-  @apply grid px-6 py-8 gap-x-4 gap-y-3 border-2 rounded-2xl md:gap-y-1;
+  grid-template-rows: auto min-content;
+  @apply grid px-6 py-8 border-2 gap-x-4 gap-y-3 md:gap-y-1 md:rounded-2xl;
+}
+
+.container p {
+  @apply m-0;
 }
