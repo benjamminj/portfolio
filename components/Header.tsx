@@ -55,7 +55,7 @@ export const Header = () => {
                 </Link>
 
                 <HeaderLink title="GitHub" href="https://github.com/benjamminj">
-                  GitHub
+                  github
                 </HeaderLink>
 
                 <HeaderLink

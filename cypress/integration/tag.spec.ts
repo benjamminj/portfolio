@@ -2,7 +2,7 @@ describe('Tags page', () => {
   it('should show the writings associated with a tag', () => {
     const tag = 'javascript'
     cy.visit(`/tags/${tag}`)
-    cy.contains('benjaminjohnson.me').should('exist')
+    cy.contains('Benjamin Johnson').should('exist')
 
     cy.get('*:not(a)')
       .contains(`#${tag}`)
