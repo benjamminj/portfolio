@@ -1,4 +1,3 @@
-import { jsx } from '@emotion/core'
 import prism from '@mapbox/rehype-prism'
 import { format } from 'date-fns'
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
@@ -14,7 +13,6 @@ import { PostFrontmatter } from '../../lib/types'
 import { Layout } from '../../components/Layout'
 import { Tag } from '../../components/Tag'
 import { A, components } from '../../components/MarkdownTags'
-/** @jsxImportSource @emotion/core */ jsx
 
 interface PostPageParams extends ParsedUrlQuery {
   slug: string
