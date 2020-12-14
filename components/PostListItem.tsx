@@ -7,11 +7,11 @@ type PostPreview = Pick<PostFrontmatter, 'title' | 'tags'> & {
   date: string
 }
 
-interface PostPreviewCardProps {
+interface PostListItemProps {
   post: PostPreview
 }
 
-export const PostListItem = ({ post }: PostPreviewCardProps) => {
+export const PostListItem = ({ post }: PostListItemProps) => {
   return (
     <div className="relative p-4 -mx-4 hover:bg-gray-100 rounded-2xl dark:hover:bg-gray-900 dark:hover:bg-opacity-50">
       <div className="space-y-1 md:flex md:space-y-0 md:space-x-4">

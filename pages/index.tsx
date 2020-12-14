@@ -1,5 +1,5 @@
 import React from 'react'
-import { LayoutV2 } from '../components/Layout'
+import { Layout } from '../components/Layout'
 import renderToString from 'next-mdx-remote/render-to-string'
 import useHydrateMdx from 'next-mdx-remote/hydrate'
 import fm from 'front-matter'
@@ -41,12 +41,12 @@ const components = {
 const IndexPage = ({ mdxContent }) => {
   const hydrated = useHydrateMdx(mdxContent, { components })
   return (
-    <LayoutV2
+    <Layout
       title="Hey, I'm Ben! 🔥"
       subtitle="I'm a front-end software engineer based out of Seattle"
     >
       {hydrated}
-    </LayoutV2>
+    </Layout>
   )
 }
 

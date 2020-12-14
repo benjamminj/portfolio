@@ -4,7 +4,7 @@ import { getPostBySlug } from '../../lib/getPostBySlug'
 import { getPostFilePaths } from '../../lib/getPostFilePaths'
 import { slugifyPost } from '../../lib/slugifyPost'
 import { PostFrontmatter } from '../../lib/types'
-import { LayoutV2 } from '../../components/Layout'
+import { Layout } from '../../components/Layout'
 import { compareDesc, format } from 'date-fns'
 import { PostListItem } from '../../components/PostListItem'
 
@@ -24,7 +24,7 @@ interface TagPageParams extends ParsedUrlQuery {
 
 const TagPage = ({ tag, posts }: TagPageProps) => {
   return (
-    <LayoutV2 title={`#${tag}`}>
+    <Layout title={`#${tag}`}>
       <ul>
         {posts.map(post => (
           <li key={post.href}>
@@ -32,7 +32,7 @@ const TagPage = ({ tag, posts }: TagPageProps) => {
           </li>
         ))}
       </ul>
-    </LayoutV2>
+    </Layout>
   )
 }
 

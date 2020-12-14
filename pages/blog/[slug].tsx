@@ -11,7 +11,7 @@ import { getPostBySlug } from '../../lib/getPostBySlug'
 import { getPostFilePaths } from '../../lib/getPostFilePaths'
 import { slugifyPost } from '../../lib/slugifyPost'
 import { PostFrontmatter } from '../../lib/types'
-import { LayoutV2 } from '../../components/Layout'
+import { Layout } from '../../components/Layout'
 import { Tag } from '../../components/Tag'
 import { A, components } from '../../components/MarkdownTags'
 /** @jsxImportSource @emotion/core */ jsx
@@ -79,7 +79,7 @@ const PostPage: NextPage<PostPageProps> = props => {
 
   return (
     <Fragment>
-      <LayoutV2
+      <Layout
         title={title}
         subtitle={
           <div className="space-x-2">
@@ -144,7 +144,7 @@ const PostPage: NextPage<PostPageProps> = props => {
             </div>
           </footer>
         )}
-      </LayoutV2>
+      </Layout>
     </Fragment>
   )
 }

@@ -1,91 +1,23 @@
-import { Global, jsx } from '@emotion/core'
-import styled from '@emotion/styled'
 import Head from 'next/head'
-import React, { ComponentType, ReactNode } from 'react'
-import reset from '../styles/reset'
-import { Link } from './Link'
-import { linkPadding } from '../styles/mixins'
-import { PageWrapper } from './PageWrapper'
+import React, { ReactNode } from 'react'
 import { Banner } from './Banner'
-import { Header as HeaderV2 } from './Header'
-/** @jsxImportSource @emotion/core */ jsx
+import { Header } from './Header'
 
-const Container = styled.div({
-  display: 'grid',
-  gridTemplateRows: 'auto 1fr',
-  minHeight: '100vh',
-  // maxWidth: container,
-  margin: '0 auto',
-})
-
-const Header = styled.header`
-  z-index: 100;
-  text-align: left;
-  padding: var(--body-gutter);
-`
-
-/**
- * Generic layout wrapper for the entire website. Contains some default metadata,
- * loads some fonts, and top-level navigation.
- *
- * @todo deprecate?
- * - time to go more on a "bespoke" page-by-page basis. spin up a few different headers.
- */
-export const Layout = ({
-  children,
-  containerComponent: ContainerComponent = Container,
-  header = (
-    <Header>
-      <Link href="/index" as="/" css={{ marginLeft: `-${linkPadding}` }}>
-        benjaminjohnson.me
-      </Link>
-    </Header>
-  ),
-}: {
-  children?: ReactNode
-  header?: ReactNode
-  containerComponent?: ComponentType
-}) => (
-  <ContainerComponent>
-    <Head>
-      <title>Benjamin Johnson | Senior Front-End Engineer</title>
-      <meta
-        name="description"
-        content="Front-end engineer with a passion for clean UIs & elegant code"
-      />
-      <meta
-        name="keywords"
-        content="front-end engineer, web, javascript, react"
-      />
-
-      <link
-        rel="stylesheet"
-        href="https://fonts.googleapis.com/css?family=Inconsolata:400,700&display=swap"
-      />
-    </Head>
-
-    <Global styles={reset} />
-
-    {header}
-    {children}
-  </ContainerComponent>
-)
-
-interface LayoutV2Props {
+interface LayoutProps {
   children: ReactNode
   header?: ReactNode
   title: ReactNode
   subtitle?: ReactNode
 }
 
-export const LayoutV2 = ({
+export const Layout = ({
   children,
-  header = <HeaderV2 />,
+  header = <Header />,
   title,
   subtitle,
-}: LayoutV2Props) => {
+}: LayoutProps) => {
   return (
-    <PageWrapper>
+    <div className="min-h-screen bg-white dark:text-white dark:bg-gray-800">
       <Head>
         <title>Benjamin Johnson | Senior Front-End Engineer</title>
         <meta
@@ -97,8 +29,6 @@ export const LayoutV2 = ({
           content="front-end engineer, web, javascript, react"
         />
       </Head>
-
-      <Global styles={reset} />
 
       <div className="relative">
         <div className="absolute inset-x-0 top-0">{header}</div>
@@ -120,6 +50,6 @@ export const LayoutV2 = ({
       <div className="p-4 pt-10 mx-auto my-0 max-w-viewport md:max-w-prose">
         {children}
       </div>
-    </PageWrapper>
+    </div>
   )
 }

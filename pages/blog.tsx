@@ -4,7 +4,7 @@ import { getPostBySlug } from '../lib/getPostBySlug'
 import { getPostFilePaths } from '../lib/getPostFilePaths'
 import { slugifyPost } from '../lib/slugifyPost'
 import { PostFrontmatter } from '../lib/types'
-import { LayoutV2 } from '../components/Layout'
+import { Layout } from '../components/Layout'
 import { Tag } from '../components/Tag'
 import { PostListItem } from '../components/PostListItem'
 
@@ -31,7 +31,7 @@ interface PostPreviewCardProps {
 /** Displays a list of all published writings. */
 const BlogPage = ({ posts }: BlogPageProps) => {
   return (
-    <LayoutV2 title="Writing" subtitle="subtitle TODO">
+    <Layout title="Writing">
       <ul>
         <div className="space-y-2">
           {posts.map(post => {
@@ -43,7 +43,7 @@ const BlogPage = ({ posts }: BlogPageProps) => {
           })}
         </div>
       </ul>
-    </LayoutV2>
+    </Layout>
   )
 }
 
