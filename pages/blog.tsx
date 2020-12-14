@@ -1,17 +1,12 @@
-import { jsx } from '@emotion/core'
 import { compareDesc, format } from 'date-fns'
 import { GetStaticProps } from 'next'
 import { getPostBySlug } from '../lib/getPostBySlug'
 import { getPostFilePaths } from '../lib/getPostFilePaths'
 import { slugifyPost } from '../lib/slugifyPost'
 import { PostFrontmatter } from '../lib/types'
-import { Heading } from '../components/Heading'
 import { Layout } from '../components/Layout'
+import { Tag } from '../components/Tag'
 import { PostListItem } from '../components/PostListItem'
-import { Text } from '../components/Text'
-import { Box } from '../components/Box'
-import { textMaxWidth } from '../styles/variables'
-/** @jsxImportSource @emotion/core */ jsx
 
 type PostPreview = Pick<
   PostFrontmatter,
@@ -29,35 +24,25 @@ interface BlogPageProps {
   posts: PostPreview[]
 }
 
+interface PostPreviewCardProps {
+  post: PostPreview
+}
+
 /** Displays a list of all published writings. */
 const BlogPage = ({ posts }: BlogPageProps) => {
   return (
-    <Layout>
-      <Box
-        component="section"
-        padding="gutter"
-        paddingTop="xxl"
-        css={{ maxWidth: textMaxWidth, margin: '0 auto' }}
-      >
-        <Heading>
-          <h1>
-            <Text variant="h3">Blog</Text>
-          </h1>
-        </Heading>
-
-        <Box component="ul" paddingBottom="m">
-          {posts.map(post => (
-            <li key={post.href}>
-              <PostListItem
-                title={post.title}
-                date={post.date}
-                tags={post.tags}
-                href={post.href}
-              />
-            </li>
-          ))}
-        </Box>
-      </Box>
+    <Layout title="Writing">
+      <ul>
+        <div className="space-y-2">
+          {posts.map(post => {
+            return (
+              <li key={post.href} className="w-full">
+                <PostListItem post={post} />
+              </li>
+            )
+          })}
+        </div>
+      </ul>
     </Layout>
   )
 }

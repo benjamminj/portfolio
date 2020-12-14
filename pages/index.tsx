@@ -1,95 +1,66 @@
-import { css } from '@emotion/core'
 import React from 'react'
-import { Heading } from '../components/Heading'
 import { Layout } from '../components/Layout'
-import { Link } from '../components/Link'
-import { Text } from '../components/Text'
-import { Box } from '../components/Box'
+import renderToString from 'next-mdx-remote/render-to-string'
+import useHydrateMdx from 'next-mdx-remote/hydrate'
+import fm from 'front-matter'
+import fs from 'fs'
+import {
+  A,
+  H2,
+  H3,
+  H4,
+  H5,
+  H6,
+  Hr,
+  InlineCode,
+  Li,
+  Ol,
+  P,
+  Pre,
+  Ul,
+} from '../components/MarkdownTags'
+import { Callout } from '../components/Callout'
 
-const navigation = [
-  {
-    text: 'github',
-    external: true,
-    href: 'https://github.com/benjamminj',
-  },
-  {
-    text: 'blog',
-    href: '/blog',
-  },
-  {
-    text: 'linkedin',
-    external: true,
-    href: 'https://www.linkedin.com/in/benjamin-d-johnson/',
-  },
-  {
-    text: 'contact',
-    external: true,
-    href: 'mailto:benjamin.d.johnson@icloud.com',
-  },
-]
+const components = {
+  a: A,
+  p: P,
+  h2: H2,
+  h3: H3,
+  h4: H4,
+  h5: H5,
+  h6: H6,
+  pre: Pre,
+  inlineCode: InlineCode,
+  ol: Ol,
+  ul: Ul,
+  li: Li,
+  hr: Hr,
+  Callout,
+}
 
-const IndexPage = () => (
-  <Layout>
-    <Box
-      display="flex"
-      padding="gutter"
-      css={css`
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-
-        > * {
-          max-width: 35rem;
-        }
-      `}
+const IndexPage = ({ mdxContent }) => {
+  const hydrated = useHydrateMdx(mdxContent, { components })
+  return (
+    <Layout
+      title="Hey, I'm Ben! 🔥"
+      subtitle="I'm a front-end software engineer based out of Seattle"
     >
-      <Heading>
-        <h1>
-          <Text variant="h4">Benjamin Johnson</Text>
-        </h1>
-      </Heading>
+      {hydrated}
+    </Layout>
+  )
+}
 
-      <p>
-        <Text>
-          Hi!{' '}
-          <span role="img" aria-label="waving hand">
-            👋🏻
-          </span>
-          &nbsp; I'm a frontend engineer with a passion for clean UIs,
-          easy-to-understand code, and a well-made cup of coffee. Currently
-          learning/working at{' '}
-          <Link external href="https://www.sourcestrike.com/">
-            SourceStrike
-          </Link>{' '}
-          remotely.
-        </Text>
-      </p>
+export const getStaticProps = async () => {
+  const introContent = fs.readFileSync('./content/intro.mdx', 'utf8')
 
-      <Box
-        component="ul"
-        display="flex"
-        paddingY="xl"
-        css={{
-          flexWrap: 'wrap',
-        }}
-      >
-        {navigation.map((link, i) => (
-          <Box
-            component="li"
-            key={link.href}
-            paddingY="xs"
-            paddingLeft={i === 0 ? 'none' : 'xxl'}
-          >
-            <Text>
-              <Link external={link.external} href={link.href}>
-                {link.text}
-              </Link>
-            </Text>
-          </Box>
-        ))}
-      </Box>
-    </Box>
-  </Layout>
-)
+  const { attributes: metadata, body } = fm(introContent)
+  const mdxContent = await renderToString(body, { components })
+  return {
+    props: {
+      metadata,
+      mdxContent,
+    },
+  }
+}
 
 export default IndexPage

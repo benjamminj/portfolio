@@ -1,4 +1,3 @@
-import { jsx } from '@emotion/core'
 import prism from '@mapbox/rehype-prism'
 import { format } from 'date-fns'
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
@@ -12,16 +11,8 @@ import { getPostFilePaths } from '../../lib/getPostFilePaths'
 import { slugifyPost } from '../../lib/slugifyPost'
 import { PostFrontmatter } from '../../lib/types'
 import { Layout } from '../../components/Layout'
-import { Link } from '../../components/Link'
-import { Box } from '../../components/Box'
-import { Callout } from '../../components/Callout'
-import { Img } from '../../components/Img'
-import { MarkdownWrapperStyles } from '../../components/Markdown'
-import { Text } from '../../components/Text'
-import { palette, spacing } from '../../styles/theme'
-import { container } from '../../styles/variables'
 import { Tag } from '../../components/Tag'
-/** @jsxImportSource @emotion/core */ jsx
+import { A, components } from '../../components/MarkdownTags'
 
 interface PostPageParams extends ParsedUrlQuery {
   slug: string
@@ -57,35 +48,14 @@ interface PostPageProps {
   >
 }
 
-const mdxComponents = {
-  Callout: props => (
-    <Box
-      css={{
-        marginTop: spacing.xxl,
-        marginBottom: spacing.xxl,
-
-        '*:not(pre) > code': {
-          background: palette.neutral_300,
-        },
-      }}
-    >
-      <Callout {...props} />
-    </Box>
-  ),
-}
-
 /**
  * This page displays an individual post for viewing.
- *
- * The mdx in the
  */
 const PostPage: NextPage<PostPageProps> = props => {
   // Hydrate the MDX content. The second argument is an object of React components
   // to interpolate into the MDX components. Hydrating in this fashion means that
   // we can move the MDX to any folder we want, or even to a separate repository.
-  const hydrated = useHydrateMdx(props.mdxContent, {
-    components: mdxComponents,
-  })
+  const hydrated = useHydrateMdx(props.mdxContent, { components })
 
   const {
     title,
@@ -107,7 +77,16 @@ const PostPage: NextPage<PostPageProps> = props => {
 
   return (
     <Fragment>
-      <Layout>
+      <Layout
+        title={title}
+        subtitle={
+          <div className="space-x-2">
+            {tags.map(tag => (
+              <Tag key={tag} tag={tag} />
+            ))}
+          </div>
+        }
+      >
         <Head>
           <title>{title}</title>
           <meta name="author" content="Benjamin Johnson" />
@@ -141,76 +120,27 @@ const PostPage: NextPage<PostPageProps> = props => {
           <script src="https://unpkg.com/requestidlecallback-polyfill@1.0.2/index.js" />
         </Head>
 
-        <Box
-          component="main"
-          padding="gutter"
-          paddingTop="xxl"
-          paddingBottom="xl"
-          css={{
-            maxWidth: '100vw',
-            [`@media screen and (min-width: ${container})`]: {
-              maxWidth: container,
-              margin: '0 auto',
-            },
-          }}
-        >
-          <Box paddingTop="l" paddingBottom="xl">
-            <Box>
-              <h1>
-                <Text variant="h3">{title}</Text>
-              </h1>
-            </Box>
-
-            {tags.length > 0 && (
-              <Box>
-                {tags.map(tag => (
-                  <Tag key={tag} tag={tag} />
-                ))}
-              </Box>
-            )}
-          </Box>
-
-          {props.image && (
-            <Box paddingBottom="l" bleedX="gutter">
-              <Img
-                {...props.image}
-                alt={props.image.alt}
-                css={{
-                  maxWidth: '100vw',
-                  overflowX: 'hidden',
-                }}
-              />
-            </Box>
-          )}
-
-          <MarkdownWrapperStyles>{hydrated}</MarkdownWrapperStyles>
+        <main>
+          <div>{hydrated}</div>
 
           {publisher && externalLink && (
-            <Box paddingTop="xl">
-              <Link external href={externalLink}>
+            <div className="pt-4">
+              <A title={publisher} href={externalLink}>
                 Read the full article on {publisher}.
-              </Link>
-            </Box>
+              </A>
+            </div>
           )}
-        </Box>
+        </main>
 
         {Boolean(updatedDate) && (
-          <Box
-            data-testid="SlugPage__footer"
-            component="footer"
-            paddingTop="xl"
-            paddingBottom="xxl"
-            paddingX="gutter"
-            css={{ borderTop: `2px solid ${palette.neutral_100}` }}
-          >
-            <Text
-              variant="caption"
-              css={{ color: palette.neutral_900, display: 'block' }}
-            >
-              Last updated
-            </Text>
-            <Text variant="body">{format(updatedDate, 'yyyy-MM-dd')}</Text>
-          </Box>
+          <footer data-testid="SlugPage__footer" className="py-12">
+            <div>
+              <div className="font-mono dark:text-gray-400">Last updated</div>
+              <div className="dark:text-gray-200">
+                {format(updatedDate, 'yyyy-MM-dd')}
+              </div>
+            </div>
+          </footer>
         )}
       </Layout>
     </Fragment>
@@ -253,7 +183,7 @@ export const getStaticProps: GetPostPageStaticProps = async ctx => {
 
   // Render out the MDX content.
   const mdxContent = await renderToString(body, {
-    components: mdxComponents,
+    components,
     mdxOptions: {
       // `prism` adds syntax highlighting as CSS classes to the code blocks.
       rehypePlugins: [prism],

@@ -2,7 +2,7 @@ describe('Post page', () => {
   it('should display the post', () => {
     cy.visit('/blog/mocking-fetch')
 
-    cy.contains('benjaminjohnson.me')
+    cy.contains('Benjamin Johnson').should('exist')
 
     const pageContent = {
       title: 'Mocking the fetch API with Jest',
@@ -41,7 +41,6 @@ describe('Post page', () => {
     cy.get('[data-testid="SlugPage__footer"')
       .contains('Last updated')
       .should('exist')
-    cy.get(`[alt="${pageContent.imageAlt}"]`).should('exist')
 
     const tags = ['testing', 'javascript', 'jest']
 

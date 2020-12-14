@@ -1,7 +1,6 @@
+import clsx from 'clsx'
 import { ReactNode } from 'react'
-import { palette, spacing } from '../styles/theme'
-import { Box } from './Box'
-import { Text } from './Text'
+import styles from './Callout.module.css'
 
 export type CalloutVariant = 'success' | 'error' | 'warning' | 'info'
 
@@ -14,36 +13,41 @@ interface CalloutProps {
 }
 
 interface ColorVariantConfig {
-  background: string
-  border: string
-  heading: string
+  light: {
+    background: string
+    border: string
+    heading: string
+  }
+  dark: {
+    background: string
+    border: string
+    heading: string
+  }
   defaultIcon: ReactNode
 }
 
-const colorVariants: { [key in CalloutVariant]: ColorVariantConfig } = {
+const colorVariants: {
+  [key in CalloutVariant]: { css: string; icon: string }
+} = {
+  info: {
+    css:
+      'bg-gray-100 border-gray-200 dark:bg-gray-900 dark:border-gray-800 text-gray-900 dark:text-white',
+    icon: '💬',
+  },
   success: {
-    background: palette.success_100,
-    border: palette.success_200,
-    heading: palette.success_900,
-    defaultIcon: '✅',
+    css:
+      'bg-green-100 border-green-200 dark:bg-green-900 dark:border-green-800 text-green-900 dark:text-green-100',
+    icon: '✅',
   },
   error: {
-    background: palette.error_100,
-    border: palette.error_200,
-    heading: palette.error_900,
-    defaultIcon: '🚨',
+    css:
+      'bg-red-100 border-red-200 dark:bg-red-900 dark:border-red-800 text-red-900 dark:text-red-100',
+    icon: '🚨',
   },
   warning: {
-    background: palette.warning_100,
-    border: palette.warning_300,
-    heading: palette.warning_900,
-    defaultIcon: '🚧',
-  },
-  info: {
-    background: palette.neutral_100,
-    border: palette.neutral_300,
-    heading: palette.neutral_900,
-    defaultIcon: '💬',
+    css:
+      'bg-yellow-100 border-yellow-200 dark:bg-yellow-900 dark:border-yellow-800 text-yellow-900 dark:text-yellow-100',
+    icon: '🚧',
   },
 }
 
@@ -55,39 +59,16 @@ export const Callout = ({
   ...props
 }: CalloutProps) => {
   const config = colorVariants[variant]
+
   return (
-    <Box
-      paddingY="xl"
-      paddingX="l"
-      display="grid"
-      css={{
-        gridTemplateColumns: 'auto 1fr',
-        gridTemplateRows: 'auto min-content',
-        gridColumnGap: spacing.m,
-        gridRowGap: spacing.xxs,
-        border: `2px solid ${config.border}`,
-        borderRadius: 'var(--border-radius-l)',
-        backgroundColor: config.background,
-      }}
-      {...props}
-    >
-      <Text
-        variant="h4"
-        css={{
-          height: spacing.l,
-          width: spacing.l,
-        }}
-      >
-        {icon || config.defaultIcon}
-      </Text>
+    <div className={clsx(styles.container, config.css)}>
+      <div className="w-6 h-6 text-xl">{icon || config.icon}</div>
 
-      {heading && (
-        <Text variant="subtitle" css={{ color: config.heading }}>
-          {heading}
-        </Text>
-      )}
+      {heading && <div className="text-xl font-medium">{heading}</div>}
 
-      <Box css={{ gridColumn: 2, paddingTop: spacing.xxs }}>{children}</Box>
-    </Box>
+      <div className="col-start-1 col-end-3 md:col-start-2 md:col-end-3 dark:text-white">
+        {children}
+      </div>
+    </div>
   )
 }

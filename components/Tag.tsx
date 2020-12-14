@@ -1,9 +1,5 @@
 import React from 'react'
-import { jsx } from '@emotion/core'
-import { Text } from './Text'
-import { spacing, palette } from '../styles/theme'
-import { Link } from './Link'
-/** @jsxImportSource @emotion/core */ jsx
+import Link from 'next/link'
 
 export interface TagProps {
   tag: string
@@ -15,29 +11,10 @@ export interface TagProps {
  */
 export const Tag = ({ tag }: TagProps) => {
   return (
-    <Link
-      href="/tags/[tag]"
-      as={`/tags/${tag}`}
-      css={{
-        textDecoration: 'none',
-        marginRight: spacing.xs,
-        padding: spacing.xxs,
-      }}
-    >
-      <Text
-        variant="caption"
-        key={tag}
-        css={{
-          color: palette.neutral_700,
-
-          ':hover': {
-            color: palette.neutral_900,
-            textDecoration: 'underline',
-          },
-        }}
-      >
+    <Link href={`/tags/${tag}`}>
+      <a className="p-1 -m-1 font-mono text-xs text-gray-600 no-underline rounded hover:text-gray-800 hover:bg-gray-100 hover:underline dark:text-gray-400 dark:hover:text-gray-50 dark:hover:bg-gray-900">
         #{tag}
-      </Text>
+      </a>
     </Link>
   )
 }

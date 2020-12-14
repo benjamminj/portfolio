@@ -12,7 +12,7 @@ const trackerId = process.env.NEXT_PUBLIC_GA_TRACKING_ID
 export default class CustomDocument extends Document {
   render() {
     return (
-      <Html>
+      <Html lang="en">
         <Head>
           {/* Google Analytics */}
           <script
