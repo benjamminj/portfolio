@@ -58,7 +58,7 @@ export const getStaticProps: GetStaticProps = async () => {
       const { frontmatter } = getPostBySlug(slug)
 
       // Don't add the post to the list if it's a WIP
-      if (frontmatter.draft) continue
+      if (frontmatter.draft && process.env.NODE_ENV === 'production') continue
 
       const postData = {
         ...frontmatter,

@@ -151,6 +151,8 @@ export const getStaticPaths: GetStaticPaths<PostPageParams> = async () => {
   const postFiles = getPostFilePaths()
 
   type Path = { params: PostPageParams }
+
+  // TODO: don't build draft posts?
   const paths = postFiles.map<Path>(file => {
     return { params: { slug: slugifyPost(file) } }
   })
