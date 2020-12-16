@@ -1,0 +1,54 @@
+---
+title: useDebouncedValue
+date: 2020-12-16
+tags:
+  - react
+  - typescript
+---
+
+## The code
+
+```tsx
+import { useState, useEffect } from 'react'
+
+export const useDebouncedValue = <T extends any>(input: T, delay = 0) => {
+  const [value, setValue] = useState(input)
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setValue(input)
+    }, delay)
+
+    return () => {
+      clearTimeout(timeout)
+    }
+  }, [input, delay])
+
+  return value
+}
+```
+
+## Usage
+
+```tsx
+const Component = ({ rapidlyChangingValue }) => {
+  const debounced = useDebouncedValue(rapidlyChangingValue)
+
+  return (
+    <div>
+      {/* This will show slightly stale data until the value stops changing */}
+      {debounced}
+    </div>
+  )
+}
+```
+
+## Context
+
+- Having a debounced value can serve as a way to get suspense-like transitions in a pre-suspense app.
+- Have an effect that's going rampant because you have some dependency that's rapidly changing? You can debounce the entire effect by isolating the rogue dependency and debouncing it.
+
+## Influences and prior art
+
+- https://usehooks.com/useDebounce/ Mostly influenced by this, I've renamed some things, added my own docs / comments, and ported it into TypeScript.
+- Feels similar to [`useDeferredValue`](https://reactjs.org/docs/concurrent-mode-reference.html#usedeferredvalue), which we'll be getting as soon as we're using React concurrent mode.
