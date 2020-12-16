@@ -55,7 +55,7 @@ export const Pre = ({ children }) => {
 
 export const InlineCode = ({ children }) => {
   return (
-    <code className="p-1 bg-gray-100 rounded-md dark:bg-gray-900">
+    <code className="p-1 break-words bg-gray-100 rounded-md dark:bg-gray-900">
       {children}
     </code>
   )
@@ -104,7 +104,7 @@ export const components = {
   li: Li,
   hr: Hr,
   Callout: props => (
-    <div className="my-6 -mx-6 md:mx-0 lg:-mx-6">
+    <div className="my-6 -mx-4 md:mx-0 lg:-mx-6">
       <Callout {...props} />
     </div>
   ),
