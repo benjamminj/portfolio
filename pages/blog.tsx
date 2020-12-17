@@ -5,7 +5,6 @@ import { getPostFilePaths } from '../lib/getPostFilePaths'
 import { slugifyPost } from '../lib/slugifyPost'
 import { PostFrontmatter } from '../lib/types'
 import { Layout } from '../components/Layout'
-import { Tag } from '../components/Tag'
 import { PostListItem } from '../components/PostListItem'
 
 type PostPreview = Pick<
