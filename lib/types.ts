@@ -1,3 +1,7 @@
+import { SVGProps } from 'react'
+
+export type IconProps = SVGProps<SVGElement>
+
 /**
  * All of the possible metadata that can possibly in a article's frontmatter.
  */

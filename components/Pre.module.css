@@ -1,0 +1,15 @@
+.tooltip {
+  animation: enter-tooltip 100ms ease-in-out 200ms;
+  animation-fill-mode: both;
+  opacity: 0;
+}
+
+@keyframes enter-tooltip {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
