@@ -6,13 +6,13 @@ import renderToString from 'next-mdx-remote/render-to-string'
 import Head from 'next/head'
 import { ParsedUrlQuery } from 'querystring'
 import React, { Fragment } from 'react'
+import { Layout } from '../../components/Layout'
+import { A, components } from '../../components/MarkdownTags'
+import { Tag } from '../../components/Tag'
 import { getPostBySlug } from '../../lib/getPostBySlug'
 import { getPostFilePaths } from '../../lib/getPostFilePaths'
 import { slugifyPost } from '../../lib/slugifyPost'
 import { PostFrontmatter } from '../../lib/types'
-import { Layout } from '../../components/Layout'
-import { Tag } from '../../components/Tag'
-import { A, components } from '../../components/MarkdownTags'
 
 interface PostPageParams extends ParsedUrlQuery {
   slug: string
@@ -35,6 +35,7 @@ interface PostPageProps {
     /** Alt text for the banner image */
     alt: string
   }
+  formattedDate: string
   /** Post metadata */
   frontmatter: Pick<
     PostFrontmatter,
@@ -57,18 +58,9 @@ const PostPage: NextPage<PostPageProps> = props => {
   // we can move the MDX to any folder we want, or even to a separate repository.
   const hydrated = useHydrateMdx(props.mdxContent, { components })
 
-  const {
-    title,
-    date,
-    lastUpdated,
-    publisher,
-    link: externalLink,
-    tags = [],
-  } = props.frontmatter
+  const { title, publisher, link: externalLink, tags = [] } = props.frontmatter
 
   const { HOMEPAGE } = process.env
-
-  const updatedDate = lastUpdated || date
 
   // If there's a banner image, we want to use that for the metadata, so we need
   // to create a non-relative URL to the image.
@@ -132,16 +124,12 @@ const PostPage: NextPage<PostPageProps> = props => {
           )}
         </main>
 
-        {Boolean(updatedDate) && (
-          <footer data-testid="SlugPage__footer" className="py-12">
-            <div>
-              <div className="font-mono dark:text-gray-400">Last updated</div>
-              <div className="dark:text-gray-200">
-                {format(updatedDate, 'yyyy-MM-dd')}
-              </div>
-            </div>
-          </footer>
-        )}
+        <footer data-testid="SlugPage__footer" className="py-12">
+          <div>
+            <div className="font-mono dark:text-gray-400">Last updated</div>
+            <div className="dark:text-gray-200">{props.formattedDate}</div>
+          </div>
+        </footer>
       </Layout>
     </Fragment>
   )
@@ -192,11 +180,16 @@ export const getStaticProps: GetPostPageStaticProps = async ctx => {
     },
   })
 
+  const { date, lastUpdated } = frontmatter
+  const unformattedDate = lastUpdated || date
+  const formattedDate = format(unformattedDate, 'yyyy-MM-dd')
+
   return {
     props: {
       slug,
       mdxContent,
       frontmatter,
+      formattedDate,
       ...imageProps,
       body,
     },
