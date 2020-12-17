@@ -31,7 +31,7 @@ const colorVariants: {
 } = {
   info: {
     css:
-      'bg-gray-100 border-gray-200 dark:bg-gray-900 dark:border-gray-800 text-gray-900 dark:text-white',
+      'bg-gray-100 border-gray-200 text-gray-900 dark:bg-gray-900 dark:bg-opacity-50 dark:border-gray-900 dark:border-opacity-60 dark:text-white',
     icon: '💬',
   },
   success: {
@@ -46,7 +46,7 @@ const colorVariants: {
   },
   warning: {
     css:
-      'bg-yellow-100 border-yellow-200 dark:bg-yellow-900 dark:border-yellow-800 text-yellow-900 dark:text-yellow-100',
+      'bg-yellow-100 border-yellow-200 text-yellow-900 dark:bg-yellow-500 dark:bg-opacity-10 dark:border-yellow-800 dark:border-opacity-50 dark:text-yellow-100',
     icon: '🚧',
   },
 }

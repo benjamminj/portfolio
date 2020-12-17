@@ -1,6 +1,6 @@
 ---
 title: How TailwindCSS converted me
-subtitle: Slowly but surely, utility-first CSS won me over.
+subtitle: 'Slowly but surely, utility-first CSS won me over.'
 date: 2020-12-16
 tags:
   - css
@@ -11,21 +11,19 @@ I'm _surprised_ I like [TailwindCSS](https://tailwindcss.com/). I tried it a cou
 
 Instead, I dove headfirst into CSS-in-JS, trying out `styled-components`, `emotion`, and a few other libraries.
 
-For the past couple years, `emotion` has been easily my go-to styling solution when it comes to modern apps. I've built some large apps using it, and I think it's a fantastic choice if you're going with CSS-in-JS.
+For the past couple years, `emotion` has been easily my go-to approach for CSS. I've built some large apps using it, and I think it's fantastic if you're going with CSS-in-JS.
 
-However, I kept seeing all this hype over Tailwind on Twitter. I had some people mention it on my [Twitch stream](https://www.twitch.tv/benjamindjohnson) as well as some coworkers talking about it. A couple months ago I figured it was time to give it another shot.
+However, I kept seeing all this Tailwind hype on Twitter. I had some people mention it on my [Twitch stream](https://www.twitch.tv/benjamindjohnson) as well as some coworkers talking about it. A couple months ago I figured it was time to give it another shot.
 
-Right now I think Tailwind has unseated CSS-in-JS (and `emotion`) as my go-to CSS solution in modern web apps. I've been pretty skeptical of it for the last few years and it's finally converted me over.
+I think Tailwind has unseated CSS-in-JS (and `emotion`) as my go-to CSS solution. I was pretty skeptical but it's finally converted me over. 🎉
 
-Here's some of my thoughts on _why_ I'm choosing Tailwind these days and why I'm now choosing it over CSS-in-JS. 
+Here's some of my thoughts on _why_ I'm choosing Tailwind these days and why I'm now choosing it over CSS-in-JS.
 
 ---
 
-## tl;dr
+## tl;dr ⏱
 
-Before we go too deep, here's an executive summary. If you're pitching Tailwind to your team I would lead with these points. 
-
-Some of the notable perks of Tailwind include:
+Before we deep-dive, here's an executive summary. If you're pitching Tailwind to your team I would start here:
 
 - **Colocation of styles and markup.** While this feels like it violates "separation of concerns", it's views the _component_ as the unit of composition in front-end apps.
 - **Less naming fatigue.** Not being forced to name containers and wrapper frees you up to spend energy on more important problems.
@@ -37,23 +35,23 @@ Some of the notable perks of Tailwind include:
 
 ## The tradeoffs you make with Tailwind
 
-Since I was a skeptic about utility-first CSS for a good while, I wanna start by going into the reasons I historically _didn't_ like Tailwind, and what's changed.
+Since I was a skeptic about utility-first CSS, I'm going to start with the reasons I _didn't_ like Tailwind, and what's changed.
 
-Hopefully some of these line up with your concerns about Tailwind if you're not into the Tailwind hype. (Or if you're advocating using Tailwind on your team and you're having struggles convincing team members that aren't fully sold on it).
+Hopefully these line up with your concerns about Tailwind if you're on the fence. _(Or if you're advocating using Tailwind on your team and you're having struggles convincing team members.)_
 
 ### wHaT aBOut sEpArAtIOn oF cOnCErns?
 
-For a little while in my front-end career I was all into the separation of concerns. After all, I was taught that markup (HTML), styles (CSS), and functionality (JS) should be split into separate files.
+When I learned programming, I was taught that markup (HTML), styles (CSS), and functionality (JS) should be split into separate files.
 
-As I got more experience and built larger (and more complex) applications, I don't think the "concerns" in our app always line up with HTML, CSS, and JS files. Especially in modern JS applications using a front-end framework like React or Vue.
+After building some larger (and more complex) applications, I don't think "concerns" in front-end apps always map nicely to HTML, CSS, and JS files. Especially if you're using a framework.
 
 In React we put HTML in our JS files ([JSX](https://reactjs.org/docs/introducing-jsx.html)). [Vue's single-file components](https://v3.vuejs.org/guide/single-file-component.html#single-file-components) put HTML/CSS/JS in one `.vue` file.
 
-In modern component-based frameworks I largely think the _component itself_ is the "concern" we want to separate. It's not the styles vs the JS vs markup—they all work together to make up the self-contained component.
+In modern web apps I think the _component itself_ is the "concern" we want to separate. It's not the styles vs the JS vs markup—they all work together to make up the self-contained component.
 
-As I've chewed on the _component_ being self-contained over the years, I've grown more and more open to having styling directly in my markup. I've actually been doing this for a while via `emotion`'s `css` prop.
+As I've reflected on components being self-contained, I've grown more and more open to having styling directly in my markup. _(I've actually been doing this for a while via `emotion`'s `css` prop.)_
 
-Adam Wathan (Tailwind's creator) has a fantastic article on [separation of concerns and utility CSS](https://adamwathan.me/css-utility-classes-and-separation-of-concerns/).
+Adam Wathan (Tailwind's creator) also has a fantastic article on [separation of concerns and utility CSS](https://adamwathan.me/css-utility-classes-and-separation-of-concerns/). If this is your main roadblock to trying out Tailwind I'd highly recommend giving it a read.
 
 ### Ugly markup
 
@@ -72,9 +70,9 @@ It can be a bit jarring seeing that list of classes the first time you have to d
 
 And unlike CSS-in-JS, you can't statically type the fields with TypeScript. Splitting the string of classes into multiple lines is also less than ideal.
 
-I'll admit, this tradeoff of Tailwind took the longest to get used to. That said, I've found the single string of classes (in most cases) to be less messy than using a CSS-in-JS `css` prop. Tailwind's classes all fit into a single (albeit long) line while the `css` prop styles will do a single line per rule.
+I'll admit, it took me a while to acclimate to this. However, I now think the single string of classes (in most cases) to be less messy than using a CSS-in-JS `css` prop. Tailwind's classes all fit into a single (albeit long) line while the `css` prop styles will do a single line per rule.
 
-And while having a `styled-component` results in less _markup code_, this comes with its own tradeoffs (you trade colocation of styles/markup for less lines of markup)
+And while having a `styled-component` results in less _markup code_, this comes with its own tradeoffs (you lose colocation of styles/markup to trim down lines of markup)
 
 ### Big CSS file size
 
@@ -84,11 +82,11 @@ When I had originally tried Tailwind the file size of the bundled CSS was a big 
 
 _If you're not familiar with `purgecss`, it's a `postcss` plugin that removes any CSS that isn't used._
 
-<Callout>
+</Callout>
 
 Now that `purgecss` comes built-in to `tailwind.config.js` keeping production files small is easy-peasy.
 
-The one thing to remember with `purgecss` is that it operates by finding string matches of classes in your code. This means that you can't do dynamic JS to build Tailwind classes since `purgecss` won't match them and will mark them for removal.
+The key thing to remember about `purgecss` is that it operates by finding string matches of classes in your code. This means that you can't do dynamic JS to build Tailwind classes since `purgecss` won't match them and will mark them for removal.
 
 Which brings me to the next trade-off of Tailwind...
 
@@ -98,7 +96,9 @@ Simply put, Tailwind is nowhere near as dynamic as CSS-in-JS. And that's a good 
 
 With CSS-in-JS, you have the full power of JavaScript (or TypeScript) as your preprocessor. Turns out, this is a double-edged sword.
 
-JS as a preprocessor can let you dynamically style based on data, create elegant "DRY" mixins, and get static typing. The thing is, a lot of times we don't need all of that. We just need to flip a couple styles based on our button is `primary` or `secondary`.
+JS as a preprocessor can let you dynamically style based on data, create elegant "DRY" mixins, and get static typing. 
+
+The thing is, a lot of times we don't need that much power. We just need to flip a couple styles based on our button is `primary` or `secondary`.
 
 I've found I can get 90% of the dynamic styles I need by conditionally applying classes with [`clsx`](https://github.com/lukeed/clsx) (or [`classnames`](https://github.com/JedWatson/classnames)). For the other 10%, a combination of inline styles, custom CSS, and CSS variables is enough.
 
@@ -108,7 +108,7 @@ If you have super dynamic styles, you don't _have_ to exclude CSS-in-JS to use T
 
 Lastly, my common reply whenever Tailwind got brought up used to be "I think it looks _interesting_, but I wouldn't pick it if the project needs to _scale_".
 
-I was of the mindset that it was only a good tool for prototyping and smaller apps.
+I thought it was only a good tool for prototyping and smaller apps.
 
 **I was wrong.**
 
@@ -142,9 +142,9 @@ It's critical that we learn to give things meaningful names when we're building 
 
 But we don't have to name **every. single. thing.** We can pick and choose our battles.
 
-I experienced this naming fatigue when using CSS-in-JS libraries like `styled-components` as well as in raw CSS using [BEM](https://css-tricks.com/bem-101/) naming.
+I experienced this naming fatigue when using CSS-in-JS libraries like `styled-components` as well as in raw CSS using [BEM](https://css-tricks.com/bem-101/) naming conventions.
 
-The problem with these is that you have to create a meaningful name for every styled HTML tag. And that can add significant mental overhead—after all, there's only so many variations of `Container` and `Wrapper`.
+The problem is that you have to create a meaningful name in order to apply styles to any HTML tag. This adds significant mental overhead—after all, there's only so many variations of `Container` and `Wrapper` out there. 😅
 
 I'm not saying that you never name styles—you'll probably want to abstract things into components and give them meaningful names. But it's liberating to not be _required_ to come up with a name when all you want is a little `padding` on a `div`.
 
@@ -154,17 +154,17 @@ Tailwind's approach to CSS centers largely around _design systems_ and generatin
 
 For example, instead of allowing you to pick any pixel (or `rem`!) value for margin, Tailwind sets up classes like `.m-0` (`0`), `.m-4` (`1rem`), `.m-6` (`1.5rem`). Each number on the `m` scale corresponds to a predetermined value.
 
-While it seems like having full control over the pixel values would let you achieve pixel perfection, it turns out having _some constraints_ forces you to choose the nearest value from your design system, which generally leads to a more unified design.
+While it seems like having full control over the pixel values would let you achieve pixel perfection, it turns out having _some constraints_ forces you to choose the nearest value from your design system. This generally leads to a more unified design.
 
-It's worth noting that this _can_ be done in CSS-in-JS or raw CSS/SCSS, but you'll have to create the design system tokens yourself, which can take a good deal of time and effort. In addition, you'll have to enforce design system in usage in every PR to make sure that people don't sneak hard-coded pixel values in.
+This _can_ be done in CSS-in-JS or raw CSS/SCSS, but you'll have to create the design system tokens yourself, which can take a good deal of time and effort (`theme-ui` does create tokens for you by default). You'll also have to enforce design system in usage in every PR to make sure that people don't sneak hard-coded pixel values in.
 
 ### Framework agnostic
 
-As a whole, CSS-in-JS tends to be inherently tied to the React ecosystem. While there are a few CSS-in-JS libraries (`emotion` included) that a framework agnostic, the majority are geared towards the React community.
+As a whole, CSS-in-JS tends to favor the React ecosystem. While there are a few framework agnostic CSS-in-JS libraries (`emotion` included), most are geared towards the React community.
 
 For example, `styled-components` only works with React (to my knowledge), and I'd consider `emotion` to be React-first (most of the documentation assumes you're using JSX).
 
-In contrast, Tailwind is built on top of PostCSS and integrates seamlessly into any front-end project. It's nice knowing that knowledge of this tool can be reused in a project using Vue, Svelte, Angular, or any other framework.
+In contrast, Tailwind is built on top of PostCSS and integrates seamlessly into any front-end project. It's nice knowing that knowledge of this tool can be reused in a project using Vue, Svelte, Angular, or even raw HTML.
 
 ### Less build setup
 
@@ -182,9 +182,9 @@ This lets you spend less time setting up your project and more time building you
 
 This is a big win for Tailwind over CSS-in-JS. Since Tailwind is a CSS utility framework, it doesn't add any JS to your production bundle.
 
-In contrast we have CSS-in-JS which ships with a runtime to parse the style objects into valid CSS, generate classes, and insert those into the `head` of the document. 
+In contrast we have CSS-in-JS which ships with a runtime to parse the style objects into valid CSS, generate classes, and insert those into the `head` of the document.
 
-`@emotion/react`'s runtime is about 10kb (gzip + min) and `styled-components` ships with about 12kb of JS (gzip + min). And that's before you write _your_ first line of styling code.
+`@emotion/react`'s runtime is about 10kb (gzip + min) and `styled-components` ships with about 12kb of JS (gzip + min). And that's before you write any of your own code.
 
 Tailwind doesn't ship any runtime JS, which creates a little more space on the main thread for everything else in your app as well as faster load times for your users.
 
