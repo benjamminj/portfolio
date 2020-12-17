@@ -1,12 +1,12 @@
 ---
 title: useDebouncedValue
-date: 2020-12-16
+subtitle: Create a debounced copy of an input value.
+date: 2020-12-17
 tags:
   - react
   - typescript
+  - recipes
 ---
-
-## The code
 
 ```tsx
 import { useState, useEffect } from 'react'
@@ -28,27 +28,106 @@ export const useDebouncedValue = <T extends any>(input: T, delay = 0) => {
 }
 ```
 
+## Context
+
+When building UIs it's nice to give _immediate feedback_ to user input. When you've got state inside of a `useState` it's generally fine to call `setState` a lot of times in quick succession since React [batches state updates together](TODO:).
+
+However, if you have expensive side-effects running off of your values (like an API request) you often want the _opposite_ effect—you only wanna run those side-effects after the value has stopped changing. Otherwise you might accidentally DDOS your API! 😱
+
+This hook is super useful because it creates a carbon copy of the original value, but delays updating until the original value has "settled". This makes it safe to use as a dependency for other hooks like `useEffect`.
+
+While you can debounce the `fetch` function itself, I've found that debouncing the _value_ itself feels more in-line with React's data-flow paradigms. `useEffect` triggers when its dependencies change, so debouncing the _dependency update_ causes that effect to trigger less times.
+
 ## Usage
 
 ```tsx
-const Component = ({ rapidlyChangingValue }) => {
-  const debounced = useDebouncedValue(rapidlyChangingValue)
+const Component = () => {
+  const [posts, setPosts] = useState([])
+  const [search, setValue] = useState('')
+  const debouncedValue = useDebouncedValue(search)
+
+  useEffect(() => {
+    fetch(`https://jsonplaceholder.typicode.com/posts?search=${debouncedValue}`)
+      .then(res => res.json())
+      .then(posts => setPosts(posts))
+      .catch(() => setPosts([]))
+  }, [debouncedValue])
 
   return (
     <div>
-      {/* This will show slightly stale data until the value stops changing */}
-      {debounced}
+      <label>
+        Search
+        <input
+          name="search"
+          value={search}
+          onChange={ev => setValue(ev.target.value)}
+        />
+      </label>
+
+      <div>{posts.length} posts found</div>
     </div>
   )
 }
 ```
 
-## Context
+## Tests
 
-- Having a debounced value can serve as a way to get suspense-like transitions in a pre-suspense app.
-- Have an effect that's going rampant because you have some dependency that's rapidly changing? You can debounce the entire effect by isolating the rogue dependency and debouncing it.
+Here's some unit tests as well (they're using `@testing-library/react-hooks` and `react-test-renderer`):
+
+```tsx
+import { act, renderHook } from '@testing-library/react-hooks'
+import { useDebouncedValue } from './useDebouncedValue'
+
+jest.useFakeTimers()
+
+test('should return the first value immediately', () => {
+  let value = 1
+  const { result } = renderHook(() => useDebouncedValue(value))
+  expect(result.current).toEqual(1)
+})
+
+test('should not update the value immediately after a change', () => {
+  let value = 1
+  const { result, rerender } = renderHook(() => useDebouncedValue(value))
+  expect(result.current).toEqual(1)
+
+  value = 2
+  rerender()
+  expect(result.current).toEqual(1)
+})
+
+test('should update the value after the delay time', () => {
+  let value = 1
+  const { result, rerender } = renderHook(() => useDebouncedValue(value, 100))
+  expect(result.current).toEqual(1)
+
+  value = 2
+  rerender()
+  jest.advanceTimersByTime(99)
+  expect(result.current).toEqual(1)
+
+  act(() => {
+    jest.advanceTimersByTime(1)
+  })
+  expect(result.current).toEqual(2)
+})
+
+test('should default to a delay of 0', () => {
+  let value = 1
+  const { result, rerender } = renderHook(() => useDebouncedValue(value))
+  expect(result.current).toEqual(1)
+
+  value = 2
+  rerender()
+  act(() => {
+    // Just run the next tick of the call stack.
+    jest.advanceTimersByTime(0)
+  })
+  expect(result.current).toEqual(2)
+})
+```
 
 ## Influences and prior art
 
-- https://usehooks.com/useDebounce/ Mostly influenced by this, I've renamed some things, added my own docs / comments, and ported it into TypeScript.
-- Feels similar to [`useDeferredValue`](https://reactjs.org/docs/concurrent-mode-reference.html#usedeferredvalue), which we'll be getting as soon as we're using React concurrent mode.
+- **[usehooks.com](https://usehooks.com/useDebounce/)**: I mostly lifted my `useDebouncedValue` function from here. It's not a 100% copy-pasta though: I've renamed a few things, added my own comments, added some tests and ported it to TypeScript.
+- **[`useDeferredValue`](https://reactjs.org/docs/concurrent-mode-reference.html#usedeferredvalue)**: This is built-in to React's concurrent mode and will only update the given value after a timeout period. I might not even need `useDebouncedValue` once concurrent mode is stable! 😅
