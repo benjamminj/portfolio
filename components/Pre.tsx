@@ -29,15 +29,15 @@ export const Pre = ({ children, className }) => {
         title="Copy to clipboard"
         className={clsx(
           className,
-          'absolute right-0 flex items-center justify-center w-8 h-8 text-white text-opacity-50 rounded-md md:right-6 top-1 ring-white ring-opacity-70 focus:outline-none focus:bg-gray-300 focus:bg-opacity-20 focus:text-opacity-100 hover:text-opacity-100 focus:ring-2'
+          'absolute right-0 flex items-center justify-center w-8 h-8 text-gray-700 dark:text-white text-opacity-50 rounded-md md:right-6 top-1 ring-gray-400 dark:ring-white ring-opacity-70 focus:outline-none focus:bg-gray-300 focus:bg-opacity-20 focus:text-opacity-100 hover:text-opacity-100 focus:ring-2'
         )}
       >
         {copied ? (
           <div className="relative">
-            <CheckIcon className="w-5 h-5 text-green-400" />
+            <CheckIcon className="w-5 h-5 text-green-500 dark:text-green-400" />
             <div
               className={clsx(
-                'fixed z-10 px-2 py-2 mt-2 text-white text-opacity-100 transform bg-gray-600 rounded-md bottom-2 left-2 right-2 xs:py-1 xs:-translate-x-2/3 xs:absolute xs:right-auto xs:bottom-auto xs:left-1/2 xs:top-full md:-translate-x-1/2',
+                'fixed z-10 px-2 py-2 mt-2 text-black dark:text-white text-opacity-100 transform bg-white shadow-md dark:bg-gray-600 rounded-md bottom-2 left-2 right-2 xs:py-1 xs:-translate-x-2/3 xs:absolute xs:right-auto xs:bottom-auto xs:left-1/2 xs:top-full md:-translate-x-1/2',
                 styles.tooltip
               )}
             >
