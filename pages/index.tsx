@@ -4,39 +4,7 @@ import renderToString from 'next-mdx-remote/render-to-string'
 import useHydrateMdx from 'next-mdx-remote/hydrate'
 import fm from 'front-matter'
 import fs from 'fs'
-import {
-  A,
-  H2,
-  H3,
-  H4,
-  H5,
-  H6,
-  Hr,
-  InlineCode,
-  Li,
-  Ol,
-  P,
-  Pre,
-  Ul,
-} from '../components/MarkdownTags'
-import { Callout } from '../components/Callout'
-
-const components = {
-  a: A,
-  p: P,
-  h2: H2,
-  h3: H3,
-  h4: H4,
-  h5: H5,
-  h6: H6,
-  pre: Pre,
-  inlineCode: InlineCode,
-  ol: Ol,
-  ul: Ul,
-  li: Li,
-  hr: Hr,
-  Callout,
-}
+import { components } from '../components/MarkdownTags'
 
 const IndexPage = ({ mdxContent }) => {
   const hydrated = useHydrateMdx(mdxContent, { components })
