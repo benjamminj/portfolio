@@ -1,3 +1,4 @@
+import clsx from 'clsx'
 import Head from 'next/head'
 import React, { ReactNode } from 'react'
 import { Banner } from './Banner'
@@ -8,6 +9,8 @@ interface LayoutProps {
   header?: ReactNode
   title: ReactNode
   subtitle?: ReactNode
+  /** display the unformatted title, without any casing transformations */
+  rawTitle?: boolean
 }
 
 export const Layout = ({
@@ -15,6 +18,7 @@ export const Layout = ({
   header = <Header />,
   title,
   subtitle,
+  rawTitle = false,
 }: LayoutProps) => {
   return (
     <div className="min-h-screen bg-white dark:text-white dark:bg-gray-800">
@@ -36,7 +40,11 @@ export const Layout = ({
         <Banner>
           {/* TODO: remove and make composable? */}
           <div className="space-y-4">
-            <h1 className="text-5xl font-bold lowercase">{title}</h1>
+            <h1
+              className={clsx('text-5xl font-bold', !rawTitle && 'lowercase')}
+            >
+              {title}
+            </h1>
 
             {subtitle && (
               <h2 className="text-2xl font-normal text-gray-700 lowercase dark:text-gray-400">

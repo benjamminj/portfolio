@@ -71,6 +71,7 @@ const PostPage: NextPage<PostPageProps> = props => {
     <Fragment>
       <Layout
         title={title}
+        rawTitle={tags.includes('recipes')}
         subtitle={
           <div className="space-x-2">
             {tags.map(tag => (
