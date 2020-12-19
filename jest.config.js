@@ -4,4 +4,7 @@ module.exports = {
   collectCoverageFrom: [
     '<rootDir>/{components,lib,pages,styles,src}/**/*.{ts,tsx,js,jsx}',
   ],
+  moduleNameMapper: {
+    '\\.css$': 'identity-obj-proxy',
+  },
 }

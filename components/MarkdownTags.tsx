@@ -2,6 +2,7 @@ import { forwardRef, ReactNode } from 'react'
 import { Callout } from './Callout'
 import { Code } from './Code'
 import styles from './MarkdownTags.module.css'
+import { Pre } from './Pre'
 
 export const A = forwardRef<
   HTMLAnchorElement,
@@ -43,14 +44,6 @@ export const H5 = ({ children }) => {
 
 export const H6 = ({ children }) => {
   return <h6 className="mt-6 mb-4 text-base font-medium">{children}</h6>
-}
-
-export const Pre = ({ children }) => {
-  return (
-    <pre className="p-6 my-6 -mx-6 overflow-auto text-base bg-gray-100 md:rounded-2xl md:mx-0 lg:-mx-6 dark:bg-gray-900">
-      {children}
-    </pre>
-  )
 }
 
 export const InlineCode = ({ children }) => {
