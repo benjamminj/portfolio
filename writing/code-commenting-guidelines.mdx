@@ -1,0 +1,110 @@
+---
+title: Code commenting guidelines
+date: 2020-12-18
+tags:
+  - documentation
+  - software-development
+---
+
+## Focus on the _why_, not the _what_ or _how_.
+
+Out of all of these code commenting guidelines, this is by and far the most important one.
+
+One reason code comments get a lot of hate is due to _redundant code comments_ that comment exactly what the code itself is doing.
+
+```ts
+TODO: example
+```
+
+In this example, the code says the exact same thing that the comments do. The comment doesn't exactly add much value to the code.
+
+Compare that with this comment on the exact same code:
+
+```ts
+TODO: example
+```
+
+When I'm commenting code the question I try to ask myself is "Why is the code being written this way?" _That's_ the question to answer with the comments. Sometimes this means documenting technical reasons (we're using this data structure so that we can avoid nested loops). Other times we need to capture business reasons (this is a business formula to turn a full MSRP into a lease payment). Other times it could be bugs and edge cases (this `if` branch protects against accidentally calculating a monthly payment as `$0`).
+
+These comments prove invaluable 6 months down the line when you're tasked with modifying critical business code. Sometimes "self-documenting code" just isn't enough to capture all of the business context around a specific portion of your application.
+
+## Use complete sentences.
+
+When I'm writing code comments I prefer writing in complete sentences. Try to write the comment as if you're talking to a coworker about the code or explaining it in a code review.
+
+There's a few benefits to complete sentences:
+
+1. It helps the comments be more readable. We're used to reading complete sentences, we've been doing it since we were little children.
+2. It forces you to slow down and write a higher-quality comment. By taking the time to write a complete sentence about the code, you're likely to include more context and details about the code.
+
+Doc-style comments should rarely deviate from using complete sentences. There's some exceptions—you can probably skip this if you're doing [section heading comments](TODO:).
+
+## Add context to external links.
+
+One thing I have seen a lot in code comments is an unadorned link to a JIRA ticket or GitHub issue.
+
+```ts
+TODO: example
+```
+
+While this does help capture why the code was written, it moves the documentation outside of the codebase. External links can change or be made private. Your organization might cancel its JIRA subscription or move from GitHub to GitLab.
+
+Furthermore, someone reading the comments has to click out to the link and context-switch away from the code in order to get that extra context.
+
+What's _better_ than an unadorned link is a summary of its contents _in the comment itself_. If the issue is extremely complex you can still include the link as further reading.
+
+```ts
+TODO:
+```
+
+This allows the reader to get _some_ context about the code without leaving the code itself. Then, if they need additional nuanced context they can follow the link. This also protects against complete loss of knowledge should the link become invalid.
+
+## Use doc-style comments.
+
+Many modern programming languages support [doc-style comments](TODO:). These generally go above a variable, function, class, or method and will show up as descriptions in most IDEs.
+
+Furthermore, you can format how the comments appear in IDEs using markdown syntax!
+
+In TypeScript/JavaScript you can do this with [JSDoc](TODO:) syntax (a comment starting with `/**`)
+
+```ts
+TODO:
+```
+
+If you're working with a dynamically-typed language you can also use the doc comments to document input and output types. Here's the same TypeScript example using JavaScript and a JSDoc comment.
+
+```js
+TODO:
+```
+
+Lastly, there's a lot of tools that use doc comments to generate documentation. This is especially useful if you're building libraries.
+
+## Treat comments as part of the code.
+
+One of the big pushbacks against commenting code is that "the comments get out of date with the code". The conclusion that many people draw from this is that _no comments_ is better than _potentially out-of-date comments_.
+
+Sure, it's possible that the comments get out of date with the code, but only if you don't maintain them.
+
+I've worked places where the team had a linter installed, but never ran it in CI. Guess how many linter errors there were? (Hint, it was over 50k) 😱
+
+If you don't regularly run your unit tests and have failing tests fail CI, guess what? Your tests will be "out-of-date".
+
+Comments get out of date when we relegate comments and documentation to second-class citizens of our codebases. When we think "I updated the code, now I'm done". We have to fight the conception that comments are a "one-and-done" deal and the code is the only source of truth.
+
+It's true, the comments can be downright misleading if the code they're describing gets pulled out from under them. But the solution isn't skipping them altogether, it's lovingly tending to them the same we regularly refactor code—updating the docs when the code changes, removing comments that are no longer valuable, and thinking of our documentation as equally important as the code.
+
+## Err on the side of over-commenting.
+
+It's hard to find that "just right" goldilocks commenting threshhold. It can vary depending on the criticality of the project and the size of the team (your personal side project doesn't need as much documentation as [Apollo 11's source code](https://github.com/chrislgarry/Apollo-11)).
+
+That said, if I'm questioning whether I should write a comment, I err on the side of writing the comment, even if it feels redundant. Sometimes the act of writing the comment reveals ways to improve the code, sometimes it captures essential details that I didn't think were important at the time.
+
+At the end of the day I'd rather have over-commented code 1 year down the line than trying to decipher un-commented code by someone who's left the company.
+
+---
+
+## Summary
+
+It's true, code comments have drawbacks—they might "ruin" the terseness and inherent beauty of the code. They're hard to write—you have to switch out of "hacker" mode and switch into "writer" mode. They're harder than code to maintain—you can't enforce the comment is up-to-date with a unit test or add a lint rule.
+
+However, armed with some good writing principles and a team of reviewers that care about documentation, it is possible to create well-documented codebases even when you're moving at a startup pace. 😎
