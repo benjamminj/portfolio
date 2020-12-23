@@ -14,12 +14,18 @@ const checkIfMarkdownFile = (filename: string) => /.mdx?$/.test(filename)
 // Within a nested folder:
 // - index === the folder path
 // - .mdx gets built as a child of the "series"
-const getNestedPostFilePath = (directory: string) => {
-  const nestedFiles = fs.readdirSync(directory)
+const getNestedPostFilePath = ({
+  nestedDirectory,
+  parent,
+}: {
+  nestedDirectory: string
+  parent: string
+}) => {
+  const nestedFiles = fs.readdirSync(path.join(parent, nestedDirectory))
   const posts = []
   for (const file of nestedFiles) {
     if (!checkIfMarkdownFile(file)) continue
-    posts.push([directory, file].join('/'))
+    posts.push([nestedDirectory, file].join('/'))
   }
 
   return posts
@@ -35,9 +41,10 @@ export const getPostFilePaths = (directory = POSTS_BASE_PATH) => {
     // If the file path is a directory it can contain multiple posts
     // so grab them all and push them all into the array
     if (filePath.isDirectory()) {
-      const nestedPosts = getNestedPostFilePath(
-        path.join(directory, filePath.name)
-      )
+      const nestedPosts = getNestedPostFilePath({
+        nestedDirectory: filePath.name,
+        parent: directory,
+      })
 
       posts.push(...nestedPosts)
     }
@@ -52,22 +59,4 @@ export const getPostFilePaths = (directory = POSTS_BASE_PATH) => {
   }
 
   return posts
-  // const postFilePaths = postFiles.filter(filePath => {
-  //   if (filePath.isDirectory()) {
-  //     const nestedPosts = getNestedPostFilePath(
-  //       path.join(directory, filePath.name)
-  //     )
-
-  //     console.log('nested >>', nestedPosts)
-  //   }
-
-  //   const isMarkdownFile = /.mdx?$/.test(filePath.name)
-
-  //   const slug = slugifyPost(filePath.name)
-  //   const isPost = excludedFiles.every(file => file !== slug)
-
-  //   return isMarkdownFile && isPost
-  // })
-
-  // return postFilePaths.map(path => path.name)
 }

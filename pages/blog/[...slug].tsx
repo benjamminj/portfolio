@@ -14,9 +14,10 @@ import { getPostFilePaths } from '../../lib/getPostFilePaths'
 import { slugifyPost } from '../../lib/slugifyPost'
 import { PostFrontmatter } from '../../lib/types'
 import fs from 'fs'
+import path from 'path'
 
 interface PostPageParams extends ParsedUrlQuery {
-  slug: string
+  slug: string[]
 }
 
 interface PostPageProps {
@@ -144,7 +145,7 @@ export const getStaticPaths: GetStaticPaths<PostPageParams> = async () => {
 
   // TODO: don't build draft posts?
   const paths = postFiles.map<Path>(file => {
-    return { params: { slug: slugifyPost(file) } }
+    return { params: { slug: slugifyPost(file).split('/') } }
   })
 
   return {
@@ -155,7 +156,10 @@ export const getStaticPaths: GetStaticPaths<PostPageParams> = async () => {
 
 type GetPostPageStaticProps = GetStaticProps<PostPageProps, PostPageParams>
 export const getStaticProps: GetPostPageStaticProps = async ctx => {
-  const { slug } = ctx.params
+  const { slug: slugSegments } = ctx.params
+
+  // file path??
+  const slug = slugSegments.join('/')
   const { frontmatter, body } = getPostBySlug(slug)
 
   let imageProps: { image?: PostPageProps['image'] } = {}
@@ -173,11 +177,35 @@ export const getStaticProps: GetPostPageStaticProps = async ctx => {
     }
   }
 
-  // const example = fs.readFileSync('./lib/')
+  // TODO: separate file??
+  const getExamplePaths = () => {
+    if (ctx.params.slug.length === 1) {
+      return {}
+    }
 
+    const [folder] = ctx.params.slug
+    const files = fs.readdirSync('./writing/' + folder)
+
+    const exampleFiles = files.filter(fileName => !fileName.match(/.mdx?$/))
+    const examples = {}
+
+    for (const example of exampleFiles) {
+      const filePath = path.join('./writing', folder, example)
+      const text = fs.readFileSync(filePath, 'utf-8')
+      console.log('text >>', text)
+      examples[example] = text
+    }
+
+    return examples
+  }
+
+  const examples = getExamplePaths()
+
+  console.log('>>', examples)
   // Render out the MDX content.
   const mdxContent = await renderToString(body, {
     components,
+    scope: { examples },
     mdxOptions: {
       // `prism` adds syntax highlighting as CSS classes to the code blocks.
       rehypePlugins: [prism],

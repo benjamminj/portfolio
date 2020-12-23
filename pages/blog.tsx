@@ -66,7 +66,7 @@ export const getStaticProps: GetStaticProps = async () => {
 
       posts.push(postData)
     } catch (error) {
-      console.log(`Error reading frontmatter of ${postFile}`, error)
+      console.error(`Error reading frontmatter of ${postFile}`, error)
     }
   }
 

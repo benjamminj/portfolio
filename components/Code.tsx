@@ -7,6 +7,7 @@ interface CodeProps {
   className?: string
 }
 
-export const Code = ({ children, className }: CodeProps) => {
+export const Code = ({ children, className, ...rest }: CodeProps) => {
+  console.log('rest >>', rest)
   return <code className={clsx(className, styles.code)}>{children}</code>
 }
