@@ -12,7 +12,7 @@ export interface TagProps {
 export const Tag = ({ tag }: TagProps) => {
   return (
     <Link href={`/tags/${tag}`}>
-      <a className="p-1 -m-1 font-mono text-xs text-gray-600 no-underline rounded hover:text-gray-800 hover:bg-gray-100 hover:underline dark:text-gray-400 dark:hover:text-gray-50 dark:hover:bg-gray-900">
+      <a className="inline-block p-1 -m-1 font-mono text-xs text-gray-600 no-underline rounded hover:text-gray-800 hover:bg-gray-100 hover:underline dark:text-gray-400 dark:hover:text-gray-50 dark:hover:bg-gray-900">
         #{tag}
       </a>
     </Link>
