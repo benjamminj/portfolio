@@ -13,6 +13,7 @@ import { getPostBySlug } from '../../lib/getPostBySlug'
 import { getPostFilePaths } from '../../lib/getPostFilePaths'
 import { slugifyPost } from '../../lib/slugifyPost'
 import { PostFrontmatter } from '../../lib/types'
+import fs from 'fs'
 
 interface PostPageParams extends ParsedUrlQuery {
   slug: string
@@ -171,6 +172,8 @@ export const getStaticProps: GetPostPageStaticProps = async ctx => {
       alt: frontmatter.image.alt,
     }
   }
+
+  // const example = fs.readFileSync('./lib/')
 
   // Render out the MDX content.
   const mdxContent = await renderToString(body, {
