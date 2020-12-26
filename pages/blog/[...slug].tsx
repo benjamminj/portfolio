@@ -15,6 +15,10 @@ import { slugifyPost } from '../../lib/slugifyPost'
 import { PostFrontmatter } from '../../lib/types'
 import fs from 'fs'
 import path from 'path'
+import Prism from 'prismjs'
+import loadLanguages from 'prismjs/components/'
+import { getCodeExamples } from '../../lib/getCodeExamples'
+import { getPostFileBySlug } from '../../lib/getPostFileBySlug'
 
 interface PostPageParams extends ParsedUrlQuery {
   slug: string[]
@@ -177,35 +181,39 @@ export const getStaticProps: GetPostPageStaticProps = async ctx => {
     }
   }
 
-  // TODO: separate file??
-  const getExamplePaths = () => {
-    if (ctx.params.slug.length === 1) {
-      return {}
+  const filePath = getPostFileBySlug(ctx.params.slug)
+  console.log('file >>', filePath)
+  const examples = await getCodeExamples(filePath)
+
+  const highlightedExamples = {}
+
+  const languages = new Map()
+
+  for (const example in examples) {
+    // Grab the extension out of the filename, it's the last section after
+    // splitting by `.` characters.
+    const [extension] = example.split('.').reverse()
+
+    // If we haven't loaded this syntax into prism yet, track the extension in
+    // the map of languages and load its syntax into prism
+    if (!languages.has(extension)) {
+      languages.set(extension, extension)
+      loadLanguages([extension])
     }
 
-    const [folder] = ctx.params.slug
-    const files = fs.readdirSync('./writing/' + folder)
-
-    const exampleFiles = files.filter(fileName => !fileName.match(/.mdx?$/))
-    const examples = {}
-
-    for (const example of exampleFiles) {
-      const filePath = path.join('./writing', folder, example)
-      const text = fs.readFileSync(filePath, 'utf-8')
-      console.log('text >>', text)
-      examples[example] = text
-    }
-
-    return examples
+    // For each example, highlight it with prism manually since the MDX plugin
+    // won't recognize the Example component as `code` that needs to be run thru
+    // `prism`.
+    highlightedExamples[example] = Prism.highlight(
+      examples[example],
+      Prism.languages[extension],
+      extension
+    )
   }
 
-  const examples = getExamplePaths()
-
-  console.log('>>', examples)
-  // Render out the MDX content.
   const mdxContent = await renderToString(body, {
     components,
-    scope: { examples },
+    scope: { examples: highlightedExamples },
     mdxOptions: {
       // `prism` adds syntax highlighting as CSS classes to the code blocks.
       rehypePlugins: [prism],
