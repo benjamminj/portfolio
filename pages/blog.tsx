@@ -6,6 +6,7 @@ import { slugifyPost } from '../lib/slugifyPost'
 import { PostFrontmatter } from '../lib/types'
 import { Layout } from '../components/Layout'
 import { PostListItem } from '../components/PostListItem'
+import { parsePostFile } from '../lib/parsePostFile'
 
 type PostPreview = Pick<
   PostFrontmatter,
@@ -54,7 +55,7 @@ export const getStaticProps: GetStaticProps = async () => {
   for (let postFile of postFiles) {
     try {
       const slug = slugifyPost(postFile)
-      const { frontmatter } = getPostBySlug(slug)
+      const { frontmatter } = parsePostFile(postFile)
 
       // Don't add the post to the list if it's a WIP
       if (frontmatter.draft && process.env.NODE_ENV === 'production') continue

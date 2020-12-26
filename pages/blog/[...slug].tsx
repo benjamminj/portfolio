@@ -19,6 +19,8 @@ import Prism from 'prismjs'
 import loadLanguages from 'prismjs/components/'
 import { getCodeExamples } from '../../lib/getCodeExamples'
 import { getPostFileBySlug } from '../../lib/getPostFileBySlug'
+import { highlightCodeExamples } from '../../lib/highlightCodeExamples'
+import { parsePostFile } from '../../lib/parsePostFile'
 
 interface PostPageParams extends ParsedUrlQuery {
   slug: string[]
@@ -163,9 +165,11 @@ export const getStaticProps: GetPostPageStaticProps = async ctx => {
   const { slug: slugSegments } = ctx.params
 
   // file path??
-  const slug = slugSegments.join('/')
-  const { frontmatter, body } = getPostBySlug(slug)
+  const filePath = getPostFileBySlug(ctx.params.slug)
+  const { frontmatter, body } = parsePostFile(filePath)
 
+  // TODO: might be able to remove now...although might need to wait until we
+  // have auto-generated meta images
   let imageProps: { image?: PostPageProps['image'] } = {}
 
   // If there's an image, fetch the image, resize it to the max width shown, and
@@ -181,39 +185,12 @@ export const getStaticProps: GetPostPageStaticProps = async ctx => {
     }
   }
 
-  const filePath = getPostFileBySlug(ctx.params.slug)
-  console.log('file >>', filePath)
-  const examples = await getCodeExamples(filePath)
-
-  const highlightedExamples = {}
-
-  const languages = new Map()
-
-  for (const example in examples) {
-    // Grab the extension out of the filename, it's the last section after
-    // splitting by `.` characters.
-    const [extension] = example.split('.').reverse()
-
-    // If we haven't loaded this syntax into prism yet, track the extension in
-    // the map of languages and load its syntax into prism
-    if (!languages.has(extension)) {
-      languages.set(extension, extension)
-      loadLanguages([extension])
-    }
-
-    // For each example, highlight it with prism manually since the MDX plugin
-    // won't recognize the Example component as `code` that needs to be run thru
-    // `prism`.
-    highlightedExamples[example] = Prism.highlight(
-      examples[example],
-      Prism.languages[extension],
-      extension
-    )
-  }
+  const rawExamples = await getCodeExamples(filePath)
+  const examples = highlightCodeExamples(rawExamples)
 
   const mdxContent = await renderToString(body, {
     components,
-    scope: { examples: highlightedExamples },
+    scope: { examples },
     mdxOptions: {
       // `prism` adds syntax highlighting as CSS classes to the code blocks.
       rehypePlugins: [prism],
@@ -226,7 +203,7 @@ export const getStaticProps: GetPostPageStaticProps = async ctx => {
 
   return {
     props: {
-      slug,
+      slug: slugSegments.join('/'),
       mdxContent,
       frontmatter,
       formattedDate,
