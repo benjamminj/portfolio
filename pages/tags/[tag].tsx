@@ -7,6 +7,7 @@ import { PostFrontmatter } from '../../lib/types'
 import { Layout } from '../../components/Layout'
 import { compareDesc, format } from 'date-fns'
 import { PostListItem } from '../../components/PostListItem'
+import { parsePostFile } from '../../lib/parsePostFile'
 
 type PostPreview = Pick<PostFrontmatter, 'title' | 'tags'> & {
   date: string
@@ -42,7 +43,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   const allTags = {}
 
   for (const filePath of postFiles) {
-    const { frontmatter } = getPostBySlug(slugifyPost(filePath))
+    const { frontmatter } = parsePostFile(filePath)
 
     if (!frontmatter.tags) continue
 
@@ -67,7 +68,7 @@ export const getStaticProps: GetTagPageStaticProps = async ctx => {
   const matchingPosts = []
   for (const filePath of postFiles) {
     const slug = slugifyPost(filePath)
-    const { frontmatter } = getPostBySlug(slug)
+    const { frontmatter } = parsePostFile(filePath)
 
     const isMatchingTag = frontmatter.tags?.includes(tag)
 

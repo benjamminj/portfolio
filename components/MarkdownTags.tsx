@@ -1,6 +1,6 @@
 import { forwardRef, ReactNode } from 'react'
 import { Callout } from './Callout'
-import { Code } from './Code'
+import { Code, CodeExample } from './Code'
 import styles from './MarkdownTags.module.css'
 import { Pre } from './Pre'
 
@@ -96,6 +96,7 @@ export const components = {
   ul: Ul,
   li: Li,
   hr: Hr,
+  CodeExample,
   Callout: props => (
     <div className="my-6 -mx-4 md:mx-0 lg:-mx-6">
       <Callout {...props} />

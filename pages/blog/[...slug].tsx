@@ -13,9 +13,17 @@ import { getPostBySlug } from '../../lib/getPostBySlug'
 import { getPostFilePaths } from '../../lib/getPostFilePaths'
 import { slugifyPost } from '../../lib/slugifyPost'
 import { PostFrontmatter } from '../../lib/types'
+import fs from 'fs'
+import path from 'path'
+import Prism from 'prismjs'
+import loadLanguages from 'prismjs/components/'
+import { getCodeExamples } from '../../lib/getCodeExamples'
+import { getPostFileBySlug } from '../../lib/getPostFileBySlug'
+import { highlightCodeExamples } from '../../lib/highlightCodeExamples'
+import { parsePostFile } from '../../lib/parsePostFile'
 
 interface PostPageParams extends ParsedUrlQuery {
-  slug: string
+  slug: string[]
 }
 
 interface PostPageProps {
@@ -143,7 +151,7 @@ export const getStaticPaths: GetStaticPaths<PostPageParams> = async () => {
 
   // TODO: don't build draft posts?
   const paths = postFiles.map<Path>(file => {
-    return { params: { slug: slugifyPost(file) } }
+    return { params: { slug: slugifyPost(file).split('/') } }
   })
 
   return {
@@ -154,9 +162,14 @@ export const getStaticPaths: GetStaticPaths<PostPageParams> = async () => {
 
 type GetPostPageStaticProps = GetStaticProps<PostPageProps, PostPageParams>
 export const getStaticProps: GetPostPageStaticProps = async ctx => {
-  const { slug } = ctx.params
-  const { frontmatter, body } = getPostBySlug(slug)
+  const { slug: slugSegments } = ctx.params
 
+  // file path??
+  const filePath = getPostFileBySlug(ctx.params.slug)
+  const { frontmatter, body } = parsePostFile(filePath)
+
+  // TODO: might be able to remove now...although might need to wait until we
+  // have auto-generated meta images
   let imageProps: { image?: PostPageProps['image'] } = {}
 
   // If there's an image, fetch the image, resize it to the max width shown, and
@@ -172,9 +185,12 @@ export const getStaticProps: GetPostPageStaticProps = async ctx => {
     }
   }
 
-  // Render out the MDX content.
+  const rawExamples = await getCodeExamples(filePath)
+  const examples = highlightCodeExamples(rawExamples)
+
   const mdxContent = await renderToString(body, {
     components,
+    scope: { examples },
     mdxOptions: {
       // `prism` adds syntax highlighting as CSS classes to the code blocks.
       rehypePlugins: [prism],
@@ -187,7 +203,7 @@ export const getStaticProps: GetPostPageStaticProps = async ctx => {
 
   return {
     props: {
-      slug,
+      slug: slugSegments.join('/'),
       mdxContent,
       frontmatter,
       formattedDate,
