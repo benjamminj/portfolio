@@ -3,6 +3,7 @@ title: Mocking the fetch API with Jest
 description: Why should we mock the network? We'll take a look at why it's important to mock window.fetch and a couple methods we can use in our test suites.
 draft: false
 date: 2019-04-26
+lastUpdated: 2020-12-30
 image:
   url: 'blue-paint-swirls.jpg'
   alt: 'Abstract swirling colors of blue and red'
@@ -59,7 +60,7 @@ Here's what it would look like to mock `global.fetch` by replacing it entirely.
 // This is the function we'll be testing
 async function withFetch() {
   const res = await fetch('https://jsonplaceholder.typicode.com/posts')
-  const json = res.json()
+  const json = await res.json()
 
   return json
 }
@@ -68,7 +69,10 @@ async function withFetch() {
 const unmockedFetch = global.fetch
 
 beforeAll(() => {
-  global.fetch = () => Promise.resolve({ json: () => [] })
+  global.fetch = () =>
+    Promise.resolve({
+      json: () => Promise.resolve([]),
+    })
 })
 
 afterAll(() => {
@@ -101,7 +105,10 @@ const unmockedFetch = global.fetch
 
 // Part 2
 beforeAll(() => {
-  global.fetch = () => Promise.resolve({ json: () => [] })
+  global.fetch = () =>
+    Promise.resolve({
+      json: () => Promise.resolve([]),
+    })
 })
 
 // Part 3
@@ -112,7 +119,9 @@ afterAll(() => {
 
 In the first part we store a reference to the _actual function_ for `global.fetch`. Since we'll be mocking `global.fetch` out at a later point we want to keep this reference around so that we can use it to cleanup our mock after we're done testing.
 
-The second part consists of the actual `fetch` mock. The important thing to note is that the mocked `fetch` API _must be API-compatible_ with the real `fetch` API. Since `fetch` returns a resolved `Promise` with a `json` method, we need to do the same thing inside our mock. In order to mock something effectively you must understand the API (or at least the portion that you're using). You certainly don't need to rewrite the entire functionality of the module——otherwise it wouldn't be a mock——but you do need to keep the API of you mock similar to the real module.
+The second part consists of the actual `fetch` mock. The important thing to note is that the mocked `fetch` API _must be API-compatible_ with the real `fetch` API. `fetch` returns a resolved `Promise` with a `json` method (which also returns a `Promise` with the JSON data). So we need to do the same thing inside our mock. In order to mock something effectively you must understand the API (or at least the portion that you're using).
+
+You don't need to rewrite the entire functionality of the module—otherwise it wouldn't be a mock! You can mock the pieces that you're using, but you do have to make sure that _those_ pieces are API compatible.
 
 However, instead of returning 100 posts from the `placeholderjson` API, our `fetch` mock just returns an empty array from its `json` method. You could put anything here——you could put the full 100 posts, have it "return" nothing, or anything in-between! By having control over _what_ the `fetch` mock returns we can reliably test edge cases and how our app responds to API data without being reliant on the network!
 
@@ -136,7 +145,10 @@ While the first example of mocking `fetch` would work in any JavaScript testing 
 -
 -// Part 2
 -beforeAll(() => {
--  global.fetch = () => Promise.resolve({ json: () => [] })
+-  global.fetch = () =>
+-    Promise.resolve({
+-      json: () => Promise.resolve([]),
+-    })
 -})
 -
 -// Part 3
@@ -146,19 +158,21 @@ While the first example of mocking `fetch` would work in any JavaScript testing 
 
 +const fetchMock = jest
 +  .spyOn(global, 'fetch')
-+  .mockImplementation(() => Promise.resolve({ json: () => [] }))
++  .mockImplementation(() => Promise.resolve({ json: () => Promise.resolve([]) }))
 ```
 
 Jest provides a `.spyOn` method that allows you to listen to all calls to any method on an object. To use `jest.spyOn` you pass the object containing the method you want to spy on, and then you pass the _name of the method as a string_ as the second argument.
 
-Jest's `spyOn` method returns a _mock function_, but as of right now we _haven't replaced the fetch function's functionality_. To do that we need to use the `.mockImplementation(callbackFn)` method and insert what we want to replace `fetch` with as the `callbackFn` argument. We can simply use the same `fetch` mock from before, where we replace `fetch` with `() => Promise.resolve({ json: () => [] })`.
+Jest's `spyOn` method returns a _mock function_, but as of right now we _haven't replaced the fetch function's functionality_. To do that we need to use the `.mockImplementation(callbackFn)` method and insert what we want to replace `fetch` with as the `callbackFn` argument. We can simply use the same `fetch` mock from before, where we replace `fetch` with `() => Promise.resolve({ json: () => Promise.resolve([]) })`.
 
 If you're not familiar with test spies and mock functions, the TL;DR is that a spy function _doesn't change any functionality_ while a _mock function replaces the functionality_. Test spies let you record all of the things that function was called. Later you can assert things based on what arguments the spy function received. For example, we could assert that `fetch` was called with `https://placeholderjson.org` as its argument:
 
 ```js
 const fetchMock = jest
   .spyOn(global, 'fetch')
-  .mockImplementation(() => Promise.resolve({ json: () => [] }))
+  .mockImplementation(() =>
+    Promise.resolve({ json: () => Promise.resolve([]) })
+  )
 
 describe('withFetch', () => {
   test('works', async () => {
@@ -196,7 +210,9 @@ describe('withFetch', () => {
     // highlight-start
     const fetchMock = jest
       .spyOn(global, 'fetch')
-      .mockImplementation(() => Promise.resolve({ json: () => [] }))
+      .mockImplementation(() =>
+        Promise.resolve({ json: () => Promise.resolve([]) })
+      )
     // highlight-end
 
     const json = await withFetch()
