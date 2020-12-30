@@ -1,0 +1,36 @@
+---
+title: Components and surrounding whitespace
+subtitle: Keep inherent whitespace to a minimum for more maintainable layouts
+date: 2020-12-29
+tags:
+  - css
+  - front-end
+  - react
+  - css-layout
+---
+
+## Thesis
+
+_A component should handle the whitespace surrounding its children, NOT the whitespace surrounding itself_.
+
+---
+
+Let's dive into this a little more.
+
+In some ways this is a rather bold statement—you mean my component shouldn't _ever_ have its own padding or margin?
+
+To be honest I haven't seen this approach that often in all my years of building websites. CSS usually gets thrown together a little haphazardly, padding and margin get thrown wherever they get the job done.
+
+Additionally, we have also been taught to use as few HTML tags as possible, letting CSS do the heavy lifting. Or at least I was taught this. You write the minimum necessary HTML, and _only then_ you add CSS without creating more `div`s. Last thing we want is "divitis" (TODO: link).
+
+This approach might work if you have an entire page in a single HTML file, but it doesn't quite translate to apps and design systems where _components_ are our primary building blocks.
+
+I think we've let the fear of divitis cloud our thinking a bit. Semantic HTML is still important, but if adding a `div` lets us split our style rules more logically it could be worth it. Like everything in software, it's all about tradeoffs.
+
+## How keeping surrounding whitespace simplifies layout
+
+- a component should be a self-contained unit of composition
+- a component should be droppable anywhere in the app without side-effects
+- we want to reduce to the cognitive load of using a component's API.
+  - Surrounding whitespace _increases_ this because you have to think about both the component's inherent whitespace _and_ the container's layout whitespace.
+  - Keeping a component free of surrounding whitespace lets us split apart the layout concerns we have to keep in our head. We can think of a component as concerned with the whitespace of its children at all times if we keep it free of its own surrounding whitespace.
