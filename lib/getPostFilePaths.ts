@@ -35,7 +35,7 @@ const getNestedPostFilePath = ({
 export const getPostFilePaths = (directory = POSTS_BASE_PATH) => {
   const postFiles = fs.readdirSync(directory, { withFileTypes: true })
 
-  const posts = []
+  const posts: string[] = []
 
   for (const filePath of postFiles) {
     // If the file path is a directory it can contain multiple posts

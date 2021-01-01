@@ -1,0 +1,56 @@
+---
+title: Code comments
+date: 2021-01-01T23:31:41.255Z
+tags:
+  - documentation
+  - tech-debt
+  - philosophy
+  - clean-code
+---
+
+## Thoughts in favor of comments
+
+- Commenting acknowledges that our concepts of what is "clean code" changes over time. Our preferences 20 years from now won't be the exact same as our preferences right now. Sure, _some_ will, but not all.
+- [A codebase is an organism](https://meltingasphalt.com/a-codebase-is-an-organism/), and comments acknowledge that this organism has a life of its own. Especially if you work on a high-velocity team with rapidly changing direction (startups), comments can be a lifesaver when you've written 10,000+ lines in the last 6 months.
+- There's a lot of bad comments out there. The solution isn't to ditch comments entirely, that's throwing the baby out with the bathwater.
+- Code comments are a lower _barrier to information_ than code. Sure, you can make code self-explanatory, but guess what's even more explanatory than code? Sentences.
+- Commenting isn't a science, it's an art. To write good comments, you have to become a _good writer_. There's no "One True Way", it's a little more convoluted and messy.
+- Code comments are an acknowledgement of human finiteness and imperfection. In a perfect world, we would write perfect code and have perfect knowledge of the code others wrote. We will never achieve this goal because we as humans are not perfect. Leaving comments in our code is a recognition that our code will never be perfect, but we can help the next person understand it a little better.
+
+## Anti-comment sentiment
+
+- Bob Martin says a comment is "an admission of failure to write good code". The idea is that instead of writing the comment, you should focus on rewriting the code to be clearer and more explanatory. This is _the line_ that most anti-comment sentiment stems from.
+- Another anti-comment sentiment is that the added context a comment provides can be put in a commit message or pull request. However, this fails to address to the barrier to information issue—finding a commit or PR requires some digging (especially if the file has a high churn rate).
+- Another objection to code comments and documentation is that unit tests can capture requirements in the same way a comment can. While unit tests do capture some acceptance criteria, I find that A) they serve a slightly different purpose from documentation, and B) they often get left out when the rubber meets the road.
+- Ironically, the chapter in "Clean Code" about comments _does not advocate for a no-comments-ever approach_. Rather, it discusses Martin's opinions about "good" comments and "bad" comments. And there's quite a bit in there about when comments are helpful.
+- Also ironically, a lot of anti-comment sentiment _written in books and on blogs_ is more moderate than anti-comment sentiment I've experienced in real life. I think one reason behind this is that anti-comment posts rely on flashy titles and blanket statements ("You shouldn't comment your code") and then backtrack into a more moderate position ("Don't use comments to paper over bad code"). But people read the polarizing blanket statement and walk away with the takeaway "Good code doesn't have comments, bad code does".
+
+## Some commenting guidelines
+
+- Commenting intent. The most valuable comments describe _why the code is the way that it is_. For example, is the code written to solve a specific edge case or bug? Or does it need to be a certain for performance or cross-platform compatability?
+- Use complete thoughts. For most comments, this means using complete sentences. However, I find myself also writing comments in an imperative voice—essentially prefixing my comment with an unwritten "This code..." before I describe the block of code.
+  - Why complete thoughts? Capturing a complete thought forces you to slow down and reflect on how to make the comment most valuable.
+  - Complete thoughts are easier for others to read. We're used to reading in complete sentences, most of us have been doing it since we were little kids.
+- If you do include a URL in your comment, add some extra context.
+  - This helps keep the comment skimmable and allows the reader to understand whether they need the additional information following the URL would provide.
+  - This helps with the shelf life of the comment as well. URLs can move or become invalid. Your company can cancel their JIRA account or move code from GitHub to GitLab. Capturing a tiny bit of context around the URL means that your comment might outlive the URL.
+- Take advantage of block comments. Most languages provide a block comment syntax that gets picked up by modern IDEs. This allows other engineers using your code to get a basic description of your code through intellisense.
+  - If you're in a dynamically typed language, block comments usually provide a syntax for documenting input/output shapes as well. For an example check out JSDoc's [`@param`](https://jsdoc.app/tags-param.html) and [`@returns`](https://jsdoc.app/tags-returns.html) tags.
+- ["Space shuttle style"](https://www.github.com/kubernetes/kubernetes/tree/ec2e767e59395376fa191d7c56a74f53936b7653/pkg%2Fcontroller%2Fvolume%2Fpersistentvolume%2Fpv_controller.go) (from the Kubernetes source code). This is probably the heaviest commenting style I've seen, but it draws inspiration from the [Apollo-11 source code](https://github.com/chrislgarry/Apollo-11). This style can be a useful tool for mission critical code where robust documentation is absolutely required.
+- When in doubt, err on the side of adding the comment. It's better to delete a redundant comment 6 months down the road than it is to wish you had written it down 6 months later. Over time your gut feeling of "should I write a comment?" will get more and more accurate.
+
+## Resources
+
+### Pro-comment sentiment
+
+- [Google's tech writing guides](https://developers.google.com/tech-writing/two/code-comments)
+- [“Good code documents itself” and other hilarious jokes you shouldn’t tell yourself](https://hackaday.com/2019/03/05/good-code-documents-itself-and-other-hilarious-jokes-you-shouldnt-tell-yourself/)
+- [Comment your f\*\*\*ing code](http://blog.codefx.org/techniques/documentation/comment-your-fucking-code/)
+- [Documentation is JSON for the Brain](https://www.ericholscher.com/blog/2017/feb/13/docs-are-json-for-the-brain)
+- ["My code is self-documenting"](https://www.ericholscher.com/blog/2017/jan/27/code-is-self-documenting/)
+
+### Anti-comment sentiment
+
+- [Clean code](https://www.oreilly.com/library/view/clean-code-a/9780136083238/), notably Chapter 4 which deals with comments.
+- [Do not comment bad code - rewrite it](https://www.ralin.io/blog/do-not-comment-bad-code-rewrite-it.html)
+- [Why You Shouldn't Comment (or Document) Code](https://visualstudiomagazine.com/articles/2013/06/01/roc-rocks.aspx)

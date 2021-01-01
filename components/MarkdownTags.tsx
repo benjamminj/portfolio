@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import { forwardRef, ReactNode } from 'react'
 import { Callout } from './Callout'
 import { Code, CodeExample } from './Code'
@@ -9,16 +10,14 @@ export const A = forwardRef<
   { href?: string; children: ReactNode; title?: string }
 >(({ href, children, title }, ref) => {
   return (
-    <a
-      ref={ref}
-      title={title}
-      href={href}
-      className={
-        'px-0.5 font-medium text-gray-500 no-underline bg-transparent border-b-2 border-gray-200 rounded-sm border-b-solid hover:bg-gray-100 hover:text-gray-600 hover:border-gray-600 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-900 dark:hover:bg-opacity-50 dark:hover:border-white'
-      }
-    >
-      {children}
-    </a>
+    <Link href={href}>
+      <a
+        title={title}
+        className="px-0.5 font-medium text-gray-500 no-underline bg-transparent border-b-2 border-gray-200 rounded-sm border-b-solid hover:bg-gray-100 hover:text-gray-600 hover:border-gray-600 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-900 dark:hover:bg-opacity-50 dark:hover:border-white"
+      >
+        {children}
+      </a>
+    </Link>
   )
 })
 
