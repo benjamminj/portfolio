@@ -53,24 +53,26 @@ export const getStaticProps: GetStaticProps<NotesListPageProps> = async () => {
 
 const NotesListPage = ({ notes }: NotesListPageProps) => {
   return (
-    <Layout title="Notes">
-      <Head>
-        <meta name="robots" content="noindex" />
-      </Head>
-
-      <main></main>
-      <ul>
-        <div className="space-y-2">
-          {notes.map(note => {
-            return (
-              <li key={note.href} className="w-full">
-                <PostListItem post={note} tagComponent={NoteTag} />
-              </li>
-            )
-          })}
-        </div>
-      </ul>
-    </Layout>
+    <>
+      <Layout title="Notes">
+        <Head>
+          <meta name="robots" content="noindex" />
+        </Head>
+        <main>
+          <ul>
+            <div className="space-y-2">
+              {notes.map(note => {
+                return (
+                  <li key={note.href} className="w-full">
+                    <PostListItem post={note} tagComponent={NoteTag} />
+                  </li>
+                )
+              })}
+            </div>
+          </ul>
+        </main>
+      </Layout>
+    </>
   )
 }
 

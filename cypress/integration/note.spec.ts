@@ -22,4 +22,9 @@ describe('Note page', () => {
       cy.contains(`#${$tag}`).should('exist')
     })
   })
+
+  it('should be blocked from search enginge indexing', () => {
+    cy.visit('/notes/code-comments')
+    cy.get('meta[name="robots"]').should('have.attr', 'content', 'noindex')
+  })
 })

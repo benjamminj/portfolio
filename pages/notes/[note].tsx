@@ -11,6 +11,7 @@ import { format } from 'date-fns'
 import { Layout } from '../../components/Layout'
 import { Tag, TagType } from '../../components/Tag'
 import { PostFrontmatter } from '../../lib/types'
+import Head from 'next/head'
 
 interface NotePageProps {
   mdxContent: any
@@ -81,6 +82,9 @@ const NotePage: NextPage<NotePageProps> = ({
         </div>
       }
     >
+      <Head>
+        <meta name="robots" content="noindex" />
+      </Head>
       <main>{hydrated}</main>
 
       <footer data-testid="SlugPage__footer" className="py-12">
