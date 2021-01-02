@@ -3,6 +3,7 @@ import { GetStaticProps } from 'next'
 import Head from 'next/head'
 import { Layout } from '../../components/Layout'
 import { PostListItem } from '../../components/PostListItem'
+import { Tag, TagType } from '../../components/Tag'
 import { getPostFilePaths } from '../../lib/getPostFilePaths'
 import { parsePostFile } from '../../lib/parsePostFile'
 import { slugifyPost } from '../../lib/slugifyPost'
@@ -16,6 +17,8 @@ type NotePreview = Pick<PostFrontmatter, 'title' | 'tags'> & {
 interface NotesListPageProps {
   notes: NotePreview[]
 }
+
+const NoteTag = ({ tag }) => <Tag tag={tag} type={TagType.TEXT} />
 
 export const getStaticProps: GetStaticProps<NotesListPageProps> = async () => {
   const noteFiles = getPostFilePaths('./notes')
@@ -61,7 +64,7 @@ const NotesListPage = ({ notes }: NotesListPageProps) => {
           {notes.map(note => {
             return (
               <li key={note.href} className="w-full">
-                <PostListItem post={note} />
+                <PostListItem post={note} tagComponent={NoteTag} />
               </li>
             )
           })}

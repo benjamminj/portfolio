@@ -9,7 +9,7 @@ import { A, components } from '../../components/MarkdownTags'
 import prism from '@mapbox/rehype-prism'
 import { format } from 'date-fns'
 import { Layout } from '../../components/Layout'
-import { Tag } from '../../components/Tag'
+import { Tag, TagType } from '../../components/Tag'
 import { PostFrontmatter } from '../../lib/types'
 
 interface NotePageProps {
@@ -76,7 +76,7 @@ const NotePage: NextPage<NotePageProps> = ({
       subtitle={
         <div className="space-x-2">
           {tags.map(tag => (
-            <Tag key={tag} tag={tag} />
+            <Tag type={TagType.TEXT} key={tag} tag={tag} />
           ))}
         </div>
       }

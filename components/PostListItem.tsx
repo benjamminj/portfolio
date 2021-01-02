@@ -1,5 +1,6 @@
+import { ReactNode } from 'react'
 import { PostFrontmatter } from '../lib/types'
-import { Tag } from './Tag'
+import { Tag, TagType } from './Tag'
 
 type PostPreview = Pick<PostFrontmatter, 'title' | 'tags'> & {
   /** The `href` to the actual post itself */
@@ -9,9 +10,13 @@ type PostPreview = Pick<PostFrontmatter, 'title' | 'tags'> & {
 
 interface PostListItemProps {
   post: PostPreview
+  tagComponent?: ({ tag }: { tag: string }) => JSX.Element
 }
 
-export const PostListItem = ({ post }: PostListItemProps) => {
+export const PostListItem = ({
+  post,
+  tagComponent: TagComponent = Tag,
+}: PostListItemProps) => {
   return (
     <div className="relative p-4 -mx-4 hover:bg-gray-100 rounded-2xl dark:hover:bg-gray-900 dark:hover:bg-opacity-50">
       <div className="space-y-1 md:flex md:space-y-0 md:space-x-4">
@@ -34,7 +39,7 @@ export const PostListItem = ({ post }: PostListItemProps) => {
             <ul className="relative z-10 flex flex-wrap -ml-2">
               {post.tags.map(tag => (
                 <li key={tag} className="ml-2">
-                  <Tag key={tag} tag={tag} />
+                  <TagComponent tag={tag} />
                 </li>
               ))}
             </ul>
