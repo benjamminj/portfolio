@@ -1,6 +1,12 @@
 .ul > .li:before {
   content: '●';
-  @apply text-xs leading-7;
+  font-size: 0.625rem;
+
+  @apply leading-7;
+}
+
+.li .li:before {
+  content: '○';
 }
 
 .ol {
