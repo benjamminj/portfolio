@@ -70,7 +70,7 @@ const NotePage: NextPage<NotePageProps> = ({
   formattedDate,
 }) => {
   const hydrated = useHydrateMdx(mdxContent, { components })
-  const { tags } = frontmatter
+  const { tags = [] } = frontmatter
   return (
     <Layout
       title={frontmatter.title}
