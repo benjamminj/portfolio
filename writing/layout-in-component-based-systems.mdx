@@ -40,7 +40,17 @@ In the apps I've built, I've found it helpful to revisit some of these principle
 
 > A component should not "own" its own surrounding whitespace, but it can own the whitsepace surrounding its direct children.
 
+This allows us to split out our CSS whitespace rules as a specific concern a component can have. Once we've established that whitespace is different (and follows different rules) than styles like borders, colors, and fonts, we can now dive into _which_ components the whitespace concern belongs to.
 
+This doesn't forbid components from owning _any_ whitespace—otherwise we wouldn't be able to put spacing in our apps! Instead, it's focused only on the _whitespace surrounding the component_.
+
+For instance, if we have a `Button` component with a surrounding margin:
+
+```
+TODO: example
+```
+
+If we 
 <!--
 
 
