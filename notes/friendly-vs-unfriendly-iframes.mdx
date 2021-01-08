@@ -1,0 +1,30 @@
+---
+title: Friendly vs unfriendly iframes
+date: 2021-01-07T00:00:00.000Z
+tags:
+  - front-end
+  - html
+  - security
+---
+
+### Definition
+
+A **friendly `iframe`** has the same domain as its parent document.
+
+In contrast, an **unfriendly `iframe`** has a different `src` domain than its parent.
+
+### Differences
+
+The key difference between friendly and unfriendly `iframe`s boils down to the level of access afforded by the embedded document.
+
+In a friendly `iframe`, the embedded document has access to the parent's `window` object and can change things in the parent.
+
+However, an unfriendly `iframe` is bound by `same-origin policy` and does _not_ have access to the parent document's `window` object.
+
+### Why does it matter?
+
+The primary reason that an `iframe` is more restricted if it comes from another domain is _security_. That `iframe` comes from a domain that you "don't control". Even if you actually _do_ control the domain—there's no way of letting the browser know that.
+
+And if you _are_ iframing a site that you don't own, it's possible that the external site gets hacked, or introduces some invasive code. If they had access to your site's `window` object you've suddenly also been hacked! 😱
+
+This means that your "hostile" `iframe`s can only talk to their parent document via [`window.postMessage`](https://developer.mozilla.org/en-US/docs/Web/API/Window/postMessage). This builds security into the cross-site communication since the parent document has to explicitly listen for and interprest the message sent from the `iframe`.
