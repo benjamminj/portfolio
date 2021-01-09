@@ -1,0 +1,465 @@
+---
+title: Python syntax
+date: 2021-01-02T00:00:00.000Z
+tags:
+  - programming-languages
+  - python
+  - programming
+---
+
+## Bookmark
+
+https://docs.python.org/3.8/tutorial/modules.html
+
+## Version
+
+Python 3.8.x
+
+## Arithmetic
+
+- Division `(x / y)` _always returns a float_.
+- If you want to divide and round down (floor division), you can use the `//` division operator.
+- `%` returns the remainder (modulo)
+- `**` does an exponent
+- Mixing a floating point and integer in operations results in the a floating point conversion.
+
+## Variables
+
+- No "variable" operator, you can just use `=` to assign a variable: `name = value`
+
+## Strings
+
+- Single or double quotes
+- `\` as escape character
+- **raw string**: add `r` before the first quote to not escape `\` characters. `r'something with a \'
+- **multiline strings**: triple quotes `"""..."""`. Trailing backlash adds a new line to the string.
+- `+` concatenates strings. Strings next to each other are automagically concatenated (`'Py' 'thon'`). This doesn't work with variables, you'd have to use `+`
+- `*` repeats a string
+
+- Strings are _immutable_—instead of changing one, create a new one
+- String length with the built-in `len()` function
+
+## Lists
+
+- Designated with _square brackets_ (`nums = [1, 2, 3, 4, 5]`)
+- Indexing with square brackets (`nums[0]` returns `1`)
+- Slicing creates a new list from a subset (`nums[1:3]` returns `[2, 3, 4]`)
+- Slicing a complete _shallow copy_ of a list (`nums[:]`)
+- List concatenation with `+` operator (`[1, 2] + [3, 4, 5]` returns `[1, 2, 3, 4, 5]`)
+- Lists are _mutable_ so you can reassign values with the index access
+
+## Control Flow
+
+### `if` / `elif` / `else`
+
+- syntax is `if condition:` and then starts a new indentation block.
+- `elif` is a convenience keyword, essentially `else` + `if` to avoid an extra indentation block.
+
+### `for` loops
+
+- Notable difference to JS (C-style languages) is that the `for` _doesn't_ let you define the exit condition.
+- Rather, it only iterates over items in a sequence (like a list)
+
+```py
+planets = ['mercury', 'venus', 'earth', 'mars']
+
+for l in letters:
+  print(l, len(l))
+```
+
+- Instead of mutating collections inside an iteration, it's usually recommended to create a copy or a new collection.
+
+### `range`
+
+Gives you a range of numbers of length `n`
+
+```py
+# If only 1 argument, specifies the _length_
+range(5) # 0, 1, 2, 3, 4
+
+# If there's 2 arguments, 1st is start and 2nd is end (non-inclusive)
+range(5, 10) # 5, 6, 7, 8, 9
+
+# Third argument specifies the increment size
+range(0, 10, 3) # 0, 3, 6, 9
+```
+
+- Note that `range` _isn't a list_, even though it often behaves as such. It's an _iterable object_.
+
+### `break` & `continue` statements, `else` clauses in loops
+
+- `break` works exactly the same as JS—it breaks out of the current (innermost) loop.
+- A loop can have an `else` clause after the `for`. This run _if the loop terminates without executing anything in its body._
+- Note that `else` will _not_ execute if the loop ends by being terminated with a `break` statement.
+
+```py
+for n in range(2, 10):
+    for x in range(2, n):
+        # Since this code is protected with an `if` it will only execute
+        # if the number has a multiple.
+        if n % x == 0:
+          print(n, 'equals', x, '*', n // x)
+          break
+    else:
+        # This code only executes if we go thru the entire loop without matching
+        # the `if` condition.
+        print(n, 'is a prime number')
+```
+
+- `continue` statement also behaves the same as JS due to its common ancestry from C. It will break out of the current iteration of the loop and start the next iteration.
+
+### `pass` statements
+
+This literally _does nothing_.
+
+_Note: seems similar to JS's `void` keyword. I wonder what the similarity / differences between the two would be._
+
+This is commonly used as a placeholder while you're mocking out code. You can set it up and think at a higher, more abstract level.
+
+### Defining functions
+
+- The `def` keyword allows you create a new function.
+
+```py
+def fibonnacci(n):
+  """This is the docstring syntax, on the first line."""
+  a, b = 0, 1
+  while a < n:
+      print(a, end=' ')
+      a, b = b, a+b
+  print()
+
+fibonnacci(100)
+```
+
+A couple things of note about functions:
+
+- The first line of the function can be a string literal (triple `"`). This is the doc comment syntax when present.
+- Any variables declared within the function body will be _scoped to the function and override outside variables with the same names_.
+- Functions don't _have_ to return a value, by default they will return a built-in value of `None`
+- Returning a value from a function can be done with the `return` keyword.
+
+Arguments can be defined in a few syntaxes:
+
+- Default arguments. `def add(a, b=2):`.
+- Keyword arguments. Arguments can be called with either the _name_ or just with a positional valuable.
+- Catch-all arguments. `*argumentName` catches all unnamed arguments past the formally declared arguments as a list. `**argumentName` catches all the named arguments as an object.
+
+Functions can also define _how_ callers can use them, restricting certain arguments to keyword-based or position-based. Both can be used in the same function.
+
+```py
+def f(pos1, pos2, /, pos_or_keyword, *, keyword1, keyword2):
+    pass
+```
+
+Guidance from docs:
+
+```
+- Use positional-only if you want the name of the parameters to not be available to the user. This is useful when parameter names have no real meaning, if you want to enforce the order of the arguments when the function is called or if you need to take some positional parameters and arbitrary keywords.
+
+- Use keyword-only when names have meaning and the function definition is more understandable by being explicit with names or you want to prevent users relying on the position of the argument being passed.
+
+- For an API, use positional-only to prevent breaking API changes if the parameter’s name is modified in the future.
+```
+
+### Lambda expressions
+
+```py
+lambda arg: body
+```
+
+```py
+lambda a, b: a + b
+```
+
+### Function annotations (static typing)
+
+These serve as _optional type hints_ to function paramaters and are addable with the following syntax:
+
+```py
+def add(a: int, b: int) -> int:
+  return a + b
+```
+
+Types can be aliased the same way as variables, but using `TypeVar`:
+
+```py
+from typing import TypeVar
+
+T = TypeVar('T', str)
+```
+
+## Style guides
+
+Looks like [PEP 8](https://www.python.org/dev/peps/pep-0008/) is the more common and "blessed" style guide.
+
+Some notable pieces:
+
+- 4-space indentation.
+- 79-character width.
+- Use docstrings
+- Comments should be on new lines
+- Use spaces around operators and after commas, but not directly inside brackets (i.e. `(a + b)`)
+- `PascalCase` for classes and `lower_case_snake_case` for functions & methods. `self` should always be the name of the first method argument.
+
+## Data structures
+
+### List methods
+
+- `list.append(x)`: adds an item to the end of a list. 
+- `list.extend(iterable)`: pushes all of the items in the iterable to the end of the list.
+- `list.insert(i, x)`: inserts `x` at the given position `i`
+- `list.remove(x)`: removes the first item in the list that matches value `x`
+- `list.pop([i])`: removes the item at index `i` in the list. `i` defaults to the last item in the list.
+- `list.clear()`: removes all items from the list
+- `list.index([i[, start[, end]])`: returns the index of the first item in the list matching `x`. Throws `ValueError` if no match is found. `start` and `end` can be used to limit the indexes of the list that are searched.
+- `list.count(x)`: returns the number of items in the list matching value `x`
+- `list.sort(*, key=None, reverse=False)`: sorts the list items in place.
+- `list.reverse()`: reverse the order of the list in place.
+- `list.copy()`: creates a shallow copy of the list.
+
+### Using lists as stacks
+
+The built-in list methods give us all of the primitives needed to use them as a _stack_ data structure.
+
+<Callout>
+
+_As a reminder, a stack is a data structure with "last in, first out" handling of items._
+
+</Callout>
+
+You can add an item to the "top" of the stack using `append` (even though it's the "end" of the list). Then, you can use `pop` to get the last item.
+
+```py
+stack = [1, 2]
+
+stack.append(3)
+stack.append(4)
+stack.append(5)
+
+print(stack)
+# [1, 2, 3, 4, 5]
+
+stack.pop() # 5
+stack.pop() # 4
+stack.pop() # 3
+```
+
+### Using lists as queues
+
+<Callout>
+
+_As a reminder, a **queue** deals with items in the order of "first-in, first-out"._
+
+</Callout>
+
+You _can_ also use lists as queues, but they're not going to be _as_ efficient. The reason is that operations to the beginning of the list aren't as "fast" since the items in the list have to be re-indexed.
+
+If you absolutely need a queue, then it's probably better to build one or use a prebuilt package (`dequeue`).
+
+### List comprehensions
+
+A _list comprehension_ is essentially a set of square brackets (the list) containing an expression, followed by a `for` clause. Finally, the `for` clause can optionally be followed by `for` or `if` clauses, which can add additional context.
+
+Here's a simple list comprehension to generate a list of squares from 0 - 9
+
+```py
+squares = [x ** 2 for x in range(10)]
+```
+
+However, list comprehensions can be significantly more complex:
+
+```py
+[(x, y) for x in [1, 2, 3] for y in [3, 1, 4] if x != y]
+
+# The equivalent code with for-loops
+
+l = []
+
+for x in [1, 2, 3]:
+    for y in [3, 1, 4]:
+        if x != y:
+            l.append((x, y))
+
+l # [(1, 3), (2, 1), (3, 4)]
+```
+
+### Nested list comprehensions
+
+The first portion of the list comprehension (the expression) can also be _another_ list comprehension.
+
+<Callout title="Side-note">
+
+_I imagine this could get a little wonky to read if taken too far. But it's pretty cool how concise this can make code._
+
+</Callout>
+
+```py
+matrix = [
+    [1, 2, 3, 4],
+    [5, 6, 7, 8],
+    [9, 10, 11, 12]
+]
+
+# Transpose / flip the rows and columns.
+transposed = [[row[i] for row in matrix] for i in range(4)]
+
+# This is equivalent to the following code.
+def transpose():
+    transposed = []
+    
+    for i in range(4):
+        transposed.append([row[i] for row in matrix])
+
+    return transposed
+
+# If we completely undo the inner list comp we end up with this:
+def transpose():
+    transposed = []
+
+    for i in range(4):
+        transposed_row = []
+
+        for row in matrix:
+            transposed_row.append(row[i])
+
+        transposed.append(transposed_row)
+
+    return transposed
+```
+
+### The `del` statement
+
+`del` allows you to remove an item from a list _using its index_ instead of its value.
+
+```py
+a = [1, 2, 3, 4, 5, 6, 7]
+
+del a[1]
+print(a) # [1, 3, 4, 5, 6, 7]
+
+# del can also take a slice of the list
+del a[2:4]
+print(a) # [1, 2, 6, 7]
+
+del a[:]
+print(a) # []
+```
+
+### Tuples & Sequences
+
+```py
+# Tuples can be assigned with or without parentheses
+tuple = 1, 2, 3
+tuple = (1, 2, 3)
+
+# The values of a tuple can be "unpacked", similar to destructuring in JS.
+# The number of variables on the right must exactly match the number of items
+# in the tuple.
+first, second, third = tuple
+```
+
+Some notes on tuples:
+
+- tuples themselves are _immutable_. However, they can contain mutable objects.
+
+### Sets
+
+A _set_ is an unordered collection of values where each value is guaranteed to appear only 1x within the set.
+
+Sets can be created in the following ways:
+
+```py
+s = {"mercury", "venus", "earth", "mars", "jupiter"}
+s = set(["mercury", "venus", "earth", "mars", "jupiter"])
+```
+
+Sets allow some easy methods for testing existence of a value as well as eliminating duplicate values:
+
+```py
+arr_1 = [1, 2, 3, 4, 5, 6, 5, 4, 3, 2, 1]
+arr_2 = [1, 2, 3, 10]
+
+a = set(arr_1)
+b = set(arr_2)
+
+# test for existence of a value
+5 in a
+
+# unique values in arr_1
+a
+
+# values in arr_1 but not in arr_2 (difference)
+a - b
+
+# combination of all values in a OR b OR both (union)
+a | b
+
+# only the values in BOTH a AND b (intersection)
+a & b
+
+# only the values in a OR b, but NOT both (symmetrical)
+a ^ b
+```
+
+Set comprehensions can also be created, similar to list comprehensions
+
+```py
+a = {x for x in 'abracadabra' if x not in 'abc'} # {'r', 'd'}
+```
+
+### Dictionaries
+
+This is a key-value store, keys can only be immutable types (strings and numbers). Tuples can be a key as long as _they_ do not contain any mutable types as well.
+
+```py
+pets = {'moses': 1, 'bubbles': 2, 'sadie': 3}
+
+pets['moses'] # 1
+
+del pets['sadie']
+```
+
+You can also build a dictionary from key-value tuples using `dict`, dict comprehensions, or simple named arguments (for simple keys):
+
+```py
+# tuples
+dict([('moses', 1), ('bubbles', 2), ('sadie', 3)])
+
+# dict comprehension
+{x: x**2 for x in (2, 4, 6)} # { 2: 4, 4: 16, 6: 36 }
+
+# simple named args
+dict(moses=1, bubbles=2, sadie=3)
+```
+
+### Looping techniques
+
+You can loop thru an object and get the key _and_ value simultaneously using the `.items()` method.
+
+```py
+pets = {'moses': 1, 'bubbles': 2, 'sadie': 3}
+
+for name, pet_id in pets.items():
+    print(name, ': ', pet_id)
+```
+
+In a sequence you can get the index _and_ value simultaneously using the built-in `enumerate` function.
+
+```py
+nums = [1, 2, 3, 4, 5, 6]
+
+for i, v in enumerate(nums):
+    print(i, ': ', v) 
+    
+# 0: 1
+# 1: 2
+# 2: 3
+# ...
+```
+
+### More on conditional operators
+
+- You can use the keywords `and` & `or` to chain conditionals together. Expressions are evaluated left-to-right, and evaluation stops as soon as the condition is determined (i.e. if the first one is false in `A and B and C`, `B` and `C` won't be evaluated).
+- If you do assignment _inside_ the condition you have to use `:=` instead of `=`.
+
