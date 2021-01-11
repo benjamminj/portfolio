@@ -31,7 +31,7 @@ const colorVariants: {
 } = {
   info: {
     css:
-      'bg-gray-100 border-gray-200 text-gray-900 dark:bg-gray-900 dark:bg-opacity-50 dark:border-gray-900 dark:border-opacity-60 dark:text-white',
+      'bg-gray-100 border-gray-200 text-gray-900 dark:bg-gray-900 dark:bg-opacity-30 dark:border-gray-900 dark:border-opacity-40 dark:text-white',
     icon: '💬',
   },
   success: {
@@ -46,7 +46,7 @@ const colorVariants: {
   },
   warning: {
     css:
-      'bg-yellow-100 border-yellow-200 text-yellow-900 dark:bg-yellow-500 dark:bg-opacity-10 dark:border-yellow-800 dark:border-opacity-50 dark:text-yellow-100',
+      'bg-yellow-100 border-yellow-200 text-yellow-900 dark:bg-yellow-500 dark:bg-opacity-10 dark:border-yellow-800 dark:border-opacity-20 dark:text-yellow-100',
     icon: '🚧',
   },
 }
@@ -62,13 +62,11 @@ export const Callout = ({
 
   return (
     <div className={clsx(styles.container, config.css)}>
-      <div className="w-6 h-6 text-xl">{icon || config.icon}</div>
+      {/* <div className="w-6 h-6 text-xl">{icon || config.icon}</div> */}
 
-      {heading && <div className="text-xl font-medium">{heading}</div>}
+      {heading && <div className="text-lg font-bold">{heading}</div>}
 
-      <div className="col-start-1 col-end-3 md:col-start-2 md:col-end-3 dark:text-white">
-        {children}
-      </div>
+      <div className="dark:text-white">{children}</div>
     </div>
   )
 }
