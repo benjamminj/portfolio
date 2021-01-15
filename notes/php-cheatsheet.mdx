@@ -1,0 +1,27 @@
+---
+title: PHP cheatsheet
+date: 2021-01-14T00:00:00.000Z
+---
+
+## Declaring variables
+
+```php
+$variable = 'value';
+```
+
+## Object operator (`->`)
+
+```php
+// Create an object
+$obj = new stdClass();
+
+// Set a property on an object
+$obj->prop = 'test';
+
+// Get a property on an object
+$prop = $obj->prop;
+print( $prop ); // test
+
+// Call a method on an object
+$obj->method();
+```
