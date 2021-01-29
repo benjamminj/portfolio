@@ -25,3 +25,38 @@ print( $prop ); // test
 // Call a method on an object
 $obj->method();
 ```
+
+## "Arrays"
+
+PHP arrays are _very_ different than JavaScript arrays. They're more similar to JavaScript _objects_, even though they use the square bracket syntax.
+
+```php
+$arr = [
+  'key1' => 'val', // the => assigns the value to the key
+  'key2' => 'val2'
+];
+```
+
+The equivalent JS code would be something like this:
+
+```js
+const arr = {
+  key1: 'val',
+  key2: 'val2',
+}
+```
+
+In addition, you _can_ use a PHP `array` as a sorted, unkeyed list (similar to a JS array), in that case you would use the array syntax _without_ the key syntax
+
+```php
+$arr = [
+  'val', // key is 0
+  'val2' // key is 1
+];
+```
+
+To access an array value, you can use the square brackets along with the key name:
+
+```php
+$arr['key'];
+```

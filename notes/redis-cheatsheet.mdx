@@ -1,0 +1,31 @@
+---
+title: Redis cheatsheet
+date: 2021-01-27T00:00:00.000Z
+---
+
+## Installation
+
+If you're on a Mac (usually the case for me), you can install Redis via Homebrew:
+
+```bash
+brew update
+brew install redis
+```
+
+## Starting the server
+
+You can start the server in a background process with `brew services`:
+
+```bash
+brew services start redis
+```
+
+```bash
+brew services stop redis
+```
+
+Alternatively, if you don't want to run Redis in the background, you can use the `redis-server` to start Redis:
+
+```bash
+redis-server /usr/local/etc/redis.conf
+```
