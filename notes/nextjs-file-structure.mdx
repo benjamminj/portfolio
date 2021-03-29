@@ -1,0 +1,66 @@
+---
+title: NextJS file structure
+date: 2021-02-04T00:00:00.000Z
+tags:
+  - nextjs
+  - react
+  - architecture
+  - file-structure
+---
+
+## Guiding principles behind a file structure
+
+- **Flexibility.** A good file structure allows for evolution—it makes it easy to delete code and move files around.
+- **Colocation.** We want to keep relevant code together to minimize context switching and digging through the filesystem.
+- **Simplicity.** We don't want some elaborate file structure that takes 20 minutes to explain. Ideally we can describe the core principles of a structure in a couple sentances.
+
+## Use a flat file structure for small apps
+
+For small NextJS apps I like to keep my file structure flat.
+
+```
+my-project
+└─ api
+│     └─  login.ts
+│     └─  posts.ts
+└─ components
+│     └─  __tests__
+│     │     └─  Button.test.tsx
+│     │     └─  Card.test.tsx
+│     └─  Button.tsx
+│     └─  Card.tsx
+└─ lib
+│     └─  __tests__
+│     │     └─  handleUserInput.test.ts
+│     │     └─  useDebounce.test.tsx
+│     └─  handleUserInput.ts
+│     └─  useDebounce.ts
+│     └─  fetchPosts.ts
+└─ integration
+│     └─  index.test.ts
+│     └─  about.test.ts
+│     └─  sign-up.test.ts
+└─ test-utils
+│     └─  setupTests.ts
+│     └─  renderPage.ts
+└─ pages
+│     └─  index.tsx
+│     └─  about.tsx
+│     └─  sign-up.tsx
+└─ styles
+│     └─  reset.css
+
+```
+
+## Group by feature for large apps
+
+```
+my-project
+└─ features
+│     └─  blog
+│     │     └─  api
+│     │     └─  lib
+│     │     └─  integration
+│     │     └─  components
+│     │     └─  pages
+```
