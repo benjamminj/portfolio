@@ -1,8 +1,239 @@
 ---
 title: Building an infinite-scrolling list with React
-date: 2020-01-29T00:00:00.000Z
+date: 2020-02-02T00:00:00.000Z
 tags:
   - react
   - typescript
   - tutorials
 ---
+
+## Intro
+
+### Do you _need_ an infinite list?
+
+### List virtualization and "windowing"
+
+### Why build it from scratch instead of {insert library here}?
+
+- Small, focused bundle size
+- Ability to customize and tweak to fit your needs.
+  - for example, if you want to allow the list to change the height of the window. (or to have it NOT change the height of the window).
+- Support for _pages_ of items and _grids_. This is a big one for the infinite lists I've built in the past. Most virtualization libraries supply the tools to do 1-dimensional lists fairly easily, or they allow virtualizing on both the x- and y-axis. So, doing a virtualized y-axis with a grid of items on the x-axis results in a lot of effort, equal to building the whole dang virtualized list yourself.
+- Deep knowledge of list virtualization. If you're building web apps, it's a good thing to know, and allows you to wow clients (or product managers) while still providing a good user experience.
+
+### Creating a good infinite scroll experience
+
+- ability to handle any number of items with smooth framerates while scrolling
+- ability to "load more" when the bottom of the list is reached
+- scroll scrubbing with lazy-loading
+- smaller bundle size than `react-window` (granted, it will also have a smaller feature set)
+- does not overflow or have weird spacing at the bottom of the list.
+- allows us to handle responsive sizing in _some_ fashion.
+
+## Let's build it!
+
+### Set up the shell of our list
+
+```tsx
+import React from 'react'
+
+export interface VirtualizedListProps {
+  total: number
+  rowHeight: number
+}
+
+export const VirtualizedList = ({ total, rowHeight }: VirtualizedListProps) => {
+  return (
+    <div
+      style={{
+        background: '#eee',
+        height: rowHeight * total,
+      }}
+    ></div>
+  )
+}
+```
+
+- inline styles for simplicity
+- light gray as "background" for now
+- we add 2 props to our list
+  - the total count of items we plan on rendering
+  - the height of each individual row. For now we're assuming that each row contains 1 item.
+- Finally, we use the count of total items and the height of each individual row to get the full height of our list.
+
+### Split our total count of items into "pages"
+
+```tsx
+import React from 'react'
+
+export interface VirtualizedListProps {
+  total: number
+  rowHeight: number
+  pageSize: number
+}
+
+export const VirtualizedList = ({
+  total,
+  rowHeight,
+  pageSize,
+}: VirtualizedListProps) => {
+  const pages = Math.ceil(total / pageSize)
+  const pageHeight = pageSize * rowHeight
+  return (
+    <div
+      style={{
+        background: '#eee',
+        height: pageHeight * pages,
+      }}
+    ></div>
+  )
+}
+```
+
+- Add 1 more prop, now the amount of items in a "page".
+- Now, instead of calculating by the number of rows, we'll be calculating the total height by the number of "pages". Right now we only are rendering 1 item per row so the calculation will be fairly straightforward.
+
+### Fix the last page
+
+```tsx
+import React from 'react'
+
+type GetLastPageHeight = (args: {
+  total: number
+  pageSize: number
+  rowHeight: number
+}) => number
+
+const getLastPageHeight: GetLastPageHeight = ({
+  total,
+  pageSize,
+  rowHeight,
+}) => {
+  const pages = total / pageSize
+  const completePages = Math.floor(pages)
+
+  if (completePages === pages) {
+    return pageSize * rowHeight
+  }
+
+  const lastPageStartIndex = completePages * pageSize - 1
+  const itemsOnLastPage = total - lastPageStartIndex - 1
+
+  return itemsOnLastPage * rowHeight
+}
+
+export interface VirtualizedListProps {
+  total: number
+  rowHeight: number
+  pageSize: number
+}
+
+export const VirtualizedList = ({
+  total,
+  rowHeight,
+  pageSize,
+}: VirtualizedListProps) => {
+  const pages = Math.ceil(total / pageSize)
+  const pageHeight = pageSize * rowHeight
+  const lastPageStartIndex = pages - 1
+  const lastPageHeight = getLastPageHeight({
+    total,
+    rowHeight,
+    pageSize,
+  })
+  return (
+    <div
+      style={{
+        background: '#eee',
+        height: pageHeight * lastPageStartIndex + lastPageHeight,
+      }}
+    ></div>
+  )
+}
+```
+
+- the list works great if the number of items evenly divides by the page size, but if it _doesn't_ we're left with some extra space at the bottom of the list. To get the height to be _exactly_ the number of items, we need to add some calculation for the final page of items.
+- we calculate how many complete pages exist, if that's the same as the total # of pages, then our calculation is more straightforward. Otherwise, we have to do a little extra math to figure out how many rows exist on the final page.
+
+### Add the ability to render a custom page of items
+
+```tsx
+import React, { Fragment, ReactNode } from 'react'
+
+type GetLastPageHeight = (args: {
+  total: number
+  pageSize: number
+  rowHeight: number
+}) => number
+
+const getLastPageHeight: GetLastPageHeight = ({
+  total,
+  pageSize,
+  rowHeight,
+}) => {
+  const pages = total / pageSize
+  const completePages = Math.floor(pages)
+
+  if (completePages === pages) {
+    return pageSize * rowHeight
+  }
+
+  const lastPageStartIndex = completePages * pageSize - 1
+  const itemsOnLastPage = total - lastPageStartIndex - 1
+
+  return itemsOnLastPage * rowHeight
+}
+
+export interface VirtualizedListProps {
+  total: number
+  rowHeight: number
+  pageSize: number
+  renderPage: (index: number) => ReactNode
+}
+
+export const VirtualizedList = ({
+  total,
+  rowHeight,
+  pageSize,
+  renderPage,
+}: VirtualizedListProps) => {
+  const pages = Math.ceil(total / pageSize)
+  const pageHeight = pageSize * rowHeight
+  const lastPageStartIndex = pages - 1
+  const lastPageHeight = getLastPageHeight({
+    total,
+    rowHeight,
+    pageSize,
+  })
+  return (
+    <div
+      style={{
+        background: '#eee',
+        height: pageHeight * lastPageStartIndex + lastPageHeight,
+      }}
+    >
+      {Array.from({ length: pages }).map((_, index) => (
+        <div
+          key={index}
+          style={{
+            height: index === lastPageStartIndex ? lastPageHeight : pageHeight,
+          }}
+        >
+          {renderPage(index)}
+        </div>
+      ))}
+    </div>
+  )
+}
+```
+
+## Conclusion
+
+### Some next steps
+
+- Allow dynamically determining a page's size. In `react-window` this is called `VariableSizedList`
+
+### Resources
+
+- https://web.dev/virtualize-long-lists-react-window
+  /

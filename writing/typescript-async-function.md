@@ -117,5 +117,3 @@ This can be especially useful to decrease verbosity if the async function you're
 Thanks for reading—I hope that this was helpful to you in figuring out how to still use async/await syntax while giving TypeScript enough info to properly infer the shapes of the data your async functions are returning.
 
 As always, feel free to hit me up on my [Twitter](https://twitter.com/benjamminj) or [LinkedIn](https://www.linkedin.com/in/benjamin-d-johnson/) with any thoughts. If you found a typo in this article or have some feedback for improvement please feel free to [sumbit a pull request](https://github.com/benjamminj/portfolio).
-
-_Cover photo by [Photo Boards](https://unsplash.com/@aplaceforcreation) on [Unsplash](https://unsplash.com/s/photos/abstract)_
