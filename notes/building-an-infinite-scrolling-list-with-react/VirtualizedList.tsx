@@ -184,7 +184,7 @@ export const VirtualizedList = ({
     <>
       <div
         ref={wrapperRef}
-        css={{
+        style={{
           position: 'relative',
           overflow: 'hidden',
           marginBottom: pageOffsetY * -1,
