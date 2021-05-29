@@ -13,7 +13,7 @@ export const A = forwardRef<
     <Link href={href}>
       <a
         title={title}
-        className="px-0.5 font-medium text-gray-500 no-underline bg-transparent border-b-2 border-gray-200 rounded-sm border-b-solid hover:bg-gray-100 hover:text-gray-600 hover:border-gray-600 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-900 dark:hover:bg-opacity-50 dark:hover:border-white"
+        className="px-0.5 font-medium text-gray-500 underline bg-transparent hover:text-gray-600 dark:text-gray-300 dark:hover:text-white dark:hover:border-white"
       >
         {children}
       </a>
@@ -47,7 +47,7 @@ export const H6 = ({ children }) => {
 
 export const InlineCode = ({ children }) => {
   return (
-    <code className="p-1 break-words bg-gray-100 rounded-md dark:bg-gray-900">
+    <code className="p-1 break-words bg-gray-100 dark:bg-gray-900">
       {children}
     </code>
   )

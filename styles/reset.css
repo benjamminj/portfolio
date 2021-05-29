@@ -1,6 +1,6 @@
 /*! minireset.css v0.0.3 | MIT License | github.com/jgthms/minireset.css */
 body {
-  @apply font-sans;
+  @apply font-mono;
 }
 
 code {

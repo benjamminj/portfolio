@@ -152,6 +152,3 @@ Secondly, I've gotten a lot of great TypeScript patterns from [TypeScript Deep D
 Lastly, I wanted to reiterate that that the best solutions with TypeScript typically come from leaning _into_ the type system rather than fighting against it. This `Result` type came out of desiring to find a way to force my team (myself included) check for error states rather than optimistically trusting that certain functions (primarily API requests) will always return successfully.
 
 If you enjoyed this, please let me know on my [Twitter](https://twitter.com/benjamminj) or [LinkedIn](https://www.linkedin.com/in/benjamin-d-johnson/) with a share! If you found any errors or bugs in this article let me know or submit a pull request to update this article.
-
-<!-- prettier-ignore -->
-*The cover photo for this article is by [Pawel Czerwinski](https://unsplash.com/@pawel_czerwinski) on [Unplash](https://unsplash.com/s/photos/rocks-abstract).*
