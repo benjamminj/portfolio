@@ -1,3 +1,5 @@
+export {}
+
 describe('Note page', () => {
   it('should display the post', () => {
     cy.visit('/notes/code-comments')

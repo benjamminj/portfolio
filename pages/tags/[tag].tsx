@@ -73,7 +73,7 @@ export const getStaticProps: GetTagPageStaticProps = async ctx => {
     const isMatchingTag = frontmatter.tags?.includes(tag)
 
     if (isMatchingTag) {
-      matchingPosts.push({ ...frontmatter, href: `/blog/${slug}` })
+      matchingPosts.push({ ...frontmatter, href: `/${slug}` })
     }
   }
 

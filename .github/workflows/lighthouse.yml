@@ -33,8 +33,8 @@ jobs:
         with:
           urls: "
             ${{ needs.wait_for_preview.outputs.url }}, 
-            ${{ needs.wait_for_preview.outputs.url }}/blog,
-            ${{ needs.wait_for_preview.outputs.url }}/blog/mocking-fetch
+            ${{ needs.wait_for_preview.outputs.url }}/writing,
+            ${{ needs.wait_for_preview.outputs.url }}/mocking-fetch
           "
           outputDirectory: /tmp/artifacts
       - name: Upload artifacts

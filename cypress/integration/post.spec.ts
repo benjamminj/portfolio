@@ -1,6 +1,6 @@
 describe('Post page', () => {
   it('should display the post', () => {
-    cy.visit('/blog/mocking-fetch')
+    cy.visit('/mocking-fetch')
 
     cy.contains('Benjamin Johnson').should('exist')
 
@@ -20,8 +20,6 @@ describe('Post page', () => {
       ['name', 'twitter:creator', '@benjamminj'],
       ['property', 'og:title', pageContent.title],
       ['property', 'og:description', pageContent.description],
-      ['name', 'twitter:image:alt', pageContent.imageAlt],
-      ['property', 'og:image:alt', pageContent.imageAlt],
       ['property', 'og:type', 'website'],
     ]
 

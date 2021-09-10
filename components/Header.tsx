@@ -49,8 +49,7 @@ export const Header = () => {
           <div className="flex mt-2 space-x-4 lowercase">
             <nav>
               <div className="flex items-center space-x-4">
-                {/* TODO: change to "writing" */}
-                <Link href="/blog" passHref>
+                <Link href="/writing" passHref>
                   <HeaderLink title="Writing">writing</HeaderLink>
                 </Link>
 

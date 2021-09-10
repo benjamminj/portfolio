@@ -27,6 +27,7 @@ export const PostListItem = ({
         <div>
           <h2 className="text-2xl">
             <a
+              data-testid="PostListItem__title"
               href={post.href}
               title={post.title}
               className="font-semibold text-gray-800 no-underline hover:text-gray-800 dark:text-gray-200 dark:hover:text-white hover:underline before:empty-content before:absolute before:inset-0"

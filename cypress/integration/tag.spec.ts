@@ -8,7 +8,7 @@ describe('Tags page', () => {
       .contains(`#${tag}`)
       .should('have.length', 1)
 
-    cy.get('[href^="/blog/"]').then($blogLinks => {
+    cy.get('[data-testid="PostListItem__title"]').then($blogLinks => {
       expect($blogLinks).to.have.length.greaterThan(0)
 
       cy.findAllByRole('link', { name: `#${tag}` }).then($tagLinks => {

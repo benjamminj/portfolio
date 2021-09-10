@@ -6,21 +6,21 @@ import renderToString from 'next-mdx-remote/render-to-string'
 import Head from 'next/head'
 import { ParsedUrlQuery } from 'querystring'
 import React, { Fragment } from 'react'
-import { Layout } from '../../components/Layout'
-import { A, components } from '../../components/MarkdownTags'
-import { Tag } from '../../components/Tag'
-import { getPostBySlug } from '../../lib/getPostBySlug'
-import { getPostFilePaths } from '../../lib/getPostFilePaths'
-import { slugifyPost } from '../../lib/slugifyPost'
-import { PostFrontmatter } from '../../lib/types'
+import { Layout } from '../components/Layout'
+import { A, components } from '../components/MarkdownTags'
+import { Tag } from '../components/Tag'
+import { getPostBySlug } from '../lib/getPostBySlug'
+import { getPostFilePaths } from '../lib/getPostFilePaths'
+import { slugifyPost } from '../lib/slugifyPost'
+import { PostFrontmatter } from '../lib/types'
 import fs from 'fs'
 import path from 'path'
 import Prism from 'prismjs'
 import loadLanguages from 'prismjs/components/'
-import { getCodeExamples } from '../../lib/getCodeExamples'
-import { getPostFileBySlug } from '../../lib/getPostFileBySlug'
-import { highlightCodeExamples } from '../../lib/highlightCodeExamples'
-import { parsePostFile } from '../../lib/parsePostFile'
+import { getCodeExamples } from '../lib/getCodeExamples'
+import { getPostFileBySlug } from '../lib/getPostFileBySlug'
+import { highlightCodeExamples } from '../lib/highlightCodeExamples'
+import { parsePostFile } from '../lib/parsePostFile'
 
 interface PostPageParams extends ParsedUrlQuery {
   slug: string[]
@@ -107,7 +107,7 @@ const PostPage: NextPage<PostPageProps> = props => {
             content={props.frontmatter.description}
           />
           <meta property="og:type" content="website" />
-          <meta property="og:url" content={HOMEPAGE + '/blog/' + props.slug} />
+          <meta property="og:url" content={HOMEPAGE + '/' + props.slug} />
 
           {absoluteImagePath && props.image?.alt && (
             <Fragment>
@@ -168,23 +168,6 @@ export const getStaticProps: GetPostPageStaticProps = async ctx => {
   const filePath = getPostFileBySlug(ctx.params.slug)
   const { frontmatter, body } = parsePostFile(filePath)
 
-  // TODO: might be able to remove now...although might need to wait until we
-  // have auto-generated meta images
-  let imageProps: { image?: PostPageProps['image'] } = {}
-
-  // If there's an image, fetch the image, resize it to the max width shown, and
-  // create a low quality placeholder image.
-  if (frontmatter.image?.url) {
-    const resized = require(`../../images/${frontmatter.image.url}?resize&size=640`)
-    const image = require(`../../images/${frontmatter.image.url}?lqip`)
-
-    imageProps.image = {
-      src: resized.src,
-      placeholder: image.preSrc,
-      alt: frontmatter.image.alt,
-    }
-  }
-
   const rawExamples = await getCodeExamples(filePath)
   const examples = highlightCodeExamples(rawExamples)
 
@@ -207,7 +190,6 @@ export const getStaticProps: GetPostPageStaticProps = async ctx => {
       mdxContent,
       frontmatter,
       formattedDate,
-      ...imageProps,
       body,
     },
   }
