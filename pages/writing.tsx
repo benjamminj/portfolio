@@ -19,7 +19,7 @@ type PostPreview = Pick<
   date: string
 }
 
-interface BlogPageProps {
+interface WritingPageProps {
   /** List of blog posts. */
   posts: PostPreview[]
 }
@@ -29,7 +29,7 @@ interface PostPreviewCardProps {
 }
 
 /** Displays a list of all published writings. */
-const BlogPage = ({ posts }: BlogPageProps) => {
+const WritingPage = ({ posts }: WritingPageProps) => {
   return (
     <Layout title="Writing">
       <ul>
@@ -62,7 +62,7 @@ export const getStaticProps: GetStaticProps = async () => {
 
       const postData = {
         ...frontmatter,
-        href: `/blog/${slug}`,
+        href: `/${slug}`,
       }
 
       posts.push(postData)
@@ -78,4 +78,4 @@ export const getStaticProps: GetStaticProps = async () => {
   return { props: { posts: sortedPosts } }
 }
 
-export default BlogPage
+export default WritingPage

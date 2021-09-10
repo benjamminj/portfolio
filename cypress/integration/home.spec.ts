@@ -6,7 +6,7 @@ describe('Home page', () => {
 
     const navigationLinks = [
       ['github', 'https://github.com/benjamminj'],
-      ['writing', '/blog'],
+      ['writing', '/writing'],
       ['contact', 'mailto:benjamin.d.johnson@icloud.com'],
     ]
 

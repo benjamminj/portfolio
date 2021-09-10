@@ -1,21 +1,14 @@
 export {}
 
 describe('Notes list page', () => {
-  it('should show the list of blog articles', () => {
-    Cypress.on('window:before:load', win => {
-      cy.spy(win.console, 'error')
-    })
-
+  it('should show the list of notes', () => {
     cy.visit('/notes')
 
     cy.contains('Benjamin Johnson').should('exist')
     cy.get('[href^="/notes/"]').should('have.length.gt', 0)
-    cy.window().then(win => {
-      expect(win.console.error).to.have.callCount(0)
-    })
   })
 
-  it('should be blocked from search enginge indexing', () => {
+  it('should be blocked from search engine indexing', () => {
     cy.visit('/notes')
     cy.get('meta[name="robots"]').should('have.attr', 'content', 'noindex')
   })
