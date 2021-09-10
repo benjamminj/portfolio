@@ -41,7 +41,10 @@ export const Layout = ({
           {/* TODO: remove and make composable? */}
           <div className="space-y-4">
             <h1
-              className={clsx('text-5xl font-bold', !rawTitle && 'lowercase')}
+              className={clsx(
+                'text-5xl font-bold break-words',
+                !rawTitle && 'lowercase'
+              )}
             >
               {title}
             </h1>
