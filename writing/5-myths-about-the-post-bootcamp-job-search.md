@@ -5,6 +5,8 @@ date: 2017-08-14
 image:
   url: 'blog-img-man-at-desk.jpg'
   alt: Man working at desk, taking notes
+tags:
+  - career
 ---
 
 These days it seems like everybody is trying to break into tech. I was just there 2 months ago: and if you had told me that my job search would only be 6 weeks, I would have just written you off as wildly optimistic.
