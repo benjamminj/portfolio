@@ -1,0 +1,23 @@
+---
+title: "Why `dl` is more flexible than you think"
+date: date: 2021-10-06
+tags:
+  - accessibility
+  - front-end
+  - html
+---
+
+<!--
+SEO research:
+
+-->
+
+- An unfortunate name: "definition list"
+  - This has led to the sentiment that you should only use `dl` / `dt` / `dd` for terms and definitions.
+  - However, the HTML spec itself allows much broader usage of `dl`
+- What the HTML spec says about `dl`
+  - "Name-value groups may be terms and definitions, metadata topics and values, questions and answers, or any other groups of name-value data." [source](https://html.spec.whatwg.org/multipage/grouping-content.html#the-dl-element)
+  - The HTML5 spec calls it a "description list" or an "association list"
+- When to use description lists
+  - When you have any set of "paired" data (key-value, name-definition, Q&A). Honestly, this element is _way_ more versatile than people think.
+  - If the `dt` keys are not headers within your app — a `dl` does not permit heading / sectioning content within `dt` elements. However, all flow content is permitted within `dd` elements.
