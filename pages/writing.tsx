@@ -1,12 +1,11 @@
 import { compareDesc, format } from 'date-fns'
 import { GetStaticProps } from 'next'
-import { getPostBySlug } from '../lib/getPostBySlug'
-import { getPostFilePaths } from '../lib/getPostFilePaths'
-import { slugifyPost } from '../lib/slugifyPost'
-import { PostFrontmatter } from '../lib/types'
 import { Layout } from '../components/Layout'
 import { PostListItem } from '../components/PostListItem'
+import { getPostFilePaths } from '../lib/getPostFilePaths'
 import { parsePostFile } from '../lib/parsePostFile'
+import { slugifyPost } from '../lib/slugifyPost'
+import { PostFrontmatter } from '../lib/types'
 
 type PostPreview = Pick<
   PostFrontmatter,

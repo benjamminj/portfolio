@@ -46,6 +46,11 @@ NEXT_PUBLIC_GA_TRACKING_ID="TRACKER_ID"
 # Will create 2 reports—one for the client-side bundles (`client.html`) and another
 # for the server-side bundles (`server.html`)
 ANALYZE="true"
+
+# OPTIONAL
+# Root URL of the application under test. This can be used in CI to test against
+# any environment, whether it's local, prod, or a preview application.
+TEST_BASE_URL="http://localhost:3000"
 ```
 
 ### 3. Run the development server

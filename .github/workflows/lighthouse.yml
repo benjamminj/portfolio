@@ -43,8 +43,8 @@ jobs:
           name: Lighthouse reports
           path: /tmp/artifacts
 
-  cypress:
-    name: Cypress tests
+  playwright:
+    name: e2e tests
     runs-on: ubuntu-latest
     needs: wait_for_preview
     steps: 
@@ -52,13 +52,20 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: 12
-      - uses: cypress-io/github-action@v2
-        with:
-          record: false
-          browser: chrome
-          headless: true
+      - name: Install NPM dependencies
+        run: yarn
+      - name: Install operating system dependencies
+        run: npx playwright install --with-deps
+      - name: Run your tests
+        run: npm run e2e:temp
+      # - uses: cypress-io/github-action@v2
+      #   with:
+      #     record: false
+      #     browser: chrome
+      #     headless: true
         env:
           CYPRESS_BASE_URL: ${{ needs.wait_for_preview.outputs.url }}
+          TEST_BASE_URL: ${{ needs.wait_for_preview.outputs.url }}
 
   jest_tests:
     name: Jest tests
