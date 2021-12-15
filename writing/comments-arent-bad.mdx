@@ -1,0 +1,85 @@
+---
+title: Comments aren't bad
+description: They're neutral. Let's treat them that way.
+date: 2021-12-26
+tags:
+  - teamwork
+  - software-engineering
+  - documentation
+  - code-comments
+---
+
+Every 2-3 months, I see an article titled something like "Stop writing code comments" or "Comments are a code smell", usually on Twitter, Hacker News, or LinkedIn.
+
+Sometimes it's brand new, other times it's an older article recirculating the internet. Once in a while it's a decently good take with a clickbait title. Many times it's a tl;dr of the comment chapter in _Clean Code_ (more on that later).
+
+There's a large portion of the programming community that believes statements like this:
+
+- "Good code is self-documenting and doesn't need comments"
+- "Comments are a failure to express yourself in code"
+- "Comments are rarely needed, only in extreme edge cases"
+- "Comments are a code smell"
+
+If you haven't met someone like this in person, you've probably seen this sentiment on the internet.
+
+The goal of this article to push back on the anti-comment sentiment. _**Comments aren't bad! They're neutral.**_
+
+The answer to bad comments isn't no comments. It's learning how to write good comments.
+
+## Going back to the source
+
+Where did all this anti-comment sentiment spring from? In most cases, the origin is a single chapter in "Clean Code" by Robert Martin. I'm not gonna outline the entire chapter here, you can go give it a read yourself. But here's some of the high-level points:
+
+- Comments are sometimes necessary, but only rarely.
+- "Comments are not like Schindler's List. They are not "pure good." _Indeed, comments are, at best, a necessary evil._" (emphasis mine)
+- "The proper use of comments is to compensate for our failure to express ourself in code. Note that I used the word failure. I meant it. _Comments are always failures._" (emphasis mine)
+
+The last two are direct quotes from Martin. The chapter goes on to point out the comments he's deemed pure evil. And while he does devote some space to good comments, phrases like "comments are always failures" send the message that there really isn't a such thing as a good comment.
+
+The overwhelming sentiment of the chapter is that _you should avoid comments and write "clean code" instead_.
+
+## "Comments are bad" in real life
+
+A while back I joined a company where the senior engineering leaders were big _Clean Code_ fans. I say fans, but honestly it felt more like there was a religious devotion to _Clean Code_ and _SOLID_ principles.
+
+During my onboarding I was told "One thing you'll notice as you poke around the code, it has very few comments. After all, it's in the book, right?" This was meant as a rhetorical question, the assumption was less comments was a good thing because _Clean Code_ said so. 😬
+
+I remember this codebase was tremendously difficult to understand. Everything was spread out across hundreds of files (b/c of the "single responsibility principle") and there was little-to-no documentation about how the pieces worked together. The only way to understand a module was to have the person who wrote it walk you thru it.
+
+As someone new to the codebase, it was nearly impossible to pick up the [tribal knowledge](https://en.wikipedia.org/wiki/Tribal_knowledge) needed to know whether something could be refactored or not.
+
+In my career, typically the hardest-to-understand code has also been the least commented. In contrast, the highly commented code has usually been clear, even when handling complex business scenarios
+
+## Why do we hate on comments?
+
+_Clean Code_ did a number on engineering culture, and especially on our thoughts around commenting. Many engineers wouldn't outright agree to "comments are pure evil", but they write (and review) code as if comments are unnecessary.
+
+I have a few theories as to why we like to hate on comments. Keep in mind these come from my own experience, either from reading anti-comment material or from working with people that were staunchly anti-comment.
+
+First, any engineer with a few years under their belt has probably seen a lot of bad comments. I know I have. It's easier to decide comments are bad than it is to accept that commenting is a nuanced topic, where the answer to "should I write a comment?" is often "it depends".
+
+For the record, I felt this way about comments until the first time I worked with a team that took documenting their code seriously (fortunately this was 1.5 years into my career).
+
+Second, writing good comments is _hard_. I once read that "to write a good code comment, you have to be a good writer first". Explaining why your code exists is all about communication, and many engineers are woefully lacking in the communication department.
+
+_As a side note, if you're struggling to write a comment explaining how some code works or the context around it, that might be a sign that your code isn't actually that clear. Good code is simple and easy-to-understand, and thus should be easy to comment._
+
+Finally, we overestimate the ability of code to communicate intent. Code, while expressive, doesn't compare to written language. Expecting our code to _fully capture its requirements_ is unrealistic. Perhaps the statement that "comments are a failure to communicate in code" is correct — but nearly all code fails to meet that bar.
+
+---
+
+## What's next?
+
+I've deliberately left out a discussion of the common objections to writing comments for brevity's sake. I think I'll write another article on the common objections I've seen / heard and my thoughts about those.
+
+I've also omitted a discussion of _good comments_ and when a comment should absolutely be written. I'm planning on writing an article for that too!
+
+Finally, bad comments do exist and should be avoided. But talking about bad comments is only valuable if we do it in the greater context of good comments. The solution to bad comments isn't no comments, it's writing good comments.
+
+## Some closing thoughts
+
+I'll leave this article with some closing thoughts.
+
+Comments aren't a necessary evil, at least not in the way _Clean Code_ states it. Perhaps if code could perfectly capture human thought we might not need comments, but that programming language would end up looking like written prose!
+
+If comments are just another tool at our disposal, let's treat them as such. You wouldn't say "variables are a code smell" or "don't write functions". There's certainly _bad variable names_ and _bad functions_, but they're neutral tools to help you do your job. In similar fashion, comments allow us to _[show empathy](/empathetic-code)_ in the way we write code and use it to communicate with our coworkers.
