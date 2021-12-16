@@ -1,0 +1,55 @@
+---
+title: Common objections to writing code comments
+date: 2021-12-24
+tags:
+  - documentation
+  - code-comments
+---
+
+Here's some common objections I've heard to writing code comments — whether in popular programming books, internet articles, or IRL devs I've worked with.
+
+Full disclaimer — I think comments are a important part of writing software. This article is meant to capture the objections I've commonly heard and some short responses to each one. It's not meant to fully explore each argument in its entirety. I say all this because this is all probably a little biased in favor of writing comments.
+
+## Comments get out of date
+
+Only if you let them. You should write & review comments the same way you do with source code. Variables & function names also get out of date if you don't update their names to match their behavior.
+
+## Comments can be incorrect
+
+Sure, they _can_. But once again, they're only incorrect if either A) the original comment was not written correctly, or B) the comment is out of date. If the comments wasn't written correctly, fix it (that's what we do with incorrect code)! If the comment is out of date, update the comment! They're not immutable.
+
+_By the way, version control can tell you when the comment was last updated, and if the code is newer_ 😉
+
+## Comments aren't enforced by the compiler (or runtime)
+
+Also a true statement, but not unique to comments. Variable names' accuracy aren't enforced by the compiler either. The compiler would be just fine with `potato`, naming the function `sum` is only better because it communicates to _humans_ what the function does. Same goes for comments.
+
+## Don't write comments, choose better variable names
+
+This is too simplistic, and usually leads to verbosity. Single letter variable names don't help readability, but neither does `cacheKeyToGetAroundStaleDataAfterFetchingIssue`. I once read somewhere "don't send a comment to do a variable's job, but don't send a variable to do a comment's job". It's both, not either / or.
+
+## Good code is self-documenting so it doesn't need comments
+
+I'll let this quote from _[A Philosophy of Software Design](https://www.amazon.com/dp/173210221X)_ by John Ousterhout do the talking on this one, it sums up my thoughts exactly:
+
+> Some people believe that if code is written well, it is so obvious that no comments are needed. This is a delicious myth, like a rumor that ice cream is good for your health: we'd really like to believe it! Unfortunately, it's simply not true. \[...\] there is still a significant amount of design information that can't be represented as code.
+
+"Good code is self documenting" is a lie we'd all like to believe—what seems obvious to you won't to your coworkers, and you won't remember those details in 6 months.
+
+## You should use tests to communicate intent instead
+
+Write tests! They're super valuable. But they're not a replacement for comments. They're in a completely separate file, and chances are you're not writing a unit test that says "This is a hack to work around a quirk with Firefox's CSS rendering engine, once we drop Firefox v94 we can try removing this."
+
+## Don't use comments, use commit messages
+
+Unless your team decides to start squashing commits. Unless you have a big commit to change formatting or move files around. Unless you work in an area of the code with a high churn rate, and have to read the entire commit log to know whether the code is safe to change.
+
+Good commit messages are great! But they're not a full substitute for well-written comments.
+
+## Comments don't generate business value
+
+I guess this depends on what you call "business value". Isn't making things easier (read: faster) to debug of value to your business?
+
+## Comments clutter up the code
+
+This is personal preference. I'd rather have easy-to-understand code that looks ugly, than "pretty" code devoid of contextual information. Sometimes easy-to-understand code means a big ol' comment, as ugly as that may be.
