@@ -12,6 +12,7 @@ import { Layout } from '../../components/Layout'
 import { Tag, TagType } from '../../components/Tag'
 import { PostFrontmatter } from '../../lib/types'
 import Head from 'next/head'
+import { NOTES_BASE_PATH } from '../../lib/constants'
 
 interface NotePageProps {
   mdxContent: any
@@ -24,7 +25,7 @@ interface NotePageParams {
 }
 
 export const getStaticPaths: GetStaticPaths<{ note: string }> = async () => {
-  const noteFiles = getPostFilePaths('./notes')
+  const noteFiles = getPostFilePaths(NOTES_BASE_PATH)
 
   type Path = { params: NotePageParams }
 
@@ -38,10 +39,10 @@ export const getStaticPaths: GetStaticPaths<{ note: string }> = async () => {
 export const getStaticProps: GetStaticProps<NotePageProps> = async ctx => {
   const { note } = ctx.params
 
-  const noteFiles = getPostFilePaths('./notes')
+  const noteFiles = getPostFilePaths(NOTES_BASE_PATH)
   const filePath = getPostFileBySlug(note, noteFiles)
 
-  const { frontmatter, body } = parsePostFile(filePath, './notes')
+  const { frontmatter, body } = parsePostFile(filePath, NOTES_BASE_PATH)
 
   const mdxContent = await renderToString(body, {
     components,

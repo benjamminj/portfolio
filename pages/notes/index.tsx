@@ -4,6 +4,7 @@ import Head from 'next/head'
 import { Layout } from '../../components/Layout'
 import { PostListItem } from '../../components/PostListItem'
 import { Tag, TagType } from '../../components/Tag'
+import { NOTES_BASE_PATH } from '../../lib/constants'
 import { getPostFilePaths } from '../../lib/getPostFilePaths'
 import { parsePostFile } from '../../lib/parsePostFile'
 import { slugifyPost } from '../../lib/slugifyPost'
@@ -21,13 +22,13 @@ interface NotesListPageProps {
 const NoteTag = ({ tag }) => <Tag tag={tag} type={TagType.TEXT} />
 
 export const getStaticProps: GetStaticProps<NotesListPageProps> = async () => {
-  const noteFiles = getPostFilePaths('./notes')
+  const noteFiles = getPostFilePaths(NOTES_BASE_PATH)
 
   const notes = []
   for (const filePath of noteFiles) {
     try {
       const slug = slugifyPost(filePath)
-      const { frontmatter } = parsePostFile(filePath, './notes')
+      const { frontmatter } = parsePostFile(filePath, NOTES_BASE_PATH)
 
       const note = {
         ...frontmatter,
