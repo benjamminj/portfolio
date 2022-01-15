@@ -11,19 +11,15 @@ One pattern I find helpful for writing automated tests is "Arrange, Act, Assert"
 
 First, you set up anything in the test environment that your code needs.
 
-Some examples of this include creating mock functions, seeding a database with test data, resetting the date/time,  and creating global variables.
+Some examples of this include creating mock functions, seeding a database with test data, resetting the date/time, and creating global variables.
 
 The goal during this step is to create a controlled, predictable environment for your test to run in.
 
-<Callout heading="Sidenote">
-
-_**This phase is optional.** Some tests don't require you to set up the test environment and that's totally fine._
-
-</Callout>
+> _**This phase is optional.** Some tests don't require you to set up the test environment and that's totally fine._
 
 ## 2. Act
 
-This is where we actually run the code we want to test. 
+This is where we actually run the code we want to test.
 
 If you're writing tests for a React component, render the component. If you're writing tests for a function, call the function and pass in some arguments.
 
@@ -35,11 +31,7 @@ If you're using Jest or Chai this would be where you call `expect` with somethin
 
 Most assertions follow the format of `expect(result).toEqual(expectedOutput)` (This is Jest's syntax).
 
-<Callout heading="Sidenote">
-
-_Some people will tell you that you should only have 1 assertion per test. I don't agree with this, I think it's a little dogmatic and restraining. The number of assertions that you need may vary from test to test._
-
-</Callout>
+> _Some people will tell you that you should only have 1 assertion per test. I don't agree with this, I think it's a little dogmatic and restraining. The number of assertions that you need may vary from test to test._
 
 ## Conclusion
 

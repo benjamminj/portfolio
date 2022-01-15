@@ -17,3 +17,7 @@
   content: counter(ol-count) '.';
   counter-increment: ol-count;
 }
+
+.blockquote > p {
+  margin: 0;
+}

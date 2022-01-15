@@ -9,7 +9,28 @@ tags:
   - recipes
 ---
 
-<CodeExample language="ts">{examples['usePrevious.ts']}</CodeExample>
+```tsx
+import { useEffect, useRef } from 'react'
+
+/**
+ * Stores a reference to the previously rendered value.
+ *
+ * This can be used to execute dependency checks to compare whether a single
+ * dependency has changed.
+ *
+ * During the first render, `undefined` will be returned. Following renders will
+ * return a value.
+ */
+export const usePrevious = <T extends unknown>(value: T) => {
+  const ref = useRef<T | undefined>()
+
+  useEffect(() => {
+    ref.current = value
+  }, [value])
+
+  return ref.current
+}
+```
 
 ## Context
 
@@ -43,4 +64,18 @@ const Component = ({ query, filter }) => {
 
 ## Tests
 
-<CodeExample language="tsx">{examples['usePrevious.test.tsx']}</CodeExample>
+```tsx
+import { renderHook } from '@testing-library/react-hooks'
+import { usePrevious } from './usePrevious'
+
+test('should return the value of the previous render', () => {
+  let value = 1
+  const { result, rerender } = renderHook(() => usePrevious(value))
+  expect(result.current).toEqual(undefined)
+  value = 2
+  rerender()
+  expect(result.current).toEqual(1)
+  rerender()
+  expect(result.current).toEqual(2)
+})
+```

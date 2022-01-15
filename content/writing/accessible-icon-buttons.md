@@ -252,14 +252,10 @@ This adds a **dev-only error** so that using the component with `label=""` creat
 
 As an added benefit `console.error` is enough to fail unit tests (if you're using Jest, at least)!
 
-<Callout heading="Note">
-
-  _If you're not using TypeScript this approach provides a similar level of
-  developer protection against missing `label` props. Depending on your tooling
-  you might also be able to strip out the dev warnings for your production build
-  as well (that way you don't bloat your JS bundles)._
-  
-</Callout>
+> **Note:** _If you're not using TypeScript this approach provides a similar level of
+> developer protection against missing `label` props. Depending on your tooling
+> you might also be able to strip out the dev warnings for your production build
+> as well (that way you don't bloat your JS bundles)._
 
 ## tl;dr
 

@@ -9,18 +9,11 @@ import React, { Fragment } from 'react'
 import { Layout } from '../components/Layout'
 import { A, components } from '../components/MarkdownTags'
 import { Tag } from '../components/Tag'
-import { getPostBySlug } from '../lib/getPostBySlug'
+import { getPostFileBySlug } from '../lib/getPostFileBySlug'
 import { getPostFilePaths } from '../lib/getPostFilePaths'
+import { parsePostFile } from '../lib/parsePostFile'
 import { slugifyPost } from '../lib/slugifyPost'
 import { PostFrontmatter } from '../lib/types'
-import fs from 'fs'
-import path from 'path'
-import Prism from 'prismjs'
-import loadLanguages from 'prismjs/components/'
-import { getCodeExamples } from '../lib/getCodeExamples'
-import { getPostFileBySlug } from '../lib/getPostFileBySlug'
-import { highlightCodeExamples } from '../lib/highlightCodeExamples'
-import { parsePostFile } from '../lib/parsePostFile'
 
 interface PostPageParams extends ParsedUrlQuery {
   slug: string[]
@@ -168,12 +161,8 @@ export const getStaticProps: GetPostPageStaticProps = async ctx => {
   const filePath = getPostFileBySlug(ctx.params.slug)
   const { frontmatter, body } = parsePostFile(filePath)
 
-  const rawExamples = await getCodeExamples(filePath)
-  const examples = highlightCodeExamples(rawExamples)
-
   const mdxContent = await renderToString(body, {
     components,
-    scope: { examples },
     mdxOptions: {
       // `prism` adds syntax highlighting as CSS classes to the code blocks.
       rehypePlugins: [prism],

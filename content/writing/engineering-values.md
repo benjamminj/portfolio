@@ -22,11 +22,7 @@ Finally, if you don't do everything here, that doesn't instantly make you a "bad
 
 ## People first
 
-<Callout>
-
-_Software development is about real people. Code has two primary audiences—the developers coding on top of it (internal) and people using it (external)._
-
-</Callout>
+> _Software development is about real people. Code has two primary audiences—the developers coding on top of it (internal) and people using it (external)._
 
 While programming can be artistic and code can be elegant—elegant code is not the end in and of itself. Rather, it's a path to the goal of serving these two audiences.
 
@@ -52,11 +48,7 @@ You serve the internal audience (often future you!) when your code is easy to wo
 
 ## Duplication is better than bad abstractions
 
-<Callout>
-
-_Undoing a bad abstraction is more difficult than creating an abstraction for some duplication. Wait to write abstract "DRY" code until you know enough about what you need to create a good interface._
-
-</Callout>
+> _Undoing a bad abstraction is more difficult than creating an abstraction for some duplication. Wait to write abstract "DRY" code until you know enough about what you need to create a good interface._
 
 This principle is heavily influenced by Sandi Metz's [The Wrong Abstraction](https://sandimetz.com/blog/2016/1/20/the-wrong-abstraction).
 
@@ -71,11 +63,7 @@ This principle is heavily influenced by Sandi Metz's [The Wrong Abstraction](htt
 
 ## Optimize for flexibility
 
-<Callout>
-
-_Changing requirements are to be expected, perhaps even the norm. Optimize code to be flexible and pliable so you can iterate on and polish it over time._
-
-</Callout>
+> _Changing requirements are to be expected, perhaps even the norm. Optimize code to be flexible and pliable so you can iterate on and polish it over time._
 
 ### Supported engineering practices
 
@@ -96,11 +84,7 @@ _Changing requirements are to be expected, perhaps even the norm. Optimize code 
 
 ## Backwards compatability
 
-<Callout>
-
-_Don't break things. Have confidence that your new code doesn't break your old code._
-
-</Callout>
+> _Don't break things. Have confidence that your new code doesn't break your old code._
 
 ### Supported engineering practices
 
@@ -115,11 +99,7 @@ _Don't break things. Have confidence that your new code doesn't break your old c
 
 ## Ship early and often
 
-<Callout>
-
-_Ship to production as quickly as you possibly can without breaking things. Code in production is money code, and that's the code you're motivated to keep healthy._
-
-</Callout>
+> _Ship to production as quickly as you possibly can without breaking things. Code in production is money code, and that's the code you're motivated to keep healthy._
 
 ### Supported engineering practices
 

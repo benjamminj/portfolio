@@ -1,9 +1,0 @@
-.container {
-  /* grid-template-columns: auto 1fr;
-  grid-template-rows: auto min-content; */
-  @apply px-6 py-4 border-2 space-y-1;
-}
-
-.container p {
-  @apply m-0;
-}
