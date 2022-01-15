@@ -9,10 +9,8 @@ import React, { Fragment } from 'react'
 import { Layout } from '../components/Layout'
 import { A, components } from '../components/MarkdownTags'
 import { Tag } from '../components/Tag'
-import { getCodeExamples } from '../lib/getCodeExamples'
 import { getPostFileBySlug } from '../lib/getPostFileBySlug'
 import { getPostFilePaths } from '../lib/getPostFilePaths'
-import { highlightCodeExamples } from '../lib/highlightCodeExamples'
 import { parsePostFile } from '../lib/parsePostFile'
 import { slugifyPost } from '../lib/slugifyPost'
 import { PostFrontmatter } from '../lib/types'
@@ -163,12 +161,8 @@ export const getStaticProps: GetPostPageStaticProps = async ctx => {
   const filePath = getPostFileBySlug(ctx.params.slug)
   const { frontmatter, body } = parsePostFile(filePath)
 
-  const rawExamples = await getCodeExamples(filePath)
-  const examples = highlightCodeExamples(rawExamples)
-
   const mdxContent = await renderToString(body, {
     components,
-    scope: { examples },
     mdxOptions: {
       // `prism` adds syntax highlighting as CSS classes to the code blocks.
       rehypePlugins: [prism],

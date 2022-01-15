@@ -1,7 +1,6 @@
 import Link from 'next/link'
 import { forwardRef, ReactNode } from 'react'
-import { Callout } from './Callout'
-import { Code, CodeExample } from './Code'
+import { Code } from './Code'
 import styles from './MarkdownTags.module.css'
 import { Pre } from './Pre'
 
