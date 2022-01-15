@@ -8,11 +8,7 @@ tags:
 
 ## tl;dr
 
-<Callout>
-  
- _**Encapsulation:** hiding the specific information about a portion of code._
-
-</Callout>
+> _**Encapsulation:** hiding the specific information about a portion of code._
 
 ---
 

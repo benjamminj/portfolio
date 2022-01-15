@@ -80,6 +80,16 @@ export const Hr = () => {
   )
 }
 
+export const Blockquote = ({ children }: { children: ReactNode }) => {
+  return (
+    <blockquote
+      className={`${styles.blockquote} -mx-4 my-6 text-gray-900 bg-gray-100 border-gray-200 blockquote md:mx-0 lg:-mx-6 dark:bg-gray-900 dark:bg-opacity-30 dark:border-gray-900 dark:border-opacity-40 dark:text-white px-6 py-4 border-2 space-y-1`}
+    >
+      {children}
+    </blockquote>
+  )
+}
+
 export const components = {
   a: A,
   p: P,
@@ -95,10 +105,5 @@ export const components = {
   ul: Ul,
   li: Li,
   hr: Hr,
-  CodeExample,
-  Callout: props => (
-    <div className="my-6 -mx-4 md:mx-0 lg:-mx-6">
-      <Callout {...props} />
-    </div>
-  ),
+  blockquote: Blockquote,
 }

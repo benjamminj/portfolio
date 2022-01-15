@@ -78,11 +78,7 @@ And while having a `styled-component` results in less _markup code_, this comes 
 
 When I had originally tried Tailwind the file size of the bundled CSS was a big concern. If I remember correctly, `purgecss` was not bundled with Tailwind so you had to set it up separately.
 
-<Callout>
-
-_If you're not familiar with `purgecss`, it's a `postcss` plugin that removes any CSS that isn't used._
-
-</Callout>
+> _If you're not familiar with `purgecss`, it's a `postcss` plugin that removes any CSS that isn't used._
 
 Now that `purgecss` comes built-in to `tailwind.config.js` keeping production files small is easy-peasy.
 
@@ -96,7 +92,7 @@ Simply put, Tailwind is nowhere near as dynamic as CSS-in-JS. And that's a good 
 
 With CSS-in-JS, you have the full power of JavaScript (or TypeScript) as your preprocessor. Turns out, this is a double-edged sword.
 
-JS as a preprocessor can let you dynamically style based on data, create elegant "DRY" mixins, and get static typing. 
+JS as a preprocessor can let you dynamically style based on data, create elegant "DRY" mixins, and get static typing.
 
 The thing is, a lot of times we don't need that much power. We just need to flip a couple styles based on our button is `primary` or `secondary`.
 
@@ -188,11 +184,7 @@ In contrast we have CSS-in-JS which ships with a runtime to parse the style obje
 
 Tailwind doesn't ship any runtime JS, which creates a little more space on the main thread for everything else in your app as well as faster load times for your users.
 
-<Callout variant="warning">
-
-_If you forget to use `purgecss` you might accidentally send **the entire Tailwind CSS** in your production code. This would actually be worse since Tailwind v2 is about 290kb gzipped! [You can read more about purging CSS here](https://tailwindcss.com/docs/optimizing-for-production)_.
-
-</Callout>
+> ⚠️ _If you forget to use `purgecss` you might accidentally send **the entire Tailwind CSS** in your production code. This would actually be worse since Tailwind v2 is about 290kb gzipped! [You can read more about purging CSS here](https://tailwindcss.com/docs/optimizing-for-production)_.
 
 ---
 

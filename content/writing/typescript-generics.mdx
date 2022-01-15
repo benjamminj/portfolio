@@ -12,9 +12,9 @@ TypeScript generics create reusable type definitions by letting you make some pa
 
 ## Overview: basic generic types 🧱
 
-Generic types can be difficult to wrap your mind around, especially when you're new to TypeScript. They're certainly tougher than type annotations (`const a: number = 1`) or interfaces. 
+Generic types can be difficult to wrap your mind around, especially when you're new to TypeScript. They're certainly tougher than type annotations (`const a: number = 1`) or interfaces.
 
-Part of this is because generic types are **abstract types**. 
+Part of this is because generic types are **abstract types**.
 
 Their syntax might also be somewhat unfamiliar—especially if you're coming from JavaScript. You might be wondering what these `<>` brackets are doing all over the code. 😱
 
@@ -36,7 +36,7 @@ interface Post {
 }
 ```
 
-Now, let's think about data fetching in our fictional blogging application. We probably have some API endpoints that return paginated lists of data. Something like `/api/users` and `/api/:userId/posts`. 
+Now, let's think about data fetching in our fictional blogging application. We probably have some API endpoints that return paginated lists of data. Something like `/api/users` and `/api/:userId/posts`.
 
 The interfaces for the paginated API response could look something like this.
 
@@ -87,11 +87,7 @@ The _generic_ portion is the `<T>` in `PaginatedResponse<T>`—this sets up a ty
 
 In this case we want to configure `data` as a `T[]` since it's an array of whatever type `T` is.
 
-<Callout heading="Sidenote">
-
 _You can name `T` anything you like. Using `T`, `U`, and `K` as generic parameter names is a convention you'll see a lot in TypeScript code—especially for simple interfaces. Think of `T` like using `i` in a `for` loop._
-
-</Callout>
 
 Then, to create our two interfaces from before we can drop the `User` and `Post` types into the `<>` brackets on `PaginatedResponse`. So we end up with the exact same interface as before by doing `PaginatedResponse<User>`.
 
@@ -107,9 +103,9 @@ interface Label {
 type LabelsListData = PaginatedResponse<Label>
 ```
 
-## A deeper dive: advanced generic types 
+## A deeper dive: advanced generic types
 
-I hope this small example has shown some of the ways that generic types can help in making your TypeScript code less verbose and more elegant! 
+I hope this small example has shown some of the ways that generic types can help in making your TypeScript code less verbose and more elegant!
 
 The examples above cover some basic usage of generic types. In this section we'll dive a little deeper and look at some extra "tricks" to make our generics even more useful. 💪
 
@@ -157,7 +153,7 @@ response.data
 numberResponse.data
 ```
 
-It's usually a good idea to add some default type if you're planning on having your interfaces get reused a lot (unless you can infer the type from a function parameter—we'll get to that next). 
+It's usually a good idea to add some default type if you're planning on having your interfaces get reused a lot (unless you can infer the type from a function parameter—we'll get to that next).
 
 Lots of libraries use this approach in their type definitions because it gives you some default type safety out of the box without forcing you to use the `<>` syntax every time you use their API. And then if you want better type checking you can use the `<>` and pass your types in. Best of both worlds! 🔥
 
@@ -169,7 +165,7 @@ Consider this simplified version of the `Array.prototype.filter` function.
 
 ```ts
 const filter = <T = unknown>(
-  array: T[], 
+  array: T[],
   validate: (value: T, index: number) => boolean
 ): T[] => {
   const newArray = []
@@ -184,7 +180,6 @@ const filter = <T = unknown>(
 
   return newArray
 }
-
 
 const above3 = filter([1, 2, 3, 4, 5], number => number > 3) // Returns [4, 5]
 
@@ -209,7 +204,7 @@ const filter = <T = unknown>(array: T[], validate) => {
 }
 ```
 
-This says that the argument we pass as `array` should be our dynamic `T` type. 
+This says that the argument we pass as `array` should be our dynamic `T` type.
 
 This alone is actually enough for TypeScript to **infer** that when we call `filter([1, 2, 3, 4], value => value > 3)` that `array` will be a `number[]` and not something else!
 
@@ -219,7 +214,7 @@ Let's take a look at the `validate` argument.
 
 ```ts
 const filter = <T = unknown>(
-  array: T[], 
+  array: T[],
   validate: (value: T, index: number) => boolean
 ) => {
   // function body
@@ -230,18 +225,18 @@ We can also use `T` when typing our `validate` function to say that _whatever th
 
 This means that when we do `filter([1, 2, 3, 4], value => value > 3)` the compiler actually knows that `value => value > 3` should be a **number**. If we tried to do `value => value.toUpperCase()` we'd get a compiler error, since `toUpperCase` only exists on `string` types.
 
-Finally, we add `T[]` as the return type of the function. 
+Finally, we add `T[]` as the return type of the function.
 
 ```ts
 const filter = <T = unknown>(
-  array: T[], 
+  array: T[],
   validate: (value: T, index: number) => boolean
 ): T[] => {
   // function body
 }
 ```
 
-This seems like crazy rocket science. Maybe even over-the-top, wouldn't it just be easier to use `any` types? 
+This seems like crazy rocket science. Maybe even over-the-top, wouldn't it just be easier to use `any` types?
 
 But it all comes together when we actually put our `filter` function into action.
 
@@ -269,7 +264,7 @@ As you can see, TypeScript generics can range from simple to ridiculously comple
 
 Don't go overboard when creating generic types—a little duplication is preferable to overengineering.
 
-TypeScript code is just a tool to help you write JavaScript—it's all going to get compiled down into JavaScript when you ship it. The type definitions are for _developers only_. 
+TypeScript code is just a tool to help you write JavaScript—it's all going to get compiled down into JavaScript when you ship it. The type definitions are for _developers only_.
 
 Good developer experience does matter, but it doesn't come at the expense of shipping a good user experience. The last thing you want to do is spend a bunch of time on TypeScript typings and ship nothing.
 
