@@ -103,8 +103,7 @@ That said, my approach toward my content on this blog goes something like this: 
 Right now, here's a couple of the technologies that I'm into and exploring with this website.
 
 - [NextJS](https://nextjs.org/docs). Additionally, I'm working mainly with the static site generation tools released in v9.3+
-- [CSS-in-JS](https://emotion.sh/docs/introduction). Specifically Emotion. I like the fluidity that comes from being able to style things directly in the JSX.
-- [MDX](https://mdxjs.com/). I hadn't previously published any MDX posts before moving my website to NextJS. But now that it's MDX-compatible, I'm excited to explore the fluidity and enhanced experience that this could offer in my writing.
+- [Tailwind](https://tailwindcss.com/). See [this writeup](https://benjaminjohnson.me/how-tailwindcss-converted-me) on why I'm bullish on Tailwind
 
 Since this is a relatively simple website, I've tried to keep the usage of libraries low—most of the libraries in this website have to do with markdown parsing and the static generation.
 

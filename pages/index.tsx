@@ -19,7 +19,7 @@ const IndexPage = ({ mdxContent }) => {
 }
 
 export const getStaticProps = async () => {
-  const introContent = fs.readFileSync('./content/intro.mdx', 'utf8')
+  const introContent = fs.readFileSync('./content/intro.md', 'utf8')
 
   const { attributes: metadata, body } = fm(introContent)
   const mdxContent = await renderToString(body, { components })
