@@ -1,7 +1,7 @@
 ---
 title: Moving away from MDX
 description: At least for blogging, plain markdown is less frictionG
-date: 2021-01-17
+date: 2022-01-17
 tags:
   - writing
 ---
