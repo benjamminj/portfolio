@@ -1,5 +1,5 @@
 import React from 'react'
-import { render, screen } from '@testing-library/react'
+import { render, screen } from '@testing-library/preact'
 import { Tag } from './Tag'
 
 test('should render a tag with a link to the relevant tags page', () => {
