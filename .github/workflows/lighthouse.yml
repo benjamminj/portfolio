@@ -57,9 +57,8 @@ jobs:
       - name: Install operating system dependencies
         run: npx playwright install --with-deps
       - name: Run your tests
-        run: npm run e2e:temp
+        run: npm run e2e:run
         env:
-          CYPRESS_BASE_URL: ${{ needs.wait_for_preview.outputs.url }}
           TEST_BASE_URL: ${{ needs.wait_for_preview.outputs.url }}
 
   jest_tests:
