@@ -4,7 +4,7 @@ Date: 2020-09-25
 
 ## Status
 
-Accepted
+Superceded by [12. remove custom json serialization](0012-remove-custom-json-serialization.md)
 
 ## Context
 
