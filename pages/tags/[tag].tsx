@@ -66,10 +66,10 @@ export const getStaticProps: GetTagPageStaticProps = async ctx => {
   const postFiles = getPostFilePaths()
 
   const matchingPosts = []
+
   for (const filePath of postFiles) {
     const slug = slugifyPost(filePath)
     const { frontmatter } = parsePostFile(filePath)
-
     const isMatchingTag = frontmatter.tags?.includes(tag)
 
     if (isMatchingTag) {
@@ -78,8 +78,8 @@ export const getStaticProps: GetTagPageStaticProps = async ctx => {
   }
 
   const sortedPosts = matchingPosts
-    .sort((a, b) => compareDesc(a.date, b.date))
-    .map(p => ({ ...p, date: format(p.date, 'yyyy-MM-dd') }))
+    .sort((a, b) => compareDesc(new Date(a.date), new Date(b.date)))
+    .map(p => ({ ...p, date: format(new Date(p.date), 'yyyy-MM-dd') }))
 
   return { props: { tag, posts: sortedPosts } }
 }

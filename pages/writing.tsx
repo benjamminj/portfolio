@@ -71,8 +71,8 @@ export const getStaticProps: GetStaticProps = async () => {
   }
 
   const sortedPosts = posts
-    .sort((a, b) => compareDesc(a.date, b.date))
-    .map(p => ({ ...p, date: format(p.date, 'yyyy-MM-dd') }))
+    .sort((a, b) => compareDesc(new Date(a.date), new Date(b.date)))
+    .map(p => ({ ...p, date: format(new Date(p.date), 'yyyy-MM-dd') }))
 
   return { props: { posts: sortedPosts } }
 }

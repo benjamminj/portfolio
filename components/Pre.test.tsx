@@ -1,4 +1,4 @@
-import { act, fireEvent, render, screen } from '@testing-library/react'
+import { act, fireEvent, render, screen } from '@testing-library/preact'
 import { Pre } from './Pre'
 
 test('should render with the contents and css class', () => {

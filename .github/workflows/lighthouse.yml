@@ -58,11 +58,6 @@ jobs:
         run: npx playwright install --with-deps
       - name: Run your tests
         run: npm run e2e:temp
-      # - uses: cypress-io/github-action@v2
-      #   with:
-      #     record: false
-      #     browser: chrome
-      #     headless: true
         env:
           CYPRESS_BASE_URL: ${{ needs.wait_for_preview.outputs.url }}
           TEST_BASE_URL: ${{ needs.wait_for_preview.outputs.url }}

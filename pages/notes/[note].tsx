@@ -10,13 +10,13 @@ import prism from '@mapbox/rehype-prism'
 import { format } from 'date-fns'
 import { Layout } from '../../components/Layout'
 import { Tag, TagType } from '../../components/Tag'
-import { PostFrontmatter } from '../../lib/types'
+import { ParsedPost } from '../../lib/types'
 import Head from 'next/head'
 import { NOTES_BASE_PATH } from '../../lib/constants'
 
 interface NotePageProps {
   mdxContent: any
-  frontmatter: PostFrontmatter
+  frontmatter: ParsedPost['frontmatter']
   formattedDate: string
 }
 
@@ -52,9 +52,9 @@ export const getStaticProps: GetStaticProps<NotePageProps> = async ctx => {
     },
   })
 
-  const { date, lastUpdated } = frontmatter
+  const { date, lastUpdated, ...rest } = frontmatter
   const unformattedDate = lastUpdated || date
-  const formattedDate = format(unformattedDate, 'yyyy-MM-dd')
+  const formattedDate = format(new Date(unformattedDate), 'yyyy-MM-dd')
 
   return {
     props: {

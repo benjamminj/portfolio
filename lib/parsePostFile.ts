@@ -14,7 +14,14 @@ export const parsePostFile = (
   const fullPath = path.join(directory, filePath)
   const source = fs.readFileSync(fullPath, 'utf8')
 
-  const { attributes: frontmatter, body } = fm<PostFrontmatter>(source)
+  const { attributes, body } = fm<PostFrontmatter>(source)
 
+  const frontmatter = {
+    ...attributes,
+    // Date objects don't parse to JSON safely, so convert them into their equivalent
+    // strings in ISO 8601 format.
+    date: attributes.date.toISOString(),
+    lastUpdated: attributes.lastUpdated?.toISOString() ?? null,
+  }
   return { frontmatter, body }
 }
