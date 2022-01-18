@@ -13,7 +13,7 @@ import { getPostFileBySlug } from '../lib/getPostFileBySlug'
 import { getPostFilePaths } from '../lib/getPostFilePaths'
 import { parsePostFile } from '../lib/parsePostFile'
 import { slugifyPost } from '../lib/slugifyPost'
-import { PostFrontmatter } from '../lib/types'
+import { ParsedPost, PostFrontmatter } from '../lib/types'
 
 interface PostPageParams extends ParsedUrlQuery {
   slug: string[]
@@ -39,7 +39,7 @@ interface PostPageProps {
   formattedDate: string
   /** Post metadata */
   frontmatter: Pick<
-    PostFrontmatter,
+    ParsedPost['frontmatter'],
     | 'title'
     | 'description'
     | 'publisher'
@@ -142,7 +142,6 @@ export const getStaticPaths: GetStaticPaths<PostPageParams> = async () => {
 
   type Path = { params: PostPageParams }
 
-  // TODO: don't build draft posts?
   const paths = postFiles.map<Path>(file => {
     return { params: { slug: slugifyPost(file).split('/') } }
   })
@@ -157,7 +156,6 @@ type GetPostPageStaticProps = GetStaticProps<PostPageProps, PostPageParams>
 export const getStaticProps: GetPostPageStaticProps = async ctx => {
   const { slug: slugSegments } = ctx.params
 
-  // file path??
   const filePath = getPostFileBySlug(ctx.params.slug)
   const { frontmatter, body } = parsePostFile(filePath)
 
@@ -171,7 +169,7 @@ export const getStaticProps: GetPostPageStaticProps = async ctx => {
 
   const { date, lastUpdated } = frontmatter
   const unformattedDate = lastUpdated || date
-  const formattedDate = format(unformattedDate, 'yyyy-MM-dd')
+  const formattedDate = format(new Date(unformattedDate), 'yyyy-MM-dd')
 
   return {
     props: {

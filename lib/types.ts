@@ -44,6 +44,9 @@ export interface PostFrontmatter {
 }
 
 export interface ParsedPost {
-  frontmatter: PostFrontmatter
+  frontmatter: Omit<PostFrontmatter, 'date' | 'lastUpdated'> & {
+    date: string
+    lastUpdated: string | null
+  }
   body: string
 }
