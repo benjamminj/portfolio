@@ -3,7 +3,7 @@
   "description": "Benjamin Johnson's website",
   "version": "1.1.0",
   "engines": {
-    "node": "12.x"
+    "node": ">=14.0.0"
   },
   "author": "Benjamin Johnson <benjamindavjohnson@gmail.com>",
   "keywords": [
