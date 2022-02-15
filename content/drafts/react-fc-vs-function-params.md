@@ -1,9 +1,10 @@
 ---
 title: React.FC vs TypeScript function parameters
-date: 2021-01-16
+date: 2022-02-03
 tags:
   - typescript
   - react
+  - formatting
 ---
 
 My strong preference is to use regular TS function parameters to type React components, rather than the `React.FC` (or its longer alias, `React.FunctionComponent`) that comes packaged with `React`.
