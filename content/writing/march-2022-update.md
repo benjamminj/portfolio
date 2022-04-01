@@ -22,6 +22,6 @@ I've been on parental leave since, and am _loving it_. I'm incredibly grateful t
 
 ## Miscellaneous updates 🤓
 
-- Been playing with [Remix](https://remix.run/) quite a bit lately, and loving it. I'm especially fond of the focus on _fundamentals_ and _simplicity_. It feels like a breath of fresh air in the midst of a whirlwind of complexity.
+- Been playing with [Remix](https://remix.run/) quite a bit lately, and loving it. I'm especially fond of the focus on _fundamentals_ and _simplicity_. It certainly feels like a breath of fresh air.
 - Just finished reading [Kill it with Fire](https://nostarch.com/kill-it-fire) by Marianne Bellotti. I highly recommend it, especially if you work on any software that needs to live more than a couple months.
 - Per the above announcement, most of my energy has gone into learning my new role as Dad, and adjusting to life as a new parent 💕
