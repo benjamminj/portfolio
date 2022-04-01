@@ -15,7 +15,7 @@ Fingers crossed that I'll be able to write more frequently in smaller bursts.
 
 ## New family member 👶
 
-[21-Johnson-21](https://user-images.githubusercontent.com/20060118/161328996-a5ab7cb7-4ab6-467d-91b5-17506d239f8b.JPG)
+![21-Johnson-21](https://user-images.githubusercontent.com/20060118/161328996-a5ab7cb7-4ab6-467d-91b5-17506d239f8b.JPG)
 
 The most important event in my family's March 2022 calendar—on March 19 my wife and I welcomed Ian to our family! We love this little guy so much and have been cherishing every single moment since his arrival.
 
