@@ -1,17 +1,18 @@
 ---
 title: Why SSR
 description: Server-rendering is more than just SEO and speed
-date: 2022-04-29
+date: 2022-04-30
 tags:
   - http
   - software-engineering
+  - fundamentals
 ---
 
-A common claim I've heard in recent years "We don't need SEO because our app is behind a login screen...so server-rendering (SSR) is overkill".
+A common claim I've heard in recent years goes like this: "We don't need SEO because our app is B2B...so server-rendering (SSR) is overkill".
 
 However, there's many reasons to consider SSR as a good-enough default for most applications. Certainly, _some_ apps won't be a fit for SSR, but the vast majority gain many benefits from leaning in to the server-rendered paradigm.
 
-Here's some additional reasons to adopt server-rendering beyond appeasing Googlebot.
+Here's some additional reasons to adopt server-rendering beyond Lighthouse scores.
 
 ## Server-rendering yields a simpler mental model
 
@@ -60,7 +61,7 @@ However.
 
 HTML forms are _way_ easier to do when you have server-rendering. And if your HTML form works without JavaScript it has a much higher chance of being more accessible than 90% of the JS-only SPA forms out there.
 
-Turns out screen readers are great at reading documents.
+Turns out screen readers are great at reading HTML documents.
 
 
 ## You can have your cake and eat it, too.
@@ -79,39 +80,10 @@ Better yet, running client-side JS becomes an enhancement rather than _required_
 
 Server-rendering provides a variety of benefits over the fully client-rendered SPAs of today. With modern JS frameworks, you can easily adopt a server-rendered model without having to give up JS on the frontend. Finally, while SSR comes with _some_ complexity, it makes a number of things simpler, namely data fetching, form handling, and optimization.
 
+Have comments or concerns? Loved what you read? I deliberately don't have comments on my blog, so please hit me up on [Twitter](https://twitter.com/benjamminj)!
 
+## Further Reading
 
-## Further Resources
-
-- [This thread on Twitter](https://twitter.com/gortok/status/1519361629896552449?s=20&t=tuxGsWDMvUuaQkX3189Ksw)
+- [This thread on Twitter](https://twitter.com/gortok/status/1519361629896552449)
 - [Remix docs](https://remix.run/docs/en/v1/pages/philosophy#serverclient-model)
 
-
-<!-- - background
-  - I've often heard the following take when it comes to the question of "why should we (or shouldn't we) do SSR?"
-    - "We don't need SSR, this app isn't crawled so we don't need SEO"
-    - another variation: "We don't need SSR, since this app is internal we don't need super-speed"
-
-- the big picture
-  - there's a lot more to server-rendering than SEO and speed
-
-- a few reasons
-  - simpler client-server model
-    - "leans in" to the way the web works
-      - URLs, cookies, etc.
-  - speed is good for everyone
-  - server-rendering HTML is an accessible default
-    - progressive enhancement (esp with forms, auth, etc)
-  - easier to optimize
-    - cache-control headers, CDNs, etc
-    - server-side caching (redis, memcache, etc)
-    - optimize upstream bottlenecks
-  - you can have your cake and eat it, too
-    - fast server responses
-    - optimistic updates
-
-- resources
-  - twitter thread by george stocker
-  - remix docs??
-
- -->
