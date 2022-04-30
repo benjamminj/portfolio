@@ -27,7 +27,7 @@ Even though your app now runs in two environments (browser & server), you've sim
 Going purely client-side usually introduces some additional workflows (examples are just from the React ecosystem). These aren't exclusive to client-side rendering, but they often accompany a more client-centric model.
 
 - Handling request waterfalls (querying per component, [React Suspense](https://reactjs.org/docs/react-api.html#reactsuspense)).
-- Caching API responses in-memory in JS ([Apollo](https://www.apollographql.com/docs/react), [React-Query](https://react-query.tanstack.com/)). 
+- Caching API responses in-memory in JS ([Apollo](https://www.apollographql.com/docs/react), [React-Query](https://react-query.tanstack.com/)).
 - Updating application state without any data fetching ([Redux](https://redux.js.org/), [React State](https://reactjs.org/docs/state-and-lifecycle.html)).
 - Form libraries ([Formik](https://formik.org/docs/overview), [React-Hook-Form](https://react-hook-form.com/get-started), [Final Form](https://final-form.org/docs/final-form/getting-started))
 
@@ -45,9 +45,9 @@ While SSR doesn't guarantee speed, it gives you fast defaults, and keeps the doo
 
 You have no control over your user's device, browser, or internet bandwidth. In contrast, you 100% have the ability to make your server _fast_.
 
-Optimizing client-side apps often boils down to: A) fetch less often, B) optimize asset loading ([PRPL pattern](https://web.dev/apply-instant-loading-with-prpl/)), and C) [don't block the main thread](https://web.dev/mainthread-work-breakdown/). So once you've done all 3 of those you're completely at the mercy of your users' internet connections and  device specs.
+Optimizing client-side apps often boils down to: A) fetch less often, B) optimize asset loading ([PRPL pattern](https://web.dev/apply-instant-loading-with-prpl/)), and C) [don't block the main thread](https://web.dev/mainthread-work-breakdown/). So once you've done all 3 of those you're completely at the mercy of your users' internet connections and device specs.
 
-When your server hsa long response times you have many more options to speed it up. You can optimize the infrastructure (scale vertically/horizontally, multi-region, edge, etc), add caching (CDNs, key-value stores, `Cache-Control` headers) or fix slow code paths (your server or upstream services). 
+When your server hsa long response times you have many more options to speed it up. You can optimize the infrastructure (scale vertically/horizontally, multi-region, edge, etc), add caching (CDNs, key-value stores, `Cache-Control` headers) or fix slow code paths (your server or upstream services).
 
 You're able to pick the optimization that makes the most sense at any given time, rather than hitting a wall.
 
@@ -63,7 +63,6 @@ HTML forms are _way_ easier to do when you have server-rendering. And if your HT
 
 Turns out screen readers are great at reading HTML documents.
 
-
 ## You can have your cake and eat it, too.
 
 SSR might not be able to deliver the 100% polished experience your users expect. You may (probably) want to use a JS framework to build components and structure your UI.
@@ -73,7 +72,7 @@ Good news! Most JS frameworks support server-rendering with minimal configuratio
 So you can get all the benefits of server-rendering, while also being able to write client-side JS to power those smooth, snazzy UXs your users have come to expect.
 
 Better yet, running client-side JS becomes an enhancement rather than _required_.
- 
+
 ---
 
 ## Conclusion
@@ -86,4 +85,3 @@ Have comments or concerns? Loved what you read? I deliberately don't have commen
 
 - [This thread on Twitter](https://twitter.com/gortok/status/1519361629896552449)
 - [Remix docs](https://remix.run/docs/en/v1/pages/philosophy#serverclient-model)
-
