@@ -40,20 +40,39 @@ You're able to pick the optimization that makes the most sense at any given time
 
 ## You can have your cake and eat it, too.
 
-Web apps have come a long way in the last 10-20 years, and users expect web apps to have polished experiences. In order to make apps feel fancy you'll probably need _some_ client-side JavaScript.
+You may not be able to get 100% of the polished experience your users expect with server-rendering. You may (probably) want to use a JavaScript framework to structure your UI components. You may have parts of your experience that aren't even possible with server-rendering (for example, a photo-editing app or drawing SVG in the browser).
 
-<!-- - **Increase RAM.** Yes, this _is_ throwing money at the problem, but sometimes that's the fastest solution, especially if you experience a spike in traffic
-- **Scale horizontally.** If you've got a load balancer you can have multiple servers serving HTML responses.
-- **Locate the server closer to the user.** Especially today, you can server-render at "the edge" with Cloudflare, AWS, Netlify, Fly, etc. 
-- **Optimize upstream services.** Sometimes an upstream service is the culprit behind slow responses, and it's more cost-effective to spend time fixing the underlying service.
-- **Add a cache (like Redis).** 
-- Send Cache-Control headers (technically this is a client-side optimization, but still initiated by the server).
-- Put your server behind a CDN
-- **Refactor slow code paths.** Sometimes the problem is _your_ code, so you've gotta make it more performant.
-- etc
- -->
+The thing is, you don't have to choose between fully server-rendered and fully client-side fetching. Most front-end frameworks have the ability to render on the server, and still use JavaScript on the client (Next.js, Remix, SvelteKit, Nuxt, etc).
+
+So you can get all the benefits of leaning in to the server-rendered paradigms, while also getting the benefits of structuring your app using the newest FE framework. And better yet, client-side JS becomes an _enhancement_ to make things more user-friendly, rather than a _requirement_ to accomplish critical user flows.
+
+## Server-rendering yields a simpler mental model
+
+If you _exclusively_ server-render (no client-side JS), every action follows the same workflow:
+
+1. Request enters your server through a HTTP request.
+2. Server processes the request and responds, either with an HTML document or a redirect.
+3. HTML document is sent to the user.
+
+Adding client-side usually introduces some additional workflows (examples are just from the React ecosystem)
+
+- Handling request waterfalls in client-side JS (querying per component, React Suspense).
+- Caching API responses in-memory in JS (Apollo, React-Query). 
+- Updating application state without any data fetching (Redux, React State).
+- Form libraries (Formik, React-Hook-Form, Final Form)
+
+By storing more application state client-side, you end up making things _way_ more complex.
  
- 
+---
+
+## Conclusion
+
+## Further Resources
+
+- [This thread on Twitter](https://twitter.com/gortok/status/1519361629896552449?s=20&t=tuxGsWDMvUuaQkX3189Ksw)
+- [Remix docs](https://remix.run/docs/en/v1/pages/philosophy#serverclient-model)
+
+
 <!-- - background
   - I've often heard the following take when it comes to the question of "why should we (or shouldn't we) do SSR?"
     - "We don't need SSR, this app isn't crawled so we don't need SEO"
