@@ -7,65 +7,79 @@ tags:
   - software-engineering
 ---
 
-<!-- TODO: intro -->
-## Speed is good for everyone.
+A common claim I've heard in recent years "We don't need SEO because our app is behind a login screen...so server-rendering (SSR) is overkill".
 
-Speed is good for everyone, not just users on low-bandwidth connections. It's wild to me that a common refrain is "our app is B2B, so server-rendering is not helpful because our users are on good internet connections".
+However, there's many reasons to consider SSR as a good-enough default for most applications. Certainly, _some_ apps won't be a fit for SSR, but the vast majority gain many benefits from leaning in to the server-rendered paradigm.
 
-Or put a different way: "Our users pay a lot of money for our app, so we don't need to worry about how fast it is".
-
-Speed is an asset. While it may not be the _most important thing_ to your users, it can set you apart from your competitors. You don't wanna be the app that kills your users' productivity daily.
-
-And while SSR doesn't guarantee speed, it gives you performant defaults and keeps the door open on future optimizations.
-
-## Server-rendered HTML is probably more accessible.
-
-SSR does guarantee that you create accessible HTML interfaces. That's up to you, the developer.
-
-However.
-
-Things like HTML forms and cookie-based authentication are _way_ easier to do when you have server-rendering.
-
-Screen readers are great at reading HTML documents. So if you're able to get 90% of your app to _work_ without JavaScript, chances are you'll get more accessibility "for free".
-
-## Easier optimization paths
-
-You have no control over your user's device, browser, or internet bandwidth. In contrast, the server is a controlled environment.
-
-Optimizing the app on the client-side usually consists of avoiding HTTP requests by caching data, optimizing asset loading, and keeping the main JS thread clear. So if your user's device is an underpowered Android phone and they're on a spotty connection, there's nothing you can do to optimize that.
-
-However, if your server is taking a long time to respond you've got a lot of options. You can optimize the infrastructure (scale vertically/horizontally), add caching (CDNs, key-value stores, `Cache-Control` headers) or fix slow code paths (your server or upstream services). 
-
-You're able to pick the optimization that makes the most sense at any given time, rather than hitting a wall.
-
-## You can have your cake and eat it, too.
-
-You may not be able to get 100% of the polished experience your users expect with server-rendering. You may (probably) want to use a JavaScript framework to structure your UI components. You may have parts of your experience that aren't even possible with server-rendering (for example, a photo-editing app or drawing SVG in the browser).
-
-The thing is, you don't have to choose between fully server-rendered and fully client-side fetching. Most front-end frameworks have the ability to render on the server, and still use JavaScript on the client (Next.js, Remix, SvelteKit, Nuxt, etc).
-
-So you can get all the benefits of leaning in to the server-rendered paradigms, while also getting the benefits of structuring your app using the newest FE framework. And better yet, client-side JS becomes an _enhancement_ to make things more user-friendly, rather than a _requirement_ to accomplish critical user flows.
+Here's some additional reasons to adopt server-rendering beyond appeasing Googlebot.
 
 ## Server-rendering yields a simpler mental model
 
 If you _exclusively_ server-render (no client-side JS), every action follows the same workflow:
 
 1. Request enters your server through a HTTP request.
-2. Server processes the request and responds, either with an HTML document or a redirect.
+2. Server processes the request and responds, usually HTML or a redirect.
 3. HTML document is sent to the user.
 
-Adding client-side usually introduces some additional workflows (examples are just from the React ecosystem)
+Even though your app now runs in two environments (browser & server), you've simplified the data flow. Now you can focus on interaction and pizazz on the client-side and let the server do the heavy-lifting in regards to data.
 
-- Handling request waterfalls in client-side JS (querying per component, React Suspense).
-- Caching API responses in-memory in JS (Apollo, React-Query). 
-- Updating application state without any data fetching (Redux, React State).
-- Form libraries (Formik, React-Hook-Form, Final Form)
+Going purely client-side usually introduces some additional workflows (examples are just from the React ecosystem). These aren't exclusive to client-side rendering, but they often accompany a more client-centric model.
 
-By storing more application state client-side, you end up making things _way_ more complex.
+- Handling request waterfalls (querying per component, [React Suspense](https://reactjs.org/docs/react-api.html#reactsuspense)).
+- Caching API responses in-memory in JS ([Apollo](https://www.apollographql.com/docs/react), [React-Query](https://react-query.tanstack.com/)). 
+- Updating application state without any data fetching ([Redux](https://redux.js.org/), [React State](https://reactjs.org/docs/state-and-lifecycle.html)).
+- Form libraries ([Formik](https://formik.org/docs/overview), [React-Hook-Form](https://react-hook-form.com/get-started), [Final Form](https://final-form.org/docs/final-form/getting-started))
+
+By storing more application state client-side, you actually add complexity!
+
+## Speed is good for everyone.
+
+Fast apps are good on high-speed internet, too. Trust me, your enterprise users will appreciate that _your app_ isn't the one tanking their productivity with slow interactions.
+
+_(Also, with remote working, you can't assume that enterprise users have a high-speed connection anymore)_
+
+While SSR doesn't guarantee speed, it gives you fast defaults, and keeps the door open for future optimization.
+
+## Easier to optimize.
+
+You have no control over your user's device, browser, or internet bandwidth. In contrast, you 100% have the ability to make your server _fast_.
+
+Optimizing client-side apps often boils down to: A) fetch less often, B) optimize asset loading ([PRPL pattern](https://web.dev/apply-instant-loading-with-prpl/)), and C) [don't block the main thread](https://web.dev/mainthread-work-breakdown/). So once you've done all 3 of those you're completely at the mercy of your users' internet connections and  device specs.
+
+When your server hsa long response times you have many more options to speed it up. You can optimize the infrastructure (scale vertically/horizontally, multi-region, edge, etc), add caching (CDNs, key-value stores, `Cache-Control` headers) or fix slow code paths (your server or upstream services). 
+
+You're able to pick the optimization that makes the most sense at any given time, rather than hitting a wall.
+
+As an added benefit you get some of the client-side optimizations "for free" when you lean in to the server-centric model. Like fetching less via `Cache-Control` headers and keeping the main thread clear (since your server is doing the heavy lifting)
+
+## Server-rendered HTML is probably more accessible.
+
+SSR does not guarantee accessible HTML interfaces. That's up to you, the developer.
+
+However.
+
+HTML forms are _way_ easier to do when you have server-rendering. And if your HTML form works without JavaScript it has a much higher chance of being more accessible than 90% of the JS-only SPA forms out there.
+
+Turns out screen readers are great at reading documents.
+
+
+## You can have your cake and eat it, too.
+
+SSR might not be able to deliver the 100% polished experience your users expect. You may (probably) want to use a JS framework to build components and structure your UI.
+
+Good news! Most JS frameworks support server-rendering with minimal configuration ([Next.js](https://nextjs.org/), [Remix](https://remix.run/), [SvelteKit](https://kit.svelte.dev/), [NuxtJS](https://nuxtjs.org/), etc).
+
+So you can get all the benefits of server-rendering, while also being able to write client-side JS to power those smooth, snazzy UXs your users have come to expect.
+
+Better yet, running client-side JS becomes an enhancement rather than _required_.
  
 ---
 
 ## Conclusion
+
+Server-rendering provides a variety of benefits over the fully client-rendered SPAs of today. With modern JS frameworks, you can easily adopt a server-rendered model without having to give up JS on the frontend. Finally, while SSR comes with _some_ complexity, it makes a number of things simpler, namely data fetching, form handling, and optimization.
+
+
 
 ## Further Resources
 
