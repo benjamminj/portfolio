@@ -1,7 +1,7 @@
 ---
 title: Why SSR
 description: Server-rendering is more than just SEO and speed
-date: 2022-04-30
+date: 2022-05-01
 tags:
   - http
   - software-engineering
@@ -10,9 +10,9 @@ tags:
 
 A common claim I've heard in recent years goes like this: "We don't need SEO because our app is B2B...so server-rendering (SSR) is overkill".
 
-However, there's many reasons to consider SSR as a good-enough default for most applications. Certainly, _some_ apps won't be a fit for SSR, but the vast majority gain many benefits from leaning in to the server-rendered paradigm.
+However, there's many reasons to consider SSR as a good-enough default for most applications. Many apps are a blend of SSR and client-side fetching, and some apps _aren't_ a good fit for SSR.
 
-Here's some additional reasons to adopt server-rendering beyond Lighthouse scores.
+That said, many apps (most apps?) gain many benefits from leaning in to the server-rendered paradigm. Here's some additional reasons to adopt server-rendering beyond Lighthouse scores.
 
 ## Server-rendering yields a simpler mental model
 
@@ -31,7 +31,7 @@ Going purely client-side usually introduces some additional workflows (examples 
 - Updating application state without any data fetching ([Redux](https://redux.js.org/), [React State](https://reactjs.org/docs/state-and-lifecycle.html)).
 - Form libraries ([Formik](https://formik.org/docs/overview), [React-Hook-Form](https://react-hook-form.com/get-started), [Final Form](https://final-form.org/docs/final-form/getting-started))
 
-By storing more application state client-side, you actually add complexity!
+Most apps will be a blend of server-side and client-side patterns, but leaning entirely on client-side approaches may actually make things more complicated.
 
 ## Speed is good for everyone.
 
