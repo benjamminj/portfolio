@@ -30,7 +30,9 @@
     "test": "jest",
     "e2e": "yarn e2e:open",
     "e2e:open": "yarn e2e:run --headed",
-    "e2e:run": "yarn playwright test e2e --config=playwright.config.ts"
+    "e2e:run": "yarn playwright test e2e --config=playwright.config.ts",
+    "install:sv": "cd sveltekit && yarn install",
+    "build:sv": "cd sveltekit && yarn build"
   },
   "dependencies": {
     "@mapbox/rehype-prism": "^0.5.0",
