@@ -13,11 +13,13 @@ module.exports = withBundleAnalyzer({
     return [
       {
         source: '/sv',
-        destination: 'https://url-shortener-sveltekit.pages.dev/',
+        destination:
+          'https://portfolio-sveltekit-git-sveltekit-benjamminj.vercel.app/',
       },
       {
         source: '/_app/:slug*',
-        destination: 'https://url-shortener-sveltekit.pages.dev/_app/:slug*',
+        destination:
+          'https://portfolio-sveltekit-git-sveltekit-benjamminj.vercel.app/_app/:slug*',
       },
     ]
   },
