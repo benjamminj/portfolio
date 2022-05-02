@@ -8,34 +8,21 @@ env:
   FORCE_COLOR: 1
 
 jobs:
-  wait_for_preview:
-    name: Wait for preview URL
-    runs-on: ubuntu-latest
-    outputs:
-      url: ${{ steps.waitFor200.outputs.url }}
-    steps:
-      - uses: actions/checkout@v1
-      - name: Wait for Vercel
-        uses: patrickedqvist/wait-for-vercel-preview@main
-        id: waitFor200
-        with: 
-          token: ${{ secrets.GH_TOKEN }}
-          max_timeout: 600
-
   lighthouse:
-    name: Run Lighthouse
+    # TODO: this will probably fire on both the Next.js deployment AND the Sveltekit deployment
+    # so we need to find a way to scope it just to the Next.js one.
+    #
+    # Since the Next.js one wraps the SvelteKit one (for now)
+    if: github.event_name == 'deployment_status' && github.event.deployment_status.state == 'success' && github.event.production_environment == false && contains(github.event.deployment_status.target_url, 'benjaminjohnsonme')
+    timeout-minutes: 60
     runs-on: ubuntu-latest
-    needs: wait_for_preview
+    name: Run Lighthouse
     steps:
       - run: mkdir /tmp/artifacts
       - name: Run Lighthouse
         uses: foo-software/lighthouse-check-action@master
         with:
-          urls: "
-            ${{ needs.wait_for_preview.outputs.url }}, 
-            ${{ needs.wait_for_preview.outputs.url }}/writing,
-            ${{ needs.wait_for_preview.outputs.url }}/mocking-fetch
-          "
+          urls: "${{ github.event.deployment_status.target_url }}, ${{ github.event.deployment_status.target_url }}/writing, ${{ github.event.deployment_status.target_url }}/mocking-fetch"
           outputDirectory: /tmp/artifacts
       - name: Upload artifacts
         uses: actions/upload-artifact@main
@@ -44,9 +31,11 @@ jobs:
           path: /tmp/artifacts
 
   playwright:
+    if: github.event_name == 'deployment_status' && github.event.deployment_status.state == 'success' && github.event.production_environment == false && contains(github.event.deployment_status.target_url, 'benjaminjohnsonme')
+    timeout-minutes: 60
+    
     name: e2e tests
     runs-on: ubuntu-latest
-    needs: wait_for_preview
     steps: 
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
@@ -59,12 +48,11 @@ jobs:
       - name: Run your tests
         run: npm run e2e:run
         env:
-          TEST_BASE_URL: ${{ needs.wait_for_preview.outputs.url }}
+          TEST_BASE_URL: ${{ github.event.deployment_status.target_url }}
 
   jest_tests:
     name: Jest tests
     runs-on: ubuntu-latest
-    needs: wait_for_preview
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
