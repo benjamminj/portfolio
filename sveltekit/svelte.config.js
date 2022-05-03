@@ -8,7 +8,11 @@ const config = {
 	preprocess: preprocess(),
 
 	kit: {
-		adapter: vercel()
+		adapter: vercel(),
+		routes: (filepath) => {
+			if (filepath.includes('_next')) return true;
+			return !/(?:(?:^_|\/_)|(?:^\.|\/\.)(?!well-known))/.test(filepath);
+		}
 	}
 };
 
