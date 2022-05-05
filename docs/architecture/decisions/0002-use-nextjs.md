@@ -4,7 +4,9 @@ Date: 2020-09-03
 
 ## Status
 
-Accepted
+Superceded by [14. Migrate to SvelteKit](0014-migrate-to-sveltekit.md)
+
+Superceded by [13. Migrate to SvelteKit](0013-migrate-to-sveltekit.md)
 
 ## Context
 
