@@ -7,6 +7,11 @@ module.exports = withBundleAnalyzer({
     HOMEPAGE: process.env.URL || process.env.VERCEL_URL,
     NEXT_PUBLIC_GA_TRACKING_ID: process.env.NEXT_PUBLIC_GA_TRACKING_ID,
   },
+  typescript: {
+    ignoreBuildErrors: false,
+    // TODO: needs nextjs 12 to work correctly
+    // tsconfigPath: './tsconfig.build.json',
+  },
   // TODO: stand up Svelte codebase, and redirect to its deployment URLs
   // here. We can rewrite route by route over time.
   async rewrites() {
