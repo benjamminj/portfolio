@@ -3,6 +3,7 @@
 
 	export const prerender = true
 	export const hydrate = false
+	export const router = false
 
 	export const load: Load = async ({ fetch }) => {
 		const json = await fetch('/writing/__data.json').then((r) => r.json())
