@@ -1,5 +1,3 @@
-import { mdsvex } from 'mdsvex'
-import mdsvexConfig from './mdsvex.config.js'
 import vercel from '@sveltejs/adapter-vercel'
 import preprocess from 'svelte-preprocess'
 
@@ -14,6 +12,9 @@ const config = {
 	kit: {
 		adapter: vercel(),
 		prerender: {
+			// For now, prevent the crawler to avoid blowing up the routes that are
+			// served by the Next.js app. After we have migrated the deeper routes and
+			// crawling is safe, we can remove this.
 			crawl: false
 		},
 		routes: (filepath) => {
