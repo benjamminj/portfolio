@@ -13,6 +13,9 @@ const config = {
 
 	kit: {
 		adapter: vercel(),
+		prerender: {
+			crawl: false
+		},
 		routes: (filepath) => {
 			if (filepath.includes('_next')) return true
 			return !/(?:(?:^_|\/_)|(?:^\.|\/\.)(?!well-known))/.test(filepath)
