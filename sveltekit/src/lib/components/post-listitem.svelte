@@ -34,13 +34,8 @@
 							<Tag {tag} />
 						</li>
 					{/each}
-					<!-- {post.tags.map(tag => ( -->
-					<!-- ))} -->
 				</ul>
 			{/if}
-			<!-- {#if} -->
-			<!-- {post.tags?.length > 0 && (
-      )} -->
 		</div>
 	</div>
 </div>
