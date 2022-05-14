@@ -1,8 +1,6 @@
 import { z } from 'zod'
-import { Remarkable } from 'remarkable'
 import fm from 'front-matter'
-
-const md = new Remarkable()
+import { parseMarkdown } from './parse-markdown'
 
 const FormattedDateSchema = z.date().transform((date) => {
 	const iso = date.toISOString()
@@ -36,12 +34,12 @@ const slugifyPostPath = (fullPath: string): string => {
 	return path.replace('/index.md', '').replace(/\.md$/, '')
 }
 
+// TODO: remove??
 const parsePostBody = async (content: string) => {
 	// TODO: plugin to add the copy-pasta button for code blocks
 	// TODO: how to style all my stuff? Just w/ raw CSS?
 	// TODO: how to replace an element w/ a Svelte component
-	const parsed = await md.render(content)
-	return parsed
+	return parseMarkdown(content)
 }
 
 const __cached_posts__: Post[] = []
