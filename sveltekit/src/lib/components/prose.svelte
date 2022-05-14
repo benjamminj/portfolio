@@ -33,7 +33,7 @@
 		h4: 'prose-h4:mt-10 prose-h4:mb-4 prose-h4:text-xl prose-h4:font-medium',
 		h5: 'prose-h5:mt-6 prose-h5:mb-4 prose-h5:text-lg prose-h5:font-medium',
 		h6: 'prose-h6:mt-6 prose-h6:mb-4 prose-h6:text-base prose-h6:font-medium',
-		pre: 'prose-pre:p-6 prose-pre:pt-8 prose-pre:my-6 prose-pre:-mx-4 prose-pre:overflow-auto prose-pre:text-base prose-pre:bg-gray-100 prose-pre:md:mx-0 prose-pre:lg:-mx-6 prose-pre:dark:bg-gray-900',
+		pre: 'prose-pre:rounded-none prose-pre:p-6 prose-pre:pt-8 prose-pre:my-6 prose-pre:-mx-4 prose-pre:overflow-auto prose-pre:text-base prose-pre:bg-gray-100 prose-pre:md:mx-0 prose-pre:lg:-mx-6 prose-pre:dark:bg-gray-900',
 		ol: 'prose-ol:pl-8 prose-ol:list-none',
 		ul: 'prose-ul:pl-6 prose-ul:list-none',
 		li: 'prose-li:relative prose-li:pl-2 prose-li:my-4 prose-li:text-base prose-li:leading-7 prose-li:before:-left-4 prose-li:before:absolute',
@@ -50,16 +50,6 @@
 </div>
 
 <style lang="postcss">
-	/**
-   * TODO: find better way to write this up...
-   * separate file or perhaps bake it into the TW config...
-   * 
-   * an alternate option could be to use MdSvex and use the layouts to
-   * choose the "renderer" components for each tag...although that will
-   * increase reliance on Node.js and stop me from being able to use edge
-   * functions...
-   */
-
 	/*****************************************************************************
   * Lists
   *****************************************************************************/
