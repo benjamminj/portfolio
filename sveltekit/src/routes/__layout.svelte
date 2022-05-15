@@ -11,7 +11,21 @@
 	// TODO: need to support components / HTML as subtitle for post pages, which may
 	// require breaking out of the layout 🤔
 	let subtitle = $page.stuff.subtitle
+	let seo = $page.stuff.seo
+
+	let pageTitle = seo?.title ?? 'Benjamin Johnson — Front-End Engineer'
+	let description =
+		$page.stuff.seo?.description ?? 'Software engineer specializing in building front-end web apps.'
+	let keywords = seo?.keywords
+		? seo.keywords.join(', ')
+		: 'front-end engineer, web, javascript, typescript, react, accessibility'
 </script>
+
+<svelte:head>
+	<title>{pageTitle}</title>
+	<meta name="description" content={description} />
+	<meta name="keywords" content={keywords} />
+</svelte:head>
 
 <div class="relative">
 	<div class="absolute inset-x-0 top-0">

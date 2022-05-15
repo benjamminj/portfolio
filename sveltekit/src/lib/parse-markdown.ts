@@ -18,6 +18,13 @@ const md = new Remarkable({
 	}
 })
 
+/**
+ * Responsible for taking in a markdown string and returning the resulting HTML.
+ *
+ * A couple things to note:
+ * - Code blocks will be highlighted using PrismJS
+ * - At the current time, frontmatter is not extracted, so that needs to be done separately.
+ */
 export const parseMarkdown = async (markdown: string) => {
 	const parsed = await md.render(markdown)
 	return parsed

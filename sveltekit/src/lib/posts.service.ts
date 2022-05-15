@@ -34,14 +34,6 @@ const slugifyPostPath = (fullPath: string): string => {
 	return path.replace('/index.md', '').replace(/\.md$/, '')
 }
 
-// TODO: remove??
-const parsePostBody = async (content: string) => {
-	// TODO: plugin to add the copy-pasta button for code blocks
-	// TODO: how to style all my stuff? Just w/ raw CSS?
-	// TODO: how to replace an element w/ a Svelte component
-	return parseMarkdown(content)
-}
-
 const __cached_posts__: Post[] = []
 
 /**
@@ -55,8 +47,6 @@ const __cached_posts__: Post[] = []
  * SQLite, since we won't take a perf hit (they're all prerendered.)
  *
  * TODO: sorting / filtering?
- * TODO: memoize to make things easier? Since this one will get hit a lot until we
- * switch to a fully DB-driven flow w/ "primary keys".
  */
 export const list = async () => {
 	if (__cached_posts__.length > 0) {
@@ -69,7 +59,7 @@ export const list = async () => {
 		Object.entries(rawPosts).map(async ([path, contents]) => {
 			const { attributes, body } = fm<Record<string, unknown>>(contents as unknown as string)
 
-			const parsed = await parsePostBody(body)
+			const parsed = await parseMarkdown(body)
 			return await PostSchema.parseAsync({
 				slug: slugifyPostPath(path),
 				...attributes,

@@ -10,5 +10,10 @@ declare namespace App {
 		title?: string
 		preserveTitleCasing?: boolean
 		subtitle?: string
+		seo?: {
+			title?: string
+			description?: string
+			keywords?: string[]
+		}
 	}
 }

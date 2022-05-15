@@ -8,7 +8,10 @@
 		return {
 			props: { posts: json.posts },
 			stuff: {
-				title: 'Writing'
+				title: 'Writing',
+				seo: {
+					title: 'Writing'
+				}
 			}
 		}
 	}
