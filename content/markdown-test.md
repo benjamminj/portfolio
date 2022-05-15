@@ -89,6 +89,10 @@ Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eveniet obcaecati ex e
 
 Here's a paragraph to show what `inline code blocks` look like...they won't be syntax highlighted, which is a good thing.
 
+```
+and this is a code block w/o highlighting...
+```
+
 ### JavaScript
 
 ```javascript

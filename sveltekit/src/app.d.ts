@@ -6,5 +6,14 @@ declare namespace App {
 	// interface Locals {}
 	// interface Platform {}
 	// interface Session {}
-	// interface Stuff {}
+	interface Stuff {
+		title?: string
+		preserveTitleCasing?: boolean
+		subtitle?: string
+		seo?: {
+			title?: string
+			description?: string
+			keywords?: string[]
+		}
+	}
 }

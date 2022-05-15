@@ -1,8 +1,6 @@
 import { z } from 'zod'
-import { Remarkable } from 'remarkable'
 import fm from 'front-matter'
-
-const md = new Remarkable()
+import { parseMarkdown } from './parse-markdown'
 
 const FormattedDateSchema = z.date().transform((date) => {
 	const iso = date.toISOString()
@@ -36,14 +34,6 @@ const slugifyPostPath = (fullPath: string): string => {
 	return path.replace('/index.md', '').replace(/\.md$/, '')
 }
 
-const parsePostBody = async (content: string) => {
-	// TODO: plugin to add the copy-pasta button for code blocks
-	// TODO: how to style all my stuff? Just w/ raw CSS?
-	// TODO: how to replace an element w/ a Svelte component
-	const parsed = await md.render(content)
-	return parsed
-}
-
 const __cached_posts__: Post[] = []
 
 /**
@@ -57,8 +47,6 @@ const __cached_posts__: Post[] = []
  * SQLite, since we won't take a perf hit (they're all prerendered.)
  *
  * TODO: sorting / filtering?
- * TODO: memoize to make things easier? Since this one will get hit a lot until we
- * switch to a fully DB-driven flow w/ "primary keys".
  */
 export const list = async () => {
 	if (__cached_posts__.length > 0) {
@@ -71,7 +59,7 @@ export const list = async () => {
 		Object.entries(rawPosts).map(async ([path, contents]) => {
 			const { attributes, body } = fm<Record<string, unknown>>(contents as unknown as string)
 
-			const parsed = await parsePostBody(body)
+			const parsed = await parseMarkdown(body)
 			return await PostSchema.parseAsync({
 				slug: slugifyPostPath(path),
 				...attributes,
