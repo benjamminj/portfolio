@@ -8,6 +8,7 @@ const md = new Remarkable({
 	highlight: (code, lang) => {
 		if (!lang) return ''
 
+		// TODO: fix issue w/ TSX parsing for vercel deploys...
 		if (!languages.has(lang)) {
 			languages.set(lang, true)
 			loadLanguages([lang])
