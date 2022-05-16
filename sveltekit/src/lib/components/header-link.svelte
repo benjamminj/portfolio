@@ -6,7 +6,7 @@
 	// based on the href itself
 	export let href: string
 
-	const activeStyles =
+	$: activeStyles =
 		$page.url.pathname === href
 			? 'text-black font-bold dark:text-white'
 			: 'text-gray-800 font-normal dark:text-gray-200'

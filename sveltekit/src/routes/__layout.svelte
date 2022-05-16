@@ -6,17 +6,17 @@
 	import Header from '$lib/components/header.svelte'
 	import Banner from '$lib/components/banner.svelte'
 
-	let title = $page.stuff.title
-	let preserveTitleCasing = $page.stuff.preserveTitleCasing
+	$: title = $page.stuff.title
+	$: preserveTitleCasing = $page.stuff.preserveTitleCasing
 	// TODO: need to support components / HTML as subtitle for post pages, which may
 	// require breaking out of the layout 🤔
-	let subtitle = $page.stuff.subtitle
-	let seo = $page.stuff.seo
+	$: subtitle = $page.stuff.subtitle
+	$: seo = $page.stuff.seo
 
-	let pageTitle = seo?.title ?? 'Benjamin Johnson — Front-End Engineer'
-	let description =
+	$: pageTitle = seo?.title ?? 'Benjamin Johnson — Front-End Engineer'
+	$: description =
 		$page.stuff.seo?.description ?? 'Software engineer specializing in building front-end web apps.'
-	let keywords = seo?.keywords
+	$: keywords = seo?.keywords
 		? seo.keywords.join(', ')
 		: 'front-end engineer, web, javascript, typescript, react, accessibility'
 </script>
