@@ -12,7 +12,7 @@ const md = new Remarkable({
 			languages.set(lang, true)
 			loadLanguages([lang])
 		}
-		const highlighted = Prism.highlight(code, Prism.languages.javascript, 'javascript')
+		const highlighted = Prism.highlight(code, Prism.languages[lang], lang)
 
 		return highlighted
 	}
