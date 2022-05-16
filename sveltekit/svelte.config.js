@@ -15,7 +15,8 @@ const config = {
 			// For now, prevent the crawler to avoid blowing up the routes that are
 			// served by the Next.js app. After we have migrated the deeper routes and
 			// crawling is safe, we can remove this.
-			crawl: false
+			crawl: false,
+			entries: ['*']
 		},
 		routes: (filepath) => {
 			if (filepath.includes('_next')) return true
