@@ -67,6 +67,7 @@ export const list = async () => {
 			})
 		})
 	)
+
 	posts.sort((a, b) => b.date.localeCompare(a.date))
 	return posts
 }
