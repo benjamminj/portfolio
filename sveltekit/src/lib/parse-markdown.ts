@@ -10,8 +10,9 @@ const md = new Remarkable({
 
 		if (!languages.has(lang)) {
 			languages.set(lang, true)
-			loadLanguages([lang])
+			Prism.plugins.autoloader.loadLanguages(lang)
 		}
+
 		const highlighted = Prism.highlight(code, Prism.languages[lang], lang)
 
 		return highlighted
