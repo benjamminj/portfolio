@@ -17,10 +17,12 @@
 
 {#if type === TagType.LINK}
 	<a
+		sveltekit:prefetch
 		href="/tags/{tag}"
 		class="{tagStyles} hover:text-gray-800 hover:bg-gray-100 hover:underline dark:hover:text-gray-50 dark:hover:bg-gray-900"
-		>{tagText}</a
 	>
+		{tagText}
+	</a>
 {:else if type === TagType.TEXT}
 	<span class={tagStyles}>{tagText}</span>
 {/if}

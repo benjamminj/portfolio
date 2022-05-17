@@ -1,16 +1,18 @@
 <script lang="ts" context="module">
-	import type { Load } from '@sveltejs/kit'
+	import type { LoadInput } from '@sveltejs/kit'
 
 	export const prerender = true
-
-	export const load: Load = async ({ fetch }) => {
-		const json = await fetch('/writing/__data.json').then((r) => r.json())
+	export const load = async ({ fetch, params }: LoadInput<{ tag: string }>) => {
+		const tag = params.tag
+		const json = await fetch(`/tags/${tag}/__data.json`).then((r) => r.json())
 		return {
 			props: { posts: json.posts },
 			stuff: {
-				title: 'Writing',
+				title: `#${tag}`,
 				seo: {
-					title: 'Writing'
+					title: tag,
+					description: `All posts categorized under #${tag}`,
+					keywords: [tag]
 				}
 			}
 		}

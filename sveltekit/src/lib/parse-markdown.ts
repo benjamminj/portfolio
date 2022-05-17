@@ -8,11 +8,13 @@ const md = new Remarkable({
 	highlight: (code, lang) => {
 		if (!lang) return ''
 
+		// TODO: fix issue w/ TSX parsing for vercel deploys...
 		if (!languages.has(lang)) {
 			languages.set(lang, true)
 			loadLanguages([lang])
 		}
-		const highlighted = Prism.highlight(code, Prism.languages.javascript, 'javascript')
+
+		const highlighted = Prism.highlight(code, Prism.languages[lang], lang)
 
 		return highlighted
 	}
