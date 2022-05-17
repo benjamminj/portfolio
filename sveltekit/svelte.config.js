@@ -3,16 +3,27 @@ import preprocess from 'svelte-preprocess'
 import fs from 'fs'
 import fm from 'front-matter'
 
-const tags = {}
-fs.readdirSync('../content/writing').map((file) => {
-	const contents = fs.readFileSync(`../content/writing/${file}`, 'utf8')
-	const { attributes } = fm(contents)
-	if (attributes.tags) {
-		attributes.tags.forEach((tag) => {
-			tags[tag] = tag
-		})
-	}
-})
+/**
+ * @todo
+ * This should be temporary to prerender the tag pages (and any other dynamic pages)
+ * while in migration from Next.js to Sveltekit. Once all pages have been migrated to
+ * Sveltekit, we should be able to remove this function and re-enable the crawler.
+ */
+const getPrerenderEntries = () => {
+	const tags = {}
+	fs.readdirSync('../content/writing').map((file) => {
+		const contents = fs.readFileSync(`../content/writing/${file}`, 'utf8')
+		const { attributes } = fm(contents)
+		if (attributes.tags) {
+			attributes.tags.forEach((tag) => {
+				tags[tag] = tag
+			})
+		}
+	})
+	const tagEntries = Object.keys(tags).map((t) => `/tags/${t}`)
+
+	return ['*', ...tagEntries]
+}
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
@@ -29,7 +40,7 @@ const config = {
 			// served by the Next.js app. After we have migrated the deeper routes and
 			// crawling is safe, we can remove this.
 			crawl: false,
-			entries: ['*', ...Object.keys(tags).map((t) => `/tags/${t}`)]
+			entries: getPrerenderEntries()
 		},
 		routes: (filepath) => {
 			if (filepath.includes('_next')) return true
