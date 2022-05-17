@@ -1,8 +1,9 @@
 import type { RequestHandler } from '@sveltejs/kit'
-import { list, type Post } from '$lib/posts.service'
+import * as PostsService from '$lib/posts.service'
+import type { Post } from '$lib/posts.service'
 
 export const get: RequestHandler = async () => {
-	const posts = await list()
+	const posts = await PostsService.list()
 	const slimmedPosts = posts.map(({ body: _, ...rest }) => rest)
 	return {
 		status: 200,

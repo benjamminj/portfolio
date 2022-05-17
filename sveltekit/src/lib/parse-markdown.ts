@@ -10,6 +10,10 @@ const md = new Remarkable({
 
 		// TODO: fix issue w/ TSX parsing for vercel deploys...
 		if (!languages.has(lang)) {
+			if (lang === 'tsx') {
+				loadLanguages(['jsx', 'javascript', 'typescript'])
+			}
+
 			languages.set(lang, true)
 			loadLanguages([lang])
 		}
