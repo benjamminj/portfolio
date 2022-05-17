@@ -1,10 +1,10 @@
 import Prism from 'prismjs'
-import loadLanguages from 'prismjs/components'
+// import loadLanguages from 'prismjs/components/index.js'
 import { Remarkable } from 'remarkable'
 
 const languages = new Map()
 
-loadLanguages(['markup'])
+// loadLanguages(['markup'])
 
 const md = new Remarkable({
 	highlight: (code, lang) => {
@@ -12,10 +12,11 @@ const md = new Remarkable({
 		// TODO: fix issue w/ TSX parsing for vercel deploys...
 		if (!languages.has(lang)) {
 			if (lang === 'tsx') {
-				loadLanguages(['jsx', 'javascript', 'typescript'])
+				// loadLanguages(['jsx', 'javascript', 'typescript'])
 			}
+			import(`prismjs/components/prism-${lang}.js`)
 			languages.set(lang, true)
-			loadLanguages([lang])
+			// loadLanguages([lang])
 		}
 		const highlighted = Prism.highlight(code, Prism.languages[lang], lang)
 		return highlighted
