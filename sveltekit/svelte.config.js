@@ -2,6 +2,8 @@ import vercel from '@sveltejs/adapter-vercel'
 import preprocess from 'svelte-preprocess'
 import fs from 'fs'
 import fm from 'front-matter'
+import path from 'path'
+import { fileURLToPath } from 'url'
 
 /**
  * @todo
@@ -10,9 +12,11 @@ import fm from 'front-matter'
  * Sveltekit, we should be able to remove this function and re-enable the crawler.
  */
 const getPrerenderEntries = () => {
+	const __filename = fileURLToPath(import.meta.url)
+	const writingDir = path.resolve(path.dirname(__filename), '..', `content/writing`)
 	const tags = {}
-	fs.readdirSync('../content/writing').map((file) => {
-		const contents = fs.readFileSync(`../content/writing/${file}`, 'utf8')
+	fs.readdirSync(writingDir).map((file) => {
+		const contents = fs.readFileSync(path.resolve(writingDir, file), 'utf8')
 		const { attributes } = fm(contents)
 		if (attributes.tags) {
 			attributes.tags.forEach((tag) => {
