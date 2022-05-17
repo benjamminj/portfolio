@@ -9,7 +9,7 @@ const languages = new Map()
 import(`prismjs/components/prism-javascript.js`)
 import(`prismjs/components/prism-markup.js`)
 import(`prismjs/components/prism-jsx.js`)
-Prism.languages.extend()
+// Prism.languages.extend()
 const md = new Remarkable({
 	// highlight: (code, lang) => {
 	// 	if (!lang) return ''
