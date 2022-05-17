@@ -6,21 +6,22 @@ const languages = new Map()
 
 // loadLanguages(['markup'])
 
+import(`prismjs/components/prism-jsx.js`)
 const md = new Remarkable({
-	highlight: (code, lang) => {
-		if (!lang) return ''
-		// TODO: fix issue w/ TSX parsing for vercel deploys...
-		if (!languages.has(lang)) {
-			if (lang === 'tsx') {
-				// loadLanguages(['jsx', 'javascript', 'typescript'])
-			}
-			import(`prismjs/components/prism-${lang}.js`)
-			languages.set(lang, true)
-			// loadLanguages([lang])
-		}
-		const highlighted = Prism.highlight(code, Prism.languages[lang], lang)
-		return highlighted
-	}
+	// highlight: (code, lang) => {
+	// 	if (!lang) return ''
+	// 	// TODO: fix issue w/ TSX parsing for vercel deploys...
+	// 	if (!languages.has(lang)) {
+	// 		if (lang === 'tsx') {
+	// 			// loadLanguages(['jsx', 'javascript', 'typescript'])
+	// 		}
+	// 		import(`prismjs/components/prism-${lang}.js`)
+	// 		languages.set(lang, true)
+	// 		// loadLanguages([lang])
+	// 	}
+	// 	const highlighted = Prism.highlight(code, Prism.languages[lang], lang)
+	// 	return highlighted
+	// }
 })
 
 /**
