@@ -1,5 +1,5 @@
 import Prism from 'prismjs'
-import loadLanguages from 'prismjs/components/index.js'
+import loadLanguages from 'prismjs/components/'
 import { Remarkable } from 'remarkable'
 
 const languages = new Map()
