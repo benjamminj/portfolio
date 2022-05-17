@@ -57,13 +57,13 @@ export const list = async () => {
 
 	const posts: Post[] = await Promise.all(
 		Object.entries(rawPosts).map(async ([path, contents]) => {
-			const { attributes } = fm<Record<string, unknown>>(contents as unknown as string)
+			const { body, attributes } = fm<Record<string, unknown>>(contents as unknown as string)
 
-			// const parsed = await parseMarkdown(body)
+			const parsed = await parseMarkdown(body)
 			return await PostSchema.parseAsync({
 				slug: slugifyPostPath(path),
 				...attributes,
-				body: 'TBD'
+				body: parsed
 			})
 		})
 	)
