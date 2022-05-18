@@ -3,6 +3,7 @@ import * as PostsService from '$lib/posts.service'
 
 export const get: RequestHandler = async ({ params }) => {
 	const post = await PostsService.get(params.path)
+
 	// console.log(post)
 
 	// const res = await fetch(import.meta.env.VITE_URL + '/' + params.path)

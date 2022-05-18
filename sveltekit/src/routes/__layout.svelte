@@ -42,7 +42,7 @@
 
 			{#if subtitle}
 				<h2 class="text-2xl font-normal text-gray-700 lowercase dark:text-gray-400">
-					{subtitle}
+					{@html subtitle}
 				</h2>
 			{/if}
 		</div>

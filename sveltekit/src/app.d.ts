@@ -8,6 +8,7 @@ declare namespace App {
 	// interface Session {}
 	interface Stuff {
 		title?: string
+		date?: string
 		preserveTitleCasing?: boolean
 		subtitle?: string
 		seo?: {

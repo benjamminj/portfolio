@@ -1,56 +1,40 @@
 import Prism from 'prismjs'
-import components from 'prismjs/components.json'
-// import components from 'prismjs/plugins/autoloader'
-// import loadLanguages from 'prismjs/components/index.js'
 import { Remarkable } from 'remarkable'
 
-const languages = new Map()
+// Import syntax highlighting for languages used across the blog.
+//
+// This is not a perfect solution, since language syntaxes have to be manually
+// added here. This means that using a new language in an article will not result
+// in it automatically being highlighted.
+//
+// However, this approach is far simpler than the alternative approach of dynamically
+// importing syntaxes, which relies on Node.js internals (i.e. no moving to CF workers)
+// and is a lot of complex, manual code.
+//
+// TODO: In the future, it may be better to dynamically load these
+// or to generate a list of syntaxes needed using the prism CLI. OR it may be simpler/better
+// to simply load ALL syntaxes up-front depending on the memory load (might be too
+// high for lambda / edge functions + SSR)
+import 'prismjs/components/prism-clike.min.js'
+import 'prismjs/components/prism-markup.min.js'
+import 'prismjs/components/prism-javascript.min.js'
+import 'prismjs/components/prism-jsx.min.js'
+import 'prismjs/components/prism-typescript.min.js'
+import 'prismjs/components/prism-tsx.min.js'
+import 'prismjs/components/prism-bash.min.js'
+import 'prismjs/components/prism-haskell.min.js'
+import 'prismjs/components/prism-diff.min.js'
+import 'prismjs/components/prism-json.min.js'
 
-import 'prismjs/components/prism-markup.js'
-import 'prismjs/components/prism-javascript.js'
-import 'prismjs/components/prism-jsx.js'
-import 'prismjs/components/prism-typescript.js'
-import 'prismjs/components/prism-tsx.js'
-// loadLanguages(['markup'])
-
-// const loadLanguages = async (lang: string) => {
-// 	if (languages.has(lang)) {
-// 		return
-// 	}
-
-// 	const langFile = await import(`prismjs/components/prism-${lang}.js`)
-// 	// Prism.languages[lang] = langFile
-// 	languages.set(lang, langFile)
-// }
-// import(`prismjs/components/prism-javascript.js`)
-// import(`prismjs/components/prism-markup.js`)
-// import(`prismjs/components/prism-jsx.js`)
-// Prism.languages.extend()
 const md = new Remarkable({
-	highlight: (code, lang) => {
-		// return ''
-		// if (!languages.has(lang)) {
-		// 	// languages.set(lang, Prism.languages[lang])
-		// }
+	highlight: (code: string, lang: string) => {
 		if (!lang) return ''
-
-		if (!Prism.languages[lang]) return ''
-
-		const highlighted = Prism.highlight(code, Prism.languages[lang], lang)
-		return highlighted
+		if (!Prism.languages[lang]) {
+			console.warn('language syntax not found:', lang)
+			return ''
+		}
+		return Prism.highlight(code, Prism.languages[lang], lang)
 	}
-	// highlight: (code, lang) => {
-	// 	if (!lang) return ''
-	// 	// TODO: fix issue w/ TSX parsing for vercel deploys...
-	// 	if (!languages.has(lang)) {
-	// 		if (lang === 'tsx') {
-	// 			// loadLanguages(['jsx', 'javascript', 'typescript'])
-	// 		}
-	// 		import(`prismjs/components/prism-${lang}.js`)
-	// 		languages.set(lang, true)
-	// 		// loadLanguages([lang])
-	// 	}
-	// }
 })
 
 /**
