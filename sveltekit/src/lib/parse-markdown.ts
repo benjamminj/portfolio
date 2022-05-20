@@ -31,6 +31,7 @@ import 'prismjs/components/prism-haskell.min.js'
 import 'prismjs/components/prism-diff.min.js'
 import 'prismjs/components/prism-json.min.js'
 import type { HtmlAst, HtmlAstNode } from './hast-utils'
+import { pruneAst } from './prune-hast'
 
 const highlight = (code: string, lang?: string) => {
 	if (!lang) return code
@@ -86,5 +87,5 @@ export const parseMarkdown = async (markdown: string) => {
 
 	const highlightedHast = highlightCodeBlocks(hast)
 
-	return highlightedHast
+	return pruneAst(highlightedHast)
 }
