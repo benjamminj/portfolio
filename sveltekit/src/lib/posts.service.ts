@@ -1,6 +1,14 @@
 import { z } from 'zod'
 import fm from 'front-matter'
 import { parseMarkdown } from './parse-markdown'
+import { mapValues } from 'lodash'
+
+import { unified } from 'unified'
+import rehypeStringify from 'rehype-stringify'
+// import rehypeParse from 'rehype-parse'
+import remarkParse from 'remark-parse'
+import remarkRehype from 'remark-rehype'
+import { pruneAst } from './prune-hast'
 
 const FormattedDateSchema = z.date().transform((date) => {
 	const iso = date.toISOString()
@@ -20,7 +28,8 @@ const PostSchema = z
 		lastUpdated: FormattedDateSchema.optional(),
 		description: z.string().optional(),
 		tags: z.array(z.string()).default([]),
-		body: z.string()
+		body: z.string(),
+		ast: z.any()
 	})
 	.transform(({ lastUpdated, date, ...rest }) => ({ ...rest, date: lastUpdated ?? date }))
 
@@ -59,11 +68,21 @@ export const list = async () => {
 		Object.entries(rawPosts).map(async ([path, contents]) => {
 			const { body, attributes } = fm<Record<string, unknown>>(contents as unknown as string)
 
-			const parsed = await parseMarkdown(body)
+			const ast = await parseMarkdown(body)
+			const content = await unified()
+				.use(remarkParse)
+				.use(remarkRehype)
+				// .use(rehypeParse)
+				.use(rehypeStringify)
+				.process(body)
+
+			const pruned = pruneAst(ast)
+			// console.log(content)
 			return await PostSchema.parseAsync({
 				slug: slugifyPostPath(path),
 				...attributes,
-				body: parsed
+				body: content.value,
+				ast
 			})
 		})
 	)

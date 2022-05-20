@@ -5,7 +5,11 @@
 <header class="z-header max-w-viewport">
 	<div class="max-w-prose my-0 mx-auto">
 		<div class="justify-between block p-4 space-y-2 sm:flex sm:space-y-0">
-			<a href="/" class="inline-block text-xl font-medium text-black no-underline dark:text-white">
+			<a
+				href="/"
+				class="inline-block text-xl font-medium text-black no-underline dark:text-white"
+				sveltekit:prefetch
+			>
 				<span class="lowercase">Benjamin Johnson</span>
 			</a>
 

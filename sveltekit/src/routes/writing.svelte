@@ -21,7 +21,7 @@
 	import type { Post } from '$lib/posts.service'
 	import PostListitem from '$lib/components/post-listitem.svelte'
 
-	export let posts: Omit<Post, 'body'>[] = []
+	export let posts: Omit<Post, 'body' | 'ast'>[] = []
 </script>
 
 <ul class="space-y-2">

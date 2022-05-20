@@ -16,7 +16,7 @@
 	</Prose>
 
 	@todo
-	- [ ] Implement a custom markdown renderer. This will likely result in a little more
+	- [-] Implement a custom markdown renderer. This will likely result in a little more
 				Svelte code, but the CSS will become easier to read and the primitive building
 				blocks will be usable in places other than markdown.
 	- [ ] Add back in the copy-paste functionality on code blocks. I'll need to do this
@@ -53,17 +53,17 @@
 	/*****************************************************************************
   * Lists
   *****************************************************************************/
-	.prose :global(ul > li:before) {
+	/* .prose :global(ul > li:before) {
 		content: '●';
 		font-size: 0.625rem;
 
 		@apply leading-7;
 	}
 
-	.prose :global(li li:before) {
+	.prose :global(ul li li:before) {
 		content: '○';
-	}
-
+	} */
+	/* 
 	.prose :global(ol) {
 		counter-reset: ol-count;
 	}
@@ -71,29 +71,29 @@
 	.prose :global(ol > li:before) {
 		content: counter(ol-count) '.';
 		counter-increment: ol-count;
-	}
+	} */
 
-	.prose :global(li::marker),
+	/* .prose :global(li::marker),
 	.prose :global(::marker) {
 		display: none !important;
-	}
+	} */
 
 	/*****************************************************************************
   * Blockquote
   *****************************************************************************/
-	.prose :global(blockquote > p) {
+	/* .prose :global(blockquote > p) {
 		margin: 0;
 	}
 
 	.prose :global(blockquote > p:before),
 	.prose :global(blockquote > p:after) {
 		content: '';
-	}
+	} */
 
 	/*****************************************************************************
   * Inline Code
   *****************************************************************************/
-	.prose :global(code) {
+	/* .prose :global(code) {
 		--inline-code-bg: theme('colors.gray.100');
 	}
 
@@ -106,7 +106,7 @@
 	.prose :global(code) {
 		@apply p-1 break-words;
 		background: var(--inline-code-bg);
-	}
+	} */
 
 	/*****************************************************************************
   * Highlighted Code Blocks

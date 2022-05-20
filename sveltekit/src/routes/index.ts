@@ -1,4 +1,5 @@
 import { parseMarkdown } from '$lib/parse-markdown'
+import { pruneAst } from '$lib/prune-hast'
 import type { RequestHandler } from '@sveltejs/kit'
 
 export const get: RequestHandler = async () => {
@@ -6,8 +7,12 @@ export const get: RequestHandler = async () => {
 
 	// TODO: error if there's more than 1 match?
 	const [content] = Object.values(map)
-	const html = await parseMarkdown(content as unknown as string)
+	const ast = await parseMarkdown(content as unknown as string)
+	const pruned = pruneAst(ast)
+
 	return {
-		body: { content: html }
+		body: {
+			content: pruned
+		}
 	}
 }

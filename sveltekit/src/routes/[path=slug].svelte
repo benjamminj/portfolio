@@ -19,6 +19,8 @@
 		const path = params.path
 		const json = await fetch(`/${path}/__data.json`).then((r) => r.json())
 
+		// TODO: error (404) if post not found?
+		console.log('>>>', path, json, json.post)
 		return {
 			props: {
 				post: json.post
@@ -41,13 +43,16 @@
 	import Prose from '$lib/components/prose.svelte'
 	import type { Post } from '$lib/posts.service'
 	import Tag from '$lib/components/tag.svelte'
+	import MarkdownRenderer from '$lib/components/markdown-renderer.svelte'
 
-	export let post: Post
+	export let post: Omit<Post, 'body'>
 </script>
 
-<Prose>
-	{@html post.body}
-</Prose>
+<MarkdownRenderer content={post.ast.children} />
+<!-- TODO: markdown renderer instead?? -->
+<!-- <Prose>
+	{@html post?.body}
+</Prose> -->
 
 <footer>
 	<footer data-testid="SlugPage__footer" class="py-12">

@@ -15,11 +15,11 @@
 </script>
 
 <script lang="ts">
-	import Prose from '$lib/components/prose.svelte'
+	// import Prose from '$lib/components/prose.svelte'
+	import type { HtmlAst } from '$lib/prune-hast'
+	import MarkdownRenderer from '$lib/components/markdown-renderer.svelte'
 
-	export let content: string
+	export let content: HtmlAst
 </script>
 
-<Prose>
-	{@html content}
-</Prose>
+<MarkdownRenderer content={content.children} />

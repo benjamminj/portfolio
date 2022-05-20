@@ -1,5 +1,10 @@
 import Prism from 'prismjs'
 import { Remarkable } from 'remarkable'
+// import
+
+import { unified } from 'unified'
+import remarkParse from 'remark-parse'
+import remarkRehype from 'remark-rehype'
 
 // Import syntax highlighting for languages used across the blog.
 //
@@ -25,6 +30,7 @@ import 'prismjs/components/prism-bash.min.js'
 import 'prismjs/components/prism-haskell.min.js'
 import 'prismjs/components/prism-diff.min.js'
 import 'prismjs/components/prism-json.min.js'
+import type { HtmlAst } from './prune-hast'
 
 const md = new Remarkable({
 	highlight: (code: string, lang: string) => {
@@ -45,6 +51,10 @@ const md = new Remarkable({
  * - At the current time, frontmatter is not extracted, so that needs to be done separately.
  */
 export const parseMarkdown = async (markdown: string) => {
-	const parsed = await md.render(markdown)
-	return parsed
+	// Spits out a hast (HTML AST) of the markdown, this can later be processed by Svelte
+	// into individual components.
+	const hast = await unified().use(remarkParse).use(remarkRehype).parse(markdown)
+	// console.log(JSON.stringify(hast, null, 4))
+	// const parsed = await md.render(markdown)
+	return hast as unknown as HtmlAst
 }

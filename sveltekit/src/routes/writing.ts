@@ -4,11 +4,11 @@ import type { Post } from '$lib/posts.service'
 
 export const get: RequestHandler = async () => {
 	const posts = await PostsService.list()
-	const slimmedPosts = posts.map(({ body: _, ...rest }) => rest)
+	const slimmedPosts = posts.map(({ body: _body, ast: _ast, ...rest }) => rest)
 	return {
 		status: 200,
 		body: {
-			posts: slimmedPosts as Omit<Post, 'body'>[]
+			posts: slimmedPosts as Omit<Post, 'body' | 'ast'>[]
 		}
 	}
 }

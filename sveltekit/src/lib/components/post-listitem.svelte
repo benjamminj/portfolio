@@ -18,6 +18,7 @@
 			<!-- TODO: dynamic `h` to work better? -->
 			<h2 class="text-2xl">
 				<a
+					sveltekit:prefetch
 					data-testid="PostListItem__title"
 					href={post.slug}
 					title={post.title}
