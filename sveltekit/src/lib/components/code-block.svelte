@@ -1,13 +1,56 @@
 <script lang="ts">
-	import escape from 'lodash/escape'
+	import Check from '$lib/icons/check.svelte'
+	import Clipboard from '$lib/icons/clipboard.svelte'
+	import { copyToClipboard } from '$lib/copy-to-clipboard'
+
 	export let code: string
+	export let lang: string
+
+	let copied = false
+	let pre: HTMLPreElement | null = null
+
+	const handleCopy = () => {
+		if (copied || !pre) return
+
+		copyToClipboard(pre?.innerText)
+		copied = true
+
+		setTimeout(() => {
+			copied = false
+		}, 2000)
+	}
 </script>
 
-<pre
-	class="rounded-none p-6 pt-8 my-6 -mx-4 overflow-auto text-base bg-gray-100 md:mx-0 lg:-mx-6 dark:bg-gray-900">
-  <!-- TODO: make sure the code is processed w/ prism to have the syntax highlights... -->
-  <code>{@html escape(code)}</code>
-</pre>
+<div class="relative">
+	<!-- TODO: only show button if client-side JS is enabled? -->
+	<button
+		type="button"
+		title="Copy to clipboard"
+		aria-label="Copy to clipboard"
+		class="absolute right-0 flex items-center justify-center w-8 h-8 text-gray-700 dark:text-white text-opacity-50 md:right-6 top-1 ring-gray-400 dark:ring-white ring-opacity-70 focus:outline-none focus:bg-gray-300 focus:bg-opacity-20 focus:text-opacity-100 hover:text-opacity-100 focus:ring-2"
+		on:click={handleCopy}
+	>
+		{#if copied}
+			<div class="relative">
+				<Check class="w-5 h-5 text-green-500 dark:text-green-400" />
+				<!-- TODO: better markup?? -->
+				<div
+					class="fixed z-10 px-2 py-2 mt-2 text-black dark:text-white text-opacity-100 transform bg-white shadow-md dark:bg-gray-600 bottom-2 left-2 right-2 xs:py-1 xs:-translate-x-2/3 xs:absolute xs:right-auto xs:bottom-auto xs:left-1/2 xs:top-full md:-translate-x-1/2"
+				>
+					Copied!
+				</div>
+			</div>
+		{:else}
+			<Clipboard class="w-5 h-5" />
+		{/if}
+	</button>
+
+	<pre
+		class="flex flex-col rounded-none p-6 pt-8 my-6 -mx-4 overflow-auto text-base bg-gray-100 md:mx-0 lg:-mx-6 dark:bg-gray-900"
+		bind:this={pre}>
+		<code class={`language-${lang}`}>{@html code}</code>
+	</pre>
+</div>
 
 <style lang="postcss">
 	pre code {

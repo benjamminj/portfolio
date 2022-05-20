@@ -27,6 +27,7 @@
 			},
 			stuff: {
 				title: json.post.title,
+				preserveTitleCasing: json.post.tags?.includes('recipes'),
 				subtitle: `<span class="text-base">${json.post.date}</span>`,
 				date: json.post.date,
 				seo: {

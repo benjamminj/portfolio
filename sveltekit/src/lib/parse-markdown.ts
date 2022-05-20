@@ -1,5 +1,5 @@
 import Prism from 'prismjs'
-import { Remarkable } from 'remarkable'
+// import { Remarkable } from 'remarkable'
 // import
 
 import { unified } from 'unified'
@@ -30,19 +30,45 @@ import 'prismjs/components/prism-bash.min.js'
 import 'prismjs/components/prism-haskell.min.js'
 import 'prismjs/components/prism-diff.min.js'
 import 'prismjs/components/prism-json.min.js'
-import type { HtmlAst } from './prune-hast'
+import type { HtmlAst, HtmlAstNode } from './hast-utils'
 
-const md = new Remarkable({
-	highlight: (code: string, lang: string) => {
-		if (!lang) return ''
-		if (!Prism.languages[lang]) {
-			console.warn('language syntax not found:', lang)
-			return ''
-		}
-		return Prism.highlight(code, Prism.languages[lang], lang)
+const highlight = (code: string, lang?: string) => {
+	if (!lang) return code
+	if (!Prism.languages[lang]) {
+		console.warn('language syntax not found:', lang)
+		return ''
 	}
-})
 
+	return Prism.highlight(code, Prism.languages[lang], lang)
+}
+
+export const highlightCodeBlocks = (ast: HtmlAst) => {
+	const transform = (node: HtmlAstNode): HtmlAstNode => {
+		if (node.type === 'code') {
+			const value = highlight(node.value, node.lang)
+			return {
+				...node,
+				value
+			}
+		}
+
+		if (node.children) {
+			const mappedChildren = node.children.map(transform)
+			return {
+				...node,
+				children: mappedChildren
+			}
+		}
+
+		return node
+	}
+
+	const children = ast.children.map(transform)
+	return {
+		...ast,
+		children
+	}
+}
 /**
  * Responsible for taking in a markdown string and returning the resulting HTML.
  *
@@ -53,8 +79,12 @@ const md = new Remarkable({
 export const parseMarkdown = async (markdown: string) => {
 	// Spits out a hast (HTML AST) of the markdown, this can later be processed by Svelte
 	// into individual components.
-	const hast = await unified().use(remarkParse).use(remarkRehype).parse(markdown)
-	// console.log(JSON.stringify(hast, null, 4))
-	// const parsed = await md.render(markdown)
-	return hast as unknown as HtmlAst
+	const hast = (await unified()
+		.use(remarkParse)
+		.use(remarkRehype)
+		.parse(markdown)) as unknown as HtmlAst
+
+	const highlightedHast = highlightCodeBlocks(hast)
+
+	return highlightedHast
 }

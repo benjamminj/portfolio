@@ -10,7 +10,6 @@
 	import Ul from './ul.svelte'
 
 	export let content: HtmlAstNode[]
-	console.log(content)
 </script>
 
 <!-- TODO: key?? -->
