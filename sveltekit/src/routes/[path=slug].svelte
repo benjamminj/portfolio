@@ -8,7 +8,6 @@
   - [ ] redirect to 404 page if the post doesn't exist
 -->
 <script lang="ts" context="module">
-	import type { Load } from '.svelte-kit/types/src/routes'
 	import type { LoadInput, LoadOutput } from '@sveltejs/kit'
 
 	export const prerender = true
@@ -41,7 +40,6 @@
 </script>
 
 <script lang="ts">
-	import Prose from '$lib/components/prose.svelte'
 	import type { Post } from '$lib/posts.service'
 	import Tag from '$lib/components/tag.svelte'
 	import MarkdownRenderer from '$lib/components/markdown-renderer.svelte'
@@ -50,10 +48,6 @@
 </script>
 
 <MarkdownRenderer content={post.ast.children} />
-<!-- TODO: markdown renderer instead?? -->
-<!-- <Prose>
-	{@html post?.body}
-</Prose> -->
 
 <footer>
 	<footer data-testid="SlugPage__footer" class="py-12">

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { HtmlAstNode } from '$lib/prune-hast'
+	import type { HtmlAstNode } from '$lib/hast-utils'
 	import A from './a.svelte'
 	import Blockquote from './blockquote.svelte'
 	import CodeBlock from './code-block.svelte'
@@ -47,7 +47,7 @@
 	{:else if node.type === 'inlineCode'}
 		<InlineCode>{node.value}</InlineCode>
 	{:else if node.type === 'code'}
-		<CodeBlock code={node.value} />
+		<CodeBlock code={node.value} lang={node.lang} />
 	{:else if node.type === 'image'}
 		<img src={node.url} alt={node.alt} />
 	{/if}
