@@ -1,6 +1,5 @@
 import { z } from 'zod'
 import fm from 'front-matter'
-import { parseMarkdown } from './parse-markdown'
 
 const FormattedDateSchema = z.date().transform((date) => {
 	const iso = date.toISOString()

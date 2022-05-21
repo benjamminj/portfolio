@@ -62,14 +62,14 @@ export const list = async () => {
   }
 
   const postPaths = await fs.readdir(
-    path.join(__dirname, '../../content/writing/')
+    path.join(__dirname, '../content/writing/')
   )
 
   const promises = []
   for (const filePath of postPaths) {
     const promise = async () => {
       const contents = await fs.readFile(
-        path.join(__dirname, '../../content/writing', filePath),
+        path.join(__dirname, '../content/writing', filePath),
         'utf8'
       )
       return [filePath, contents]

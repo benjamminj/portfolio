@@ -1,36 +1,41 @@
-import type { LoaderFunction, MetaFunction } from "@remix-run/node"
-import { useLoaderData } from "@remix-run/react"
-import { PostListItem } from "~/components/post-list-item"
-import * as PostsService from '~/lib/posts.server'
+import type { LoaderFunction, MetaFunction } from '@remix-run/node'
+import { useLoaderData } from '@remix-run/react'
+import { PostListItem } from '~/components/post-list-item'
+import { list } from '~/lib/posts.server'
+import type { Post } from '~/lib/posts.server'
 
 export const meta: MetaFunction = () => {
   return {
-    title: 'Writing'
+    title: 'Writing',
   }
 }
 
 type LoaderData = {
-  title: string;
-  posts: PostsService.Post[]
+  title: string
+  posts: Post[]
 }
 
-export const loader:LoaderFunction = async () => {
-  const posts = await PostsService.list()
+export const loader: LoaderFunction = async () => {
+  const posts = await list()
   const pruned = posts.map(({ content, ...rest }) => rest)
   return {
     title: 'Writing',
-    posts: pruned
+    subtitle: `${pruned.length} ${pruned.length === 1 ? 'post' : 'posts'}`,
+    posts: pruned,
   }
 }
 
 export default function WritingRoute() {
   const data = useLoaderData<LoaderData>()
-  return <main>
-    <ul className="space-y-2">
-    {data?.posts.map(post => (
-      <li className="w-full" key={post.slug}><PostListItem post={post}/></li>
-    ))}
-    </ul>
-
-  </main>
+  return (
+    <main>
+      <ul className="space-y-2">
+        {data?.posts.map((post) => (
+          <li className="w-full" key={post.slug}>
+            <PostListItem post={post} />
+          </li>
+        ))}
+      </ul>
+    </main>
+  )
 }
