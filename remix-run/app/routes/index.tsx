@@ -13,7 +13,7 @@ type LoaderData = {
 
 export const loader: LoaderFunction = async (): Promise<LoaderData> => {
   ;`${__dirname}/../app/content`
-  const content = await readFile('./content/intro.md')
+  const content = await readFile('intro.md')
   const { hast } = await processContent(content)
   return {
     title: "Hi, I'm Ben! 🔥",
