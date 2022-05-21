@@ -61,7 +61,7 @@ export const list = async () => {
     return __cached_posts__
   }
 
-  const postPaths = await fs.readdir(path.join(__dirname, './content/writing/'))
+  const postPaths = await fs.readdir(path.join(__dirname, 'content/writing/'))
 
   const promises = []
   for (const filePath of postPaths) {
