@@ -5,7 +5,7 @@ import path from 'node:path'
 import { parseMarkdown } from './parse-markdown'
 import { processContent } from './process-content'
 
-const FormattedDateSchema = z.date().transform(date => {
+const FormattedDateSchema = z.date().transform((date) => {
   const iso = date.toISOString()
 
   // We split the ISO string into its components using a regex to avoid timezone conversions
@@ -61,15 +61,13 @@ export const list = async () => {
     return __cached_posts__
   }
 
-  const postPaths = await fs.readdir(
-    path.join(__dirname, '../content/writing/')
-  )
+  const postPaths = await fs.readdir(path.join(__dirname, './content/writing/'))
 
   const promises = []
   for (const filePath of postPaths) {
     const promise = async () => {
       const contents = await fs.readFile(
-        path.join(__dirname, '../content/writing', filePath),
+        path.join(__dirname, './content/writing', filePath),
         'utf8'
       )
       return [filePath, contents]
@@ -102,6 +100,6 @@ export const list = async () => {
  */
 export const get = async (slug: string) => {
   const posts = await list()
-  const post = posts.find(p => p.slug === slug)
+  const post = posts.find((p) => p.slug === slug)
   return post
 }
