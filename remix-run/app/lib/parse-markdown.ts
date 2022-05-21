@@ -1,11 +1,7 @@
 import Prism from 'prismjs'
-// import { Remarkable } from 'remarkable'
-// import
-
-import { unified } from 'unified'
-import remarkParse from 'remark-parse'
-import remarkRehype from 'remark-rehype'
-
+// import { unified } from 'unified'
+import type { HtmlAst, HtmlAstNode } from './hast.types'
+import { pruneAst } from './prune-hast'
 // Import syntax highlighting for languages used across the blog.
 //
 // This is not a perfect solution, since language syntaxes have to be manually
@@ -31,8 +27,9 @@ import 'prismjs/components/prism-haskell.min.js'
 import 'prismjs/components/prism-diff.min.js'
 import 'prismjs/components/prism-json.min.js'
 
-import type { HtmlAst, HtmlAstNode } from './hast-utils'
-import { pruneAst } from './prune-hast'
+const unified = import("unified")
+const remarkParse = import('remark-parse')
+const remarkRehype = import('remark-rehype')
 
 const highlight = (code: string, lang?: string) => {
 	if (!lang) return code
@@ -71,6 +68,7 @@ export const highlightCodeBlocks = (ast: HtmlAst) => {
 		children
 	}
 }
+
 /**
  * Responsible for taking in a markdown string and returning the resulting HTML.
  *
@@ -79,14 +77,19 @@ export const highlightCodeBlocks = (ast: HtmlAst) => {
  * - At the current time, frontmatter is not extracted, so that needs to be done separately.
  */
 export const parseMarkdown = async (markdown: string) => {
-	// Spits out a hast (HTML AST) of the markdown, this can later be processed by Svelte
-	// into individual components.
-	const hast = (await unified()
-		.use(remarkParse)
-		.use(remarkRehype)
-		.parse(markdown)) as unknown as HtmlAst
+  const { unified: unifiedInstance } = await unified
+  const { default: remarkParseInstance } = await remarkParse
+  const { default: remarkRehypeInstance } = await remarkRehype
+	// // Spits out a hast (HTML AST) of the markdown, this can later be processed by Svelte
+	// // into individual components.
+	const hast = await unifiedInstance()
+		.use(remarkParseInstance)
+		.use(remarkRehypeInstance)
+		.parse(markdown) as unknown as HtmlAst
 
 	const highlightedHast = highlightCodeBlocks(hast)
 
 	return pruneAst(highlightedHast)
 }
+
+export type PrunedHast = Awaited<ReturnType<typeof parseMarkdown>>
