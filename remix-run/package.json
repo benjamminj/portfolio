@@ -5,6 +5,7 @@
   "license": "",
   "sideEffects": false,
   "scripts": {
+    "postinstall": "remix setup node",
     "build": "npm run build:css && remix build",
     "build:css": "tailwindcss -m -i ./styles/app.css -o app/styles/app.css",
     "dev": "concurrently \"npm run dev:css\" \"remix dev\"",
@@ -38,6 +39,7 @@
     "@types/prismjs": "^1.26.0",
     "@types/react": "^17.0.45",
     "@types/react-dom": "^17.0.17",
+    "@vercel/node": "^1.15.3",
     "autoprefixer": "^10.4.7",
     "concurrently": "^7.2.0",
     "eslint": "^8.15.0",
