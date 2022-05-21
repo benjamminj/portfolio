@@ -3,5 +3,10 @@
     "env": {
       "ENABLE_FILE_SYSTEM_API": "1"
     }
+  },
+  "functions": {
+    "api/index.js": {
+      "includeFiles": "content/**"
+    }
   }
 }
