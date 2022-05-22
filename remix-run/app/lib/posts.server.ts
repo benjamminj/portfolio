@@ -1,9 +1,9 @@
 import { z } from 'zod'
-import fm from 'front-matter'
 import fs from 'node:fs/promises'
 import path from 'node:path'
-import { parseMarkdown } from './parse-markdown'
 import { processContent } from './process-content'
+
+const __DEV__ = process.env.NODE_ENV !== 'production'
 
 const FormattedDateSchema = z.date().transform((date) => {
   const iso = date.toISOString()
@@ -61,25 +61,37 @@ export const list = async () => {
     return __cached_posts__
   }
 
-  const postPaths = await fs.readdir(path.join(__dirname, 'content/writing/'))
+  let rawPosts: string[][] = []
+  if (__DEV__) {
+    const postPaths = await fs.readdir(
+      path.join(__dirname, '../content/writing')
+    )
+    const promises = []
+    for (const filePath of postPaths) {
+      const promise = async () => {
+        const contents = await fs.readFile(
+          path.join(__dirname, '../content/writing', filePath),
+          'utf8'
+        )
+        return [filePath, contents]
+      }
 
-  const promises = []
-  for (const filePath of postPaths) {
-    const promise = async () => {
-      const contents = await fs.readFile(
-        path.join(__dirname, './content/writing', filePath),
-        'utf8'
-      )
-      return [filePath, contents]
+      promises.push(promise())
     }
 
-    promises.push(promise())
+    rawPosts = await Promise.all(promises)
+  } else {
+    const { posts } = await import('~/generated/posts.generated.server')
+    rawPosts = Object.entries(posts)
+      .filter(([k]) => k.includes('/writing/'))
+      .map(([k, v]) => [k.replace('content/writing/', ''), v]) as string[][]
   }
-
-  const rawPosts = await Promise.all(promises)
 
   const posts: Post[] = await Promise.all(
     rawPosts.map(async ([path, contents]) => {
+      // NOTE: we should stop processing the content here, this will automagically
+      // allow us to prune the posts and will also be good prep for Cloudflare KV
+      // if we decide to go that route.
       const { hast, ...attributes } = await processContent(contents)
       return await PostSchema.parseAsync({
         slug: slugifyPostPath(path),
