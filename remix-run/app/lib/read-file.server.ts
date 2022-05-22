@@ -1,5 +1,6 @@
 import fs from 'fs/promises'
 import path from 'path'
+import { posts } from '~/generated/posts.generated.server'
 
 // Problem: Vercel doesn't allow you to use the filesystem to "read" files
 //
@@ -11,8 +12,6 @@ import path from 'path'
 
 export const readFile = async (filePath: string) => {
   // TODO: dev mode that dynamically reads the file straight off the filesystem??
-
-  const { posts } = await import('~/generated/posts.generated.server')
   const index = `content/${filePath}` as keyof typeof posts
   return posts[index]
 }
