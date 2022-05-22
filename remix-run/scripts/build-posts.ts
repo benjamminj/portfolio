@@ -69,6 +69,9 @@ const main = async () => {
   const output = `export const posts = {
     ${objectBody}
   }`
+
+  await fs.open('./app/generated/posts.generated.server.ts', 'w')
+  // TODO: need to create file if it doesn't exist....
   await fs.writeFile('./app/generated/posts.generated.server.ts', output)
 }
 
