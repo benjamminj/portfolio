@@ -1,10 +1,10 @@
 import fs from 'node:fs/promises'
 import path from 'node:path'
-;`${__dirname}/../content`
+;`${__dirname}/../../app/content`
 
 export const readFile = (filePath: string) => {
   return fs.readFile(
-    path.join(__dirname, '../content/writing', filePath),
+    path.join(__dirname, '../../app/content/writing', filePath),
     'utf8'
   )
 }
