@@ -92,7 +92,14 @@ export const list = async () => {
  * Gets a single post by slug
  */
 export const get = async (slug: string) => {
-  const posts = await list()
-  const post = posts.find((p) => p.slug === slug)
+  const index = `content/writing/${slug}`
+  const post = content[index as keyof typeof content]
+  const { hast, ...attributes } = await processContent(post)
+  return await PostSchema.parseAsync({
+    slug,
+    ...attributes,
+    // body: 'TBD',
+    content: hast,
+  })
   return post
 }
