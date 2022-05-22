@@ -3,6 +3,7 @@ import fs from 'node:fs/promises'
 import path from 'node:path'
 import { processContent } from './process-content'
 import { posts as content } from '~/generated/posts.generated.server'
+import fm from 'front-matter'
 
 const __DEV__ = process.env.NODE_ENV !== 'production'
 
@@ -24,9 +25,9 @@ const PostSchema = z
     lastUpdated: FormattedDateSchema.optional(),
     description: z.string().optional(),
     tags: z.array(z.string()).default([]),
-    body: z.string(),
+    body: z.string().optional(),
     // TODO: HAST type...
-    content: z.any(),
+    content: z.any().optional(),
   })
   .transform(({ lastUpdated, date, ...rest }) => ({
     ...rest,
@@ -62,42 +63,22 @@ export const list = async () => {
     return __cached_posts__
   }
 
-  let rawPosts: string[][] = []
-  if (__DEV__) {
-    const postPaths = await fs.readdir(
-      path.join(__dirname, '../content/writing')
-    )
-    const promises = []
-    for (const filePath of postPaths) {
-      const promise = async () => {
-        const contents = await fs.readFile(
-          path.join(__dirname, '../content/writing', filePath),
-          'utf8'
-        )
-        return [filePath, contents]
-      }
-
-      promises.push(promise())
-    }
-
-    rawPosts = await Promise.all(promises)
-  } else {
-    rawPosts = Object.entries(content)
-      .filter(([k]) => k.includes('/writing/'))
-      .map(([k, v]) => [k.replace('content/writing/', ''), v]) as string[][]
-  }
+  const rawPosts = Object.entries(content)
+    .filter(([k]) => k.includes('/writing/'))
+    .map(([k, v]) => [k.replace('content/writing/', ''), v]) as string[][]
 
   const posts: Post[] = await Promise.all(
     rawPosts.map(async ([path, contents]) => {
       // NOTE: we should stop processing the content here, this will automagically
       // allow us to prune the posts and will also be good prep for Cloudflare KV
       // if we decide to go that route.
-      const { hast, ...attributes } = await processContent(contents)
+      const { attributes } = fm<Record<string, string>>(contents)
+      // const { hast, ...attributes } = await processContent(contents)
       return await PostSchema.parseAsync({
         slug: slugifyPostPath(path),
         ...attributes,
-        body: 'TBD',
-        content: hast,
+        // body: 'TBD',
+        // content: hast,
       })
     })
   )
