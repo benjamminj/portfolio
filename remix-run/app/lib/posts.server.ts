@@ -2,6 +2,7 @@ import { z } from 'zod'
 import fs from 'node:fs/promises'
 import path from 'node:path'
 import { processContent } from './process-content'
+import { posts as content } from '~/generated/posts.generated.server'
 
 const __DEV__ = process.env.NODE_ENV !== 'production'
 
@@ -81,8 +82,7 @@ export const list = async () => {
 
     rawPosts = await Promise.all(promises)
   } else {
-    const { posts } = await import('~/generated/posts.generated.server')
-    rawPosts = Object.entries(posts)
+    rawPosts = Object.entries(content)
       .filter(([k]) => k.includes('/writing/'))
       .map(([k, v]) => [k.replace('content/writing/', ''), v]) as string[][]
   }

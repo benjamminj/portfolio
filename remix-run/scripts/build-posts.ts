@@ -1,4 +1,4 @@
-import fs from 'node:fs/promises'
+import fs from 'fs-extra'
 import path from 'node:path'
 
 type FilePath = string | string[] | FilePath[]
@@ -70,7 +70,7 @@ const main = async () => {
     ${objectBody}
   }`
 
-  await fs.open('./app/generated/posts.generated.server.ts', 'w')
+  await fs.ensureFile('./app/generated/posts.generated.server.ts')
   // TODO: need to create file if it doesn't exist....
   await fs.writeFile('./app/generated/posts.generated.server.ts', output)
 }

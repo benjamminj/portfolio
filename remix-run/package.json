@@ -37,6 +37,7 @@
   "devDependencies": {
     "@remix-run/dev": "^1.5.1",
     "@remix-run/eslint-config": "^1.5.1",
+    "@types/fs-extra": "^9.0.13",
     "@types/prismjs": "^1.26.0",
     "@types/react": "^17.0.45",
     "@types/react-dom": "^17.0.17",
@@ -44,6 +45,7 @@
     "autoprefixer": "^10.4.7",
     "concurrently": "^7.2.0",
     "eslint": "^8.15.0",
+    "fs-extra": "^10.1.0",
     "postcss": "^8.4.14",
     "prettier": "^2.6.2",
     "remix": "^1.5.1",
