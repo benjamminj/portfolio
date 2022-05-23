@@ -17,11 +17,10 @@ type LoaderData = {
 
 export const loader: LoaderFunction = async () => {
   const posts = await list()
-  const pruned = posts.map(({ content, ...rest }) => rest)
   return {
     title: 'Writing',
-    subtitle: `${pruned.length} ${pruned.length === 1 ? 'post' : 'posts'}`,
-    posts: pruned,
+    subtitle: `${posts.length} ${posts.length === 1 ? 'post' : 'posts'}`,
+    posts: posts,
   }
 }
 

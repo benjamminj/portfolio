@@ -60,6 +60,7 @@ const main = async () => {
       .replace(/\\`/g, '\\\\`')
       .replace(/`/g, '\\`')
       .replace(/\$\{/g, '\\${')
+
     objectBody += `"${filePath.replace(
       '"',
       '\\"'
