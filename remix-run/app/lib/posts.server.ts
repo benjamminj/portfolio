@@ -25,6 +25,7 @@ const PostMetadataSchema = z.object({
 const PostContentSchema = z.object({
   body: z.string().optional(),
   // TODO: HAST type...
+  // content: z.any(),
   content: z.any(),
 })
 
@@ -87,7 +88,7 @@ export const list = async () => {
   )
 
   posts.sort((a, b) => b.date.localeCompare(a.date))
-  __cached_posts__ = posts
+  // __cached_posts__ = posts
   return posts
 }
 

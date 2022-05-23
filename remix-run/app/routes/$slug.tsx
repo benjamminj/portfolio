@@ -3,9 +3,35 @@ import { z } from 'zod'
 import { get } from '~/lib/posts.server'
 
 import type { Post } from '~/lib/posts.server'
-import type { LoaderFunction } from '@remix-run/node'
+import type { LoaderFunction, MetaFunction } from '@remix-run/node'
 import { MarkdownRenderer } from '~/components/markdown-renderer'
 import { Tag } from '~/components/tag'
+
+export const meta: MetaFunction = ({ data }) => {
+  //         {absoluteImagePath && props.image?.alt && (
+  //           <Fragment>
+  //             <meta name="twitter:image" content={absoluteImagePath} />
+  //             <meta name="twitter:image:alt" content={props.image?.alt} />
+  //             <meta property="og:image:url" content={absoluteImagePath} />
+  //             <meta property="og:image:alt" content={props.image?.alt} />
+  //           </Fragment>
+  //         )}
+  const metadata = {
+    title: data.title,
+    description: data.description,
+    'twitter:card': 'summary',
+    'twitter:site': '@benjamminj',
+    'twitter:title': data.title,
+    'twitter:description': data.description,
+    'twitter:creator': '@benjamminj',
+    'og:title': data.title,
+    'og:description': data.description,
+    'og:type': 'website',
+    // TODO: need to add homepage to env
+    'og:url': `${process.env.VERCEL_URL}/${data.slug}`,
+  }
+  return metadata
+}
 
 type LoaderData = {
   post: Post
