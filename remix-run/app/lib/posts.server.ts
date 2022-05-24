@@ -63,10 +63,6 @@ let __cached_posts__: Post[] = []
  * TODO: sorting / filtering?
  */
 export const list = async () => {
-  if (__cached_posts__.length > 0) {
-    return __cached_posts__
-  }
-
   const rawPosts = Object.entries(content)
     .filter(([k]) => k.includes('/writing/'))
     .map(([k, v]) => [k.replace('content/writing/', ''), v]) as string[][]
@@ -88,7 +84,6 @@ export const list = async () => {
   )
 
   posts.sort((a, b) => b.date.localeCompare(a.date))
-  // __cached_posts__ = posts
   return posts
 }
 

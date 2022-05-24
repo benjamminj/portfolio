@@ -1,4 +1,4 @@
-import { useLoaderData } from '@remix-run/react'
+import { HtmlMetaDescriptor, useLoaderData } from '@remix-run/react'
 import { z } from 'zod'
 import { get } from '~/lib/posts.server'
 
@@ -8,15 +8,7 @@ import { MarkdownRenderer } from '~/components/markdown-renderer'
 import { Tag } from '~/components/tag'
 
 export const meta: MetaFunction = ({ data }) => {
-  //         {absoluteImagePath && props.image?.alt && (
-  //           <Fragment>
-  //             <meta name="twitter:image" content={absoluteImagePath} />
-  //             <meta name="twitter:image:alt" content={props.image?.alt} />
-  //             <meta property="og:image:url" content={absoluteImagePath} />
-  //             <meta property="og:image:alt" content={props.image?.alt} />
-  //           </Fragment>
-  //         )}
-  const metadata = {
+  const metadata: HtmlMetaDescriptor = {
     title: data.title,
     description: data.description,
     'twitter:card': 'summary',
@@ -28,8 +20,13 @@ export const meta: MetaFunction = ({ data }) => {
     'og:description': data.description,
     'og:type': 'website',
     // TODO: need to add homepage to env
-    'og:url': `${process.env.VERCEL_URL}/${data.slug}`,
+    'og:url': `${data.HOMEPAGE}/${data.slug}`,
   }
+
+  if (data?.post?.tags?.length > 0) {
+    metadata['keywords'] = data.post.tags.join(', ')
+  }
+
   return metadata
 }
 
@@ -41,7 +38,13 @@ export const loader: LoaderFunction = async ({ params }) => {
   const slug = z.string().parse(params.slug)
   const post = await get(slug)
   // TODO: redirect to 404 on missing post...
-  return { title: post?.title, subtitle: post?.date, post }
+  return {
+    title: post?.title,
+    subtitle: post?.date,
+    post,
+    slug,
+    HOMEPAGE: process.env.VERCEL_URL,
+  }
 }
 
 export default function SlugRoute() {

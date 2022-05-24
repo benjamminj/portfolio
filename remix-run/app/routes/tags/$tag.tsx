@@ -21,11 +21,10 @@ export const loader: LoaderFunction = async ({ params }) => {
   const tag = z.string().parse(params.tag)
   const posts = await list()
   const filtered = posts.filter((post) => post.tags?.includes(tag))
-  const pruned = filtered.map(({ content, ...rest }) => rest)
   return {
     title: `#${tag}`,
     subtitle: `${filtered.length} ${filtered.length === 1 ? 'post' : 'posts'}`,
-    posts: pruned,
+    posts: filtered,
   }
 }
 

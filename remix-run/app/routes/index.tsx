@@ -1,4 +1,4 @@
-import type { LoaderFunction } from '@remix-run/node'
+import type { LoaderFunction, MetaFunction } from '@remix-run/node'
 import { useLoaderData } from '@remix-run/react'
 import { MarkdownRenderer } from '~/components/markdown-renderer'
 import { readFile } from '~/lib/read-file.server'
@@ -11,6 +11,15 @@ type LoaderData = {
   hast: PrunedHast
 }
 
+export const meta: MetaFunction = ({ data }) => {
+  return {
+    title: 'Benjamin Johnson — Principal Frontend Engineer',
+    description:
+      'Software engineer specializing in building front-end web apps.',
+    keywords:
+      'front-end engineer, web, javascript, typescript, react, accessibility',
+  }
+}
 export const loader: LoaderFunction = async (): Promise<LoaderData> => {
   const content = await readFile('intro.md')
   const { hast } = await processContent(content)
