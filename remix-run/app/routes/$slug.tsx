@@ -42,7 +42,7 @@ export const loader: LoaderFunction = async ({ params }) => {
     subtitle: post?.date,
     post,
     slug,
-    HOMEPAGE: process.env.URL,
+    HOMEPAGE: process.env.URL || process.env.VERCEL_URL,
   }
 }
 
