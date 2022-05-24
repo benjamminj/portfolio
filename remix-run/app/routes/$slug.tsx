@@ -19,7 +19,6 @@ export const meta: MetaFunction = ({ data }) => {
     'og:title': data.title,
     'og:description': data.description,
     'og:type': 'website',
-    // TODO: need to add homepage to env
     'og:url': `${data.HOMEPAGE}/${data.slug}`,
   }
 
@@ -43,7 +42,7 @@ export const loader: LoaderFunction = async ({ params }) => {
     subtitle: post?.date,
     post,
     slug,
-    HOMEPAGE: process.env.VERCEL_URL,
+    HOMEPAGE: process.env.URL,
   }
 }
 
