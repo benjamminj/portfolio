@@ -14,7 +14,7 @@
     "isolatedModules": true,
     "jsx": "preserve"
   },
-  "exclude": ["node_modules", "sveltekit/**/*"],
+  "exclude": ["node_modules", "sveltekit/**/*"] ,
   "include": [
     "global.d.ts",
     "next-env.d.ts",

@@ -88,7 +88,7 @@
 	/*****************************************************************************
   * Inline Code
   *****************************************************************************/
-	.prose :global(code) {
+	/* .prose :global(code) {
 		--inline-code-bg: theme('colors.gray.100');
 	}
 
@@ -96,12 +96,12 @@
 		.prose :global(code) {
 			--inline-code-bg: theme('colors.gray.900');
 		}
-	}
+	} */
 
-	.prose :global(code) {
+	/* .prose :global(code) {
 		@apply p-1 break-words;
 		background: var(--inline-code-bg);
-	}
+	} */
 
 	/*****************************************************************************
   * Highlighted Code Blocks
