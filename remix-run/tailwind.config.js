@@ -11,7 +11,7 @@ module.exports = {
       maxWidth: {
         prose: '80ch',
       },
-      typography: theme => {
+      typography: (theme) => {
         return {
           DEFAULT: {
             css: {
@@ -22,10 +22,6 @@ module.exports = {
                   counterIncrement: 'ol-count',
                 },
               },
-              // 'li li:before': {
-              //   content: '○',
-              // },
-              // 'li::marker, ::marker': {},
               li: {
                 '& li:before': {
                   content: '○',
@@ -38,7 +34,7 @@ module.exports = {
                 '& > li:before': {
                   content: "'●'",
                   fontSize: '0.625rem',
-                  lineHeight: 1.75,
+                  lineHeight: 2.5,
                 },
               },
               // Code fences
@@ -92,12 +88,14 @@ module.exports = {
               '.token.namespace': {
                 opacity: 0.7,
               },
-              '.token.property, .token.tag, .token.boolean, .token.number, .token.constant, .token.symbol': {
-                color: 'inherit',
-              },
-              '.token.selector, .token.attr, .token.string, .token.char, .token.builtin': {
-                color: 'var(--fourth-color)',
-              },
+              '.token.property, .token.tag, .token.boolean, .token.number, .token.constant, .token.symbol':
+                {
+                  color: 'inherit',
+                },
+              '.token.selector, .token.attr, .token.string, .token.char, .token.builtin':
+                {
+                  color: 'var(--fourth-color)',
+                },
               '.token.deleted': {
                 color: theme('colors.red.700'),
 
@@ -111,9 +109,10 @@ module.exports = {
                   color: theme('colors.green.500'),
                 },
               },
-              ".token.operator, .token.entity, .token.url, [class='.language-css'] .token.string, .style .token.string": {
-                color: 'var(--first-color)',
-              },
+              ".token.operator, .token.entity, .token.url, [class='.language-css'] .token.string, .style .token.string":
+                {
+                  color: 'var(--first-color)',
+                },
               '.token.atrule, .token.attr-value, .token.keyword': {
                 color: 'var(--first-color)',
               },
