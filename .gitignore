@@ -1,28 +1,10 @@
-# Project dependencies
-# https://www.npmjs.org/doc/misc/npm-faq.html#should-i-check-my-node_modules-folder-into-git
 node_modules
-.cache/
 
-# Build directory
-.DS_Store
-yarn-error.log
-.next
-.mdx-data
-out
+/.cache
+/build
+/public/build
+.env
 
-# Environment
-.env.development
-.env.production
-.env.local
-
-# IDE
-.vscode/
-
-# Test artifacts
-coverage/
-
-# Notes
-*.notes.md
-*.todo.md
-*.todo_done.md
-.vercel
+/app/styles/app.css
+/api/
+/app/generated/

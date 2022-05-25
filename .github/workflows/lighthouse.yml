@@ -9,10 +9,6 @@ env:
 
 jobs:
   lighthouse:
-    # TODO: this will probably fire on both the Next.js deployment AND the Sveltekit deployment
-    # so we need to find a way to scope it just to the Next.js one.
-    #
-    # Since the Next.js one wraps the SvelteKit one (for now)
     if: github.event_name == 'deployment_status' && github.event.deployment_status.state == 'success' && github.event.production_environment == false && contains(github.event.deployment_status.target_url, 'benjaminjohnsonme')
     timeout-minutes: 60
     runs-on: ubuntu-latest
@@ -50,13 +46,14 @@ jobs:
         env:
           TEST_BASE_URL: ${{ github.event.deployment_status.target_url }}
 
-  jest_tests:
-    name: Jest tests
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
-        with:
-          node-version: 14
-      - run: yarn
-      - run: npm test
+  # TODO: re-enable jest tests once set up, e2e should be enough for now.
+  # jest_tests:
+  #   name: Jest tests
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v2
+  #     - uses: actions/setup-node@v1
+  #       with:
+  #         node-version: 14
+  #     - run: yarn
+  #     - run: npm test
