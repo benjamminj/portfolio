@@ -1,7 +1,6 @@
 import { Link } from '@remix-run/react'
 import clsx from 'clsx'
-import { Fragment } from 'react'
-import { createElement } from 'react'
+import { createElement, Fragment } from 'react'
 import type { HtmlAstNode, HtmlAstNodeMap } from '~/lib/hast.types'
 import type { ReactNode } from 'react'
 import type { PrunedHast } from '~/lib/parse-markdown'
@@ -43,7 +42,6 @@ const hastNodeComponents: {
       <InternalMarkdownRenderer nodes={node.children} />
     </p>
   ),
-  // TODO: stylezzzz
   link: (node) => (
     <Link to={node.url} className="font-bold">
       <InternalMarkdownRenderer nodes={node.children} />
@@ -68,22 +66,20 @@ const hastNodeComponents: {
     </em>
   ),
   list: (node) => {
-    if (node.ordered)
+    if (node.ordered) {
       return (
-        // TODO: ol styles
         <ol className="pl-8 list-none">
           <InternalMarkdownRenderer nodes={node.children} />
         </ol>
       )
+    }
 
-    // TODO: ul styles
     return (
       <ul className="pl-6 list-none">
         <InternalMarkdownRenderer nodes={node.children} />
       </ul>
     )
   },
-  // TODO: li styles
   listItem: (node) => (
     <li className="relative pl-2 my-4 text-base leading-7 before:-left-4 before:absolute">
       <InternalMarkdownRenderer nodes={node.children} />
@@ -124,7 +120,7 @@ export function MarkdownRenderer({ hast }: { hast?: PrunedHast }) {
   if (!hast) return null
   return (
     <div className="prose dark:prose-invert font-mono mx-auto max-w-prose">
-      <InternalMarkdownRenderer nodes={hast.children} />
+      <InternalMarkdownRenderer nodes={hast.children as HtmlAstNode[]} />
     </div>
   )
 }

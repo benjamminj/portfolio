@@ -28,8 +28,6 @@ const RouteLayoutSeoDataSchema = z.object({
   title: z.string(),
   subtitle: z.string().optional(),
   preserveTitleCasing: z.boolean().optional(),
-  // do we need this info, given the route itself can do metadata??
-  // TODO: test whether the nested route's SEO "wins"
   seo: z
     .object({
       title: z.string().optional(),
