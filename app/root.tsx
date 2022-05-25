@@ -1,4 +1,3 @@
-import type { LinksFunction, MetaFunction } from '@remix-run/node'
 import {
   Links,
   LiveReload,
@@ -10,9 +9,10 @@ import {
 } from '@remix-run/react'
 import clsx from 'clsx'
 import { z } from 'zod'
-import { Header } from '~/components/header'
+import { Header } from './components/header'
 import { Banner } from './components/banner'
 import styles from './styles/app.css'
+import type { LinksFunction, MetaFunction } from '@remix-run/node'
 
 export const links: LinksFunction = () => {
   return [{ rel: 'stylesheet', href: styles }]
@@ -45,7 +45,7 @@ type RouteMatch<T extends unknown> = ArrayElement<
   Omit<ReturnType<typeof useMatches>, 'data'>
 > & { data: T }
 
-export default function App() {
+export default function App()  {
   const matches = useMatches()
   const match = matches.find((route) => {
     const routeData = RouteLayoutSeoDataSchema.safeParse(route.data)
