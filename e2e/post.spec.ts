@@ -33,16 +33,17 @@ test.describe('/[post]', () => {
 
     const $header = page.locator(`text=${pageContent.title}`)
     expect(await $header.isVisible()).toEqual(true)
+    expect(await page.locator(`text=2020-12-30`).isVisible()).toEqual(true)
+
     const $footer = page.locator(`data-testid=SlugPage__footer`)
     expect(await $footer.isVisible()).toEqual(true)
 
-    expect(await $footer.locator('text=2020-12-30').isVisible()).toEqual(true)
-    expect(await $footer.locator('text=Last updated').isVisible()).toEqual(true)
+    expect(await $footer.locator('text=Tags').isVisible()).toEqual(true)
 
     const tags = ['testing', 'javascript', 'jest']
     await Promise.all(
-      tags.map(async tag => {
-        const $tag = page.locator(`text=#${tag}`)
+      tags.map(async (tag) => {
+        const $tag = $footer.locator(`text=#${tag}`)
         expect(await $tag.getAttribute('href')).toEqual(`/tags/${tag}`)
       })
     )

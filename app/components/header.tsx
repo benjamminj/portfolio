@@ -9,22 +9,34 @@ type HeaderLinkProps = {
 }
 
 const HeaderLink = ({ href, title, children }: HeaderLinkProps) => {
-  return (
-    <NavLink
-      to={href}
-      title={title}
-      className={({ isActive }) =>
-        clsx(
-          'text-base no-underline',
-          isActive
-            ? 'text-black font-bold dark:text-white'
-            : 'text-gray-800 font-normal dark:text-gray-200'
-        )
-      }
-    >
-      {children}
-    </NavLink>
-  )
+  if (href.startsWith('/')) {
+    return (
+      <NavLink
+        to={href}
+        title={title}
+        className={({ isActive }) =>
+          clsx(
+            'text-base no-underline',
+            isActive
+              ? 'text-black font-bold dark:text-white'
+              : 'text-gray-800 font-normal dark:text-gray-200'
+          )
+        }
+      >
+        {children}
+      </NavLink>
+    )
+  } else {
+    return (
+      <a
+        href={href}
+        title={title}
+        className="text-base no-underline text-gray-800 font-normal dark:text-gray-200"
+      >
+        {children}
+      </a>
+    )
+  }
 }
 
 export const Header = () => {

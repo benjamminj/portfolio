@@ -10,14 +10,15 @@ import { Tag } from '~/components/tag'
 export const meta: MetaFunction = ({ data }) => {
   const metadata: HtmlMetaDescriptor = {
     title: data.title,
-    description: data.description,
+    description: data.post.description,
+    author: 'Benjamin Johnson',
     'twitter:card': 'summary',
     'twitter:site': '@benjamminj',
     'twitter:title': data.title,
     'twitter:description': data.description,
     'twitter:creator': '@benjamminj',
     'og:title': data.title,
-    'og:description': data.description,
+    'og:description': data.post.description,
     'og:type': 'website',
     'og:url': `${data.HOMEPAGE}/${data.slug}`,
   }
@@ -30,7 +31,11 @@ export const meta: MetaFunction = ({ data }) => {
 }
 
 type LoaderData = {
+  title: string
+  subtitle: string
   post: Post
+  slug: string
+  HOMEPAGE?: string
 }
 
 export const loader: LoaderFunction = async ({ params }) => {
