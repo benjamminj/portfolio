@@ -1,7 +1,6 @@
 import clsx from 'clsx'
 import { NavLink, Link } from '@remix-run/react'
-import { Container } from './Container'
-import { ReactNode } from 'react'
+import type { ReactNode } from 'react'
 
 type HeaderLinkProps = {
   href: string
