@@ -9,7 +9,7 @@ env:
 
 jobs:
   lighthouse:
-    if: github.event_name == 'deployment_status' && github.event.deployment_status.state == 'success' && github.event.production_environment == false && contains(github.event.deployment_status.target_url, 'benjaminjohnsonme')
+    if: github.event_name == 'deployment_status'
     timeout-minutes: 60
     runs-on: ubuntu-latest
     name: Run Lighthouse
@@ -27,7 +27,7 @@ jobs:
           path: /tmp/artifacts
 
   playwright:
-    if: github.event_name == 'deployment_status' && github.event.deployment_status.state == 'success' && github.event.production_environment == false && contains(github.event.deployment_status.target_url, 'benjaminjohnsonme')
+    if: github.event_name == 'deployment_status'
     timeout-minutes: 60
     
     name: e2e tests
