@@ -8,6 +8,15 @@ module.exports = {
       ...defaultTheme.screens,
     },
     extend: {
+      animation: {
+        fadein: 'fadein 100ms ease-in-out 200ms',
+      },
+      keyframes: {
+        fadein: {
+          '0%': { opacity: 0 },
+          '100%': { opacity: 1 },
+        },
+      },
       maxWidth: {
         prose: '80ch',
       },

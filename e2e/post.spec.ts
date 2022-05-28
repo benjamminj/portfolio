@@ -1,6 +1,14 @@
 import { test, expect } from '@playwright/test'
 
 test.describe('/[post]', () => {
+  test.beforeEach(async ({ context }) => {
+    await context.grantPermissions(['clipboard-read'])
+  })
+
+  test.afterEach(async ({ context }) => {
+    context.clearPermissions()
+  })
+
   test('should display the post', async ({ page }) => {
     await page.goto('/mocking-fetch')
     const $title = page.locator('text=Benjamin Johnson')
@@ -47,5 +55,23 @@ test.describe('/[post]', () => {
         expect(await $tag.getAttribute('href')).toEqual(`/tags/${tag}`)
       })
     )
+  })
+
+  test('should allow copy-pasting code snippets', async ({ page }) => {
+    await page.goto('/mocking-fetch')
+    const $copyButton = page.locator(`text=Copy to clipboard`).first()
+    expect(await $copyButton.isVisible()).toEqual(true)
+    await $copyButton.click()
+    const $copySuccess = page.locator(`text=Copied!`).first()
+    expect(await $copySuccess.isVisible()).toEqual(true)
+    const evaluated = await page.evaluate(() => {
+      return navigator.clipboard.readText()
+    })
+
+    // TODO: there may be a better locator we can use, perhaps the [language-]
+    // tag or relative to the button itself.
+    const snippet = await page.locator('pre code').first().innerText()
+
+    expect(evaluated).toEqual(snippet)
   })
 })

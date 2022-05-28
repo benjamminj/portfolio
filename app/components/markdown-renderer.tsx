@@ -1,9 +1,10 @@
 import { Link } from '@remix-run/react'
 import clsx from 'clsx'
-import { createElement, Fragment } from 'react'
+import { createElement, Fragment, useRef } from 'react'
 import type { HtmlAstNode, HtmlAstNodeMap } from '~/lib/hast.types'
 import type { ReactNode } from 'react'
 import type { PrunedHast } from '~/lib/parse-markdown'
+import { CopyPasteButton } from './copy-paste-button'
 
 const H = ({
   level = 2,
@@ -30,6 +31,22 @@ const H = ({
       ),
     },
     children
+  )
+}
+
+const CodeBlock = ({ code }: { code: string }) => {
+  const ref = useRef<HTMLElement>(null)
+  return (
+    <div className="relative">
+      <CopyPasteButton element={ref} />
+      <pre className="rounded-none p-6 pt-8 my-6 -mx-4 overflow-auto text-base bg-gray-100 md:mx-0 lg:-mx-6 dark:bg-gray-900">
+        <code
+          className="overflow-auto"
+          ref={ref}
+          dangerouslySetInnerHTML={{ __html: code }}
+        ></code>
+      </pre>
+    </div>
   )
 }
 
@@ -95,11 +112,7 @@ const hastNodeComponents: {
       {node.value}
     </code>
   ),
-  code: (node) => (
-    <pre className="rounded-none p-6 pt-8 my-6 -mx-4 overflow-auto text-base bg-gray-100 md:mx-0 lg:-mx-6 dark:bg-gray-900">
-      <code dangerouslySetInnerHTML={{ __html: node.value }}></code>
-    </pre>
-  ),
+  code: (node) => <CodeBlock code={node.value} />,
   image: (node) => <img src={node.url} alt={node.alt} />,
 }
 
