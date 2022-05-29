@@ -40,9 +40,7 @@ export const loader: LoaderFunction = async ({ request }) => {
       <item>
         <title><![CDATA[${escapeCdata(post.title)}]]></title>
         ${description}
-        <author><![CDATA[${escapeCdata(
-          'benjamin.d.johnson@icloud.com (Ben Johnson)'
-        )}]]></author>
+        <author><![CDATA[${escapeCdata('Benjamin Johnson')}]]></author>
         <pubDate>${new Date(post.date).toUTCString()}</pubDate>
         ${post.tags
           .map((tag) => {
