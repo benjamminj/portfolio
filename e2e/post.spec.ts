@@ -1,14 +1,6 @@
 import { test, expect } from '@playwright/test'
 
 test.describe('/[post]', () => {
-  test.beforeEach(async ({ context }) => {
-    await context.grantPermissions(['clipboard-read'])
-  })
-
-  test.afterEach(async ({ context }) => {
-    context.clearPermissions()
-  })
-
   test('should display the post', async ({ page }) => {
     await page.goto('/mocking-fetch')
     const $title = page.locator('text=Benjamin Johnson')
@@ -56,8 +48,27 @@ test.describe('/[post]', () => {
       })
     )
   })
+})
 
-  test('should allow copy-pasting code snippets', async ({ page }) => {
+test.describe('/[post] (chromium only)', () => {
+  // see https://github.com/microsoft/playwright/issues/13037
+  test.skip(
+    ({ browserName }) => browserName !== 'chromium',
+    '`clipboard-read` permissions can only be granted in Chromium'
+  )
+
+  test.beforeEach(async ({ context }) => {
+    await context.grantPermissions(['clipboard-read'])
+  })
+
+  test.afterEach(async ({ context }) => {
+    context.clearPermissions()
+  })
+
+  test('should allow copy-pasting code snippets', async ({
+    page,
+    browserName,
+  }) => {
     await page.goto('/mocking-fetch')
     const $copyButton = page.locator(`text=Copy to clipboard`).first()
     expect(await $copyButton.isVisible()).toEqual(true)
