@@ -58,7 +58,7 @@ export const loader: LoaderFunction = async ({ request }) => {
   const rss = `
     <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
       <channel>
-        <atom:link href="${domain}/writing.rss" rel="self" type="application/rss+xml" />
+        <atom:link href="${domain}/rss.xml" rel="self" type="application/rss+xml" />
         <title>benjaminjohnson.me</title>
         <link>${domain}</link>
         <description>Benjamin Johnson, Principal Frontend Engineer. Sometimes I write things.</description>
