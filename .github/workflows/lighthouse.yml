@@ -1,6 +1,6 @@
 name: Preview URL Checks
 
-on: [pull_request]
+on: [deployment_status]
 
 env:
   CI: true
@@ -9,7 +9,7 @@ env:
 
 jobs:
   lighthouse:
-    if: github.event_name == 'deployment_status'
+    # if: github.event_name == 'deployment_status'
     timeout-minutes: 60
     runs-on: ubuntu-latest
     name: Run Lighthouse
@@ -27,7 +27,7 @@ jobs:
           path: /tmp/artifacts
 
   playwright:
-    if: github.event_name == 'deployment_status'
+    # if: github.event_name == 'deployment_status'
     timeout-minutes: 60
     
     name: e2e tests
