@@ -2,15 +2,15 @@
 
 Welcome to the source code for my personal corner of the internet!
 
-## The purpose of this website
+## bUt bEn...tHiS iS oVeReNgInEeReD!
 
-First and foremost—my website is for me! If the things on my website aren't bringing enjoyment to me, then I'm likely to change them. I built this site using NextJS because _I like working with NextJS_. Is NextJS a "heavy-handed" tool for a site of this size? Perhaps. But is it _fun_ to work in? Absolutely. Not to mention that I'm doing a lot of my day-in, day-out using NextJS so I like to have another codebase to hone my chops on. And it's nice to have my own little corner of the Internet that's primarily _for me_.
+I don't care. Yeah, you don't _need_ React for a blog website. But this is my corner of the internet, so I'm gonna use tools that ✨ spark joy ✨
 
-Secondly, this website is a place for me to log my journey and keep track of the things I'm learning. I think of this website as more of a "digital garden" than I do of it as a polished, money-making blog. Perhaps one day I'll monetize the website and shift gears, but for now, my focus is on making it an enjoyable _writing_ experience as well as easy for me to look back on the things I've learned.
+Right now that's [Remix](https://remix.run/) and [Tailwind](https://tailwindcss.com/). I actually find that both tools _scale down_ nicely as well as up, and I make sure I'm staying on top of what's fresh in frontend.
 
 ## Contributing
 
-Feel free to open a PR to edit the posts! I'm happy to merge PRs for broken code, typos, and other changes. I like the idea of having this blog's source out in the open where people can collaboratively edit when they find something wrong in what I've written.
+Feel free to open a PR to edit the posts! I'm happy to merge PRs for broken code, typos, and other changes.
 
 ## Running the project
 
@@ -22,7 +22,7 @@ $ yarn
 
 ### 2. Add a `.env.local` file wit environment variables.
 
-You'll need a `.env.local` file with the following variables in order to run the application.
+Add an `.env` file with the following variables:
 
 ```bash
 # REQUIRED
@@ -36,16 +36,6 @@ VERCEL_URL="http://localhost:3000"
 # be populated with a custom domain.
 URL="https://benjaminjohnson.me"
 
-# OPTIONAL
-# Track pageviews on google analytics. Having this locally won't track real pageviews
-# since the tracker is scoped to the hosted domain.
-NEXT_PUBLIC_GA_TRACKING_ID="TRACKER_ID"
-
-# OPTIONAL
-# Run a bundle analyzer on the build and open a report of all the built bundles.
-# Will create 2 reports—one for the client-side bundles (`client.html`) and another
-# for the server-side bundles (`server.html`)
-ANALYZE="true"
 
 # OPTIONAL
 # Root URL of the application under test. This can be used in CI to test against
@@ -55,8 +45,6 @@ TEST_BASE_URL="http://localhost:3000"
 
 ### 3. Run the development server
 
-This should spin up a development server with hot reloading, live builds of pages, etc.
-
 ```bash
 $ yarn dev
 ```
@@ -65,7 +53,7 @@ $ yarn dev
 
 Right now I've got a small suite of [`playwright`](https://playwright.dev) tests to make sure that my website loads on a few key browsers and that nothing crazy is missing. 🙃
 
-To run the `playwright` tests you'll need to add the following variables to your `.env.local` file.
+To run the `playwright` tests you'll need to add the following variables to your `.env` file.
 
 ```bash
 # REQUIRED
@@ -96,17 +84,17 @@ Once you've got the environment variables added, you can run the end-to-end test
 
 My content is all out here in the open—if you plan on stealing it and reposting somewhere, I know this little paragraph at the bottom of my `README` isn't going to stop you.
 
-That said, my approach toward my content on this blog goes something like this: feel free to copy the _code_ and _code snippets_ from this blog verbatim. That's the whole point of sharing what I've learned in the public sphere. But if you want to copy the _post content_ verbatim, provide an attribution or a link back to the original post.
+That said, you're free to copy the _code_ and _code snippets_ from this blog verbatim. That's the whole point of sharing what I've learned in the public sphere. But if you want to copy the _post content_ verbatim, provide an attribution or a link back to the original post.
 
 ## Some of the technologies used on this website
 
 Right now, here's a couple of the technologies that I'm into and exploring with this website.
 
-- [NextJS](https://nextjs.org/docs). Additionally, I'm working mainly with the static site generation tools released in v9.3+
-- [Tailwind](https://tailwindcss.com/). See [this writeup](https://benjaminjohnson.me/how-tailwindcss-converted-me) on why I'm bullish on Tailwind
+- [Remix](https://remix.run/)
+- [Tailwind](https://tailwindcss.com/). See [this writeup](https://benjaminjohnson.me/how-tailwindcss-converted-me) for why.
 
 Since this is a relatively simple website, I've tried to keep the usage of libraries low—most of the libraries in this website have to do with markdown parsing and the static generation.
 
 ## Thank you!
 
-Thanks for taking the time to read my blog, contribute to it, and browse the source code. I'm happy to be a part of the tech community and it's people like you that make me happy to share my journey on this website.
+Thanks for taking the time to read my blog, contribute to it, and browse the source code. I'm happy to be a part of the tech community and it's people like you that make me happy to share my journey in public.
