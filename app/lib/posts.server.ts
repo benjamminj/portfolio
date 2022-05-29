@@ -1,7 +1,8 @@
-import { z } from 'zod'
+import { z, ZodTypeAny } from 'zod'
 import { processContent } from './process-content'
 import { posts as content } from '~/generated/posts.generated.server'
 import fm from 'front-matter'
+import { parseMarkdownToHTML } from './parse-markdown'
 
 /**
  * Parses a date object into a JSON-serializable string, formatted as yyyy-mm-dd.
@@ -69,7 +70,7 @@ const slugifyPostPath = (file: string): string => {
  *
  * TODO: sorting / filtering?
  */
-export const list = async () => {
+export const list = async ({ include = [] }: { include?: 'html'[] } = {}) => {
   // First, load all the content into memory, and filter them down to only the ones
   // under `writing`
   const rawPosts = Object.entries(content)
@@ -83,11 +84,23 @@ export const list = async () => {
       // NOTE: we should stop processing the content here, this will automagically
       // allow us to prune the posts and will also be good prep for Cloudflare KV
       // if we decide to go that route.
-      const { attributes } = fm<Record<string, string>>(contents)
-      return await PostMetadataSchema.parseAsync({
+      const { attributes, body } = fm<Record<string, string>>(contents)
+      const payload: Record<string, unknown> = {
         slug: slugifyPostPath(path),
         ...attributes,
-      })
+      }
+
+      let schema: ZodTypeAny = PostMetadataSchema
+      if (include.includes('html')) {
+        schema = z.intersection(
+          PostMetadataSchema,
+          z.object({ html: z.string() })
+        )
+        payload.html = await parseMarkdownToHTML(body)
+        console.log(payload.html)
+      }
+
+      return await schema.parseAsync(payload)
     })
   )
 
