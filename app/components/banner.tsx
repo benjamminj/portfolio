@@ -1,7 +1,7 @@
-import { ReactNode } from 'react'
+import type { ReactElement } from 'react'
 
 interface BannerProps {
-  children: ReactNode
+  children: ReactElement
 }
 
 export const Banner = ({ children }: BannerProps) => {
