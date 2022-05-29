@@ -33,7 +33,7 @@ export const loader: LoaderFunction = async ({ request }) => {
   const getItemXML = (post: typeof posts[0]) => {
     // TODO: this should be the whole dang post, not just the description.
     const description = post.description
-      ? `<description><![CDATA[${escapeCdata(escapeHtml(post.html))}]]></description>` // prettier-ignore
+      ? `<description><![CDATA[${escapeCdata(post.html)}]]></description>` // prettier-ignore
       : ''
 
     return `
