@@ -27,8 +27,6 @@ import 'prismjs/components/prism-haskell.min.js'
 import 'prismjs/components/prism-diff.min.js'
 import 'prismjs/components/prism-json.min.js'
 
-// const rehypeStringify = import('rehype-stringify')
-
 const highlight = (code: string, lang?: string) => {
   if (!lang) return code
   if (!Prism.languages[lang]) {
@@ -78,13 +76,13 @@ export const parseMarkdown = async (markdown: string) => {
   const unified = await import('unified').then(({ unified }) => unified)
   const remarkParse = await import('remark-parse').then((pkg) => pkg.default)
 
-  // Spits out a hast (HTML AST) of the markdown, this can later be processed by Svelte
-  // into individual components.
+  // Spits out a hast (HTML AST) of the markdown, this can later be processed by
+  // individual frontend components.
   const hast = (await unified()
     .use(remarkParse)
-    // .use(remarkRehype)
-    // .use(rehypeStringify)
     // TODO: change to process and send HAST? or change to be based on MDAST?
+    // Alternatively we could do processing on the HTML to add stuff like the copy-pasta
+    // button.
     .parse(markdown)) as unknown as HtmlAst
 
   const highlightedHast = highlightCodeBlocks(hast)
@@ -92,6 +90,10 @@ export const parseMarkdown = async (markdown: string) => {
   return pruneAst(highlightedHast)
 }
 
+/**
+ * Takes in raw markdown, and spits out raw HTML. This is useful for print, or RSS
+ * where we don't want to use JSX to render the HTML.
+ */
 export const parseMarkdownToHTML = async (markdown: string) => {
   const unified = await import('unified').then(({ unified }) => unified)
   const remarkParse = await import('remark-parse').then((pkg) => pkg.default)
@@ -100,8 +102,6 @@ export const parseMarkdownToHTML = async (markdown: string) => {
     (pkg) => pkg.default
   )
 
-  // Spits out a hast (HTML AST) of the markdown, this can later be processed by Svelte
-  // into individual components.
   const html = await unified()
     .use(remarkParse)
     .use(remarkRehype)

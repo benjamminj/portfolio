@@ -1,21 +1,8 @@
 import type { LoaderFunction } from '@remix-run/node'
 import { list } from '~/lib/posts.server'
-import { posts as content } from '~/generated/posts.generated.server'
 
 const escapeCdata = (str: string) => {
   return str.replace(/\]\]>/g, ']]]]><![CDATA[>')
-}
-
-/**
- * Escapes special characters into HTML-safe entities.
- */
-const escapeHtml = (str: string) => {
-  return str
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;')
-    .replace(/'/g, '&#039;')
 }
 
 export const loader: LoaderFunction = async ({ request }) => {
@@ -31,7 +18,7 @@ export const loader: LoaderFunction = async ({ request }) => {
 
   const getItemXML = (post: typeof posts[0]) => {
     if (!post.html) return ''
-    // TODO: this should be the whole dang post, not just the description.
+
     const description = post.html
       ? `<description><![CDATA[${escapeCdata(post.html)}]]></description>` // prettier-ignore
       : ''
@@ -52,7 +39,7 @@ export const loader: LoaderFunction = async ({ request }) => {
       </item>
     `.trim()
   }
-  // TODO: tidy up into sections, dangit.
+
   const rss = `
     <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
       <channel>
@@ -73,8 +60,6 @@ export const loader: LoaderFunction = async ({ request }) => {
   return new Response(rss, {
     headers: {
       'Cache-Control': `public, max-age=${MINUTE * 10}, s-maxage=${DAY}`,
-      // TODO: could dynamically also do `application/rss+xml` depending on the
-      // incoming headers??
       'Content-Type': 'application/xml',
       'Content-Length': String(Buffer.byteLength(rss)),
     },
