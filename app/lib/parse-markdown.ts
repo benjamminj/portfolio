@@ -1,7 +1,7 @@
 import Prism from 'prismjs'
-// import { unified } from 'unified'
-import type { HtmlAst, HtmlAstNode } from './hast.types'
 import { pruneAst } from './prune-hast'
+import type { HtmlAst, HtmlAstNode } from './hast.types'
+
 // Import syntax highlighting for languages used across the blog.
 //
 // This is not a perfect solution, since language syntaxes have to be manually
@@ -77,10 +77,6 @@ export const highlightCodeBlocks = (ast: HtmlAst) => {
 export const parseMarkdown = async (markdown: string) => {
   const unified = await import('unified').then(({ unified }) => unified)
   const remarkParse = await import('remark-parse').then((pkg) => pkg.default)
-  const remarkRehype = await import('remark-rehype').then((pkg) => pkg.default)
-  const rehypeStringify = await import('rehype-stringify').then(
-    (pkg) => pkg.default
-  )
 
   // Spits out a hast (HTML AST) of the markdown, this can later be processed by Svelte
   // into individual components.

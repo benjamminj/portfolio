@@ -70,7 +70,11 @@ const slugifyPostPath = (file: string): string => {
  *
  * TODO: sorting / filtering?
  */
-export const list = async ({ include = [] }: { include?: 'html'[] } = {}) => {
+export const list = async ({
+  include = [],
+}: { include?: 'html'[] } = {}): Promise<
+  (PostMetadata & { html?: string })[]
+> => {
   // First, load all the content into memory, and filter them down to only the ones
   // under `writing`
   const rawPosts = Object.entries(content)
@@ -97,7 +101,6 @@ export const list = async ({ include = [] }: { include?: 'html'[] } = {}) => {
           z.object({ html: z.string() })
         )
         payload.html = await parseMarkdownToHTML(body)
-        console.log(payload.html)
       }
 
       return await schema.parseAsync(payload)
