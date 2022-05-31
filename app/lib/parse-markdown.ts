@@ -1,7 +1,7 @@
 import Prism from 'prismjs'
-// import { unified } from 'unified'
-import type { HtmlAst, HtmlAstNode } from './hast.types'
 import { pruneAst } from './prune-hast'
+import type { HtmlAst, HtmlAstNode } from './hast.types'
+
 // Import syntax highlighting for languages used across the blog.
 //
 // This is not a perfect solution, since language syntaxes have to be manually
@@ -27,46 +27,42 @@ import 'prismjs/components/prism-haskell.min.js'
 import 'prismjs/components/prism-diff.min.js'
 import 'prismjs/components/prism-json.min.js'
 
-const unified = import("unified")
-const remarkParse = import('remark-parse')
-const remarkRehype = import('remark-rehype')
-
 const highlight = (code: string, lang?: string) => {
-	if (!lang) return code
-	if (!Prism.languages[lang]) {
-		console.warn('language syntax not found:', lang)
-		return ''
-	}
+  if (!lang) return code
+  if (!Prism.languages[lang]) {
+    console.warn('language syntax not found:', lang)
+    return ''
+  }
 
-	return Prism.highlight(code, Prism.languages[lang], lang)
+  return Prism.highlight(code, Prism.languages[lang], lang)
 }
 
 export const highlightCodeBlocks = (ast: HtmlAst) => {
-	const transform = (node: HtmlAstNode): HtmlAstNode => {
-		if (node.type === 'code') {
-			const value = highlight(node.value, node.lang)
-			return {
-				...node,
-				value
-			}
-		}
+  const transform = (node: HtmlAstNode): HtmlAstNode => {
+    if (node.type === 'code') {
+      const value = highlight(node.value, node.lang)
+      return {
+        ...node,
+        value,
+      }
+    }
 
-		if (node.children) {
-			const mappedChildren = node.children.map(transform)
-			return {
-				...node,
-				children: mappedChildren
-			}
-		}
+    if (node.children) {
+      const mappedChildren = node.children.map(transform)
+      return {
+        ...node,
+        children: mappedChildren,
+      }
+    }
 
-		return node
-	}
+    return node
+  }
 
-	const children = ast.children.map(transform)
-	return {
-		...ast,
-		children
-	}
+  const children = ast.children.map(transform)
+  return {
+    ...ast,
+    children,
+  }
 }
 
 /**
@@ -77,19 +73,42 @@ export const highlightCodeBlocks = (ast: HtmlAst) => {
  * - At the current time, frontmatter is not extracted, so that needs to be done separately.
  */
 export const parseMarkdown = async (markdown: string) => {
-  const { unified: unifiedInstance } = await unified
-  const { default: remarkParseInstance } = await remarkParse
-  const { default: remarkRehypeInstance } = await remarkRehype
-	// // Spits out a hast (HTML AST) of the markdown, this can later be processed by Svelte
-	// // into individual components.
-	const hast = await unifiedInstance()
-		.use(remarkParseInstance)
-		.use(remarkRehypeInstance)
-		.parse(markdown) as unknown as HtmlAst
+  const unified = await import('unified').then(({ unified }) => unified)
+  const remarkParse = await import('remark-parse').then((pkg) => pkg.default)
 
-	const highlightedHast = highlightCodeBlocks(hast)
+  // Spits out a hast (HTML AST) of the markdown, this can later be processed by
+  // individual frontend components.
+  const hast = (await unified()
+    .use(remarkParse)
+    // TODO: change to process and send HAST? or change to be based on MDAST?
+    // Alternatively we could do processing on the HTML to add stuff like the copy-pasta
+    // button.
+    .parse(markdown)) as unknown as HtmlAst
 
-	return pruneAst(highlightedHast)
+  const highlightedHast = highlightCodeBlocks(hast)
+
+  return pruneAst(highlightedHast)
+}
+
+/**
+ * Takes in raw markdown, and spits out raw HTML. This is useful for print, or RSS
+ * where we don't want to use JSX to render the HTML.
+ */
+export const parseMarkdownToHTML = async (markdown: string) => {
+  const unified = await import('unified').then(({ unified }) => unified)
+  const remarkParse = await import('remark-parse').then((pkg) => pkg.default)
+  const remarkRehype = await import('remark-rehype').then((pkg) => pkg.default)
+  const rehypeStringify = await import('rehype-stringify').then(
+    (pkg) => pkg.default
+  )
+
+  const html = await unified()
+    .use(remarkParse)
+    .use(remarkRehype)
+    .use(rehypeStringify)
+    .process(markdown)
+
+  return html.value
 }
 
 export type PrunedHast = Awaited<ReturnType<typeof parseMarkdown>>
