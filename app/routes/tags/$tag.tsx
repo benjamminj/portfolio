@@ -1,9 +1,9 @@
 import type { LoaderFunction, MetaFunction } from '@remix-run/node'
 import { useLoaderData } from '@remix-run/react'
 import { z } from 'zod'
-import { PostListItem } from '~/components/post-list-item'
-import { list } from '~/lib/posts.server'
+import { PostList } from '~/components/post-list'
 import type { Post } from '~/lib/posts.server'
+import { list } from '~/lib/posts.server'
 
 export const meta: MetaFunction = ({ data }) => {
   return {
@@ -32,13 +32,7 @@ export default function TagRoute() {
   const data = useLoaderData<LoaderData>()
   return (
     <main>
-      <ul className="space-y-2">
-        {data?.posts.map((post) => (
-          <li className="w-full" key={post.slug}>
-            <PostListItem post={post} />
-          </li>
-        ))}
-      </ul>
+      <PostList posts={data?.posts} />
     </main>
   )
 }
