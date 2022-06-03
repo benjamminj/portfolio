@@ -3,7 +3,7 @@ import { test, expect } from '@playwright/test'
 test.describe('/[post]', () => {
   test('should display the post', async ({ page }) => {
     await page.goto('/mocking-fetch')
-    const $title = page.locator('text=Benjamin Johnson')
+    const $title = page.locator('text=benjamin johnson').first()
     expect(await $title.isVisible()).toEqual(true)
 
     const pageContent = {
