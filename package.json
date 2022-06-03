@@ -14,7 +14,8 @@
     "start": "remix-serve build",
     "e2e": "yarn e2e:open",
     "e2e:open": "yarn e2e:run --headed",
-    "e2e:run": "yarn playwright test e2e --config=playwright.config.ts"
+    "e2e:run": "yarn playwright test e2e --config=playwright.config.ts",
+    "e2e:run:chromium": "yarn playwright test e2e --config=playwright.config.ts --project=chromium"
   },
   "prettier": {
     "semi": false,

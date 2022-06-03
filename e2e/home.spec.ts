@@ -3,13 +3,12 @@ import { test, expect } from '@playwright/test'
 test.describe('/', () => {
   test('should display the home page', async ({ page }) => {
     await page.goto('/')
-    const $title = page.locator('text=Benjamin Johnson')
+    const $title = page.locator('text=benjamin johnson').first()
     expect(await $title.isVisible()).toEqual(true)
 
     const navigationLinks = [
-      ['github', 'https://github.com/benjamminj'],
-      ['writing', '/writing'],
-      ['contact', '/links/email'],
+      ['./writing', '/writing'],
+      ['./about', '/about'],
     ]
 
     await Promise.all(

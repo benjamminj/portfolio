@@ -39,7 +39,6 @@ export const loader: LoaderFunction = async (): Promise<LoaderData> => {
 
 export default function Index() {
   const data = useLoaderData<LoaderData>()
-  console.log(data)
   return (
     <>
       <MarkdownRenderer hast={data?.hast} />
