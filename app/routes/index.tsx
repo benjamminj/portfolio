@@ -20,11 +20,12 @@ export const meta: MetaFunction = ({ data }) => {
       'front-end engineer, web, javascript, typescript, react, accessibility',
   }
 }
+
 export const loader: LoaderFunction = async (): Promise<LoaderData> => {
   const content = await readFile('intro.md')
   const { hast } = await processContent(content)
   return {
-    title: "Hi, I'm Ben! 🔥",
+    title: "Hi, I'm Ben!",
     subtitle: "I'm a front-end software engineer based out of Seattle",
     hast,
   }

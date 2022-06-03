@@ -16,7 +16,7 @@ const HeaderLink = ({ href, title, children }: HeaderLinkProps) => {
         title={title}
         className={({ isActive }) =>
           clsx(
-            'text-base no-underline',
+            'text-base underline',
             isActive
               ? 'text-black font-bold dark:text-white'
               : 'text-gray-800 font-normal dark:text-gray-200'
@@ -31,7 +31,7 @@ const HeaderLink = ({ href, title, children }: HeaderLinkProps) => {
       <a
         href={href}
         title={title}
-        className="text-base no-underline text-gray-800 font-normal dark:text-gray-200"
+        className="text-base underline text-gray-800 font-normal dark:text-gray-200"
       >
         {children}
       </a>
@@ -49,17 +49,21 @@ export const Header = () => {
             to="/"
             className="inline-block text-xl font-medium text-black no-underline dark:text-white"
           >
-            <span className="lowercase">Benjamin Johnson</span>
+            <span className="lowercase">benjamin johnson</span>
           </Link>
 
           <div className="flex mt-2 space-x-4 lowercase">
             <nav>
               <div className="flex items-center space-x-4">
                 <HeaderLink title="Writing" href="/writing">
-                  writing
+                  ./writing
                 </HeaderLink>
 
-                <HeaderLink title="GitHub" href="https://github.com/benjamminj">
+                <HeaderLink title="About" href="/about">
+                  ./about
+                </HeaderLink>
+
+                {/* <HeaderLink title="GitHub" href="https://github.com/benjamminj">
                   github
                 </HeaderLink>
 
@@ -68,7 +72,7 @@ export const Header = () => {
                   href="mailto:benjamin.d.johnson@icloud.com"
                 >
                   contact
-                </HeaderLink>
+                </HeaderLink> */}
               </div>
             </nav>
           </div>

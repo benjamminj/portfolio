@@ -58,7 +58,8 @@ export default function SlugRoute() {
       <MarkdownRenderer hast={data?.post.content} />
 
       {data?.post.tags?.length > 0 && (
-        <footer data-testid="SlugPage__footer" className="py-12">
+        // TODO: multiple footers, or is something else more appropriate?
+        <footer data-testid="SlugPage__footer" className="pt-12">
           <div>
             <div className="font-mono dark:text-gray-400">Tags</div>
             <ul className="dark:text-gray-200 flex space-x-2">

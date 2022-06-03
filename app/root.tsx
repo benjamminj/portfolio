@@ -13,6 +13,7 @@ import { Header } from './components/header'
 import { Banner } from './components/banner'
 import styles from './styles/app.css'
 import type { LinksFunction, MetaFunction } from '@remix-run/node'
+import { Footer } from './components/footer'
 
 export const links: LinksFunction = () => {
   return [{ rel: 'stylesheet', href: styles }]
@@ -45,7 +46,7 @@ type RouteMatch<T extends unknown> = ArrayElement<
   Omit<ReturnType<typeof useMatches>, 'data'>
 > & { data: T }
 
-export default function App()  {
+export default function App() {
   const matches = useMatches()
   const match = matches.find((route) => {
     const routeData = RouteLayoutSeoDataSchema.safeParse(route.data)
@@ -61,7 +62,7 @@ export default function App()  {
         <Meta />
         <Links />
       </head>
-      <body className="font-mono dark:bg-gray-800 dark:text-white">
+      <body className="font-mono dark:bg-gray-800 dark:text-white min-h-screen flex flex-col">
         <div className="relative">
           <div className="absolute inset-x-0 top-0">
             <Header />
@@ -89,9 +90,11 @@ export default function App()  {
           </div>
         </Banner>
 
-        <div className="p-4 pt-10 mx-auto my-0 max-w-viewport md:max-w-prose">
+        <div className="p-4 py-10 mx-auto my-0 max-w-viewport md:max-w-prose flex-grow">
           <Outlet />
         </div>
+
+        <Footer />
 
         <ScrollRestoration />
         <Scripts />
