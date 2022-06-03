@@ -16,7 +16,13 @@ import type { LinksFunction, MetaFunction } from '@remix-run/node'
 import { Footer } from './components/footer'
 
 export const links: LinksFunction = () => {
-  return [{ rel: 'stylesheet', href: styles }]
+  return [
+    { rel: 'stylesheet', href: styles },
+    {
+      rel: 'icon',
+      href: `/favicon.svg`,
+    },
+  ]
 }
 
 export const meta: MetaFunction = () => ({
