@@ -9,7 +9,7 @@ test.describe('/', () => {
     const navigationLinks = [
       ['github', 'https://github.com/benjamminj'],
       ['writing', '/writing'],
-      ['contact', 'mailto:benjamin.d.johnson@icloud.com'],
+      ['contact', '/links/email'],
     ]
 
     await Promise.all(

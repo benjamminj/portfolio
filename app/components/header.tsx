@@ -62,17 +62,6 @@ export const Header = () => {
                 <HeaderLink title="About" href="/about">
                   ./about
                 </HeaderLink>
-
-                {/* <HeaderLink title="GitHub" href="https://github.com/benjamminj">
-                  github
-                </HeaderLink>
-
-                <HeaderLink
-                  title="Contact"
-                  href="mailto:benjamin.d.johnson@icloud.com"
-                >
-                  contact
-                </HeaderLink> */}
               </div>
             </nav>
           </div>

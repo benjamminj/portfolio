@@ -11,7 +11,7 @@ const FooterLink = ({ href, title, children }: FooterLinkProps) => {
     <a
       href={href}
       title={title}
-      className="text-base underline text-gray-800 font-normal dark:text-gray-200 hover:dark:text-white"
+      className="text-base underline text-gray-800 dark:text-gray-200 hover:dark:text-white font-bold"
     >
       {children}
     </a>
@@ -46,10 +46,7 @@ export const Footer = () => {
             </FooterLink>
           </li>
           <li>
-            <FooterLink
-              title="Email"
-              href="mailto:benjamin.d.johnson@icloud.com"
-            >
+            <FooterLink title="Email" href="/links/email">
               email
             </FooterLink>
           </li>

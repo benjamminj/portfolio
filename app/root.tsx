@@ -90,7 +90,7 @@ export default function App() {
           </div>
         </Banner>
 
-        <div className="p-4 py-10 mx-auto my-0 max-w-viewport md:max-w-prose flex-grow">
+        <div className="p-4 py-10 mx-auto my-0 max-w-viewport md:max-w-prose md:min-w-prose flex-grow">
           <Outlet />
         </div>
 

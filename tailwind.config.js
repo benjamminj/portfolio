@@ -1,5 +1,6 @@
 const defaultTheme = require('tailwindcss/defaultTheme')
 
+const PROSE_WIDTH = '80ch'
 module.exports = {
   content: ['./app/**/*.{js,ts,jsx,tsx}'],
   theme: {
@@ -8,6 +9,9 @@ module.exports = {
       ...defaultTheme.screens,
     },
     extend: {
+      minWidth: {
+        prose: PROSE_WIDTH,
+      },
       animation: {
         fadein: 'fadein 100ms ease-in-out 200ms',
       },
@@ -18,7 +22,7 @@ module.exports = {
         },
       },
       maxWidth: {
-        prose: '80ch',
+        prose: PROSE_WIDTH,
       },
       typography: (theme) => {
         return {
