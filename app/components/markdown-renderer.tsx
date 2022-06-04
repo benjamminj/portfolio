@@ -59,11 +59,21 @@ const hastNodeComponents: {
       <InternalMarkdownRenderer nodes={node.children} />
     </p>
   ),
-  link: (node) => (
-    <Link to={node.url} className="font-bold">
-      <InternalMarkdownRenderer nodes={node.children} />
-    </Link>
-  ),
+  link: (node) => {
+    if (node.url.startsWith('/')) {
+      return (
+        <Link to={node.url} className="font-bold">
+          <InternalMarkdownRenderer nodes={node.children} />
+        </Link>
+      )
+    } else {
+      return (
+        <a href={node.url} className="font-bold">
+          <InternalMarkdownRenderer nodes={node.children} />
+        </a>
+      )
+    }
+  },
   heading: (node) => (
     <H level={node.depth}>
       <InternalMarkdownRenderer nodes={node.children} />
