@@ -50,6 +50,26 @@ const CodeBlock = ({ code }: { code: string }) => {
   )
 }
 
+export const A = ({
+  href,
+  children,
+  ...props
+}: JSX.IntrinsicElements['a'] & { href: string }) => {
+  if (href.startsWith('/')) {
+    return (
+      <Link to={href} className="font-bold">
+        {children}
+      </Link>
+    )
+  }
+
+  return (
+    <a href={href} className="font-bold">
+      {children}
+    </a>
+  )
+}
+
 const hastNodeComponents: {
   [K in keyof HtmlAstNodeMap]: (node: HtmlAstNodeMap[K]) => React.ReactNode
 } = {
@@ -59,21 +79,11 @@ const hastNodeComponents: {
       <InternalMarkdownRenderer nodes={node.children} />
     </p>
   ),
-  link: (node) => {
-    if (node.url.startsWith('/')) {
-      return (
-        <Link to={node.url} className="font-bold">
-          <InternalMarkdownRenderer nodes={node.children} />
-        </Link>
-      )
-    } else {
-      return (
-        <a href={node.url} className="font-bold">
-          <InternalMarkdownRenderer nodes={node.children} />
-        </a>
-      )
-    }
-  },
+  link: (node) => (
+    <A href={node.url}>
+      <InternalMarkdownRenderer nodes={node.children} />
+    </A>
+  ),
   heading: (node) => (
     <H level={node.depth}>
       <InternalMarkdownRenderer nodes={node.children} />
