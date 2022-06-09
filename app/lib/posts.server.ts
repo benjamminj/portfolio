@@ -1,4 +1,5 @@
-import { z, ZodTypeAny } from 'zod'
+import { z } from 'zod'
+import type { ZodTypeAny } from 'zod'
 import { processContent } from './process-content'
 import { posts as content } from '~/generated/posts.generated.server'
 import fm from 'front-matter'
@@ -29,6 +30,8 @@ const PostMetadataSchema = z
     lastUpdated: FormattedDateSchema.optional(),
     description: z.string().optional(),
     tags: z.array(z.string()).default([]),
+    link: z.string().optional(),
+    publisher: z.string().optional(),
   })
   .transform(({ lastUpdated, date, ...rest }) => ({
     ...rest,

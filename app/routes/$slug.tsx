@@ -4,7 +4,7 @@ import { get } from '~/lib/posts.server'
 
 import type { Post } from '~/lib/posts.server'
 import type { LoaderFunction, MetaFunction } from '@remix-run/node'
-import { MarkdownRenderer } from '~/components/markdown-renderer'
+import { A, MarkdownRenderer } from '~/components/markdown-renderer'
 import { Tag } from '~/components/tag'
 
 export const meta: MetaFunction = ({ data }) => {
@@ -56,6 +56,14 @@ export default function SlugRoute() {
   return (
     <main>
       <MarkdownRenderer hast={data?.post.content} />
+
+      {data.post?.link && data?.post?.publisher && (
+        <p className="pt-4 prose dark:prose-invert">
+          <A title={data.post.publisher} href={data.post.link}>
+            Read the full article on {data.post.publisher}.
+          </A>
+        </p>
+      )}
 
       {data?.post.tags?.length > 0 && (
         // TODO: multiple footers, or is something else more appropriate?
