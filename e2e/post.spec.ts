@@ -48,6 +48,16 @@ test.describe('/[post]', () => {
       })
     )
   })
+
+  test('should link to externally published blog posts', async ({ page }) => {
+    await page.goto(
+      '/how-css-works-parsing-and-painting-in-the-critical-rendering-path'
+    )
+    const $link = page.locator('text=Read the full article on LogRocket.')
+    expect(await $link.getAttribute('href')).toEqual(
+      'https://blog.logrocket.com/how-css-works-parsing-painting-css-in-the-critical-rendering-path-b3ee290762d3/'
+    )
+  })
 })
 
 test.describe('/[post] (chromium only)', () => {
@@ -65,10 +75,7 @@ test.describe('/[post] (chromium only)', () => {
     context.clearPermissions()
   })
 
-  test('should allow copy-pasting code snippets', async ({
-    page,
-    browserName,
-  }) => {
+  test('should allow copy-pasting code snippets', async ({ page }) => {
     await page.goto('/mocking-fetch')
     const $copyButton = page.locator(`text=Copy to clipboard`).first()
     expect(await $copyButton.isVisible()).toEqual(true)
