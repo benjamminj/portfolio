@@ -8,5 +8,15 @@
     "name": "A Codebase is an Organism",
     "url": "https://meltingasphalt.com/a-codebase-is-an-organism",
     "tags": ["software-engineering", "tech-debt", "philosophy"]
+  },
+  {
+    "name": "On the Spectrum of Abstraction (YouTube)",
+    "url": "https://www.youtube.com/watch?v=mVVNJKv9esE",
+    "tags": ["software-engineering", "philosophy"]
+  },
+  {
+    "name": "The Canvas Cares Not",
+    "url": "https://www.neversaw.us/2022/01/30/the-canvas-cares-not",
+    "tags": ["software-engineering", "philosophy"]
   }
 ]

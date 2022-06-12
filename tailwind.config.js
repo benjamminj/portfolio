@@ -28,6 +28,27 @@ module.exports = {
         return {
           DEFAULT: {
             css: {
+              table: {
+                'thead tr': {
+                  backgroundColor: theme('colors.gray.300'),
+
+                  '@media (prefers-color-scheme: dark)': {
+                    backgroundColor: theme('colors.gray.600'),
+                  },
+                },
+                'tbody tr': {
+                  '&:nth-child(even)': {
+                    backgroundColor: theme('colors.gray.200'),
+
+                    '@media (prefers-color-scheme: dark)': {
+                      backgroundColor: theme('colors.gray.700'),
+                    },
+                  },
+                },
+                td: {
+                  padding: theme('spacing.2'),
+                },
+              },
               ol: {
                 counterReset: 'ol-count',
                 '& > li:before': {
