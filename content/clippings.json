@@ -1,0 +1,12 @@
+[
+  {
+    "name": "The Wrong Abstraction",
+    "url": "https://sandimetz.com/blog/2016/1/20/the-wrong-abstraction",
+    "tags": ["software-engineering"]
+  },
+  {
+    "name": "A Codebase is an Organism",
+    "url": "https://meltingasphalt.com/a-codebase-is-an-organism",
+    "tags": ["software-engineering", "tech-debt", "philosophy"]
+  }
+]

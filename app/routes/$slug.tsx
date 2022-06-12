@@ -1,11 +1,11 @@
-import { HtmlMetaDescriptor, useLoaderData } from '@remix-run/react'
-import { z } from 'zod'
-import { get } from '~/lib/posts.server'
-
-import type { Post } from '~/lib/posts.server'
 import type { LoaderFunction, MetaFunction } from '@remix-run/node'
+import type { HtmlMetaDescriptor } from '@remix-run/react'
+import { useLoaderData } from '@remix-run/react'
+import { z } from 'zod'
 import { A, MarkdownRenderer } from '~/components/markdown-renderer'
 import { Tag } from '~/components/tag'
+import type { Post } from '~/lib/posts.server'
+import { get } from '~/lib/posts.server'
 
 export const meta: MetaFunction = ({ data }) => {
   const metadata: HtmlMetaDescriptor = {
