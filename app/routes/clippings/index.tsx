@@ -2,8 +2,6 @@ import type { LoaderFunction, MetaFunction } from '@remix-run/node'
 import { useLoaderData } from '@remix-run/react'
 import { A } from '~/components/markdown-renderer'
 import { Tag } from '~/components/tag'
-import { processContent } from '~/lib/process-content'
-import { readFile } from '~/lib/read-file.server'
 import type { Clipping } from './.helpers'
 
 export const meta: MetaFunction = () => {
@@ -40,7 +38,7 @@ export default function ClippingsRoute() {
             <td>Tags</td>
           </tr>
         </thead>
-        <tbody>
+        <tbody data-testid="Clippings__tablebody">
           {clippings.map((clipping) => (
             <tr key={clipping.url}>
               <td className="w-3/5">
