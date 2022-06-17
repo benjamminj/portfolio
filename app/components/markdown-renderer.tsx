@@ -64,7 +64,7 @@ export const A = ({
   }
 
   return (
-    <a href={href} className="font-bold">
+    <a href={href} className="font-bold hover:text-gray-100">
       {children}
     </a>
   )

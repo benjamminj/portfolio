@@ -15,6 +15,7 @@ export const meta: MetaFunction = () => {
 
 type LoaderData = {
   title: string
+  subtitle: string
   clippings: Clipping[]
 }
 
@@ -22,6 +23,7 @@ export const loader: LoaderFunction = async () => {
   const { default: clippings } = await import('content/clippings.json')
   return {
     title: 'Clippings',
+    subtitle: "Articles, blogs, and other links I've found interesting.",
     clippings,
   }
 }
@@ -46,7 +48,7 @@ export default function ClippingsRoute() {
               </td>
               <td className="flex gap-2 flex-wrap">
                 {clipping.tags.map((tag) => (
-                  <Tag key={tag} tag={tag} />
+                  <Tag variant="strong" key={tag} tag={tag} />
                 ))}
               </td>
             </tr>
