@@ -32,6 +32,7 @@ test.describe('/clippings', () => {
       const [$linkCell, $tagsCell] = await $row.$$('role=cell')
       const $link = await $linkCell.$('role=link')
       const $tags = await $tagsCell.$$('role=link')
+
       expect(await $link?.isVisible()).toEqual(true)
       const $linkHref = await $link?.getAttribute('href')
       expect($linkHref?.startsWith('http')).toEqual(true)
