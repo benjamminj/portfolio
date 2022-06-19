@@ -18,5 +18,15 @@
     "name": "The Canvas Cares Not",
     "url": "https://www.neversaw.us/2022/01/30/the-canvas-cares-not",
     "tags": ["software-engineering", "philosophy"]
+  },
+  {
+    "name": "On Being A Senior Engineer",
+    "url": "https://www.kitchensoap.com/2012/10/25/on-being-a-senior-engineer/",
+    "tags": ["software-engineering", "career"]
+  },
+  {
+    "name": "Parse, don't validate",
+    "url": "https://lexi-lambda.github.io/blog/2019/11/05/parse-don-t-validate/",
+    "tags": ["software-engineering"]
   }
 ]
