@@ -28,5 +28,10 @@
     "name": "Parse, don't validate",
     "url": "https://lexi-lambda.github.io/blog/2019/11/05/parse-don-t-validate/",
     "tags": ["software-engineering"]
+  },
+  {
+    "name": "Small CLs",
+    "url": "https://google.github.io/eng-practices/review/developer/small-cls.html",
+    "tags": ["software-engineering", "teamwork", "pull-requests"]
   }
 ]
