@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { Post } from '../posts.server'
+  import type { Post } from '../posts-service.server'
   import Tag from './tag.svelte'
   export let post: Post
 </script>
