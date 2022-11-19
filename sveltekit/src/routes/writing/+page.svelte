@@ -1,7 +1,10 @@
 <script lang="ts">
-    // import type { PageData } from './$types';
+    import PostList from '$lib/components/post-list.svelte';
+    import type { PageData } from './$types';
     
-    // export let data: PageData;
+    export let data: PageData;
 </script>
 
-writing!
+<main>
+    <PostList posts={data.posts} />
+</main>
