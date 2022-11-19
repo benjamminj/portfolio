@@ -62,7 +62,9 @@ export type PostContent = z.infer<typeof PostContentSchema>;
  * when we get up large builds...
  */
 export class PostService {
-	public static async list({ include = [] }: { include?: 'html'[] } = {}): Promise<Post[]> {
+	public static async list({ include = [] }: { include?: 'html'[] } = {}): Promise<
+		(Post & { html?: string })[]
+	> {
 		const rawPosts = await this.fetchRaw();
 		const formatted = await Promise.all(
 			rawPosts.map(([path, raw]) => this.parse({ path, raw, include }))
