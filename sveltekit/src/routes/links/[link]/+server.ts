@@ -8,6 +8,8 @@ const links = {
 	twitter: 'https://twitter.com/benjamminj'
 };
 
+export const prerender = false;
+
 export const GET: RequestHandler = async ({ request, params, setHeaders }) => {
 	const { link } = params;
 

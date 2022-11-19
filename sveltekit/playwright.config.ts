@@ -5,9 +5,6 @@ const config: PlaywrightTestConfig = {
 		command: 'npm run build && npm run preview',
 		port: 4173
 	},
-	// use: {
-	// 	baseURL: 'https://benjaminjohnson.me'
-	// },
 	projects: [
 		{
 			name: 'Chromium',

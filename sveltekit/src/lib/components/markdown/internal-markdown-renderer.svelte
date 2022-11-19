@@ -16,9 +16,7 @@
       <svelte:self nodes={node.children} />
     </p>
   {:else if node.type === 'link'}
-    <A href={node.url}>
-      <svelte:self nodes={node.children} />
-    </A>
+    <A href={node.url}><svelte:self nodes={node.children} /></A>
   {:else if node.type === 'thematicBreak'}
     <hr class="relative h-auto my-16 font-mono tracking-tighter text-center border-none before:content-['*_*_*'] before:text-lg dark:text-gray-400" />
   {:else if node.type === 'strong'}
