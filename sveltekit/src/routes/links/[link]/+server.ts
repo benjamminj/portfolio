@@ -10,7 +10,7 @@ const links = {
 
 export const prerender = false;
 
-export const GET: RequestHandler = async ({ request, params, setHeaders }) => {
+export const GET: RequestHandler = async ({ params, setHeaders }) => {
 	const { link } = params;
 
 	if (link in links) {
