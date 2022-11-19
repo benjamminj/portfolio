@@ -128,7 +128,7 @@ export class PostService {
 			post.html = html;
 		}
 
-		return schema.parseAsync(post);
+		return schema.parseAsync(post) as Promise<Post>;
 	}
 
 	/**

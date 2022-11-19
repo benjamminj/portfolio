@@ -1,5 +1,6 @@
 <script lang="ts">
 	import type { HtmlAstNode } from "$lib/hast.types";
+	import A from "./a.svelte";
 	import CodeBlock from "./code-block.svelte";
 	import Heading from "./heading.svelte";
   export let nodes: HtmlAstNode[] = []; 
@@ -15,9 +16,9 @@
       <svelte:self nodes={node.children} />
     </p>
   {:else if node.type === 'link'}
-    <a href={node.url} class="font-bold hover:text-gray-100">
+    <A href={node.url}>
       <svelte:self nodes={node.children} />
-    </a>
+    </A>
   {:else if node.type === 'thematicBreak'}
     <hr class="relative h-auto my-16 font-mono tracking-tighter text-center border-none before:content-['*_*_*'] before:text-lg dark:text-gray-400" />
   {:else if node.type === 'strong'}
