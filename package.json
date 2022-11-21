@@ -20,7 +20,8 @@
   "prettier": {
     "semi": false,
     "singleQuote": true,
-    "trailingComma": "es5"
+    "trailingComma": "es5",
+    "useTabs": true
   },
   "dependencies": {
     "@remix-run/node": "^1.5.1",
