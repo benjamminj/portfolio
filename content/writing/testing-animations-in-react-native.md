@@ -39,8 +39,8 @@ So I figured I'd try it out. All you've got to do is call the function at the to
 
 ```jsx
 beforeEach(() => {
-  jest.useFakeTimers()
-})
+	jest.useFakeTimers();
+});
 ```
 
 And then to advance the fake time, you can do something like this:
@@ -48,7 +48,7 @@ And then to advance the fake time, you can do something like this:
 ```jsx
 // inside a test
 // move forward 500ms
-jest.advanceTimersByTime(500)
+jest.advanceTimersByTime(500);
 ```
 
 Turns out this creates an _entirely new error_ specific to only the testing environment. The error goes something like this:
@@ -75,11 +75,11 @@ First, we need to mock out the `requestAnimationFrame` to not use `setTimeout(fn
 
 ```jsx
 // in a test setup file, or your test itself
-const FRAME_TIME = 10
+const FRAME_TIME = 10;
 
-global.requestAnimationFrame = cb => {
-  setTimeout(cb, FRAME_TIME)
-}
+global.requestAnimationFrame = (cb) => {
+	setTimeout(cb, FRAME_TIME);
+};
 ```
 
 What this does is simulate a new frame every 10 milliseconds. You could put any number here, but the reason why I like 10 for the timeout amount is because it allows us to avoid mathematical gymnastics inside of our unit tests. For example, if we travel forward by 300ms, it's easy to mentally calculate that we'll advance by 30 frames.
@@ -88,28 +88,28 @@ Now that we've polyfilled `requestAnimationFrame`, the next order of business is
 
 ```jsx
 // timeTravel.js
-import MockDate from 'mockdate'
+import MockDate from 'mockdate';
 
-const FRAME_TIME = 10
+const FRAME_TIME = 10;
 
 const advanceOneFrame = () => {
-  const now = Date.now()
-  MockDate.set(new Date(now + FRAME_TIME))
-  jest.advanceTimersByTime(FRAME_TIME)
-}
+	const now = Date.now();
+	MockDate.set(new Date(now + FRAME_TIME));
+	jest.advanceTimersByTime(FRAME_TIME);
+};
 
 const timeTravel = (msToAdvance = FRAME_TIME) => {
-  const numberOfFramesToRun = msToAdvance / FRAME_TIME
-  let framesElapsed = 0
+	const numberOfFramesToRun = msToAdvance / FRAME_TIME;
+	let framesElapsed = 0;
 
-  // Step through each of the frames until we've ran them all
-  while (framesElapsed < numberOfFramesToRun) {
-    advanceOneFrame()
-    framesElapsed++
-  }
-}
+	// Step through each of the frames until we've ran them all
+	while (framesElapsed < numberOfFramesToRun) {
+		advanceOneFrame();
+		framesElapsed++;
+	}
+};
 
-export default timeTravel
+export default timeTravel;
 ```
 
 It's worth noting that we _do_ need this `timeTravel` function in addition to the `requestAnimationFrame` polyfill. The main reason has to do with the way that React Native's `Animated` module calculates elapsed time (and an animation's progress). Under the hood, it uses the current date (`Date.now`) to calculate how much time elapsed since the animation began.
@@ -123,9 +123,9 @@ Lastly, we need to do a little bit of setup in order to use this function. I fin
 ```jsx
 // timeTravel.js
 export const setupTimeTravel = () => {
-  MockDate.set(0)
-  jest.useFakeTimers()
-}
+	MockDate.set(0);
+	jest.useFakeTimers();
+};
 ```
 
 The first line of our `setupTimeTravel` function isn't 100% necessary, but it certainly helps. Because `Animated` relies on `Date.now` to calculate elapsed time, setting it to `0` makes it easier to reason about our animation logic later on. However, you _could_ get by without it, so leave it out if you want to!
@@ -137,22 +137,22 @@ However, we do need to use `jest.useFakeTimers` in our `setupTimeTravel` functio
 Now that we've got our brand new `timeTravel` function, let's see what it could look like in a test!
 
 ```jsx
-import { timeTravel, setupTimeTravel } from './path-to/timeTravel'
+import { timeTravel, setupTimeTravel } from './path-to/timeTravel';
 
-beforeEach(setupTimeTravel)
+beforeEach(setupTimeTravel);
 
 describe('<ComponentWithAnimation />', () => {
-  test('works with animations', () => {
-    // render the component
-    // trigger some animation
+	test('works with animations', () => {
+		// render the component
+		// trigger some animation
 
-    // this actually moves the timers forward
-    // and simulates the frames over 500ms
-    timeTravel(500)
+		// this actually moves the timers forward
+		// and simulates the frames over 500ms
+		timeTravel(500);
 
-    // run assertions on the animated state here
-  })
-})
+		// run assertions on the animated state here
+	});
+});
 ```
 
 ---

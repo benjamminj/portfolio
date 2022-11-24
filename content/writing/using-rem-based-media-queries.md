@@ -9,7 +9,7 @@ One of my favorite CSS "tricks" is the `rem`-based media query:
 
 ```css
 @media screen and (min-width: 48rem) {
-  /*  Styles for tablets and above */
+	/*  Styles for tablets and above */
 }
 ```
 

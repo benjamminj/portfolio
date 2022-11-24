@@ -18,24 +18,24 @@ Async/await syntax were added to ECMAScript in 2017 (or ES8), and it's incredibl
 
 ```js
 async function fetchData(id) {
-  const result = await fetch(`https://example.com/users/${id}`)
-  const json = result.json()
+	const result = await fetch(`https://example.com/users/${id}`);
+	const json = result.json();
 
-  // json is an array of users
-  return json
+	// json is an array of users
+	return json;
 }
 ```
 
 Or, if you prefer using arrow functions, the above function's equivalent would look like this:
 
 ```js
-const fetchData = async id => {
-  const result = await fetch(`https://example.com/users/${id}`)
-  const json = result.json()
+const fetchData = async (id) => {
+	const result = await fetch(`https://example.com/users/${id}`);
+	const json = result.json();
 
-  // json is an array of users
-  return json
-}
+	// json is an array of users
+	return json;
+};
 ```
 
 Changing a regular function into an async function happens just by using the `async` keyword in front of the function declaration. By doing this, we're able to use the `await` keyword to simply have our function pause execution until whatever we're `await`ing is resolved.
@@ -46,8 +46,8 @@ Our sample function _without async/await_ would look like this:
 
 ```js
 function fetchData(id) {
-  // resolves with an array of users
-  return fetch(`https://example.com/users/${id}`).then(result => result.json())
+	// resolves with an array of users
+	return fetch(`https://example.com/users/${id}`).then((result) => result.json());
 }
 ```
 
@@ -63,28 +63,28 @@ TypeScript has a built in `Promise` type we can use to describe promises—it's 
 
 ```ts
 interface User {
-  id: string
-  name: string
+	id: string;
+	name: string;
 }
 
 // This type describes a promise resolving with an array of user objects.
-type UsersPromise = Promise<User[]>
+type UsersPromise = Promise<User[]>;
 ```
 
 Once we've identified how to wrap our `User` interface in the `Promise` type all that's left to do is attach it to our function and add the other type annotations:
 
 ```ts
 interface User {
-  id: string
-  name: string
+	id: string;
+	name: string;
 }
 
 async function fetchData(id: string): Promise<User[]> {
-  const result = await fetch(`https://example.com/users/${id}`)
-  const json = result.json()
+	const result = await fetch(`https://example.com/users/${id}`);
+	const json = result.json();
 
-  // json is an array of users
-  return json
+	// json is an array of users
+	return json;
 }
 ```
 
@@ -94,20 +94,20 @@ If you prefer to use [type aliases](https://www.typescriptlang.org/docs/handbook
 
 ```ts
 interface User {
-  id: string
-  name: string
+	id: string;
+	name: string;
 }
 
 // Type alias
-type FetchData = (id: string) => Promise<User[]>
+type FetchData = (id: string) => Promise<User[]>;
 
-const fetchData: FetchData = async id => {
-  const result = await fetch(`https://example.com/users/${id}`)
-  const json = result.json()
+const fetchData: FetchData = async (id) => {
+	const result = await fetch(`https://example.com/users/${id}`);
+	const json = result.json();
 
-  // json is an array of users
-  return json
-}
+	// json is an array of users
+	return json;
+};
 ```
 
 This can be especially useful to decrease verbosity if the async function you're typing has multiple or complex parameters.

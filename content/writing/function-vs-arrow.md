@@ -39,11 +39,11 @@ Instead of writing JavaScript functions using the `function` keyword, just decla
 ```js
 // Using `function`
 function add(a, b) {
-  return a + b
+	return a + b;
 }
 
 // Using an arrow function
-const add = (a, b) => a + b
+const add = (a, b) => a + b;
 ```
 
 ## Why?

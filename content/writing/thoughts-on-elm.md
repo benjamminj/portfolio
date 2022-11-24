@@ -28,7 +28,7 @@ For example, if I wrote a function named `add` that takes two numbers & returns 
 #### JavaScript
 
 ```javascript
-const add = (a, b) => a + b
+const add = (a, b) => a + b;
 ```
 
 #### Elm
@@ -44,7 +44,7 @@ The key to strong typing comes in when I want to _ actually use_ the function. W
 #### JavaScript
 
 ```javascript
-const sum = add('a', 'b') // returns the string "ab" 🤔
+const sum = add('a', 'b'); // returns the string "ab" 🤔
 ```
 
 #### Elm
@@ -65,10 +65,10 @@ For example, let's say you make a network request for some JSON. You're gonna op
 
 ```json
 {
-  "title": "Some cool stuff about Elm",
-  "body": "It's fun!",
-  "author": "Benjamin Johnson",
-  "dateCreated": "2018-01-25"
+	"title": "Some cool stuff about Elm",
+	"body": "It's fun!",
+	"author": "Benjamin Johnson",
+	"dateCreated": "2018-01-25"
 }
 ```
 
@@ -124,22 +124,22 @@ In the above example, each HTML element is a function that takes two arguments &
 Compare this to something like JSX, which feel much closer to raw HTML.
 
 ```jsx
-const view = model => (
-  <div>
-    <button onClick={Decrement}> - </button>
-    <div>{model}</div>
-    <button onClick={Increment}> + </button>
-  </div>
-)
+const view = (model) => (
+	<div>
+		<button onClick={Decrement}> - </button>
+		<div>{model}</div>
+		<button onClick={Increment}> + </button>
+	</div>
+);
 ```
 
 Or something like Vue's template syntax, which just builds on top of HTML
 
 ```html
 <div>
-  <button v-on:click="Decrement">-</button>
-  <div>{{model}}</div>
-  <button v-on:click="Increment">+</button>
+	<button v-on:click="Decrement">-</button>
+	<div>{{model}}</div>
+	<button v-on:click="Increment">+</button>
 </div>
 ```
 

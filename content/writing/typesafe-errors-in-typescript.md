@@ -32,13 +32,13 @@ A very common style of handling errors in JavaScript (and TypeScript) is to `thr
 
 ```js
 function throwsError() {
-  throw new Error('😱')
+	throw new Error('😱');
 }
 
 try {
-  throwError()
+	throwError();
 } catch (error) {
-  // we have access to the error here.
+	// we have access to the error here.
 }
 ```
 
@@ -55,11 +55,11 @@ So, how can we manage failure and uncertainty in our app in a way that allows th
 I have a custom type that I use to wrap unsafe code, here's what it looks like:
 
 ```ts
-type ResultSuccess<T> = { type: 'success'; value: T }
+type ResultSuccess<T> = { type: 'success'; value: T };
 
-type ResultError = { type: 'error'; error: Error }
+type ResultError = { type: 'error'; error: Error };
 
-type Result<T> = ResultSuccess | ResultError
+type Result<T> = ResultSuccess | ResultError;
 ```
 
 The `Result` type is an example of a TypeScript _union type_—it represents something that could be a `ResultSuccess` _or_ a `ResultError`. `ResultSuccess` and `ResultError` both have a `type` property, but other than that the objects are completely different.
@@ -68,27 +68,27 @@ Here's what it would look like to have a function that returns a `Result` type.
 
 ```ts
 let myFunction = (value: string): Result<number> => {
-  if (value === '0') {
-    return { type: 'error', error: new Error('The value cannot be 0') }
-  }
+	if (value === '0') {
+		return { type: 'error', error: new Error('The value cannot be 0') };
+	}
 
-  return { type: 'success', value }
-}
+	return { type: 'success', value };
+};
 ```
 
 This example is fairly small—the function doesn't do much more than checking whether the `value` is `0` or not. However, the benefits of a `Result` type become clearer when we slap it on an API request:
 
 ```ts
-import axios from 'axios'
+import axios from 'axios';
 
 let myRequest = async (id: string): Result<User> => {
-  try {
-    let result = await axios.get(`/my-api/users/${id}`)
-    return { type: 'success', value: result.data }
-  } catch (error) {
-    return { type: 'error', error }
-  }
-}
+	try {
+		let result = await axios.get(`/my-api/users/${id}`);
+		return { type: 'success', value: result.data };
+	} catch (error) {
+		return { type: 'error', error };
+	}
+};
 ```
 
 One note about using `axios` for data fetching is that it will automatically `throw` an error if the API returns anything with a 400-level or 500-level response. While this means you don't _have to_ check for successful responses, this opens us up to the danger that an uncaught exception crashes the entire app.
@@ -99,14 +99,14 @@ When we have our "risky" code return a `Result`, TypeScript is smart enough to f
 
 ```ts
 let fetchDataAndNotify = async () => {
-  let data = await myRequest('@benjamminj')
+	let data = await myRequest('@benjamminj');
 
-  if (data.type === 'success') {
-    return `The user's name is ${data.value.name}`
-  }
+	if (data.type === 'success') {
+		return `The user's name is ${data.value.name}`;
+	}
 
-  return `There was an error fetching this user.`
-}
+	return `There was an error fetching this user.`;
+};
 ```
 
 I'll admit, having these types of checks around the codebase isn't the "prettiest" thing in the world. But it's certainly better than having the app randomly crash when data is missing or API requests fail. Fault-tolerance and safety are more valuable than avoiding a couple `if` blocks!
@@ -115,28 +115,28 @@ Using `Result` allows us to take a potential runtime error and turn it into a co
 
 ```ts
 let fetchDataAndNotify = async () => {
-  let data = await myRequest('@benjamminj')
+	let data = await myRequest('@benjamminj');
 
-  // This line will be a TS error, since `data.value` doesn't exist on
-  // `ResultError` and we don't know for sure that `data` is a `ResultSuccess`
-  return `The user's name is ${data.value.name}`
-}
+	// This line will be a TS error, since `data.value` doesn't exist on
+	// `ResultError` and we don't know for sure that `data` is a `ResultSuccess`
+	return `The user's name is ${data.value.name}`;
+};
 ```
 
 As an added bonus, if you _do_ want to throw an error, the `ResultError` type contains an actual `Error`. This gives you full control over how and when errors get thrown from your app.
 
 ```ts
 let renderEssentialData = async () => {
-  let data = await myRequest('@benjamminj')
+	let data = await myRequest('@benjamminj');
 
-  if (data.type === 'error') {
-    // If this data is essential to the app, it's better to fail fast than to
-    // show potentially malformed or invalid states.
-    throw data.error
-  }
+	if (data.type === 'error') {
+		// If this data is essential to the app, it's better to fail fast than to
+		// show potentially malformed or invalid states.
+		throw data.error;
+	}
 
-  // Do stuff with the data here, TS knows that it's a ResultSuccess type by now.
-}
+	// Do stuff with the data here, TS knows that it's a ResultSuccess type by now.
+};
 ```
 
 And that's it! I've been using this approach for most of the API calls coming into the front-end. I'm really happy with how it's turned out on the apps where I've implemented it! Instead of having random crashes, I'm forced time and time again by the compiler to either design error states for missing data or API failures.

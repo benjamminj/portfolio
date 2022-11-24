@@ -14,42 +14,38 @@ tags:
  * This is a replacement for lodash _.set(), it contains core functionality but
  * perhaps skips some edge cases.
  */
-export const set = <
-  T extends Record<string, unknown> = Record<string, unknown>
->(
-  obj: Record<keyof T, unknown>,
-  path: string | string[],
-  value: unknown
+export const set = <T extends Record<string, unknown> = Record<string, unknown>>(
+	obj: Record<keyof T, unknown>,
+	path: string | string[],
+	value: unknown
 ): T => {
-  // Contains all characters that are not `.`, `[`, or `]`
-  const validPathCharactersRegex = /([^[.\]])+/g
-  const pathArray = Array.isArray(path)
-    ? path
-    : path.match(validPathCharactersRegex)
+	// Contains all characters that are not `.`, `[`, or `]`
+	const validPathCharactersRegex = /([^[.\]])+/g;
+	const pathArray = Array.isArray(path) ? path : path.match(validPathCharactersRegex);
 
-  if (!pathArray) return obj
+	if (!pathArray) return obj;
 
-  let nestedObj = obj
-  for (let i = 0; i < pathArray.length; i++) {
-    let key: string | number = pathArray[i]
+	let nestedObj = obj;
+	for (let i = 0; i < pathArray.length; i++) {
+		let key: string | number = pathArray[i];
 
-    // First, set the item to an object/array, if it's not the last we want
-    // to make a nested path.
-    if (nestedObj[key] === undefined) {
-      const isIndex = isNaN(Number(pathArray[i + 1]))
-      nestedObj[key as keyof T] = isIndex ? {} : []
-    }
+		// First, set the item to an object/array, if it's not the last we want
+		// to make a nested path.
+		if (nestedObj[key] === undefined) {
+			const isIndex = isNaN(Number(pathArray[i + 1]));
+			nestedObj[key as keyof T] = isIndex ? {} : [];
+		}
 
-    // If it's the last in the list, set the item to the value
-    if (i === pathArray.length - 1) {
-      nestedObj[key as keyof T] = value
-    }
+		// If it's the last in the list, set the item to the value
+		if (i === pathArray.length - 1) {
+			nestedObj[key as keyof T] = value;
+		}
 
-    nestedObj = nestedObj[key]
-  }
+		nestedObj = nestedObj[key];
+	}
 
-  return obj
-}
+	return obj;
+};
 ```
 
 ## Context
@@ -63,36 +59,36 @@ This snippet of `set` also is ~200 bytes, so it's super lightweight 😅
 ## Usage
 
 ```tsx
-import { set } from './set'
+import { set } from './set';
 
-const obj = { a: 1 }
+const obj = { a: 1 };
 
 // set a path deep in the object
-set(obj, 'b.c.d', 3)
-console.log(obj.b.c.d) // 3
+set(obj, 'b.c.d', 3);
+console.log(obj.b.c.d); // 3
 
 // you can also set array items
-set(obj, 'b.e[0].f', 4)
-console.log(obj.b.e) // [{ f: 4 }]
+set(obj, 'b.e[0].f', 4);
+console.log(obj.b.e); // [{ f: 4 }]
 ```
 
 ## Tests
 
 ```ts
-import { set } from './set'
+import { set } from './set';
 
 test('should allow setting nested paths', () => {
-  const obj = {}
-  set(obj, 'a.b.c', 1)
-  // @ts-expect-error
-  expect(obj.a.b.c).toEqual(1)
-})
+	const obj = {};
+	set(obj, 'a.b.c', 1);
+	// @ts-expect-error
+	expect(obj.a.b.c).toEqual(1);
+});
 
 test('should allow setting nested array paths', () => {
-  const obj = {}
-  set(obj, 'a.b[0].c', 1)
-  set(obj, 'a.b[1].c', 2)
-  // @ts-expect-error
-  expect(obj.a.b).toEqual([{ c: 1 }, { c: 2 }])
-})
+	const obj = {};
+	set(obj, 'a.b[0].c', 1);
+	set(obj, 'a.b[1].c', 2);
+	// @ts-expect-error
+	expect(obj.a.b).toEqual([{ c: 1 }, { c: 2 }]);
+});
 ```

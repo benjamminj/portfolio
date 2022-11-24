@@ -61,10 +61,10 @@ It can be a bit jarring seeing that list of classes the first time you have to d
 
 ```html
 <a
-  href="https://example.com"
-  className="inline-block text-xl font-medium text-black no-underline dark:text-white"
+	href="https://example.com"
+	className="inline-block text-xl font-medium text-black no-underline dark:text-white"
 >
-  <span className="lowercase">Link text</span>
+	<span className="lowercase">Link text</span>
 </a>
 ```
 

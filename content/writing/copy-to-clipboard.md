@@ -9,24 +9,24 @@ tags:
 
 ```ts
 export const copyToClipboard = (input: string) => {
-  const $el = document.createElement('textarea')
-  $el.value = input
+	const $el = document.createElement('textarea');
+	$el.value = input;
 
-  // Make sure we hide the element from sight
-  $el.setAttribute('readonly', '')
-  $el.style.position = 'absolute'
-  $el.style.left = '-9999px'
+	// Make sure we hide the element from sight
+	$el.setAttribute('readonly', '');
+	$el.style.position = 'absolute';
+	$el.style.left = '-9999px';
 
-  document.body.appendChild($el)
+	document.body.appendChild($el);
 
-  // Select the input, this is the same as dragging your cursor over it.
-  $el.select()
-  // Copy the current selection to the clipboard
-  document.execCommand('copy')
+	// Select the input, this is the same as dragging your cursor over it.
+	$el.select();
+	// Copy the current selection to the clipboard
+	document.execCommand('copy');
 
-  // Finally, clean up after ourselves
-  document.body.removeChild($el)
-}
+	// Finally, clean up after ourselves
+	document.body.removeChild($el);
+};
 ```
 
 ## Context
@@ -47,11 +47,11 @@ One consideration is that selecting the text of a hidden `textarea` might focus 
 
 ```ts
 // This could be anything—an API token, code sample, etc.
-const inputContents = '1234-5678-91011'
+const inputContents = '1234-5678-91011';
 
 // Then you just pass your input into the function! You can attach it to
 // a click event like you normally would in raw JS / your framework of choice.
-copyToClipboard(inputContents)
+copyToClipboard(inputContents);
 ```
 
 ## Tests
@@ -59,23 +59,23 @@ copyToClipboard(inputContents)
 This function's actually a little nasty to test in `jest` since JSDOM doesn't support `document.execCommand`. So you can test that the clipboard command was executed, but you can't _actually_ access clipboard contents in JSOM.
 
 ```ts
-import { copyToClipboard } from '../copyToClipboard'
+import { copyToClipboard } from '../copyToClipboard';
 
-const originalExecCommand = document.execCommand
+const originalExecCommand = document.execCommand;
 
 beforeEach(() => {
-  document.execCommand = jest.fn()
-})
+	document.execCommand = jest.fn();
+});
 
 afterEach(() => {
-  document.execCommand = originalExecCommand
-})
+	document.execCommand = originalExecCommand;
+});
 
 test("should copy the input to the user's clipboard", () => {
-  copyToClipboard('test clipboard')
-  // We can't test the actual clipboard contents, but we can test that
-  // the `execCommand` function was properly fired.
-  expect(document.execCommand).toHaveBeenCalledTimes(1)
-  expect(document.execCommand).toHaveBeenCalledWith('copy')
-})
+	copyToClipboard('test clipboard');
+	// We can't test the actual clipboard contents, but we can test that
+	// the `execCommand` function was properly fired.
+	expect(document.execCommand).toHaveBeenCalledTimes(1);
+	expect(document.execCommand).toHaveBeenCalledWith('copy');
+});
 ```

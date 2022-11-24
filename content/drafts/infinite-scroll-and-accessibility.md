@@ -20,6 +20,7 @@ tags:
   - windowing is really hard to do accessibly.
 
 - infinite scrolling + windowing aren't even necessarily a good UX at all.
+
   - lose your place, oh whale.
   - users maintain a mental model of where things are with pagination.
   - infinite scrolling is good for data that actually is...infinite.
@@ -28,4 +29,3 @@ tags:
   - breaks the footer
   - makes it impossible to jump to the "end" of the page
   - harder for screen reader users to quickly find page content (especially content that hasn't been loaded yet!)
-

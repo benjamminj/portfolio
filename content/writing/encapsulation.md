@@ -21,7 +21,7 @@ When you unlock a door, you're using a simpler interface for a [complex locking 
 The same ideas apply to writing software, we use encapsulation all the time without thinking twice. Consider this sample JavaScript.
 
 ```js
-JSON.parse(someJSONValue)
+JSON.parse(someJSONValue);
 ```
 
 When you call `JSON.parse`, you don't need to know everything about _how_ the JSON gets parsed, you only need to know a few things: the JSON you want to parse, and that you get back a parsed JS object (or array).

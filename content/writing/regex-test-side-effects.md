@@ -23,16 +23,16 @@ Here's an example of this behavior in action.
 
 ```js
 // note that we're using the `g` flag
-const regex = /test/g
+const regex = /test/g;
 
 // returns true
-regex.test('test123')
+regex.test('test123');
 
 // returns false 😭
-regex.test('test123')
+regex.test('test123');
 
 // returns true
-regex.test('test123')
+regex.test('test123');
 ```
 
 Why does this happen? Is it that the JavaScript gods are fickle and have chosen to punish us mortal programmers for not choosing a language like Java? Is it baked into the language so that we can have one more piece of trivia to stump candidates in interviews? (Don't do this btw. Interviews are about seeing whether someone is a good fit for your company, not about proving you're smarter than them).
@@ -45,20 +45,20 @@ Here's the same example from before, but also showing the value of `lastIndex`:
 
 ```js
 // note that we're using the `g` flag on the
-const regex = /test/g
-console.log(regex.lastIndex) // 0
+const regex = /test/g;
+console.log(regex.lastIndex); // 0
 
 // returns true
-regex.test('test123')
-console.log(regex.lastIndex) // 4
+regex.test('test123');
+console.log(regex.lastIndex); // 4
 
 // returns false 😭
-regex.test('test123')
-console.log(regex.lastIndex) // 0
+regex.test('test123');
+console.log(regex.lastIndex); // 0
 
 // returns true
-regex.test('test123')
-console.log(regex.lastIndex) // 4
+regex.test('test123');
+console.log(regex.lastIndex); // 4
 ```
 
 ## How do we work around this quirk?
@@ -72,13 +72,13 @@ Especially if the primary usage of the regex is testing strings, we probably don
 We could have avoided the entire problem if we just removed the `g` flag from the regex itself.
 
 ```js
-const regex = /test/
+const regex = /test/;
 
 // returns true
-regex.test('test123')
+regex.test('test123');
 
 // returns true 🎉
-regex.test('test123')
+regex.test('test123');
 ```
 
 Personally, I think this is the ideal solution—we're using the method as intended, and our regexes reflect the way that we intend them to be used.
@@ -89,14 +89,14 @@ If the regex absolutely _has_ to have the `g` flag, we can provide some much-nee
 
 ```js
 // note that we're using the `g` flag again
-const regex = /test/g
-const str = 'test123'
+const regex = /test/g;
+const str = 'test123';
 
 // returns true
-Boolean(str.match(regex))
+Boolean(str.match(regex));
 
 // returns true 🎉
-Boolean(str.match(regex))
+Boolean(str.match(regex));
 ```
 
 It's not as ergonomic, but it still provides the same `boolean` result. Since `string.match` returns an array of matches and `null` if there's no matches in the string, we can turn this into a `boolean` just by wrapping it in the `Boolean` function to convert it.

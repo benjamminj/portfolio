@@ -25,15 +25,15 @@ If we simply let `fetch` do its thing without mocking it at all, we introduce th
 
 ```js
 function add(a, b) {
-  return a + b
+	return a + b;
 }
 
 // This is the test for the `add` function
 describe('add', () => {
-  test('adds 2 numbers', () => {
-    expect(add(1, 2)).toEqual(3)
-  })
-})
+	test('adds 2 numbers', () => {
+		expect(add(1, 2)).toEqual(3);
+	});
+});
 ```
 
 However, when testing code that uses `fetch` there's a lot of factors that can make our test fail——and many of them are not directly related to input of the function. What happens if your computer is disconnected from the internet? What happens to your test suite if you're working on an airplane (and you _didn't_ pay for in-flight wifi)? What happens when that third-party API is down and you can't even merge a pull request because all of your tests are failing?
@@ -59,34 +59,34 @@ Here's what it would look like to mock `global.fetch` by replacing it entirely.
 ```js
 // This is the function we'll be testing
 async function withFetch() {
-  const res = await fetch('https://jsonplaceholder.typicode.com/posts')
-  const json = await res.json()
+	const res = await fetch('https://jsonplaceholder.typicode.com/posts');
+	const json = await res.json();
 
-  return json
+	return json;
 }
 
 // This is the section where we mock `fetch`
-const unmockedFetch = global.fetch
+const unmockedFetch = global.fetch;
 
 beforeAll(() => {
-  global.fetch = () =>
-    Promise.resolve({
-      json: () => Promise.resolve([]),
-    })
-})
+	global.fetch = () =>
+		Promise.resolve({
+			json: () => Promise.resolve([])
+		});
+});
 
 afterAll(() => {
-  global.fetch = unmockedFetch
-})
+	global.fetch = unmockedFetch;
+});
 
 // This is actual testing suite
 describe('withFetch', () => {
-  test('works', async () => {
-    const json = await withFetch()
-    expect(Array.isArray(json)).toEqual(true)
-    expect(json.length).toEqual(0)
-  })
-})
+	test('works', async () => {
+		const json = await withFetch();
+		expect(Array.isArray(json)).toEqual(true);
+		expect(json.length).toEqual(0);
+	});
+});
 ```
 
 Let's walk through this example! 😅
@@ -101,20 +101,20 @@ Finally, we have the mock for `global.fetch`. As a quick refresher, the mocking 
 
 ```js
 // Part 1
-const unmockedFetch = global.fetch
+const unmockedFetch = global.fetch;
 
 // Part 2
 beforeAll(() => {
-  global.fetch = () =>
-    Promise.resolve({
-      json: () => Promise.resolve([]),
-    })
-})
+	global.fetch = () =>
+		Promise.resolve({
+			json: () => Promise.resolve([])
+		});
+});
 
 // Part 3
 afterAll(() => {
-  global.fetch = unmockedFetch
-})
+	global.fetch = unmockedFetch;
+});
 ```
 
 In the first part we store a reference to the _actual function_ for `global.fetch`. Since we'll be mocking `global.fetch` out at a later point we want to keep this reference around so that we can use it to cleanup our mock after we're done testing.
@@ -169,25 +169,21 @@ If you're not familiar with test spies and mock functions, the TL;DR is that a s
 
 ```js
 const fetchMock = jest
-  .spyOn(global, 'fetch')
-  .mockImplementation(() =>
-    Promise.resolve({ json: () => Promise.resolve([]) })
-  )
+	.spyOn(global, 'fetch')
+	.mockImplementation(() => Promise.resolve({ json: () => Promise.resolve([]) }));
 
 describe('withFetch', () => {
-  test('works', async () => {
-    const json = await withFetch()
+	test('works', async () => {
+		const json = await withFetch();
 
-    // highlight-start
-    expect(fetchMock).toHaveBeenCalledWith(
-      'https://jsonplaceholder.typicode.com/posts'
-    )
-    // highlight-end
+		// highlight-start
+		expect(fetchMock).toHaveBeenCalledWith('https://jsonplaceholder.typicode.com/posts');
+		// highlight-end
 
-    expect(Array.isArray(json)).toEqual(true)
-    expect(json.length).toEqual(0)
-  })
-})
+		expect(Array.isArray(json)).toEqual(true);
+		expect(json.length).toEqual(0);
+	});
+});
 ```
 
 The cool thing about this method of mocking fetch is that we get a couple extra things for free that we don't when we're replacing the `global.fetch` function manually. First off, instead of managing `beforeAll` and `afterAll` ourselves, we can simply use Jest to mock out the `fetch` function and Jest will handle _all of the setup and teardown for us_! Secondly, we make it a lot easier to spy on what `fetch` was called with and use that in our test assertions.
@@ -206,24 +202,20 @@ In order to mock `fetch` for an individual test, we don't have to change much fr
 
 ```js
 describe('withFetch', () => {
-  test('works', async () => {
-    // highlight-start
-    const fetchMock = jest
-      .spyOn(global, 'fetch')
-      .mockImplementation(() =>
-        Promise.resolve({ json: () => Promise.resolve([]) })
-      )
-    // highlight-end
+	test('works', async () => {
+		// highlight-start
+		const fetchMock = jest
+			.spyOn(global, 'fetch')
+			.mockImplementation(() => Promise.resolve({ json: () => Promise.resolve([]) }));
+		// highlight-end
 
-    const json = await withFetch()
-    expect(fetchMock).toHaveBeenCalledWith(
-      'https://jsonplaceholder.typicode.com/posts'
-    )
+		const json = await withFetch();
+		expect(fetchMock).toHaveBeenCalledWith('https://jsonplaceholder.typicode.com/posts');
 
-    expect(Array.isArray(json)).toEqual(true)
-    expect(json.length).toEqual(0)
-  })
-})
+		expect(Array.isArray(json)).toEqual(true);
+		expect(json.length).toEqual(0);
+	});
+});
 ```
 
 And that's it! Now, if we were to add another test, all we would need to do is re-implement the mock _for that test_, except we have complete freedom to do a _different_ `mockImplementation` than we did in the first test.

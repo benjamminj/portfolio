@@ -25,15 +25,15 @@ Before we dive right in on coding our `memoize` function, let's take a moment an
 This is how we want `memoize` to look and behave:
 
 ```js highlight-lines=3,4
-const sumBelow = memoize(someReallyExpensiveFunction)
+const sumBelow = memoize(someReallyExpensiveFunction);
 
 // returns `499999999067109000` after delay
-sumBelow(1e9)
+sumBelow(1e9);
 // returns `1999999998067114000` after delay
-sumBelow(2e9)
+sumBelow(2e9);
 
 // immediately returns `499999999067109000`
-sumBelow(1e9)
+sumBelow(1e9);
 ```
 
 To further flesh out our "acceptance criteria", here's the things that `memoize` needs to do:
@@ -52,12 +52,12 @@ First, we'll need to set up `memoize` as a function that accepts a function as a
 For now, we'll just have `memoize` call the original function with the arguments that were passed to it.
 
 ```js
-const memoize = fn => {
-  return (...args) => {
-    const result = fn(...args)
-    return result
-  }
-}
+const memoize = (fn) => {
+	return (...args) => {
+		const result = fn(...args);
+		return result;
+	};
+};
 ```
 
 As we go through this tutorial we can use the following code to test whether our memoize function is working:
@@ -65,25 +65,25 @@ As we go through this tutorial we can use the following code to test whether our
 ```js
 // ...memoize function up above
 
-const sumBelow = limit => {
-  const sum = 0
+const sumBelow = (limit) => {
+	const sum = 0;
 
-  for (var i = 1; i < limit; i++) {
-    sum += i
-  }
+	for (var i = 1; i < limit; i++) {
+		sum += i;
+	}
 
-  return sum
-}
+	return sum;
+};
 
-const memoSumBelow = memoize(sumBelow)
+const memoSumBelow = memoize(sumBelow);
 
 // Returns after a slight delay
-memoSumBelow(1e6)
+memoSumBelow(1e6);
 // Also returns after a small delay
-memoSumBelow(2e6)
+memoSumBelow(2e6);
 
 // Should return immediately!
-memoSumBelow(1e6)
+memoSumBelow(1e6);
 ```
 
 If we run this with our current `memoize` function, we'll see that `memoSumBelow` returns the **correct** value each time, but it doesn't return immediately on the third call (the second one with `1e6`).
@@ -93,14 +93,14 @@ Let's add a cache of calls to `memoize` so we can make that third call return in
 We'll start by just setting up the cache. We'll use a JavaScript `Map` to store the results.
 
 ```js
-const memoize = fn => {
-  const cache = new Map()
+const memoize = (fn) => {
+	const cache = new Map();
 
-  return (...args) => {
-    const result = fn(...args)
-    return result
-  }
-}
+	return (...args) => {
+		const result = fn(...args);
+		return result;
+	};
+};
 ```
 
 It's important that `const cache` is **outside** of the function that we `return`. (FYI, this is referred to as a [closure](https://whatthefuck.is/closure) if you're interested).
@@ -108,37 +108,37 @@ It's important that `const cache` is **outside** of the function that we `return
 Next, we'll want to create a cache key and put the result of `fn(...args)` in our newly created cache. For now we'll use the first argument as a cache key.
 
 ```js
-const memoize = fn => {
-  const cache = new Map()
+const memoize = (fn) => {
+	const cache = new Map();
 
-  return (...args) => {
-    const cacheKey = args[0]
+	return (...args) => {
+		const cacheKey = args[0];
 
-    const result = fn(...args)
-    cache.set(cacheKey, result)
-    return result
-  }
-}
+		const result = fn(...args);
+		cache.set(cacheKey, result);
+		return result;
+	};
+};
 ```
 
 Now there's one thing left to do—we check the cache to see whether the key exists. If it does, we can grab the item out of the cache instead of running `fn`. If it doesn't, we run `fn(...args)` and cache the result for next time.
 
 ```js
-const memoize = fn => {
-  const cache = new Map()
+const memoize = (fn) => {
+	const cache = new Map();
 
-  return (...args) => {
-    const cacheKey = args[0]
+	return (...args) => {
+		const cacheKey = args[0];
 
-    if (cache.has(cacheKey)) {
-      return cache.get(cacheKey)
-    }
+		if (cache.has(cacheKey)) {
+			return cache.get(cacheKey);
+		}
 
-    const result = fn(...args)
-    cache.set(cacheKey, result)
-    return result
-  }
-}
+		const result = fn(...args);
+		cache.set(cacheKey, result);
+		return result;
+	};
+};
 ```
 
 ## Bonus: writing unit tests 🤓
@@ -150,13 +150,9 @@ Before, let's take a step back and brainstorm about the things we _want to test_
 ```js
 // memoize.test.js
 
-test.todo(
-  'should run the function if it has not been called with the same arguments'
-)
+test.todo('should run the function if it has not been called with the same arguments');
 
-test.todo(
-  'should return a cached result if the function has been called with the same arguments'
-)
+test.todo('should return a cached result if the function has been called with the same arguments');
 ```
 
 In the first test, we'll run our memoized function with arguments that it has _not been called with_. We'll then verify that the underlying `fn` argument got called correctly.
@@ -169,9 +165,9 @@ In this case, we don't need something complicated or performance-intensive—we'
 // memoize.test.js
 
 test('should run the function if it has not been called with the same arguments', () => {
-  const plus1 = jest.fn()
-  const memoizedFn = memoize(plus1)
-})
+	const plus1 = jest.fn();
+	const memoizedFn = memoize(plus1);
+});
 ```
 
 > _If you're familiar with the [Arrange-Act-Assert pattern](https://wiki.c2.com/?ArrangeActAssert) for writing tests, this bit we just did is the "Arrange" portion of the test._
@@ -182,11 +178,11 @@ Next, let's call `plus1` (btw, this is the "Act" portion of Arrange-Act-Assert).
 // memoize.test.js
 
 test('should run the function if it has not been called with the same arguments', () => {
-  const plus1 = jest.fn(a => a + 1)
-  const memoizedFn = memoize(plus1)
+	const plus1 = jest.fn((a) => a + 1);
+	const memoizedFn = memoize(plus1);
 
-  const result = memoizedFn(1)
-})
+	const result = memoizedFn(1);
+});
 ```
 
 Finally, we can add our assertion.
@@ -195,15 +191,15 @@ Finally, we can add our assertion.
 // memoize.test.js
 
 test('should run the function if it has not been called with the same arguments', () => {
-  const plus1 = jest.fn(a => a + 1)
-  const memoizedFn = memoize(plus1)
+	const plus1 = jest.fn((a) => a + 1);
+	const memoizedFn = memoize(plus1);
 
-  const result = memoizedFn(1)
+	const result = memoizedFn(1);
 
-  expect(result).toEqual(2)
-  expect(plus1).toHaveBeenCalledTimes(1)
-  expect(plus1).toHaveBeenCalledWith(1)
-})
+	expect(result).toEqual(2);
+	expect(plus1).toHaveBeenCalledTimes(1);
+	expect(plus1).toHaveBeenCalledWith(1);
+});
 ```
 
 In this test we want to assert three things about our `memoize` function:
@@ -218,9 +214,9 @@ For the second test, the first portion of the test looks exactly the same:
 // memoize.test.js
 
 test('should return a cached result if the function has been called with the same arguments', () => {
-  const plus1 = jest.fn(a => a + 1)
-  const memoizedFn = memoize(plus1)
-})
+	const plus1 = jest.fn((a) => a + 1);
+	const memoizedFn = memoize(plus1);
+});
 ```
 
 However, we'll call `memoizedFn` slightly differently. We're going to call it **three times** so that we can test that the cache is working. We'll call it first with `1`, then once with `2`, then again a third time with `1`.
@@ -229,13 +225,13 @@ However, we'll call `memoizedFn` slightly differently. We're going to call it **
 // memoize.test.js
 
 test('should return a cached result if the function has been called with the same arguments', () => {
-  const plus1 = jest.fn(a => a + 1)
-  const memoizedFn = memoize(plus1)
+	const plus1 = jest.fn((a) => a + 1);
+	const memoizedFn = memoize(plus1);
 
-  memoizedFn(1)
-  memoizedFn(2)
-  const result = memoizedFn(1)
-})
+	memoizedFn(1);
+	memoizedFn(2);
+	const result = memoizedFn(1);
+});
 ```
 
 Finally, we can write our assertions. We want to make sure that `plus1` **isn't called** the second time.
@@ -244,16 +240,16 @@ Finally, we can write our assertions. We want to make sure that `plus1` **isn't 
 // memoize.test.js
 
 test('should return a cached result if the function has been called with the same arguments', () => {
-  const plus1 = jest.fn(a => a + 1)
-  const memoizedFn = memoize(plus1)
+	const plus1 = jest.fn((a) => a + 1);
+	const memoizedFn = memoize(plus1);
 
-  memoizedFn(1)
-  memoizedFn(2)
-  const result = memoizedFn(1)
+	memoizedFn(1);
+	memoizedFn(2);
+	const result = memoizedFn(1);
 
-  expect(result).toEqual(2)
-  expect(plus1).toHaveBeenCalledTimes(2)
-})
+	expect(result).toEqual(2);
+	expect(plus1).toHaveBeenCalledTimes(2);
+});
 ```
 
 For this test we only want to assert two things:
@@ -270,43 +266,43 @@ Currently, `memoize` just takes the first argument and uses that as a cache key.
 We'll add an optional second argument to `memoize` called `getCacheKey`. As a default we're going to use the first argument, like we had before.
 
 ```js
-const defaultGetCacheKey = (...args) => args[0]
+const defaultGetCacheKey = (...args) => args[0];
 
 const memoize = (fn, getCacheKey = defaultGetCacheKey) => {
-  const cache = new Map()
+	const cache = new Map();
 
-  return (...args) => {
-    const cacheKey = args[0]
+	return (...args) => {
+		const cacheKey = args[0];
 
-    if (cache.has(cacheKey)) {
-      return cache.get(cacheKey)
-    }
+		if (cache.has(cacheKey)) {
+			return cache.get(cacheKey);
+		}
 
-    const result = fn(...args)
-    cache.set(cacheKey, result)
-    return result
-  }
-}
+		const result = fn(...args);
+		cache.set(cacheKey, result);
+		return result;
+	};
+};
 ```
 
 Then, all that's left to do is swap `const cacheKey = args[0]` for our new function.
 
 ```js
 const memoize = (fn, getCacheKey = (...args) => args[0]) => {
-  const cache = new Map()
+	const cache = new Map();
 
-  return (...args) => {
-    const cacheKey = getCacheKey(...args)
+	return (...args) => {
+		const cacheKey = getCacheKey(...args);
 
-    if (cache.has(cacheKey)) {
-      return cache.get(cacheKey)
-    }
+		if (cache.has(cacheKey)) {
+			return cache.get(cacheKey);
+		}
 
-    const result = fn(...args)
-    cache.set(cacheKey, result)
-    return result
-  }
-}
+		const result = fn(...args);
+		cache.set(cacheKey, result);
+		return result;
+	};
+};
 ```
 
 Now, instead of only using the first argument to the memoized function as a cache key, we can use whatever we want!
@@ -314,15 +310,15 @@ Now, instead of only using the first argument to the memoized function as a cach
 For example, instead of using the first argument to `add`, we can create a string containing both numbers.
 
 ```js
-const add = (a, b) => a + b
-const memoizedAdd = memoize(add, (a, b) => `${a}-${b}`)
+const add = (a, b) => a + b;
+const memoizedAdd = memoize(add, (a, b) => `${a}-${b}`);
 
-memoizedAdd(1, 3)
-memoizedAdd(1, 2)
-memoizedAdd(1, 4)
+memoizedAdd(1, 3);
+memoizedAdd(1, 2);
+memoizedAdd(1, 4);
 
 // hits the cache for the key "1-2"
-memoizedAdd(1, 2)
+memoizedAdd(1, 2);
 ```
 
 Finally, let's add a test for this new functionality.
@@ -331,18 +327,18 @@ Finally, let's add a test for this new functionality.
 // memoize.test.js
 
 test('should allow customization of the cache key', () => {
-  const add = jest.fn((a, b) => a + b)
-  const getCacheKey = (a, b) => `${a}-${b}`
-  const memoized = memoize(add, getCacheKey)
+	const add = jest.fn((a, b) => a + b);
+	const getCacheKey = (a, b) => `${a}-${b}`;
+	const memoized = memoize(add, getCacheKey);
 
-  memoized(1, 3)
-  memoized(1, 2)
-  memoized(1, 4)
-  const result = memoized(1, 2)
+	memoized(1, 3);
+	memoized(1, 2);
+	memoized(1, 4);
+	const result = memoized(1, 2);
 
-  expect(result).toEqual(3)
-  expect(add).toHaveBeenCalledTimes(3)
-})
+	expect(result).toEqual(3);
+	expect(add).toHaveBeenCalledTimes(3);
+});
 ```
 
 In this test we set up our memoized function and then run it three times with fresh input. In each of these first three calls, the _first argument is the same_. This way we can make sure that the cache key is actually changing.

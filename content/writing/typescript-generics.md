@@ -22,17 +22,17 @@ To dive into generic types, let's start with a couple of type definitions. Imagi
 
 ```ts
 interface User {
-  id: string
-  name: string
-  email: string
-  phoneNumber: string
+	id: string;
+	name: string;
+	email: string;
+	phoneNumber: string;
 }
 
 interface Post {
-  id: string
-  userId: string
-  title: string
-  body: string
+	id: string;
+	userId: string;
+	title: string;
+	body: string;
 }
 ```
 
@@ -42,21 +42,21 @@ The interfaces for the paginated API response could look something like this.
 
 ```ts
 interface UsersListResponse {
-  // Array of User objects
-  data: User[]
-  page: number
-  totalPages: number
-  totalCount: number
-  perPage: number
+	// Array of User objects
+	data: User[];
+	page: number;
+	totalPages: number;
+	totalCount: number;
+	perPage: number;
 }
 
 interface PostsListResponse {
-  // Array of Post objects
-  data: Post[]
-  page: number
-  totalPages: number
-  totalCount: number
-  perPage: number
+	// Array of Post objects
+	data: Post[];
+	page: number;
+	totalPages: number;
+	totalCount: number;
+	perPage: number;
 }
 ```
 
@@ -72,15 +72,15 @@ With generics, we can rewrite `UsersListResponse` and `PostsListResponse` to loo
 
 ```ts
 interface PaginatedResponse<T> {
-  data: T[]
-  page: number
-  totalPages: number
-  totalCount: number
-  perPage: number
+	data: T[];
+	page: number;
+	totalPages: number;
+	totalCount: number;
+	perPage: number;
 }
 
-type UsersListResponse = PaginatedResponse<User>
-type PostsListResponse = PaginatedResponse<Post>
+type UsersListResponse = PaginatedResponse<User>;
+type PostsListResponse = PaginatedResponse<Post>;
 ```
 
 The _generic_ portion is the `<T>` in `PaginatedResponse<T>`—this sets up a type "parameter" named `T`. We can then use `T` inside our interface to configure the _type_ of certain properties.
@@ -95,12 +95,12 @@ Leveraging these generic types allows us to easily respond to changes within our
 
 ```ts
 interface Label {
-  id: string
-  name: string
-  color: string
+	id: string;
+	name: string;
+	color: string;
 }
 
-type LabelsListData = PaginatedResponse<Label>
+type LabelsListData = PaginatedResponse<Label>;
 ```
 
 ## A deeper dive: advanced generic types
@@ -115,21 +115,21 @@ Sometimes we want to provide a generic type, but we don't want it to allow any t
 
 ```ts
 interface IndividualResponse<T extends object> {
-  data: T
+	data: T;
 }
 
 // ✅ This compiles correctly.
-type UserByIdResponse = IndividualResponse<User>
+type UserByIdResponse = IndividualResponse<User>;
 
 // 🚨 This gives the following compiler error:
 // "Type 'number' does not satisfy the constraint 'object'."
-type NumberResponse = IndividualResponse<number>
+type NumberResponse = IndividualResponse<number>;
 ```
 
 The type constraint is that `extends object` bit. I like to think of it as similar to typing a function argument.
 
 ```ts
-const add = (a: number, b: number) => a + b
+const add = (a: number, b: number) => a + b;
 ```
 
 In this `add` function TypeScript doesn't care about what values we pass into `a` and `b`. But it does throw compiler errors if those values aren't `number` types. In a similar way our `IndividualResponse` type will allow any type as a parameter as long as it is an `object`. Since `number` isn't an `object` type, we get a compiler error.
@@ -140,17 +140,17 @@ In the same way that we can provide a type constraint to an interface, we can al
 
 ```ts
 interface IndividualResponse<T = object> {
-  data: object
+	data: object;
 }
 
-const response: IndividualResponse = someData
-const numberResponse: IndividualResponse<number> = someOtherData
+const response: IndividualResponse = someData;
+const numberResponse: IndividualResponse<number> = someOtherData;
 
 // This will have a a type of "object"
-response.data
+response.data;
 
 // This will have a a type of "number"
-numberResponse.data
+numberResponse.data;
 ```
 
 It's usually a good idea to add some default type if you're planning on having your interfaces get reused a lot (unless you can infer the type from a function parameter—we'll get to that next).
@@ -164,26 +164,23 @@ One of the most powerful ways to use TypeScript generics is to infer their type 
 Consider this simplified version of the `Array.prototype.filter` function.
 
 ```ts
-const filter = <T = unknown>(
-  array: T[],
-  validate: (value: T, index: number) => boolean
-): T[] => {
-  const newArray = []
-  for (let i = 0; i < array.length; i++) {
-    const value = array[i]
-    const isValid = validate(value, i)
+const filter = <T = unknown>(array: T[], validate: (value: T, index: number) => boolean): T[] => {
+	const newArray = [];
+	for (let i = 0; i < array.length; i++) {
+		const value = array[i];
+		const isValid = validate(value, i);
 
-    if (isValid) {
-      newArray.push(value)
-    }
-  }
+		if (isValid) {
+			newArray.push(value);
+		}
+	}
 
-  return newArray
-}
+	return newArray;
+};
 
-const above3 = filter([1, 2, 3, 4, 5], number => number > 3) // Returns [4, 5]
+const above3 = filter([1, 2, 3, 4, 5], (number) => number > 3); // Returns [4, 5]
 
-above3 // Type is a "number[]"
+above3; // Type is a "number[]"
 ```
 
 This is way more confusing on the syntax front. Let's break down what's going on in `filter`.
@@ -192,16 +189,16 @@ First, we have `<T = unknown>` in front of the parentheses. This has the same pu
 
 ```ts
 const filter = <T = unknown>(array, validate) => {
-  // function body
-}
+	// function body
+};
 ```
 
 Next, let's look at the `array` parameter to `filter`.
 
 ```ts
 const filter = <T = unknown>(array: T[], validate) => {
-  // function body
-}
+	// function body
+};
 ```
 
 This says that the argument we pass as `array` should be our dynamic `T` type.
@@ -213,12 +210,9 @@ But we can go a few steps further.
 Let's take a look at the `validate` argument.
 
 ```ts
-const filter = <T = unknown>(
-  array: T[],
-  validate: (value: T, index: number) => boolean
-) => {
-  // function body
-}
+const filter = <T = unknown>(array: T[], validate: (value: T, index: number) => boolean) => {
+	// function body
+};
 ```
 
 We can also use `T` when typing our `validate` function to say that _whatever the type of the array is, the "value" should be the same type_.
@@ -228,12 +222,9 @@ This means that when we do `filter([1, 2, 3, 4], value => value > 3)` the compil
 Finally, we add `T[]` as the return type of the function.
 
 ```ts
-const filter = <T = unknown>(
-  array: T[],
-  validate: (value: T, index: number) => boolean
-): T[] => {
-  // function body
-}
+const filter = <T = unknown>(array: T[], validate: (value: T, index: number) => boolean): T[] => {
+	// function body
+};
 ```
 
 This seems like crazy rocket science. Maybe even over-the-top, wouldn't it just be easier to use `any` types?
@@ -241,7 +232,7 @@ This seems like crazy rocket science. Maybe even over-the-top, wouldn't it just 
 But it all comes together when we actually put our `filter` function into action.
 
 ```ts
-const above3 = filter([1, 2, 3, 4, 5], value => value > 3)
+const above3 = filter([1, 2, 3, 4, 5], (value) => value > 3);
 ```
 
 You'll notice that this **doesn't have any types added**. It's plain JavaScript.

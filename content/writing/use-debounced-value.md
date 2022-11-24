@@ -9,23 +9,23 @@ tags:
 ---
 
 ```tsx
-import { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react';
 
 export const useDebouncedValue = <T extends any>(input: T, delay = 0) => {
-  const [value, setValue] = useState(input)
+	const [value, setValue] = useState(input);
 
-  useEffect(() => {
-    const timeout = setTimeout(() => {
-      setValue(input)
-    }, delay)
+	useEffect(() => {
+		const timeout = setTimeout(() => {
+			setValue(input);
+		}, delay);
 
-    return () => {
-      clearTimeout(timeout)
-    }
-  }, [input, delay])
+		return () => {
+			clearTimeout(timeout);
+		};
+	}, [input, delay]);
 
-  return value
-}
+	return value;
+};
 ```
 
 ## Context
@@ -43,91 +43,87 @@ While debouncing the `fetch` function (or any function called from within `useEf
 ## Usage
 
 ```tsx
-import { useEffect, useState } from 'react'
-import { useDebouncedValue } from './useDebouncedValue'
+import { useEffect, useState } from 'react';
+import { useDebouncedValue } from './useDebouncedValue';
 
 export const Component = () => {
-  const [posts, setPosts] = useState([])
-  const [search, setValue] = useState('')
-  const debouncedValue = useDebouncedValue(search)
+	const [posts, setPosts] = useState([]);
+	const [search, setValue] = useState('');
+	const debouncedValue = useDebouncedValue(search);
 
-  useEffect(() => {
-    fetch(`https://jsonplaceholder.typicode.com/posts?search=${debouncedValue}`)
-      .then(res => res.json())
-      .then(posts => setPosts(posts))
-      .catch(() => setPosts([]))
-  }, [debouncedValue])
+	useEffect(() => {
+		fetch(`https://jsonplaceholder.typicode.com/posts?search=${debouncedValue}`)
+			.then((res) => res.json())
+			.then((posts) => setPosts(posts))
+			.catch(() => setPosts([]));
+	}, [debouncedValue]);
 
-  return (
-    <div>
-      <label>
-        Search
-        <input
-          name="search"
-          value={search}
-          onChange={ev => setValue(ev.target.value)}
-        />
-      </label>
+	return (
+		<div>
+			<label>
+				Search
+				<input name="search" value={search} onChange={(ev) => setValue(ev.target.value)} />
+			</label>
 
-      <div>{posts.length} posts found</div>
-    </div>
-  )
-}
+			<div>{posts.length} posts found</div>
+		</div>
+	);
+};
 ```
 
 ## Tests
 
 ```tsx
-import { act, renderHook } from '@testing-library/react-hooks'
-import { useDebouncedValue } from './useDebouncedValue'
+import { act, renderHook } from '@testing-library/react-hooks';
+import { useDebouncedValue } from './useDebouncedValue';
 
-jest.useFakeTimers()
+jest.useFakeTimers();
 
 test('should return the first value immediately', () => {
-  let value = 1
-  const { result } = renderHook(() => useDebouncedValue(value))
-  expect(result.current).toEqual(1)
-})
+	let value = 1;
+	const { result } = renderHook(() => useDebouncedValue(value));
+	expect(result.current).toEqual(1);
+});
 
 test('should not update the value immediately after a change', () => {
-  let value = 1
-  const { result, rerender } = renderHook(() => useDebouncedValue(value))
-  expect(result.current).toEqual(1)
+	let value = 1;
+	const { result, rerender } = renderHook(() => useDebouncedValue(value));
+	expect(result.current).toEqual(1);
 
-  value = 2
-  rerender()
-  expect(result.current).toEqual(1)
-})
+	value = 2;
+	rerender();
+	expect(result.current).toEqual(1);
+});
 
 test('should update the value after the delay time', () => {
-  let value = 1
-  const { result, rerender } = renderHook(() => useDebouncedValue(value, 100))
-  expect(result.current).toEqual(1)
+	let value = 1;
+	const { result, rerender } = renderHook(() => useDebouncedValue(value, 100));
+	expect(result.current).toEqual(1);
 
-  value = 2
-  rerender()
-  jest.advanceTimersByTime(99)
-  expect(result.current).toEqual(1)
+	value = 2;
+	rerender();
+	jest.advanceTimersByTime(99);
+	expect(result.current).toEqual(1);
 
-  act(() => {
-    jest.advanceTimersByTime(1)
-  })
-  expect(result.current).toEqual(2)
-})
+	act(() => {
+		jest.advanceTimersByTime(1);
+	});
+	expect(result.current).toEqual(2);
+});
 
 test('should default to a delay of 0', () => {
-  let value = 1
-  const { result, rerender } = renderHook(() => useDebouncedValue(value))
-  expect(result.current).toEqual(1)
+	let value = 1;
+	const { result, rerender } = renderHook(() => useDebouncedValue(value));
+	expect(result.current).toEqual(1);
 
-  value = 2
-  rerender()
-  act(() => {
-    // Just run the next tick of the call stack.
-    jest.advanceTimersByTime(0)
-  })
-  expect(result.current).toEqual(2)
-})
+	value = 2;
+	rerender();
+	act(() => {
+		// Just run the next tick of the call stack.
+		jest.advanceTimersByTime(0);
+	});
+	expect(result.current).toEqual(2);
+});
 ```
 
 ## Influences and prior art

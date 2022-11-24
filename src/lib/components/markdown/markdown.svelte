@@ -1,11 +1,10 @@
 <script lang="ts">
-	import type { HtmlAstNode } from "$lib/hast.types";
-	import type { PrunedHast } from "$lib/markdown-service.server";
-	import InternalMarkdownRenderer from "./internal-markdown-renderer.svelte";
+	import type { HtmlAstNode } from '$lib/hast.types';
+	import type { PrunedHast } from '$lib/markdown-service.server';
+	import InternalMarkdownRenderer from './internal-markdown-renderer.svelte';
 
-
-  export let hast: PrunedHast | undefined = undefined;
-	const children = hast?.children as HtmlAstNode[]
+	export let hast: PrunedHast | undefined = undefined;
+	const children = hast?.children as HtmlAstNode[];
 </script>
 
 {#if hast}

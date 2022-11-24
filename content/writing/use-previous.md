@@ -10,7 +10,7 @@ tags:
 ---
 
 ```tsx
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef } from 'react';
 
 /**
  * Stores a reference to the previously rendered value.
@@ -22,14 +22,14 @@ import { useEffect, useRef } from 'react'
  * return a value.
  */
 export const usePrevious = <T extends unknown>(value: T) => {
-  const ref = useRef<T | undefined>()
+	const ref = useRef<T | undefined>();
 
-  useEffect(() => {
-    ref.current = value
-  }, [value])
+	useEffect(() => {
+		ref.current = value;
+	}, [value]);
 
-  return ref.current
-}
+	return ref.current;
+};
 ```
 
 ## Context
@@ -48,34 +48,34 @@ Secondly, we set up a `useEffect` to sync that `ref` after each render cycle. [`
 
 ```tsx
 const Component = ({ query, filter }) => {
-  const previousQuery = usePrevious(query)
+	const previousQuery = usePrevious(query);
 
-  useEffect(() => {
-    // If the query didn't change, bail out early
-    if (query !== previousQuery) return
+	useEffect(() => {
+		// If the query didn't change, bail out early
+		if (query !== previousQuery) return;
 
-    // Otherwise, continue fetching as usual.
-    fetchData(query, filter)
-  }, [query, previousQuery, filter])
+		// Otherwise, continue fetching as usual.
+		fetchData(query, filter);
+	}, [query, previousQuery, filter]);
 
-  // render data
-}
+	// render data
+};
 ```
 
 ## Tests
 
 ```tsx
-import { renderHook } from '@testing-library/react-hooks'
-import { usePrevious } from './usePrevious'
+import { renderHook } from '@testing-library/react-hooks';
+import { usePrevious } from './usePrevious';
 
 test('should return the value of the previous render', () => {
-  let value = 1
-  const { result, rerender } = renderHook(() => usePrevious(value))
-  expect(result.current).toEqual(undefined)
-  value = 2
-  rerender()
-  expect(result.current).toEqual(1)
-  rerender()
-  expect(result.current).toEqual(2)
-})
+	let value = 1;
+	const { result, rerender } = renderHook(() => usePrevious(value));
+	expect(result.current).toEqual(undefined);
+	value = 2;
+	rerender();
+	expect(result.current).toEqual(1);
+	rerender();
+	expect(result.current).toEqual(2);
+});
 ```

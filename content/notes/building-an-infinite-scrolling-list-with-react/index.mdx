@@ -35,23 +35,23 @@ tags:
 ### Set up the shell of our list
 
 ```tsx
-import React from 'react'
+import React from 'react';
 
 export interface VirtualizedListProps {
-  total: number
-  rowHeight: number
+	total: number;
+	rowHeight: number;
 }
 
 export const VirtualizedList = ({ total, rowHeight }: VirtualizedListProps) => {
-  return (
-    <div
-      style={{
-        background: '#eee',
-        height: rowHeight * total,
-      }}
-    ></div>
-  )
-}
+	return (
+		<div
+			style={{
+				background: '#eee',
+				height: rowHeight * total
+			}}
+		></div>
+	);
+};
 ```
 
 - inline styles for simplicity
@@ -64,30 +64,26 @@ export const VirtualizedList = ({ total, rowHeight }: VirtualizedListProps) => {
 ### Split our total count of items into "pages"
 
 ```tsx
-import React from 'react'
+import React from 'react';
 
 export interface VirtualizedListProps {
-  total: number
-  rowHeight: number
-  pageSize: number
+	total: number;
+	rowHeight: number;
+	pageSize: number;
 }
 
-export const VirtualizedList = ({
-  total,
-  rowHeight,
-  pageSize,
-}: VirtualizedListProps) => {
-  const pages = Math.ceil(total / pageSize)
-  const pageHeight = pageSize * rowHeight
-  return (
-    <div
-      style={{
-        background: '#eee',
-        height: pageHeight * pages,
-      }}
-    ></div>
-  )
-}
+export const VirtualizedList = ({ total, rowHeight, pageSize }: VirtualizedListProps) => {
+	const pages = Math.ceil(total / pageSize);
+	const pageHeight = pageSize * rowHeight;
+	return (
+		<div
+			style={{
+				background: '#eee',
+				height: pageHeight * pages
+			}}
+		></div>
+	);
+};
 ```
 
 - Add 1 more prop, now the amount of items in a "page".
@@ -96,60 +92,48 @@ export const VirtualizedList = ({
 ### Fix the last page
 
 ```tsx
-import React from 'react'
+import React from 'react';
 
-type GetLastPageHeight = (args: {
-  total: number
-  pageSize: number
-  rowHeight: number
-}) => number
+type GetLastPageHeight = (args: { total: number; pageSize: number; rowHeight: number }) => number;
 
-const getLastPageHeight: GetLastPageHeight = ({
-  total,
-  pageSize,
-  rowHeight,
-}) => {
-  const pages = total / pageSize
-  const completePages = Math.floor(pages)
+const getLastPageHeight: GetLastPageHeight = ({ total, pageSize, rowHeight }) => {
+	const pages = total / pageSize;
+	const completePages = Math.floor(pages);
 
-  if (completePages === pages) {
-    return pageSize * rowHeight
-  }
+	if (completePages === pages) {
+		return pageSize * rowHeight;
+	}
 
-  const lastPageStartIndex = completePages * pageSize - 1
-  const itemsOnLastPage = total - lastPageStartIndex - 1
+	const lastPageStartIndex = completePages * pageSize - 1;
+	const itemsOnLastPage = total - lastPageStartIndex - 1;
 
-  return itemsOnLastPage * rowHeight
-}
+	return itemsOnLastPage * rowHeight;
+};
 
 export interface VirtualizedListProps {
-  total: number
-  rowHeight: number
-  pageSize: number
+	total: number;
+	rowHeight: number;
+	pageSize: number;
 }
 
-export const VirtualizedList = ({
-  total,
-  rowHeight,
-  pageSize,
-}: VirtualizedListProps) => {
-  const pages = Math.ceil(total / pageSize)
-  const pageHeight = pageSize * rowHeight
-  const lastPageStartIndex = pages - 1
-  const lastPageHeight = getLastPageHeight({
-    total,
-    rowHeight,
-    pageSize,
-  })
-  return (
-    <div
-      style={{
-        background: '#eee',
-        height: pageHeight * lastPageStartIndex + lastPageHeight,
-      }}
-    ></div>
-  )
-}
+export const VirtualizedList = ({ total, rowHeight, pageSize }: VirtualizedListProps) => {
+	const pages = Math.ceil(total / pageSize);
+	const pageHeight = pageSize * rowHeight;
+	const lastPageStartIndex = pages - 1;
+	const lastPageHeight = getLastPageHeight({
+		total,
+		rowHeight,
+		pageSize
+	});
+	return (
+		<div
+			style={{
+				background: '#eee',
+				height: pageHeight * lastPageStartIndex + lastPageHeight
+			}}
+		></div>
+	);
+};
 ```
 
 - the list works great if the number of items evenly divides by the page size, but if it _doesn't_ we're left with some extra space at the bottom of the list. To get the height to be _exactly_ the number of items, we need to add some calculation for the final page of items.
@@ -158,73 +142,65 @@ export const VirtualizedList = ({
 ### Add the ability to render a custom page of items
 
 ```tsx
-import React, { Fragment, ReactNode } from 'react'
+import React, { Fragment, ReactNode } from 'react';
 
-type GetLastPageHeight = (args: {
-  total: number
-  pageSize: number
-  rowHeight: number
-}) => number
+type GetLastPageHeight = (args: { total: number; pageSize: number; rowHeight: number }) => number;
 
-const getLastPageHeight: GetLastPageHeight = ({
-  total,
-  pageSize,
-  rowHeight,
-}) => {
-  const pages = total / pageSize
-  const completePages = Math.floor(pages)
+const getLastPageHeight: GetLastPageHeight = ({ total, pageSize, rowHeight }) => {
+	const pages = total / pageSize;
+	const completePages = Math.floor(pages);
 
-  if (completePages === pages) {
-    return pageSize * rowHeight
-  }
+	if (completePages === pages) {
+		return pageSize * rowHeight;
+	}
 
-  const lastPageStartIndex = completePages * pageSize - 1
-  const itemsOnLastPage = total - lastPageStartIndex - 1
+	const lastPageStartIndex = completePages * pageSize - 1;
+	const itemsOnLastPage = total - lastPageStartIndex - 1;
 
-  return itemsOnLastPage * rowHeight
-}
+	return itemsOnLastPage * rowHeight;
+};
 
 export interface VirtualizedListProps {
-  total: number
-  rowHeight: number
-  pageSize: number
-  renderPage: (index: number) => ReactNode
+	total: number;
+	rowHeight: number;
+	pageSize: number;
+	renderPage: (index: number) => ReactNode;
 }
 
 export const VirtualizedList = ({
-  total,
-  rowHeight,
-  pageSize,
-  renderPage,
+	total,
+	rowHeight,
+	pageSize,
+	renderPage
 }: VirtualizedListProps) => {
-  const pages = Math.ceil(total / pageSize)
-  const pageHeight = pageSize * rowHeight
-  const lastPageStartIndex = pages - 1
-  const lastPageHeight = getLastPageHeight({
-    total,
-    rowHeight,
-    pageSize,
-  })
-  return (
-    <div
-      style={{
-        background: '#eee',
-        height: pageHeight * lastPageStartIndex + lastPageHeight,
-      }}
-    >
-      {Array.from({ length: pages }).map((_, index) => (
-        <div
-          key={index}
-          style={{
-            height: index === lastPageStartIndex ? lastPageHeight : pageHeight,
-          }}
-        >
-          {renderPage(index)}
-        </div>
-      ))}
-    </div>
-  )
-}
+	const pages = Math.ceil(total / pageSize);
+	const pageHeight = pageSize * rowHeight;
+	const lastPageStartIndex = pages - 1;
+	const lastPageHeight = getLastPageHeight({
+		total,
+		rowHeight,
+		pageSize
+	});
+	return (
+		<div
+			style={{
+				background: '#eee',
+				height: pageHeight * lastPageStartIndex + lastPageHeight
+			}}
+		>
+			{Array.from({ length: pages }).map((_, index) => (
+				<div
+					key={index}
+					style={{
+						height: index === lastPageStartIndex ? lastPageHeight : pageHeight
+					}}
+				>
+					{renderPage(index)}
+				</div>
+			))}
+		</div>
+	);
+};
 ```
 
 ## Conclusion

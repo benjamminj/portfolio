@@ -23,11 +23,11 @@ Many times, I would find myself doing something like this in my source code so t
 
 ```javascript
 fetch('https://jsonplaceholder.typicode.com/posts')
-  .then(res => res.json())
-  .then(json => {
-    console.log(json) // to see what the response was
-    // code operate on the JSON goes here
-  })
+	.then((res) => res.json())
+	.then((json) => {
+		console.log(json); // to see what the response was
+		// code operate on the JSON goes here
+	});
 ```
 
 To preview my JSON, I would either scatter console.log all over my codebase and dig through the browser console window to find my JSON, or I would copy-paste the endpoint into Postman or a cURL request. All of these work, but **what if there was a faster way to debug JSON responses in the browser?**

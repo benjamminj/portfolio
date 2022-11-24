@@ -19,40 +19,40 @@ Here's a few reasons why I prefer TS function params to `React.FC`:
 
 ```tsx
 type Props = {
-  className?: string
-}
+	className?: string;
+};
 
 // `children` is allowed here, no type error!
 const Example: React.FC<Props> = ({ className, children }) => {
-  return <div className={className}>{children}</div>
-}
+	return <div className={className}>{children}</div>;
+};
 ```
 
 When you use regular TypeScript function parameters, `children` now results in a TS error
 
 ```tsx
 type Props = {
-  className?: string
-}
+	className?: string;
+};
 
 // 🚨 TypeError: Property 'children' does not exist on type 'Props'.ts(2339)
 const Example = ({ className, children }: Props) => {
-  return <div className={className}>{children}</div>
-}
+	return <div className={className}>{children}</div>;
+};
 ```
 
 This can be fixed by explicitly typing the `children` prop
 
 ```tsx
-import { ReactNode } from 'react'
+import { ReactNode } from 'react';
 type Props = {
-  className?: string
-  children: ReactNode
-}
+	className?: string;
+	children: ReactNode;
+};
 
 const Example = ({ className, children }: Props) => {
-  return <div className={className}>{children}</div>
-}
+	return <div className={className}>{children}</div>;
+};
 ```
 
 `children` _is_ another prop that's part of your component's interface. So having to be explicit about when it is/isn't allowed is a good thing.
@@ -63,11 +63,11 @@ Ditching `React.FC` also happens to be less code when declaring components.
 
 ```tsx
 // #1. TS params
-const Comp1 = (props: Props) => <div />
+const Comp1 = (props: Props) => <div />;
 // #2, TS params w/ explicit return type
-const Comp2 = (props: Props): JSX.Element => <div />
+const Comp2 = (props: Props): JSX.Element => <div />;
 // #3. React.FC
-const Comp3: React.FC<Props> = props => <div />
+const Comp3: React.FC<Props> = (props) => <div />;
 ```
 
 **Less characters typed doesn't always equal more readability!!** However, in this case, I think option #1 (TS params + return type inference) is a much lighter syntax.
@@ -82,28 +82,28 @@ With the simpler TS parameter syntax, you can more easily create generic compone
 
 ```tsx
 type Props<T> = {
-  value: T
-  onClick: (value: T) => void
-}
+	value: T;
+	onClick: (value: T) => void;
+};
 
-const Button = <T extends any>({ value, onClick }: Props<T>) => {}
+const Button = <T extends any>({ value, onClick }: Props<T>) => {};
 
 const Example = () => {
-  return (
-    <>
-      <Button
-        value="a"
-        // type of `value` here is "string"
-        onClick={value => console.log(value)}
-      />
-      <Button
-        value={100}
-        // type of `value` here is "number"
-        onClick={value => console.log(value)}
-      />
-    </>
-  )
-}
+	return (
+		<>
+			<Button
+				value="a"
+				// type of `value` here is "string"
+				onClick={(value) => console.log(value)}
+			/>
+			<Button
+				value={100}
+				// type of `value` here is "number"
+				onClick={(value) => console.log(value)}
+			/>
+		</>
+	);
+};
 ```
 
 This is extremely powerful since you can provide rock-solid type declarations while still having dynamic, abstract components. And it's significantly more difficult (impossible?) with `React.FC`

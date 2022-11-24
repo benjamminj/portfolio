@@ -38,41 +38,41 @@ To leverage this approach, we'd need to place the following page code in a file 
 // pages/docs/[component].jsx
 
 const DevOnlyPage = () => {
-  return <div>test!</div>
-}
+	return <div>test!</div>;
+};
 
 // Even though there isn't any "dynamic" data flowing into our page component
 // we can leverage `getStaticPaths` to dynamically determine _which_ pages should
 // be built.
 export const getStaticPaths = () => {
-  const paths = []
+	const paths = [];
 
-  // If the environment variable is available, push some pages. This gives you
-  // fine-grained control over whether or not pages are added.
-  if (process.env.BUILD_DOCS === 'true') {
-    // `component` lines up to the page name of [component].jsx
-    paths.push({ params: { component: 'design-system' } })
-  }
+	// If the environment variable is available, push some pages. This gives you
+	// fine-grained control over whether or not pages are added.
+	if (process.env.BUILD_DOCS === 'true') {
+		// `component` lines up to the page name of [component].jsx
+		paths.push({ params: { component: 'design-system' } });
+	}
 
-  // If `paths` is empty, all paths at this route will return 404 responses, same
-  // as if we never had the page at all.
-  return {
-    paths,
-    // This is important, using `fallback: false` means that all routes not
-    // returned from this function return 404 responses.
-    fallback: false,
-  }
-}
+	// If `paths` is empty, all paths at this route will return 404 responses, same
+	// as if we never had the page at all.
+	return {
+		paths,
+		// This is important, using `fallback: false` means that all routes not
+		// returned from this function return 404 responses.
+		fallback: false
+	};
+};
 
 // Even though we're not dynamically getting any props, `getStaticPaths` doesn't
 // work without `getStaticProps`.
 export const getStaticProps = () => {
-  return {
-    props: {},
-  }
-}
+	return {
+		props: {}
+	};
+};
 
-export default DevOnlyPage
+export default DevOnlyPage;
 ```
 
 ## Trade-offs

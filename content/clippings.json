@@ -1,37 +1,37 @@
 [
-  {
-    "name": "The Wrong Abstraction",
-    "url": "https://sandimetz.com/blog/2016/1/20/the-wrong-abstraction",
-    "tags": ["software-engineering"]
-  },
-  {
-    "name": "A Codebase is an Organism",
-    "url": "https://meltingasphalt.com/a-codebase-is-an-organism",
-    "tags": ["software-engineering", "tech-debt", "philosophy"]
-  },
-  {
-    "name": "On the Spectrum of Abstraction (YouTube)",
-    "url": "https://www.youtube.com/watch?v=mVVNJKv9esE",
-    "tags": ["software-engineering", "philosophy"]
-  },
-  {
-    "name": "The Canvas Cares Not",
-    "url": "https://www.neversaw.us/2022/01/30/the-canvas-cares-not",
-    "tags": ["software-engineering", "philosophy"]
-  },
-  {
-    "name": "On Being A Senior Engineer",
-    "url": "https://www.kitchensoap.com/2012/10/25/on-being-a-senior-engineer/",
-    "tags": ["software-engineering", "career"]
-  },
-  {
-    "name": "Parse, don't validate",
-    "url": "https://lexi-lambda.github.io/blog/2019/11/05/parse-don-t-validate/",
-    "tags": ["software-engineering"]
-  },
-  {
-    "name": "Small CLs",
-    "url": "https://google.github.io/eng-practices/review/developer/small-cls.html",
-    "tags": ["software-engineering", "teamwork", "pull-requests"]
-  }
+	{
+		"name": "The Wrong Abstraction",
+		"url": "https://sandimetz.com/blog/2016/1/20/the-wrong-abstraction",
+		"tags": ["software-engineering"]
+	},
+	{
+		"name": "A Codebase is an Organism",
+		"url": "https://meltingasphalt.com/a-codebase-is-an-organism",
+		"tags": ["software-engineering", "tech-debt", "philosophy"]
+	},
+	{
+		"name": "On the Spectrum of Abstraction (YouTube)",
+		"url": "https://www.youtube.com/watch?v=mVVNJKv9esE",
+		"tags": ["software-engineering", "philosophy"]
+	},
+	{
+		"name": "The Canvas Cares Not",
+		"url": "https://www.neversaw.us/2022/01/30/the-canvas-cares-not",
+		"tags": ["software-engineering", "philosophy"]
+	},
+	{
+		"name": "On Being A Senior Engineer",
+		"url": "https://www.kitchensoap.com/2012/10/25/on-being-a-senior-engineer/",
+		"tags": ["software-engineering", "career"]
+	},
+	{
+		"name": "Parse, don't validate",
+		"url": "https://lexi-lambda.github.io/blog/2019/11/05/parse-don-t-validate/",
+		"tags": ["software-engineering"]
+	},
+	{
+		"name": "Small CLs",
+		"url": "https://google.github.io/eng-practices/review/developer/small-cls.html",
+		"tags": ["software-engineering", "teamwork", "pull-requests"]
+	}
 ]

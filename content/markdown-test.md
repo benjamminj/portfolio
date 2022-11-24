@@ -96,23 +96,23 @@ and this is a code block w/o highlighting...
 ### JavaScript
 
 ```javascript
-const greeting = name => `Hello ${name}`
+const greeting = (name) => `Hello ${name}`;
 
-console.log(greeting('world'))
+console.log(greeting('world'));
 ```
 
 ### JSX
 
 ```jsx
-const Button = props => (
-  <button
-    onClick={() => {
-      alert('hello')
-    }}
-  >
-    welcome!
-  </button>
-)
+const Button = (props) => (
+	<button
+		onClick={() => {
+			alert('hello');
+		}}
+	>
+		welcome!
+	</button>
+);
 ```
 
 ### HTML
@@ -123,7 +123,7 @@ Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eveniet obcaecati ex e
 
 ```html
 <div class="sample">
-  <button class="button">click me!</button>
+	<button class="button">click me!</button>
 </div>
 ```
 
@@ -133,11 +133,11 @@ Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eveniet obcaecati ex e
 
 ```css
 :root {
-  --color-primary: #333;
+	--color-primary: #333;
 }
 
 .selector {
-  color: var(--color-primary);
-  background: papayawhip;
+	color: var(--color-primary);
+	background: papayawhip;
 }
 ```

@@ -31,9 +31,7 @@ Before we go too far into how to make **good icon buttons**, let's look at why i
 Consider the follow non-icon button:
 
 ```html
-<button>
-  Click me!
-</button>
+<button>Click me!</button>
 ```
 
 When focused on this button in a screen reader, I get the following message (this is using VoiceOver on macOS):
@@ -48,14 +46,9 @@ However, when we have an icon-only button, we end up with a different screen rea
 
 ```html
 <button>
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    height="24"
-    viewBox="0 0 24 24"
-    width="24"
-  >
-    <!-- "refresh" icon -->
-  </svg>
+	<svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24">
+		<!-- "refresh" icon -->
+	</svg>
 </button>
 ```
 
@@ -91,16 +84,16 @@ Here's the CSS that I usually use to make an HTML element invisible from sight, 
 
 ```css
 .visually-hidden {
-  border: 0;
-  clip: rect(1px, 1px, 1px, 1px);
-  clip-path: inset(50%);
-  height: 1px;
-  margin: -1px;
-  overflow: hidden;
-  padding: 0;
-  position: absolute;
-  width: 1px;
-  word-wrap: normal !important;
+	border: 0;
+	clip: rect(1px, 1px, 1px, 1px);
+	clip-path: inset(50%);
+	height: 1px;
+	margin: -1px;
+	overflow: hidden;
+	padding: 0;
+	position: absolute;
+	width: 1px;
+	word-wrap: normal !important;
 }
 ```
 
@@ -112,16 +105,11 @@ Once you've got a `.visually-hidden` class written up, making our icon button ac
 
 ```html
 <button>
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    height="24"
-    viewBox="0 0 24 24"
-    width="24"
-  >
-    <!-- "refresh" icon -->
-  </svg>
+	<svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24">
+		<!-- "refresh" icon -->
+	</svg>
 
-  <span class="visually-hidden">Refresh</span>
+	<span class="visually-hidden">Refresh</span>
 </button>
 ```
 
@@ -139,14 +127,9 @@ An alternative approach to using a `.visually-hidden` CSS class is leveraging an
 
 ```html
 <button aria-label="Refresh">
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    height="24"
-    viewBox="0 0 24 24"
-    width="24"
-  >
-    <!-- "refresh" icon -->
-  </svg>
+	<svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24">
+		<!-- "refresh" icon -->
+	</svg>
 </button>
 ```
 
@@ -158,17 +141,17 @@ Another common practice when writing icon buttons is to add `aria-hidden="true"`
 
 ```html
 <button>
-  <svg
-    aria-hidden="true"
-    xmlns="http://www.w3.org/2000/svg"
-    height="24"
-    viewBox="0 0 24 24"
-    width="24"
-  >
-    <!-- "refresh" icon -->
-  </svg>
+	<svg
+		aria-hidden="true"
+		xmlns="http://www.w3.org/2000/svg"
+		height="24"
+		viewBox="0 0 24 24"
+		width="24"
+	>
+		<!-- "refresh" icon -->
+	</svg>
 
-  <span class="visually-hidden">Refresh</span>
+	<span class="visually-hidden">Refresh</span>
 </button>
 ```
 
@@ -188,19 +171,19 @@ For example, here's a way we could build an accessible icon button in React and 
 
 ```tsx
 interface FabProps {
-  // Accessibility-only icon label
-  label: string
-  // Markup for the icon itself
-  children: ReactNode
+	// Accessibility-only icon label
+	label: string;
+	// Markup for the icon itself
+	children: ReactNode;
 }
 
 const Fab = (props: FabProps) => {
-  return (
-    <button {...props} aria-label={props.label} className="fab">
-      {props.children}
-    </button>
-  )
-}
+	return (
+		<button {...props} aria-label={props.label} className="fab">
+			{props.children}
+		</button>
+	);
+};
 ```
 
 You'll notice in `FabProps` that `label` is **required** on the component. If it were optional we would have typed it with `label?: string`.
@@ -213,7 +196,7 @@ That said, there's still one edge case where we can sneak around the type system
 
 ```tsx
 <Fab label="">
-  <svg>{/* svg content */}</svg>
+	<svg>{/* svg content */}</svg>
 </Fab>
 ```
 
@@ -225,27 +208,27 @@ But if you want to protect against this case **in the code itself**, you'll need
 
 ```tsx
 const Fab = (props: FabProps) => {
-  // Only have the error if NODE_ENV === 'development' and label is empty.
-  // This global __DEV__ variable assumes a setup like
-  // https://github.com/formium/tsdx#advanced-babel-plugin-dev-expressions
-  if (__DEV__ && !props.label) {
-    // If you want to be more aggressive with the error, you can actually
-    // `throw` an error here.
-    console.error(`
+	// Only have the error if NODE_ENV === 'development' and label is empty.
+	// This global __DEV__ variable assumes a setup like
+	// https://github.com/formium/tsdx#advanced-babel-plugin-dev-expressions
+	if (__DEV__ && !props.label) {
+		// If you want to be more aggressive with the error, you can actually
+		// `throw` an error here.
+		console.error(`
       You have not provided an accessible label for this icon button. 
       Please add some content to the "label" prop to remove this error.
 
       For further reading about providing accessible labels, please refer to 
       https://dequeuniversity.com/rules/axe/3.2/button-name.
-    `)
-  }
+    `);
+	}
 
-  return (
-    <button {...props} aria-label={props.label} className="fab">
-      {props.children}
-    </button>
-  )
-}
+	return (
+		<button {...props} aria-label={props.label} className="fab">
+			{props.children}
+		</button>
+	);
+};
 ```
 
 This adds a **dev-only error** so that using the component with `label=""` creates a warning for the developer, but doesn't crash the app or anything. We've also made the error message educational and actionable—you know exactly what needs to be done to get rid of the message.

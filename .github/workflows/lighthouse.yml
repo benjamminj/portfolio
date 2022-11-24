@@ -19,7 +19,7 @@ jobs:
       - name: Run Lighthouse
         uses: foo-software/lighthouse-check-action@master
         with:
-          urls: "${{ github.event.deployment_status.target_url }}, ${{ github.event.deployment_status.target_url }}/writing, ${{ github.event.deployment_status.target_url }}/mocking-fetch"
+          urls: '${{ github.event.deployment_status.target_url }}, ${{ github.event.deployment_status.target_url }}/writing, ${{ github.event.deployment_status.target_url }}/mocking-fetch'
           outputDirectory: /tmp/artifacts
       - name: Upload artifacts
         uses: actions/upload-artifact@main
@@ -30,11 +30,11 @@ jobs:
   playwright:
     if: github.event_name == 'deployment_status' && github.event.deployment_status.state == 'success' && github.event.deployment.environment != 'production'
     timeout-minutes: 60
-    
+
     name: e2e tests
     runs-on: ubuntu-latest
-    steps: 
-        # Set up the repo
+    steps:
+      # Set up the repo
       - uses: actions/checkout@v2
 
         # Set up pnpm

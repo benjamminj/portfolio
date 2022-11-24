@@ -16,17 +16,17 @@ React makes sure you know about this rule with keys—if you render a list of it
 For example, consider the following JSX.
 
 ```jsx
-const items = ['A', 'B', 'C']
+const items = ['A', 'B', 'C'];
 
 const MyList = () => {
-  return (
-    <ul>
-      {items.map(letter => (
-        <li>{letter}</li>
-      ))}
-    </ul>
-  )
-}
+	return (
+		<ul>
+			{items.map((letter) => (
+				<li>{letter}</li>
+			))}
+		</ul>
+	);
+};
 ```
 
 If you render this component in a React app you'll see the following error.
@@ -38,17 +38,17 @@ Warning: Each child in a list should have a unique "key" prop.
 This error be removed by attaching a `key` prop to each `li` inside of the `map`:
 
 ```jsx
-const items = ['A', 'B', 'C']
+const items = ['A', 'B', 'C'];
 
 const MyList = () => {
-  return (
-    <ul>
-      {items.map(letter => (
-        <li key={letter}>{letter}</li>
-      ))}
-    </ul>
-  )
-}
+	return (
+		<ul>
+			{items.map((letter) => (
+				<li key={letter}>{letter}</li>
+			))}
+		</ul>
+	);
+};
 ```
 
 React uses these keys to optimize rendering of the list items. When items are added, deleted, or swapped inside of the list, React uses that `key` to determine which items changed.
@@ -131,18 +131,18 @@ If we add an item to the front of our list, every existing item has its' index i
 Lastly, using the `index` inside of string `key` doesn't change this behavior—the `key` still changes when we reorder the list. It doesn't matter whether they're on their own or part of a larger string.
 
 ```jsx
-const list = ['A', 'B', 'C']
+const list = ['A', 'B', 'C'];
 
 const ListWithIndexInString = () => {
-  return (
-    <ul>
-      {list.map((letter, i) => (
-        // This is exactly the same as `key={i}`
-        <li key={`letter-${i}`}>{letter}</li>
-      ))}
-    </ul>
-  )
-}
+	return (
+		<ul>
+			{list.map((letter, i) => (
+				// This is exactly the same as `key={i}`
+				<li key={`letter-${i}`}>{letter}</li>
+			))}
+		</ul>
+	);
+};
 ```
 
 ## Keys only need to be unique across siblings
@@ -154,23 +154,23 @@ This aspect of keys is also one of the most misunderstood (or ignored) that I've
 The following is correct `key` usage, despite the same keys appearing in multiple places:
 
 ```jsx
-const items = ['A', 'B']
+const items = ['A', 'B'];
 
 const MyList = () => {
-  return (
-    <ul>
-      {items.map(outerLetter => (
-        <div key={outerLetter}>
-          {items.map(innerLetter => (
-            <li key={innerLetter}>
-              {outerLetter}: {innerLetter}
-            </li>
-          ))}
-        </div>
-      ))}
-    </ul>
-  )
-}
+	return (
+		<ul>
+			{items.map((outerLetter) => (
+				<div key={outerLetter}>
+					{items.map((innerLetter) => (
+						<li key={innerLetter}>
+							{outerLetter}: {innerLetter}
+						</li>
+					))}
+				</div>
+			))}
+		</ul>
+	);
+};
 ```
 
 There's no need for use to make keys like `` `outerItem__${outerLetter}` `` and `` `innerItem_${innerLetter}` `` that are unique across the entire component. We just need to make sure that _sibling_ components have unique keys.
@@ -179,28 +179,28 @@ Sometimes tracing the `key` values can be a little tricky, especially with the n
 
 ```js
 const tree = {
-  root: {
-    type: 'ul',
-    children: [
-      {
-        type: 'div',
-        key: 'A',
-        children: [
-          { type: 'li', key: 'A', children: ['A: A'] },
-          { type: 'li', key: 'B', children: ['A: B'] },
-        ],
-      },
-      {
-        type: 'div',
-        key: 'B',
-        children: [
-          { type: 'li', key: 'A', children: ['B: A'] },
-          { type: 'li', key: 'B', children: ['B: B'] },
-        ],
-      },
-    ],
-  },
-}
+	root: {
+		type: 'ul',
+		children: [
+			{
+				type: 'div',
+				key: 'A',
+				children: [
+					{ type: 'li', key: 'A', children: ['A: A'] },
+					{ type: 'li', key: 'B', children: ['A: B'] }
+				]
+			},
+			{
+				type: 'div',
+				key: 'B',
+				children: [
+					{ type: 'li', key: 'A', children: ['B: A'] },
+					{ type: 'li', key: 'B', children: ['B: B'] }
+				]
+			}
+		]
+	}
+};
 ```
 
 Using the following tree, we can see that key uniqueness only matters at **each indentation level**. Two components are at different levels of the tree can have the same `key` values without there being any problem.
