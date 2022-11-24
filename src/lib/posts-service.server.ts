@@ -93,7 +93,7 @@ export class PostService {
 	 * Fetches the raw posts from the file system.
 	 */
 	private static async fetchRaw() {
-		const posts = import.meta.glob('../../../content/writing/**/*.md', { eager: true, as: 'raw' });
+		const posts = import.meta.glob('../../content/writing/**/*.md', { eager: true, as: 'raw' });
 
 		return Object.entries(posts);
 	}

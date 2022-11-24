@@ -4,9 +4,9 @@ Welcome to the source code for my personal corner of the internet!
 
 ## bUt bEn...tHiS iS oVeReNgInEeReD!
 
-I don't care. Yeah, you don't _need_ React for a blog website. But this is my corner of the internet, so I'm gonna use tools that ✨ spark joy ✨
+I don't care. Yeah, you don't _need_ all this for a blog website. But this is my corner of the internet, so I'm gonna use tools that ✨ spark joy ✨
 
-Right now that's [Remix](https://remix.run/) and [Tailwind](https://tailwindcss.com/). I actually find that both tools _scale down_ nicely as well as up, and I make sure I'm staying on top of what's fresh in frontend.
+Right now that's [SvelteKit](https://kit.svelte.dev/) and [Tailwind](https://tailwindcss.com/). I actually find that both tools _scale down_ nicely as well as up, and I make sure I'm staying on top of what's fresh in frontend.
 
 ## Contributing
 
@@ -17,8 +17,10 @@ Feel free to open a PR to edit the posts! I'm happy to merge PRs for broken code
 ### 1. Install the dependencies.
 
 ```bash
-$ yarn
+$ pnpm install
 ```
+
+<!-- TODO: is this needed anymore?? -->
 
 ### 2. Add a `.env.local` file wit environment variables.
 
@@ -46,7 +48,7 @@ TEST_BASE_URL="http://localhost:3000"
 ### 3. Run the development server
 
 ```bash
-$ yarn dev
+$ pnpm dev
 ```
 
 ## Running the tests
@@ -90,7 +92,7 @@ That said, you're free to copy the _code_ and _code snippets_ from this blog ver
 
 Right now, here's a couple of the technologies that I'm into and exploring with this website.
 
-- [Remix](https://remix.run/)
+- [SvelteKiut](https://kit.svelte.dev/)
 - [Tailwind](https://tailwindcss.com/). See [this writeup](https://benjaminjohnson.me/how-tailwindcss-converted-me) for why.
 
 Since this is a relatively simple website, I've tried to keep the usage of libraries low—most of the libraries in this website have to do with markdown parsing and the static generation.

@@ -1,6 +1,7 @@
 name: Preview URL Checks
 
-on: [deployment_status]
+on:
+  deployment_status:
 
 env:
   CI: true
@@ -27,33 +28,44 @@ jobs:
           path: /tmp/artifacts
 
   playwright:
-    # if: github.event_name == 'deployment_status'
+    if: github.event_name == 'deployment_status' && github.event.deployment_status.state == 'success' && github.event.deployment.environment != 'production'
     timeout-minutes: 60
     
     name: e2e tests
     runs-on: ubuntu-latest
     steps: 
+        # Set up the repo
       - uses: actions/checkout@v2
+
+        # Set up pnpm
+      - uses: pnpm/action-setup@v2.2.2
+        with:
+          version: 6.32.6
+
+        # Set up Node, use the `pnpm` cache for any dependencies
       - uses: actions/setup-node@v1
         with:
-          node-version: 14
+          node-version: 16
+          cache: 'pnpm'
+
+        # Install dependencies
       - name: Install NPM dependencies
-        run: yarn
+        run: pnpm install
+
+        # If playwright didn't get a cache hit, install the necessary browsers.
       - name: Install operating system dependencies
         run: npx playwright install --with-deps
-      - name: Run your tests
-        run: npm run e2e:run
+
+        # Run end-to-end tests against the deployed preview environment.
+      - name: Run end-to-end tests
+        run: pnpm e2e
         env:
           TEST_BASE_URL: ${{ github.event.deployment_status.target_url }}
 
-  # TODO: re-enable jest tests once set up, e2e should be enough for now.
-  # jest_tests:
-  #   name: Jest tests
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - uses: actions/checkout@v2
-  #     - uses: actions/setup-node@v1
-  #       with:
-  #         node-version: 14
-  #     - run: yarn
-  #     - run: npm test
+        # Upload any test reports.
+      - uses: actions/upload-artifact@v2
+        if: always()
+        with:
+          name: playwright-report
+          path: playwright-report/
+          retention-days: 30%
