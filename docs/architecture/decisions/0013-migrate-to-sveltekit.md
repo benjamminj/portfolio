@@ -4,11 +4,11 @@ Date: 2022-05-02
 
 ## Status
 
-Accepted
-
 Supercedes [2. Use NextJS](0002-use-nextjs.md)
 Supercedes [11. Use Preact](0011-use-preact.md)
 Superceded by [14. Migrate to Remix](0014-migrate-to-remix.md)
+
+Superceded by [15. Migrate to sveltekit...again](0015-migrate-to-sveltekit-again.md)
 
 ## Context
 

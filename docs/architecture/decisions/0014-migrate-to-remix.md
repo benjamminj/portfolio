@@ -4,9 +4,9 @@ Date: 2022-05-28
 
 ## Status
 
-Accepted
-
 Supercedes [14. Migrate to SvelteKit](0014-migrate-to-sveltekit)
+
+Superceded by [15. Migrate to sveltekit...again](0015-migrate-to-sveltekit-again.md)
 
 ## Context
 
