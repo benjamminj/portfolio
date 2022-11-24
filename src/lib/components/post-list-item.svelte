@@ -12,7 +12,7 @@
 			{post.date}
 		</time>
 
-		<div>
+		<div data-sveltekit-prefetch>
 			<!-- TODO: dynamic `h` tag -->
 			<h2 class="text-2xl">
 				<a

@@ -1,11 +1,4 @@
 <script lang="ts">
-	// <a
-	//     href={href}
-	//     title={title}
-	//     className="text-base underline text-gray-800 dark:text-gray-200 hover:dark:text-white font-bold"
-	//   >
-	//     {children}
-	//   </a>
 	const footerLinkStyles =
 		'text-base underline text-gray-800 dark:text-gray-200 hover:dark:text-white font-bold';
 </script>
@@ -16,7 +9,7 @@
 			{' '}
 			&copy; {new Date().getFullYear()} Benjamin Johnson
 		</p>
-		<ul class="flex space-x-4">
+		<ul class="flex space-x-4" data-sveltekit-prefetch>
 			<li>
 				<a title="GitHub" href="https://github.com/benjamminj" class={footerLinkStyles}> github </a>
 			</li>

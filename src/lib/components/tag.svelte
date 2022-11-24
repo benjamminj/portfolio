@@ -19,6 +19,7 @@
 </script>
 
 <a
+	data-sveltekit-prefetch
 	href={`/tags/${tag}`}
 	class={clsx(
 		'inline-block p-1 -m-1 font-mono text-xs no-underline hover:underline',
