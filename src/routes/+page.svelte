@@ -9,6 +9,7 @@
 <Markdown hast={data.intro} />
 <PostList posts={data.recentPosts} />
 <a
+	data-sveltekit-prefetch
 	href="/writing"
 	class="underline font-bold py-4 flex hover:bg-gray-100 dark:hover:bg-gray-900 dark:hover:bg-opacity-50"
 >

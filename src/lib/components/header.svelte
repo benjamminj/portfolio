@@ -2,7 +2,7 @@
 	import NavLink from './nav-link.svelte';
 </script>
 
-<header class="z-header max-w-viewport">
+<header class="z-header max-w-viewport" data-sveltekit-prefetch>
 	<!-- TODO: separate container comp? -->
 	<div class="max-w-prose my-0 mx-auto">
 		<div class="justify-between block p-4 space-y-2 sm:flex sm:space-y-0">
