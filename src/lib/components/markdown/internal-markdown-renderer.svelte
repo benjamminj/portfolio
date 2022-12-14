@@ -42,9 +42,7 @@
 			<svelte:self nodes={node.children} />
 		</blockquote>
 	{:else if node.type === 'inlineCode'}
-		<code class="bg-gray-100 dark:bg-gray-700 p-1 break-words">
-			{node.value}
-		</code>
+		<code class="bg-gray-100 dark:bg-gray-700 p-1 break-words">{node.value}</code>
 	{:else if node.type === 'code'}
 		<CodeBlock code={node.value} />
 	{:else if node.type === 'image'}
