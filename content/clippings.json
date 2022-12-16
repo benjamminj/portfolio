@@ -33,5 +33,10 @@
 		"name": "Small CLs",
 		"url": "https://google.github.io/eng-practices/review/developer/small-cls.html",
 		"tags": ["software-engineering", "teamwork", "pull-requests"]
+	},
+	{
+		"name": "Learn TypeScript",
+		"url": "https://learntypescript.dev/",
+		"tags": ["typescript", "tutorials", "deep-dives"]
 	}
 ]
