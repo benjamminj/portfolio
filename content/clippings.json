@@ -43,5 +43,10 @@
 		"name": "How Complex Systems Fail",
 		"url": "https://how.complexsystems.fail/",
 		"tags": ["software-engineering", "philosophy"]
+	},
+	{
+		"name": "Being Glue",
+		"url": "https://noidea.dog/glue",
+		"tags": ["software-engineering", "career", "teamwork]
 	}
 ]
