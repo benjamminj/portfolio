@@ -38,5 +38,10 @@
 		"name": "Learn TypeScript",
 		"url": "https://learntypescript.dev/",
 		"tags": ["typescript", "tutorials", "deep-dives"]
+	},
+	{
+		"name": "How Complex Systems Fail",
+		"url": "https://how.complexsystems.fail/",
+		"tags": ["software-engineering", "philosophy"]
 	}
 ]
