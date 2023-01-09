@@ -1,6 +1,6 @@
 ---
 title: '2022 year in review'
-date: 2022-01-03
+date: 2023-01-03
 tags:
   - career
   - updates
