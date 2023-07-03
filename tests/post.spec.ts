@@ -9,7 +9,7 @@ test.describe('/[post]', () => {
 		const pageContent = {
 			title: 'Mocking the fetch API with Jest',
 			description: `Why should we mock the network? We'll take a look at why it's important to mock window.fetch and a couple methods we can use in our test suites.`,
-			imageAlt: `Abstract swirling colors of blue and red`
+			imageAlt: `Abstract swirling colors of blue and red`,
 		};
 
 		const metaContent = [
@@ -21,7 +21,7 @@ test.describe('/[post]', () => {
 			['name', 'twitter:creator', '@benjamminj'],
 			['property', 'og:title', pageContent.title],
 			['property', 'og:description', pageContent.description],
-			['property', 'og:type', 'website']
+			['property', 'og:type', 'website'],
 		];
 
 		await Promise.all(
@@ -62,11 +62,11 @@ test.describe('/[post] (chromium only)', () => {
 	// see https://github.com/microsoft/playwright/issues/13037
 	test.skip(
 		({ browserName }) => browserName !== 'chromium',
-		'`clipboard-read` permissions can only be granted in Chromium'
+		'`clipboard-read/write` permissions can only be granted in Chromium'
 	);
 
 	test.beforeEach(async ({ context }) => {
-		await context.grantPermissions(['clipboard-read']);
+		await context.grantPermissions(['clipboard-read', 'clipboard-write']);
 	});
 
 	test.afterEach(async ({ context }) => {

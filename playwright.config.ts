@@ -1,14 +1,9 @@
 import type { PlaywrightTestConfig } from '@playwright/test';
 
 const config: PlaywrightTestConfig = {
-	webServer: process.env.CI
-		? undefined
-		: {
-				command: 'npm run build && npm run preview',
-				port: 4173
-		  },
+	webServer: undefined,
 	use: {
-		baseURL: process.env.CI ? process.env.TEST_BASE_URL : 'http://localhost:4173'
+		baseURL: process.env.CI ? process.env.TEST_BASE_URL : 'http://localhost:3000'
 	},
 	projects: [
 		{
