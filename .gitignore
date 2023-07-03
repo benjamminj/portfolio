@@ -9,3 +9,6 @@ node_modules
 
 # next build artifacts
 .next
+
+# e2e tests
+/test-results

@@ -44,7 +44,7 @@ function FooterLink({
 	children
 }: {
 	title: string;
-	href: LinkProps<string>['href'];
+	href: string;
 	children: ReactNode;
 }) {
 	return (
