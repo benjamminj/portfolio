@@ -48,5 +48,10 @@
 		"name": "Being Glue",
 		"url": "https://noidea.dog/glue",
 		"tags": ["software-engineering", "career", "teamwork"]
+	},
+		{
+		"name": "Add Less",
+		"url": "https://css-tricks.com/add-less/",
+		"tags": ["software-engineering", "philosophy", "performance", "tech-debt"]
 	}
 ]
