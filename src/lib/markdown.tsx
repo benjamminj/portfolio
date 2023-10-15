@@ -12,6 +12,7 @@ export async function Markdown({ raw }: { raw: string }) {
 
 	return (
 		<div className="prose dark:prose-invert font-mono mx-auto max-w-prose">
+			{/* @ts-expect-error Server Component */}
 			<InternalMarkdownRenderer nodes={mdast.data as CompileContext['stack']} />
 		</div>
 	);
@@ -22,6 +23,7 @@ function InternalMarkdownRenderer({ nodes = [] }: { nodes?: CompileContext['stac
 		if (node.type === 'heading') {
 			return (
 				<Heading level={node.depth}>
+					{/* @ts-expect-error Server Component */}
 					<InternalMarkdownRenderer nodes={node.children} />
 				</Heading>
 			);
@@ -34,6 +36,7 @@ function InternalMarkdownRenderer({ nodes = [] }: { nodes?: CompileContext['stac
 		if (node.type === 'paragraph') {
 			return (
 				<p className="mb-6 text-base leading-7">
+					{/* @ts-expect-error Server Component */}
 					<InternalMarkdownRenderer nodes={node.children} />
 				</p>
 			);
@@ -42,6 +45,7 @@ function InternalMarkdownRenderer({ nodes = [] }: { nodes?: CompileContext['stac
 		if (node.type === 'link') {
 			return (
 				<A href={node.url}>
+					{/* @ts-expect-error Server Component */}
 					<InternalMarkdownRenderer nodes={node.children} />
 				</A>
 			);
@@ -56,6 +60,7 @@ function InternalMarkdownRenderer({ nodes = [] }: { nodes?: CompileContext['stac
 		if (node.type === 'strong') {
 			return (
 				<strong>
+					{/* @ts-expect-error Server Component */}
 					<InternalMarkdownRenderer nodes={node.children} />
 				</strong>
 			);
@@ -64,6 +69,7 @@ function InternalMarkdownRenderer({ nodes = [] }: { nodes?: CompileContext['stac
 		if (node.type === 'emphasis') {
 			return (
 				<em>
+					{/* @ts-expect-error Server Component */}
 					<InternalMarkdownRenderer nodes={node.children} />
 				</em>
 			);
@@ -72,6 +78,7 @@ function InternalMarkdownRenderer({ nodes = [] }: { nodes?: CompileContext['stac
 		if (node.type === 'list' && node.ordered) {
 			return (
 				<ol className="pl-8 list-none">
+					{/* @ts-expect-error Server Component */}
 					<InternalMarkdownRenderer nodes={node.children} />
 				</ol>
 			);
@@ -80,6 +87,7 @@ function InternalMarkdownRenderer({ nodes = [] }: { nodes?: CompileContext['stac
 		if (node.type === 'list' && !node.ordered) {
 			return (
 				<ul className="pl-8 list-none">
+					{/* @ts-expect-error Server Component */}
 					<InternalMarkdownRenderer nodes={node.children} />
 				</ul>
 			);
@@ -88,6 +96,7 @@ function InternalMarkdownRenderer({ nodes = [] }: { nodes?: CompileContext['stac
 		if (node.type === 'listItem') {
 			return (
 				<li className="relative pl-2 my-4 text-base leading-7 before:-left-4 before:absolute">
+					{/* @ts-expect-error Server Component */}
 					<InternalMarkdownRenderer nodes={node.children} />
 				</li>
 			);
@@ -96,6 +105,7 @@ function InternalMarkdownRenderer({ nodes = [] }: { nodes?: CompileContext['stac
 		if (node.type === 'blockquote') {
 			return (
 				<blockquote>
+					{/* @ts-expect-error Server Component */}
 					<InternalMarkdownRenderer nodes={node.children} />
 				</blockquote>
 			);
@@ -120,9 +130,11 @@ function InternalMarkdownRenderer({ nodes = [] }: { nodes?: CompileContext['stac
 			return (
 				<table>
 					<thead>
+						{/* @ts-expect-error Server Component */}
 						<InternalMarkdownRenderer nodes={[thead]} />
 					</thead>
 					<tbody>
+						{/* @ts-expect-error Server Component */}
 						<InternalMarkdownRenderer nodes={tbody} />
 					</tbody>
 				</table>
@@ -132,6 +144,7 @@ function InternalMarkdownRenderer({ nodes = [] }: { nodes?: CompileContext['stac
 		if (node.type === 'tableRow') {
 			return (
 				<tr>
+					{/* @ts-expect-error Server Component */}
 					<InternalMarkdownRenderer nodes={node.children} />
 				</tr>
 			);
@@ -140,6 +153,7 @@ function InternalMarkdownRenderer({ nodes = [] }: { nodes?: CompileContext['stac
 		if (node.type === 'tableCell') {
 			return (
 				<td>
+					{/* @ts-expect-error Server Component */}
 					<InternalMarkdownRenderer nodes={node.children} />
 				</td>
 			);

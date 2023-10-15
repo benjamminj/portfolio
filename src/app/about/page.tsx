@@ -7,6 +7,7 @@ export default async function AboutRoute() {
 
 	return (
 		<PageWrapper title="About me">
+			{/* @ts-expect-error Server Component */}
 			<Markdown raw={raw} />
 		</PageWrapper>
 	);
