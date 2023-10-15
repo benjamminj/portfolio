@@ -33,7 +33,7 @@ module.exports = {
 						css: {
 							table: {
 								'thead tr': {
-									backgroundColor: theme('colors.gray.300'),
+									backgroundColor: theme('colors.gray.100'),
 
 									'@media (prefers-color-scheme: dark)': {
 										backgroundColor: theme('colors.gray.600'),
@@ -41,7 +41,7 @@ module.exports = {
 								},
 								'tbody tr': {
 									'&:nth-child(even)': {
-										backgroundColor: theme('colors.gray.200'),
+										backgroundColor: theme('colors.gray.50'),
 
 										'@media (prefers-color-scheme: dark)': {
 											backgroundColor: theme('colors.gray.700'),
@@ -50,6 +50,8 @@ module.exports = {
 								},
 								td: {
 									padding: theme('spacing.2'),
+									border: '1px solid',
+									borderColor: theme('colors.gray.200'),
 								},
 							},
 							ol: {

@@ -47,16 +47,16 @@
 		"front-matter": "^4.0.2",
 		"glob": "^10.3.1",
 		"lodash": "^4.17.21",
+		"mdast-util-from-markdown": "^2.0.0",
+		"mdast-util-gfm": "^3.0.0",
+		"micromark": "^4.0.0",
+		"micromark-extension-gfm": "^3.0.0",
 		"next": "^13.4.8",
 		"prismjs": "^1.29.0",
 		"react": "^18.2.0",
 		"react-dom": "^18.2.0",
-		"rehype-stringify": "^9.0.3",
-		"remark-parse": "^10.0.2",
-		"remark-rehype": "^10.1.0",
 		"rss-parser": "^3.13.0",
 		"tailwind-merge": "^1.13.2",
-		"unified": "^10.1.2",
 		"zod": "^3.21.4"
 	}
 }

@@ -1,24 +1,24 @@
-import type { HtmlAstNode } from '@/lib/hast.types';
+import { CompileContext } from 'mdast-util-from-markdown/lib';
 import { ReactNode, createElement } from 'react';
+import { A } from './a';
 import { cn } from './cn';
 import { CodeBlock } from './code-block';
 import { MarkdownService } from './markdown-service.server';
-import { A } from './a';
 
 export async function Markdown({ raw }: { raw: string }) {
-	const hast = await MarkdownService.parseMarkdownToHast(raw);
+	const mdast = await MarkdownService.parseMarkdownToMdast(raw);
 
-	if (!hast) return null;
+	if (!mdast) return null;
 
 	return (
 		<div className="prose dark:prose-invert font-mono mx-auto max-w-prose">
-			<InternalMarkdownRenderer nodes={hast.children as HtmlAstNode[]} />
+			<InternalMarkdownRenderer nodes={mdast.data as CompileContext['stack']} />
 		</div>
 	);
 }
 
-function InternalMarkdownRenderer({ nodes = [] }: { nodes?: HtmlAstNode[] }) {
-	return nodes.map((node, i) => {
+function InternalMarkdownRenderer({ nodes = [] }: { nodes?: CompileContext['stack'] }) {
+	return nodes.map((node) => {
 		if (node.type === 'heading') {
 			return (
 				<Heading level={node.depth}>
@@ -111,7 +111,38 @@ function InternalMarkdownRenderer({ nodes = [] }: { nodes?: HtmlAstNode[] }) {
 
 		if (node.type === 'image') {
 			// TODO: next image??
-			return <img src={node.url} alt={node.alt} />;
+			return <img src={node.url} alt={node.alt ?? ''} />;
+		}
+
+		if (node.type === 'table') {
+			console.log(JSON.stringify(node, null, 4));
+			const [thead, ...tbody] = node.children;
+			return (
+				<table>
+					<thead>
+						<InternalMarkdownRenderer nodes={[thead]} />
+					</thead>
+					<tbody>
+						<InternalMarkdownRenderer nodes={tbody} />
+					</tbody>
+				</table>
+			);
+		}
+
+		if (node.type === 'tableRow') {
+			return (
+				<tr>
+					<InternalMarkdownRenderer nodes={node.children} />
+				</tr>
+			);
+		}
+
+		if (node.type === 'tableCell') {
+			return (
+				<td>
+					<InternalMarkdownRenderer nodes={node.children} />
+				</td>
+			);
 		}
 
 		return null;
@@ -126,7 +157,7 @@ function Heading({ level = 2, children }: { level?: number; children: ReactNode 
 		h3: 'mt-12 mb-4 text-2xl',
 		h4: 'mt-10 mb-4 text-xl',
 		h5: 'mt-6 mb-4 text-lg',
-		h6: 'mt-6 mb-4 text-base'
+		h6: 'mt-6 mb-4 text-base',
 	};
 
 	const headerStyle = styles[tag as unknown as keyof typeof styles];

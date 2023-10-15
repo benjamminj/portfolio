@@ -1,8 +1,9 @@
+import { fromMarkdown } from 'mdast-util-from-markdown';
+import { CompileContext, Root } from 'mdast-util-from-markdown/lib';
+import { gfmFromMarkdown } from 'mdast-util-gfm';
+import { micromark } from 'micromark';
+import { gfm, gfmHtml } from 'micromark-extension-gfm';
 import Prism from 'prismjs';
-import { unified } from 'unified';
-import remarkParse from 'remark-parse';
-import remarkRehype from 'remark-rehype';
-import rehypeStringify from 'rehype-stringify';
 
 // Import syntax highlighting for languages used across the blog.
 //
@@ -18,30 +19,30 @@ import rehypeStringify from 'rehype-stringify';
 // or to generate a list of syntaxes needed using the prism CLI. OR it may be simpler/better
 // to simply load ALL syntaxes up-front depending on the memory load (might be too
 // high for lambda / edge functions + SSR)
-import 'prismjs/components/prism-clike.min.js';
-import 'prismjs/components/prism-markup.min.js';
-import 'prismjs/components/prism-javascript.min.js';
-import 'prismjs/components/prism-jsx.min.js';
-import 'prismjs/components/prism-typescript.min.js';
-import 'prismjs/components/prism-tsx.min.js';
 import 'prismjs/components/prism-bash.min.js';
-import 'prismjs/components/prism-haskell.min.js';
+import 'prismjs/components/prism-clike.min.js';
 import 'prismjs/components/prism-diff.min.js';
+import 'prismjs/components/prism-haskell.min.js';
+import 'prismjs/components/prism-javascript.min.js';
 import 'prismjs/components/prism-json.min.js';
-import type { HtmlAst, HtmlAstNode } from './hast.types';
+import 'prismjs/components/prism-jsx.min.js';
+import 'prismjs/components/prism-markup.min.js';
+import 'prismjs/components/prism-tsx.min.js';
+import 'prismjs/components/prism-typescript.min.js';
+
+type Node = CompileContext['stack'][number];
 
 export class MarkdownService {
 	/**
 	 * Pipeline to take raw Markdown and turn it into a HTML string.
 	 */
 	public static async toHTML(markdown: string) {
-		const html = await unified()
-			.use(remarkParse)
-			.use(remarkRehype)
-			.use(rehypeStringify)
-			.process(markdown);
+		const html = micromark(markdown, {
+			extensions: [gfm()],
+			htmlExtensions: [gfmHtml()],
+		});
 
-		return html.value;
+		return html;
 	}
 
 	/**
@@ -51,17 +52,13 @@ export class MarkdownService {
 	 * - Code blocks will be highlighted using PrismJS
 	 * - At the current time, frontmatter is not extracted, so that needs to be done separately.
 	 */
-	public static async parseMarkdownToHast(markdown: string) {
-		// Spits out a hast (HTML AST) of the markdown, this can later be processed by
-		// individual frontend components.
-		const hast = (await unified()
-			.use(remarkParse)
-			// TODO: change to process and send HAST? or change to be based on MDAST?
-			// Alternatively we could do processing on the HTML to add stuff like the copy-pasta
-			// button.
-			.parse(markdown)) as unknown as HtmlAst;
+	public static async parseMarkdownToMdast(markdown: string) {
+		const tree = fromMarkdown(markdown, {
+			extensions: [gfm()],
+			mdastExtensions: [gfmFromMarkdown()],
+		});
 
-		const highlightedHast = this.highlightCodeBlocks(hast);
+		const highlightedHast = this.highlightCodeBlocks(tree);
 
 		return this.pruneAst(highlightedHast);
 	}
@@ -69,22 +66,23 @@ export class MarkdownService {
 	/**
 	 * Walks the AST and highlights any code blocks that are found.
 	 */
-	static highlightCodeBlocks = (ast: HtmlAst) => {
-		const transform = (node: HtmlAstNode): HtmlAstNode => {
-			if (node.type === 'code') {
+	static highlightCodeBlocks = (ast: Root): Root => {
+		const transform = (node: Node): Node => {
+			if (node.type === 'code' && node.lang) {
 				const value = this.highlight(node.value, node.lang);
+
 				return {
 					...node,
-					value
+					value,
 				};
 			}
 
-			if (node.children) {
+			if ('children' in node) {
 				const mappedChildren = node.children.map(transform);
 				return {
 					...node,
-					children: mappedChildren
-				};
+					children: mappedChildren,
+				} as Node;
 			}
 
 			return node;
@@ -93,7 +91,7 @@ export class MarkdownService {
 		const children = ast.children.map(transform);
 		return {
 			...ast,
-			children
+			data: children,
 		};
 	};
 
@@ -114,7 +112,7 @@ export class MarkdownService {
 	 * Given a HAST node, remove the position. This is not used by the markdown rendering
 	 * and dramatically decreases the size of the payload (sometimes up to 50% smaller!!)
 	 */
-	private static pruneHastNode(node: HtmlAstNode): Omit<HtmlAstNode, 'position'> {
+	private static pruneAstNode(node: Node): Omit<Node, 'position'> {
 		const { position: _position, ...rest } = node;
 		return rest;
 	}
@@ -122,33 +120,39 @@ export class MarkdownService {
 	/**
 	 * This prunes down a given HAST node recursively to remove the position.
 	 */
-	private static pruneAst(ast: HtmlAst) {
-		type TransformedNode = Omit<HtmlAstNode, 'position' | 'children'> & {
+	private static pruneAst(ast: Root) {
+		type TransformedNode = Omit<Node, 'position' | 'children'> & {
 			children?: TransformedNode[];
 		};
 
-		const transformHastNode = (node: HtmlAstNode): TransformedNode => {
+		const transformAstNode = (node: Node): TransformedNode => {
 			let children: TransformedNode[] | undefined;
 
-			if (node.children) {
-				const transformedChildren: TransformedNode[] = node.children.map(transformHastNode);
+			if ('children' in node) {
+				const transformedChildren: TransformedNode[] = node.children.map(transformAstNode);
 				children = transformedChildren;
 			}
 
-			const { children: _, ...pruned } = this.pruneHastNode(node);
+			let pruned = this.pruneAstNode(node);
+
+			if ('children' in pruned) {
+				const { children: _children, ...rest } = pruned;
+				pruned = rest;
+			}
+
 			return {
 				...pruned,
-				children
-			};
+				children,
+			} as TransformedNode;
 		};
 
-		const transformedChildren = ast.children.map(transformHastNode);
+		const transformedChildren = ast.children.map(transformAstNode);
 		const { children: _children, position: _pos, ...rest } = ast;
 		return {
 			...rest,
-			children: transformedChildren
+			children: transformedChildren,
 		};
 	}
 }
 
-export type PrunedHast = Awaited<ReturnType<typeof MarkdownService.parseMarkdownToHast>>;
+export type PrunedHast = Awaited<ReturnType<typeof MarkdownService.parseMarkdownToMdast>>;

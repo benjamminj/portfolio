@@ -31,11 +31,11 @@ const PostMetadataSchema = z
 		description: z.string().optional(),
 		tags: z.array(z.string()).default([]),
 		link: z.string().optional(),
-		publisher: z.string().optional()
+		publisher: z.string().optional(),
 	})
 	.transform(({ lastUpdated, date, ...rest }) => ({
 		...rest,
-		date: lastUpdated ?? date
+		date: lastUpdated ?? date,
 	}));
 
 /**
@@ -45,7 +45,7 @@ const PostMetadataSchema = z
 const PostContentSchema = z.object({
 	// @todo: This should be the type of the HAST, but since that's recursive you
 	// can easily get into an infinite parsing loop.
-	content: z.any()
+	content: z.any(),
 });
 
 /**
@@ -87,11 +87,11 @@ export class PostService {
 		const raw = await readFile(path);
 		const metadata = await this.parse({ path, raw });
 		const { body } = fm<Record<string, string>>(raw);
-		const content = await MarkdownService.parseMarkdownToHast(body);
+		const content = await MarkdownService.parseMarkdownToMdast(body);
 		return {
 			...metadata,
 			body,
-			content
+			content,
 		};
 	}
 
@@ -111,7 +111,7 @@ export class PostService {
 	private static async parse({
 		path,
 		raw,
-		include = []
+		include = [],
 	}: {
 		path: string;
 		raw: string;
@@ -121,7 +121,7 @@ export class PostService {
 		const { attributes, body } = fm<Record<string, string>>(raw);
 		const post: Record<string, unknown> = {
 			slug,
-			...attributes
+			...attributes,
 		};
 
 		let schema: ZodTypeAny = PostMetadataSchema;

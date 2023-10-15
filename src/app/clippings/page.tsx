@@ -26,10 +26,12 @@ export default async function ClippingsRoute() {
 								<td className="w-3/5">
 									<A href={clipping.url}>{clipping.name}</A>
 								</td>
-								<td className="flex gap-2 flex-wrap">
-									{clipping.tags.map((tag: string) => (
-										<Tag key={tag} variant="strong" tag={tag} />
-									))}
+								<td>
+									<div className="flex gap-2 flex-wrap">
+										{clipping.tags.map((tag: string) => (
+											<Tag key={tag} variant="strong" tag={tag} />
+										))}
+									</div>
 								</td>
 							</tr>
 						))}
