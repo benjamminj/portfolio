@@ -1,4 +1,5 @@
 import type { PlaywrightTestConfig } from '@playwright/test';
+import 'dotenv/config'
 
 const config: PlaywrightTestConfig = {
 	webServer: undefined,
