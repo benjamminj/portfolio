@@ -9,30 +9,6 @@ type PageParams = {
 	slug: string;
 };
 
-export async function generateMetadata({ params }: { params: PageParams }): Promise<Metadata> {
-	const slug = params.slug;
-	const post = await PostService.get(slug);
-
-	return {
-		description: post.description,
-		authors: { name: 'Benjamin Johnson' },
-		twitter: {
-			card: 'summary',
-			site: '@benjamminj',
-			creator: '@benjamminj',
-			title: post.title,
-			description: post.description,
-		},
-		openGraph: {
-			title: post.title,
-			description: post.description,
-			type: 'website',
-			url: `${process.env.URL || process.env.VERCEL_URL}/${slug}`,
-		},
-		keywords: post.tags?.length > 0 ? post.tags.join(', ') : undefined,
-	};
-}
-
 export default async function SlugPage({ params }: { params: PageParams }) {
 	const slug = params.slug;
 	const post = await PostService.get(slug);
@@ -64,4 +40,33 @@ export default async function SlugPage({ params }: { params: PageParams }) {
 			)}
 		</PageWrapper>
 	);
+}
+
+export async function generateMetadata({ params }: { params: PageParams }): Promise<Metadata> {
+	const slug = params.slug;
+	const post = await PostService.get(slug);
+
+	return {
+		description: post.description,
+		authors: { name: 'Benjamin Johnson' },
+		twitter: {
+			card: 'summary',
+			site: '@benjamminj',
+			creator: '@benjamminj',
+			title: post.title,
+			description: post.description,
+		},
+		openGraph: {
+			title: post.title,
+			description: post.description,
+			type: 'website',
+			url: `${process.env.URL || process.env.VERCEL_URL}/${slug}`,
+		},
+		keywords: post.tags?.length > 0 ? post.tags.join(', ') : undefined,
+	};
+}
+
+export async function generateStaticParams() {
+	const posts = await PostService.list();
+	return posts.map(post => ({ slug: post.slug }))
 }
