@@ -4,13 +4,14 @@ const escapeCdata = (str: string) => {
 	return str.replace(/\]\]>/g, ']]]]><![CDATA[>');
 };
 
+export const dynamic = 'force-static'
 export async function GET(request: Request) {
 	const posts = await PostService.list({ include: ['html'] });
 	const host = request.headers.get('X-Forwarded-Host') ?? request.headers.get('host');
 
-	if (!host) throw new Error('Could not determine domain URL.');
+	if (!host) console.error('Could not determine domain URL.');
 
-	const protocol = host.includes('localhost') ? 'http' : 'https';
+	const protocol = host?.includes('localhost') ? 'http' : 'https';
 
 	const domain = `${protocol}://${host}`;
 
