@@ -125,7 +125,6 @@ function InternalMarkdownRenderer({ nodes = [] }: { nodes?: CompileContext['stac
 		}
 
 		if (node.type === 'table') {
-			console.log(JSON.stringify(node, null, 4));
 			const [thead, ...tbody] = node.children;
 			return (
 				<table>
