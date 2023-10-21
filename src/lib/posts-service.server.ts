@@ -2,6 +2,8 @@ import fm from 'front-matter';
 import type { ZodTypeAny } from 'zod';
 import { z } from 'zod';
 import { MarkdownService } from './markdown-service.server';
+import { glob } from 'glob';
+import { readFile } from './read-file';
 
 /**
  * Parses a date object into a JSON-serializable string, formatted as yyyy-mm-dd.
@@ -29,11 +31,11 @@ const PostMetadataSchema = z
 		description: z.string().optional(),
 		tags: z.array(z.string()).default([]),
 		link: z.string().optional(),
-		publisher: z.string().optional()
+		publisher: z.string().optional(),
 	})
 	.transform(({ lastUpdated, date, ...rest }) => ({
 		...rest,
-		date: lastUpdated ?? date
+		date: lastUpdated ?? date,
 	}));
 
 /**
@@ -43,7 +45,7 @@ const PostMetadataSchema = z
 const PostContentSchema = z.object({
 	// @todo: This should be the type of the HAST, but since that's recursive you
 	// can easily get into an infinite parsing loop.
-	content: z.any()
+	content: z.any(),
 });
 
 /**
@@ -66,8 +68,9 @@ export class PostService {
 		(Post & { html?: string })[]
 	> {
 		const rawPosts = await this.fetchRaw();
+
 		const formatted = await Promise.all(
-			rawPosts.map(([path, raw]) => this.parse({ path, raw, include }))
+			rawPosts.map((path) => readFile(path).then((raw) => this.parse({ path, raw, include })))
 		);
 
 		formatted.sort((a, b) => b.date.localeCompare(a.date));
@@ -76,16 +79,19 @@ export class PostService {
 
 	public static async get(slug: string) {
 		const rawPosts = await this.fetchRaw();
-		const [path, raw] = rawPosts.find(([path]) => this.slugify(path) === slug) ?? [];
-		if (!path || !raw) {
+		const path = rawPosts.find((path) => this.slugify(path) === slug);
+		if (!path) {
 			throw new Error(`Post not found: ${slug}`);
 		}
+
+		const raw = await readFile(path);
 		const metadata = await this.parse({ path, raw });
 		const { body } = fm<Record<string, string>>(raw);
-		const content = await MarkdownService.parseMarkdownToHast(body);
+		const content = await MarkdownService.parseMarkdownToMdast(body);
 		return {
 			...metadata,
-			content
+			body,
+			content,
 		};
 	}
 
@@ -93,9 +99,9 @@ export class PostService {
 	 * Fetches the raw posts from the file system.
 	 */
 	private static async fetchRaw() {
-		const posts = import.meta.glob('../../content/writing/**/*.md', { eager: true, as: 'raw' });
+		const posts = await glob('**/content/writing/**/*.md');
 
-		return Object.entries(posts);
+		return posts;
 	}
 
 	/**
@@ -105,7 +111,7 @@ export class PostService {
 	private static async parse({
 		path,
 		raw,
-		include = []
+		include = [],
 	}: {
 		path: string;
 		raw: string;
@@ -115,7 +121,7 @@ export class PostService {
 		const { attributes, body } = fm<Record<string, string>>(raw);
 		const post: Record<string, unknown> = {
 			slug,
-			...attributes
+			...attributes,
 		};
 
 		let schema: ZodTypeAny = PostMetadataSchema;
@@ -138,7 +144,7 @@ export class PostService {
 	 * post from its file name.
 	 */
 	private static slugify(path: string) {
-		const [_, tail] = path.split('/content/writing/');
+		const [_, tail] = path.split('content/writing/');
 		return tail.replace('.md', '');
 	}
 }

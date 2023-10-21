@@ -6,3 +6,9 @@ node_modules
 .env
 .env.*
 !.env.example
+
+# next build artifacts
+.next
+
+# e2e tests
+/test-results
