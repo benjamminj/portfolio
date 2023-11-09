@@ -1,4 +1,4 @@
-import { PageWrapper } from '@/app/_components/page-wrapper';
+import { PageWrapper } from '@/app/(public)/_components/page-wrapper';
 import { PostList } from '@/lib/post-list';
 import { PostService } from '@/lib/posts-service.server';
 

@@ -1,12 +1,8 @@
-import { cn } from '@/lib/cn';
-import { Inter } from 'next/font/google';
+import { Body } from './_components/body';
 import { Footer } from './_components/footer';
 import { Header } from './_components/header';
-import './globals.css';
-import Script from 'next/script';
-import { Body } from './_components/body';
 
-const inter = Inter({ subsets: ['latin'] });
+import '../globals.css';
 
 export const metadata = {
 	title: 'Benjamin Johnson',
