@@ -50,7 +50,7 @@ function FooterLink({
 	return (
 		<Link
 			title={title}
-			href={href as LinkProps<string>['href']}
+			href={href as LinkProps['href']}
 			className="text-base underline text-gray-800 dark:text-gray-200 hover:dark:text-white font-bold"
 		>
 			{children}

@@ -7,7 +7,7 @@ export function A({
 	...props
 }: { href: string } & HTMLAttributes<HTMLAnchorElement>) {
 	return (
-		<Link href={href as LinkProps<unknown>['href']} {...props}>
+		<Link href={href as LinkProps['href']} {...props}>
 			{children}
 		</Link>
 	);

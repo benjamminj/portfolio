@@ -18,7 +18,7 @@ export default function DesignSystemLayout({ children }: { children: ReactNode }
 						<NavLink href="/design-system/typography">typography</NavLink>
 					</li>
 					<li>
-						<NavLink href="/design-system/colors">colors (todo)</NavLink>
+						<NavLink href="/design-system/colors">colors</NavLink>
 					</li>
 					<li>
 						<NavLink href="/">card (todo)</NavLink>
