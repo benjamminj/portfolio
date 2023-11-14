@@ -21,10 +21,10 @@ export default function DesignSystemLayout({ children }: { children: ReactNode }
 						<NavLink href="/design-system/colors">colors</NavLink>
 					</li>
 					<li>
-						<NavLink href="/">card (todo)</NavLink>
+						<NavLink href="/design-system/card">card</NavLink>
 					</li>
 					<li>
-						<NavLink href="/">table (todo)</NavLink>
+						<NavLink href="/design-system/table">table</NavLink>
 					</li>
 					<li>
 						<NavLink href="/">tag (todo)</NavLink>
