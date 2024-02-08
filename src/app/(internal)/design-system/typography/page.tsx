@@ -1,13 +1,13 @@
+import { Card, CardContent } from '../_components/card';
+
 export default function TypographyPage() {
 	return (
-		<div className="w-full h-full bg-red-300">
-			<div className="max-w-screen-md sm:px-8 mx-0 sm:mx-auto pt-8 sm:py-8">
-				<h1 className="text-@h5">typography</h1>
-
-				<div className="space-y-12 pt-8">
-					<section className="space-y-1">
-						<h2 className="text-@h5">headings</h2>
-						<ul className="rounded-none sm:rounded-xl border-black border-2 border-b-4 p-8 space-y-8 bg-white">
+		<div className="space-y-12">
+			<section className="space-y-1">
+				<h2 className="text-@h5">headings</h2>
+				<Card>
+					<CardContent>
+						<ul className="space-y-8 ">
 							<li className="text-@h1">
 								<SampleHeadingText level={1} />
 							</li>
@@ -29,11 +29,15 @@ export default function TypographyPage() {
 								<SampleHeadingText level={6} />
 							</li>
 						</ul>
-					</section>
+					</CardContent>
+				</Card>
+			</section>
 
-					<section className="space-y-1">
-						<h2 className="text-@h5">body</h2>
-						<ul className="rounded-none sm:rounded-xl border-black border-2 border-b-4 p-8 space-y-8 bg-white">
+			<section className="space-y-1">
+				<h2 className="text-@h5">body</h2>
+				<Card>
+					<CardContent>
+						<ul className="space-y-8">
 							<li className="text-@large">
 								<SampleBodyText name="body large" />
 							</li>
@@ -50,9 +54,9 @@ export default function TypographyPage() {
 								</p>
 							</li>
 						</ul>
-					</section>
-				</div>
-			</div>
+					</CardContent>
+				</Card>
+			</section>
 		</div>
 	);
 }

@@ -1,17 +1,14 @@
 import { cn } from '@/lib/cn';
-import { ReactNode } from 'react';
+import { Card, CardContent } from '../_components/card';
 
 export default async function ColorsPage() {
 	return (
-		<div className="w-full h-full bg-@bg-default text-@fg-default">
-			<div className="max-w-screen-md sm:px-8 mx-0 sm:mx-auto pt-8 sm:py-8">
-				<h1 className="text-@h5">colors</h1>
-
-				<div className="space-y-12 pt-8">
-					<section className="space-y-1">
-						<h2 className="text-@h5">base</h2>
-
-						<Card>
+		<div className="space-y-12">
+			<section className="space-y-1">
+				<h2 className="text-@h5">base</h2>
+				<Card>
+					<CardContent>
+						<div className="space-y-4">
 							<p>
 								Base color tokens are the foundation of the color system. Each token represents a
 								single shade of a given hue. The shade at the given token should <i>not</i> change
@@ -197,13 +194,17 @@ export default async function ColorsPage() {
 									'bg-@pink-950',
 								]}
 							/>
-						</Card>
-					</section>
+						</div>
+					</CardContent>
+				</Card>
+			</section>
 
-					<section className="space-y-1">
-						<h2 className="text-@h5">alias</h2>
+			<section className="space-y-1">
+				<h2 className="text-@h5">alias</h2>
 
-						<Card>
+				<Card>
+					<CardContent>
+						<div className="space-y-4">
 							<p>
 								Alias color tokens are used to reference a base color token. However, they carry a{' '}
 								<i>semantic</i> meaning. It is expected that an alias token's shade will vary from
@@ -259,13 +260,17 @@ export default async function ColorsPage() {
 									</li>
 								</ul>
 							</div>
-						</Card>
-					</section>
+						</div>
+					</CardContent>
+				</Card>
+			</section>
 
-					<section className="space-y-1">
-						<h2 className="text-@h5">component</h2>
+			<section className="space-y-1">
+				<h2 className="text-@h5">component</h2>
 
-						<Card>
+				<Card>
+					<CardContent>
+						<div className="space-y-4">
 							<p>
 								Component color tokens are tokens that are specific to a single design system
 								component. They should not be used outside of their component. They can reference
@@ -276,10 +281,10 @@ export default async function ColorsPage() {
 								At this point in time no color tokens exist, but the idea is baked into the design
 								system for completeness.
 							</p>
-						</Card>
-					</section>
-				</div>
-			</div>
+						</div>
+					</CardContent>
+				</Card>
+			</section>
 		</div>
 	);
 }
@@ -314,14 +319,6 @@ function ColorSwatchGroup({
 					);
 				})}
 			</ul>
-		</div>
-	);
-}
-
-function Card({ children }: { children: ReactNode }) {
-	return (
-		<div className="rounded-none border-@border-default border-2 border-b-4 p-8 space-y-4 bg-@bg-default text-@fg-default">
-			{children}
 		</div>
 	);
 }
