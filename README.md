@@ -6,7 +6,7 @@ Welcome to the source code for my personal corner of the internet!
 
 I don't care. Yeah, you don't _need_ all this for a blog website. But this is my corner of the internet, so I'm gonna use tools that ✨ spark joy ✨
 
-Right now that's [SvelteKit](https://kit.svelte.dev/) and [Tailwind](https://tailwindcss.com/). I actually find that both tools _scale down_ nicely as well as up, and I make sure I'm staying on top of what's fresh in frontend.
+Right now that's [Next.js](https://nextjs.org/) and [Tailwind](https://tailwindcss.com/). I actually find that both tools _scale down_ nicely as well as up, and I make sure I'm staying on top of what's fresh in frontend.
 
 ## Contributing
 
