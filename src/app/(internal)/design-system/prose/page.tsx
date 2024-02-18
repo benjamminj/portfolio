@@ -7,12 +7,10 @@ export default async function ProsePage() {
 				<h2 className="text-@h5">headings</h2>
 				<Card>
 					<CardContent>
-						<div className="prose dark:prose-invert">
-							<h2>heading 1</h2>
-							<h3>heading 2</h3>
-							<h4>heading 3</h4>
-							<h5>heading 4</h5>
-						</div>
+						<h2>heading 1</h2>
+						<h2>heading 2</h2>
+						<h2>heading 3</h2>
+						<h2>heading 4</h2>
 					</CardContent>
 				</Card>
 			</section>
