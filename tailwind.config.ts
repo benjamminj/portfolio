@@ -455,7 +455,7 @@ function generateBaseColorTokenCss(theme: PluginAPI['theme']) {
 
 function generateHeadingTypographyCss(theme: PluginAPI['theme']) {
 	const commonHeadingStyles = {
-		fontFamily: theme('fontFamily.sans'),
+		fontFamily: theme('fontFamily.mono'),
 		letterSpacing: theme('letterSpacing.tight'),
 		lineHeight: theme('lineHeight.none'),
 		fontWeight: theme('fontWeight.extrabold'),
@@ -516,7 +516,7 @@ function generateBodyTypographyCss(theme: PluginAPI['theme']) {
 			return [
 				`.text-\\@${key}`,
 				{
-					fontFamily: theme('fontFamily.sans'),
+					fontFamily: theme('fontFamily.mono'),
 					fontWeight: theme('fontWeight.normal'),
 					...value,
 				},

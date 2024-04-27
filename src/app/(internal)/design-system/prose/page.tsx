@@ -6,7 +6,14 @@ export default async function ProsePage() {
 			<section className="space-y-1">
 				<h2 className="text-@h5">headings</h2>
 				<Card>
-					<CardContent></CardContent>
+					<CardContent>
+						<div className="prose dark:prose-invert">
+							<h2>heading 1</h2>
+							<h3>heading 2</h3>
+							<h4>heading 3</h4>
+							<h5>heading 4</h5>
+						</div>
+					</CardContent>
 				</Card>
 			</section>
 
