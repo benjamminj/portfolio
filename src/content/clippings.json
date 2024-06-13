@@ -35,11 +35,6 @@
 		"tags": ["software-engineering", "teamwork", "pull-requests"]
 	},
 	{
-		"name": "Learn TypeScript",
-		"url": "https://learntypescript.dev/",
-		"tags": ["typescript", "tutorials", "deep-dives"]
-	},
-	{
 		"name": "How Complex Systems Fail",
 		"url": "https://how.complexsystems.fail/",
 		"tags": ["software-engineering", "philosophy"]
@@ -48,5 +43,20 @@
 		"name": "Being Glue",
 		"url": "https://noidea.dog/glue",
 		"tags": ["software-engineering", "career", "teamwork"]
+	},
+	{
+		"name": "Customization vs. Configuration in Evolving Design Systems",
+		"url": "https://engineering.atspotify.com/2021/04/customization-vs-configuration-in-evolving-design-systems/",
+		"tags": ["software-engineering", "philosophy", "tech-debt"]
+	},
+	{
+		"name": "Write code that is easy to delete, not easy to extend.",
+		"url": "https://programmingisterrible.com/post/139222674273/write-code-that-is-easy-to-delete-not-easy-to",
+		"tags": ["software-engineering", "philosophy", "tech-debt"]
+	},
+	{
+		"name": "Repeat yourself, do more than one thing, and rewrite everything",
+		"url": "https://programmingisterrible.com/post/176657481103/repeat-yourself-do-more-than-one-thing-and",
+		"tags": ["software-engineering", "philosophy", "tech-debt"]
 	}
 ]
