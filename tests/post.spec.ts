@@ -51,7 +51,7 @@ test.describe('/[post]', () => {
 
 	test('should link to externally published blog posts', async ({ page }) => {
 		await page.goto('/how-css-works-parsing-and-painting-in-the-critical-rendering-path');
-		const $link = page.locator('text=Read the full article on LogRocket.');
+		const $link = page.getByRole('link', { name: 'Read the full article on LogRocket.' });
 		expect(await $link.getAttribute('href')).toEqual(
 			'https://blog.logrocket.com/how-css-works-parsing-painting-css-in-the-critical-rendering-path-b3ee290762d3/'
 		);

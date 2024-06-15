@@ -25,13 +25,13 @@ Elm is a _strongly-typed_ language, as opposed to JavaScript's _weak typing_. Th
 
 For example, if I wrote a function named `add` that takes two numbers & returns the added result, it would look like this.
 
-#### JavaScript
+<u>**JavaScript:**</u>
 
 ```javascript
 const add = (a, b) => a + b;
 ```
 
-#### Elm
+<u>**Elm:**</u>
 
 ```haskell
 add: Number -> Number -> Number
@@ -41,13 +41,13 @@ add a b =
 
 The key to strong typing comes in when I want to _ actually use_ the function. What happens if I forget to pass a number & instead pass strings as my parameters?
 
-#### JavaScript
+<u>**JavaScript:**</u>
 
 ```javascript
 const sum = add('a', 'b'); // returns the string "ab" 🤔
 ```
 
-#### Elm
+<u>**Elm:**</u>
 
 ```haskell
 sum = add "a" "b" -- throws a compiler error that's helpful! 🎉

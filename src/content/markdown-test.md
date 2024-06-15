@@ -1,7 +1,4 @@
----
-title: Markdown Test Page
-draft: true
----
+# Heading Level 1
 
 ## Heading Level 2
 
@@ -51,6 +48,8 @@ For now the horizontal rhythm of these two list types are different because that
 1. Item
 1. Item
 1. Item
+   1. Inner
+   2. Inner
 1. Item
 1. Item
 1. Item
@@ -96,6 +95,7 @@ and this is a code block w/o highlighting...
 ### JavaScript
 
 ```javascript
+// this has a comment above it.
 const greeting = (name) => `Hello ${name}`;
 
 console.log(greeting('world'));
@@ -139,5 +139,20 @@ Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eveniet obcaecati ex e
 .selector {
 	color: var(--color-primary);
 	background: papayawhip;
+	mask-image: url('https://localhost:3000/image.png');
 }
 ```
+
+### Diff
+
+```diff
+nothing changed
++ added
+- deleted
+```
+
+## Callouts
+
+> [!WARNING]
+>
+> this is a warning
