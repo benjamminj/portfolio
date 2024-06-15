@@ -1,6 +1,5 @@
-import { cn } from '@/lib/cn';
-import Link from 'next/link';
 import '../globals.css';
+import { Body } from './_components/body';
 
 export const metadata = {
 	title: 'Benjamin Johnson (Internal)',
@@ -13,9 +12,9 @@ export const metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
 	return (
 		<html lang="en">
-			<body>
+			<Body>
 				<main>{children}</main>
-			</body>
+			</Body>
 		</html>
 	);
 }

@@ -1,6 +1,6 @@
-import { get, set } from 'lodash';
-import defaultTheme from 'tailwindcss/defaultTheme';
+import { set } from 'lodash';
 import colors from 'tailwindcss/colors';
+import defaultTheme from 'tailwindcss/defaultTheme';
 import plugin from 'tailwindcss/plugin';
 import { CSSRuleObject, PluginAPI } from 'tailwindcss/types/config';
 

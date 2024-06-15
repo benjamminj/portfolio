@@ -1,5 +1,6 @@
 'use client';
 import { useEffect, useRef, useState } from 'react';
+import { cn } from './cn';
 
 export function CodeBlock({ code }: { code: string }) {
 	const ref = useRef<HTMLElement>(null);
@@ -17,8 +18,49 @@ export function CodeBlock({ code }: { code: string }) {
 				<CopyPasteButton code={innerText} />
 			</div>
 
-			<pre className="rounded-none p-6 pt-8 my-6 -mx-4 overflow-auto text-base bg-gray-100 md:mx-0 lg:-mx-6 dark:bg-gray-900">
-				<code dangerouslySetInnerHTML={{ __html: code }} className="overflow-auto" ref={ref}></code>
+			<pre
+				className={cn(
+					'rounded-none p-6 pt-8 my-6 -mx-4 overflow-auto text-base bg-@bg-muted md:mx-0 lg:-mx-6 selection:bg-@black selection:text-@white'
+				)}
+			>
+				<code
+					dangerouslySetInnerHTML={{ __html: code }}
+					className={cn(
+						'overflow-auto text-@fg-default bg-transparent p-0 text-left whitespace-pre',
+						// Color theme definitions
+						'[--accent-1:rgb(var(--color-blue-700))] dark:[--accent-1:rgb(var(--color-blue-300))]',
+						'[--accent-2:rgb(var(--color-green-600))] dark:[--accent-2:rgb(var(--color-green-300))]',
+						'[--accent-3:rgb(var(--color-purple-600))] dark:[--accent-3:rgb(var(--color-purple-300))]',
+						'[--accent-positive:rgb(var(--color-green-700))] dark:[--accent-positive:rgb(var(--color-green-400))]',
+						'[--accent-negative:rgb(var(--color-red-700))] dark:[--accent-negative:rgb(var(--color-red-400))]',
+
+						// Token color mappings
+						'[&_.token:is(.comment,.prolog,.doctype,.cdata)]:text-gray-500',
+						'[&_.token:is(.punctuation)]:text-gray-500',
+						'[&_.token:is(.regex,.important,.variable)]:text-gray-500',
+
+						'[&_.token:is(.namespace)]:opacity-75',
+
+						// Default text colors styles
+						'[&_.token:is(.property,.boolean,.number,.constant,.symbol)]:text-[color:var(--accent-3)]',
+						'[&_.token:is(.tag)]:text-[color:var(--accent-2)]',
+						'[&_.token:is(.attr-name)]:text-[color:var(--accent-3)]',
+						'[&_.token:is(.selector,.attr,.string,.char,.builtin)]:text-[color:var(--accent-2)]',
+						'[&_:is(.token.operator,.token.entity,.token.url,[class=".language-css"],.style_.token.string,)]:text-[color:var(--accent-1)]',
+						'[&_.token:is(.atrule,.attr-value,.keyword)]:text-[color:var(--accent-1)]',
+						'[&_:is(.token.function)]:text-[color:var(--accent-1)]',
+
+						// Diff styles
+						'[&_.token:is(.deleted)]:text-[color:var(--accent-positive)]',
+						'[&_.token:is(.inserted)]:text-[color:var(--accent-negative)]',
+
+						// Different font weights, cursors, etc.
+						'[&_.token:is(.important,.bold)]:font-bold',
+						'[&_.token:is(.italic)]:italic',
+						'[&_.token:is(.entity)]:cursor-help'
+					)}
+					ref={ref}
+				></code>
 			</pre>
 		</div>
 	);
@@ -43,7 +85,7 @@ function CopyPasteButton({ code }: { code: string }) {
 				setCopied(true);
 				navigator.clipboard.writeText(code);
 			}}
-			className="absolute right-0 flex items-center justify-center w-8 h-8 text-gray-700 dark:text-white text-opacity-50 md:right-6 top-1 ring-gray-400 dark:ring-white ring-opacity-70 focus:outline-none focus:bg-gray-300 focus:bg-opacity-20 focus:text-opacity-100 hover:text-opacity-100 focus:ring-2"
+			className="absolute -right-3 flex items-center justify-center w-8 h-8 text-gray-700 dark:text-white text-opacity-50 md:right-2 top-1 ring-gray-400 dark:ring-white ring-opacity-70 focus:outline-none focus:bg-gray-300 focus:bg-opacity-20 focus:text-opacity-100 hover:text-opacity-100 focus:ring-2"
 		>
 			{copied ? (
 				<div className="relative">
