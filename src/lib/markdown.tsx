@@ -35,7 +35,7 @@ function InternalMarkdownRenderer({ nodes = [] }: { nodes?: CompileContext['stac
 
 		if (node.type === 'paragraph') {
 			return (
-				<p className="text-@medium mb-4">
+				<p className="text-@medium mb-4 [blockquote_&:last-child]:mb-0">
 					{/** @ts-expect-error JSX return type */}
 					<InternalMarkdownRenderer nodes={node.children} />
 				</p>
@@ -103,6 +103,81 @@ function InternalMarkdownRenderer({ nodes = [] }: { nodes?: CompileContext['stac
 		}
 
 		if (node.type === 'blockquote') {
+			const calloutMatches = ['NOTE', 'TIP', 'IMPORTANT', 'WARNING', 'CAUTION'] as const;
+			type CalloutType = (typeof calloutMatches)[number];
+
+			const getCalloutType = (): (typeof calloutMatches)[number] | null => {
+				try {
+					const firstChild = node.children[0];
+					if (!firstChild || firstChild.type !== 'paragraph') return null;
+
+					const firstChildText = firstChild.children[0];
+					if (!firstChildText || firstChildText.type !== 'text') return null;
+
+					const matchingCalloutType = calloutMatches.find((calloutType) => {
+						return firstChildText.value === `[!${calloutType}]`;
+					});
+
+					return matchingCalloutType ?? null;
+				} catch (error) {
+					return null;
+				}
+			};
+
+			const calloutType = getCalloutType();
+			if (calloutType) {
+				const CALLOUT_TYPE_STYLES: Record<CalloutType, { blockquote: string; icon: string }> = {
+					// TODO: light mode styles
+					NOTE: {
+						blockquote:
+							'bg-@blue-50 text-@blue-950 border-l-@blue-500 dark:bg-@blue-300/20 dark:text-@white dark:border-l-@blue-300/60',
+						icon: 'ℹ️',
+					},
+					TIP: {
+						blockquote:
+							'bg-@green-50 text-@green-950 border-l-@green-500 dark:bg-@green-300/20 dark:text-@white dark:border-l-@green-300/60',
+						icon: '💡',
+					},
+					IMPORTANT: {
+						blockquote:
+							'bg-@pink-50 text-@pink-950 border-l-@pink-500 dark:bg-@pink-300/20 dark:text-@white dark:border-l-@pink-300/60',
+						icon: '📣',
+					},
+					WARNING: {
+						blockquote:
+							'bg-@yellow-50 text-@yellow-950 border-l-@yellow-500 dark:bg-@yellow-300/30 dark:text-@white dark:border-l-@yellow-300/60',
+						icon: '⚠️',
+					},
+					CAUTION: {
+						blockquote:
+							'bg-@red-50 text-@red-950 border-l-@red-500 dark:bg-@red-400/30 dark:text-@white dark:border-l-@red-500/60',
+						icon: '🚨',
+					},
+				};
+
+				const [, ...content] = node.children;
+
+				const config = CALLOUT_TYPE_STYLES[calloutType];
+				return (
+					<blockquote
+						className={cn(
+							'p-4 mb-4 bg-@bg-muted text-@medium italic border-l-4 border-l-@border-muted [&_>_:last-child]:mb-0',
+							config.blockquote
+						)}
+					>
+						<div className="grid grid-cols-[auto_1fr] gap-3">
+							<div aria-label={calloutType} className="not-italic font-serif">
+								{config.icon}
+							</div>
+							<div>
+								{/** @ts-expect-error JSX return type */}
+								<InternalMarkdownRenderer nodes={content} />
+							</div>
+						</div>
+					</blockquote>
+				);
+			}
+
 			return (
 				<blockquote className="p-4 mb-4 bg-@bg-muted text-@medium italic border-l-4 border-l-@border-muted [&_>_:last-child]:mb-0">
 					{/** @ts-expect-error JSX return type */}
