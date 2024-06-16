@@ -24,7 +24,7 @@ export default function DesignSystemLayout({ children }: { children: ReactNode }
 						<DesignSystemNavItem path="/card">card</DesignSystemNavItem>
 						<DesignSystemNavItem path="/table">table</DesignSystemNavItem>
 						<DesignSystemNavItem path="/tag">tag</DesignSystemNavItem>
-						<DesignSystemNavItem path="/prose">prose elements (todo)</DesignSystemNavItem>
+						<DesignSystemNavItem path="/prose">prose elements</DesignSystemNavItem>
 					</ul>
 				</nav>
 			</details>

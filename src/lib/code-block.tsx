@@ -20,7 +20,7 @@ export function CodeBlock({ code }: { code: string }) {
 
 			<pre
 				className={cn(
-					'rounded-none p-6 pt-8 my-6 -mx-4 overflow-auto text-base bg-@bg-muted md:mx-0 lg:-mx-6 selection:bg-@black selection:text-@white'
+					'rounded-none p-6 pt-8 my-6 overflow-auto text-base bg-@bg-muted selection:bg-@black selection:text-@white'
 				)}
 			>
 				<code
@@ -85,7 +85,7 @@ function CopyPasteButton({ code }: { code: string }) {
 				setCopied(true);
 				navigator.clipboard.writeText(code);
 			}}
-			className="absolute -right-3 flex items-center justify-center w-8 h-8 text-gray-700 dark:text-white text-opacity-50 md:right-2 top-1 ring-gray-400 dark:ring-white ring-opacity-70 focus:outline-none focus:bg-gray-300 focus:bg-opacity-20 focus:text-opacity-100 hover:text-opacity-100 focus:ring-2"
+			className="absolute right-2 flex items-center justify-center w-8 h-8 text-gray-700 dark:text-white text-opacity-50 md:right-2 top-1 ring-gray-400 dark:ring-white ring-opacity-70 focus:outline-none focus:bg-gray-300 focus:bg-opacity-20 focus:text-opacity-100 hover:text-opacity-100 focus:ring-2"
 		>
 			{copied ? (
 				<div className="relative">
