@@ -35,7 +35,7 @@ function InternalMarkdownRenderer({ nodes = [] }: { nodes?: CompileContext['stac
 
 		if (node.type === 'paragraph') {
 			return (
-				<p className="text-@medium mb-4 [blockquote_&:last-child]:mb-0">
+				<p className="text-@medium mb-4">
 					{/** @ts-expect-error JSX return type */}
 					<InternalMarkdownRenderer nodes={node.children} />
 				</p>
@@ -77,7 +77,7 @@ function InternalMarkdownRenderer({ nodes = [] }: { nodes?: CompileContext['stac
 
 		if (node.type === 'list' && node.ordered) {
 			return (
-				<ol className="pl-8 [counter-reset:ol-count] marker:[counter-increment:ol-count] list-decimal">
+				<ol className="pl-8 list-decimal [&_ol]:list-[lower-alpha]">
 					{/** @ts-expect-error JSX return type */}
 					<InternalMarkdownRenderer nodes={node.children} />
 				</ol>
@@ -86,7 +86,7 @@ function InternalMarkdownRenderer({ nodes = [] }: { nodes?: CompileContext['stac
 
 		if (node.type === 'list' && !node.ordered) {
 			return (
-				<ul className="pl-4 list-disc [&_li::marker]:content-['●'] [&_li_li::marker]:content-['○'] [&_li]:pl-6">
+				<ul className="pl-4 list-disc [&_ul]:list-[circle] [&_li]:pl-2">
 					{/** @ts-expect-error JSX return type */}
 					<InternalMarkdownRenderer nodes={node.children} />
 				</ul>
@@ -129,28 +129,58 @@ function InternalMarkdownRenderer({ nodes = [] }: { nodes?: CompileContext['stac
 				const CALLOUT_TYPE_STYLES: Record<CalloutType, { blockquote: string; icon: string }> = {
 					// TODO: light mode styles
 					NOTE: {
-						blockquote:
-							'bg-@blue-50 text-@blue-950 border-l-@blue-500 dark:bg-@blue-300/20 dark:text-@white dark:border-l-@blue-300/60',
+						blockquote: cn(
+							'bg-@blue-50 text-@blue-950 border-l-@blue-500 dark:bg-@blue-300/20 dark:text-@blue-100 dark:border-l-@blue-300/60',
+							// Nested link colors (default blue doesn't have good enough contrast )
+							'[&_a]:text-@blue-950 [&_a:hover]:text-@blue-900 dark:[&_a]:text-@blue-100 dark:[&_a:hover]:text-@blue-200',
+							// Nested code styles
+							'[&_code]:bg-@blue-400/20 [&_code]:text-@blue-900 [&_code:before]:text-@blue-900 [&_code:after]:text-@blue-900',
+							'dark:[&_code]:bg-@blue-400/20 dark:[&_code]:text-@blue-50 dark:[&_code:before]:text-@blue-200 dark:[&_code:after]:text-@blue-200'
+						),
 						icon: 'ℹ️',
 					},
 					TIP: {
-						blockquote:
-							'bg-@green-50 text-@green-950 border-l-@green-500 dark:bg-@green-300/20 dark:text-@white dark:border-l-@green-300/60',
+						blockquote: cn(
+							'bg-@green-50 text-@green-950 border-l-@green-500 dark:bg-@green-300/20 dark:text-@green-100 dark:border-l-@green-300/60',
+							// Nested link colors (default blue doesn't have good enough contrast
+							'[&_a]:text-@green-950 [&_a:hover]:text-@green-900 dark:[&_a]:text-@green-100 dark:[&_a:hover]:text-@green-200',
+							// Nested code styles
+							'[&_code]:bg-@green-400/20 [&_code]:text-@green-900 [&_code:before]:text-@green-900 [&_code:after]:text-@green-900',
+							'dark:[&_code]:bg-@green-400/20 dark:[&_code]:text-@green-50 dark:[&_code:before]:text-@green-200 dark:[&_code:after]:text-@green-200'
+						),
 						icon: '💡',
 					},
 					IMPORTANT: {
-						blockquote:
-							'bg-@pink-50 text-@pink-950 border-l-@pink-500 dark:bg-@pink-300/20 dark:text-@white dark:border-l-@pink-300/60',
+						blockquote: cn(
+							'bg-@purple-50 text-@purple-950 border-l-@purple-500 dark:bg-@purple-300/20 dark:text-@purple-100 dark:border-l-@purple-300/60',
+							// Nested link colors (default blue doesn't have good enough contrast
+							'[&_a]:text-@purple-950 [&_a:hover]:text-@purple-900 dark:[&_a]:text-@purple-100 dark:[&_a:hover]:text-@purple-200',
+							// Nested code styles
+							'[&_code]:bg-@purple-400/20 [&_code]:text-@purple-900 [&_code:before]:text-@purple-900 [&_code:after]:text-@purple-900',
+							'dark:[&_code]:bg-@purple-400/20 dark:[&_code]:text-@purple-50 dark:[&_code:before]:text-@purple-200 dark:[&_code:after]:text-@purple-200'
+						),
 						icon: '📣',
 					},
 					WARNING: {
-						blockquote:
-							'bg-@yellow-50 text-@yellow-950 border-l-@yellow-500 dark:bg-@yellow-300/30 dark:text-@white dark:border-l-@yellow-300/60',
+						blockquote: cn(
+							'bg-@yellow-50 text-@yellow-950 border-l-@yellow-500 dark:bg-@yellow-300/30 dark:text-@yellow-100 dark:border-l-@yellow-300/60',
+							// Nested link colors (default blue doesn't have good enough contrast
+							'[&_a]:text-@yellow-950 [&_a:hover]:text-@yellow-900 dark:[&_a]:text-@yellow-100 dark:[&_a:hover]:text-@yellow-200',
+							// Nested code styles
+							'[&_code]:bg-@yellow-400/20 [&_code]:text-@yellow-900 [&_code:before]:text-@yellow-900 [&_code:after]:text-@yellow-900',
+							'dark:[&_code]:bg-@yellow-400/20 dark:[&_code]:text-@yellow-50 dark:[&_code:before]:text-@yellow-200 dark:[&_code:after]:text-@yellow-200'
+						),
 						icon: '⚠️',
 					},
 					CAUTION: {
-						blockquote:
-							'bg-@red-50 text-@red-950 border-l-@red-500 dark:bg-@red-400/30 dark:text-@white dark:border-l-@red-500/60',
+						blockquote: cn(
+							'bg-@red-50 text-@red-950 border-l-@red-500 dark:bg-@red-400/30 dark:text-@red-100 dark:border-l-@red-500/60',
+							// Nested link colors (default blue doesn't have good enough contrast
+							'[&_a]:text-@red-950 [&_a:hover]:text-@red-900 dark:[&_a]:text-@red-100 dark:[&_a:hover]:text-@red-200',
+							// Nested code styles
+							'[&_code]:bg-@red-400/20 [&_code]:text-@red-900 [&_code:before]:text-@red-900 [&_code:after]:text-@red-900',
+							'dark:[&_code]:bg-@red-400/20 dark:[&_code]:text-@red-50 dark:[&_code:before]:text-@red-200 dark:[&_code:after]:text-@red-200'
+						),
 						icon: '🚨',
 					},
 				};
@@ -161,7 +191,7 @@ function InternalMarkdownRenderer({ nodes = [] }: { nodes?: CompileContext['stac
 				return (
 					<blockquote
 						className={cn(
-							'p-4 mb-4 bg-@bg-muted text-@medium italic border-l-4 border-l-@border-muted [&_>_:last-child]:mb-0',
+							'p-4 mb-4 bg-@bg-muted text-@medium italic border-l-4 border-l-@border-muted [&_:last-child]:mb-0',
 							config.blockquote
 						)}
 					>

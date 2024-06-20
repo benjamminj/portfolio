@@ -158,20 +158,29 @@ nothing changed
 > This is a note. You can use this to talk about quick asides and things that are somewhat tangential to the main point.
 >
 > You can make it as long as you want, even multiple paragraphs!
+> This one also has a [link to google](https://google.com) and a `inline code`
 
 > [!TIP]
 >
 > This is a tip. You can use it for basic helper tips that would clutter up the main
 > body of text
+>
+> This one also has a [link to google](https://google.com) and a `inline code`
 
 > [!IMPORTANT]
 >
 > **This is an important callout.** Use it to call attention to things that shouldn't be ignored or are...well...important.
+>
+> This one also has a [link to google](https://google.com) and a `inline code`
 
 > [!WARNING]
 >
 > This is a warning. Use it to highlight things that probably aren't correct anymore, or that you probably shouldn't do.
+>
+> This one also has a [link to google](https://google.com) and a `inline code`
 
 > [!CAUTION]
 >
 > This is a caution callout. Use this for things that are actually really bad and you want to call attention to it.
+>
+> This one also has a [link to google](https://google.com) and a `inline code`

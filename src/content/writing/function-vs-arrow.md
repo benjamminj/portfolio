@@ -6,6 +6,13 @@ tags:
   - formatting
 ---
 
+> [!WARNING]
+>
+> These represent my opinions at the time of writing. As of right now (June 2024) they're not
+> my current preferences: I'm team `function` keyword because Reasons™.
+>
+> Truly a testament to formatting be aesthetic taste — sometimes tastes change!
+
 Most opinions about code formatting boil down to personal preference.
 
 They're like [Oxford commas](https://www.grammarly.com/blog/what-is-the-oxford-comma-and-why-do-people-care-so-much-about-it/) or essay citations—whether it's "right" or "wrong" depends on the judgment of the style guide you're using.
