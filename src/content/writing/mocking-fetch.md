@@ -13,6 +13,13 @@ tags:
   - javascript
 ---
 
+> [!WARNING]
+>
+> **Note:** I've left the bulk of this article untouched for posterity, but I wouldn't recommend mocking
+> `fetch` using this method anymore (as of June 2024).
+>
+> Personally, I'd go with [mock-service-worker](https://mswjs.io/) if you need to mock network requests in your unit tests.
+
 In this tutorial we are going to look at mocking out network calls in unit tests. Specifically we are going to dive into mocking the `window.fetch` API. If you're unfamiliar with the `fetch` API, it's a browser API that allows you to make network requests for data (you can also read more about it [here](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API)). We'll look at _why_ we would want to mock `fetch` in our unit tests, as well as a few different mocking approaches that we can use.
 
 ## Why would we want to mock out network calls?
@@ -71,7 +78,7 @@ const unmockedFetch = global.fetch;
 beforeAll(() => {
 	global.fetch = () =>
 		Promise.resolve({
-			json: () => Promise.resolve([])
+			json: () => Promise.resolve([]),
 		});
 });
 
@@ -107,7 +114,7 @@ const unmockedFetch = global.fetch;
 beforeAll(() => {
 	global.fetch = () =>
 		Promise.resolve({
-			json: () => Promise.resolve([])
+			json: () => Promise.resolve([]),
 		});
 });
 

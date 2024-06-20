@@ -1,5 +1,6 @@
 import Link, { LinkProps } from 'next/link';
 import { HTMLAttributes } from 'react';
+import { cn } from './cn';
 
 export function A({
 	href,
@@ -7,8 +8,10 @@ export function A({
 	...props
 }: { href: string } & HTMLAttributes<HTMLAnchorElement>) {
 	// TODO: semantic token for link color?
-	const className =
-		'underline text-@medium cursor-pointer text-@blue-600 hover:text-@blue-700 dark:text-@blue-500 dark:hover:text-blue-400';
+	const className = cn(
+		'underline text-@medium cursor-pointer text-@blue-600 hover:text-@blue-700 dark:text-@blue-500 dark:hover:text-blue-400',
+		props.className
+	);
 
 	if (href === '') {
 		return (
