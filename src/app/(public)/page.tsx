@@ -4,10 +4,16 @@ import { Markdown } from '@/lib/markdown';
 import { PostList } from '@/lib/post-list';
 import Link from 'next/link';
 import { PostService } from '@/lib/posts-service.server';
+import { env } from '@/lib/env';
 
 export default async function Page() {
 	const file = await readFile('intro.md');
 	const posts = await PostService.list();
+
+	if (env.REDESIGN) {
+		return null;
+	}
+
 	return (
 		<PageWrapper
 			title="Hi, I'm Ben!"
@@ -15,7 +21,6 @@ export default async function Page() {
 		>
 			{/* @ts-expect-error Server Component */}
 			<Markdown raw={file} />
-
 
 			{/* @ts-expect-error Server Component */}
 			<PostList posts={posts.slice(0, 5)} />
