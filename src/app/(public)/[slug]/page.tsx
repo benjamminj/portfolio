@@ -14,7 +14,6 @@ export default async function SlugPage({ params }: { params: PageParams }) {
 	const post = await PostService.get(slug);
 	return (
 		<PageWrapper title={post.title} subtitle={post.date}>
-			{/* @ts-expect-error Server Component */}
 			<Markdown raw={post.body} />
 			{post.link && post.publisher && (
 				<p className="pt-4 prose dark:prose-invert">
@@ -68,5 +67,5 @@ export async function generateMetadata({ params }: { params: PageParams }): Prom
 
 export async function generateStaticParams() {
 	const posts = await PostService.list();
-	return posts.map(post => ({ slug: post.slug }))
+	return posts.map((post) => ({ slug: post.slug }));
 }

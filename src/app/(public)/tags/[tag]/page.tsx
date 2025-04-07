@@ -10,7 +10,6 @@ export default async function TagRoute({ params }: { params: { tag: string } }) 
 			title={`#${params.tag}`}
 			subtitle={`${filtered.length} ${filtered.length === 1 ? 'post' : 'posts'}`}
 		>
-			{/* @ts-expect-error Server Component */}
 			<PostList posts={filtered} />
 		</PageWrapper>
 	);
@@ -22,5 +21,4 @@ export async function generateStaticParams() {
 	const unique = new Set(tags);
 
 	return Array.from(unique).map((tag) => ({ tag }));
-
 }

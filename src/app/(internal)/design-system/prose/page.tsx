@@ -9,7 +9,6 @@ export default async function ProsePage() {
 			<section className="space-y-1">
 				<Card className="pb-0">
 					<CardContent className="pb-0">
-						{/* @ts-expect-error JSX return type */}
 						<Markdown raw={raw} />
 					</CardContent>
 				</Card>

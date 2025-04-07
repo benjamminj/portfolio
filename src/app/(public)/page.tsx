@@ -13,11 +13,8 @@ export default async function Page() {
 			title="Hi, I'm Ben!"
 			subtitle="I'm a frontend software engineer based out of Seattle"
 		>
-			{/* @ts-expect-error Server Component */}
 			<Markdown raw={file} />
 
-
-			{/* @ts-expect-error Server Component */}
 			<PostList posts={posts.slice(0, 5)} />
 
 			<Link
