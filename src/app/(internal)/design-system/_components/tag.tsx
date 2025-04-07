@@ -1,8 +1,13 @@
-import { Slot } from '@radix-ui/react-slot';
-import { ReactNode } from 'react';
+import { Slot } from "@radix-ui/react-slot";
+import type { ReactNode } from "react";
 
-export function Tag({ asChild, children }: { asChild?: boolean; children: ReactNode }) {
-	const Component = asChild ? Slot : 'span';
+export function Tag({
+	asChild,
+	children,
+}: { asChild?: boolean; children: ReactNode }) {
+	const Component = asChild ? Slot : "span";
 
-	return <Component className="text-@fg-muted text-@small">{children}</Component>;
+	return (
+		<Component className="text-@fg-muted text-@small">{children}</Component>
+	);
 }

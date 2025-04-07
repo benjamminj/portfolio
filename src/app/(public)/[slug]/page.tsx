@@ -1,9 +1,9 @@
-import { Markdown } from '@/lib/markdown';
-import { PageWrapper } from '../_components/page-wrapper';
-import { PostService } from '@/lib/posts-service.server';
-import { Metadata } from 'next';
-import { A } from '@/lib/a';
-import { Tag } from '@/lib/tag';
+import { Markdown } from "@/lib/markdown";
+import { PageWrapper } from "../_components/page-wrapper";
+import { PostService } from "@/lib/posts-service.server";
+import type { Metadata } from "next";
+import { A } from "@/lib/a";
+import { Tag } from "@/lib/tag";
 
 type PageParams = {
 	slug: string;
@@ -41,27 +41,29 @@ export default async function SlugPage({ params }: { params: PageParams }) {
 	);
 }
 
-export async function generateMetadata({ params }: { params: PageParams }): Promise<Metadata> {
+export async function generateMetadata({
+	params,
+}: { params: PageParams }): Promise<Metadata> {
 	const slug = params.slug;
 	const post = await PostService.get(slug);
 
 	return {
 		description: post.description,
-		authors: { name: 'Benjamin Johnson' },
+		authors: { name: "Benjamin Johnson" },
 		twitter: {
-			card: 'summary',
-			site: '@benjamminj',
-			creator: '@benjamminj',
+			card: "summary",
+			site: "@benjamminj",
+			creator: "@benjamminj",
 			title: post.title,
 			description: post.description,
 		},
 		openGraph: {
 			title: post.title,
 			description: post.description,
-			type: 'website',
+			type: "website",
 			url: `${process.env.URL || process.env.VERCEL_URL}/${slug}`,
 		},
-		keywords: post.tags?.length > 0 ? post.tags.join(', ') : undefined,
+		keywords: post.tags?.length > 0 ? post.tags.join(", ") : undefined,
 	};
 }
 

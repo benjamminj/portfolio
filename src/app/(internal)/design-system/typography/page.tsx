@@ -1,4 +1,4 @@
-import { Card, CardContent } from '../_components/card';
+import { Card, CardContent } from "../_components/card";
 
 export default function TypographyPage() {
 	return (
@@ -49,8 +49,9 @@ export default function TypographyPage() {
 							</li>
 							<li className="text-@caption">
 								<p>
-									This is body text for <b>caption</b>. It is not as long as the heading text. It is
-									designed to be read in paragraphs, but shouldn't be as long as most body text.
+									This is body text for <b>caption</b>. It is not as long as the
+									heading text. It is designed to be read in paragraphs, but
+									shouldn't be as long as most body text.
 								</p>
 							</li>
 						</ul>
@@ -68,12 +69,14 @@ function SampleHeadingText({ level }: { level: number }) {
 function SampleBodyText({ name }: { name: string }) {
 	return (
 		<p>
-			This is body text for <b>{name}</b>. It is not as long as the heading text. It is designed to
-			be read <i>in paragraphs</i>, and should be used for most text on the site. It is not as long
-			as the heading text. It is designed to be read in paragraphs, and should be used for most text
-			on the site. It is not as long as the heading text. It is designed to be read in paragraphs,
-			and should be used for most text on the site. It is not as long as the heading text. It is
-			designed to be read in paragraphs, and should be used for most text on the site.
+			This is body text for <b>{name}</b>. It is not as long as the heading
+			text. It is designed to be read <i>in paragraphs</i>, and should be used
+			for most text on the site. It is not as long as the heading text. It is
+			designed to be read in paragraphs, and should be used for most text on the
+			site. It is not as long as the heading text. It is designed to be read in
+			paragraphs, and should be used for most text on the site. It is not as
+			long as the heading text. It is designed to be read in paragraphs, and
+			should be used for most text on the site.
 		</p>
 	);
 }

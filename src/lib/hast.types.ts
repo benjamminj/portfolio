@@ -3,39 +3,39 @@ export type HtmlAstPosition = {
 	column: number;
 	offset: number;
 };
-export type HtmlAstNodeCode = HtmlAstNodeBase<'code'> & {
+export type HtmlAstNodeCode = HtmlAstNodeBase<"code"> & {
 	lang: string;
 	meta: unknown;
 	value: string;
 	children: undefined;
 };
-export type HtmlAstNodeLink = HtmlAstNodeBase<'link'> & {
+export type HtmlAstNodeLink = HtmlAstNodeBase<"link"> & {
 	url: string;
 	title: string | null;
 };
-export type HtmlAstNodeText = HtmlAstNodeBase<'text'> & {
+export type HtmlAstNodeText = HtmlAstNodeBase<"text"> & {
 	value: string;
 	children: undefined;
 };
-export type HtmlAstNodeParagraph = HtmlAstNodeBase<'paragraph'>;
-export type HtmlAstNodeThematicBreak = HtmlAstNodeBase<'thematicBreak'>;
-export type HtmlAstNodeHeading = HtmlAstNodeBase<'heading'> & { depth: number };
-export type HtmlAstNodeStrong = HtmlAstNodeBase<'strong'>;
-export type HtmlAstNodeEmphasis = HtmlAstNodeBase<'emphasis'>;
-export type HtmlAstNodeList = HtmlAstNodeBase<'list'> & {
+export type HtmlAstNodeParagraph = HtmlAstNodeBase<"paragraph">;
+export type HtmlAstNodeThematicBreak = HtmlAstNodeBase<"thematicBreak">;
+export type HtmlAstNodeHeading = HtmlAstNodeBase<"heading"> & { depth: number };
+export type HtmlAstNodeStrong = HtmlAstNodeBase<"strong">;
+export type HtmlAstNodeEmphasis = HtmlAstNodeBase<"emphasis">;
+export type HtmlAstNodeList = HtmlAstNodeBase<"list"> & {
 	ordered: boolean;
 	spread: boolean;
 	start: number | null;
 };
-export type HtmlAstNodeListItem = HtmlAstNodeBase<'listItem'> & {
+export type HtmlAstNodeListItem = HtmlAstNodeBase<"listItem"> & {
 	checked: boolean;
 	spread: boolean;
 };
-export type HtmlAstNodeBlockquote = HtmlAstNodeBase<'blockquote'>;
-export type HtmlAstNodeInlineCode = HtmlAstNodeBase<'inlineCode'> & {
+export type HtmlAstNodeBlockquote = HtmlAstNodeBase<"blockquote">;
+export type HtmlAstNodeInlineCode = HtmlAstNodeBase<"inlineCode"> & {
 	children: undefined;
 };
-export type HtmlAstNodeImage = HtmlAstNodeBase<'image'> & {
+export type HtmlAstNodeImage = HtmlAstNodeBase<"image"> & {
 	url: string;
 	alt: string;
 	title: string | null;
@@ -85,7 +85,7 @@ export type HtmlAstNodeBase<T> = {
 };
 
 export type HtmlAst = {
-	type: 'root';
+	type: "root";
 	children: HtmlAstNode[];
 	position: HtmlAstPosition;
 };

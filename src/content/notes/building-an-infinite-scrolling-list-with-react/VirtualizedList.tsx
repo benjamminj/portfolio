@@ -1,5 +1,5 @@
-import { ReactNode, useEffect, useRef, useState } from 'react';
-import debounce from 'lodash/debounce';
+import { type ReactNode, useEffect, useRef, useState } from "react";
+import debounce from "lodash/debounce";
 
 const SCROLL_DEBOUNCE_TIME = 200;
 
@@ -23,7 +23,7 @@ const getPartialPageHeight = ({
 	itemsPerPage,
 	rowHeight,
 	columns,
-	offsetY
+	offsetY,
 }: GetPartialPageHeightArguments) => {
 	const numberOfPages = items / itemsPerPage;
 	const completePages = Math.floor(numberOfPages);
@@ -52,7 +52,9 @@ const getCurrentScrollPage = (wrapper: HTMLElement, pageHeight: number) => {
 	const wrapperScrollOffset = wrapper.offsetTop;
 	const scrollPosition = window.scrollY;
 
-	const currentScrollPage = Math.floor((scrollPosition - wrapperScrollOffset) / pageHeight);
+	const currentScrollPage = Math.floor(
+		(scrollPosition - wrapperScrollOffset) / pageHeight,
+	);
 
 	return Math.max(currentScrollPage, 0);
 };
@@ -78,20 +80,20 @@ const VirtualizedListPage = ({
 	className,
 	isLastPage = false,
 	lastPageHeight,
-	offsetY = 0
+	offsetY = 0,
 }: VirtualizedListPageProps) => {
 	const height = isLastPage ? lastPageHeight : pageHeight;
 	return (
 		<div
 			className={className}
 			style={{
-				position: 'absolute',
+				position: "absolute",
 				top: pagesBefore * pageHeight,
 				height: height + offsetY,
 				marginBottom: -1 * offsetY,
-				overflow: 'hidden',
-				width: '100%',
-				boxSizing: 'border-box'
+				overflow: "hidden",
+				width: "100%",
+				boxSizing: "border-box",
 			}}
 		>
 			{children}
@@ -131,7 +133,7 @@ export const VirtualizedList = ({
 	rowHeight,
 	items,
 	itemsPerPage,
-	pageOffsetY = 0
+	pageOffsetY = 0,
 }: VirtualizedListProps) => {
 	const wrapperRef = useRef<HTMLDivElement>(null);
 	const [currentPageIndex, setCurrentPageIndex] = useState(0);
@@ -149,7 +151,7 @@ export const VirtualizedList = ({
 		itemsPerPage,
 		columns,
 		rowHeight,
-		offsetY: pageOffsetY
+		offsetY: pageOffsetY,
 	});
 
 	const pagesBefore = currentPageIndex;
@@ -171,10 +173,10 @@ export const VirtualizedList = ({
 			setCurrentPageIndex(currentScrollPage);
 		}, SCROLL_DEBOUNCE_TIME);
 
-		window.addEventListener('scroll', handleScroll, { passive: false });
+		window.addEventListener("scroll", handleScroll, { passive: false });
 
 		return () => {
-			window.removeEventListener('scroll', handleScroll);
+			window.removeEventListener("scroll", handleScroll);
 		};
 	}, [pageHeight]);
 
@@ -183,11 +185,11 @@ export const VirtualizedList = ({
 			<div
 				ref={wrapperRef}
 				style={{
-					position: 'relative',
-					overflow: 'hidden',
+					position: "relative",
+					overflow: "hidden",
 					marginBottom: pageOffsetY * -1,
 					paddingBottom: pageOffsetY,
-					height: lastPageStartIndex * pageHeight + lastPageHeight
+					height: lastPageStartIndex * pageHeight + lastPageHeight,
 				}}
 			>
 				{pagesBefore > 0 && (

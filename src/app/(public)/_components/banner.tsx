@@ -1,7 +1,10 @@
-import { cn } from '@/lib/cn';
-import { ReactNode } from 'react';
+import { cn } from "@/lib/cn";
+import type { ReactNode } from "react";
 
-export function Banner({ title, subtitle }: { title?: ReactNode; subtitle?: ReactNode }) {
+export function Banner({
+	title,
+	subtitle,
+}: { title?: ReactNode; subtitle?: ReactNode }) {
 	const preserveTitleCasing = true;
 	return (
 		<div>
@@ -11,8 +14,8 @@ export function Banner({ title, subtitle }: { title?: ReactNode; subtitle?: Reac
 						{title && (
 							<h1
 								className={cn(
-									'text-5xl font-bold break-words',
-									!preserveTitleCasing && 'lowercase'
+									"text-5xl font-bold break-words",
+									!preserveTitleCasing && "lowercase",
 								)}
 							>
 								{title}

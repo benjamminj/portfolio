@@ -1,11 +1,17 @@
-import { readFile } from '@/lib/read-file';
-import { PageWrapper } from '../_components/page-wrapper';
-import { Tag } from '@/lib/tag';
-import { A } from '@/lib/a';
+import { readFile } from "@/lib/read-file";
+import { PageWrapper } from "../_components/page-wrapper";
+import { Tag } from "@/lib/tag";
+import { A } from "@/lib/a";
+
+type Clipping = {
+	name: string;
+	url: string;
+	tags: string[];
+};
 
 export default async function ClippingsRoute() {
-	const raw = await readFile('clippings.json', 'json');
-	const clippings = JSON.parse(raw);
+	const raw = await readFile("clippings.json", "json");
+	const clippings = JSON.parse(raw) as Clipping[];
 
 	return (
 		<PageWrapper
@@ -21,8 +27,8 @@ export default async function ClippingsRoute() {
 						</tr>
 					</thead>
 					<tbody data-testid="Clippings__tablebody">
-						{clippings.map((clipping: any, i: number) => (
-							<tr key={i}>
+						{clippings.map((clipping) => (
+							<tr key={clipping.url}>
 								<td className="w-3/5">
 									<A href={clipping.url}>{clipping.name}</A>
 								</td>

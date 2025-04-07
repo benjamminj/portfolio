@@ -1,7 +1,7 @@
-import { Slot } from '@radix-ui/react-slot';
-import { ReactNode } from 'react';
-import { Card, CardContent } from '../_components/card';
-import { Tag } from '../_components/tag';
+import { Slot } from "@radix-ui/react-slot";
+import { ReactNode } from "react";
+import { Card, CardContent } from "../_components/card";
+import { Tag } from "../_components/tag";
 
 export default async function TagsPage() {
 	return (
@@ -12,8 +12,8 @@ export default async function TagsPage() {
 					<CardContent>
 						<div className="space-y-4">
 							<p>
-								Tags are a way to classify content. They should usually be links to an "index" page
-								showing all content classified by that tag.
+								Tags are a way to classify content. They should usually be links
+								to an "index" page showing all content classified by that tag.
 							</p>
 
 							<ul className="flex flex-wrap gap-2">

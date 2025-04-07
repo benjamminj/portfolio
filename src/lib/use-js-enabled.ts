@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from "react";
 
 export function useJsEnabled() {
 	const [jsEnabled, setJsEnabled] = useState(false);

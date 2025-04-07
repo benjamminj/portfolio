@@ -1,6 +1,6 @@
-import { PostService, type Post } from '@/lib/posts-service.server';
-import Link from 'next/link';
-import { Tag } from './tag';
+import { PostService, type Post } from "@/lib/posts-service.server";
+import Link from "next/link";
+import { Tag } from "./tag";
 
 type PostListProps = {
 	posts: Post[];
