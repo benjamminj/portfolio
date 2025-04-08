@@ -1,11 +1,13 @@
-import Link, { LinkProps } from 'next/link';
-import { ReactNode } from 'react';
+import Link, { type LinkProps } from "next/link";
+import type { ReactNode } from "react";
 
 export function Footer() {
 	return (
 		<footer className="bg-gray-100 dark:bg-gray-900 dark:bg-opacity-40 py-8">
 			<div className="max-w-prose my-0 mx-auto px-4">
-				<p className="dark:text-gray-400">&copy; {new Date().getFullYear()} Benjamin Johnson</p>
+				<p className="dark:text-gray-400">
+					&copy; {new Date().getFullYear()} Benjamin Johnson
+				</p>
 				<ul className="flex space-x-4" data-sveltekit-prefetch>
 					<li>
 						<FooterLink title="GitHub" href="https://github.com/benjamminj">
@@ -18,7 +20,10 @@ export function Footer() {
 						</FooterLink>
 					</li>
 					<li>
-						<FooterLink title="LinkedIn" href="https://www.linkedin.com/in/benjamin-d-johnson/">
+						<FooterLink
+							title="LinkedIn"
+							href="https://www.linkedin.com/in/benjamin-d-johnson/"
+						>
 							linkedin
 						</FooterLink>
 					</li>
@@ -50,7 +55,7 @@ function FooterLink({
 	return (
 		<Link
 			title={title}
-			href={href as LinkProps['href']}
+			href={href as LinkProps["href"]}
 			className="text-base underline text-gray-800 dark:text-gray-200 hover:dark:text-white font-bold"
 		>
 			{children}

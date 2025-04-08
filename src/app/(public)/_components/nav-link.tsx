@@ -1,8 +1,8 @@
-'use client';
-import React from 'react';
-import clsx from 'clsx';
-import { useRouter } from 'next/router';
-import { useSelectedLayoutSegment } from 'next/navigation';
+"use client";
+import type React from "react";
+import clsx from "clsx";
+import { useRouter } from "next/router";
+import { useSelectedLayoutSegment } from "next/navigation";
 
 interface NavLinkProps {
 	href: string;
@@ -20,10 +20,10 @@ export function NavLink({ href, title, children }: NavLinkProps) {
 			href={href}
 			title={title}
 			className={clsx(
-				'text-base underline',
+				"text-base underline",
 				isActive
-					? 'text-black font-bold dark:text-white'
-					: 'text-gray-800 font-normal dark:text-gray-200'
+					? "text-black font-bold dark:text-white"
+					: "text-gray-800 font-normal dark:text-gray-200",
 			)}
 		>
 			{children}

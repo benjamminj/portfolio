@@ -1,5 +1,5 @@
-'use client';
-import { useSelectedLayoutSegment } from 'next/navigation';
+"use client";
+import { useSelectedLayoutSegment } from "next/navigation";
 
 export function DesignSystemLayoutTitle() {
 	const segment = useSelectedLayoutSegment();

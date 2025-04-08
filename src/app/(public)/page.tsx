@@ -1,12 +1,12 @@
-import { readFile } from '@/lib/read-file';
-import { PageWrapper } from './_components/page-wrapper';
-import { Markdown } from '@/lib/markdown';
-import { PostList } from '@/lib/post-list';
-import Link from 'next/link';
-import { PostService } from '@/lib/posts-service.server';
+import { readFile } from "@/lib/read-file";
+import { PageWrapper } from "./_components/page-wrapper";
+import { Markdown } from "@/lib/markdown";
+import { PostList } from "@/lib/post-list";
+import Link from "next/link";
+import { PostService } from "@/lib/posts-service.server";
 
 export default async function Page() {
-	const file = await readFile('intro.md');
+	const file = await readFile("intro.md");
 	const posts = await PostService.list();
 	return (
 		<PageWrapper

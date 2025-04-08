@@ -1,4 +1,4 @@
-import { Card, CardContent } from '../_components/card';
+import { Card, CardContent } from "../_components/card";
 
 export default async function CardsPage() {
 	return (
@@ -9,8 +9,8 @@ export default async function CardsPage() {
 					<CardContent>
 						<div className="space-y-4">
 							<p>
-								Cards are a visual way to separate content into visually distinct sections. They
-								carry no semantic meaning on their own.
+								Cards are a visual way to separate content into visually
+								distinct sections. They carry no semantic meaning on their own.
 							</p>
 						</div>
 					</CardContent>

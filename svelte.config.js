@@ -1,5 +1,5 @@
-import adapter from '@sveltejs/adapter-auto';
-import preprocess from 'svelte-preprocess';
+import adapter from "@sveltejs/adapter-auto";
+import preprocess from "svelte-preprocess";
 
 // Remove whitespace between html elements, Svelte does not do this by default
 // although many other frameworks do.
@@ -9,10 +9,10 @@ const htmlWhitespaceRegexes = [
 	/(>)[\s]*([<{])/g,
 	/({[/:][a-z]+})[\s]*([<{])/g,
 	/({[#:][a-z]+ .+?})[\s]*([<{])/g,
-	/([>}])[\s]+(<|{[/#:][a-z][^}]*})/g
+	/([>}])[\s]+(<|{[/#:][a-z][^}]*})/g,
 ];
 
-const tagsReplace = '$1$2';
+const tagsReplace = "$1$2";
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
@@ -21,13 +21,13 @@ const config = {
 	preprocess: [
 		preprocess({
 			postcss: true,
-			replace: [htmlWhitespaceRegexes.map((regex) => [regex, tagsReplace])]
-		})
+			replace: [htmlWhitespaceRegexes.map((regex) => [regex, tagsReplace])],
+		}),
 	],
 
 	kit: {
-		adapter: adapter()
-	}
+		adapter: adapter(),
+	},
 };
 
 export default config;

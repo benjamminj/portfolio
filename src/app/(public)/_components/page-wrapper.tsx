@@ -1,10 +1,10 @@
-import { ReactNode } from 'react';
-import { Banner } from './banner';
+import type { ReactNode } from "react";
+import { Banner } from "./banner";
 
 export function PageWrapper({
 	children,
 	title,
-	subtitle
+	subtitle,
 }: {
 	title?: ReactNode;
 	subtitle?: ReactNode;

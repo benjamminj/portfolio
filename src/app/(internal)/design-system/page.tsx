@@ -1,3 +1,3 @@
 export default function DesignSystemPage() {
-  return <h1>design system</h1>
+	return <h1>design system</h1>;
 }

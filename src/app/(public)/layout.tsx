@@ -1,18 +1,20 @@
-import { Body } from './_components/body';
-import { Footer } from './_components/footer';
-import { Header } from './_components/header';
+import { Body } from "./_components/body";
+import { Footer } from "./_components/footer";
+import { Header } from "./_components/header";
 
-import '../globals.css';
+import "../globals.css";
 
 export const metadata = {
-	title: 'Benjamin Johnson',
-	description: '',
+	title: "Benjamin Johnson",
+	description: "",
 	icons: {
-		icon: '/favicon.svg',
+		icon: "/favicon.svg",
 	},
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({
+	children,
+}: { children: React.ReactNode }) {
 	return (
 		<html lang="en">
 			<Body>
