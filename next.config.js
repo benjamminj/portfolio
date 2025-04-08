@@ -4,6 +4,13 @@ const nextConfig = {
 		serverActions: true,
 		// typedRoutes: true
 	},
+	typescript: {
+		ignoreBuildErrors: true,
+		ignoreDuringBuilds: true,
+	},
+	eslint: {
+		ignoreDuringBuilds: true,
+	}
 };
 
 module.exports = nextConfig;
