@@ -12,7 +12,6 @@ export async function Markdown({ raw }: { raw: string }) {
 
 	return (
 		<div className="text-@medium mx-auto max-w-prose">
-			{/** @ts-expect-error JSX return type */}
 			<InternalMarkdownRenderer nodes={mdast.data as CompileContext['stack']} />
 		</div>
 	);
@@ -23,7 +22,6 @@ function InternalMarkdownRenderer({ nodes = [] }: { nodes?: CompileContext['stac
 		if (node.type === 'heading') {
 			return (
 				<Heading level={node.depth}>
-					{/** @ts-expect-error JSX return type */}
 					<InternalMarkdownRenderer nodes={node.children} />
 				</Heading>
 			);
@@ -36,7 +34,6 @@ function InternalMarkdownRenderer({ nodes = [] }: { nodes?: CompileContext['stac
 		if (node.type === 'paragraph') {
 			return (
 				<p className="text-@medium mb-4">
-					{/** @ts-expect-error JSX return type */}
 					<InternalMarkdownRenderer nodes={node.children} />
 				</p>
 			);
@@ -45,7 +42,6 @@ function InternalMarkdownRenderer({ nodes = [] }: { nodes?: CompileContext['stac
 		if (node.type === 'link') {
 			return (
 				<A href={node.url}>
-					{/** @ts-expect-error JSX return type */}
 					<InternalMarkdownRenderer nodes={node.children} />
 				</A>
 			);
@@ -60,7 +56,6 @@ function InternalMarkdownRenderer({ nodes = [] }: { nodes?: CompileContext['stac
 		if (node.type === 'strong') {
 			return (
 				<strong>
-					{/** @ts-expect-error JSX return type */}
 					<InternalMarkdownRenderer nodes={node.children} />
 				</strong>
 			);
@@ -69,7 +64,6 @@ function InternalMarkdownRenderer({ nodes = [] }: { nodes?: CompileContext['stac
 		if (node.type === 'emphasis') {
 			return (
 				<em>
-					{/** @ts-expect-error JSX return type */}
 					<InternalMarkdownRenderer nodes={node.children} />
 				</em>
 			);
@@ -78,7 +72,6 @@ function InternalMarkdownRenderer({ nodes = [] }: { nodes?: CompileContext['stac
 		if (node.type === 'list' && node.ordered) {
 			return (
 				<ol className="pl-8 list-decimal [&_ol]:list-[lower-alpha]">
-					{/** @ts-expect-error JSX return type */}
 					<InternalMarkdownRenderer nodes={node.children} />
 				</ol>
 			);
@@ -87,7 +80,6 @@ function InternalMarkdownRenderer({ nodes = [] }: { nodes?: CompileContext['stac
 		if (node.type === 'list' && !node.ordered) {
 			return (
 				<ul className="pl-4 list-disc [&_ul]:list-[circle] [&_li]:pl-2">
-					{/** @ts-expect-error JSX return type */}
 					<InternalMarkdownRenderer nodes={node.children} />
 				</ul>
 			);
@@ -96,7 +88,6 @@ function InternalMarkdownRenderer({ nodes = [] }: { nodes?: CompileContext['stac
 		if (node.type === 'listItem') {
 			return (
 				<li className="relative pl-2 my-4 text-base leading-7 before:-left-4 before:absolute">
-					{/** @ts-expect-error JSX return type */}
 					<InternalMarkdownRenderer nodes={node.children} />
 				</li>
 			);
@@ -200,7 +191,6 @@ function InternalMarkdownRenderer({ nodes = [] }: { nodes?: CompileContext['stac
 								{config.icon}
 							</div>
 							<div>
-								{/** @ts-expect-error JSX return type */}
 								<InternalMarkdownRenderer nodes={content} />
 							</div>
 						</div>
@@ -210,7 +200,6 @@ function InternalMarkdownRenderer({ nodes = [] }: { nodes?: CompileContext['stac
 
 			return (
 				<blockquote className="p-4 mb-4 bg-@bg-muted text-@medium italic border-l-4 border-l-@border-muted [&_>_:last-child]:mb-0">
-					{/** @ts-expect-error JSX return type */}
 					<InternalMarkdownRenderer nodes={node.children} />
 				</blockquote>
 			);
@@ -238,11 +227,9 @@ function InternalMarkdownRenderer({ nodes = [] }: { nodes?: CompileContext['stac
 			return (
 				<table>
 					<thead>
-						{/** @ts-expect-error JSX return type */}
 						<InternalMarkdownRenderer nodes={[thead]} />
 					</thead>
 					<tbody>
-						{/** @ts-expect-error JSX return type */}
 						<InternalMarkdownRenderer nodes={tbody} />
 					</tbody>
 				</table>
@@ -252,7 +239,6 @@ function InternalMarkdownRenderer({ nodes = [] }: { nodes?: CompileContext['stac
 		if (node.type === 'tableRow') {
 			return (
 				<tr>
-					{/** @ts-expect-error JSX return type */}
 					<InternalMarkdownRenderer nodes={node.children} />
 				</tr>
 			);
@@ -261,7 +247,6 @@ function InternalMarkdownRenderer({ nodes = [] }: { nodes?: CompileContext['stac
 		if (node.type === 'tableCell') {
 			return (
 				<td>
-					{/** @ts-expect-error JSX return type */}
 					<InternalMarkdownRenderer nodes={node.children} />
 				</td>
 			);

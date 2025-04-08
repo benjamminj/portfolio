@@ -7,7 +7,6 @@ export default async function WritingPage() {
 
 	return (
 		<PageWrapper>
-			{/* @ts-expect-error Server Component */}
 			<PostList posts={posts} />
 		</PageWrapper>
 	);
