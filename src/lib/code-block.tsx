@@ -21,14 +21,14 @@ export function CodeBlock({ code }: { code: string }) {
 
 			<pre
 				className={cn(
-					"rounded-none p-6 pt-8 my-6 overflow-auto text-base bg-@bg-muted selection:bg-@black selection:text-@white",
+					"rounded-none p-6 pt-8 my-6 overflow-auto text-base bg-LEGACY-bg-muted selection:bg-LEGACY-black selection:text-LEGACY-white",
 				)}
 			>
 				<code
 					// biome-ignore lint/security/noDangerouslySetInnerHtml: Safe since we control the content / code
 					dangerouslySetInnerHTML={{ __html: code }}
 					className={cn(
-						"overflow-auto text-@fg-default bg-transparent p-0 text-left whitespace-pre",
+						"overflow-auto text-LEGACY-fg-default bg-transparent p-0 text-left whitespace-pre",
 						// Color theme definitions
 						"[--accent-1:rgb(var(--color-blue-700))] dark:[--accent-1:rgb(var(--color-blue-300))]",
 						"[--accent-2:rgb(var(--color-green-600))] dark:[--accent-2:rgb(var(--color-green-300))]",

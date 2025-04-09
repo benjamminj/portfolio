@@ -17,8 +17,8 @@ export default {
 		extend: {
 			colors: {
 				...generateColorDefinitions(),
-				"@black": "rgb(var(--color-black) / <alpha-value>)",
-				"@white": "rgb(var(--color-white) / <alpha-value>)",
+				"LEGACY-black": "rgb(var(--color-black) / <alpha-value>)",
+				"LEGACY-white": "rgb(var(--color-white) / <alpha-value>)",
 				...generateAliasColorTokenDefinitions(),
 			},
 			minWidth: {
@@ -210,7 +210,7 @@ function generateColorDefinitions() {
 		for (const shade in shades) {
 			set(
 				colorDefinitions,
-				[`@${hue}`, shade],
+				[`LEGACY-${hue}`, shade],
 				`rgb(var(--color-${hue}-${shade}) / <alpha-value>)`,
 			);
 		}
@@ -358,17 +358,14 @@ function getBaseColorMap(theme?: PluginAPI["theme"]) {
 }
 
 type AliasColorTokenDef = {
-	"@bg-default": string;
-	// TODO: even needed? or cut entirely??
-	"@bg-muted": string;
-	"@bg-emphasis": string;
-
-	"@fg-default": string;
-	"@fg-muted": string;
-	"@fg-on-emphasis": string;
-
-	"@border-default": string;
-	"@border-muted": string;
+	"LEGACY-bg-default": string;
+	"LEGACY-bg-muted": string;
+	"LEGACY-bg-emphasis": string;
+	"LEGACY-fg-default": string;
+	"LEGACY-fg-muted": string;
+	"LEGACY-fg-on-emphasis": string;
+	"LEGACY-border-default": string;
+	"LEGACY-border-muted": string;
 };
 
 function cssVarToTailwindColorDef(cssVar: string) {
@@ -377,44 +374,44 @@ function cssVarToTailwindColorDef(cssVar: string) {
 
 function generateAliasColorTokenDefinitions(): AliasColorTokenDef {
 	return {
-		"@bg-default": cssVarToTailwindColorDef("--color-bg-default"),
-		"@bg-muted": cssVarToTailwindColorDef("--color-bg-muted"),
-		"@bg-emphasis": cssVarToTailwindColorDef("--color-bg-emphasis"),
-		"@fg-default": cssVarToTailwindColorDef("--color-fg-default"),
-		"@fg-muted": cssVarToTailwindColorDef("--color-fg-muted"),
-		"@fg-on-emphasis": cssVarToTailwindColorDef("--color-fg-on-emphasis"),
-		"@border-default": cssVarToTailwindColorDef("--color-border-default"),
-		"@border-muted": cssVarToTailwindColorDef("--color-border-muted"),
+		"LEGACY-bg-default": cssVarToTailwindColorDef("--color-bg-default"),
+		"LEGACY-bg-muted": cssVarToTailwindColorDef("--color-bg-muted"),
+		"LEGACY-bg-emphasis": cssVarToTailwindColorDef("--color-bg-emphasis"),
+		"LEGACY-fg-default": cssVarToTailwindColorDef("--color-fg-default"),
+		"LEGACY-fg-muted": cssVarToTailwindColorDef("--color-fg-muted"),
+		"LEGACY-fg-on-emphasis": cssVarToTailwindColorDef("--color-fg-on-emphasis"),
+		"LEGACY-border-default": cssVarToTailwindColorDef("--color-border-default"),
+		"LEGACY-border-muted": cssVarToTailwindColorDef("--color-border-muted"),
 	};
 }
 
 function generateAliasColorTokenCss() {
 	const lightDefaultStyles: AliasColorTokenDef = {
-		"@bg-default": "var(--color-white)",
-		"@bg-muted": "var(--color-gray-100)",
-		"@bg-emphasis": "var(--color-black)",
-		"@fg-default": "var(--color-black)",
-		"@fg-muted": "var(--color-gray-600)",
-		"@fg-on-emphasis": "var(--color-white)",
-		"@border-default": "var(--color-black)",
-		"@border-muted": "var(--color-gray-600)",
+		"LEGACY-bg-default": "var(--color-white)",
+		"LEGACY-bg-muted": "var(--color-gray-100)",
+		"LEGACY-bg-emphasis": "var(--color-black)",
+		"LEGACY-fg-default": "var(--color-black)",
+		"LEGACY-fg-muted": "var(--color-gray-600)",
+		"LEGACY-fg-on-emphasis": "var(--color-white)",
+		"LEGACY-border-default": "var(--color-black)",
+		"LEGACY-border-muted": "var(--color-gray-600)",
 	};
 
 	const darkDefaultStyles: AliasColorTokenDef = {
-		"@bg-default": "var(--color-black)",
-		"@bg-muted": "var(--color-gray-900)",
-		"@bg-emphasis": "var(--color-white)",
-		"@fg-default": "var(--color-white)",
-		"@fg-muted": "var(--color-gray-400)",
-		"@fg-on-emphasis": "var(--color-black)",
-		"@border-default": "var(--color-white)",
-		"@border-muted": "var(--color-gray-400)",
+		"LEGACY-bg-default": "var(--color-black)",
+		"LEGACY-bg-muted": "var(--color-gray-900)",
+		"LEGACY-bg-emphasis": "var(--color-white)",
+		"LEGACY-fg-default": "var(--color-white)",
+		"LEGACY-fg-muted": "var(--color-gray-400)",
+		"LEGACY-fg-on-emphasis": "var(--color-black)",
+		"LEGACY-border-default": "var(--color-white)",
+		"LEGACY-border-muted": "var(--color-gray-400)",
 	};
 
 	const formatIntoVariables = (obj: AliasColorTokenDef) => {
 		return Object.fromEntries(
 			Object.entries(obj).map(([key, value]) => [
-				key.replace(/^@/, "--color-"),
+				key.replace(/^LEGACY-/, "--color-"),
 				value,
 			]),
 		);
@@ -491,7 +488,7 @@ function generateHeadingTypographyCss(theme: PluginAPI["theme"]) {
 
 	const headingClasses: Record<string, CSSRuleObject> = {};
 	for (const [key, value] of Object.entries(headings)) {
-		headingClasses[`.text-\\@${key}`] = {
+		headingClasses[`.text-LEGACY-${key}`] = {
 			...commonHeadingStyles,
 			...value,
 		} as CSSRuleObject;
@@ -523,7 +520,7 @@ function generateBodyTypographyCss(theme: PluginAPI["theme"]) {
 	return Object.fromEntries(
 		Object.entries(bodyStyles).map(([key, value]) => {
 			return [
-				`.text-\\@${key}`,
+				`.text-LEGACY-${key}`,
 				{
 					fontFamily: theme("fontFamily.mono"),
 					fontWeight: theme("fontWeight.normal"),
