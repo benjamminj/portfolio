@@ -10,7 +10,7 @@ type PageParams = {
 };
 
 export default async function SlugPage({ params }: { params: PageParams }) {
-	const slug = params.slug;
+	const slug = await params.slug;
 	const post = await PostService.get(slug);
 	return (
 		<PageWrapper title={post.title} subtitle={post.date}>

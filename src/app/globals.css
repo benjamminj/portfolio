@@ -4,6 +4,6 @@
 
 @layer base {
 	* {
-		@apply border-@border-default;
+		@apply border-LEGACY-border-default;
 	}
 }

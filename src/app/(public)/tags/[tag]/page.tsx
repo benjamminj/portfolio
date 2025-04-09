@@ -6,10 +6,11 @@ export default async function TagRoute({
 	params,
 }: { params: { tag: string } }) {
 	const posts = await PostService.list();
-	const filtered = posts.filter((post) => post.tags.includes(params.tag));
+	const tag = await params.tag;
+	const filtered = posts.filter((post) => post.tags.includes(tag));
 	return (
 		<PageWrapper
-			title={`#${params.tag}`}
+			title={`#${tag}`}
 			subtitle={`${filtered.length} ${filtered.length === 1 ? "post" : "posts"}`}
 		>
 			<PostList posts={filtered} />
