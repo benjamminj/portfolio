@@ -1,9 +1,118 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+@config '../../tailwind.config.ts';
+
+/**
+ * -----------------------------------------------------------------------------
+ * COLORS
+ * -----------------------------------------------------------------------------
+ */
+@theme {
+	/* Base color token overrides. Any other colors just use the default TW mappings */
+	--color-gray-50: var(--color-zinc-50);
+	--color-gray-100: var(--color-zinc-100);
+	--color-gray-200: var(--color-zinc-200);
+	--color-gray-300: var(--color-zinc-300);
+	--color-gray-400: var(--color-zinc-400);
+	--color-gray-500: var(--color-zinc-500);
+	--color-gray-600: var(--color-zinc-600);
+	--color-gray-700: var(--color-zinc-700);
+	--color-gray-800: var(--color-zinc-800);
+	--color-gray-900: var(--color-zinc-900);
+	--color-gray-950: var(--color-zinc-950);
+
+	--color-yellow-50: var(--color-amber-50);
+	--color-yellow-100: var(--color-amber-100);
+	--color-yellow-200: var(--color-amber-200);
+	--color-yellow-300: var(--color-amber-300);
+	--color-yellow-400: var(--color-amber-400);
+	--color-yellow-500: var(--color-amber-500);
+	--color-yellow-600: var(--color-amber-600);
+	--color-yellow-700: var(--color-amber-700);
+	--color-yellow-800: var(--color-amber-800);
+	--color-yellow-900: var(--color-amber-900);
+	--color-yellow-950: var(--color-amber-950);
+
+	--color-green-50: var(--color-emerald-50);
+	--color-green-100: var(--color-emerald-100);
+	--color-green-200: var(--color-emerald-200);
+	--color-green-300: var(--color-emerald-300);
+	--color-green-400: var(--color-emerald-400);
+	--color-green-500: var(--color-emerald-500);
+	--color-green-600: var(--color-emerald-600);
+	--color-green-700: var(--color-emerald-700);
+	--color-green-800: var(--color-emerald-800);
+	--color-green-900: var(--color-emerald-900);
+	--color-green-950: var(--color-emerald-950);
+
+	--color-purple-50: var(--color-violet-50);
+	--color-purple-100: var(--color-violet-100);
+	--color-purple-200: var(--color-violet-200);
+	--color-purple-300: var(--color-violet-300);
+	--color-purple-400: var(--color-violet-400);
+	--color-purple-500: var(--color-violet-500);
+	--color-purple-600: var(--color-violet-600);
+	--color-purple-700: var(--color-violet-700);
+	--color-purple-800: var(--color-violet-800);
+	--color-purple-900: var(--color-violet-900);
+	--color-purple-950: var(--color-violet-950);
+
+	/* Alias color token mappings */
+	--color-bg-default: var(--color-white);
+	--color-bg-muted: var(--color-gray-100);
+	--color-bg-emphasis: var(--color-black);
+	--color-fg-default: var(--color-black);
+	--color-fg-muted: var(--color-gray-600);
+	--color-fg-on-emphasis: var(--color-white);
+	--color-border-default: var(--color-black);
+	--color-border-muted: var(--color-gray-600);
+
+	/* TODO: dark mode color mappings?? */
+	/* "LEGACY-bg-default": "var(--color-black)", */
+	/* "LEGACY-bg-muted": "var(--color-gray-900)", */
+	/* "LEGACY-bg-emphasis": "var(--color-white)", */
+	/* "LEGACY-fg-default": "var(--color-white)", */
+	/* "LEGACY-fg-muted": "var(--color-gray-400)", */
+	/* "LEGACY-fg-on-emphasis": "var(--color-black)", */
+	/* "LEGACY-border-default": "var(--color-white)", */
+	/* "LEGACY-border-muted": "var(--color-gray-400)", */
+}
+
+/* addVariant("js-enabled", '[data-js_enabled="true"] &');
+addVariant("js-disabled", '[data-js_enabled="false"] &'); */
+
+@custom-variant js-enabled {
+	[data-js_enabled="true] & {
+		@slot;
+  }
+}
+
+@custom-variant js-disabled {
+	[data-js_enabled="false"] & {
+		@slot;
+	}
+}
+
+/*
+  The default border color has changed to `currentcolor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+	*,
+	::after,
+	::before,
+	::backdrop,
+	::file-selector-button {
+		border-color: var(--color-gray-200, currentcolor);
+	}
+}
 
 @layer base {
 	* {
-		@apply border-LEGACY-border-default;
+		@apply border-border-default;
 	}
 }
