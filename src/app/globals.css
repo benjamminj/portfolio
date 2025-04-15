@@ -2,6 +2,7 @@
 
 @config '../../tailwind.config.ts';
 
+
 /**
  * -----------------------------------------------------------------------------
  * COLORS
@@ -66,23 +67,66 @@
 	--color-fg-on-emphasis: var(--color-white);
 	--color-border-default: var(--color-black);
 	--color-border-muted: var(--color-gray-600);
-
-	/* TODO: dark mode color mappings?? */
-	/* "LEGACY-bg-default": "var(--color-black)", */
-	/* "LEGACY-bg-muted": "var(--color-gray-900)", */
-	/* "LEGACY-bg-emphasis": "var(--color-white)", */
-	/* "LEGACY-fg-default": "var(--color-white)", */
-	/* "LEGACY-fg-muted": "var(--color-gray-400)", */
-	/* "LEGACY-fg-on-emphasis": "var(--color-black)", */
-	/* "LEGACY-border-default": "var(--color-white)", */
-	/* "LEGACY-border-muted": "var(--color-gray-400)", */
 }
 
-/* addVariant("js-enabled", '[data-js_enabled="true"] &');
-addVariant("js-disabled", '[data-js_enabled="false"] &'); */
+@media (prefers-color-scheme: dark) {	
+	:root {
+		--color-bg-default: var(--color-black);
+		--color-bg-muted: var(--color-gray-900);
+		--color-bg-emphasis: var(--color-white);
+		--color-fg-default: var(--color-white);
+		--color-fg-muted: var(--color-gray-400);
+		--color-fg-on-emphasis: var(--color-black);
+		--color-border-default: var(--color-white);
+		--color-border-muted: var(--color-gray-400);
+	}
+}
 
+/**
+ * -----------------------------------------------------------------------------
+ * TYPOGRAPHY
+ * -----------------------------------------------------------------------------
+ */
+@theme {
+	--text-h1: var(--text-5xl);
+	--text-h1--letter-spacing: var(--tracking-tight)
+	--text-h1--line-height: 1;
+	--text-h1--font-weight: var(--font-weight-extrabold);
+
+	--text-h2: var(--text-4xl);
+	--text-h2--letter-spacing: var(--tracking-tight)
+	--text-h2--line-height: 1;
+	--text-h2--font-weight: var(--font-weight-extrabold);
+
+	--text-h3: var(--text-2xl);
+	--text-h3--letter-spacing: var(--tracking-tight)
+	--text-h3--line-height: 1;
+	--text-h3--font-weight: var(--font-weight-extrabold);
+
+	--text-h4: var(--text-xl);
+	--text-h4--letter-spacing: var(--tracking-tight)
+	--text-h4--line-height: 1;
+	--text-h4--font-weight: var(--font-weight-extrabold);
+
+	--text-h5: var(--text-base);
+	--text-h5--letter-spacing: var(--tracking-tight)
+	--text-h5--line-height: 1;
+	--text-h5--font-weight: var(--font-weight-extrabold);
+
+	--text-h6: var(--text-sm);
+	--text-h6--letter-spacing: var(--tracking-tight)
+	--text-h6--line-height: 1;
+	--text-h6--font-weight: var(--font-weight-bold);
+}
+
+
+/**
+ * -----------------------------------------------------------------------------
+ * CUSTOM VARIANTS
+ * -----------------------------------------------------------------------------
+ */
 @custom-variant js-enabled {
-	[data-js_enabled="true] & {
+	[data-js_enabled="true"] & {
 		@slot;
   }
 }

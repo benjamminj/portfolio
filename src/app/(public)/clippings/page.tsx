@@ -18,8 +18,8 @@ export default async function ClippingsRoute() {
 			title="Clippings"
 			subtitle="Articles, blogs, and other links I've found interesting."
 		>
-			<div className="prose dark:prose-invert max-w-none">
-				<table>
+			<div className="max-w-prose mx-auto">
+				<table className="mx-4">
 					<thead>
 						<tr className="font-bold text-lg">
 							<td>Link</td>
@@ -28,7 +28,7 @@ export default async function ClippingsRoute() {
 					</thead>
 					<tbody data-testid="Clippings__tablebody">
 						{clippings.map((clipping) => (
-							<tr key={clipping.url}>
+							<tr key={clipping.url} className="*:py-1">
 								<td className="w-3/5">
 									<A href={clipping.url}>{clipping.name}</A>
 								</td>

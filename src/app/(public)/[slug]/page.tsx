@@ -16,7 +16,7 @@ export default async function SlugPage({ params }: { params: PageParams }) {
 		<PageWrapper title={post.title} subtitle={post.date}>
 			<Markdown raw={post.body} />
 			{post.link && post.publisher && (
-				<p className="pt-4 prose dark:prose-invert">
+				<p className="pt-4 max-w-prose mx-auto">
 					<A title={post.publisher} href={post.link}>
 						Read the full article on {post.publisher}.
 					</A>
