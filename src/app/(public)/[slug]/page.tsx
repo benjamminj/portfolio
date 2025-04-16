@@ -24,7 +24,10 @@ export default async function SlugPage({ params }: { params: PageParams }) {
 			)}
 
 			{post.tags?.length > 0 && (
-				<footer data-testid="SlugPage__footer" className="pt-12">
+				<footer
+					data-testid="SlugPage__footer"
+					className="pt-12 mx-auto max-w-prose px-4"
+				>
 					<div>
 						<div className="font-mono dark:text-gray-400">Tags</div>
 						<ul className="dark:text-gray-200 flex space-x-2">

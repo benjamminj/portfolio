@@ -1,26 +1,23 @@
 @import "tailwindcss";
 
-@config '../../tailwind.config.ts';
-
-
 /**
  * -----------------------------------------------------------------------------
  * COLORS
  * -----------------------------------------------------------------------------
  */
 @theme {
-	/* Base color token overrides. Any other colors just use the default TW mappings */
-	--color-gray-50: var(--color-zinc-50);
-	--color-gray-100: var(--color-zinc-100);
-	--color-gray-200: var(--color-zinc-200);
-	--color-gray-300: var(--color-zinc-300);
-	--color-gray-400: var(--color-zinc-400);
-	--color-gray-500: var(--color-zinc-500);
-	--color-gray-600: var(--color-zinc-600);
-	--color-gray-700: var(--color-zinc-700);
-	--color-gray-800: var(--color-zinc-800);
-	--color-gray-900: var(--color-zinc-900);
-	--color-gray-950: var(--color-zinc-950);
+	/** Base color token overrides. Any other colors just use the default TW mappings */
+	--color-gray-50: var(--color-slate-50);
+	--color-gray-100: var(--color-slate-100);
+	--color-gray-200: var(--color-slate-200);
+	--color-gray-300: var(--color-slate-300);
+	--color-gray-400: var(--color-slate-400);
+	--color-gray-500: var(--color-slate-500);
+	--color-gray-600: var(--color-slate-600);
+	--color-gray-700: var(--color-slate-700);
+	--color-gray-800: var(--color-slate-800);
+	--color-gray-900: var(--color-slate-900);
+	--color-gray-950: var(--color-slate-950);
 
 	--color-yellow-50: var(--color-amber-50);
 	--color-yellow-100: var(--color-amber-100);
@@ -58,7 +55,7 @@
 	--color-purple-900: var(--color-violet-900);
 	--color-purple-950: var(--color-violet-950);
 
-	/* Alias color token mappings */
+	/* Semantic token mappings */
 	--color-bg-default: var(--color-white);
 	--color-bg-muted: var(--color-gray-100);
 	--color-bg-emphasis: var(--color-black);
@@ -69,6 +66,7 @@
 	--color-border-muted: var(--color-gray-600);
 }
 
+/** Dark mode mappings for the semantic tokens */
 @media (prefers-color-scheme: dark) {	
 	:root {
 		--color-bg-default: var(--color-black);
@@ -117,8 +115,19 @@
 	--text-h6--letter-spacing: var(--tracking-tight)
 	--text-h6--line-height: 1;
 	--text-h6--font-weight: var(--font-weight-bold);
-}
 
+	--text-large: var(--text-xl);
+	--text-large--line-height: var(--leading-6);
+
+	--text-medium: var(--text-base);
+	--text-medium--line-height: var(--leading-6);
+
+	--text-small: var(--text-sm);
+	--text-small--line-height: var(--leading-5);
+
+	--text-caption: var(--text-xs);
+	--text-caption--line-height: var(--leading-4);
+}
 
 /**
  * -----------------------------------------------------------------------------
@@ -136,6 +145,33 @@
 		@slot;
 	}
 }
+
+/**
+ * -----------------------------------------------------------------------------
+ * ADDITIONAL THEME CONFIG
+ * -----------------------------------------------------------------------------
+ */
+@theme {
+	/* Custom breakpoints */
+	--breakpoint-xs: 29rem;
+
+	/* Custom spacing values */
+	--spacing-prose: 80ch;
+
+	/* Custom Animations */
+	--animate-fadein: fadein 100ms ease-in-out 200ms;
+
+	@keyframes fadein {
+		0% {
+			opacity: 0;
+		}
+
+		100% {
+			opacity: 1;
+		}
+	}
+}
+
 
 /*
   The default border color has changed to `currentcolor` in Tailwind CSS v4,

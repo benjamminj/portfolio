@@ -11,7 +11,7 @@ export async function Markdown({ raw }: { raw: string }) {
 	if (!mdast) return null;
 
 	return (
-		<div className="text-medium mx-auto max-w-prose">
+		<div className="text-medium mx-auto max-w-prose px-4">
 			<InternalMarkdownRenderer nodes={mdast.data as CompileContext["stack"]} />
 		</div>
 	);
@@ -218,8 +218,8 @@ function InternalMarkdownRenderer({
 
 		if (node.type === "inlineCode") {
 			return (
-				<code className="bg-bg-muted text-pink-700 dark:text-pink-500 p-1 break-words before:content-['`'] before:font-bold before:text-pink-700 dark:before:text-pink-500 before:text-opacity-50 after:content-['`'] after:font-bold after:text-pink-700 dark:after:text-pink-500 after:text-opacity-50">
-					{node.value}
+				<code className="bg-bg-muted text-pink-700 dark:text-pink-500 p-1 break-words before:content-['`'] before:font-bold before:text-pink-700 dark:before:text-pink-500/50 after:content-['`'] after:font-bold after:text-pink-700 dark:after:text-pink-500/50">
+					{node.value}s
 				</code>
 			);
 		}

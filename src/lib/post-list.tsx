@@ -20,7 +20,7 @@ export async function PostList({ posts }: PostListProps) {
 
 export function PostListItem({ post }: { post: Post }) {
 	return (
-		<div className="relative p-4 -mx-4 hover:bg-gray-100 dark:hover:bg-gray-900 dark:hover:bg-opacity-50">
+		<div className="relative p-4 -mx-4 hover:bg-gray-100 dark:hover:bg-gray-900/50">
 			<div className="space-y-1 md:flex md:space-y-0 md:space-x-4">
 				<time className="text-gray-500 dark:text-gray-400 flex items-end shrink-0 font-mono text-sm md:h-8 md:pt-1 md:pb-1.5 tabular-nums leading-none">
 					{post.date}
