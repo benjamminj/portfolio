@@ -1,9 +1,198 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+/**
+ * -----------------------------------------------------------------------------
+ * COLORS
+ * -----------------------------------------------------------------------------
+ */
+@theme {
+	/** Base color token overrides. Any other colors just use the default TW mappings */
+	--color-gray-50: var(--color-slate-50);
+	--color-gray-100: var(--color-slate-100);
+	--color-gray-200: var(--color-slate-200);
+	--color-gray-300: var(--color-slate-300);
+	--color-gray-400: var(--color-slate-400);
+	--color-gray-500: var(--color-slate-500);
+	--color-gray-600: var(--color-slate-600);
+	--color-gray-700: var(--color-slate-700);
+	--color-gray-800: var(--color-slate-800);
+	--color-gray-900: var(--color-slate-900);
+	--color-gray-950: var(--color-slate-950);
+
+	--color-yellow-50: var(--color-amber-50);
+	--color-yellow-100: var(--color-amber-100);
+	--color-yellow-200: var(--color-amber-200);
+	--color-yellow-300: var(--color-amber-300);
+	--color-yellow-400: var(--color-amber-400);
+	--color-yellow-500: var(--color-amber-500);
+	--color-yellow-600: var(--color-amber-600);
+	--color-yellow-700: var(--color-amber-700);
+	--color-yellow-800: var(--color-amber-800);
+	--color-yellow-900: var(--color-amber-900);
+	--color-yellow-950: var(--color-amber-950);
+
+	--color-green-50: var(--color-emerald-50);
+	--color-green-100: var(--color-emerald-100);
+	--color-green-200: var(--color-emerald-200);
+	--color-green-300: var(--color-emerald-300);
+	--color-green-400: var(--color-emerald-400);
+	--color-green-500: var(--color-emerald-500);
+	--color-green-600: var(--color-emerald-600);
+	--color-green-700: var(--color-emerald-700);
+	--color-green-800: var(--color-emerald-800);
+	--color-green-900: var(--color-emerald-900);
+	--color-green-950: var(--color-emerald-950);
+
+	--color-purple-50: var(--color-violet-50);
+	--color-purple-100: var(--color-violet-100);
+	--color-purple-200: var(--color-violet-200);
+	--color-purple-300: var(--color-violet-300);
+	--color-purple-400: var(--color-violet-400);
+	--color-purple-500: var(--color-violet-500);
+	--color-purple-600: var(--color-violet-600);
+	--color-purple-700: var(--color-violet-700);
+	--color-purple-800: var(--color-violet-800);
+	--color-purple-900: var(--color-violet-900);
+	--color-purple-950: var(--color-violet-950);
+
+	/* Semantic token mappings */
+	--color-bg-default: var(--color-white);
+	--color-bg-muted: var(--color-gray-100);
+	--color-bg-emphasis: var(--color-black);
+	--color-fg-default: var(--color-black);
+	--color-fg-muted: var(--color-gray-600);
+	--color-fg-on-emphasis: var(--color-white);
+	--color-border-default: var(--color-black);
+	--color-border-muted: var(--color-gray-600);
+}
+
+/** Dark mode mappings for the semantic tokens */
+@media (prefers-color-scheme: dark) {	
+	:root {
+		--color-bg-default: var(--color-black);
+		--color-bg-muted: var(--color-gray-900);
+		--color-bg-emphasis: var(--color-white);
+		--color-fg-default: var(--color-white);
+		--color-fg-muted: var(--color-gray-400);
+		--color-fg-on-emphasis: var(--color-black);
+		--color-border-default: var(--color-white);
+		--color-border-muted: var(--color-gray-400);
+	}
+}
+
+/**
+ * -----------------------------------------------------------------------------
+ * TYPOGRAPHY
+ * -----------------------------------------------------------------------------
+ */
+@theme {
+	--text-h1: var(--text-5xl);
+	--text-h1--letter-spacing: var(--tracking-tight)
+	--text-h1--line-height: 1;
+	--text-h1--font-weight: var(--font-weight-extrabold);
+
+	--text-h2: var(--text-4xl);
+	--text-h2--letter-spacing: var(--tracking-tight)
+	--text-h2--line-height: 1;
+	--text-h2--font-weight: var(--font-weight-extrabold);
+
+	--text-h3: var(--text-2xl);
+	--text-h3--letter-spacing: var(--tracking-tight)
+	--text-h3--line-height: 1;
+	--text-h3--font-weight: var(--font-weight-extrabold);
+
+	--text-h4: var(--text-xl);
+	--text-h4--letter-spacing: var(--tracking-tight)
+	--text-h4--line-height: 1;
+	--text-h4--font-weight: var(--font-weight-extrabold);
+
+	--text-h5: var(--text-base);
+	--text-h5--letter-spacing: var(--tracking-tight)
+	--text-h5--line-height: 1;
+	--text-h5--font-weight: var(--font-weight-extrabold);
+
+	--text-h6: var(--text-sm);
+	--text-h6--letter-spacing: var(--tracking-tight)
+	--text-h6--line-height: 1;
+	--text-h6--font-weight: var(--font-weight-bold);
+
+	--text-large: var(--text-xl);
+	--text-large--line-height: var(--leading-6);
+
+	--text-medium: var(--text-base);
+	--text-medium--line-height: var(--leading-6);
+
+	--text-small: var(--text-sm);
+	--text-small--line-height: var(--leading-5);
+
+	--text-caption: var(--text-xs);
+	--text-caption--line-height: var(--leading-4);
+}
+
+/**
+ * -----------------------------------------------------------------------------
+ * CUSTOM VARIANTS
+ * -----------------------------------------------------------------------------
+ */
+@custom-variant js-enabled {
+	[data-js_enabled="true"] & {
+		@slot;
+  }
+}
+
+@custom-variant js-disabled {
+	[data-js_enabled="false"] & {
+		@slot;
+	}
+}
+
+/**
+ * -----------------------------------------------------------------------------
+ * ADDITIONAL THEME CONFIG
+ * -----------------------------------------------------------------------------
+ */
+@theme {
+	/* Custom breakpoints */
+	--breakpoint-xs: 29rem;
+
+	/* Custom spacing values */
+	--spacing-prose: 80ch;
+
+	/* Custom Animations */
+	--animate-fadein: fadein 100ms ease-in-out 200ms;
+
+	@keyframes fadein {
+		0% {
+			opacity: 0;
+		}
+
+		100% {
+			opacity: 1;
+		}
+	}
+}
+
+
+/*
+  The default border color has changed to `currentcolor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+	*,
+	::after,
+	::before,
+	::backdrop,
+	::file-selector-button {
+		border-color: var(--color-gray-200, currentcolor);
+	}
+}
 
 @layer base {
 	* {
-		@apply border-LEGACY-border-default;
+		@apply border-border-default;
 	}
 }

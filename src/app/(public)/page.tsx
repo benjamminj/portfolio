@@ -19,7 +19,7 @@ export default async function Page() {
 
 			<Link
 				href="/writing"
-				className="underline font-bold py-4 flex hover:bg-gray-100 dark:hover:bg-gray-900 dark:hover:bg-opacity-50"
+				className="underline font-bold py-4 flex hover:bg-gray-100 dark:hover:bg-gray-900/50"
 			>
 				{/**
 				 * This is a spacer to make the "see more posts" text appear inline

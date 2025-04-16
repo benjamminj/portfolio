@@ -21,20 +21,20 @@ export function CodeBlock({ code }: { code: string }) {
 
 			<pre
 				className={cn(
-					"rounded-none p-6 pt-8 my-6 overflow-auto text-base bg-LEGACY-bg-muted selection:bg-LEGACY-black selection:text-LEGACY-white",
+					"rounded-none p-6 pt-8 my-6 overflow-auto text-base bg-bg-muted selection:bg-black selection:text-white",
 				)}
 			>
 				<code
 					// biome-ignore lint/security/noDangerouslySetInnerHtml: Safe since we control the content / code
 					dangerouslySetInnerHTML={{ __html: code }}
 					className={cn(
-						"overflow-auto text-LEGACY-fg-default bg-transparent p-0 text-left whitespace-pre",
+						"overflow-auto text-fg-default bg-transparent p-0 text-left whitespace-pre",
 						// Color theme definitions
-						"[--accent-1:rgb(var(--color-blue-700))] dark:[--accent-1:rgb(var(--color-blue-300))]",
-						"[--accent-2:rgb(var(--color-green-600))] dark:[--accent-2:rgb(var(--color-green-300))]",
-						"[--accent-3:rgb(var(--color-purple-600))] dark:[--accent-3:rgb(var(--color-purple-300))]",
-						"[--accent-positive:rgb(var(--color-green-700))] dark:[--accent-positive:rgb(var(--color-green-400))]",
-						"[--accent-negative:rgb(var(--color-red-700))] dark:[--accent-negative:rgb(var(--color-red-400))]",
+						"[--accent-1:var(--color-blue-700)] dark:[--accent-1:var(--color-blue-300)]",
+						"[--accent-2:var(--color-green-600)] dark:[--accent-2:var(--color-green-300)]",
+						"[--accent-3:var(--color-purple-600)] dark:[--accent-3:var(--color-purple-300)]",
+						"[--accent-positive:var(--color-green-700)] dark:[--accent-positive:var(--color-green-400)]",
+						"[--accent-negative:var(--color-red-700)] dark:[--accent-negative:var(--color-red-400)]",
 
 						// Token color mappings
 						"[&_.token:is(.comment,.prolog,.doctype,.cdata)]:text-gray-500",
@@ -87,7 +87,7 @@ function CopyPasteButton({ code }: { code: string }) {
 				setCopied(true);
 				navigator.clipboard.writeText(code);
 			}}
-			className="absolute right-2 flex items-center justify-center w-8 h-8 text-gray-700 dark:text-white text-opacity-50 md:right-2 top-1 ring-gray-400 dark:ring-white ring-opacity-70 focus:outline-none focus:bg-gray-300 focus:bg-opacity-20 focus:text-opacity-100 hover:text-opacity-100 focus:ring-2"
+			className="absolute right-2 flex items-center justify-center size-8 text-gray-700/50 dark:text-white/50 md:right-2 top-1 ring-gray-400 dark:ring-white ring-opacity-70 focus:outline-hidden focus:bg-gray-300/20 focus:text-gray-700 focus:dark:text-white hover:text-gray-700 hover:dark:text-white focus:ring-2"
 		>
 			{copied ? (
 				<div className="relative">
@@ -95,7 +95,7 @@ function CopyPasteButton({ code }: { code: string }) {
 						aria-hidden="true"
 						className="w-5 h-5 text-green-600 dark:text-green-400"
 					/>
-					<div className="fixed z-10 px-2 py-2 mt-2 text-black dark:text-white text-opacity-100 transform bg-white shadow-md dark:bg-gray-600 bottom-2 left-2 right-2 xs:py-1 xs:-translate-x-2/3 xs:absolute xs:right-auto xs:bottom-auto xs:left-1/2 xs:top-full md:-translate-x-1/2 animate-fadein [animation-fill-mode:both] opacity-0">
+					<div className="fixed z-10 p-2 mt-2 text-black dark:text-white transform bg-white shadow-md dark:bg-gray-600 bottom-2 left-2 right-2 xs:py-1 xs:-translate-x-2/3 xs:absolute xs:right-auto xs:bottom-auto xs:left-1/2 xs:top-full md:-translate-x-1/2 animate-fadein [animation-fill-mode:both] opacity-0">
 						Copied!
 					</div>
 				</div>
@@ -103,7 +103,7 @@ function CopyPasteButton({ code }: { code: string }) {
 				<>
 					<ClipboardIcon
 						aria-hidden="true"
-						className="w-5 h-5 dark:text-gray-400 hover:dark:text-white transition-colors"
+						className="w-5 h-5 dark:text-gray-400 dark:hover:text-white transition-colors"
 					/>
 					<span className="sr-only">Copy to clipboard</span>
 				</>

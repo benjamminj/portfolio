@@ -1,12 +1,13 @@
 import Link, { type LinkProps } from "next/link";
 import type { ReactNode } from "react";
+import { CopyrightText } from "./copyright-text";
 
 export function Footer() {
 	return (
-		<footer className="bg-gray-100 dark:bg-gray-900 dark:bg-opacity-40 py-8">
+		<footer className="bg-gray-100 dark:bg-gray-900/40 py-8">
 			<div className="max-w-prose my-0 mx-auto px-4">
 				<p className="dark:text-gray-400">
-					&copy; {new Date().getFullYear()} Benjamin Johnson
+					<CopyrightText />
 				</p>
 				<ul className="flex space-x-4" data-sveltekit-prefetch>
 					<li>
@@ -56,7 +57,7 @@ function FooterLink({
 		<Link
 			title={title}
 			href={href as LinkProps["href"]}
-			className="text-base underline text-gray-800 dark:text-gray-200 hover:dark:text-white font-bold"
+			className="text-base underline text-gray-800 dark:text-gray-200 dark:hover:text-white font-bold"
 		>
 			{children}
 		</Link>
