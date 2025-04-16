@@ -86,6 +86,22 @@
  * -----------------------------------------------------------------------------
  */
 @theme {
+	--text-heading: 1rem;
+	--text-heading--line-height: var(--text-body--line-height);
+	--text-heading--letter-spacing: var(--tracking-tight)
+	--text-heading--font-weight: var(--font-weight-bold);
+
+	--text-body: 1rem;
+	--text-body--line-height: 1.25rem;
+	--text-heading--letter-spacing: var(--tracking-tight)
+	--text-heading--font-weight: var(--font-weight-medium);
+
+	--text-small: 0.875rem;
+	--text-body--line-height: var(--text-body--line-height);
+	--text-heading--letter-spacing: var(--tracking-tight)
+	--text-heading--font-weight: var(--font-weight-medium);
+
+	/* Legacy typography */
 	--text-h1: var(--text-5xl);
 	--text-h1--letter-spacing: var(--tracking-tight)
 	--text-h1--line-height: 1;
@@ -122,8 +138,8 @@
 	--text-medium: var(--text-base);
 	--text-medium--line-height: var(--leading-6);
 
-	--text-small: var(--text-sm);
-	--text-small--line-height: var(--leading-5);
+	--text-legacy-small: var(--text-sm);
+	--text-legacy-small--line-height: var(--leading-5);
 
 	--text-caption: var(--text-xs);
 	--text-caption--line-height: var(--leading-4);
