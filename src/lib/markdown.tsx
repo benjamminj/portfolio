@@ -11,7 +11,7 @@ export async function Markdown({ raw }: { raw: string }) {
 	if (!mdast) return null;
 
 	return (
-		<div className="text-medium mx-auto max-w-prose px-4">
+		<div className="text-body mx-auto max-w-prose px-4">
 			<InternalMarkdownRenderer nodes={mdast.data as CompileContext["stack"]} />
 		</div>
 	);
@@ -43,7 +43,7 @@ function MarkdownRendererNode({
 
 	if (node.type === "paragraph") {
 		return (
-			<p className="text-medium mb-4">
+			<p className="text-body mb-4">
 				<InternalMarkdownRenderer nodes={node.children} />
 			</p>
 		);
@@ -201,7 +201,7 @@ function MarkdownRendererNode({
 			return (
 				<blockquote
 					className={cn(
-						"p-4 mb-4 bg-bg-muted text-medium italic border-l-4 border-l-border-muted [&_:last-child]:mb-0",
+						"p-4 mb-4 bg-bg-muted text-body italic border-l-4 border-l-border-muted [&_:last-child]:mb-0",
 						config.blockquote,
 					)}
 				>
@@ -218,7 +218,7 @@ function MarkdownRendererNode({
 		}
 
 		return (
-			<blockquote className="p-4 mb-4 bg-bg-muted text-medium italic border-l-4 border-l-border-muted [&_>_:last-child]:mb-0">
+			<blockquote className="p-4 mb-4 bg-bg-muted text-body italic border-l-4 border-l-border-muted [&_>_:last-child]:mb-0">
 				<InternalMarkdownRenderer nodes={node.children} />
 			</blockquote>
 		);
