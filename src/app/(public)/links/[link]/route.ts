@@ -5,6 +5,7 @@ const WEEK_IN_SECONDS = 604800;
 const links = {
 	email: "mailto:benjamin.d.johnson@icloud.com",
 	twitter: "https://twitter.com/benjamminj",
+	bluesky: "https://bsky.app/profile/benjamminj.dev",
 };
 
 export const GET = async (

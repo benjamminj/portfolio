@@ -1,3 +1,4 @@
-Welcome to my digital garden! 👋🏻
+staff+ frontend engineer. i specialize in design systems, frontend architecture, and taking products from 0 → 1.
 
-Here's some recent things I've written.
+currently @ [sublime.security](https://sublime.security).
+

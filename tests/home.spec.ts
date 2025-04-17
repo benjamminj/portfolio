@@ -7,13 +7,15 @@ test.describe("/", () => {
 		expect(await $title.isVisible()).toEqual(true);
 
 		const navigationLinks = [
-			["./writing", "/writing"],
-			["./about", "/about"],
+			["writing", "/writing"],
+			["about", "/about"],
+			["bluesky", "/links/bluesky"],
+			["email", "/links/email"],
 		];
 
 		await Promise.all(
 			navigationLinks.map(async ([text, href]) => {
-				const $element = page.locator(`text=${text}`);
+				const $element = page.getByRole("link", { name: text });
 				expect(await $element.isVisible()).toEqual(true);
 				expect(await $element.getAttribute("href")).toEqual(href);
 			}),

@@ -1,17 +1,28 @@
-import { type ReactNode, createElement } from "react";
+import { Fragment, type ReactNode, createElement } from "react";
 import { A } from "./a";
 import { cn } from "./cn";
 import { CodeBlock } from "./code-block";
 import { MarkdownService } from "./markdown-service.server";
 import type { CompileContext } from "mdast-util-from-markdown";
 
-export async function Markdown({ raw }: { raw: string }) {
+type MarkdownProps = {
+	raw: string;
+	/** @deprecated — for migration only, then remove and make default */
+	__flushEdges?: boolean;
+};
+
+export async function Markdown({ raw, __flushEdges = false }: MarkdownProps) {
 	const mdast = await MarkdownService.parseMarkdownToMdast(raw);
 
 	if (!mdast) return null;
 
 	return (
-		<div className="text-body mx-auto max-w-prose px-4">
+		<div
+			className={cn(
+				"text-body mx-auto max-w-prose px-4",
+				__flushEdges && "px-0 mx-0",
+			)}
+		>
 			<InternalMarkdownRenderer nodes={mdast.data as CompileContext["stack"]} />
 		</div>
 	);
@@ -43,7 +54,7 @@ function MarkdownRendererNode({
 
 	if (node.type === "paragraph") {
 		return (
-			<p className="text-body mb-4">
+			<p className="text-body mb-line">
 				<InternalMarkdownRenderer nodes={node.children} />
 			</p>
 		);
@@ -63,12 +74,22 @@ function MarkdownRendererNode({
 		);
 	}
 
+	if (node.type === "break") {
+		return <br />;
+	}
+
 	if (node.type === "strong") {
 		return (
 			<strong>
 				<InternalMarkdownRenderer nodes={node.children} />
 			</strong>
 		);
+	}
+
+	if (node.type === "html") {
+		// TODO: sanitize html for future usage if + when content is moved out of build step
+		// biome-ignore lint/security/noDangerouslySetInnerHtml: markdown here is trusted source and at build time
+		return <div dangerouslySetInnerHTML={{ __html: node.value }} />;
 	}
 
 	if (node.type === "emphasis") {
@@ -201,7 +222,7 @@ function MarkdownRendererNode({
 			return (
 				<blockquote
 					className={cn(
-						"p-4 mb-4 bg-bg-muted text-body italic border-l-4 border-l-border-muted [&_:last-child]:mb-0",
+						"p-4 mb-4 bg-LEGACY-bg-muted text-body italic border-l-4 border-l-LEGACY-border-muted [&_:last-child]:mb-0",
 						config.blockquote,
 					)}
 				>
@@ -218,7 +239,7 @@ function MarkdownRendererNode({
 		}
 
 		return (
-			<blockquote className="p-4 mb-4 bg-bg-muted text-body italic border-l-4 border-l-border-muted [&_>_:last-child]:mb-0">
+			<blockquote className="p-4 mb-4 bg-LEGACY-bg-muted text-body italic border-l-4 border-l-LEGACY-border-muted [&_>_:last-child]:mb-0">
 				<InternalMarkdownRenderer nodes={node.children} />
 			</blockquote>
 		);
@@ -226,7 +247,7 @@ function MarkdownRendererNode({
 
 	if (node.type === "inlineCode") {
 		return (
-			<code className="bg-bg-muted text-pink-700 dark:text-pink-500 p-1 break-words before:content-['`'] before:font-bold before:text-pink-700 dark:before:text-pink-500/50 after:content-['`'] after:font-bold after:text-pink-700 dark:after:text-pink-500/50">
+			<code className="bg-LEGACY-bg-muted text-pink-700 dark:text-pink-500 p-1 break-words before:content-['`'] before:font-bold before:text-pink-700 dark:before:text-pink-500/50 after:content-['`'] after:font-bold after:text-pink-700 dark:after:text-pink-500/50">
 				{node.value}
 			</code>
 		);
