@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="300" viewBox="0 0 400 300">
+  <!-- <rect fill="#000000" x="0" y="0" width="400" height="300"></rect> -->
+  <!-- <circle fill="#000" cx="150" cy="150" r="100" /> -->
+  <!-- <circle fill="#000" cx="50" cy="50" r="150" /> -->
+
+  <foreignObject
+            
+						fill="#000"
+						x="0"
+						y="0"
+						width="400"
+						height="300"
+					>
+						<p style="color:#000" xmlns="http://www.w3.org/1999/xhtml">
+							Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi,
+							inventore incidunt? Officiis laboriosam molestiae soluta a
+							recusandae quo voluptate quos libero voluptatum dicta
+							reprehenderit iste perspiciatis, nemo iure tempora? Sit?
+						</p>
+					</foreignObject>
+</svg> 
