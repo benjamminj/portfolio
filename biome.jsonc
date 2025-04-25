@@ -43,8 +43,5 @@
 			"**/package-lock.json",
 			"**/yarn.lock"
 		]
-	},
-	"javascript": {
-		"globals": ["React"]
 	}
 }

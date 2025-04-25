@@ -6,6 +6,9 @@
  * -----------------------------------------------------------------------------
  */
 @theme {
+	--color-black: #000;
+	--color-white: #fff;
+
 	/** Base color token overrides. Any other colors just use the default TW mappings */
 	--color-gray-50: var(--color-zinc-50);
 	--color-gray-100: var(--color-zinc-100);
@@ -56,27 +59,30 @@
 	--color-purple-950: var(--color-violet-950);
 
 	/* Semantic token mappings */
-	--color-bg-default: var(--color-white);
-	--color-bg-muted: var(--color-gray-100);
-	--color-bg-emphasis: var(--color-black);
-	--color-fg-default: var(--color-black);
+	--color-bg: var(--color-gray-100);
+	--color-fg: var(--color-gray-900);
 	--color-fg-muted: var(--color-gray-600);
-	--color-fg-on-emphasis: var(--color-white);
-	--color-border-default: var(--color-black);
-	--color-border-muted: var(--color-gray-600);
+
+	/* Legacy semantic token mappings */
+	--color-LEGACY-bg-muted: var(--color-gray-100);
+	--color-LEGACY-fg-default: var(--color-black);
+	--color-LEGACY-border-default: var(--color-black);
+	--color-LEGACY-border-muted: var(--color-gray-600);
 }
 
 /** Dark mode mappings for the semantic tokens */
-@media (prefers-color-scheme: dark) {	
+@media (prefers-color-scheme: dark) {
 	:root {
-		--color-bg-default: var(--color-black);
-		--color-bg-muted: var(--color-gray-900);
-		--color-bg-emphasis: var(--color-white);
-		--color-fg-default: var(--color-white);
-		--color-fg-muted: var(--color-gray-400);
-		--color-fg-on-emphasis: var(--color-black);
-		--color-border-default: var(--color-white);
-		--color-border-muted: var(--color-gray-400);
+		/* Semantic token mappings */
+		--color-bg: var(--color-gray-950);
+		--color-fg: var(--color-gray-100);
+		--color-fg-muted: var(--color-gray-600);
+
+		/* Legacy semantic token mappings */
+		--color-LEGACY-bg-muted: var(--color-gray-900);
+		--color-LEGACY-fg-default: var(--color-white);
+		--color-LEGACY-border-default: var(--color-white);
+		--color-LEGACY-border-muted: var(--color-gray-400);
 	}
 }
 
@@ -87,56 +93,58 @@
  */
 @theme {
 	/* Internal variables to simplify the config a bit */
-	---default-font-mono-fallback: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-	
+	---default-font-mono-fallback: ui-monospace, SFMono-Regular, Menlo, Monaco,
+		Consolas, "Liberation Mono", "Courier New", monospace;
+	--line-height-base: 1.25rem;
+
 	/* General type configs */
 	--font-mono: var(--font-jetbrains-mono), var(---default-font-mono-fallback);
 	--tracking-tight: -0.015em;
 
 	/* Typography variants */
 	--text-heading: 1rem;
-	--text-heading--line-height: var(--text-body--line-height);
-	--text-heading--letter-spacing: var(--tracking-tight)
+	--text-heading--line-height: var(--line-height-base);
+	--text-heading--letter-spacing: var(--tracking-tight);
 	--text-heading--font-weight: var(--font-weight-bold);
 
 	--text-body: 1rem;
-	--text-body--line-height: 1.25rem;
+	--text-body--line-height: var(--line-height-base);
 	--text-body--letter-spacing: var(--tracking-tight);
 	--text-body--font-weight: var(--font-weight-normal);
 
 	--text-small: 0.875rem;
-	--text-small--line-height: var(--text-body--line-height);
+	--text-small--line-height: var(--line-height-base);
 	--text-small--letter-spacing: var(--tracking-tight);
 	--text-small--font-weight: var(--font-weight-normal);
 
 	/* Legacy typography */
 	--text-h1: var(--text-5xl);
-	--text-h1--letter-spacing: var(--tracking-tight)
+	--text-h1--letter-spacing: var(--tracking-tight);
 	--text-h1--line-height: 1;
 	--text-h1--font-weight: var(--font-weight-extrabold);
 
 	--text-h2: var(--text-4xl);
-	--text-h2--letter-spacing: var(--tracking-tight)
+	--text-h2--letter-spacing: var(--tracking-tight);
 	--text-h2--line-height: 1;
 	--text-h2--font-weight: var(--font-weight-extrabold);
 
 	--text-h3: var(--text-2xl);
-	--text-h3--letter-spacing: var(--tracking-tight)
+	--text-h3--letter-spacing: var(--tracking-tight);
 	--text-h3--line-height: 1;
 	--text-h3--font-weight: var(--font-weight-extrabold);
 
 	--text-h4: var(--text-xl);
-	--text-h4--letter-spacing: var(--tracking-tight)
+	--text-h4--letter-spacing: var(--tracking-tight);
 	--text-h4--line-height: 1;
 	--text-h4--font-weight: var(--font-weight-extrabold);
 
 	--text-h5: var(--text-base);
-	--text-h5--letter-spacing: var(--tracking-tight)
+	--text-h5--letter-spacing: var(--tracking-tight);
 	--text-h5--line-height: 1;
 	--text-h5--font-weight: var(--font-weight-extrabold);
 
 	--text-h6: var(--text-sm);
-	--text-h6--letter-spacing: var(--tracking-tight)
+	--text-h6--letter-spacing: var(--tracking-tight);
 	--text-h6--line-height: 1;
 	--text-h6--font-weight: var(--font-weight-bold);
 }
@@ -149,7 +157,7 @@
 @custom-variant js-enabled {
 	[data-js_enabled="true"] & {
 		@slot;
-  }
+	}
 }
 
 @custom-variant js-disabled {
@@ -169,6 +177,7 @@
 
 	/* Custom spacing values */
 	--spacing-prose: 80ch;
+	--spacing-line: var(--line-height-base);
 
 	/* Custom Animations */
 	--animate-fadein: fadein 100ms ease-in-out 200ms;
@@ -183,7 +192,6 @@
 		}
 	}
 }
-
 
 /*
   The default border color has changed to `currentcolor` in Tailwind CSS v4,
@@ -205,6 +213,6 @@
 
 @layer base {
 	* {
-		@apply border-border-default;
+		@apply border-LEGACY-border-default;
 	}
 }
