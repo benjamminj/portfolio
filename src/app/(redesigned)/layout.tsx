@@ -4,6 +4,7 @@ import { useId, type ReactNode } from "react";
 import "../globals.css";
 import { chunk } from "lodash";
 import { BackgroundCodePattern } from "./_components/background-code-pattern";
+import Link from "next/link";
 
 const jetbrainsMono = JetBrains_Mono({
 	subsets: ["latin"],
@@ -24,12 +25,14 @@ export default function RootLayout({ children }: { children: ReactNode }) {
 		<html lang="en" className={jetbrainsMono.variable}>
 			<body className="font-mono bg-bg text-fg text-body min-h-screen relative">
 				<BackgroundCodePattern />
-				<div className="p-5">
+				<div className="p-line">
 					<header>
-						<h1 className="text-heading">benjamin johnson</h1>
+						<Link href="/" className="hover:underline lowercase text-heading">
+							Benjamin Johnson
+						</Link>
 					</header>
 
-					<main className="pt-15">{children}</main>
+					<main className="pt-line-3">{children}</main>
 				</div>
 			</body>
 		</html>

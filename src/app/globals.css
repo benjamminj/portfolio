@@ -61,7 +61,7 @@
 	/* Semantic token mappings */
 	--color-bg: var(--color-gray-100);
 	--color-fg: var(--color-gray-900);
-	--color-fg-muted: var(--color-gray-600);
+	--color-fg-muted: var(--color-gray-500);
 
 	/* Legacy semantic token mappings */
 	--color-LEGACY-bg-muted: var(--color-gray-100);
@@ -177,7 +177,11 @@
 
 	/* Custom spacing values */
 	--spacing-prose: 80ch;
+
 	--spacing-line: var(--line-height-base);
+	--spacing-line-2: calc(var(--line-height-base) * 2);
+	--spacing-line-3: calc(var(--line-height-base) * 3);
+	--spacing-line-4: calc(var(--line-height-base) * 4);
 
 	/* Custom Animations */
 	--animate-fadein: fadein 100ms ease-in-out 200ms;

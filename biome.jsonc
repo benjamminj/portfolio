@@ -27,7 +27,12 @@
 	"linter": {
 		"enabled": true,
 		"rules": {
-			"recommended": true
+			"recommended": true,
+			"suspicious": {
+				// Disallow all `console` calls — they should be dev-only and stripped out
+				// before production.
+				"noConsole": "error"
+			}
 		},
 		"ignore": [
 			"**/*.cjs",
