@@ -6,38 +6,18 @@ test.describe("/clippings", () => {
 		const $title = page.locator("text=benjamin johnson").first();
 		expect(await $title.isVisible()).toEqual(true);
 
-		const $table = page.locator("role=table");
-		expect(await $table.isVisible()).toEqual(true);
+		const $listItems = await page.getByRole("listitem");
 
-		const columnValues = ["Link", "Tags"];
-		const $columns = await page.$$("role=columnheader");
-
-		// Validate that the columns are correct
-		for (let i = 0; i < $columns.length; i++) {
-			const $column = $columns[i];
-			const $header = await $column.$(`text=${columnValues[i]}`);
-			expect(await $header?.isVisible()).toEqual(true);
-		}
-
-		const $rows = await page.$$(
-			'css=[data-testid="Clippings__tablebody"] >> role=row',
-		);
-
-		// Go thru each row and validate that A) the row has the correct
-		// cells with the correct content.
-		//
-		// Do not validate actual content, since that is somewhat dynamic, just
-		// validate that links & tags exist
-		for (const $row of $rows) {
-			const [$linkCell, $tagsCell] = await $row.$$("role=cell");
-			const $link = await $linkCell.$("role=link");
-			const $tags = await $tagsCell.$$("role=link");
-
-			expect(await $link?.isVisible()).toEqual(true);
-			const $linkHref = await $link?.getAttribute("href");
+		// Go thru each list item and validate that it has the correct
+		// structure with links and tags.
+		for (const $listItem of await $listItems.all()) {
+			const $link = await $listItem.getByRole("link").first();
+			expect(await $link.isVisible()).toEqual(true);
+			const $linkHref = await $link.getAttribute("href");
 			expect($linkHref?.startsWith("http")).toEqual(true);
 
-			for (const $tag of $tags) {
+			const $tags = await $listItem.getByRole("link", { name: /tag/i });
+			for (const $tag of await $tags.all()) {
 				expect(await $tag.isVisible()).toEqual(true);
 				const $tagLink = await $tag.getAttribute("href");
 				expect($tagLink?.startsWith("/tags")).toEqual(true);
