@@ -10,6 +10,7 @@ export async function GET(request: Request) {
 	const host =
 		request.headers.get("X-Forwarded-Host") ?? request.headers.get("host");
 
+	// biome-ignore lint/suspicious/noConsole: Server-only logging, ok until we have a better solution
 	if (!host) console.error("Could not determine domain URL.");
 
 	const protocol = host?.includes("localhost") ? "http" : "https";

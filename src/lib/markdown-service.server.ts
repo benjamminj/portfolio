@@ -100,6 +100,7 @@ function highlightCodeBlocks(ast: Root): Root {
 function highlight(code: string, lang?: string) {
 	if (!lang) return code;
 	if (!Prism.languages[lang]) {
+		// biome-ignore lint/suspicious/noConsole: Build-only warning, ok until we have a better solution
 		console.warn("language syntax not found:", lang);
 		return "";
 	}

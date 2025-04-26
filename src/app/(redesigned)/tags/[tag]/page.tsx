@@ -1,4 +1,4 @@
-import { PageWrapper } from "@/app/(public)/_components/page-wrapper";
+import { H } from "@/lib/h";
 import { PostList } from "@/lib/post-list";
 import { PostService } from "@/lib/posts-service.server";
 
@@ -9,12 +9,13 @@ export default async function TagRoute({
 	const tag = await params.tag;
 	const filtered = posts.filter((post) => post.tags.includes(tag));
 	return (
-		<PageWrapper
-			title={`#${tag}`}
-			subtitle={`${filtered.length} ${filtered.length === 1 ? "post" : "posts"}`}
-		>
+		<>
+			<H level={1} className="pb-line">
+				posts tagged with "{tag}"
+			</H>
+
 			<PostList posts={filtered} />
-		</PageWrapper>
+		</>
 	);
 }
 

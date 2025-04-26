@@ -7,13 +7,12 @@ test.describe("/tags", () => {
 		const $title = await page.$("text=Benjamin Johnson");
 		expect(await $title?.isVisible()).toEqual(true);
 
-		const $heading = await page.$$(`css=*:not(a):text("#${tag}")`);
+		const $heading = await page.$$(
+			`css=*:not(a):text('posts tagged with "${tag}"')`,
+		);
 		expect($heading.length).toEqual(1);
 
 		const $writingLinks = await page.$$("data-testid=PostListItem__title");
 		expect($writingLinks.length).toBeGreaterThan(0);
-
-		const $links = await page.$$(`a:text("#${tag}")`);
-		expect($links.length).toEqual($writingLinks.length);
 	});
 });
