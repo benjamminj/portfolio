@@ -37,7 +37,7 @@ export function H({
 			className={cn(
 				"text-heading before:text-fg-muted",
 				variant === "prefixed" &&
-					"before:content-[attr(data-content)] before:mr-[1ch] before:no-underline before:inline-block",
+					"before:content-[attr(data-content)] before:mr-ch before:no-underline before:inline-block",
 				className,
 			)}
 			{...props}

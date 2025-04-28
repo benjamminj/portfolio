@@ -58,11 +58,6 @@
 	--color-purple-900: var(--color-violet-900);
 	--color-purple-950: var(--color-violet-950);
 
-	/* Semantic token mappings */
-	--color-bg: var(--color-gray-100);
-	--color-fg: var(--color-gray-900);
-	--color-fg-muted: var(--color-gray-500);
-
 	/* Legacy semantic token mappings */
 	--color-LEGACY-bg-muted: var(--color-gray-100);
 	--color-LEGACY-fg-default: var(--color-black);
@@ -70,13 +65,126 @@
 	--color-LEGACY-border-muted: var(--color-gray-600);
 }
 
+/**
+ * Semantic token mappings. Light theme mappings are right here, and
+ * dark theme mappings are in the media query below.
+ */
+@theme static {
+	/* Semantic token mappings */
+	--color-bg: var(--color-gray-100);
+	--color-bg-muted: var(--color-gray-200);
+	--color-bg-emphasis: var(--color-gray-900);
+	--color-fg: var(--color-gray-900);
+	--color-fg-muted: var(--color-gray-500);
+	--color-fg-link: var(--color-blue-600);
+	--color-fg-link-hover: var(--color-blue-700);
+	--color-fg-on-emphasis: var(--color-gray-100);
+	--color-border: var(--color-gray-400);
+	--color-border-muted: var(--color-gray-200);
+
+	--color-info-bg: var(--color-blue-100);
+	--color-info-bg-muted: var(--color-blue-200);
+	--color-info-bg-emphasis: var(--color-blue-950);
+	--color-info-fg: var(--color-blue-950);
+	--color-info-fg-muted: var(--color-blue-400);
+	--color-info-fg-link: var(--color-blue-600);
+	--color-info-fg-link-hover: var(--color-blue-700);
+	--color-info-border: var(--color-blue-200);
+
+	--color-success-bg: var(--color-green-100);
+	--color-success-bg-muted: var(--color-green-200);
+	--color-success-bg-emphasis: var(--color-green-950);
+	--color-success-fg: var(--color-green-950);
+	--color-success-fg-muted: var(--color-green-400);
+	--color-success-fg-link: var(--color-green-600);
+	--color-success-fg-link-hover: var(--color-green-700);
+	--color-success-border: var(--color-green-200);
+
+	--color-warning-bg: var(--color-orange-100);
+	--color-warning-bg-muted: var(--color-orange-200);
+	--color-warning-bg-emphasis: var(--color-orange-950);
+	--color-warning-fg: var(--color-orange-950);
+	--color-warning-fg-muted: var(--color-orange-400);
+	--color-warning-fg-link: var(--color-orange-600);
+	--color-warning-fg-link-hover: var(--color-orange-700);
+	--color-warning-border: var(--color-orange-200);
+
+	--color-error-bg: var(--color-red-100);
+	--color-error-bg-muted: var(--color-red-200);
+	--color-error-bg-emphasis: var(--color-red-950);
+	--color-error-fg: var(--color-red-950);
+	--color-error-fg-muted: var(--color-red-400);
+	--color-error-fg-link: var(--color-red-600);
+	--color-error-fg-link-hover: var(--color-red-700);
+	--color-error-border: var(--color-red-200);
+
+	--color-important-bg: var(--color-purple-100);
+	--color-important-bg-muted: var(--color-purple-200);
+	--color-important-bg-emphasis: var(--color-purple-950);
+	--color-important-fg: var(--color-purple-950);
+	--color-important-fg-muted: var(--color-purple-500);
+	--color-important-fg-link: var(--color-purple-600);
+	--color-important-fg-link-hover: var(--color-purple-700);
+	--color-important-border: var(--color-purple-200);
+}
+
 /** Dark mode mappings for the semantic tokens */
 @media (prefers-color-scheme: dark) {
 	:root {
 		/* Semantic token mappings */
 		--color-bg: var(--color-gray-950);
+		--color-bg-muted: var(--color-gray-900);
+		--color-bg-emphasis: var(--color-gray-50);
 		--color-fg: var(--color-gray-100);
 		--color-fg-muted: var(--color-gray-600);
+		--color-fg-on-emphasis: var(--color-gray-950);
+		--color-fg-link: var(--color-blue-500);
+		--color-fg-link-hover: var(--color-blue-400);
+
+		--color-info-bg: var(--color-blue-950);
+		--color-info-bg-muted: var(--color-blue-900);
+		--color-info-bg-emphasis: var(--color-blue-100);
+		--color-info-fg: var(--color-fg);
+		--color-info-fg-muted: var(--color-blue-300);
+		--color-info-fg-link: var(--color-blue-300);
+		--color-info-fg-link-hover: var(--color-blue-400);
+		--color-info-border: var(--color-blue-900);
+
+		--color-success-bg: var(--color-green-950);
+		--color-success-bg-muted: var(--color-green-900);
+		--color-success-bg-emphasis: var(--color-green-100);
+		--color-success-fg: var(--color-fg);
+		--color-success-fg-muted: var(--color-green-300);
+		--color-success-fg-link: var(--color-green-300);
+		--color-success-fg-link-hover: var(--color-green-400);
+		--color-success-border: var(--color-green-900);
+
+		--color-warning-bg: var(--color-orange-950);
+		--color-warning-bg-muted: var(--color-orange-900);
+		--color-warning-bg-emphasis: var(--color-orange-100);
+		--color-warning-fg: var(--color-fg);
+		--color-warning-fg-muted: var(--color-orange-300);
+		--color-warning-fg-link: var(--color-orange-300);
+		--color-warning-fg-link-hover: var(--color-orange-400);
+		--color-warning-border: var(--color-orange-900);
+
+		--color-error-bg: var(--color-red-950);
+		--color-error-bg-muted: var(--color-red-900);
+		--color-error-bg-emphasis: var(--color-red-100);
+		--color-error-fg: var(--color-fg);
+		--color-error-fg-muted: var(--color-red-300);
+		--color-error-fg-link: var(--color-red-300);
+		--color-error-fg-link-hover: var(--color-red-400);
+		--color-error-border: var(--color-red-900);
+
+		--color-important-bg: var(--color-purple-950);
+		--color-important-bg-muted: var(--color-purple-900);
+		--color-important-bg-emphasis: var(--color-purple-100);
+		--color-important-fg: var(--color-fg);
+		--color-important-fg-muted: var(--color-purple-400);
+		--color-important-fg-link: var(--color-purple-300);
+		--color-important-fg-link-hover: var(--color-purple-400);
+		--color-important-border: var(--color-purple-900);
 
 		/* Legacy semantic token mappings */
 		--color-LEGACY-bg-muted: var(--color-gray-900);
@@ -95,7 +203,7 @@
 	/* Internal variables to simplify the config a bit */
 	---default-font-mono-fallback: ui-monospace, SFMono-Regular, Menlo, Monaco,
 		Consolas, "Liberation Mono", "Courier New", monospace;
-	--line-height-base: 1.25rem;
+	--line-height-base: 1.5rem;
 
 	/* General type configs */
 	--font-mono: var(--font-jetbrains-mono), var(---default-font-mono-fallback);
@@ -177,6 +285,7 @@
 
 	/* Custom spacing values */
 	--spacing-prose: 80ch;
+	--spacing-ch: 1ch;
 
 	--spacing-line: var(--line-height-base);
 	--spacing-line-2: calc(var(--line-height-base) * 2);

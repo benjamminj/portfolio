@@ -25,7 +25,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
 		<html lang="en" className={jetbrainsMono.variable}>
 			<body className="font-mono bg-bg text-fg text-body min-h-screen relative">
 				<BackgroundCodePattern />
-				<div className="p-line">
+				<div className="p-line xl:p-line-2 2xl:p-line-3">
 					<header>
 						<Link href="/" className="hover:underline lowercase text-heading">
 							Benjamin Johnson
