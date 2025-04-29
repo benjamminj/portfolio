@@ -2,6 +2,7 @@ import { A } from "@/lib/a";
 import { H } from "@/lib/h";
 import { readFile } from "@/lib/read-file";
 import { Tag } from "@/lib/tag";
+import Link from "next/link";
 
 type Clipping = {
 	name: string;
@@ -25,16 +26,16 @@ export default async function ClippingsRoute() {
 			<ul className="space-y-line">
 				{clippings.map((clipping) => (
 					<li key={clipping.url}>
-						<A
-							className="text-fg hover:text-fg no-underline hover:underline hover:brightness-0"
+						<Link
+							className="text-heading hover:underline"
 							href={clipping.url}
 							target="_blank"
 							rel="noopener noreferrer"
 						>
 							{clipping.name}
-						</A>
+						</Link>
 						{clipping.tags.length > 0 && (
-							<div className="flex gap-[1ch] flex-wrap">
+							<div className="flex gap-ch flex-wrap">
 								{clipping.tags.map((tag) => (
 									<Tag key={tag} tag={tag} />
 								))}

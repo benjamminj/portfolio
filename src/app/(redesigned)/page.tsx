@@ -12,9 +12,9 @@ export default async function RootPage() {
 
 			<nav
 				className={cn(
-					"flex flex-wrap gap-x-[1ch] pt-line",
+					"flex flex-wrap gap-x-ch pt-line",
 					"*:not-last:after:content-['/']",
-					"*:not-last:after:pl-[1ch]",
+					"*:not-last:after:pl-ch",
 					"*:not-last:after:text-fg-muted",
 					"*:not-last:after:no-underline",
 				)}

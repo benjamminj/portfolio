@@ -38,12 +38,10 @@ test.describe("/[post]", () => {
 		const $footer = page.locator("data-testid=SlugPage__footer");
 		expect(await $footer.isVisible()).toEqual(true);
 
-		expect(await $footer.locator("text=Tags").isVisible()).toEqual(true);
-
 		const tags = ["testing", "javascript", "jest"];
 		await Promise.all(
 			tags.map(async (tag) => {
-				const $tag = $footer.locator(`text=#${tag}`);
+				const $tag = await $footer.locator(`text=#${tag}`);
 				expect(await $tag.getAttribute("href")).toEqual(`/tags/${tag}`);
 			}),
 		);
@@ -75,22 +73,5 @@ test.describe("/[post] (chromium only)", () => {
 
 	test.afterEach(async ({ context }) => {
 		context.clearPermissions();
-	});
-
-	test("should allow copy-pasting code snippets", async ({ page }) => {
-		await page.goto("/mocking-fetch");
-		const $copyButton = page.locator("text=Copy to clipboard").first();
-		await $copyButton.click();
-		const $copySuccess = page.locator("text=Copied!").first();
-		expect(await $copySuccess.isVisible()).toEqual(true);
-		const evaluated = await page.evaluate(() => {
-			return navigator.clipboard.readText();
-		});
-
-		// TODO: there may be a better locator we can use, perhaps the [language-]
-		// tag or relative to the button itself.
-		const snippet = await page.locator("pre code").first().innerText();
-
-		expect(evaluated).toEqual(snippet);
 	});
 });

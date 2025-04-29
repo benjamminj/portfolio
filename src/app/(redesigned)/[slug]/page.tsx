@@ -1,22 +1,27 @@
 import { Markdown } from "@/lib/markdown";
-import { PageWrapper } from "../_components/page-wrapper";
 import { PostService } from "@/lib/posts-service.server";
 import type { Metadata } from "next";
 import { A } from "@/lib/a";
 import { Tag } from "@/lib/tag";
+import { H } from "@/lib/h";
 
 type PageParams = {
 	slug: string;
 };
 
 export default async function SlugPage({ params }: { params: PageParams }) {
-	const slug = await params.slug;
+	const { slug } = await params;
 	const post = await PostService.get(slug);
 	return (
-		<PageWrapper title={post.title} subtitle={post.date}>
-			<Markdown raw={post.body} />
+		<>
+			<H level={1} className="mb-line">
+				{post.title}
+			</H>
+
+			<Markdown raw={post.body} __flushEdges />
+
 			{post.link && post.publisher && (
-				<p className="pt-4 max-w-prose mx-auto">
+				<p className="pt-line max-w-prose mx-auto">
 					<A title={post.publisher} href={post.link}>
 						Read the full article on {post.publisher}.
 					</A>
@@ -26,11 +31,12 @@ export default async function SlugPage({ params }: { params: PageParams }) {
 			{post.tags?.length > 0 && (
 				<footer
 					data-testid="SlugPage__footer"
-					className="pt-12 mx-auto max-w-prose px-4"
+					className="pt-line-2 max-w-prose text-fg-muted"
 				>
 					<div>
-						<div className="font-mono dark:text-gray-400">Tags</div>
-						<ul className="dark:text-gray-200 flex space-x-2">
+						<div className="text-small lowercase">Last updated {post.date}</div>
+
+						<ul className="flex space-x-2">
 							{post.tags.map((tag) => (
 								<li key={tag}>
 									<Tag tag={tag} />
@@ -40,14 +46,14 @@ export default async function SlugPage({ params }: { params: PageParams }) {
 					</div>
 				</footer>
 			)}
-		</PageWrapper>
+		</>
 	);
 }
 
 export async function generateMetadata({
 	params,
 }: { params: PageParams }): Promise<Metadata> {
-	const slug = await params.slug;
+	const { slug } = await params;
 	const post = await PostService.get(slug);
 
 	return {

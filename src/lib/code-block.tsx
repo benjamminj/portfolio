@@ -21,7 +21,7 @@ export function CodeBlock({ code }: { code: string }) {
 
 			<pre
 				className={cn(
-					"rounded-none p-6 pt-8 my-6 overflow-auto text-base bg-LEGACY-bg-muted selection:bg-black selection:text-white",
+					"rounded-none p-line my-line overflow-auto text-base bg-LEGACY-bg-muted selection:bg-black selection:text-white",
 				)}
 			>
 				<code
