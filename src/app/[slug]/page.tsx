@@ -5,11 +5,11 @@ import { A } from "@/lib/a";
 import { Tag } from "@/lib/tag";
 import { H } from "@/lib/h";
 
-type PageParams = {
+export type SlugPageParams = {
 	slug: string;
 };
 
-export default async function SlugPage({ params }: { params: PageParams }) {
+export default async function SlugPage({ params }: { params: SlugPageParams }) {
 	const { slug } = await params;
 	const post = await PostService.get(slug);
 	return (
@@ -52,10 +52,14 @@ export default async function SlugPage({ params }: { params: PageParams }) {
 
 export async function generateMetadata({
 	params,
-}: { params: PageParams }): Promise<Metadata> {
+}: { params: SlugPageParams }): Promise<Metadata> {
 	const { slug } = await params;
 	const post = await PostService.get(slug);
 
+	const urlBase = process.env.URL || process.env.VERCEL_URL;
+	const urlBaseHttps = urlBase?.startsWith("https://")
+		? urlBase
+		: `https://${urlBase}`;
 	return {
 		description: post.description,
 		authors: { name: "Benjamin Johnson" },
@@ -66,11 +70,12 @@ export async function generateMetadata({
 			title: post.title,
 			description: post.description,
 		},
+		metadataBase: new URL(urlBaseHttps),
 		openGraph: {
 			title: post.title,
 			description: post.description,
 			type: "website",
-			url: `${process.env.URL || process.env.VERCEL_URL}/${slug}`,
+			url: `/${slug}`,
 		},
 		keywords: post.tags?.length > 0 ? post.tags.join(", ") : undefined,
 	};
