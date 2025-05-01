@@ -1,9 +1,9 @@
 import { JetBrains_Mono } from "next/font/google";
 import { useId, type ReactNode } from "react";
 
-import "../globals.css";
+import "./globals.css";
 import { chunk } from "lodash";
-import { BackgroundCodePattern } from "./_components/background-code-pattern";
+import { BackgroundCodePattern } from "@/lib/background-code-pattern";
 import Link from "next/link";
 
 const jetbrainsMono = JetBrains_Mono({
