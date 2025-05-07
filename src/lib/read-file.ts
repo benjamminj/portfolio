@@ -1,6 +1,5 @@
 import { glob } from "glob";
 import fs from "node:fs/promises";
-import path from "node:path";
 
 export const readFile = async (contentPath: string, extension = "md") => {
 	const map = await glob(`**/content/**/*.${extension}`);
