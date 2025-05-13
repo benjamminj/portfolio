@@ -1,7 +1,7 @@
 ---
-title: I'm learning to be easier on myself, slowly prune thoughts into posts, and write in smaller bursts.
-description: 
-date: 2025-04-29
+title: Writing less
+description: I'm learning to be easier on myself, slowly prune thoughts into posts, and write in smaller bursts.
+date: 2025-05-13
 tags:
   - writing
 ---
