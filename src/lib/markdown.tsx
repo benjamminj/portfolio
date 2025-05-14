@@ -9,11 +9,10 @@ import { Callout } from "./callout";
 
 type MarkdownProps = {
 	raw: string;
-	/** @deprecated — for migration only, then remove and make default */
-	__flushEdges?: boolean;
+
 };
 
-export async function Markdown({ raw, __flushEdges = false }: MarkdownProps) {
+export async function Markdown({ raw }: MarkdownProps) {
 	const mdast = await MarkdownService.parseMarkdownToMdast(raw);
 
 	if (!mdast) return null;
@@ -21,8 +20,7 @@ export async function Markdown({ raw, __flushEdges = false }: MarkdownProps) {
 	return (
 		<div
 			className={cn(
-				"text-body mx-auto max-w-prose px-4 space-y-line",
-				__flushEdges && "px-0 mx-0",
+				"text-body mx-0 max-w-prose px-0 space-y-line"
 			)}
 		>
 			<InternalMarkdownRenderer nodes={mdast.data as CompileContext["stack"]} />
