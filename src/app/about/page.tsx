@@ -11,7 +11,7 @@ export default async function AboutRoute() {
 				about me
 			</H>
 
-			<Markdown raw={raw} __flushEdges />
+			<Markdown raw={raw} />
 		</>
 	);
 }

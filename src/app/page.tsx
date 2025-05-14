@@ -8,7 +8,7 @@ export default async function RootPage() {
 
 	return (
 		<>
-			<Markdown raw={raw} __flushEdges />
+			<Markdown raw={raw} />
 
 			<nav
 				className={cn(

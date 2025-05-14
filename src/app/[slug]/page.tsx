@@ -18,7 +18,7 @@ export default async function SlugPage({ params }: { params: SlugPageParams }) {
 				{post.title}
 			</H>
 
-			<Markdown raw={post.body} __flushEdges />
+			<Markdown raw={post.body} />
 
 			{post.link && post.publisher && (
 				<p className="pt-line max-w-prose mx-auto">
