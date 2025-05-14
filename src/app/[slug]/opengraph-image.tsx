@@ -20,7 +20,7 @@ export async function generateStaticParams() {
 
 export const size = {
 	width: 1200,
-	height: 630,
+	height: 627,
 };
 
 export async function generateImageMetadata({
