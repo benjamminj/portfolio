@@ -1,9 +1,11 @@
 import fm from "front-matter";
 import type { ZodTypeAny } from "zod";
 import { z } from "zod";
-import { MarkdownService } from "./markdown-service.server";
 import { glob } from "glob";
 import { readFile } from "./read-file";
+import { evaluate } from "next-mdx-remote-client/rsc";
+import { mdxComponents, mdxOptions } from "./markdown";
+import type { ComponentPropsWithoutRef } from "react";
 
 /**
  * Parses a date object into a JSON-serializable string, formatted as yyyy-mm-dd.
@@ -54,8 +56,6 @@ const PostContentSchema = z.object({
 const PostSchema = z.intersection(PostContentSchema, PostMetadataSchema);
 
 export type Post = z.infer<typeof PostSchema>;
-export type PostMetadata = z.infer<typeof PostMetadataSchema>;
-export type PostContent = z.infer<typeof PostContentSchema>;
 
 /**
  * Responsible for reading & formatting post data.
@@ -105,7 +105,7 @@ async function parse({
 	// Optionally allow the content to be included as pre-parsed HTML
 	// for the RSS feed.
 	if (include.includes("html")) {
-		const html = await MarkdownService.toHTML(body);
+		const html = await transformToStaticHTML(body);
 		schema = z.intersection(PostMetadataSchema, z.object({ html: z.string() }));
 		post.html = html;
 	}
@@ -114,6 +114,36 @@ async function parse({
 }
 
 /**
+ * Pipeline to take raw Markdown and turn it into a HTML string. This should only be used as
+ * part of the RSS feed.
+ */
+async function transformToStaticHTML(markdown: string) {
+	const ReactDOMServer = (await import("react-dom/server")).default;
+	const serverFriendlyComponents = {
+		...mdxComponents,
+		// These components are client components, so we can't use them directly when
+		// rendering on the server. Since this is only intended to support transforming
+		// markdown to static HTML in the RSS feed, we don't really need the fancy stylized ones.
+		// We can just use basic markup.
+		a: (props: ComponentPropsWithoutRef<"a">) => <a {...props} />,
+		code: (props: ComponentPropsWithoutRef<"code">) => <code {...props} />,
+		pre: (props: ComponentPropsWithoutRef<"pre">) => <pre {...props} />,
+	};
+	const { content } = await evaluate({
+		source: markdown,
+		options: {
+			mdxOptions,
+		},
+		components: serverFriendlyComponents,
+	});
+
+	const html = ReactDOMServer.renderToString(content);
+
+	return html;
+}
+
+/**
+ *
  * Lists all posts, optionally including additional data like HTML.
  */
 async function list({
@@ -144,11 +174,9 @@ async function get(slug: string) {
 	const raw = await readFile(path);
 	const metadata = await parse({ path, raw });
 	const { body } = fm<Record<string, string>>(raw);
-	const content = await MarkdownService.parseMarkdownToMdast(body);
 	return {
 		...metadata,
 		body,
-		content,
 	};
 }
 
