@@ -98,7 +98,7 @@ and this is a code block w/o highlighting...
 // this has a comment above it.
 const greeting = (name) => `Hello ${name}`;
 
-console.log(greeting('world'));
+console.log(greeting("world"));
 ```
 
 ### JSX
@@ -107,7 +107,7 @@ console.log(greeting('world'));
 const Button = (props) => (
 	<button
 		onClick={() => {
-			alert('hello');
+			alert("hello");
 		}}
 	>
 		welcome!
@@ -139,7 +139,7 @@ Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eveniet obcaecati ex e
 .selector {
 	color: var(--color-primary);
 	background: papayawhip;
-	mask-image: url('https://localhost:3000/image.png');
+	mask-image: url("https://localhost:3000/image.png");
 }
 ```
 

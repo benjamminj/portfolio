@@ -1,7 +1,7 @@
 import type { CSSProperties, ReactNode } from "react";
 import { cn } from "./cn";
 
-const CALLOUT_VARIANTS = [
+export const CALLOUT_VARIANTS = [
 	"NOTE",
 	"TIP",
 	"IMPORTANT",
