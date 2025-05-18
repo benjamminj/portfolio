@@ -25,11 +25,8 @@ export const Pre = ({
 
 export const Code = ({
 	children,
-	className,
-	...props
 }: {
 	children: ReactNode;
-	className?: string;
 } & ComponentPropsWithoutRef<"code">) => {
 	const isWithinPreformattedBlock = useContext(PreContext);
 
