@@ -53,6 +53,7 @@ export function Callout({ variant, children, className }: CalloutProps) {
 
 	return (
 		<blockquote
+			data-variant={variant}
 			style={
 				{
 					"--callout-bg": `var(--color-${config.colorGroupMapping}-bg)`,
