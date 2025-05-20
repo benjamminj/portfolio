@@ -4,6 +4,7 @@ import type { ReactNode } from "react";
 import { BackgroundCodePattern } from "@/lib/background-code-pattern";
 import Link from "next/link";
 import "./globals.css";
+import { Analytics } from "@vercel/analytics/react";
 
 const jetbrainsMono = JetBrains_Mono({
 	subsets: ["latin"],
@@ -33,6 +34,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
 
 					<main className="pt-line-3">{children}</main>
 				</div>
+				<Analytics />
 			</body>
 		</html>
 	);
