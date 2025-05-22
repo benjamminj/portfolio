@@ -3,8 +3,8 @@ import type { ReactNode } from "react";
 
 import { BackgroundCodePattern } from "@/lib/background-code-pattern";
 import Link from "next/link";
-import "./globals.css";
 import { Analytics } from "@vercel/analytics/react";
+import "../globals.css";
 
 const jetbrainsMono = JetBrains_Mono({
 	subsets: ["latin"],

@@ -5,6 +5,9 @@ settings:
   excludeLinksFromLockfile: false
 
 dependencies:
+  '@types/mdast':
+    specifier: ^4.0.4
+    version: 4.0.4
   '@types/react-dom':
     specifier: ^19.1.5
     version: 19.1.5(@types/react@19.1.0)

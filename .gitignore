@@ -16,3 +16,6 @@ node_modules
 # internal notes
 .notes.md
 *.notes.md
+
+# IDE files
+.cursor

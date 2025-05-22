@@ -11,14 +11,18 @@ import { cn } from "./cn";
 import { Code, Pre } from "./code";
 import { H } from "./h";
 import { rehypeCallouts } from "./rehype-callouts";
+import { Slide } from "./slide";
 
 type MarkdownProps = {
 	raw: string;
+	className?: string;
 };
 
-export async function Markdown({ raw }: MarkdownProps) {
+export async function Markdown({ raw, className }: MarkdownProps) {
 	return (
-		<div className={cn("text-body mx-0 max-w-prose px-0 space-y-line")}>
+		<div
+			className={cn("text-body mx-0 max-w-prose px-0 space-y-line", className)}
+		>
 			<MDXRemote
 				source={raw}
 				components={mdxComponents}
@@ -48,37 +52,38 @@ export const mdxOptions: EvaluateOptions["mdxOptions"] = {
 export const mdxComponents: MDXComponents = {
 	a: A,
 	h1: ({ children }) => (
-		<H level={1} className="mb-line mt-line-2">
+		<H level={1} className="mb-line not-first:mt-line-2">
 			{children}
 		</H>
 	),
 	h2: ({ children }) => (
-		<H level={2} className="mb-line mt-line-2">
+		<H level={2} className="mb-line not-first:mt-line-2">
 			{children}
 		</H>
 	),
 	h3: ({ children }) => (
-		<H level={3} className="mb-line mt-line-2">
+		<H level={3} className="mb-line not-first:mt-line-2">
 			{children}
 		</H>
 	),
 	h4: ({ children }) => (
-		<H level={4} className="mb-line mt-line-2">
+		<H level={4} className="mb-line not-first:mt-line-2">
 			{children}
 		</H>
 	),
 	h5: ({ children }) => (
-		<H level={5} className="mb-line mt-line-2">
+		<H level={5} className="mb-line not-first:mt-line-2">
 			{children}
 		</H>
 	),
 	h6: ({ children }) => (
-		<H level={6} className="mb-line mt-line-2">
+		<H level={6} className="mb-line not-first:mt-line-2">
 			{children}
 		</H>
 	),
 	code: Code,
 	pre: Pre,
+	Slide: Slide,
 	blockquote: ({ children, "data-variant": variant, ...rest }) => {
 		if (variant) {
 			return <Callout variant={variant}>{children}</Callout>;
