@@ -30,7 +30,7 @@ importers:
         specifier: ^4.17.21
         version: 4.17.21
       next:
-        specifier: ^15.2.5
+        specifier: 15.5.7
         version: 15.5.7(@playwright/test@1.51.1)(react-dom@19.2.1(react@19.2.1))(react@19.2.1)
       next-mdx-remote-client:
         specifier: ^2.1.2
