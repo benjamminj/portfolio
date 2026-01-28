@@ -36,7 +36,7 @@ export default async function SlugPage({ params }: { params: SlugPageParams }) {
 					<div>
 						<div className="text-small lowercase">Last updated {post.date}</div>
 
-						<ul className="flex gap-x-2 gap-y-line flex-wrap">
+						<ul className="flex gap-x-2 flex-wrap">
 							{post.tags.map((tag) => (
 								<li key={tag}>
 									<Tag tag={tag} />
