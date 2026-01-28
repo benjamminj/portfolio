@@ -35,7 +35,7 @@ export function PostListItem({ post }: { post: Post }) {
 				</Link>
 
 				{post.tags && post.tags.length > 0 && (
-					<ul className="flex gap-ch">
+					<ul className="flex gap-ch flex-wrap">
 						{post.tags.map((tag) => (
 							<li key={tag}>
 								<Tag key={tag} tag={tag} />
