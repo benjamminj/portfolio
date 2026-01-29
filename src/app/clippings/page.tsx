@@ -34,8 +34,9 @@ export default async function ClippingsRoute() {
 						>
 							{clipping.name}
 						</Link>
+
 						{clipping.tags.length > 0 && (
-							<div className="flex gap-ch flex-wrap">
+							<div className="flex gap-x-ch flex-wrap">
 								{clipping.tags.map((tag) => (
 									<Tag key={tag} tag={tag} />
 								))}
