@@ -24,7 +24,7 @@ export function PostListItem({ post }: { post: Post }) {
 		<div className="flex gap-3">
 			<time className="text-fg-muted text-body">{year}</time>
 
-			<div className="leading-0">
+			<div className="leading-0 flex-col flex">
 				<Link
 					href={`/${post.slug}`}
 					data-testid="PostListItem__title"
@@ -35,9 +35,9 @@ export function PostListItem({ post }: { post: Post }) {
 				</Link>
 
 				{post.tags && post.tags.length > 0 && (
-					<ul className="flex gap-ch">
+					<ul className="inline-block space-x-ch break-words">
 						{post.tags.map((tag) => (
-							<li key={tag}>
+							<li className="inline" key={tag}>
 								<Tag key={tag} tag={tag} />
 							</li>
 						))}
