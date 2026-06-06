@@ -11,7 +11,7 @@ node_modules
 .next
 
 # e2e tests
-/test-results
+test-results
 
 # internal notes
 .notes.md
