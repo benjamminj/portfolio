@@ -18,7 +18,7 @@ export function BackgroundCodePattern() {
 		<div
 			className={cn(
 				"absolute inset-0 overflow-hidden -z-10 break-all transition-colors duration-[500ms]",
-				reps > 0 ? "text-fg/5" : "text-transparent",
+				reps > 0 ? "text-fg/[4%]" : "text-transparent",
 			)}
 		>
 			{text.repeat(reps)}
