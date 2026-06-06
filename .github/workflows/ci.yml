@@ -56,7 +56,7 @@ jobs:
 
         # Run end-to-end tests against the deployed preview environment.
       - name: Run end-to-end tests
-        run: pnpm e2e
+        run: pnpm --filter=website e2e
         env:
           TEST_BASE_URL: ${{ github.event.deployment_status.target_url }}
 

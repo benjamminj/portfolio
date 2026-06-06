@@ -4,10 +4,9 @@ import { cn } from "./cn";
 
 export function A({
 	href,
-	children,
+	children,	
 	...props
 }: { href: string } & ComponentPropsWithoutRef<"a">) {
-	// TODO: semantic token for link color?
 	const className = cn(
 		"underline text-body font-bold cursor-pointer text-fg-link hover:text-fg-link-hover",
 		props.className,
