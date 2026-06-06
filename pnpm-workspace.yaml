@@ -4,3 +4,10 @@ packages:
 
 minimumReleaseAge: 10080 # 7 days in minutes
 blockExoticSubdeps: true
+
+allowBuilds:
+  '@biomejs/biome': false
+  '@parcel/watcher': false
+  less: false
+  nx: false
+  sharp: false
