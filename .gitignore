@@ -16,3 +16,7 @@ test-results
 # internal notes
 .notes.md
 *.notes.md
+
+
+.nx/cache
+.nx/workspace-data

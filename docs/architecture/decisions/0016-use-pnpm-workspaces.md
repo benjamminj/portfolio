@@ -6,6 +6,8 @@ Date: 2026-06-06
 
 Accepted
 
+Related to [17. use-nx](0017-use-nx.md)
+
 ## Context
 
 Historically, I've avoided making this repo a monorepo because I thought it was overkill for a simple personal website. It's possible that it's still overkill. However, the guiding motivations behind this decision:
