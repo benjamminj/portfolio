@@ -11,3 +11,5 @@ allowBuilds:
   less: false
   nx: false
   sharp: false
+  '@tailwindcss/oxide': true
+  esbuild: true
