@@ -201,8 +201,9 @@
  */
 @theme {
 	/* Internal variables to simplify the config a bit */
-	---default-font-mono-fallback: ui-monospace, SFMono-Regular, Menlo, Monaco,
-		Consolas, "Liberation Mono", "Courier New", monospace;
+	---default-font-mono-fallback:
+		ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
+		"Courier New", monospace;
 	--line-height-base: 1.5rem;
 
 	/* General type configs */

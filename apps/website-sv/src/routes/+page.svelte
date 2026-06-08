@@ -1,2 +1,9 @@
+<script>
+	import A from "$lib/a.svelte";
+</script>
+
 <h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://svelte.dev/docs/kit">svelte.dev/docs/kit</a> to read the documentation</p>
+<p>
+	Visit <A href="https://svelte.dev/docs/kit">THAT PAGE</A> to read
+	<i>the documentation for the thingy</i>
+</p>

@@ -1,1 +1,332 @@
-@import 'tailwindcss';
+@import "tailwindcss";
+
+/**
+ * -----------------------------------------------------------------------------
+ * COLORS
+ * -----------------------------------------------------------------------------
+ */
+@theme {
+	--color-black: #000;
+	--color-white: #fff;
+
+	/** Base color token overrides. Any other colors just use the default TW mappings */
+	--color-gray-50: var(--color-zinc-50);
+	--color-gray-100: var(--color-zinc-100);
+	--color-gray-200: var(--color-zinc-200);
+	--color-gray-300: var(--color-zinc-300);
+	--color-gray-400: var(--color-zinc-400);
+	--color-gray-500: var(--color-zinc-500);
+	--color-gray-600: var(--color-zinc-600);
+	--color-gray-700: var(--color-zinc-700);
+	--color-gray-800: var(--color-zinc-800);
+	--color-gray-900: var(--color-zinc-900);
+	--color-gray-950: var(--color-zinc-950);
+
+	--color-yellow-50: var(--color-amber-50);
+	--color-yellow-100: var(--color-amber-100);
+	--color-yellow-200: var(--color-amber-200);
+	--color-yellow-300: var(--color-amber-300);
+	--color-yellow-400: var(--color-amber-400);
+	--color-yellow-500: var(--color-amber-500);
+	--color-yellow-600: var(--color-amber-600);
+	--color-yellow-700: var(--color-amber-700);
+	--color-yellow-800: var(--color-amber-800);
+	--color-yellow-900: var(--color-amber-900);
+	--color-yellow-950: var(--color-amber-950);
+
+	--color-green-50: var(--color-emerald-50);
+	--color-green-100: var(--color-emerald-100);
+	--color-green-200: var(--color-emerald-200);
+	--color-green-300: var(--color-emerald-300);
+	--color-green-400: var(--color-emerald-400);
+	--color-green-500: var(--color-emerald-500);
+	--color-green-600: var(--color-emerald-600);
+	--color-green-700: var(--color-emerald-700);
+	--color-green-800: var(--color-emerald-800);
+	--color-green-900: var(--color-emerald-900);
+	--color-green-950: var(--color-emerald-950);
+
+	--color-purple-50: var(--color-violet-50);
+	--color-purple-100: var(--color-violet-100);
+	--color-purple-200: var(--color-violet-200);
+	--color-purple-300: var(--color-violet-300);
+	--color-purple-400: var(--color-violet-400);
+	--color-purple-500: var(--color-violet-500);
+	--color-purple-600: var(--color-violet-600);
+	--color-purple-700: var(--color-violet-700);
+	--color-purple-800: var(--color-violet-800);
+	--color-purple-900: var(--color-violet-900);
+	--color-purple-950: var(--color-violet-950);
+
+	/* Legacy semantic token mappings */
+	--color-LEGACY-bg-muted: var(--color-gray-100);
+	--color-LEGACY-fg-default: var(--color-black);
+	--color-LEGACY-border-default: var(--color-black);
+	--color-LEGACY-border-muted: var(--color-gray-600);
+}
+
+/**
+ * Semantic token mappings. Light theme mappings are right here, and
+ * dark theme mappings are in the media query below.
+ */
+@theme static {
+	/* Semantic token mappings */
+	--color-bg: var(--color-gray-50);
+	--color-bg-muted: var(--color-gray-200);
+	--color-bg-emphasis: var(--color-gray-900);
+	--color-fg: var(--color-gray-900);
+	--color-fg-muted: var(--color-gray-500);
+	--color-fg-link: var(--color-blue-600);
+	--color-fg-link-hover: var(--color-blue-700);
+	--color-fg-on-emphasis: var(--color-gray-100);
+	--color-border: var(--color-gray-400);
+	--color-border-muted: var(--color-gray-200);
+
+	--color-info-bg: var(--color-blue-100);
+	--color-info-bg-muted: var(--color-blue-200);
+	--color-info-bg-emphasis: var(--color-blue-950);
+	--color-info-fg: var(--color-blue-950);
+	--color-info-fg-muted: var(--color-blue-400);
+	--color-info-fg-link: var(--color-blue-600);
+	--color-info-fg-link-hover: var(--color-blue-700);
+	--color-info-border: var(--color-blue-200);
+
+	--color-success-bg: var(--color-green-100);
+	--color-success-bg-muted: var(--color-green-200);
+	--color-success-bg-emphasis: var(--color-green-950);
+	--color-success-fg: var(--color-green-950);
+	--color-success-fg-muted: var(--color-green-400);
+	--color-success-fg-link: var(--color-green-600);
+	--color-success-fg-link-hover: var(--color-green-700);
+	--color-success-border: var(--color-green-200);
+
+	--color-warning-bg: var(--color-orange-100);
+	--color-warning-bg-muted: var(--color-orange-200);
+	--color-warning-bg-emphasis: var(--color-orange-950);
+	--color-warning-fg: var(--color-orange-950);
+	--color-warning-fg-muted: var(--color-orange-400);
+	--color-warning-fg-link: var(--color-orange-600);
+	--color-warning-fg-link-hover: var(--color-orange-700);
+	--color-warning-border: var(--color-orange-200);
+
+	--color-error-bg: var(--color-red-100);
+	--color-error-bg-muted: var(--color-red-200);
+	--color-error-bg-emphasis: var(--color-red-950);
+	--color-error-fg: var(--color-red-950);
+	--color-error-fg-muted: var(--color-red-400);
+	--color-error-fg-link: var(--color-red-600);
+	--color-error-fg-link-hover: var(--color-red-700);
+	--color-error-border: var(--color-red-200);
+
+	--color-important-bg: var(--color-purple-100);
+	--color-important-bg-muted: var(--color-purple-200);
+	--color-important-bg-emphasis: var(--color-purple-950);
+	--color-important-fg: var(--color-purple-950);
+	--color-important-fg-muted: var(--color-purple-500);
+	--color-important-fg-link: var(--color-purple-600);
+	--color-important-fg-link-hover: var(--color-purple-700);
+	--color-important-border: var(--color-purple-200);
+}
+
+/** Dark mode mappings for the semantic tokens */
+@media (prefers-color-scheme: dark) {
+	:root {
+		/* Semantic token mappings */
+		--color-bg: var(--color-gray-950);
+		--color-bg-muted: var(--color-gray-900);
+		--color-bg-emphasis: var(--color-gray-50);
+		--color-fg: var(--color-gray-100);
+		--color-fg-muted: var(--color-gray-600);
+		--color-fg-on-emphasis: var(--color-gray-950);
+		--color-fg-link: var(--color-blue-500);
+		--color-fg-link-hover: var(--color-blue-400);
+
+		--color-info-bg: var(--color-blue-950);
+		--color-info-bg-muted: var(--color-blue-900);
+		--color-info-bg-emphasis: var(--color-blue-100);
+		--color-info-fg: var(--color-fg);
+		--color-info-fg-muted: var(--color-blue-300);
+		--color-info-fg-link: var(--color-blue-300);
+		--color-info-fg-link-hover: var(--color-blue-400);
+		--color-info-border: var(--color-blue-900);
+
+		--color-success-bg: var(--color-green-950);
+		--color-success-bg-muted: var(--color-green-900);
+		--color-success-bg-emphasis: var(--color-green-100);
+		--color-success-fg: var(--color-fg);
+		--color-success-fg-muted: var(--color-green-300);
+		--color-success-fg-link: var(--color-green-300);
+		--color-success-fg-link-hover: var(--color-green-400);
+		--color-success-border: var(--color-green-900);
+
+		--color-warning-bg: var(--color-orange-950);
+		--color-warning-bg-muted: var(--color-orange-900);
+		--color-warning-bg-emphasis: var(--color-orange-100);
+		--color-warning-fg: var(--color-fg);
+		--color-warning-fg-muted: var(--color-orange-300);
+		--color-warning-fg-link: var(--color-orange-300);
+		--color-warning-fg-link-hover: var(--color-orange-400);
+		--color-warning-border: var(--color-orange-900);
+
+		--color-error-bg: var(--color-red-950);
+		--color-error-bg-muted: var(--color-red-900);
+		--color-error-bg-emphasis: var(--color-red-100);
+		--color-error-fg: var(--color-fg);
+		--color-error-fg-muted: var(--color-red-300);
+		--color-error-fg-link: var(--color-red-300);
+		--color-error-fg-link-hover: var(--color-red-400);
+		--color-error-border: var(--color-red-900);
+
+		--color-important-bg: var(--color-purple-950);
+		--color-important-bg-muted: var(--color-purple-900);
+		--color-important-bg-emphasis: var(--color-purple-100);
+		--color-important-fg: var(--color-fg);
+		--color-important-fg-muted: var(--color-purple-400);
+		--color-important-fg-link: var(--color-purple-300);
+		--color-important-fg-link-hover: var(--color-purple-400);
+		--color-important-border: var(--color-purple-900);
+
+		/* Legacy semantic token mappings */
+		--color-LEGACY-bg-muted: var(--color-gray-900);
+		--color-LEGACY-fg-default: var(--color-white);
+		--color-LEGACY-border-default: var(--color-white);
+		--color-LEGACY-border-muted: var(--color-gray-400);
+	}
+}
+
+/**
+ * -----------------------------------------------------------------------------
+ * TYPOGRAPHY
+ * -----------------------------------------------------------------------------
+ */
+@theme {
+	/* Internal variables to simplify the config a bit */
+	---default-font-mono-fallback:
+		ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
+		"Courier New", monospace;
+	--line-height-base: 1.5rem;
+
+	/* General type configs */
+	--font-mono: var(--font-jetbrains-mono), var(---default-font-mono-fallback);
+	--tracking-tight: -0.015em;
+
+	/* Typography variants */
+	--text-heading: 1rem;
+	--text-heading--line-height: var(--line-height-base);
+	--text-heading--letter-spacing: var(--tracking-tight);
+	--text-heading--font-weight: var(--font-weight-bold);
+
+	--text-body: 1rem;
+	--text-body--line-height: var(--line-height-base);
+	--text-body--letter-spacing: var(--tracking-tight);
+	--text-body--font-weight: var(--font-weight-normal);
+
+	--text-small: 0.875rem;
+	--text-small--line-height: var(--line-height-base);
+	--text-small--letter-spacing: var(--tracking-tight);
+	--text-small--font-weight: var(--font-weight-normal);
+
+	/* Legacy typography */
+	--text-h1: var(--text-5xl);
+	--text-h1--letter-spacing: var(--tracking-tight);
+	--text-h1--line-height: 1;
+	--text-h1--font-weight: var(--font-weight-extrabold);
+
+	--text-h2: var(--text-4xl);
+	--text-h2--letter-spacing: var(--tracking-tight);
+	--text-h2--line-height: 1;
+	--text-h2--font-weight: var(--font-weight-extrabold);
+
+	--text-h3: var(--text-2xl);
+	--text-h3--letter-spacing: var(--tracking-tight);
+	--text-h3--line-height: 1;
+	--text-h3--font-weight: var(--font-weight-extrabold);
+
+	--text-h4: var(--text-xl);
+	--text-h4--letter-spacing: var(--tracking-tight);
+	--text-h4--line-height: 1;
+	--text-h4--font-weight: var(--font-weight-extrabold);
+
+	--text-h5: var(--text-base);
+	--text-h5--letter-spacing: var(--tracking-tight);
+	--text-h5--line-height: 1;
+	--text-h5--font-weight: var(--font-weight-extrabold);
+
+	--text-h6: var(--text-sm);
+	--text-h6--letter-spacing: var(--tracking-tight);
+	--text-h6--line-height: 1;
+	--text-h6--font-weight: var(--font-weight-bold);
+}
+
+/**
+ * -----------------------------------------------------------------------------
+ * CUSTOM VARIANTS
+ * -----------------------------------------------------------------------------
+ */
+@custom-variant js-enabled {
+	[data-js_enabled="true"] & {
+		@slot;
+	}
+}
+
+@custom-variant js-disabled {
+	[data-js_enabled="false"] & {
+		@slot;
+	}
+}
+
+/**
+ * -----------------------------------------------------------------------------
+ * ADDITIONAL THEME CONFIG
+ * -----------------------------------------------------------------------------
+ */
+@theme {
+	/* Custom breakpoints */
+	--breakpoint-xs: 29rem;
+
+	/* Custom spacing values */
+	--spacing-prose: 80ch;
+	--spacing-ch: 1ch;
+
+	--spacing-line: var(--line-height-base);
+	--spacing-line-2: calc(var(--line-height-base) * 2);
+	--spacing-line-3: calc(var(--line-height-base) * 3);
+	--spacing-line-4: calc(var(--line-height-base) * 4);
+
+	/* Custom Animations */
+	--animate-fadein: fadein 100ms ease-in-out 200ms;
+
+	@keyframes fadein {
+		0% {
+			opacity: 0;
+		}
+
+		100% {
+			opacity: 1;
+		}
+	}
+}
+
+/*
+  The default border color has changed to `currentcolor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+	*,
+	::after,
+	::before,
+	::backdrop,
+	::file-selector-button {
+		border-color: var(--color-gray-200, currentcolor);
+	}
+}
+
+@layer base {
+	* {
+		@apply border-LEGACY-border-default;
+	}
+}
