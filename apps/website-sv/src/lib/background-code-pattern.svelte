@@ -17,7 +17,7 @@
 
 <div
 	class={cn(
-		"absolute inset-0 overflow-hidden break-all transition-colors duration-500",
+		"absolute inset-0 -z-10 overflow-hidden break-all transition-colors duration-500",
 		reps > 0 ? "text-fg/4" : "text-transparent",
 	)}
 >
