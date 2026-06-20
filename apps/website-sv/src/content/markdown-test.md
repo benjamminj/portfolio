@@ -151,6 +151,24 @@ nothing changed
 - deleted
 ```
 
+---
+
+## Images
+
+![placeholder img](https://placehold.co/1600x400)
+
+---
+
+## Tables
+
+| name   | emoji | fruit | wiki                                 |
+| ------ | ----- | ----- | ------------------------------------ |
+| potato | 🥔    | ❌    | https://en.wikipedia.org/wiki/Potato |
+| tomato | 🍅    | ✅    | https://en.wikipedia.org/wiki/Tomato |
+| banana | 🍌    | ✅    | https://en.wikipedia.org/wiki/Banana |
+
+---
+
 ## Callouts
 
 > [!NOTE]

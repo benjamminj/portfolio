@@ -35,7 +35,7 @@ export const Code = ({
 	}
 
 	return (
-		<code className="inline-block bg-bg-emphasis/10 backdrop-blur-xs text-fg break-words before:content-['`'] before:font-bold before:text-fg/60 after:content-['`'] after:font-bold after:text-fg/60 rounded-xs">
+		<code className="inline-block bg-bg-emphasis/10 backdrop-blur-xs text-fg wrap-break-word before:content-['`'] before:font-bold before:text-fg/60 after:content-['`'] after:font-bold after:text-fg/60 rounded-xs">
 			{children}
 		</code>
 	);

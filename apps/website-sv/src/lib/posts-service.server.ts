@@ -1,6 +1,5 @@
 import fm from "front-matter";
 import { glob } from "glob";
-import type { Root } from "mdast";
 import rehypePrettyCode from "rehype-pretty-code";
 import remarkGfm from "remark-gfm";
 import remarkParse from "remark-parse";
@@ -11,6 +10,9 @@ import { z } from "zod";
 import { readFile } from "./read-file";
 import { rehypeCallouts } from "./rehype-callouts";
 import { slimAst } from "./rehype-slim-hast";
+import rehypeStringify from "rehype-stringify";
+import { fromHtml } from "hast-util-from-html";
+import rehypeParse from "rehype-parse";
 
 /**
  * Parses a date object into a JSON-serializable string, formatted as yyyy-mm-dd.
@@ -130,7 +132,7 @@ async function transformToStaticHTML(markdown: string) {
 
 // TODO: some other service (markdown?)
 export async function transformToAst(markdown: string) {
-	const ast = unified()
+	const processor = unified()
 		.use(remarkParse)
 		.use(remarkGfm)
 		.use(remarkRehype)
@@ -140,11 +142,15 @@ export async function transformToAst(markdown: string) {
 			defaultLang: "plaintext",
 			keepBackground: false,
 		})
-		.parse(markdown);
+		.use(() => slimAst);
 
-	slimAst(ast);
+	const mdast = processor.parse(markdown);
+	const hast = processor.run(mdast);
+	// const parsed = fromHtml(ast.value);
+	// slimAst(ast);
 
-	return ast;
+	// return hyped;
+	return hast;
 }
 
 /**

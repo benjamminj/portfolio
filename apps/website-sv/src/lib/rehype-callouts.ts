@@ -10,7 +10,6 @@ export const CALLOUT_VARIANTS = [
 	"CAUTION",
 ] as const;
 
-
 /**
  * Adds parsing for Github-style callouts to the HAST tree.
  */
