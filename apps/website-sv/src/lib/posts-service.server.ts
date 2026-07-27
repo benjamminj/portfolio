@@ -73,7 +73,6 @@ export type Post = z.infer<typeof PostSchema>;
  */
 async function fetchRaw() {
 	const posts = await glob("**src/**/content/writing/**/*.md");
-	console.log(">> POSTS", posts);
 	return posts;
 }
 
@@ -126,7 +125,22 @@ async function parse({
  * part of the RSS feed.
  */
 async function transformToStaticHTML(markdown: string) {
-	// TODO: use rehype to render it out to MD?
+	const processor = unified()
+		.use(remarkParse)
+		.use(remarkGfm)
+		.use(remarkRehype)
+		.use(rehypeCallouts)
+		.use(rehypePrettyCode, {
+			theme: "rose-pine",
+			defaultLang: "plaintext",
+			keepBackground: false,
+		})
+		.use(rehypeStringify);
+
+	const mdast = processor.parse(markdown);
+	const hast = await processor.run(mdast);
+	const html = processor.stringify(hast);
+	return html;
 }
 
 // TODO: some other service (markdown?)
@@ -145,10 +159,6 @@ export async function transformToAst(markdown: string) {
 
 	const mdast = processor.parse(markdown);
 	const hast = processor.run(mdast);
-	// const parsed = fromHtml(ast.value);
-	// slimAst(ast);
-
-	// return hyped;
 	return hast;
 }
 

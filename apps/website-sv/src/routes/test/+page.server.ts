@@ -1,4 +1,4 @@
-import { transformToAst } from "$lib/posts-service.server";
+import { transformToAst, PostService } from "$lib/posts-service.server";
 import { readFile } from "$lib/read-file";
 import type { PageServerLoad } from "./$types";
 
