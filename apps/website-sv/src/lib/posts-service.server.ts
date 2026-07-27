@@ -11,8 +11,6 @@ import { readFile } from "./read-file";
 import { rehypeCallouts } from "./rehype-callouts";
 import { slimAst } from "./rehype-slim-hast";
 import rehypeStringify from "rehype-stringify";
-import { fromHtml } from "hast-util-from-html";
-import rehypeParse from "rehype-parse";
 
 /**
  * Parses a date object into a JSON-serializable string, formatted as yyyy-mm-dd.
@@ -74,7 +72,8 @@ export type Post = z.infer<typeof PostSchema>;
  * Fetches the raw posts from the file system.
  */
 async function fetchRaw() {
-	const posts = await glob("**/content/writing/**/*.md");
+	const posts = await glob("**src/**/content/writing/**/*.md");
+	console.log(">> POSTS", posts);
 	return posts;
 }
 
@@ -185,9 +184,11 @@ async function get(slug: string) {
 	const raw = await readFile(path);
 	const metadata = await parse({ path, raw });
 	const { body } = fm<Record<string, string>>(raw);
+	const ast = await transformToAst(body);
 	return {
 		...metadata,
 		body,
+		ast,
 	};
 }
 
