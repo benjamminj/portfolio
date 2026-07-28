@@ -20,7 +20,8 @@
 	{#each Object.keys(meta) as key}
 		{const content = meta[key]}
 		{#if content}
-			<meta name={key} content={content} />
+			{const name = key.startsWith('og:') ? { property: key } : { name: key }}
+			<meta {...name} content={content} />
 		{/if}
 	{/each}
 </svelte:head>
