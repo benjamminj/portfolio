@@ -37,6 +37,7 @@
 		"@types/hast": "^3.0.4",
 		"@types/mdast": "^4.0.4",
 		"clsx": "^2.1.1",
+		"flat": "^6.0.1",
 		"front-matter": "^4.0.2",
 		"glob": "^11.1.0",
 		"hast": "^1.0.0",

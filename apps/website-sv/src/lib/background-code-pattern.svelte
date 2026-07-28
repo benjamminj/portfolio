@@ -2,18 +2,18 @@
 	import { cn } from "./cn";
 	import { getBackgroundCodePatternText } from "./get-background-code-pattern-text";
 
-	let innerWidth = $state(0);
-	let innerHeight = $state(0);
+	let clientWidth = $state(0);
+	let clientHeight = $state(0);
 
 	const { text, reps } = $derived(
 		getBackgroundCodePatternText({
-			height: innerHeight,
-			width: innerWidth,
+			height: clientHeight,
+			width: clientWidth,
 		}),
 	);
 </script>
 
-<svelte:window bind:innerWidth bind:innerHeight />
+<svelte:body bind:clientHeight bind:clientWidth />
 
 <div
 	class={cn(

@@ -3,8 +3,9 @@
 	import favicon from "$lib/assets/favicon.svg";
 	import BackgroundCodePattern from "$lib/background-code-pattern.svelte";
 	import A from "$lib/a.svelte";
+	import type { LayoutProps } from "./$types";
 
-	let { children } = $props();
+	let { children }: LayoutProps = $props();
 </script>
 
 <svelte:head>

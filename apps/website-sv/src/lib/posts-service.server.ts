@@ -11,8 +11,6 @@ import { readFile } from "./read-file";
 import { rehypeCallouts } from "./rehype-callouts";
 import { slimAst } from "./rehype-slim-hast";
 import rehypeStringify from "rehype-stringify";
-import { fromHtml } from "hast-util-from-html";
-import rehypeParse from "rehype-parse";
 
 /**
  * Parses a date object into a JSON-serializable string, formatted as yyyy-mm-dd.
@@ -74,7 +72,7 @@ export type Post = z.infer<typeof PostSchema>;
  * Fetches the raw posts from the file system.
  */
 async function fetchRaw() {
-	const posts = await glob("**/content/writing/**/*.md");
+	const posts = await glob("**src/**/content/writing/**/*.md");
 	return posts;
 }
 
@@ -127,7 +125,22 @@ async function parse({
  * part of the RSS feed.
  */
 async function transformToStaticHTML(markdown: string) {
-	// TODO: use rehype to render it out to MD?
+	const processor = unified()
+		.use(remarkParse)
+		.use(remarkGfm)
+		.use(remarkRehype)
+		.use(rehypeCallouts)
+		.use(rehypePrettyCode, {
+			theme: "rose-pine",
+			defaultLang: "plaintext",
+			keepBackground: false,
+		})
+		.use(rehypeStringify);
+
+	const mdast = processor.parse(markdown);
+	const hast = await processor.run(mdast);
+	const html = processor.stringify(hast);
+	return html;
 }
 
 // TODO: some other service (markdown?)
@@ -146,10 +159,6 @@ export async function transformToAst(markdown: string) {
 
 	const mdast = processor.parse(markdown);
 	const hast = processor.run(mdast);
-	// const parsed = fromHtml(ast.value);
-	// slimAst(ast);
-
-	// return hyped;
 	return hast;
 }
 
@@ -185,9 +194,11 @@ async function get(slug: string) {
 	const raw = await readFile(path);
 	const metadata = await parse({ path, raw });
 	const { body } = fm<Record<string, string>>(raw);
+	const ast = await transformToAst(body);
 	return {
 		...metadata,
 		body,
+		ast,
 	};
 }
 
