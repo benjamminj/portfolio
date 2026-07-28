@@ -1,5 +1,10 @@
 import { PostService } from "$lib/posts-service.server";
-import type { PageServerLoad } from "./[slug]/$types";
+import type { EntryGenerator, PageServerLoad } from "./$types";
+
+export const entries: EntryGenerator = async () => {
+	const posts = await PostService.list();
+	return posts.map((post) => ({ slug: post.slug }));
+};
 
 export const load: PageServerLoad = async ({ params }) => {
 	const post = await PostService.get(params.slug);
@@ -8,37 +13,6 @@ export const load: PageServerLoad = async ({ params }) => {
 	const urlBaseHttps = urlBase?.startsWith("https://")
 		? urlBase
 		: `https://${urlBase}`;
-
-	// export async function generateMetadata({
-	// 	params,
-	// }: { params: SlugPageParams }): Promise<Metadata> {
-	// 	const { slug } = await params;
-	// 	const post = await PostService.get(slug);
-
-	// 	const urlBase = process.env.URL || process.env.VERCEL_URL;
-	// 	const urlBaseHttps = urlBase?.startsWith("https://")
-	// 		? urlBase
-	// 		: `https://${urlBase}`;
-	// 	return {
-	// 		description: post.description,
-	// 		authors: { name: "Benjamin Johnson" },
-	// 		twitter: {
-	// 			card: "summary",
-	// 			site: "@benjamminj",
-	// 			creator: "@benjamminj",
-	// 			title: post.title,
-	// 			description: post.description,
-	// 		},
-	// 		metadataBase: new URL(urlBaseHttps),
-	// 		openGraph: {
-	// 			title: post.title,
-	// 			description: post.description,
-	// 			type: "website",
-	// 			url: `/${slug}`,
-	// 		},
-	// 		keywords: post.tags?.length > 0 ? post.tags.join(", ") : undefined,
-	// 	};
-	// }
 
 	const meta = {
 		description: post.description,

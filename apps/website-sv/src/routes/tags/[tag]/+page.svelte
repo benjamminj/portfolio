@@ -1,14 +1,3 @@
-<!-- TODO: prerendering -->
-<!--  
-export async function generateStaticParams() {
-	const posts = await PostService.list();
-	const tags = posts.flatMap((post) => post.tags);
-	const unique = new Set(tags);
-
-	return Array.from(unique).map((tag) => ({ tag }));
-}
--->
-
 <script lang="ts">
 	import H from "$lib/h.svelte";
 	import PostList from "$lib/post-list.svelte";

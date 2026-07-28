@@ -7,8 +7,6 @@
 	};
 
 	let { posts }: Props = $props();
-
-	$inspect('>>>', posts);
 </script>
 
 <ul class="flex flex-col gap-line">

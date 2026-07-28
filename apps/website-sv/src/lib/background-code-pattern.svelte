@@ -5,10 +5,6 @@
 	let clientWidth = $state(0);
 	let clientHeight = $state(0);
 
-	$effect(() => {
-		clientHeight = document.body.clientHeight;
-		clientWidth = document.body.clientWidth;
-	});
 	const { text, reps } = $derived(
 		getBackgroundCodePatternText({
 			height: clientHeight,
@@ -16,6 +12,8 @@
 		}),
 	);
 </script>
+
+<svelte:body bind:clientHeight bind:clientWidth />
 
 <div
 	class={cn(
