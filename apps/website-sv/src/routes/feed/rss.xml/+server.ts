@@ -5,6 +5,8 @@ const escapeCdata = (str: string) => {
 	return str.replace(/\]\]>/g, "]]]]><![CDATA[>");
 };
 
+export const prerender = true;
+
 export const GET: RequestHandler = async ({ request }) => {
 	const posts = await PostService.list({ include: ["html"] });
 	const host =
